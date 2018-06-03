@@ -3,3 +3,15 @@ inherit_gem:
 
 AllCops:
   TargetRubyVersion: 2.4
+
+Metrics/BlockLength:
+  Enabled: true
+  Exclude:
+    - '**/*/catalog_controller.rb'
+    - 'config/**/*'
+    - 'spec/features**/*'
+
+RSpec/ExampleLength:
+  Enabled: true
+  Exclude:
+    - 'spec/features**/*'
