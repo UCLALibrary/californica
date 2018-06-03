@@ -1,9 +1,9 @@
 default: &default
   adapter:  postgresql
   encoding: unicode
-  pool:     5
+  pool:     <%= ENV['DATABASE_POOL_SIZE'] || 5 %>
   timeout:  5000
-  username: tenejo
+  username: <%= ENV['DATABASE_USERNAME'] || 'tenejo' %>
 
 development:
   <<: *default
@@ -18,6 +18,5 @@ test:
 
 production:
   <<: *default
-  database: tenejo_production
-  username: tenejo
-  password: password1
+  database: <%= ENV['DATABASE_NAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
