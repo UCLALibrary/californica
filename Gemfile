@@ -7,8 +7,9 @@ end
 
 ruby '>= 2.4.0', '<= 2.5.99'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'hyrax', '~> 2.1.0'
 gem 'rails', '~> 5.1.6'
+
 # Use postgresql
 gem 'pg', '~> 1.0'
 # Use Puma as the app server
@@ -26,23 +27,15 @@ gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
+gem 'devise'
+gem 'devise-guests', '~> 0.6'
 gem 'dotenv-rails', '~> 2.2.1'
-
-group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '~> 2.13'
-  gem 'selenium-webdriver'
-end
+gem 'jquery-rails'
+gem 'riiif', '~> 1.1'
+gem 'rsolr', '>= 1.0'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
@@ -53,21 +46,13 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-gem 'hyrax', '2.1.0'
 group :development, :test do
-  gem 'solr_wrapper', '>= 0.3'
-end
-
-gem 'rsolr', '>= 1.0'
-gem 'jquery-rails'
-gem 'devise'
-gem 'devise-guests', '~> 0.6'
-group :development, :test do
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # Adds support for Capybara system testing and selenium driver
+  gem 'capybara', '~> 2.13'
   gem 'fcrepo_wrapper'
   gem 'rspec-rails'
+  gem 'solr_wrapper', '>= 0.3'
+  gem 'selenium-webdriver'
 end
-
-gem 'riiif', '~> 1.1'
