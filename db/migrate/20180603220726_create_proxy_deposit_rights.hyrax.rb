@@ -5,6 +5,5 @@ class CreateProxyDepositRights < ActiveRecord::Migration[5.1]
       t.references :grantee
       t.timestamps null: false
     end
-    
   end
 end

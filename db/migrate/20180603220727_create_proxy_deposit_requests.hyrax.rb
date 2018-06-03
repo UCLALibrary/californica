@@ -10,6 +10,5 @@ class CreateProxyDepositRequests < ActiveRecord::Migration[5.1]
       t.text :receiver_comment
       t.timestamps null: false
     end
-    
   end
 end
