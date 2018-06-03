@@ -1,0 +1,17 @@
+language: ruby
+sudo: false
+cache: bundler
+dist: trusty
+
+jdk:
+  - oraclejdk8
+rvm:
+  - 2.4
+  - 2.5
+before_script:
+  - bundle exec rake db:create
+script:
+  - bundle exec rake
+services:
+  - redis-server
+  - postgresql
