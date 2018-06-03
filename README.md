@@ -3,6 +3,8 @@ Tenejo
 
 Tenejo is a general purpose Digital Repository/Asset Management System.
 
+[![Build Status](https://travis-ci.org/curationexperts/tenejo.svg?branch=master)](https://travis-ci.org/curationexperts/tenejo)
+
 Development
 -----------
 
