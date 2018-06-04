@@ -38,6 +38,7 @@ gem 'hydra-role-management', '~> 1.0.0'
 gem 'jquery-rails'
 gem 'riiif', '~> 1.1'
 gem 'rsolr', '>= 1.0'
+gem 'sidekiq', '~> 5.1.3'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
