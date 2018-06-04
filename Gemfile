@@ -41,6 +41,13 @@ gem 'rsolr', '>= 1.0'
 gem 'sidekiq', '~> 5.1.3'
 
 group :development do
+  # Use Capistrano for deployment automation
+  gem "capistrano", "~> 3.11", require: false
+  gem 'capistrano-bundler', '~> 1.3'
+  gem 'capistrano-ext'
+  gem 'capistrano-passenger'
+  gem 'capistrano-rails'
+  gem 'capistrano-sidekiq', '~> 0.20.0'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'web-console', '>= 3.3.0'
