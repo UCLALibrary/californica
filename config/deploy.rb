@@ -55,8 +55,11 @@ set :branch, ENV['REVISION'] || ENV['BRANCH'] || 'master'
 
 append :linked_dirs, "log"
 append :linked_dirs, "public/assets"
+append :linked_dirs, "tmp/pids"
+append :linked_dirs, "tmp/cache"
+append :linked_dirs, "tmp/sockets"
 
-append :linked_files, "config/database.yml"
+append :linked_files, ".env.production"
 append :linked_files, "config/secrets.yml"
 
 # We have to re-define capistrano-sidekiq's tasks to work with
