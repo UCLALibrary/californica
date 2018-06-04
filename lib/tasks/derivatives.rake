@@ -6,7 +6,7 @@ namespace :derivatives do
       total = 0
 
       work_type.all.each do |work|
-        recreate_derivatives(work)
+        regenerate_derivatives(work)
         total += 1
       end
 
