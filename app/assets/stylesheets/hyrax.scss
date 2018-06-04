@@ -14,3 +14,9 @@
 @import "blacklight_gallery/slideshow";
 @import "blacklight_gallery/osd_viewer";
 @import 'hyrax/hyrax';
+
+.brand-logo img {
+  height: 28px;
+  margin-top: -4px;
+  margin-right: 0.225em;
+}
