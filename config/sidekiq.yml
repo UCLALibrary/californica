@@ -1,0 +1,14 @@
+---
+  :queues:
+    - [ingest, 4]
+    - [batch, 2]
+    - [default, 1]
+
+  test: # n/a
+    :concurrency: 1
+
+  development:
+    :concurrency: 3
+
+  production:
+    :concurrency: 7
