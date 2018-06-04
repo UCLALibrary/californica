@@ -34,6 +34,7 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
 gem 'dotenv-rails', '~> 2.2.1'
+gem 'hydra-role-management', '~> 1.0.0'
 gem 'jquery-rails'
 gem 'riiif', '~> 1.1'
 gem 'rsolr', '>= 1.0'
