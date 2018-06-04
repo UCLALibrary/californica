@@ -1,9 +1,14 @@
-Tenejo
-======
+Tenejo: a General Purpose Digital Repository
+============================================
 
-Tenejo is a general purpose Digital Repository/Asset Management System.
+[![Build Status](https://travis-ci.org/curationexperts/tenejo.svg?branch=master)](https://travis-ci.org/curationexperts/tenejo) [![Apache 2.0 License](http://img.shields.io/badge/APACHE2-license-blue.svg)](./LICENSE)
 
-[![Build Status](https://travis-ci.org/curationexperts/tenejo.svg?branch=master)](https://travis-ci.org/curationexperts/tenejo)[![Apache 2.0 License](http://img.shields.io/badge/APACHE2-license-blue.svg)](./LICENSE)
+Tenejo gives you the most commonly used Samvera features and functions in an easy to use hosted solution.
+
+Hosting
+-------
+
+Contact [tenejo@curationexperts.com](mailto:tenejo@curationexperts.com) for information about Tenejo as a managed service for your institution.
 
 Development
 -----------
