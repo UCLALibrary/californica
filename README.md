@@ -1,7 +1,7 @@
 UCLA Library Management -- Tenejo
 =================================
 
-[![Build Status](https://travis-ci.org/curationexperts/tenejo.svg?branch=master)](https://travis-ci.org/curationexperts/tenejo) [![Apache 2.0 License](http://img.shields.io/badge/APACHE2-license-blue.svg)](./LICENSE)
+[![Build Status](https://travis-ci.org/UCLALibrary/samvera-mgmt.svg?branch=master)](https://travis-ci.org/UCLALibrary/samvera-mgmt) [![Apache 2.0 License](http://img.shields.io/badge/APACHE2-license-blue.svg)](./LICENSE)
 
 Development
 -----------

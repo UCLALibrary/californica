@@ -6,7 +6,6 @@ dist: trusty
 jdk:
   - oraclejdk8
 rvm:
-  - 2.4
   - 2.5
 before_script:
   - bundle exec rake db:create
