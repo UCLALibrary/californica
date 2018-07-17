@@ -52,6 +52,17 @@ namespace :sidekiq do
   end
 end
 
+# Capistrano passenger restart isn't working consistently,
+# so restart apache2 after a successful deploy, to ensure
+# changes are picked up.
+namespace :deploy do
+  after :finishing, :restart_apache do
+    on roles(:app) do
+      execute :sudo, :systemctl, :restart, :apache2
+    end
+  end
+end
+
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
