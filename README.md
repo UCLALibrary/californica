@@ -10,6 +10,9 @@ Development
    `git clone https://github.com/UCLALibrary/samvera-mgmt.git; cd samvera-mgmt`
 1. Install dependencies
    `bundle install`
+   1. If you have trouble with `nokogiri`, see
+      [_Installing Nokogiri_](http://www.nokogiri.org/tutorials/installing_nokogiri.html) for
+      troubleshooting.
 1. Setup your database.
    We use PostgreSQL. To support the test and development environments, you'll
    need have Postgres installed and running. In your `psql` console do
