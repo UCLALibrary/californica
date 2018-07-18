@@ -12,6 +12,20 @@ Development
    `create role tenejo with createdb login`. Then do
    `bundle exec rake db:setup` to setup the create the database and schema.
 
+## Creating an admin user
+First, create the user via the UI, or have them self-register. Then,
+on the rails console:
+```
+u = User.find('example@library.ucla.edu')
+admin = Role.find_by_name('admin')
+admin.users << u
+admin.save
+u.admin?
+  => true
+```
+If `u.admin?` returns `true` then you know it worked as expected. See also the
+[Making Admin Users in Hyrax Guide](https://github.com/samvera/hyrax/wiki/Making-Admin-Users-in-Hyrax).
+
 What is Hyrax, what is Tenejo?
 ------------------------------
 
