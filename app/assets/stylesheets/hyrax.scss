@@ -14,9 +14,24 @@
 @import "blacklight_gallery/slideshow";
 @import "blacklight_gallery/osd_viewer";
 @import 'hyrax/hyrax';
+@import 'variables';
 
 .brand-logo img {
   height: 28px;
   margin-top: -4px;
   margin-right: 0.225em;
+}
+
+.navbar-collapse, .navbar-brand, .navbar-header {
+  background: $ucla-blue;
+}
+
+#user_utility_links {
+  background: $ucla-blue;
+}
+
+#tenejo-institution_name {
+  font-family: TimesNewRoman,"Times New Roman",Times,Baskerville,Georgia,serif;
+  font-weight: bold;
+  letter-spacing: 2px;
 }
