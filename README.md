@@ -6,11 +6,25 @@ UCLA Library Management -- Tenejo
 Development
 -----------
 
+1. Clone the project repository:
+   `git clone https://github.com/UCLALibrary/samvera-mgmt.git; cd samvera-mgmt`
+1. Install dependencies
+   `bundle install`
 1. Setup your database.
    We use PostgreSQL. To support the test and development environments, you'll
    need have Postgres installed and running. In your `psql` console do
    `create role tenejo with createdb login`. Then do
    `bundle exec rake db:setup` to setup the create the database and schema.
+1. Start redis
+   `redis-server &`
+1. Run the CI suite
+   `bundle exec rake ci`
+
+At this point, you can start a development server with: `bundle exec rake hydra:server`.
+
+To support running individual tests (or run the application test suite without restarting
+the test servers), you can do `bundle exec rake hydra:test_server`. Once the servers have
+started, you can run `bundle exec rake spec` to run the RSpec tests.
 
 What is Hyrax, what is Tenejo?
 ------------------------------
