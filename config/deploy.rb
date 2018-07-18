@@ -7,6 +7,7 @@ set :repo_url, "https://github.com/UCLALibrary/samvera-mgmt.git"
 
 set :deploy_to, '/opt/samvera-mgmt'
 set :rails_env, 'production'
+set :ssh_options, keys: ["ucla_deploy_rsa"] if File.exist?("ucla_deploy_rsa")
 
 set :log_level, :debug
 set :bundle_flags, '--deployment'

@@ -2,15 +2,22 @@ language: ruby
 sudo: false
 cache: bundler
 dist: trusty
-
 jdk:
-  - oraclejdk8
+- oraclejdk8
 rvm:
-  - 2.5
+- 2.5
 before_script:
-  - bundle exec rake db:create
+- bundle exec rake db:create
 script:
-  - bundle exec rake
+- bundle exec rake
 services:
-  - redis-server
-  - postgresql
+- redis-server
+- postgresql
+after_success:
+- |
+  if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_PULL_REQUEST == 'false' ]]; then
+    bundle exec cap cd deploy
+  fi
+before_install:
+- openssl aes-256-cbc -K $encrypted_b2e2a85c6b8e_key -iv $encrypted_b2e2a85c6b8e_iv
+  -in ucla_deploy_rsa.enc -out ucla_deploy_rsa -d
