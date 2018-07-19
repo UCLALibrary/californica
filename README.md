@@ -6,6 +6,51 @@ UCLA Library Management -- Tenejo
 Development
 -----------
 
+### Prerequisites
+
+Requirements:
+1. Ruby and Bundler
+1. Postgres, Redis, Node.js, and Java
+1. Various build tools (Ubuntu packages are listed below - not sure about other
+   distros...)
+
+#### Virtual Machine
+
+Work to set up a cannonical VM image for the project is ongoing at https://github.com/UCLALibrary/packer-samvera.
+In the meantime, a minimal Vagrantfile looks something like:
+```Vagrantfile
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/bionic64"
+  config.vm.network "private_network", ip: "192.168.50.4"
+
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 4092
+    v.cpus = 2
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+    apt-get update && apt-get install -y build-essential patch ruby-dev zlib1g-dev liblzma-dev libpq-dev ruby-bundler postgresql nodejs redis-server default-jre
+  SHELL
+end
+```
+
+
+As currently configured, solr and fedora data is stored inside the project
+directory at `samvera-mgmt/tmp/`. If this is in your VM's shared directory,
+performance will not be good. It might be a good idea to move this data to e.g.
+`/samvera-data/`. This location is set in `fcrepo_wrapper`, `.solr_wrapper`,
+`conf/fcrepo_wrapper_test.yml` and `conf/solr_wrapper_test.yml`.
+
+#### Ubuntu
+
+- Use Ubuntu 18.04 or newer. Older releases don't come with the required version of ruby.
+- Install prerequisities with `sudo apt-get update && sudo apt-get install -y build-essential patch ruby-dev zlib1g-dev liblzma-dev libpq-dev ruby-bundler postgresql nodejs redis-server default-jre`
+- Once installed, postgres should run automatically under the `postgres` user.
+  For the `psql` console, use: `sudo -u postgres psql`
+
+
+### Installation
+
 1. Clone the project repository:
    `git clone https://github.com/UCLALibrary/samvera-mgmt.git; cd samvera-mgmt`
 1. Install dependencies
@@ -13,10 +58,12 @@ Development
 1. Setup your database.
    We use PostgreSQL. To support the test and development environments, you'll
    need have Postgres installed and running. In your `psql` console do
-   `create role tenejo with createdb login`. Then do
+   `create role tenejo with createdb login;`. Then do
    `bundle exec rake db:setup` to setup the create the database and schema.
 1. Start redis
    `redis-server &`
+   (Ubuntu starts Redis automatically, so this will just complain that the port
+   is already taken and exit.)
 1. Run the CI suite
    `bundle exec rake ci`
 
