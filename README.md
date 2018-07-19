@@ -73,6 +73,12 @@ To support running individual tests (or run the application test suite without r
 the test servers), you can do `bundle exec rake hydra:test_server`. Once the servers have
 started, you can run `bundle exec rake spec` to run the RSpec tests.
 
+### Troubleshooting
+
+1. If you have trouble with `nokogiri`, see
+   [_Installing Nokogiri_](http://www.nokogiri.org/tutorials/installing_nokogiri.html) for
+   troubleshooting.
+
 What is Hyrax, what is Tenejo?
 ------------------------------
 
