@@ -16,8 +16,7 @@ services:
 after_success:
 - |
   if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_PULL_REQUEST == 'false' ]]; then
+    openssl aes-256-cbc -K $encrypted_b2e2a85c6b8e_key -iv $encrypted_b2e2a85c6b8e_iv -in ucla_deploy_rsa.enc -out ucla_deploy_rsa -d
     bundle exec cap cd deploy
   fi
 before_install:
-- openssl aes-256-cbc -K $encrypted_b2e2a85c6b8e_key -iv $encrypted_b2e2a85c6b8e_iv
-  -in ucla_deploy_rsa.enc -out ucla_deploy_rsa -d
