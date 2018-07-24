@@ -83,7 +83,7 @@ started, you can run `bundle exec rake spec` to run the RSpec tests.
 First, create the user via the UI, or have them self-register. Then,
 on the rails console:
 ```
-u = User.find('example@library.ucla.edu')
+u = User.find_by_user_key('example@library.ucla.edu')
 admin = Role.find_by_name('admin')
 admin.users << u
 admin.save
