@@ -2,10 +2,10 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.11.0"
 
-set :application, "samvera-mgmt"
-set :repo_url, "https://github.com/UCLALibrary/samvera-mgmt.git"
+set :application, "californica"
+set :repo_url, "https://github.com/UCLALibrary/californica.git"
 
-set :deploy_to, '/opt/samvera-mgmt'
+set :deploy_to, '/opt/californica'
 set :rails_env, 'production'
 set :ssh_options, keys: ["ucla_deploy_rsa"] if File.exist?("ucla_deploy_rsa")
 

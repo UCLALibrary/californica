@@ -1,7 +1,7 @@
 UCLA Library Management -- Tenejo
 =================================
 
-[![Build Status](https://travis-ci.org/UCLALibrary/samvera-mgmt.svg?branch=master)](https://travis-ci.org/UCLALibrary/samvera-mgmt) [![Apache 2.0 License](http://img.shields.io/badge/APACHE2-license-blue.svg)](./LICENSE)
+[![Build Status](https://travis-ci.org/UCLALibrary/californica.svg?branch=master)](https://travis-ci.org/UCLALibrary/californica) [![Apache 2.0 License](http://img.shields.io/badge/APACHE2-license-blue.svg)](./LICENSE)
 
 Development
 -----------
@@ -36,7 +36,7 @@ end
 
 
 As currently configured, solr and fedora data is stored inside the project
-directory at `samvera-mgmt/tmp/`. If this is in your VM's shared directory,
+directory at `californica/tmp/`. If this is in your VM's shared directory,
 performance will not be good. It might be a good idea to move this data to e.g.
 `/samvera-data/`. This location is set in `fcrepo_wrapper`, `.solr_wrapper`,
 `conf/fcrepo_wrapper_test.yml` and `conf/solr_wrapper_test.yml`.
@@ -52,7 +52,7 @@ performance will not be good. It might be a good idea to move this data to e.g.
 ### Installation
 
 1. Clone the project repository:
-   `git clone https://github.com/UCLALibrary/samvera-mgmt.git; cd samvera-mgmt`
+   `git clone https://github.com/UCLALibrary/californica.git; cd californica`
 1. Install dependencies
    `bundle install`
 1. Setup your database.
