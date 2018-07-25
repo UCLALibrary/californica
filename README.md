@@ -60,7 +60,7 @@ environment variables for your local development environment. If you want to cus
 1. Setup your database.
    We use PostgreSQL. To support the test and development environments, you'll
    need have Postgres installed and running. In your `psql` console do
-   `create role californica with createdb login;`. Then do
+   `CREATE ROLE californica NOINHERIT CREATEDB LOGIN PASSWORD 'californica';`. Then do
    `bundle exec rake db:setup` to setup the create the database and schema.
 1. Start redis
    `redis-server &`
