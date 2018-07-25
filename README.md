@@ -95,7 +95,7 @@ If `u.admin?` returns `true` then you know it worked as expected. See also the
 
 ## Deployment
 
-To deploy to the server `ci`, simply type `cap ci deploy`.
+To deploy to the server `cd`, simply type `cap cd deploy`.
 
 For this to work:
 - You need Capistrano installed (`bundle install` does this).
