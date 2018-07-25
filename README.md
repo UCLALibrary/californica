@@ -93,6 +93,17 @@ u.admin?
 If `u.admin?` returns `true` then you know it worked as expected. See also the
 [Making Admin Users in Hyrax Guide](https://github.com/samvera/hyrax/wiki/Making-Admin-Users-in-Hyrax).
 
+## Deployment
+
+To deploy to the server `ci`, simply type `cap ci deploy`.
+
+For this to work:
+- You need Capistrano installed (`bundle install` does this).
+- Your public ssh key needs to have been added to the `deploy` account on the
+  server. A member of the devops team can do this for you. If you have uploaded
+  your public key to GitHub, they might have done this already, but changes need
+  to be made manually.
+
 What is Hyrax, what is Tenejo?
 ------------------------------
 
