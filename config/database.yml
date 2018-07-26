@@ -1,22 +1,31 @@
+# We run postgres in production so we should run
+# postgres in development and test environments too
+
 default: &default
-  adapter:  postgresql
+  adapter:  <%= ENV['DATABASE_ADAPTER'] || 'postgresql' %>
   encoding: unicode
-  pool:     <%= ENV['DATABASE_POOL_SIZE'] || 5 %>
+  pool:     <%= ENV['DATABASE_POOL'] || 5 %>
   timeout:  5000
+  host: <%= ENV['DATABASE_HOST'] || 'localhost' %>
+  min_messages: <%= ENV['DATABASE_MIN_MESSAGES'] || 'warning' %>
 
 development:
   <<: *default
-  database: tenejo_development
+  database: <%= ENV['DATABASE_NAME'] || 'californica_development' %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: tenejo_test
+  database: <%= ENV['DATABASE_NAME'] || 'californica_test' %>
+  username: <%= ENV['DATABASE_USERNAME'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
 
 production:
-  <<: *default
+  adapter:  'postgresql'
   database: <%= ENV['DATABASE_NAME'] %>
   username: <%= ENV['DATABASE_USERNAME'] %>
   password: <%= ENV['DATABASE_PASSWORD'] %>
