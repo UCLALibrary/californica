@@ -8,6 +8,7 @@ end
 
 ruby '>= 2.4.0', '<= 2.5.99'
 
+gem 'honeybadger', '~> 3.1'
 gem 'hyrax', '~> 2.1.0'
 gem 'rails', '~> 5.1.6'
 

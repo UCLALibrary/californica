@@ -278,6 +278,7 @@ GEM
     hamster (3.0.0)
       concurrent-ruby (~> 1.0)
     hiredis (0.6.1)
+    honeybadger (3.3.0)
     htmlentities (4.3.4)
     http_logger (0.5.1)
     httparty (0.16.2)
@@ -817,6 +818,7 @@ DEPENDENCIES
   devise-guests (~> 0.6)
   dotenv-rails (~> 2.2.1)
   fcrepo_wrapper
+  honeybadger (~> 3.1)
   hydra-role-management (~> 1.0.0)
   hyrax (~> 2.1.0)
   jbuilder (~> 2.5)
@@ -843,4 +845,4 @@ RUBY VERSION
    ruby 2.4.0p0
 
 BUNDLED WITH
-   1.16.1
+   1.16.2
