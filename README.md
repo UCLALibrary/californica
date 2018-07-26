@@ -58,7 +58,7 @@ performance will not be good. It might be a good idea to move this data to e.g.
 1. Setup your database.
    We use PostgreSQL. To support the test and development environments, you'll
    need have Postgres installed and running. In your `psql` console do
-   `create role tenejo with createdb login;`. Then do
+   `create role californica with createdb login;`. Then do
    `bundle exec rake db:setup` to setup the create the database and schema.
 1. Start redis
    `redis-server &`
@@ -73,11 +73,25 @@ To support running individual tests (or run the application test suite without r
 the test servers), you can do `bundle exec rake hydra:test_server`. Once the servers have
 started, you can run `bundle exec rake spec` to run the RSpec tests.
 
-### Troubleshooting
+#### Troubleshooting
 
 1. If you have trouble with `nokogiri`, see
    [_Installing Nokogiri_](http://www.nokogiri.org/tutorials/installing_nokogiri.html) for
    troubleshooting.
+
+#### Configuration with `dotenv`
+
+We use [`dotenv`](https://github.com/bkeepers/dotenv#usage) to manage configuration
+across environments. [`.env.sample`](./.env.sample) lists the variables
+configurable in this way, along with plausible development defaults.
+
+If you want custom configuration in development and test environments, you can add a
+`.env`, `.env.development` and/or `.env.test`, all of which are ignored by Git.
+Custom configuration here may require some custom setup (e.g. using password
+authentication for the your database user).
+
+In production, these environment variables should be set by `.env.production` at
+deploy time and from a secret source.
 
 ## Creating an admin user
 First, create the user via the UI, or have them self-register. Then,
