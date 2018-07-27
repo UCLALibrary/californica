@@ -55,7 +55,7 @@ performance will not be good. It might be a good idea to move this data to e.g.
    `git clone https://github.com/UCLALibrary/californica.git; cd californica`
 1. Install dependencies
    `bundle install`
-1. Setup your database.
+1. Setup your database. SEE THE SECTION IMMEDIATELY FOLLOWING FOR MORE DETAILS!
    We use PostgreSQL. To support the test and development environments, you'll
    need have Postgres installed and running. In your `psql` console do
    `create role californica with createdb login;`. Then do
@@ -66,6 +66,20 @@ performance will not be good. It might be a good idea to move this data to e.g.
    is already taken and exit.)
 1. Run the CI suite
    `bundle exec rake ci`
+
+### Important details for PostgreSQL security and configuration
+
+The instructions above assume your PostgreSQL server is configured to allow authentication to password-less user accounts. This is an insecure configuration for Postgresql. 
+If you would like to enable your PostgreSQL server to allow authentication to password-less user accounts, you must edit your pg_hba.conf config file (typically in the /etc/postgresql file tree somewhere), and change the line that reads:
+`host    all             all             127.0.0.1/32            md5`
+to
+`host    all             all             127.0.0.1/32            trust`
+
+However, we recommend you consider creating your californica role with a password, by entering the
+following in your `psql` console:
+`create user californica CREATEDB PASSWORD californica;`
+
+NOTE: If you DO create your californica role with a password, you will *need* to use a `dotenv` file. See the Configuration with `dotenv` section below.
 
 At this point, you can start a development server with: `bundle exec rake hydra:server`.
 
@@ -89,6 +103,11 @@ If you want custom configuration in development and test environments, you can a
 `.env`, `.env.development` and/or `.env.test`, all of which are ignored by Git.
 Custom configuration here may require some custom setup (e.g. using password
 authentication for the your database user).
+
+If you are only trying to ensure that the dev and test environments utilize the password 
+you've set for your californica role, we recommend you use a single `.env` file by copying
+`.env.sample` to `.env` ... If you know what you're doing and want separate `.env.development` 
+and `.env.test` files, there are instructions in `.env.sample` which we recommend you read.
 
 In production, these environment variables should be set by `.env.production` at
 deploy time and from a secret source.
