@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mods:modsCollection xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mods="http://www.loc.gov/mods/v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <mods:mods>
+        <mods:titleInfo>
+            <mods:title>Elizabeth Klomp in court for shoplifting $10.45 of merchandise, Los Angeles, February 19, 1940</mods:title>
+        </mods:titleInfo>
+        <mods:identifier type="local">22864</mods:identifier>
+        <mods:identifier type="local">uclamss_1387_22864-03</mods:identifier>
+        <mods:note>Handwritten annotation from nitrate negative: Mrs. Elizabeth Klomp</mods:note>
+        <mods:note>Mrs. Elizabeth Klomp, in Municipal Court for stealing three garments with a total value of $10.45 on Dollar Day. Ironically, at the time she stole the clothes, Mrs. Klomp had $27,009 in her purse, money she had withdrawn from the bank to make a real estate investment. In court, Mrs. Klomp pled guilty and asked for probation. She said she hadn’t meant to steal the clothes; she just got confused in the bustle of the sale. A month later, Mrs. Klomp was fined $100 and sentenced to five days in City Jail.</mods:note>
+        <mods:note>Text from original nitrate sleeve: Klomp, Elizabeth - Mrs.</mods:note>
+        <mods:note>Access to this collection is generously supported by Arcadia funds.</mods:note>
+        <mods:originInfo>
+            <mods:dateCreated>February 19, 1940</mods:dateCreated>
+            <mods:dateCreated encoding="iso8601">1940-02-19</mods:dateCreated>
+        </mods:originInfo>
+        <mods:genre authority="aat">news photographs</mods:genre>
+        <mods:genre authority="aat">cellulose nitrate film</mods:genre>
+        <mods:typeOfResource>still image</mods:typeOfResource>
+        <mods:relatedItem type="host">
+            <mods:titleInfo>
+                <mods:title>Los Angeles Times Photographic Archive. Department of Special Collections, Charles E. Young Research Library, UCLA.</mods:title>
+            </mods:titleInfo>
+        </mods:relatedItem>
+        <mods:subject authority="tgm">
+            <mods:topic>Shoplifting $z California $z Los Angeles</mods:topic>
+        </mods:subject>
+        <mods:subject authority="tgm">
+            <mods:topic>Law &amp; legal affairs $z California $z Los Angeles</mods:topic>
+        </mods:subject>
+        <mods:subject authority="tgm">
+            <mods:topic>Clothing &amp; dress $z California $z Los Angeles</mods:topic>
+        </mods:subject>
+        <mods:subject authority="cla_topic">
+            <mods:topic>Crime</mods:topic>
+        </mods:subject>
+        <mods:subject authority="cla_topic">
+            <mods:topic>Economy</mods:topic>
+        </mods:subject>
+        <mods:subject authority="cla_topic">
+            <mods:topic>Legal</mods:topic>
+        </mods:subject>
+        <mods:subject>
+            <mods:geographic>Los Angeles (Calif.)</mods:geographic>
+        </mods:subject>
+        <mods:name type="personal">
+            <mods:namePart>Klomp, Elizabeth</mods:namePart>
+            <mods:role>
+                <mods:roleTerm type="text">subject</mods:roleTerm>
+            </mods:role>
+        </mods:name>
+        <mods:name type="corporate">
+            <mods:namePart>University of California, Los Angeles. Library. Dept. of Special Collections</mods:namePart>
+            <mods:role>
+                <mods:roleTerm type="text">repository</mods:roleTerm>
+            </mods:role>
+        </mods:name>
+        <mods:physicalDescription>
+            <mods:extent>1 photograph</mods:extent>
+            <mods:extent>b&amp;w nitrate negative</mods:extent>
+        </mods:physicalDescription>
+        <mods:recordInfo>
+            <mods:recordIdentifier>21198-zz002803zb</mods:recordIdentifier>
+        </mods:recordInfo>
+    </mods:mods>
+</mods:modsCollection>
