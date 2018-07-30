@@ -66,12 +66,12 @@ GEM
       rails (>= 4.2, < 6)
     arel (8.0.0)
     ast (2.4.0)
-    autoprefixer-rails (8.6.5)
+    autoprefixer-rails (9.0.0)
       execjs
     awesome_nested_set (3.1.4)
       activerecord (>= 4.0.0, < 5.3)
     aws-eventstream (1.0.1)
-    aws-partitions (1.95.0)
+    aws-partitions (1.96.0)
     aws-sdk-core (3.22.1)
       aws-eventstream (~> 1.0)
       aws-partitions (~> 1.0)
@@ -120,19 +120,20 @@ GEM
       sass (>= 3.3.4)
     bootstrap_form (2.7.0)
     breadcrumbs_on_rails (3.0.1)
-    browse-everything (0.15.1)
+    browse-everything (0.16.0)
       addressable (~> 2.5)
       aws-sdk-s3
       bootstrap-sass (~> 3.2)
       dropbox_api (>= 0.1.10)
       font-awesome-rails
-      google-api-client (~> 0.9)
-      google_drive
-      httparty
-      rails (>= 3.1)
+      google-api-client (~> 0.21)
+      google_drive (~> 2.1)
+      rails (>= 4.2)
       ruby-box
       sass-rails
-      signet
+      signet (~> 0.8)
+      thor (~> 0.20)
+      typhoeus
     builder (3.2.3)
     byebug (10.0.2)
     cancancan (1.17.0)
@@ -197,7 +198,7 @@ GEM
     dotenv-rails (2.2.2)
       dotenv (= 2.2.2)
       railties (>= 3.2, < 6.0)
-    dropbox_api (0.1.11)
+    dropbox_api (0.1.12)
       faraday (~> 0.9, ~> 0.8)
       oauth2 (~> 1.1)
     dry-configurable (0.7.0)
@@ -238,6 +239,8 @@ GEM
     equivalent-xml (0.6.0)
       nokogiri (>= 1.4.3)
     erubi (1.7.1)
+    ethon (0.11.0)
+      ffi (>= 1.3.0)
     execjs (2.7.0)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
@@ -254,7 +257,7 @@ GEM
       railties (>= 3.2, < 6.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
-    google-api-client (0.23.3)
+    google-api-client (0.23.4)
       addressable (~> 2.5, >= 2.5.1)
       googleauth (>= 0.5, < 0.7.0)
       httpclient (>= 2.8.1, < 3.0)
@@ -282,8 +285,6 @@ GEM
     honeybadger (3.3.0)
     htmlentities (4.3.4)
     http_logger (0.5.1)
-    httparty (0.16.2)
-      multi_xml (>= 0.5.2)
     httpclient (2.8.3)
     hydra-access-controls (10.5.1)
       active-fedora (>= 10.0.0, < 12)
@@ -533,7 +534,7 @@ GEM
     powerpack (0.1.2)
     public_suffix (3.0.2)
     pul_uv_rails (2.0.1)
-    puma (3.11.4)
+    puma (3.12.0)
     qa (2.0.1)
       activerecord-import
       deprecation
@@ -544,7 +545,7 @@ GEM
     rack (2.0.5)
     rack-protection (2.0.3)
       rack
-    rack-test (1.0.0)
+    rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.1.6)
       actioncable (= 5.1.6)
@@ -686,7 +687,7 @@ GEM
     rubyzip (1.2.1)
     samvera-nesting_indexer (2.0.0)
       dry-equalizer
-    sass (3.5.6)
+    sass (3.5.7)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -699,7 +700,7 @@ GEM
       tilt (>= 1.1, < 3)
     select2-rails (3.5.10)
       thor (~> 0.14)
-    selenium-webdriver (3.13.0)
+    selenium-webdriver (3.13.1)
       childprocess (~> 0.5)
       rubyzip (~> 1.2)
     shex (0.5.2)
@@ -781,10 +782,12 @@ GEM
       actionpack (>= 3.1)
       jquery-rails
       railties (>= 3.1)
+    typhoeus (1.3.0)
+      ethon (>= 0.9.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uber (0.1.0)
-    uglifier (4.1.14)
+    uglifier (4.1.17)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.4.0)
     warden (1.2.7)
@@ -844,7 +847,7 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 RUBY VERSION
-   ruby 2.4.0p0
+   ruby 2.5.1p57
 
 BUNDLED WITH
    1.16.2
