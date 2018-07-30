@@ -182,6 +182,7 @@ GEM
     daemons (1.2.6)
     darlingtonia (1.0.0)
       active-fedora (>= 11.0, <= 12.99)
+    database_cleaner (1.7.0)
     declarative (0.0.10)
     declarative-option (0.1.0)
     deprecation (1.0.0)
@@ -820,6 +821,7 @@ DEPENDENCIES
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
   darlingtonia (~> 1.0)
+  database_cleaner
   devise
   devise-guests (~> 0.6)
   dotenv-rails (~> 2.2.1)
