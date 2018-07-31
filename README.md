@@ -52,8 +52,8 @@ _Hyrax_ is a [Rails Engine](http://guides.rubyonrails.org/engines.html#what-are-
 providing a base platform for digital repositories of various types. This includes Institutional/Document
 Repositories, Digital Collections DAMS, as well as other kinds of digital library and archives systems.
 
-_Californica is an application providing a general purpose repository system based on the _Hyrax_ platform.
-_Californica gives you the most commonly used Samvera features and functions.
+_Californica_ is an application providing a general purpose repository system based on the _Hyrax_ platform.
+_Californica_ gives you the most commonly used Samvera features and functions.
 
 This application is designed as a management interface for UCLA's digital library content.
 
