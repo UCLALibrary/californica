@@ -53,6 +53,10 @@ namespace :sidekiq do
   end
 end
 
+# After the code has been deployed, run db:seed
+# This creates the default admin user
+after 'deploy:published', 'rails:rake:db:seed'
+
 # Capistrano passenger restart isn't working consistently,
 # so restart apache2 after a successful deploy, to ensure
 # changes are picked up.

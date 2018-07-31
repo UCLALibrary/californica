@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+# Set up a default admin user
+u = User.find_or_create_by(email: 'admin@example.com')
+u.display_name = "Default Admin"
+u.password = ENV['ADMIN_PASSWORD']
+u.save
+admin_role = Role.find_or_create_by(name: 'admin')
+admin_role.users << u
+admin_role.save

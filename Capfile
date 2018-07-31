@@ -5,6 +5,9 @@ require "capistrano/setup"
 # Include default deployment tasks
 require "capistrano/deploy"
 
+# Include some handy rails tasks like db:seed
+require 'capistrano/rails/collection'
+
 # Load the SCM plugin appropriate to your project:
 #
 # require "capistrano/scm/hg"
