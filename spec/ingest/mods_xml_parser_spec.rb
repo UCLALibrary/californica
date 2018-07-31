@@ -19,7 +19,7 @@ RSpec.describe ModsXmlParser do
     end
 
     it 'has a record with the correct title' do
-      expect(parser.records.map(&:attributes)).to include(title: [title])
+      expect(parser.records.map(&:attributes)).to include(title: [title], depositor: User.batch_user.user_key)
     end
   end
 end
