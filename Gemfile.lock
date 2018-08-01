@@ -152,6 +152,8 @@ GEM
     capistrano-rails (1.4.0)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
+    capistrano-rails-collection (0.1.0)
+      capistrano-rails (~> 1.1)
     capistrano-sidekiq (0.20.0)
       capistrano (>= 3.9.0)
       sidekiq (>= 3.4)
@@ -817,6 +819,7 @@ DEPENDENCIES
   capistrano-ext
   capistrano-passenger
   capistrano-rails
+  capistrano-rails-collection
   capistrano-sidekiq (~> 0.20.0)
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
