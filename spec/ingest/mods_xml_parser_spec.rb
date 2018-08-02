@@ -19,7 +19,15 @@ RSpec.describe ModsXmlParser do
     end
 
     it 'has a record with the correct title' do
-      expect(parser.records.map(&:attributes)).to include(title: [title], depositor: User.batch_user.user_key)
+      expect(parser.records.map(&:attributes).first[:title].first).to eq title
+    end
+
+    it "has a record with the batch depositor" do
+      expect(parser.records.map(&:attributes).first[:depositor]).to eq User.batch_user.user_key
+    end
+
+    it 'has a record with the correct genre' do
+      expect(parser.records.map(&:attributes).first[:genre]).to include('news photographs', 'cellulose nitrate film')
     end
   end
 end
