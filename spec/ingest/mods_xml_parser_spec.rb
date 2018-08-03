@@ -18,8 +18,14 @@ RSpec.describe ModsXmlParser do
       'Angeles, February 19, 1940'
     end
 
+    let(:extent) { '1 photograph' }
+
     it 'has a record with the correct title' do
-      expect(parser.records.map(&:attributes)).to include(title: [title], depositor: User.batch_user.user_key)
+      expect(parser.records.map(&:attributes).first[:title]).to include(title)
+    end
+
+    it 'has a record with the correct extent' do
+      expect(parser.records.map(&:attributes).first[:extent]).to include(extent)
     end
   end
 end
