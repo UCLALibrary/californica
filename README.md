@@ -10,7 +10,7 @@ Development
 
 Requirements:
 1. Ruby and Bundler
-1. Postgres, Redis, Node.js, and Java
+1. MySQL (or MariaDB), Redis, Node.js, and Java
 1. Various build tools (Ubuntu packages are listed below - not sure about other
    distros...)
 
