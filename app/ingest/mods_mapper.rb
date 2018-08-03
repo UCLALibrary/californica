@@ -24,5 +24,4 @@ class ModsMapper < Darlingtonia::MetadataMapper
   def depositor
     User.batch_user.user_key
   end
-
 end
