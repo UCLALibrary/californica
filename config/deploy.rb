@@ -11,7 +11,6 @@ set :ssh_options, keys: ["ucla_deploy_rsa"] if File.exist?("ucla_deploy_rsa")
 
 set :log_level, :debug
 set :bundle_flags, '--deployment'
-set :bundle_env_variables, nokogiri_use_system_libraries: 1
 
 set :keep_releases, 5
 set :assets_prefix, "#{shared_path}/public/assets"
