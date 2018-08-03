@@ -13,6 +13,7 @@ test:
   base_path: <%= ENV['FEDORA_BASE_PATH'] || '/test' %>
 
 production:
-  <<: *default
-  url: <%= ENV['FEDORA_URL'] || 'http://127.0.0.1:8080/rest' %>
+  user: <%= ENV['FEDORA_USER'] %>
+  password: <%= ENV['FEDORA_PASSWORD'] %>
+  url: <%= ENV['FEDORA_URL'] %>
   base_path: <%= ENV['FEDORA_BASE_PATH'] || '/prod' %>
