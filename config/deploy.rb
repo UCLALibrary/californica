@@ -64,7 +64,7 @@ after 'deploy:published', 'rails:rake:db:seed'
 namespace :deploy do
   after :finishing, :restart_apache do
     on roles(:app) do
-      execute :sudo, :systemctl, :restart, :apache2
+      execute :sudo, :systemctl, :restart, :httpd
     end
   end
 end
