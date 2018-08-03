@@ -7,7 +7,7 @@ RSpec.describe ModsMapper do
   let(:mods_xml)   { Nokogiri::XML(file).xpath('//mods:mods', described_class::NAMESPACES) }
 
   describe '#fields' do
-    it { expect(mapper.fields).to contain_exactly(:title, :depositor) }
+    it { expect(mapper.fields).to contain_exactly(:title, :depositor, :extent) }
   end
 
   describe '#title' do
