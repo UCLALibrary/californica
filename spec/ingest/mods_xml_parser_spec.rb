@@ -19,6 +19,7 @@ RSpec.describe ModsXmlParser do
     end
 
     let(:extent) { '1 photograph' }
+    let(:genre) { 'news photographs' }
 
     it 'has a record with the correct title' do
       expect(parser.records.map(&:attributes).first[:title]).to include(title)
@@ -26,6 +27,10 @@ RSpec.describe ModsXmlParser do
 
     it 'has a record with the correct extent' do
       expect(parser.records.map(&:attributes).first[:extent]).to include(extent)
+    end
+
+    it 'has a record with the correct genre' do
+      expect(parser.records.map(&:attributes).first[:genre]).to include(genre)
     end
   end
 end
