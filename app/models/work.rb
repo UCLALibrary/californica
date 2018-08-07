@@ -14,6 +14,9 @@ class Work < ActiveFedora::Base
   property :extent, predicate: 'http://purl.org/dc/elements/1.1/format' do |index|
     index.as :stored_searchable
   end
+  property :subject, predicate: 'http://purl.org/dc/elements/1.1/subject' do |index|
+    index.as :stored_searchable
+  end
 
   # This must be included at the end, because it finalizes the metadata
   # schema (by adding accepts_nested_attributes)
