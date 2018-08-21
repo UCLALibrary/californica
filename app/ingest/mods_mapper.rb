@@ -6,7 +6,7 @@ class ModsMapper < Darlingtonia::MetadataMapper
   NAMESPACES = { 'mods' => 'http://www.loc.gov/mods/v3' }.freeze
 
   def fields
-    [:title, :depositor, :extent, :genre]
+    [:title, :depositor, :extent, :genre, :subject]
   end
 
   def title
@@ -24,6 +24,12 @@ class ModsMapper < Darlingtonia::MetadataMapper
   def genre
     metadata
       &.xpath('//mods:mods/mods:genre', NAMESPACES)
+      &.map(&:text) || []
+  end
+
+  def subject
+    metadata
+      &.xpath('//mods:mods/mods:subject/mods:topic', NAMESPACES)
       &.map(&:text) || []
   end
 

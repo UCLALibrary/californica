@@ -16,4 +16,10 @@ RSpec.describe Work do
     expect(work.extent).to include '1 photograph'
     expect(work.resource.dump(:ttl)).to match(/purl.org\/dc\/elements\/1.1\/format/)
   end
+  it "has subject" do
+    work = described_class.new
+    work.subject = ['California']
+    expect(work.subject).to include 'California'
+    expect(work.resource.dump(:ttl)).to match(/purl.org\/dc\/elements\/1.1\/subject/)
+  end
 end
