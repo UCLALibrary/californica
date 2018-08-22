@@ -6,16 +6,16 @@ RSpec.describe CalifornicaMapper do
   subject(:mapper) { described_class.new }
 
   let(:metadata) do
-    { identifier: "21198/zz0002nq4w",
-      title: "Protesters with signs in gallery of Los Angeles County Supervisors " \
+    { "Item Ark" => "21198/zz0002nq4w",
+      "Title" => "Protesters with signs in gallery of Los Angeles County Supervisors " \
       "hearing over eminent domain for construction of Harbor Freeway, Calif., 1947",
-      type: "still image",
-      subject: "Express highways--California--Los Angeles County--Design and construction|~|" \
+      "Type.typeOfResource" => "still image",
+      "Subject" => "Express highways--California--Los Angeles County--Design and construction|~|" \
       "Eminent domain--California--Los Angeles|~|Demonstrations--California--Los Angeles County|~|" \
       "Transportation|~|Government|~|Activism|~|Interstate 10",
-      publisher_name: "Los Angeles Daily News",
-      medium: "1 photograph",
-      repository_name: "University of California, Los Angeles. $b Library Special Collections" }
+      "Publisher.publisherName" => "Los Angeles Daily News",
+      "Format.medium" => "1 photograph",
+      "Name.repository" => "University of California, Los Angeles. $b Library Special Collections" }
   end
 
   before { mapper.metadata = metadata }

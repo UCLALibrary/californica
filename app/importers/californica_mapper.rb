@@ -16,6 +16,6 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   def map_field(name)
     return unless CALIFORNICA_TERMS_MAP.keys.include?(name)
 
-    metadata[name].split(DELIMITER)
+    metadata[CALIFORNICA_TERMS_MAP[name]]&.split(DELIMITER)
   end
 end
