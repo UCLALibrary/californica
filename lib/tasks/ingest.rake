@@ -8,5 +8,12 @@ namespace :californica do
 
       Darlingtonia::Importer.new(parser: parser).import if parser.validate
     end
+
+    desc 'Ingest an item from CSV'
+    task :csv, [:filename] => [:environment] do |_task, args|
+      parser = CalifornicaCsvParser.for(file: File.open(args[:filename]))
+
+      Darlingtonia::Importer.new(parser: parser).import if parser.validate
+    end
   end
 end
