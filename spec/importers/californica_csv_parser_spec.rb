@@ -7,8 +7,14 @@ RSpec.describe CalifornicaCsvParser do
   let(:file)       { File.open(csv_path) }
   let(:csv_path)   { 'spec/fixtures/example.csv' }
 
+  describe '.for' do
+    it 'builds an instance' do
+      expect(described_class.for(file: file)).to be_a described_class
+    end
+  end
+
   describe '#records' do
-    it 'skips records with no values' do
+    it 'lists records' do
       expect(parser.records.count).to eq 1
     end
   end
