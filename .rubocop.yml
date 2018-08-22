@@ -9,7 +9,7 @@ Metrics/BlockLength:
   Exclude:
     - '**/*/catalog_controller.rb'
     - 'config/**/*'
-    - 'spec/features**/*'
+    - 'spec/**/*'
 
 RSpec/ExampleLength:
   Enabled: true
