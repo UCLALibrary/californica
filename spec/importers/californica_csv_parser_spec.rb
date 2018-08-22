@@ -7,6 +7,14 @@ RSpec.describe CalifornicaCsvParser do
   let(:file)       { File.open(csv_path) }
   let(:csv_path)   { 'spec/fixtures/example.csv' }
 
+  describe 'use in an importer' do
+    let(:importer) { Darlingtonia::Importer.new(parser: parser) }
+
+    it 'imports records' do
+      expect { importer.import }.to change { Work.count }.by 1
+    end
+  end
+
   describe '.for' do
     it 'builds an instance' do
       expect(described_class.for(file: file)).to be_a described_class
