@@ -17,11 +17,23 @@ RSpec.describe CalifornicaCsvParser do
     it 'lists records' do
       expect(parser.records.count).to eq 1
     end
+
+    it 'can build attributes' do
+      expect { parser.records.map(&:attributes) }.not_to raise_error
+    end
   end
 
   describe '#validate' do
     it 'is valid' do
       expect(parser.validate).to be_truthy
+    end
+
+    context 'with an invalid csv' do
+      let(:file) { File.open('spec/fixtures/mods_example.xml') }
+
+      it 'is invalid' do
+        expect(parser.validate).to be_falsey
+      end
     end
   end
 end
