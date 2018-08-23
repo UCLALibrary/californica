@@ -4,15 +4,15 @@ default: &default
 
 development:
   <<: *default
-  url: <%= ENV['FEDORA_HOST'] || 'http://127.0.0.1' %>:<%= ENV['FEDORA_PORT'] || '8984' %>/rest
+  url: <%= ENV['FEDORA_URL'] || 'http://127.0.0.1:8984/rest' %>
   base_path: <%= ENV['FEDORA_BASE_PATH'] || '/dev' %>
 
 test:
   <<: *default
-  url: <%= ENV['FEDORA_HOST'] || 'http://127.0.0.1' %>:<%= ENV['FEDORA_PORT'] || '8986' %>/rest
+  url: <%= ENV['FEDORA_URL'] || 'http://127.0.0.1:8986/rest' %>
   base_path: <%= ENV['FEDORA_BASE_PATH'] || '/test' %>
 
 production:
   <<: *default
-  url: <%= ENV['FEDORA_HOST'] || 'http://127.0.0.1' %>:<%= ENV['FEDORA_PORT'] || '8080' %>/rest
+  url: <%= ENV['FEDORA_URL'] || 'http://127.0.0.1:8080/rest' %>
   base_path: <%= ENV['FEDORA_BASE_PATH'] || '/prod' %>
