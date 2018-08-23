@@ -1,10 +1,10 @@
 development:
-  adapter: async
+  adapter: <%= ENV['CABLE_ADAPTER'] || 'async' %>
 
 test:
-  adapter: async
+  adapter: <%= ENV['CABLE_ADAPTER'] || 'async' %>
 
 production:
-  adapter: redis
-  url: redis://localhost:6379/1
-  channel_prefix: tenjeo_production
+  adapter: <%= ENV['CABLE_ADAPTER'] || 'redis' %>
+  url: redis://<%= ENV['REDIS_HOST'] %>:<%= ENV['REDIS_PORT'] %>/<%= ENV['CABLE_REDIS_DB'] || '1' %>
+  channel_prefix: <%= ENV['CABLE_CHANNEL_PREFIX'] %>
