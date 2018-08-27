@@ -20,7 +20,10 @@ The "[native-style](https://github.com/UCLALibrary/amalgamated-samvera/wiki/Sett
 
 The [VM-style](https://github.com/UCLALibrary/amalgamated-samvera/wiki/Setting-up-a-Californica-development-environment,-VM-style) development environment has as a goal to run a production-like environment in a virtual machine, hosted on your computer. It is also generally easier to get started with using, particularly if you've already installed the requirements (Vagrant and Virtualbox).
 
-## Creating an admin user
+## Default admin user
+A default admin user is created for you, with the e-mail address of admin@example.com, and a password of 'password' This password can and should be set by way of a dot-env variable ADMIN_PASSWORD. See the .env.sample file for an example.
+
+## Creating a new admin user
 First, create the user via the UI, or have them self-register. Then,
 on the rails console:
 ```
