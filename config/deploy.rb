@@ -7,6 +7,24 @@ set :repo_url, "https://github.com/UCLALibrary/californica.git"
 
 set :deploy_to, '/opt/californica'
 set :rails_env, 'production'
+
+if ENV['VIA_JUMP']
+  require 'net/ssh/proxy/command'
+
+  # Define the hostanme of the server to tunnel through
+  jump_host = ENV['JUMP_HOST'] || 'jump.library.ucla.edu'
+
+  # Define the port number of the jump host
+  jump_port = ENV['JUMP_PORT'] || '31926'
+
+  # Define the username for tunneling
+  jump_user = ENV['JUMP_USER'] || ENV['USER']
+
+  # Configure Capistrano to use the jump host as a proxy
+  ssh_command = "ssh -p #{jump_port} #{jump_user}@#{jump_host} -W %h:%p"
+  set :ssh_options, proxy: Net::SSH::Proxy::Command.new(ssh_command)
+end
+
 set :ssh_options, keys: ["ucla_deploy_rsa"] if File.exist?("ucla_deploy_rsa")
 
 set :log_level, :debug
