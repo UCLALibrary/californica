@@ -8,7 +8,7 @@ set :repo_url, "https://github.com/UCLALibrary/californica.git"
 set :deploy_to, '/opt/californica'
 set :rails_env, 'production'
 
-if ENV['VIA_JUMP']
+if ENV['VIA_JUMP'] == "yes"
   require 'net/ssh/proxy/command'
 
   # Define the hostanme of the server to tunnel through
