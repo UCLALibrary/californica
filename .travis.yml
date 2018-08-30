@@ -6,13 +6,15 @@ jdk:
 - oraclejdk8
 rvm:
 - 2.5
+env:
+- DATABASE_USERNAME=travis
 before_script:
 - bundle exec rake db:create
 script:
 - bundle exec rake
 services:
 - redis-server
-- postgresql
+- mysql
 after_success:
 - |
   if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_PULL_REQUEST == 'false' ]]; then

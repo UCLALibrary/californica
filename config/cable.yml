@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: redis://localhost:6379/1
-  channel_prefix: tenjeo_production
+  url: redis://<%= ENV['REDIS_HOST'] %>:<%= ENV['REDIS_PORT'] %>/<%= ENV['REDIS_CABLE_DB'] %>
+  channel_prefix: <%= ENV['CABLE_CHANNEL_PREFIX'] || 'californica_production' %>
