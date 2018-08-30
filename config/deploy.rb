@@ -11,7 +11,8 @@ set :ssh_options, keys: ["ucla_deploy_rsa"] if File.exist?("ucla_deploy_rsa")
 
 set :log_level, :debug
 set :bundle_flags, '--deployment'
-set :bundle_env_variables, nokogiri_use_system_libraries: 1
+
+set :default_env, 'PASSENGER_INSTANCE_REGISTRY_DIR' => '/var/run'
 
 set :keep_releases, 5
 set :assets_prefix, "#{shared_path}/public/assets"
@@ -63,7 +64,7 @@ after 'deploy:published', 'rails:rake:db:seed'
 namespace :deploy do
   after :finishing, :restart_apache do
     on roles(:app) do
-      execute :sudo, :systemctl, :restart, :apache2
+      execute :sudo, :systemctl, :restart, :httpd
     end
   end
 end

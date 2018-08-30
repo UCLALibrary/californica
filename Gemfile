@@ -13,8 +13,10 @@ gem 'honeybadger', '~> 3.1'
 gem 'hyrax', '~> 2.1.0'
 gem 'rails', '~> 5.1.6'
 
-# Use postgresql
-gem 'pg', '~> 1.0'
+gem 'pkg-config', '~> 1.1'
+
+# Use mysql
+gem 'mysql2', '~> 0.5'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
