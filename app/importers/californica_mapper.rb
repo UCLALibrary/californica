@@ -10,7 +10,11 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   DELIMITER = '|~|'
 
   def fields
-    CALIFORNICA_TERMS_MAP.keys
+    CALIFORNICA_TERMS_MAP.keys + [:visibility]
+  end
+
+  def visibility
+    Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
   end
 
   def map_field(name)

@@ -30,5 +30,10 @@ RSpec.describe 'californica:ingest:csv' do
 
       expect(created_work.title).to contain_exactly(title)
     end
+
+    it 'has created a public work' do
+      expect(created_work.visibility)
+        .to eq Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
+    end
   end
 end
