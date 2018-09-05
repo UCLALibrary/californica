@@ -1,6 +1,5 @@
 # frozen_string_literal: true
-# Generated via
-#  `rails generate hyrax:work Work`
+
 class Work < ActiveFedora::Base
   include ::Hyrax::WorkBehavior
 
