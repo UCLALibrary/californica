@@ -11,6 +11,10 @@ Metrics/BlockLength:
     - 'config/**/*'
     - 'spec/**/*'
 
+RSpec/DescribeClass:
+  Exclude:
+    - 'spec/tasks/**/*'
+
 RSpec/ExampleLength:
   Enabled: true
   Exclude:

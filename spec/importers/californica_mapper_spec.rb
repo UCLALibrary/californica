@@ -29,4 +29,15 @@ RSpec.describe CalifornicaMapper do
   it "maps the required identifier field" do
     expect(mapper.map_field(:identifier)).to contain_exactly('21198/zz0002nq4w')
   end
+
+  it "maps visibility to open" do
+    expect(mapper.visibility)
+      .to eq Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
+  end
+
+  describe '#fields' do
+    it 'has expected fields' do
+      expect(mapper.fields).to include(:title, :identifier, :visibility)
+    end
+  end
 end
