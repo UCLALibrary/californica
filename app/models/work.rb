@@ -12,7 +12,7 @@ class Work < ActiveFedora::Base
     index.as :stored_searchable
   end
 
-  property :genre, predicate: ::RDF::URI.intern('http://example.com/ns#genre')
+  property :genre, predicate: ::RDF::Vocab::EDM.hasType
 
   # This must be included at the end, because it finalizes the metadata
   # schema (by adding accepts_nested_attributes)
