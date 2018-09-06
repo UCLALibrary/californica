@@ -12,6 +12,8 @@ class Work < ActiveFedora::Base
     index.as :stored_searchable
   end
 
+  property :genre, predicate: ::RDF::URI.intern('http://example.com/ns#genre')
+
   # This must be included at the end, because it finalizes the metadata
   # schema (by adding accepts_nested_attributes)
   include ::Hyrax::BasicMetadata
