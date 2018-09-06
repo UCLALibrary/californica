@@ -12,6 +12,12 @@ RSpec.describe Work do
         .to change { work.genre.to_a }
         .to contain_exactly(*values)
     end
+
+    it 'sets to edm:hasType' do
+      expect { work.genre = values }
+        .to change { work.resource.predicates }
+        .to include RDF::Vocab::EDM.hasType
+    end
   end
 
   it "has extent" do
