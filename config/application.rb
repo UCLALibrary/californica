@@ -12,9 +12,9 @@ module Tenjeo
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
 
-    config.action_mailer.default_url_options = { host: ENV["RAILS_HOST"] }
+    config.action_mailer.default_url_options = { host: ENV["RAILS_HOST"] || 'localhost' }
 
     config.active_job.queue_adapter = :sidekiq
   end
 end
-Rails.application.routes.default_url_options[:host] = ENV["RAILS_HOST"]
+Rails.application.routes.default_url_options[:host] = ENV["RAILS_HOST"] || 'localhost'
