@@ -5,6 +5,6 @@ module HyraxHelper
   include Hyrax::HyraxHelperBehavior
 
   def application_name
-    t('tenejo.application_name', default: super)
+    t('californica.application_name', default: super)
   end
 end
