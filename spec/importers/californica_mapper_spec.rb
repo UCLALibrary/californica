@@ -37,7 +37,31 @@ RSpec.describe CalifornicaMapper do
 
   describe '#fields' do
     it 'has expected fields' do
-      expect(mapper.fields).to include(:visibility, :identifier, :title, :subject, :description)
+      expect(mapper.fields).to include(:visibility, :identifier, :title, :subject, :description, :extent)
+    end
+  end
+
+  describe '#extent' do
+    context 'when collection is LADNN' do
+      let(:metadata) do
+        { "Project Name" => "Los Angeles Daily News Negatives",
+          "Format.extent" => "This value is ignored" }
+      end
+
+      it 'hard codes the extent field' do
+        expect(mapper.extent).to eq ['1 photograph']
+      end
+    end
+
+    context 'when it doesn\'t require special handling' do
+      let(:metadata) do
+        { "Project Name" => "Another collection",
+          "Format.extent" => "Ext 1|~|Ext 2" }
+      end
+
+      it 'reads the value from the metadata' do
+        expect(mapper.extent).to contain_exactly("Ext 1", "Ext 2")
+      end
     end
   end
 end
