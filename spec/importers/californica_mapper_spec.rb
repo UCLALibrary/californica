@@ -37,7 +37,7 @@ RSpec.describe CalifornicaMapper do
 
   describe '#fields' do
     it 'has expected fields' do
-      expect(mapper.fields).to include(:title, :identifier, :visibility)
+      expect(mapper.fields).to include(:title, :identifier, :visibility, :description)
     end
   end
 end

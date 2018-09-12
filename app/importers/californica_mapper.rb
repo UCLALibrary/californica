@@ -4,7 +4,8 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   CALIFORNICA_TERMS_MAP = {
     identifier: "Item Ark",
     title: "Title",
-    subject: "Subject"
+    subject: "Subject",
+    description: "Description.note"
   }.freeze
 
   DELIMITER = '|~|'
