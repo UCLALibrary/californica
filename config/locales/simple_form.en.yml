@@ -1,0 +1,4 @@
+simple_form:
+  labels:
+    defaults:
+      repository: 'Repository'

@@ -26,4 +26,11 @@ RSpec.describe Work do
     expect(work.extent).to include '1 photograph'
     expect(work.resource.dump(:ttl)).to match(/purl.org\/dc\/elements\/1.1\/format/)
   end
+
+  it "has repository" do
+    work = described_class.new
+    work.repository = ['a repository']
+    expect(work.repository).to include 'a repository'
+    expect(work.resource.dump(:ttl)).to match(/loc.gov\/mods\/rdf\/v1#locationCopySublocation/)
+  end
 end
