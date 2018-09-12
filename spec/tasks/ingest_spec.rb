@@ -23,12 +23,15 @@ RSpec.describe 'californica:ingest:csv' do
     before { task.invoke(csv_path) }
 
     let(:created_work) { Work.where(identifier_tesim: '21198/zz0002nq4w').first }
+    let(:title) do
+      "Protesters with signs in gallery of Los Angeles County Supervisors " \
+      "hearing over eminent domain for construction of Harbor Freeway, Calif., 1947"
+    end
+    let(:description) { ["At the Hall of Records, 220 N. Broadway.", "Description 2"] }
 
-    it 'has created a work with the correct title' do
-      title = "Protesters with signs in gallery of Los Angeles County Supervisors " \
-              "hearing over eminent domain for construction of Harbor Freeway, Calif., 1947"
-
+    it 'has created a work with the correct metadata' do
       expect(created_work.title).to contain_exactly(title)
+      expect(created_work.description).to contain_exactly(*description)
     end
 
     it 'has created a public work' do
