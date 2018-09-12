@@ -28,10 +28,20 @@ RSpec.describe 'californica:ingest:csv' do
       "hearing over eminent domain for construction of Harbor Freeway, Calif., 1947"
     end
     let(:description) { ["At the Hall of Records, 220 N. Broadway.", "Description 2"] }
+    let(:subj) do
+      ["Express highways--California--Los Angeles County--Design and construction",
+       "Eminent domain--California--Los Angeles",
+       "Demonstrations--California--Los Angeles County",
+       "Transportation",
+       "Government",
+       "Activism",
+       "Interstate 10"]
+    end
 
     it 'has created a work with the correct metadata' do
       expect(created_work.title).to contain_exactly(title)
       expect(created_work.description).to contain_exactly(*description)
+      expect(created_work.subject).to contain_exactly(*subj)
     end
 
     it 'has created a public work' do
