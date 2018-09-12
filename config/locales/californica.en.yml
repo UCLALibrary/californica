@@ -4,3 +4,6 @@ en:
     application_name: Samvera
     product_name: Californica
     institution_name: Samvera
+    footer:
+      copyright_html: ""
+      service_html: Powered by <a href="http://samvera.org/" class="navbar-link" target="_blank">Samvera</a>.
