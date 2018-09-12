@@ -42,6 +42,7 @@ RSpec.describe 'californica:ingest:csv' do
       expect(created_work.title).to contain_exactly(title)
       expect(created_work.description).to contain_exactly(*description)
       expect(created_work.subject).to contain_exactly(*subj)
+      expect(created_work.extent).to eq ['1 photograph']
     end
 
     it 'has created a public work' do

@@ -5,7 +5,8 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     identifier: "Item Ark",
     title: "Title",
     subject: "Subject",
-    description: "Description.note"
+    description: "Description.note",
+    extent: "Format.extent"
   }.freeze
 
   DELIMITER = '|~|'
@@ -16,6 +17,16 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
   def visibility
     Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
+  end
+
+  # To avoid having to normalize data before import,
+  # if the collection is LADNN, hard-code the extent. (Story #111)
+  def extent
+    if metadata['Project Name'] == 'Los Angeles Daily News Negatives'
+      ['1 photograph']
+    else
+      map_field(:extent)
+    end
   end
 
   def map_field(name)
