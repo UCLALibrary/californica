@@ -43,6 +43,7 @@ gem 'jquery-rails'
 gem 'riiif', '~> 1.1'
 gem 'rsolr', '>= 1.0'
 gem 'sidekiq', '~> 5.1.3'
+gem 'whenever', require: false
 
 group :development do
   # Use Capistrano for deployment automation
