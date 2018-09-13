@@ -12,13 +12,14 @@ class Work < ActiveFedora::Base
     index.as :stored_searchable
   end
 
-  property :local_identifier, predicate: ::RDF::Vocab::DC11.identifier
   property :funding_note, predicate: ::RDF::URI.intern('http://bibfra.me/vocab/marc/fundingInformation/')
   property :genre, predicate: ::RDF::Vocab::EDM.hasType
+  property :latitude, predicate: ::RDF::Vocab::EXIF.gpsLatitude
+  property :local_identifier, predicate: ::RDF::Vocab::DC11.identifier
+  property :longitude, predicate: ::RDF::Vocab::EXIF.gpsLongitude
+  property :named_subject, predicate: ::RDF::Vocab::MODS.subjectName
   property :normalized_date, predicate: ::RDF::Vocab::DC11.date
   property :repository, predicate: ::RDF::Vocab::MODS.locationCopySublocation
-  property :latitude, predicate: ::RDF::Vocab::EXIF.gpsLatitude
-  property :longitude, predicate: ::RDF::Vocab::EXIF.gpsLongitude
 
   # This must be included at the end, because it finalizes the metadata
   # schema (by adding accepts_nested_attributes)
