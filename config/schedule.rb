@@ -30,7 +30,7 @@ every :day, at: '1:00am' do
   command "/usr/bin/find /tmp -type f -mtime +7 -user deploy -execdir /bin/rm -- {} \\;"
 end
 
-# Reindex news negatives collection daily
+# Reingest news negatives collection daily
 every :day, at: '1:00am' do
-  rake "californica:ingest:reindex"
+  rake "californica:ingest:reingest"
 end
