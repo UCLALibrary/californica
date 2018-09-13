@@ -2,3 +2,4 @@ simple_form:
   labels:
     defaults:
       repository: 'Repository'
+      normalized_date: 'Date'

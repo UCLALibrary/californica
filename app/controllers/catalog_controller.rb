@@ -53,6 +53,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('file_format', :facetable), limit: 5
     config.add_facet_field solr_name('member_of_collection_ids', :symbol), limit: 5, label: 'Collections', helper_method: :collection_title_by_id
     config.add_facet_field solr_name('repository', :facetable), limit: 5
+    config.add_facet_field solr_name('normalized_date', :facetable), limit: 5
 
     # The generic_type isn't displayed on the facet list
     # It's used to give a label to the filter that comes from the user profile
@@ -107,6 +108,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('format', :stored_searchable)
     config.add_show_field solr_name('identifier', :stored_searchable)
     config.add_show_field solr_name('repository', :stored_searchable)
+    config.add_show_field solr_name('normalized_date', :stored_searchable)
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
