@@ -1,3 +1,11 @@
 en:
   blacklight:
     application_name: 'Blacklight'
+    search:
+      fields:
+        facet:
+          repository_sim: 'Repository'
+        index:
+          repository_sim: 'Repository'
+        show:
+          repository_sim: 'Repository'

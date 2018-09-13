@@ -14,6 +14,8 @@ class Work < ActiveFedora::Base
 
   property :genre, predicate: ::RDF::Vocab::EDM.hasType
 
+  apply_schema Schemas::WorkMetadata, Schemas::GeneratedResourceSchemaStrategy.new
+
   # This must be included at the end, because it finalizes the metadata
   # schema (by adding accepts_nested_attributes)
   include ::Hyrax::BasicMetadata
