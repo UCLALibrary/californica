@@ -16,6 +16,8 @@ class Work < ActiveFedora::Base
   property :genre, predicate: ::RDF::Vocab::EDM.hasType
   property :normalized_date, predicate: ::RDF::Vocab::DC11.date
   property :repository, predicate: ::RDF::Vocab::MODS.locationCopySublocation
+  property :latitude, predicate: ::RDF::Vocab::EXIF.gpsLatitude
+  property :longitude, predicate: ::RDF::Vocab::EXIF.gpsLongitude
 
   # This must be included at the end, because it finalizes the metadata
   # schema (by adding accepts_nested_attributes)

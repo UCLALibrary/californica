@@ -43,4 +43,16 @@ RSpec.describe Work do
     expect(work.local_identifier).to include 'local_identifier'
     expect(work.resource.dump(:ttl)).to match(/purl.org\/dc\/elements\/1.1\/identifier/)
   end
+
+  it "has latitude" do
+    work.latitude = ['39']
+    expect(work.latitude).to include '39'
+    expect(work.resource.dump(:ttl)).to match(/w3.org\/2003\/12\/exif\/ns#gpsLatitude/)
+  end
+
+  it "has longitude" do
+    work.longitude = ['-94']
+    expect(work.longitude).to include '-94'
+    expect(work.resource.dump(:ttl)).to match(/w3.org\/2003\/12\/exif\/ns#gpsLongitude/)
+  end
 end
