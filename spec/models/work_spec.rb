@@ -73,4 +73,10 @@ RSpec.describe Work do
     expect(work.rights_country).to include 'rights_country'
     expect(work.resource.dump(:ttl)).to match(/ebu.ch\/metadata\/ontologies\/ebucore\/ebucore#rightsType/)
   end
+
+  it "has rights holder" do
+    work.rights_holder = ['rights_holder']
+    expect(work.rights_holder).to include 'rights_holder'
+    expect(work.resource.dump(:ttl)).to match(/ebu.ch\/metadata\/ontologies\/ebucore\/ebucore#hasRightsHolder/)
+  end
 end

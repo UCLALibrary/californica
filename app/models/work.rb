@@ -21,6 +21,7 @@ class Work < ActiveFedora::Base
   property :normalized_date, predicate: ::RDF::Vocab::DC11.date
   property :repository, predicate: ::RDF::Vocab::MODS.locationCopySublocation
   property :rights_country, predicate: ::RDF::Vocab::EBUCore.rightsType
+  property :rights_holder, predicate: ::RDF::Vocab::EBUCore.hasRightsHolder
 
   # This must be included at the end, because it finalizes the metadata
   # schema (by adding accepts_nested_attributes)
