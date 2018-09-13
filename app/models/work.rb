@@ -13,6 +13,7 @@ class Work < ActiveFedora::Base
   end
 
   property :local_identifier, predicate: ::RDF::Vocab::DC11.identifier
+  property :funding_note, predicate: ::RDF::URI.intern('http://bibfra.me/vocab/marc/fundingInformation/')
   property :genre, predicate: ::RDF::Vocab::EDM.hasType
   property :normalized_date, predicate: ::RDF::Vocab::DC11.date
   property :repository, predicate: ::RDF::Vocab::MODS.locationCopySublocation

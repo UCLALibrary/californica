@@ -4,3 +4,4 @@ simple_form:
       repository: 'Repository'
       normalized_date: 'Date'
       local_identifier: 'Local Identifier'
+      funding_note: 'Funding Note'

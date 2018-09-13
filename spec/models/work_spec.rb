@@ -43,4 +43,10 @@ RSpec.describe Work do
     expect(work.local_identifier).to include 'local_identifier'
     expect(work.resource.dump(:ttl)).to match(/purl.org\/dc\/elements\/1.1\/identifier/)
   end
+
+  it "has funding_note" do
+    work.funding_note = ['funding_note']
+    expect(work.funding_note).to include 'funding_note'
+    expect(work.resource.dump(:ttl)).to match(/bibfra.me\/vocab\/marc\/fundingInformation/)
+  end
 end
