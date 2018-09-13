@@ -79,4 +79,10 @@ RSpec.describe Work do
     expect(work.rights_holder).to include 'rights_holder'
     expect(work.resource.dump(:ttl)).to match(/ebu.ch\/metadata\/ontologies\/ebucore\/ebucore#hasRightsHolder/)
   end
+
+  it "has medium" do
+    work.medium = ['Capacitance Electronic Disc']
+    expect(work.medium).to include 'Capacitance Electronic Disc'
+    expect(work.resource.dump(:ttl)).to match(/purl.org\/dc\/terms\/medium/)
+  end
 end
