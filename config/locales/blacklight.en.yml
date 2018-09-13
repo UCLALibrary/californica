@@ -5,7 +5,10 @@ en:
       fields:
         facet:
           repository_sim: 'Repository'
+          normalized_date_sim: 'Date'
         index:
           repository_sim: 'Repository'
+          normalized_date_sim: 'Date'
         show:
           repository_sim: 'Repository'
+          normalized_date_sim: 'Date'

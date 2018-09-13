@@ -21,16 +21,20 @@ RSpec.describe Work do
   end
 
   it "has extent" do
-    work = described_class.new
     work.extent = ['1 photograph']
     expect(work.extent).to include '1 photograph'
     expect(work.resource.dump(:ttl)).to match(/purl.org\/dc\/elements\/1.1\/format/)
   end
 
   it "has repository" do
-    work = described_class.new
     work.repository = ['a repository']
     expect(work.repository).to include 'a repository'
     expect(work.resource.dump(:ttl)).to match(/loc.gov\/mods\/rdf\/v1#locationCopySublocation/)
+  end
+
+  it "has normalized date" do
+    work.normalized_date = ['01/01/01']
+    expect(work.normalized_date).to include '01/01/01'
+    expect(work.resource.dump(:ttl)).to match(/purl.org\/dc\/elements\/1.1\/date/)
   end
 end
