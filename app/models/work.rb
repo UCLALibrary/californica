@@ -12,6 +12,7 @@ class Work < ActiveFedora::Base
     index.as :stored_searchable
   end
 
+  property :local_identifier, predicate: ::RDF::Vocab::DC11.identifier
   property :genre, predicate: ::RDF::Vocab::EDM.hasType
   property :normalized_date, predicate: ::RDF::Vocab::DC11.date
   property :repository, predicate: ::RDF::Vocab::MODS.locationCopySublocation

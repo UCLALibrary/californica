@@ -3,3 +3,4 @@ simple_form:
     defaults:
       repository: 'Repository'
       normalized_date: 'Date'
+      local_identifier: 'Local Identifier'
