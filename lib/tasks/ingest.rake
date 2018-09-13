@@ -1,32 +1,29 @@
 # frozen_string_literal: true
-CSV_FILE = '/opt/data/sample_data_set_la_daily_news/dlcs-ladnn-2018-09-06.csv'
+# Set this value in .env.development or .env.production, according to your
+# environment
+CSV_FILE = ENV['CSV_FILE']
 
 namespace :californica do
   namespace :ingest do
-    desc 'Ingest an item from MODS XML'
-    task :mods, [:filename] => [:environment] do |_task, args|
-      parser = ModsXmlParser.for(file: File.open(args[:filename]))
-
-      Darlingtonia::Importer.new(parser: parser).import if parser.validate
-    end
-
     desc 'Ingest an item from CSV'
     task :csv, [:filename] => [:environment] do |_task, args|
-      parser = CalifornicaCsvParser.for(file: File.open(args[:filename]))
-
-      Darlingtonia::Importer.new(parser: parser).import if parser.validate
-    end
-
-    desc "Reindex #{CSV_FILE}"
-    task :reindex do
-      if File.exist?(CSV_FILE)
-        require 'active_fedora/cleaner'
-        ActiveFedora::Cleaner.clean!
-        parser = CalifornicaCsvParser.for(file: File.open(CSV_FILE))
+      csv_file = args[:filename]
+      if File.exist?(csv_file)
+        parser = CalifornicaCsvParser.for(file: File.open(csv_file))
         Darlingtonia::Importer.new(parser: parser).import if parser.validate
       else
-        puts "Cannot find expected input file #{CSV_FILE}"
+        puts "Cannot find expected input file #{csv_file}"
       end
+    end
+
+    # While we are in development mode, this task is scheduled to run nightly.
+    # Adjust this in config/schedule.rb if necessary.
+    desc "Delete all objects and reingest"
+    task reingest: :environment do
+      require 'active_fedora/cleaner'
+      ActiveFedora::Cleaner.clean!
+      Rake::Task["hyrax:default_collection_types:create"].invoke
+      Rake::Task["californica:ingest:csv"].invoke(CSV_FILE)
     end
   end
 end
