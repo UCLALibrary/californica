@@ -13,8 +13,7 @@ class Work < ActiveFedora::Base
   end
 
   property :genre, predicate: ::RDF::Vocab::EDM.hasType
-
-  apply_schema Schemas::WorkMetadata, Schemas::GeneratedResourceSchemaStrategy.new
+  property :repository, predicate: ::RDF::Vocab::MODS.locationCopySublocation
 
   # This must be included at the end, because it finalizes the metadata
   # schema (by adding accepts_nested_attributes)
