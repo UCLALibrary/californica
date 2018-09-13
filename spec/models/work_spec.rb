@@ -85,4 +85,10 @@ RSpec.describe Work do
     expect(work.medium).to include 'Capacitance Electronic Disc'
     expect(work.resource.dump(:ttl)).to match(/purl.org\/dc\/terms\/medium/)
   end
+
+  it "has dimensions" do
+    work.dimensions = ['2x4']
+    expect(work.dimensions).to include '2x4'
+    expect(work.resource.dump(:ttl)).to match(/loc.gov\/mods\/rdf\/v1#physicalExtent/)
+  end
 end

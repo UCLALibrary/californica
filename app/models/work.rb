@@ -12,6 +12,7 @@ class Work < ActiveFedora::Base
     index.as :stored_searchable
   end
 
+  property :dimensions, predicate: ::RDF::Vocab::MODS.physicalExtent
   property :funding_note, predicate: ::RDF::URI.intern('http://bibfra.me/vocab/marc/fundingInformation/')
   property :genre, predicate: ::RDF::Vocab::EDM.hasType
   property :latitude, predicate: ::RDF::Vocab::EXIF.gpsLatitude
