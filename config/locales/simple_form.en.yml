@@ -6,3 +6,4 @@ simple_form:
       named_subject: 'Name (Subject)'
       normalized_date: 'Date'
       repository: 'Repository'
+      rights_country: 'Rights (country of creation)'
