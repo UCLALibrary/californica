@@ -37,4 +37,10 @@ RSpec.describe Work do
     expect(work.normalized_date).to include '01/01/01'
     expect(work.resource.dump(:ttl)).to match(/purl.org\/dc\/elements\/1.1\/date/)
   end
+
+  it "has local_identifier" do
+    work.local_identifier = ['local_identifier']
+    expect(work.local_identifier).to include 'local_identifier'
+    expect(work.resource.dump(:ttl)).to match(/purl.org\/dc\/elements\/1.1\/identifier/)
+  end
 end
