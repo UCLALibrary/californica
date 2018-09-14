@@ -1,7 +1,8 @@
 simple_form:
   labels:
     defaults:
-      repository: 'Repository'
-      normalized_date: 'Date'
-      local_identifier: 'Local Identifier'
       funding_note: 'Funding Note'
+      local_identifier: 'Local Identifier'
+      named_subject: 'Name (Subject)'
+      normalized_date: 'Date'
+      repository: 'Repository'

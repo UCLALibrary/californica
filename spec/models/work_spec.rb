@@ -61,4 +61,10 @@ RSpec.describe Work do
     expect(work.longitude).to include '-94'
     expect(work.resource.dump(:ttl)).to match(/w3.org\/2003\/12\/exif\/ns#gpsLongitude/)
   end
+
+  it "has named subject" do
+    work.named_subject = ['Person, A']
+    expect(work.named_subject).to include 'Person, A'
+    expect(work.resource.dump(:ttl)).to match(/loc.gov\/mods\/rdf\/v1#subjectName/)
+  end
 end

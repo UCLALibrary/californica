@@ -4,11 +4,14 @@ en:
     search:
       fields:
         facet:
+          named_subject: 'Name (subject)'
           repository_sim: 'Repository'
           normalized_date_sim: 'Date'
         index:
+          named_subject: 'Name (subject)'
           repository_sim: 'Repository'
           normalized_date_sim: 'Date'
         show:
+          named_subject: 'Name (subject)'
           repository_sim: 'Repository'
           normalized_date_sim: 'Date'
