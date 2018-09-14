@@ -17,6 +17,7 @@ class Work < ActiveFedora::Base
   property :latitude, predicate: ::RDF::Vocab::EXIF.gpsLatitude
   property :local_identifier, predicate: ::RDF::Vocab::DC11.identifier
   property :longitude, predicate: ::RDF::Vocab::EXIF.gpsLongitude
+  property :medium, predicate: ::RDF::Vocab::DC.medium
   property :named_subject, predicate: ::RDF::Vocab::MODS.subjectName
   property :normalized_date, predicate: ::RDF::Vocab::DC11.date
   property :repository, predicate: ::RDF::Vocab::MODS.locationCopySublocation
