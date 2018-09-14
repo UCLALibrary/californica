@@ -44,6 +44,12 @@ RSpec.describe Work do
     expect(work.resource.dump(:ttl)).to match(/purl.org\/dc\/elements\/1.1\/identifier/)
   end
 
+  it "has funding_note" do
+    work.funding_note = ['funding_note']
+    expect(work.funding_note).to include 'funding_note'
+    expect(work.resource.dump(:ttl)).to match(/bibfra.me\/vocab\/marc\/fundingInformation/)
+  end
+
   it "has latitude" do
     work.latitude = ['39']
     expect(work.latitude).to include '39'
