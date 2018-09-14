@@ -19,3 +19,4 @@ RSpec/ExampleLength:
   Enabled: true
   Exclude:
     - 'spec/features**/*'
+    - 'spec/tasks/ingest_spec.rb'

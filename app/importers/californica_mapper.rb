@@ -6,6 +6,8 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     title: "Title",
     subject: "Subject",
     description: "Description.note",
+    latitude: "Description.latitude",
+    longitude: "Description.longitude",
     extent: "Format.extent",
     local_identifier: "Alternate Identifier.local"
   }.freeze

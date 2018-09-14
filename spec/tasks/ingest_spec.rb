@@ -44,6 +44,8 @@ RSpec.describe 'californica:ingest:csv' do
       expect(created_work.subject).to contain_exactly(*subj)
       expect(created_work.extent).to eq ['1 photograph']
       expect(created_work.local_identifier).to eq ['uclalat_1387_b107_40098']
+      expect(created_work.latitude).to eq ['34.054133']
+      expect(created_work.longitude).to eq ['-118.243865']
     end
 
     it 'has created a public work' do
