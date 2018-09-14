@@ -117,6 +117,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('rights_country', :stored_searchable)
     config.add_show_field solr_name('medium', :stored_searchable)
     config.add_show_field solr_name('dimensions', :stored_searchable)
+    config.add_show_field solr_name('caption', :stored_searchable)
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
