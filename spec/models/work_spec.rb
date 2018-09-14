@@ -67,4 +67,10 @@ RSpec.describe Work do
     expect(work.named_subject).to include 'Person, A'
     expect(work.resource.dump(:ttl)).to match(/loc.gov\/mods\/rdf\/v1#subjectName/)
   end
+
+  it "rights country" do
+    work.rights_country = ['rights_country']
+    expect(work.rights_country).to include 'rights_country'
+    expect(work.resource.dump(:ttl)).to match(/ebu.ch\/metadata\/ontologies\/ebucore\/ebucore#rightsType/)
+  end
 end
