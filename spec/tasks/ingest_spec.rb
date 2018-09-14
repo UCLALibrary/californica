@@ -46,6 +46,7 @@ RSpec.describe 'californica:ingest:csv' do
       expect(created_work.local_identifier).to eq ['uclalat_1387_b107_40098']
       expect(created_work.latitude).to eq ['34.054133']
       expect(created_work.longitude).to eq ['-118.243865']
+      expect(created_work.date_created).to eq ['September 17, 1947']
     end
 
     it 'has created a public work' do
