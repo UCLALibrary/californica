@@ -91,4 +91,10 @@ RSpec.describe Work do
     expect(work.dimensions).to include '2x4'
     expect(work.resource.dump(:ttl)).to match(/loc.gov\/mods\/rdf\/v1#physicalExtent/)
   end
+
+  it "has caption" do
+    work.caption = ['a caption']
+    expect(work.caption).to include 'a caption'
+    expect(work.resource.dump(:ttl)).to match(/schema.org\/caption/)
+  end
 end
