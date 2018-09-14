@@ -6,7 +6,8 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     title: "Title",
     subject: "Subject",
     description: "Description.note",
-    extent: "Format.extent"
+    extent: "Format.extent",
+    local_identifier: "Alternate Identifier.local"
   }.freeze
 
   DELIMITER = '|~|'
