@@ -49,4 +49,16 @@ RSpec.describe Work do
     expect(work.funding_note).to include 'funding_note'
     expect(work.resource.dump(:ttl)).to match(/bibfra.me\/vocab\/marc\/fundingInformation/)
   end
+    
+  it "has latitude" do
+    work.latitude = ['39']
+    expect(work.latitude).to include '39'
+    expect(work.resource.dump(:ttl)).to match(/w3.org\/2003\/12\/exif\/ns#gpsLatitude/)
+  end
+
+  it "has longitude" do
+    work.longitude = ['-94']
+    expect(work.longitude).to include '-94'
+    expect(work.resource.dump(:ttl)).to match(/w3.org\/2003\/12\/exif\/ns#gpsLongitude/)
+  end
 end
