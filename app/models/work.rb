@@ -8,11 +8,10 @@ class Work < ActiveFedora::Base
   # self.valid_child_concerns = []
   validates :title, presence: { message: 'Your work must have a title.' }
 
-  property :extent, predicate: 'http://purl.org/dc/elements/1.1/format' do |index|
+  property :extent, predicate: 'http://purl.org/dc/elements/1.1/format'
+  property :caption, predicate: ::RDF::Vocab::SCHEMA.caption do |index|
     index.as :stored_searchable
   end
-
-  property :caption, predicate: ::RDF::Vocab::SCHEMA.caption
   property :dimensions, predicate: ::RDF::Vocab::MODS.physicalExtent
   property :funding_note, predicate: ::RDF::URI.intern('http://bibfra.me/vocab/marc/fundingInformation/')
   property :genre, predicate: ::RDF::Vocab::EDM.hasType
@@ -20,7 +19,9 @@ class Work < ActiveFedora::Base
   property :local_identifier, predicate: ::RDF::Vocab::DC11.identifier
   property :longitude, predicate: ::RDF::Vocab::EXIF.gpsLongitude
   property :medium, predicate: ::RDF::Vocab::DC.medium
-  property :named_subject, predicate: ::RDF::Vocab::MODS.subjectName
+  property :named_subject, predicate: ::RDF::Vocab::MODS.subjectName do |index|
+    index.as :stored_searchable
+  end
   property :normalized_date, predicate: ::RDF::Vocab::DC11.date
   property :repository, predicate: ::RDF::Vocab::MODS.locationCopySublocation
   property :rights_country, predicate: ::RDF::Vocab::EBUCore.rightsType
