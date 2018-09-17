@@ -25,4 +25,56 @@ class SolrDocument
   # Do content negotiation for AF models.
 
   use_extension(Hydra::ContentNegotiation)
+
+  def extent
+    self[Solrizer.solr_name('extent')]
+  end
+
+  def caption
+    self[Solrizer.solr_name('caption')]
+  end
+
+  def dimensions
+    self[Solrizer.solr_name('dimensions')]
+  end
+
+  def funding_note
+    self[Solrizer.solr_name('funding_note')]
+  end
+
+  def genre
+    self[Solrizer.solr_name('genre')]
+  end
+
+  def latitude
+    self[Solrizer.solr_name('latitude')]
+  end
+
+  def longitude
+    self[Solrizer.solr_name('longitude')]
+  end
+
+  def medium
+    self[Solrizer.solr_name('medium')]
+  end
+
+  def named_subject
+    self[Solrizer.solr_name('named_subject')]
+  end
+
+  def normalized_date
+    self[Solrizer.solr_name('normalized_date')]
+  end
+
+  def repository
+    self[Solrizer.solr_name('repository')]
+  end
+
+  def rights_country
+    self[Solrizer.solr_name('rights_country')]
+  end
+
+  def rights_holder
+    self[Solrizer.solr_name('rights_holder')]
+  end
 end
