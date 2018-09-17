@@ -45,6 +45,16 @@ en:
           rights_statement_tesim: Rights Statement
           subject_tesim: Subject
           title_tesim: Title
+  simple_form:
+    labels:
+      defaults:
+        funding_note: 'Funding Note'
+        local_identifier: 'Local Identifier'
+        named_subject: 'Name (Subject)'
+        normalized_date: 'Date'
+        repository: 'Repository'
+        rights_country: 'Rights (country of creation)'
+        rights_holder: 'Rights Holder'
   hyrax:
     account_name: My Institution Account Id
     directory:
