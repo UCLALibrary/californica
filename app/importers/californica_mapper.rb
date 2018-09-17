@@ -10,7 +10,8 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     longitude: "Description.longitude",
     extent: "Format.extent",
     local_identifier: "Alternate Identifier.local",
-    date_created: "Date.creation"
+    date_created: "Date.creation",
+    caption: "Description.caption"
   }.freeze
 
   DELIMITER = '|~|'
