@@ -6,6 +6,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     title: "Title",
     subject: "Subject",
     description: "Description.note",
+    resource_type: "Type.typeOfResource",
     latitude: "Description.latitude",
     longitude: "Description.longitude",
     extent: "Format.extent",

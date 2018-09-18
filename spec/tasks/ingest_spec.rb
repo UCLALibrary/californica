@@ -42,6 +42,7 @@ RSpec.describe 'californica:ingest:csv' do
       expect(created_work.title).to contain_exactly(title)
       expect(created_work.description).to contain_exactly(*description)
       expect(created_work.subject).to contain_exactly(*subj)
+      expect(created_work.resource_type).to eq ['still image']
       expect(created_work.extent).to eq ['1 photograph']
       expect(created_work.local_identifier).to eq ['uclalat_1387_b107_40098']
       expect(created_work.latitude).to eq ['34.054133']
