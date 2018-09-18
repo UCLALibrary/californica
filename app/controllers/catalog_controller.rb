@@ -59,6 +59,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('medium', :facetable), limit: 5
     config.add_facet_field solr_name('dimensions', :facetable), limit: 5
     config.add_facet_field solr_name('extent', :facetable), limit: 5
+    config.add_facet_field solr_name('location', :stored_searchable), label: 'Location', limit: 5
 
     # The generic_type isn't displayed on the facet list
     # It's used to give a label to the filter that comes from the user profile
@@ -99,6 +100,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('description', :stored_searchable)
     config.add_show_field solr_name('keyword', :stored_searchable)
     config.add_show_field solr_name('subject', :stored_searchable)
+    config.add_show_field solr_name('location', :stored_searchable)
     config.add_show_field solr_name('creator', :stored_searchable)
     config.add_show_field solr_name('contributor', :stored_searchable)
     config.add_show_field solr_name('publisher', :stored_searchable)
