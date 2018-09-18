@@ -100,7 +100,6 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('description', :stored_searchable)
     config.add_show_field solr_name('keyword', :stored_searchable)
     config.add_show_field solr_name('subject', :stored_searchable)
-    config.add_show_field solr_name('location', :stored_searchable)
     config.add_show_field solr_name('creator', :stored_searchable)
     config.add_show_field solr_name('contributor', :stored_searchable)
     config.add_show_field solr_name('publisher', :stored_searchable)
@@ -114,13 +113,22 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('resource_type', :stored_searchable), label: 'Resource Type'
     config.add_show_field solr_name('format', :stored_searchable)
     config.add_show_field solr_name('identifier', :stored_searchable)
-    config.add_show_field solr_name('repository', :stored_searchable)
-    config.add_show_field solr_name('normalized_date', :stored_searchable)
-    config.add_show_field solr_name('named_subject', :stored_searchable)
-    config.add_show_field solr_name('rights_country', :stored_searchable)
-    config.add_show_field solr_name('medium', :stored_searchable)
-    config.add_show_field solr_name('dimensions', :stored_searchable)
+
     config.add_show_field solr_name('caption', :stored_searchable)
+    config.add_show_field solr_name('dimensions', :stored_searchable)
+    config.add_show_field solr_name('extent', :stored_searchable)
+    config.add_show_field solr_name('funding_note', :stored_searchable)
+    config.add_show_field solr_name('genre', :stored_searchable)
+    config.add_show_field solr_name('latitude', :stored_searchable)
+    config.add_show_field solr_name('location', :stored_searchable)
+    config.add_show_field solr_name('local_identifier', :stored_searchable)
+    config.add_show_field solr_name('longitude', :stored_searchable)
+    config.add_show_field solr_name('medium', :stored_searchable)
+    config.add_show_field solr_name('named_subject', :stored_searchable)
+    config.add_show_field solr_name('normalized_date', :stored_searchable)
+    config.add_show_field solr_name('repository', :stored_searchable)
+    config.add_show_field solr_name('rights_country', :stored_searchable)
+    config.add_show_field solr_name('rights_holder', :stored_searchable)
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields

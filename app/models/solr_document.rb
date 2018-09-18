@@ -50,6 +50,14 @@ class SolrDocument
     self[Solrizer.solr_name('latitude')]
   end
 
+  def location
+    self[Solrizer.solr_name('location')]
+  end
+
+  def local_identifier
+    self[Solrizer.solr_name('local_identifier')]
+  end
+
   def longitude
     self[Solrizer.solr_name('longitude')]
   end
