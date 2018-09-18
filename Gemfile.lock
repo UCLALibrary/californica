@@ -244,12 +244,18 @@ GEM
       nokogiri (>= 1.4.3)
     erubi (1.7.1)
     execjs (2.7.0)
+    factory_bot (4.11.1)
+      activesupport (>= 3.0.0)
+    factory_bot_rails (4.11.1)
+      factory_bot (~> 4.11.1)
+      railties (>= 3.0.0)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
     faraday-encoding (0.0.4)
       faraday
     fcrepo_wrapper (0.9.0)
       ruby-progressbar
+    ffaker (2.10.0)
     ffi (1.9.25)
     flipflop (2.4.0)
       activesupport (>= 4.0)
@@ -826,7 +832,9 @@ DEPENDENCIES
   devise
   devise-guests (~> 0.6)
   dotenv-rails (~> 2.2.1)
+  factory_bot_rails
   fcrepo_wrapper
+  ffaker
   honeybadger (~> 3.1)
   hydra-role-management (~> 1.0.0)
   hyrax (~> 2.2, >= 2.2.2)
@@ -840,6 +848,7 @@ DEPENDENCIES
   riiif (~> 1.1)
   rsolr (>= 1.0)
   rspec-rails
+  rubocop-rspec
   sass-rails (~> 5.0)
   selenium-webdriver
   sidekiq (~> 5.1.3)
