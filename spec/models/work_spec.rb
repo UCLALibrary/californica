@@ -20,6 +20,12 @@ RSpec.describe Work do
     end
   end
 
+  it "has publisher" do
+    work.publisher = ['publisher']
+    expect(work.publisher).to include 'publisher'
+    expect(work.resource.dump(:ttl)).to match(/purl.org\/dc\/elements\/1.1\/publisher/)
+  end
+
   it "has extent" do
     work.extent = ['1 photograph']
     expect(work.extent).to include '1 photograph'
