@@ -15,7 +15,8 @@ RSpec.describe CalifornicaMapper do
       "Transportation|~|Government|~|Activism|~|Interstate 10",
       "Publisher.publisherName" => "Los Angeles Daily News",
       "Format.medium" => "1 photograph",
-      "Name.repository" => "University of California, Los Angeles. $b Library Special Collections" }
+      "Name.repository" => "University of California, Los Angeles. $b Library Special Collections",
+      "Description.caption" => "This example does not have a caption." }
   end
 
   before { mapper.metadata = metadata }
@@ -37,7 +38,7 @@ RSpec.describe CalifornicaMapper do
 
   describe '#fields' do
     it 'has expected fields' do
-      expect(mapper.fields).to include(:visibility, :identifier, :title, :subject, :description, :latitude, :longitude, :extent, :local_identifier, :date_created)
+      expect(mapper.fields).to include(:visibility, :identifier, :title, :subject, :description, :latitude, :longitude, :extent, :local_identifier, :date_created, :caption)
     end
   end
 
