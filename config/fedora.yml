@@ -17,3 +17,4 @@ production:
   password: <%= ENV['FEDORA_PASSWORD'] %>
   url: <%= ENV['FEDORA_URL'] %>
   base_path: <%= ENV['FEDORA_BASE_PATH'] || '/prod' %>
+  request: { timeout: 7200, open_timeout: 60}

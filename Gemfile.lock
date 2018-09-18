@@ -647,6 +647,7 @@ GEM
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
     retriable (3.1.2)
+    retries (0.0.5)
     riiif (1.7.1)
       deprecation (>= 1.0.0)
       railties (>= 4.2, < 6)
@@ -837,6 +838,7 @@ DEPENDENCIES
   pkg-config (~> 1.1)
   puma (~> 3.7)
   rails (~> 5.1.6)
+  retries
   riiif (~> 1.1)
   rsolr (>= 1.0)
   rspec-rails
