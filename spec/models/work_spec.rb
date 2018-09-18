@@ -103,4 +103,10 @@ RSpec.describe Work do
     expect(work.caption).to include 'a caption'
     expect(work.resource.dump(:ttl)).to match(/schema.org\/caption/)
   end
+
+  it "has location" do
+    work.location = ['a location']
+    expect(work.location).to include 'a location'
+    expect(work.resource.dump(:ttl)).to match(/purl.org\/dc\/terms\/coverage/)
+  end
 end

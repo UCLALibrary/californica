@@ -17,6 +17,9 @@ class Work < ActiveFedora::Base
   property :genre, predicate: ::RDF::Vocab::EDM.hasType
   property :latitude, predicate: ::RDF::Vocab::EXIF.gpsLatitude
   property :local_identifier, predicate: ::RDF::Vocab::DC11.identifier
+  property :location, predicate: ::RDF::Vocab::DC.coverage do |index|
+    index.as :stored_searchable
+  end
   property :longitude, predicate: ::RDF::Vocab::EXIF.gpsLongitude
   property :medium, predicate: ::RDF::Vocab::DC.medium
   property :named_subject, predicate: ::RDF::Vocab::MODS.subjectName do |index|
