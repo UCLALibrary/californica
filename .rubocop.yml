@@ -21,3 +21,4 @@ RSpec/ExampleLength:
   Exclude:
     - 'spec/features**/*'
     - 'spec/tasks/ingest_spec.rb'
+    - 'spec/importers/californica_mapper_spec.rb'
