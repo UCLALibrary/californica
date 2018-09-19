@@ -14,7 +14,8 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     date_created: "Date.creation",
     caption: "Description.caption",
     dimensions: "Format.dimensions",
-    funding_note: "Description.fundingNote"
+    funding_note: "Description.fundingNote",
+    genre: "Type.genre"
   }.freeze
 
   DELIMITER = '|~|'
