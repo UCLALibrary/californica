@@ -13,7 +13,8 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     local_identifier: "Alternate Identifier.local",
     date_created: "Date.creation",
     caption: "Description.caption",
-    dimensions: "Format.dimensions"
+    dimensions: "Format.dimensions",
+    funding_note: "Description.fundingNote"
   }.freeze
 
   DELIMITER = '|~|'
