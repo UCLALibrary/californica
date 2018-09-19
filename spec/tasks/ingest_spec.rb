@@ -49,6 +49,7 @@ RSpec.describe 'californica:ingest:csv' do
       expect(created_work.longitude).to eq ['-118.243865']
       expect(created_work.date_created).to eq ['September 17, 1947']
       expect(created_work.caption).to eq ['This example does not have a caption.']
+      expect(created_work.dimensions).to eq ['10 x 12.5 cm.']
     end
 
     it 'has created a public work' do
