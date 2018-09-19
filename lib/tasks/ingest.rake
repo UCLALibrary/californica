@@ -10,12 +10,7 @@ namespace :californica do
     desc 'Ingest an item from CSV'
     task :csv, [:filename] => [:environment] do |_task, args|
       csv_file = args[:filename]
-      if File.exist?(csv_file)
-        parser = CalifornicaCsvParser.for(file: File.open(csv_file))
-        Darlingtonia::Importer.new(parser: parser).import if parser.validate
-      else
-        puts "Cannot find expected input file #{csv_file}"
-      end
+      CalifornicaImporter.new(csv_file).import
     end
 
     # While we are in development mode, this task is scheduled to run nightly.
