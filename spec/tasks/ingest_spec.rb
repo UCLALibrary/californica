@@ -51,6 +51,7 @@ RSpec.describe 'californica:ingest:csv' do
       expect(created_work.caption).to eq ['This example does not have a caption.']
       expect(created_work.dimensions).to eq ['10 x 12.5 cm.']
       expect(created_work.funding_note).to eq ['Info about funding']
+      expect(created_work.genre).to eq ['news photographs']
     end
 
     it 'has created a public work' do

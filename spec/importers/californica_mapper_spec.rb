@@ -43,7 +43,7 @@ RSpec.describe CalifornicaMapper do
         :resource_type, :description, :latitude,
         :longitude, :extent, :local_identifier,
         :date_created, :caption, :dimensions,
-        :funding_note
+        :funding_note, :genre
       )
     end
   end
