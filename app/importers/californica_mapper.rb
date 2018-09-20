@@ -18,7 +18,8 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     genre: "Type.genre",
     rights_holder: "Rights.rightsHolderContact",
     medium: "Format.medium",
-    normalized_date: "Date.normalized"
+    normalized_date: "Date.normalized",
+    repository: "Name.repository"
   }.freeze
 
   DELIMITER = '|~|'
@@ -34,11 +35,24 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   # To avoid having to normalize data before import,
   # if the collection is LADNN, hard-code the extent. (Story #111)
   def extent
-    if metadata['Project Name'] == 'Los Angeles Daily News Negatives'
+    if ladnn?
       ['1 photograph']
     else
       map_field(:extent)
     end
+  end
+
+  # Hard-code repository for LADNN collection. Story #121
+  def repository
+    if ladnn?
+      ['University of California, Los Angeles. Library. Department of Special Collections']
+    else
+      map_field(:repository)
+    end
+  end
+
+  def ladnn?
+    metadata['Project Name'] == 'Los Angeles Daily News Negatives'
   end
 
   def map_field(name)

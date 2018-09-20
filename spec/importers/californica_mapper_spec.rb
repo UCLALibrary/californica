@@ -72,4 +72,28 @@ RSpec.describe CalifornicaMapper do
       end
     end
   end
+
+  describe '#repository' do
+    context 'when collection is LADNN' do
+      let(:metadata) do
+        { "Project Name" => "Los Angeles Daily News Negatives",
+          "Name.repository" => "This value is ignored" }
+      end
+
+      it 'hard codes the repository field' do
+        expect(mapper.repository).to eq ['University of California, Los Angeles. Library. Department of Special Collections']
+      end
+    end
+
+    context 'when it doesn\'t require special handling' do
+      let(:metadata) do
+        { "Project Name" => "Another collection",
+          "Name.repository" => "Repo 1|~|Repo 2" }
+      end
+
+      it 'reads the value from the metadata' do
+        expect(mapper.repository).to contain_exactly("Repo 1", "Repo 2")
+      end
+    end
+  end
 end
