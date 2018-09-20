@@ -6,6 +6,29 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
     Darlingtonia::TitleValidator.new
   ].freeze
 
+  ##
+  # @!attribute [rw] error_stream
+  #   @return [#<<]
+  # @!attribute [rw] info_stream
+  #   @return [#<<]
+  attr_accessor :error_stream, :info_stream
+
+  ##
+  # @todo should error_stream and info_stream be moved to the base
+  #   `Darlingtonia::Parser`?
+  #
+  # @param [#<<] error_stream
+  # @param [#<<] info_stream
+  def initialize(file:,
+                 error_stream: Darlingtonia.config.default_error_stream,
+                 info_stream:  Darlingtonia.config.default_info_stream,
+                 **opts)
+    self.error_stream = error_stream
+    self.info_stream  = info_stream
+
+    super
+  end
+
   def records
     return enum_for(:records) unless block_given?
     file.rewind
@@ -20,8 +43,8 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
       expected_records_processed = index + 1 # index starts with 0, we want to start with 1
     end
 
-    Darlingtonia.config.default_info_stream << "Expected #{expected_records_processed} records"
-    Darlingtonia.config.default_info_stream << "Actually processed #{actual_records_processed} records"
+    info_stream << "Expected #{expected_records_processed} records"
+    info_stream << "Actually processed #{actual_records_processed} records"
   rescue CSV::MalformedCSVError
     # error reporting for this case is handled by validation
     []
