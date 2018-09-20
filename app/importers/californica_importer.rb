@@ -12,12 +12,12 @@ class CalifornicaImporter
 
   def import
     start_time = Time.zone.now
-    ingest_log.info "Beginning ingest process at #{start_time}"
+    @info_stream << "Beginning ingest process at #{start_time}"
     Darlingtonia::Importer.new(parser: parser).import if parser.validate
     end_time = Time.zone.now
     elapsed_time = end_time - start_time
-    ingest_log.info "Finished ingest process at #{end_time}"
-    ingest_log.info "Elapsed time: #{elapsed_time}"
+    @info_stream << "Finished ingest process at #{end_time}"
+    @info_stream << "Elapsed time: #{elapsed_time}"
   end
 
   def parser
@@ -37,8 +37,10 @@ class CalifornicaImporter
   end
 
   def setup_logging
-    @ingest_log = Logger.new(ingest_log_filename)
-    @error_log = Logger.new(error_log_filename)
+    @ingest_log   = Logger.new(ingest_log_filename)
+    @error_log    = Logger.new(error_log_filename)
+    @info_stream  = CalifornicaLogStream.new(logger: @ingest_log, severity: Logger::INFO)
+    @error_stream = CalifornicaLogStream.new(logger: @error_log,  severity: Logger::ERROR)
     Darlingtonia.config.default_info_stream = MessageStream.new(@ingest_log)
     Darlingtonia.config.default_error_stream = MessageStream.new(@error_log)
   end
