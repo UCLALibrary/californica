@@ -12,6 +12,10 @@ Metrics/BlockLength:
     - 'spec/**/*'
     - 'lib/tasks/ingest.rake'
 
+Metrics/LineLength:
+  Exclude:
+    - 'spec/tasks/ingest_spec.rb'
+
 Metrics/MethodLength:
   Enabled: true
   Exclude:
