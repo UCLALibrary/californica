@@ -54,7 +54,7 @@ RSpec.describe CalifornicaImporter do
         importer.import
 
         expect(File.readlines(importer.error_log_filename).each(&:chomp!))
-          .to include(/#{ldp_error}/)
+          .to include(/ERROR.+#{ldp_error}/)
       end
     end
   end
