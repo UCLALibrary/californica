@@ -12,6 +12,11 @@ Metrics/BlockLength:
     - 'spec/**/*'
     - 'lib/tasks/ingest.rake'
 
+Metrics/MethodLength:
+  Enabled: true
+  Exclude:
+    - 'app/importers/californica_csv_parser.rb'
+
 RSpec/DescribeClass:
   Exclude:
     - 'spec/tasks/**/*'
