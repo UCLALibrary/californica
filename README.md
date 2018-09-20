@@ -39,14 +39,36 @@ If `u.admin?` returns `true` then you know it worked as expected. See also the
 
 ## Deployment
 
-To deploy to the server `cd`, simply type `cap cd deploy`.
+Prerequisites/Assumptions:
 
-For this to work:
-- You need Capistrano installed (`bundle install` does this).
-- Your public ssh key needs to have been added to the `deploy` account on the
-  server. A member of the devops team can do this for you. If you have uploaded
-  your public key to GitHub, they might have done this already, but changes need
-  to be made manually.
+* A local rails app development environment is provisioned
+* `bundle install` completes successfully
+* Capistrano is installed as a part of the environment
+* A deploy file exists that defines the destination host where code should be deployed. The relative path within the code base is `config/deploy/target_system.rb` - where `target_system` is an identifier for the destination host where code will be deployed. Sample file contents are:
+```
+server 'californica-test.library.ucla.edu', user: 'deploy', roles: [:web, :app, :db]
+```
+This should already be available for you, but good to verify so you know where your deploy is going.
+
+To deploy code using Capistrano to a UCLA Library server:
+
+1. Within your local development environment, become a user that has the following attributes:
+ * ownership of the files within your local copy of the code base
+ * ssh public key is installed in the `authorized_keys` file for your user account on the UCLA Library `jump` server
+ * ssh public key is installed in the `authorized_keys` file for the `deploy` user account on the destination server where code will be deployed
+ * if you need your public keys installed - please reach out to the DevSupport team for assistance
+2. Ensure you are in the project code directory and execute:
+  ```
+  VIA_JUMP=yes BRANCH=master bundle exec cap target_system deploy
+  ```
+  Where `target_system` matches the filename used by the `target_system.rb` deploy file.
+
+  This will execute the deploy, tunneling through the Library's `jump` server.
+
+  If your local environment username is different than your username on the `jump` server, execute:
+  ```
+  JUMP_USER=YOUR_JUMP_USERNAME VIA_JUMP=yes BRANCH=master bundle exec cap target_system deploy
+  ```
 
 What is Hyrax, what is Californica?
 ------------------------------
