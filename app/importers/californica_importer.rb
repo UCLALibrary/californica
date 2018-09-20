@@ -22,7 +22,10 @@ class CalifornicaImporter
   end
 
   def parser
-    @parser ||= CalifornicaCsvParser.for(file: File.open(@csv_file))
+    @parser ||=
+      CalifornicaCsvParser.new(file:         File.open(@csv_file),
+                               error_stream: @error_stream,
+                               info_stream:  @info_stream)
   end
 
   def timestamp
@@ -42,7 +45,5 @@ class CalifornicaImporter
     @error_log    = Logger.new(error_log_filename)
     @info_stream  = CalifornicaLogStream.new(logger: @ingest_log, severity: Logger::INFO)
     @error_stream = CalifornicaLogStream.new(logger: @error_log,  severity: Logger::ERROR)
-    Darlingtonia.config.default_info_stream = MessageStream.new(@ingest_log)
-    Darlingtonia.config.default_error_stream = MessageStream.new(@error_log)
   end
 end
