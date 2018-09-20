@@ -39,7 +39,7 @@ class CalifornicaImporter
   def setup_logging
     @ingest_log = Logger.new(ingest_log_filename)
     @error_log = Logger.new(error_log_filename)
-    Darlingtonia.config.default_info_stream = @ingest_log
-    Darlingtonia.config.default_error_stream = @error_log
+    Darlingtonia.config.default_info_stream = MessageStream.new(@ingest_log)
+    Darlingtonia.config.default_error_stream = MessageStream.new(@error_log)
   end
 end

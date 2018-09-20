@@ -7,6 +7,12 @@ RSpec.describe CalifornicaImporter do
   let(:file)       { File.open(csv_path) }
   let(:csv_path)   { 'spec/fixtures/example.csv' }
 
+  # Cleanup log files after each test run
+  after do
+    File.delete(importer.ingest_log_filename) if File.exist? importer.ingest_log_filename
+    File.delete(importer.error_log_filename) if File.exist? importer.error_log_filename
+  end
+
   describe 'CSV import' do
     it 'imports records' do
       expect { importer.import }.to change { Work.count }.by 1
@@ -26,9 +32,8 @@ RSpec.describe CalifornicaImporter do
     end
 
     it "records the number of records ingested" do
-      pending
       importer.import
-      expect(File.readlines(importer.ingest_log_filename).each(&:chomp!).last).to match(/Imported 1 record(s)/)
+      expect(File.readlines(importer.ingest_log_filename).each(&:chomp!).to_a[7]).to match(/Actually processed 1 records/)
     end
   end
 end
