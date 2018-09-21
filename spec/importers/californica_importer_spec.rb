@@ -18,6 +18,11 @@ RSpec.describe CalifornicaImporter, :clean do
       expect { importer.import }.to change { Work.count }.by 1
     end
 
+    it 'sets #date_uploaded' do
+      importer.import
+      expect(Work.last.date_uploaded).not_to be_nil
+    end
+
     it "has an ingest log" do
       expect(importer.ingest_log).to be_kind_of(Logger)
     end
