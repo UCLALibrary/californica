@@ -8,7 +8,11 @@ RSpec.describe CalifornicaCsvParser do
   let(:csv_path)   { 'spec/fixtures/example.csv' }
 
   describe 'use in an importer', :clean do
-    let(:importer) { Darlingtonia::Importer.new(parser: parser) }
+    include_context 'with workflow'
+
+    let(:importer) do
+      Darlingtonia::Importer.new(parser: parser, record_importer: ActorRecordImporter.new)
+    end
 
     it 'imports records' do
       expect { importer.import }.to change { Work.count }.by 1

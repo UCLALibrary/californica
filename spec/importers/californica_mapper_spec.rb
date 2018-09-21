@@ -16,7 +16,8 @@ RSpec.describe CalifornicaMapper do
       "Publisher.publisherName" => "Los Angeles Daily News",
       "Format.medium" => "1 photograph",
       "Name.repository" => "University of California, Los Angeles. $b Library Special Collections",
-      "Description.caption" => "This example does not have a caption." }
+      "Description.caption" => "This example does not have a caption.",
+      "masterImageName" => "clusc_1_1_00010432a.tif" }
   end
 
   before { mapper.metadata = metadata }
@@ -29,6 +30,11 @@ RSpec.describe CalifornicaMapper do
 
   it "maps the required identifier field" do
     expect(mapper.map_field(:identifier)).to contain_exactly('21198/zz0002nq4w')
+  end
+
+  it "maps remote_files" do
+    expect(mapper.remote_files)
+      .to contain_exactly(url: match(/clusc_1_1_00010432a\.tif/))
   end
 
   it "maps visibility to open" do
