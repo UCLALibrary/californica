@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.shared_context 'with workflow' do
-  before :context do
+  before do
     admin_set_id        = AdminSet.find_or_create_default_admin_set_id
     permission_template = Hyrax::PermissionTemplate.find_or_create_by!(source_id: admin_set_id)
     workflow            = Sipity::Workflow.create!(active:              true,
@@ -12,7 +12,7 @@ RSpec.shared_context 'with workflow' do
     Sipity::WorkflowAction.create!(name: 'submit', workflow: workflow)
   end
 
-  after(:context) do
+  after do
     ActiveFedora::Cleaner.clean!
     DatabaseCleaner.clean
   end
