@@ -13,7 +13,7 @@ class CalifornicaImporter
   def import
     start_time = Time.zone.now
     @info_stream << "Beginning ingest process at #{start_time}"
-    record_importer = Darlingtonia::RecordImporter.new(error_stream: @error_stream, info_stream: @info_stream)
+    record_importer = ActorRecordImporter.new(error_stream: @error_stream, info_stream: @info_stream)
     Darlingtonia::Importer.new(parser: parser, record_importer: record_importer).import if parser.validate
     end_time = Time.zone.now
     elapsed_time = end_time - start_time
