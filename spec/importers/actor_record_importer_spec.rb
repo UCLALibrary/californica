@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe ActorRecordImporter do
+RSpec.describe ActorRecordImporter, :clean do
   subject(:importer) do
     described_class.new(error_stream: error_stream, info_stream: info_stream)
   end
