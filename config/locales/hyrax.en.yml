@@ -48,6 +48,7 @@ en:
   simple_form:
     labels:
       defaults:
+        description: Description
         funding_note: 'Funding Note'
         local_identifier: 'Local Identifier'
         named_subject: 'Name (Subject)'
@@ -55,6 +56,7 @@ en:
         repository: 'Repository'
         rights_country: 'Rights (country of creation)'
         rights_holder: 'Rights Holder'
+        rights_statement: 'Copyright Status'
   hyrax:
     account_name: My Institution Account Id
     directory:

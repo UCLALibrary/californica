@@ -9,15 +9,28 @@ RSpec.feature 'Edit an existing work', :clean do
   let(:work_attrs) do
     {
       title: ['Old Title'],
+      rights_statement: ['http://rightsstatements.org/vocab/NKC/1.0/'], # "No Known Copyright"
       publisher: ['Old Pub'],
       date_created: ['Old Creation Date'],
       subject: ['Old Subj'],
       language: ['Old Lang'],
+      description: ['Old Desc'],
       resource_type: ['Image'],
       extent: ['Old Extent'],
       caption: ['Old Cap'],
       dimensions: ['Old Dim'],
-      funding_note: ['Old Fund Note']
+      funding_note: ['Old Fund Note'],
+      genre: ['Old Genre'],
+      latitude: ['Old Lat'],
+      longitude: ['Old Long'],
+      local_identifier: ['Old Local ID'],
+      medium: ['Old Medium'],
+      named_subject: ['Old Name/Subj'],
+      normalized_date: ['Old Normalized Date'],
+      repository: ['Old Repository'],
+      location: ['Old Loc'],
+      rights_country: ['Old Rights Country'],
+      rights_holder: ['Old Rights Holder']
     }
   end
 
@@ -33,6 +46,8 @@ RSpec.feature 'Edit an existing work', :clean do
 
       # When the form first loads, it should contain all the old values
       expect(find_field('Title').value).to eq 'Old Title'
+      expect(page).to have_select('Copyright Status', selected: 'No Known Copyright')
+      expect(first(:css, '#work_description').value).to eq 'Old Desc'
       expect(find_field('Publisher').value).to eq 'Old Pub'
       expect(find_field('Date Created').value).to eq 'Old Creation Date'
       expect(find_field('Subject').value).to eq 'Old Subj'
@@ -42,6 +57,17 @@ RSpec.feature 'Edit an existing work', :clean do
       expect(find_field('Caption').value).to eq 'Old Cap'
       expect(find_field('Dimensions').value).to eq 'Old Dim'
       expect(find_field('Funding Note').value).to eq 'Old Fund Note'
+      expect(find_field('Genre').value).to eq 'Old Genre'
+      expect(find_field('Latitude').value).to eq 'Old Lat'
+      expect(find_field('Longitude').value).to eq 'Old Long'
+      expect(find_field('Local Identifier').value).to eq 'Old Local ID'
+      expect(find_field('Medium').value).to eq 'Old Medium'
+      expect(find_field('Name (Subject)').value).to eq 'Old Name/Subj'
+      expect(find_field('Date').value).to eq 'Old Normalized Date'
+      expect(find_field('Repository').value).to eq 'Old Repository'
+      expect(find_field('Location').value).to eq 'Old Loc'
+      expect(find_field('Rights (country of creation)').value).to eq 'Old Rights Country'
+      expect(find_field('Rights Holder').value).to eq 'Old Rights Holder'
 
       # Edit some fields in the form
       fill_in 'Title', with: 'New Title'
