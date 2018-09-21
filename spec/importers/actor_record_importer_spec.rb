@@ -26,6 +26,20 @@ RSpec.describe ActorRecordImporter, :clean do
         .to contain_exactly(/^Creating record/, /^Record created/)
     end
 
+    context 'with remote_files' do
+      let(:metadata_hash) do
+        { 'title'        => ['Comet in Moominland'],
+          'remote_files' => [{ url: file_uri }] }
+      end
+
+      let(:file_uri) { 'file:///opt/data/file.tif' }
+
+      it 'attaches a remote file' do
+        expect { importer.import(record: record) }
+          .to have_enqueued_job(IngestLocalFileJob)
+      end
+    end
+
     context 'with an invalid input record' do
       let(:record) { Darlingtonia::InputRecord.new } # no title
 
