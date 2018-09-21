@@ -35,5 +35,27 @@ RSpec.describe CalifornicaImporter do
       importer.import
       expect(File.readlines(importer.ingest_log_filename).each(&:chomp!).to_a[7]).to match(/Actually processed 1 records/)
     end
+
+    context 'when the records error' do
+      let(:ldp_error)    { Ldp::PreconditionFailed }
+      let(:error_record) { instance_double('Darlingtonia::InputRecord') }
+
+      before do
+        allow(error_record).to receive(:attributes).and_raise(ldp_error)
+        allow(importer.parser).to receive(:records).and_return([error_record])
+        allow(importer.parser).to receive(:validate).and_return(true)
+      end
+
+      it 'does not ingest the item' do
+        expect { importer.import }.not_to change { Work.count }
+      end
+
+      it 'logs the errors' do
+        importer.import
+
+        expect(File.readlines(importer.error_log_filename).each(&:chomp!))
+          .to include(/ERROR.+#{ldp_error}/)
+      end
+    end
   end
 end

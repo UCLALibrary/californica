@@ -12,16 +12,20 @@ class CalifornicaImporter
 
   def import
     start_time = Time.zone.now
-    ingest_log.info "Beginning ingest process at #{start_time}"
-    Darlingtonia::Importer.new(parser: parser).import if parser.validate
+    @info_stream << "Beginning ingest process at #{start_time}"
+    record_importer = Darlingtonia::RecordImporter.new(error_stream: @error_stream, info_stream: @info_stream)
+    Darlingtonia::Importer.new(parser: parser, record_importer: record_importer).import if parser.validate
     end_time = Time.zone.now
     elapsed_time = end_time - start_time
-    ingest_log.info "Finished ingest process at #{end_time}"
-    ingest_log.info "Elapsed time: #{elapsed_time}"
+    @info_stream << "Finished ingest process at #{end_time}"
+    @info_stream << "Elapsed time: #{elapsed_time}"
   end
 
   def parser
-    @parser ||= CalifornicaCsvParser.for(file: File.open(@csv_file))
+    @parser ||=
+      CalifornicaCsvParser.new(file:         File.open(@csv_file),
+                               error_stream: @error_stream,
+                               info_stream:  @info_stream)
   end
 
   def timestamp
@@ -33,13 +37,13 @@ class CalifornicaImporter
   end
 
   def error_log_filename
-    @ingest_log_filename ||= ENV['ERROR_LOG'] || Rails.root.join('log', "errors_#{timestamp}.log").to_s
+    @error_log_filename ||= ENV['ERROR_LOG'] || Rails.root.join('log', "errors_#{timestamp}.log").to_s
   end
 
   def setup_logging
-    @ingest_log = Logger.new(ingest_log_filename)
-    @error_log = Logger.new(error_log_filename)
-    Darlingtonia.config.default_info_stream = MessageStream.new(@ingest_log)
-    Darlingtonia.config.default_error_stream = MessageStream.new(@error_log)
+    @ingest_log   = Logger.new(ingest_log_filename)
+    @error_log    = Logger.new(error_log_filename)
+    @info_stream  = CalifornicaLogStream.new(logger: @ingest_log, severity: Logger::INFO)
+    @error_stream = CalifornicaLogStream.new(logger: @error_log,  severity: Logger::ERROR)
   end
 end
