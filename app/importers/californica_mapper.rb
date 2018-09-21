@@ -25,7 +25,11 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   DELIMITER = '|~|'
 
   def fields
-    CALIFORNICA_TERMS_MAP.keys + [:visibility]
+    CALIFORNICA_TERMS_MAP.keys + [:remote_files, :visibility]
+  end
+
+  def remote_files
+    [{ url: file_uri_for(name: metadata['masterImageName']) }]
   end
 
   def visibility
@@ -60,4 +64,16 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
     metadata[CALIFORNICA_TERMS_MAP[name]]&.split(DELIMITER)
   end
+
+  private
+
+    def file_uri_for(name:)
+      uri      = URI('file:///')
+      uri.path = file_uri_base_path.join(name).to_s
+      uri.to_s
+    end
+
+    def file_uri_base_path
+      Pathname.new(ENV['IMPORT_FILE_PATH'] || '/opt/data')
+    end
 end

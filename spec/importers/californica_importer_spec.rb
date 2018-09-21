@@ -23,6 +23,10 @@ RSpec.describe CalifornicaImporter, :clean do
       expect(Work.last.date_uploaded).not_to be_nil
     end
 
+    it 'enqueues local file attachment job' do
+      expect { importer.import }.to have_enqueued_job(IngestLocalFileJob)
+    end
+
     it "has an ingest log" do
       expect(importer.ingest_log).to be_kind_of(Logger)
     end
