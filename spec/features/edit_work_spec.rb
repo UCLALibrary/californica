@@ -21,12 +21,12 @@ RSpec.feature 'Edit an existing work', :clean do
     }
   end
 
+  include_context 'with workflow'
+
   context 'logged in as an admin user' do
     let(:admin) { FactoryBot.create :admin }
 
-    before do
-      login_as admin
-    end
+    before { login_as admin }
 
     scenario 'successfully edits the work' do
       visit edit_hyrax_work_path(work.id)

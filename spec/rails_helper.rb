@@ -25,7 +25,7 @@ require 'ffaker'
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove this line.
@@ -39,8 +39,14 @@ RSpec.configure do |config|
     DatabaseCleaner.start
   end
 
-  config.before(clean: true) do
-    DatabaseCleaner.clean
+  config.before(clean: true) do |example|
+    if example.metadata[:type] == :feature && Capybara.current_driver != :rack_test
+      DatabaseCleaner.strategy = :truncation
+    else
+      DatabaseCleaner.strategy = :transaction
+      DatabaseCleaner.start
+    end
+
     ActiveFedora::Cleaner.clean!
   end
 

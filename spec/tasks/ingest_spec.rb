@@ -2,7 +2,7 @@
 require 'rails_helper'
 require 'rake'
 
-RSpec.describe 'californica:ingest:csv' do
+RSpec.describe 'californica:ingest:csv', :clean do
   subject(:task)  { rake[task_name] }
   let(:csv_path)  { 'spec/fixtures/example.csv' }
   let(:rake)      { Rake::Application.new }

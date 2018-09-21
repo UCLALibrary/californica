@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe CalifornicaImporter do
+RSpec.describe CalifornicaImporter, :clean do
   subject(:importer) { described_class.new(file) }
   let(:file)       { File.open(csv_path) }
   let(:csv_path)   { 'spec/fixtures/example.csv' }
