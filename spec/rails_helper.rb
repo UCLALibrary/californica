@@ -40,6 +40,7 @@ RSpec.configure do |config|
   end
 
   config.before(clean: true) do
+    DatabaseCleaner.clean
     ActiveFedora::Cleaner.clean!
   end
 
