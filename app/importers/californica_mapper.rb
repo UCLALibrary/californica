@@ -17,6 +17,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     funding_note: "Description.fundingNote",
     genre: "Type.genre",
     rights_holder: "Rights.rightsHolderContact",
+    rights_country: "Rights.countryCreation",
     medium: "Format.medium",
     normalized_date: "Date.normalized",
     publisher: "Publisher.publisherName",

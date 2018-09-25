@@ -15,6 +15,7 @@ RSpec.describe CalifornicaMapper do
       "Transportation|~|Government|~|Activism|~|Interstate 10",
       "Publisher.publisherName" => "Los Angeles Daily News",
       "Format.medium" => "1 photograph",
+      "Rights.countryCreation" => "US",
       "Name.repository" => "University of California, Los Angeles. $b Library Special Collections",
       "Description.caption" => "This example does not have a caption.",
       "masterImageName" => "clusc_1_1_00010432a.tif",
@@ -49,7 +50,7 @@ RSpec.describe CalifornicaMapper do
         :visibility, :identifier, :title, :subject,
         :resource_type, :description, :latitude,
         :longitude, :extent, :local_identifier,
-        :date_created, :caption, :dimensions,
+        :date_created, :caption, :dimensions, :rights_country,
         :funding_note, :genre, :rights_holder,
         :medium, :normalized_date, :location, :publisher
       )
