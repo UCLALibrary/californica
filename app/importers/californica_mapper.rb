@@ -19,6 +19,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     rights_holder: "Rights.rightsHolderContact",
     medium: "Format.medium",
     normalized_date: "Date.normalized",
+    publisher: "Publisher.publisherName",
     repository: "Name.repository",
     location: "Coverage.geographic"
   }.freeze
