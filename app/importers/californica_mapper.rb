@@ -22,8 +22,10 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     normalized_date: "Date.normalized",
     publisher: "Publisher.publisherName",
     repository: "Name.repository",
-    location: "Coverage.geographic"
+    location: "Coverage.geographic",
+    named_subject: "Name.subject"
   }.freeze
+
 
   DELIMITER = '|~|'
 

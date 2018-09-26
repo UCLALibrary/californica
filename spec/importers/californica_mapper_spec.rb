@@ -19,7 +19,8 @@ RSpec.describe CalifornicaMapper do
       "Name.repository" => "University of California, Los Angeles. $b Library Special Collections",
       "Description.caption" => "This example does not have a caption.",
       "masterImageName" => "clusc_1_1_00010432a.tif",
-      "Coverage.geographic" => "Los Angeles (Calif.)" }
+      "Coverage.geographic" => "Los Angeles (Calif.)",
+      "Name.subject" => "Los Angeles County (Calif.). $b Board of Supervisors"}
   end
 
   before { mapper.metadata = metadata }
