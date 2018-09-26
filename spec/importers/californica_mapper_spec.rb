@@ -20,7 +20,7 @@ RSpec.describe CalifornicaMapper do
       "Description.caption" => "This example does not have a caption.",
       "masterImageName" => "clusc_1_1_00010432a.tif",
       "Coverage.geographic" => "Los Angeles (Calif.)",
-      "Name.subject" => "Los Angeles County (Calif.). $b Board of Supervisors"}
+      "Name.subject" => "Los Angeles County (Calif.). $b Board of Supervisors" }
   end
 
   before { mapper.metadata = metadata }
