@@ -59,6 +59,7 @@ RSpec.describe 'californica:ingest:csv', :clean do
       expect(created_work.repository).to eq ['University of California, Los Angeles. Library. Department of Special Collections']
       expect(created_work.location).to eq ['Los Angeles (Calif.)']
       expect(created_work.publisher).to eq ['Los Angeles Daily News']
+      expect(created_work.named_subject).to eq ['Los Angeles County (Calif.). $b Board of Supervisors']
     end
 
     it 'has created a public work' do
