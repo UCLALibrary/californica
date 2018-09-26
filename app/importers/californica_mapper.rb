@@ -26,7 +26,6 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     named_subject: "Name.subject"
   }.freeze
 
-
   DELIMITER = '|~|'
 
   def fields
