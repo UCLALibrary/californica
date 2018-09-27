@@ -11,7 +11,12 @@ namespace :californica do
     start_time = Time.zone.now
     puts "Begin reindex of Ursus solr: #{start_time}"
 
-    ReindexService.new(solr: ENV['URSUS_SOLR_URL']).reindex
+    reindex_service = ReindexService.new(solr: ENV['URSUS_SOLR_URL'])
+    puts "Deleting all existing solr documents..."
+    reindex_service.delete_all_docs
+    puts "Reindexing..."
+    result = reindex_service.reindex
+    puts "Reindexing successful: #{result}"
 
     end_time = Time.zone.now
     elapsed_time = (end_time - start_time).to_i
