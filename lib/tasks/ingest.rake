@@ -18,10 +18,13 @@ namespace :californica do
     desc "Cleanout fedora"
     task clean: :environment do
       require 'active_fedora/cleaner'
+
       # Re-try the cleanout process a few times in case it times out
       with_retries(max_tries: 10, base_sleep_seconds: 500, max_sleep_seconds: 1000) do
         ActiveFedora::Cleaner.clean!
       end
+
+      Hyrax::PermissionTemplate.destroy_all
     end
 
     # While we are in development mode, this task is scheduled to run nightly.
