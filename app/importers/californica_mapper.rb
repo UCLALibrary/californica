@@ -69,7 +69,6 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     end
   end
 
-
   def ladnn?
     metadata['Project Name'] == 'Los Angeles Daily News Negatives'
   end
