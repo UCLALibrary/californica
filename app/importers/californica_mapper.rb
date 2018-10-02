@@ -23,7 +23,8 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     publisher: "Publisher.publisherName",
     repository: "Name.repository",
     location: "Coverage.geographic",
-    named_subject: "Name.subject"
+    named_subject: "Name.subject",
+    language: "Language"
   }.freeze
 
   DELIMITER = '|~|'
@@ -56,6 +57,15 @@ class CalifornicaMapper < Darlingtonia::HashMapper
       ['University of California, Los Angeles. Library. Department of Special Collections']
     else
       map_field(:repository)
+    end
+  end
+
+  # Hard-code language for LADNN collection. Story #48
+  def language
+    if ladnn?
+      ['No linguistic content']
+    else
+      map_field(:language)
     end
   end
 
