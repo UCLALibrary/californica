@@ -407,30 +407,22 @@
     </arr>
   </requestHandler>
 
-  <!-- Configure replication -->
-  <requestHandler name="/replication" class="solr.ReplicationHandler">
-    <lst name="master">
-      <str name="replicateAfter">commit</str>
-      <str name="backupAfter">commit</str>
-      <str name="confFiles">schema.xml,stopwords.txt</str>
-      <str name="commitReserveDuration">00:00:30</str>
-    </lst>
-    <int name="maxNumberOfBackups">2</int>
-    <lst name="invariants">
-      <str name="maxWriteMBPerSec">16</str>
-    </lst>
-  </requestHandler>
-  <!-- Use the solrconfig_replica file as solorconfig on the server that will receive
-       replications -->
-  <str name="confFiles">solrconfig_replica.xml:solrconfig.xml,x.xml,y.xml</str>
- <!--
-  This is for the solr that will be replicated to. Don't uncomment this
-  on Californica. This is for reference.
+  <!--
   <requestHandler name="/replication" class="solr.ReplicationHandler">
     <lst name="slave">
-      <str name="masterUrl">http://remote_host:port/solr/core_name/replication</str>
+      <str name="masterUrl">http://example.com:8983/solr/core1/replication</str>
       <str name="pollInterval">00:00:20</str>
     </lst>
   </requestHandler>
   -->
+
+  <!-- for requests to get a single document; use id=666 instead of q=id:666 -->
+  <requestHandler name="document" class="solr.SearchHandler" >
+    <lst name="defaults">
+      <str name="echoParams">all</str>
+      <str name="fl">*</str>
+      <str name="rows">1</str>
+      <str name="q">{!term f=id v=$id}</str> <!-- use id=666 instead of q=id:666 -->
+    </lst>
+  </requestHandler>
 </config>
