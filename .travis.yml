@@ -7,7 +7,9 @@ jdk:
 rvm:
 - 2.5
 env:
-- DATABASE_USERNAME=travis
+  global:
+    - DATABASE_USERNAME=travis
+    - secure: eTxFESeEn4I3u5sHFtg4/EFsOlryXVRv21Va7OZbZGbCY/mbDtaKDkW7IRkMkARKDxIo9RNnFNvKULCQZTkF24LWa3Ohjbse3UdEPv2FsW9sRZSLBAOaKUiKX6l7xbiaMRD5iwcZ+PMXaRxGhFhKFp+Rl3s4+R/8gJNJn8G75j+q7dzqTS8dPdAseidv8Dm2SJVTXgYp4v965RJMG3tKw3VW1IASWO342+HIfQYPL4qaUFMhDbrAol0hXLk8wH6FN0HQsb8OvxRr+xb6yOa5NKnWDmGVQ/P0vUQRy6jmTIUd+X/tFBQv4NfrkHjcyphGdIwrEgGG7rpWNQDVCXXQCIYTO0eAkC3lR+PFAB3iwJHdoeOm6kS8HQW87e27HdQl4asPyj4z4t+SMPW/jO+u/fRKQCDISABwudLFL+ad2pNTffoCs2hsRf64NMVcAoY/vVjden5Rzon2Ww6xGkPzez0T89ANsdOsqrVrg1hvaxkM8n3gFpazOAhPY1gziX2LR7rMSZT04FzQLQVnxVafqsZDpWB4Gbv2yeokf7xnqUY86WqiIzpQRfIRPxkIdWemO7WWSPTsinAZg7TLQKRDtjKMKbsb4UNxM4vD4GPTzBpt95+mTlF2L8jrq9EuwNpFrw4CXgLpAEA3/DBl/VdpeVyxa/3gBOo6jISmMgd8riY=
 before_script:
 - bundle exec rake db:create
 script:
@@ -21,4 +23,7 @@ after_success:
     openssl aes-256-cbc -K $encrypted_b2e2a85c6b8e_key -iv $encrypted_b2e2a85c6b8e_iv -in ucla_deploy_rsa.enc -out ucla_deploy_rsa -d
     bundle exec cap cd deploy
   fi
-before_install:
+- |
+  if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_PULL_REQUEST == 'false' ]]; then
+    curl "$JENKINS_DEPLOY_URL"
+  fi
