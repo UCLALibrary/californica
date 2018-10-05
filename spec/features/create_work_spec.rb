@@ -40,7 +40,7 @@ RSpec.feature 'Create a Work', :clean, js: false do
       fill_in('Title', with: 'My Test Work')
       fill_in('Creator', with: 'Doe, Jane')
       fill_in('Keyword', with: 'testing')
-      select('In Copyright', from: 'Copyright Status')
+      select('copyrighted', from: 'Copyright Status')
 
       # With selenium and the chrome driver, focus remains on the
       # select box. Click outside the box so the next line can't find
