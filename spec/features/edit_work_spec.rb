@@ -9,7 +9,7 @@ RSpec.feature 'Edit an existing work', :clean do
   let(:work_attrs) do
     {
       title: ['Old Title'],
-      rights_statement: ['http://rightsstatements.org/vocab/NKC/1.0/'], # "No Known Copyright"
+      rights_statement: ['http://rightsstatements.org/vocab/InC/1.0/'], # "copyrighted"
       publisher: ['Old Pub'],
       date_created: ['Old Creation Date'],
       subject: ['Old Subj'],
@@ -46,7 +46,7 @@ RSpec.feature 'Edit an existing work', :clean do
 
       # When the form first loads, it should contain all the old values
       expect(find_field('Title').value).to eq 'Old Title'
-      expect(page).to have_select('Copyright Status', selected: 'No Known Copyright')
+      expect(page).to have_select('Copyright Status', selected: 'copyrighted')
       expect(first(:css, '#work_description').value).to eq 'Old Desc'
       expect(find_field('Publisher').value).to eq 'Old Pub'
       expect(find_field('Date Created').value).to eq 'Old Creation Date'
