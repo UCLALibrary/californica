@@ -1,11 +1,6 @@
 # frozen_string_literal: true
 
 class CalifornicaCsvParser < Darlingtonia::CsvParser
-  DEFAULT_VALIDATORS = [
-    Darlingtonia::CsvFormatValidator.new,
-    Darlingtonia::TitleValidator.new
-  ].freeze
-
   ##
   # @!attribute [rw] error_stream
   #   @return [#<<]
@@ -25,6 +20,11 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
                  **opts)
     self.error_stream = error_stream
     self.info_stream  = info_stream
+
+    self.validators = [
+      Darlingtonia::CsvFormatValidator.new(error_stream: error_stream),
+      Darlingtonia::TitleValidator.new(error_stream: error_stream)
+    ]
 
     super
   end
