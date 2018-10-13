@@ -46,6 +46,30 @@ RSpec.describe CalifornicaMapper do
       .to eq Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
   end
 
+  context 'with a blank filename' do
+    let(:metadata) do
+      { "Item Ark" => "21198/zz0002nq4w",
+        "Title" => "Protesters with signs in gallery of Los Angeles County Supervisors " \
+        "hearing over eminent domain for construction of Harbor Freeway, Calif., 1947",
+        "Type.typeOfResource" => "still image",
+        "Subject" => "Express highways--California--Los Angeles County--Design and construction|~|" \
+        "Eminent domain--California--Los Angeles|~|Demonstrations--California--Los Angeles County|~|" \
+        "Transportation|~|Government|~|Activism|~|Interstate 10",
+        "Publisher.publisherName" => "Los Angeles Daily News",
+        "Format.medium" => "1 photograph",
+        "Rights.countryCreation" => "US",
+        "Name.repository" => "University of California, Los Angeles. $b Library Special Collections",
+        "Description.caption" => "This example does not have a caption.",
+        # "masterImageName" => nil,
+        "Coverage.geographic" => "Los Angeles (Calif.)",
+        "Name.subject" => "Los Angeles County (Calif.). $b Board of Supervisors",
+        "Language" => "English" }
+    end
+    it "does not throw an error if masterImageName is empty" do
+      expect(mapper.remote_files).to eq []
+    end
+  end
+
   describe '#fields' do
     it 'has expected fields' do
       expect(mapper.fields).to include(
