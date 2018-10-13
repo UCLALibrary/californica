@@ -34,6 +34,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   end
 
   def remote_files
+    return [] unless metadata['masterImageName']
     [{ url: file_uri_for(name: metadata['masterImageName']) }]
   end
 
