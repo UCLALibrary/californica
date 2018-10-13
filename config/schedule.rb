@@ -31,11 +31,11 @@ every :day, at: '3:00am' do
 end
 
 # Delete everything and give Fedora time to process the request
-every :day, at: '1:00am' do
-  rake "californica:ingest:clean"
-end
+# every :day, at: '1:00am' do
+#   rake "californica:ingest:clean"
+# end
 
 # Reingest news negatives collection daily
-every :day, at: '2:00am' do
-  rake "californica:ingest:reingest"
-end
+# every :day, at: '2:00am' do
+#   rake "californica:ingest:reingest"
+# end
