@@ -79,6 +79,11 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     end
   end
 
+  # Normalize subject to remove MaRC codes (e.g., $z separators)
+  def subject
+    map_field(:subject).map { |a| a.gsub(/ \$[a-z] /, '--') }
+  end
+
   # Hard-code language for LADNN collection. Story #48
   def language
     if ladnn?

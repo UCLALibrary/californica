@@ -131,4 +131,17 @@ RSpec.describe CalifornicaMapper do
       end
     end
   end
+
+  describe '#subject' do
+    context 'when it contains MaRC separators' do
+      let(:metadata) do
+        { "Project Name" => "Los Angeles Daily News Negatives",
+          "Name.repository" => "Repo 1|~|Repo 2",
+          "Subject" => "Wrestlers $z California $z Los Angeles|~|Los Angeles County (Calif.). $b Board of Supervisors" }
+      end
+      it 'replaces them with double dashes' do
+        expect(mapper.subject).to contain_exactly("Wrestlers--California--Los Angeles", "Los Angeles County (Calif.).--Board of Supervisors")
+      end
+    end
+  end
 end
