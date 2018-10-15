@@ -69,6 +69,18 @@ To deploy code using Capistrano to a UCLA Library server:
   ```
   JUMP_USER=YOUR_JUMP_USERNAME VIA_JUMP=yes BRANCH=master bundle exec cap target_system deploy
   ```
+  
+Importing from CSV
+------------------
+
+When importing from a CSV file it is important to ensure that the character encoding
+remains UTF-8.
+
+If you need to make manual edits to a CSV export before importing *do not* use Excel
+unless it is version 2016 or higher. Older versions of Excel will change the encoding when you save the 
+file and re-export it as CSV. Current versions of Excel will have an option to export as 'UTF-8 CSV', which
+should be used. Google Sheets or LibreOffice Calc will allow you to make manual edits and maintain the 
+correct encoding when saving. 
 
 What is Hyrax, what is Californica?
 ------------------------------
