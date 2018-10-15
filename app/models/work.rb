@@ -33,7 +33,7 @@ class Work < ActiveFedora::Base
   end
 
   property :location, predicate: ::RDF::Vocab::DC.coverage do |index|
-    index.as :stored_searchable
+    index.as :stored_searchable, :facetable
   end
 
   property :local_identifier, predicate: ::RDF::Vocab::DC11.identifier do |index|
