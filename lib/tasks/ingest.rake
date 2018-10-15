@@ -13,10 +13,30 @@ namespace :californica do
       CalifornicaImporter.new(csv_file).import
     end
 
-    desc "Cleanout fedora -- delete all objects"
+    desc 'Ingest sample data'
+    task sample: [:environment] do
+      require 'active_fedora/cleaner'
+      # Re-try the cleanout process a few times in case it times out
+      with_retries(max_tries: 10, base_sleep_seconds: 1, max_sleep_seconds: 10) do
+        ActiveFedora::Cleaner.clean!
+      end
+
+      Hyrax::PermissionTemplate.destroy_all
+
+      Rake::Task["hyrax:default_admin_set:create"].invoke
+      Rake::Task["hyrax:default_collection_types:create"].invoke
+      Rake::Task["hyrax:workflow:load"].invoke
+      csv_file = Rails.root.join('spec', 'fixtures', 'ladnn-sample.csv')
+      puts "------"
+      puts "Benchmark for ingest of 25 sample records (elapsed real time is last):"
+      puts Benchmark.measure { CalifornicaImporter.new(csv_file).import }
+    end
+
+    # While we are in development mode, this task is scheduled to run nightly.
+    # Adjust this in config/schedule.rb if necessary.
+    desc "Cleanout fedora"
     task clean: :environment do
       require 'active_fedora/cleaner'
-
       # Re-try the cleanout process a few times in case it times out
       with_retries(max_tries: 10, base_sleep_seconds: 500, max_sleep_seconds: 1000) do
         ActiveFedora::Cleaner.clean!
