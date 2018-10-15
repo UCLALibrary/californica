@@ -41,20 +41,17 @@ namespace :californica do
       with_retries(max_tries: 10, base_sleep_seconds: 500, max_sleep_seconds: 1000) do
         ActiveFedora::Cleaner.clean!
       end
-
-      Hyrax::PermissionTemplate.destroy_all
-    end
-
-    # While we are in development mode, this task is scheduled to run nightly.
-    # Adjust this in config/schedule.rb if necessary.
-    desc "Delete all objects and reingest"
-    task reingest: :environment do
-      Rake::Task["californica:ingest:clean"].invoke
       with_retries(max_tries: 10, base_sleep_seconds: 1, max_sleep_seconds: 5) do
         response = remove_tombstone
         raise "tombstone not deleted" unless response.code == "404"
       end
 
+      Hyrax::PermissionTemplate.destroy_all
+    end
+
+    desc "Ingest all LADNN objects"
+    task ingest_ladnn: :environment do
+      Rake::Task["hyrax:default_admin_set:create"].invoke
       Rake::Task["hyrax:default_collection_types:create"].invoke
       Rake::Task["californica:ingest:csv"].invoke(CSV_FILE)
     end

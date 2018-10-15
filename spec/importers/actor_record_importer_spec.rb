@@ -29,10 +29,8 @@ RSpec.describe ActorRecordImporter, :clean do
     context 'with remote_files' do
       let(:metadata_hash) do
         { 'title'        => ['Comet in Moominland'],
-          'remote_files' => [{ url: file_uri }] }
+          'remote_files' => [{ url: "file://#{::Rails.root}/spec/fixtures/clusc_1_1_00010432a.tif" }] }
       end
-
-      let(:file_uri) { 'file:///opt/data/file.tif' }
 
       it 'attaches a remote file' do
         expect { importer.import(record: record) }

@@ -25,6 +25,7 @@ RSpec.describe CalifornicaMapper do
   end
 
   before { mapper.metadata = metadata }
+  after { File.delete(ENV['MISSING_FILE_LOG']) if File.exist?(ENV['MISSING_FILE_LOG']) }
 
   it "maps the required title field" do
     expect(mapper.map_field(:title))
