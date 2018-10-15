@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class CalifornicaMapper < Darlingtonia::HashMapper
+  attr_reader :missing_file_log
+
   CALIFORNICA_TERMS_MAP = {
     identifier: "Item Ark",
     title: "Title",
@@ -29,13 +31,29 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
   DELIMITER = '|~|'
 
+  def initialize
+    @missing_file_log = ENV['MISSING_FILE_LOG'] || "#{::Rails.root}/log/missing_files_#{Rails.env}"
+    super
+  end
+
   def fields
     CALIFORNICA_TERMS_MAP.keys + [:remote_files, :visibility]
   end
 
   def remote_files
-    return [] unless metadata['masterImageName']
-    [{ url: file_uri_for(name: metadata['masterImageName']) }]
+    if metadata['masterImageName'].nil?
+      File.open(@missing_file_log, 'a') { |file| file.puts "Work #{map_field(:identifier)} is missing a filename" }
+      return []
+    end
+    file_name = file_uri_base_path.join(metadata['masterImageName']).to_s
+    file_exists = File.exist?(file_name)
+    return_value = []
+    if file_exists
+      return_value = [{ url: file_uri_for(name: metadata['masterImageName']) }]
+    else
+      File.open(@missing_file_log, 'a') { |file| file.puts "Work #{map_field(:identifier)} has an invalid file: #{file_name} not found" }
+    end
+    return_value
   end
 
   def visibility

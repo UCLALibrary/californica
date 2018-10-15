@@ -11,6 +11,7 @@ RSpec.describe CalifornicaImporter, :clean do
   after do
     File.delete(importer.ingest_log_filename) if File.exist? importer.ingest_log_filename
     File.delete(importer.error_log_filename) if File.exist? importer.error_log_filename
+    File.delete(ENV['MISSING_FILE_LOG']) if File.exist?(ENV['MISSING_FILE_LOG'])
   end
 
   describe 'CSV import' do
@@ -42,7 +43,16 @@ RSpec.describe CalifornicaImporter, :clean do
 
     it "records the number of records ingested" do
       importer.import
-      expect(File.readlines(importer.ingest_log_filename).each(&:chomp!).to_a[7]).to match(/Actually processed 1 records/)
+      expect(File.read(importer.ingest_log_filename)).to match(/Actually processed 1 records/)
+    end
+
+    context 'when the image file is missing' do
+      let(:csv_path) { 'spec/fixtures/example-missingimage.csv' }
+
+      it "records missing files" do
+        importer.import
+        expect(File.readlines(ENV['MISSING_FILE_LOG']).each(&:chomp!).last).to match(/missing_file.tif/)
+      end
     end
 
     context 'when the records error' do

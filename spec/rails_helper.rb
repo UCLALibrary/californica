@@ -12,6 +12,13 @@ require 'database_cleaner'
 require 'active_fedora/cleaner'
 require 'ffaker'
 
+ENV['IMPORT_FILE_PATH'] = "#{::Rails.root}/spec/fixtures"
+ENV['MISSING_FILE_LOG'] = "#{::Rails.root}/log/missing_files_test"
+
+# Allow Hyrax to upload files from the fixtures directory. Needed for testing
+# file attachment.
+Hyrax.config.whitelisted_ingest_dirs << "#{::Rails.root}/spec/fixtures"
+
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
