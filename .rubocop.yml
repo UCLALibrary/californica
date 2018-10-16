@@ -15,6 +15,7 @@ Metrics/BlockLength:
 Metrics/LineLength:
   Exclude:
     - 'spec/tasks/ingest_spec.rb'
+    - 'app/importers/rights_statement_validator.rb'
 
 Metrics/MethodLength:
   Enabled: true

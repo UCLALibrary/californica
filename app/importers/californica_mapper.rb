@@ -20,6 +20,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     genre: "Type.genre",
     rights_holder: "Rights.rightsHolderContact",
     rights_country: "Rights.countryCreation",
+    rights_statement: "Rights.copyrightStatus",
     medium: "Format.medium",
     normalized_date: "Date.normalized",
     publisher: "Publisher.publisherName",
@@ -81,7 +82,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
   # Normalize subject to remove MaRC codes (e.g., $z separators)
   def subject
-    map_field(:subject).map { |a| a.gsub(/ \$[a-z] /, '--') }
+    map_field(:subject)&.map { |a| a.gsub(/ \$[a-z] /, '--') }
   end
 
   # Hard-code language for LADNN collection. Story #48
@@ -95,6 +96,19 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
   def ladnn?
     metadata['Project Name'] == 'Los Angeles Daily News Negatives'
+  end
+
+  # The CSV file contains the label, so we'll find the
+  # corresponding ID to store on the work record.
+  # If the term isn't found in
+  # config/authorities/rights_statements.yml
+  # just return the value from the CSV file.  If it is
+  # not a valid value, it will eventually be rejected
+  # by the RightsStatementValidator.
+  def rights_statement
+    return unless metadata['Rights.copyrightStatus']
+    rights_term = Qa::Authorities::Local.subauthority_for('rights_statements').all.find { |h| h[:label] == metadata['Rights.copyrightStatus'] }
+    rights_term.blank? ? metadata['Rights.copyrightStatus'] : rights_term[:id]
   end
 
   def map_field(name)
