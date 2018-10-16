@@ -29,6 +29,13 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
     super
   end
 
+  # Skip this number of records before starting the ingest process. Default is 0.
+  # Useful for re-starting a failed ingest without having to blow everything away.
+  def skip
+    return 0 unless ENV['SKIP']
+    ENV['SKIP'].to_s.to_i
+  end
+
   def records
     return enum_for(:records) unless block_given?
     file.rewind
@@ -37,6 +44,7 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
 
     # use the CalifornicaMapper
     CSV.parse(file.read, headers: true).each_with_index do |row, index|
+      next unless index >= skip
       next if row.to_h.values.all?(&:nil?)
       yield Darlingtonia::InputRecord.from(metadata: row, mapper: CalifornicaMapper.new)
       actual_records_processed += 1

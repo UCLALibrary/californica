@@ -7,6 +7,10 @@ RSpec.describe CalifornicaCsvParser do
   let(:file)       { File.open(csv_path) }
   let(:csv_path)   { 'spec/fixtures/example.csv' }
 
+  after do
+    ENV['SKIP'] = '0'
+  end
+
   describe 'use in an importer', :clean do
     include_context 'with workflow'
 
@@ -16,6 +20,11 @@ RSpec.describe CalifornicaCsvParser do
 
     it 'imports records' do
       expect { importer.import }.to change { Work.count }.by 1
+    end
+
+    it 'skips records if ENV[\'SKIP\'] is set' do
+      ENV['SKIP'] = '1'
+      expect { importer.import }.to change { Work.count }.by 0
     end
   end
 
