@@ -144,4 +144,37 @@ RSpec.describe CalifornicaMapper do
       end
     end
   end
+
+  describe '#rights_statement' do
+    context 'when the field is blank' do
+      # No value for "Rights.copyrightStatus"
+      let(:metadata) { { 'Title' => 'A title' } }
+
+      it 'returns nil' do
+        expect(mapper.rights_statement).to eq nil
+      end
+    end
+
+    context 'with a valid value' do
+      let(:metadata) do
+        { 'Title' => 'A title',
+          'Rights.copyrightStatus' => 'copyrighted' }
+      end
+
+      it 'finds the correct ID for the given value' do
+        expect(mapper.rights_statement).to eq 'http://rightsstatements.org/vocab/InC/1.0/'
+      end
+    end
+
+    context 'with an invalid value' do
+      let(:metadata) do
+        { 'Title' => 'A title',
+          'Rights.copyrightStatus' => 'something invalid' }
+      end
+
+      it 'returns the same value' do
+        expect(mapper.rights_statement).to eq 'something invalid'
+      end
+    end
+  end
 end
