@@ -4,6 +4,7 @@ cache:
   bundler: true
   directories:
     - tmp/solr_downloads
+    - tmp/fedora_downloads
 dist: trusty
 jdk:
 - oraclejdk8
