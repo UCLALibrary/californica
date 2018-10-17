@@ -1,6 +1,9 @@
 language: ruby
 sudo: false
-cache: bundler
+cache:
+  bundler: true
+  directories:
+    - tmp/solr_downloads
 dist: trusty
 jdk:
 - oraclejdk8
