@@ -10,10 +10,14 @@ class WorkIndexer < Hyrax::WorkIndexer
   # this behavior
   include Hyrax::IndexesLinkedMetadata
 
-  # Uncomment this block if you want to add custom indexing behavior:
-  # def generate_solr_document
-  #  super.tap do |solr_doc|
-  #    solr_doc['my_custom_field_ssim'] = object.my_custom_property
-  #  end
-  # end
+  def generate_solr_document
+    super.tap do |solr_doc|
+      solr_doc['geographic_coordinates_ssim'] = coordinates
+    end
+  end
+
+  def coordinates
+    return unless object.latitude.first && object.longitude.first
+    [object.latitude.first, object.longitude.first].join(', ')
+  end
 end
