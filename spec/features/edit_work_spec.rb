@@ -63,7 +63,7 @@ RSpec.feature 'Edit an existing work', :clean do
       expect(find_field('Local Identifier').value).to eq 'Old Local ID'
       expect(find_field('Medium').value).to eq 'Old Medium'
       expect(find_field('Name (Subject)').value).to eq 'Old Name/Subj'
-      expect(find_field('Date').value).to eq 'Old Normalized Date'
+      expect(find_field('Normalized Date').value).to eq 'Old Normalized Date'
       expect(find_field('Repository').value).to eq 'Old Repository'
       expect(find_field('Location').value).to eq 'Old Loc'
       expect(find_field('Rights (country of creation)').value).to eq 'Old Rights Country'
