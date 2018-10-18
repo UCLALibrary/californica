@@ -52,7 +52,7 @@ en:
         funding_note: 'Funding Note'
         local_identifier: 'Local Identifier'
         named_subject: 'Name (Subject)'
-        normalized_date: 'Date'
+        normalized_date: 'Normalized Date'
         repository: 'Repository'
         rights_country: 'Rights (country of creation)'
         rights_holder: 'Rights Holder'
