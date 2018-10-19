@@ -16,6 +16,7 @@ Metrics/LineLength:
   Exclude:
     - 'spec/tasks/ingest_spec.rb'
     - 'app/importers/rights_statement_validator.rb'
+    - 'spec/features/import_and_show_work_spec.rb'
 
 Metrics/MethodLength:
   Enabled: true
@@ -36,4 +37,3 @@ RSpec/ExampleLength:
 RSpec/NotToNot:
   Exclude:
     - 'spec/features/edit_work_spec.rb'
-
