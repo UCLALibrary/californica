@@ -15,7 +15,7 @@ RSpec.feature 'Import and Display a Work', :clean, js: false do
   end
 
   context "after import" do
-    it "displays expected fields" do
+    it "displays expected fields on show work page" do
       importer.import
       work = Work.last
       visit("/concern/works/#{work.id}")
@@ -42,6 +42,15 @@ RSpec.feature 'Import and Display a Work', :clean, js: false do
       expect(page).to have_content "Fake Caption" # caption
       expect(page).to have_content "No linguistic content" # language
       expect(page).to have_content "34.05707, -118.239577" # geographic_coordinates, a.k.a. latitude and longitude
+    end
+    it "displays expected fields on search results page" do
+      importer.import
+      work = Work.last
+      visit("catalog?search_field=all_fields&q=")
+      expect(page).to have_content work.title.first
+      expect(page).to have_content work.description.first
+      expect(page).to have_content work.normalized_date.first
+      expect(page).to have_content work.resource_type.first
     end
   end
   it "displays expected facets" do
