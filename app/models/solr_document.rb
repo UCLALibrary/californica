@@ -34,6 +34,10 @@ class SolrDocument
     self[Solrizer.solr_name('caption')]
   end
 
+  def geographic_coordinates
+    self[:geographic_coordinates_ssim]
+  end
+
   def dimensions
     self[Solrizer.solr_name('dimensions')]
   end
