@@ -46,7 +46,7 @@ RSpec.feature 'Edit an existing work', :clean do
 
       # When the form first loads, it should contain all the old values
       expect(find_field('Title').value).to eq 'Old Title'
-      expect(page).to have_select('Copyright Status', selected: 'copyrighted')
+      expect(page.all(:css, 'div.select.work_rights_statement/select').first.text).to eq 'copyrighted'
       expect(first(:css, '#work_description').value).to eq 'Old Desc'
       expect(find_field('Publisher').value).to eq 'Old Pub'
       expect(find_field('Date Created').value).to eq 'Old Creation Date'

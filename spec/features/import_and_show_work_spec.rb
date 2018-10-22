@@ -15,7 +15,7 @@ RSpec.feature 'Import and Display a Work', :clean, js: false do
   end
 
   context "after import" do
-    it "displays expected fields" do
+    it "displays expected fields on show work page" do
       importer.import
       work = Work.last
       visit("/concern/works/#{work.id}")
@@ -26,6 +26,7 @@ RSpec.feature 'Import and Display a Work', :clean, js: false do
       expect(page).to have_content "Historic buildings--California--Los Angeles" # $subject: $z has been replaced with --
       expect(page).to have_content "still image" # resource_type
       expect(page).to have_content "copyrighted" # rights_statement
+      expect(page).not_to have_css('li.attribute-rights_statement/a') # Rights statement should not link anywhere
       expect(page).to have_content "news photographs" # genre
       expect(page).to have_content "Plaza Church (Los Angeles, Calif.)" # named_subject
       expect(page).to have_content "University of California, Los Angeles. Library. Department of Special Collections" # repository
@@ -43,11 +44,20 @@ RSpec.feature 'Import and Display a Work', :clean, js: false do
       expect(page).to have_content "No linguistic content" # language
       expect(page).to have_content "34.05707, -118.239577" # geographic_coordinates, a.k.a. latitude and longitude
     end
+    it "displays expected fields on search results page" do
+      importer.import
+      work = Work.last
+      visit("catalog?search_field=all_fields&q=")
+      expect(page).to have_content work.title.first
+      expect(page).to have_content work.description.first
+      expect(page).to have_content work.normalized_date.first
+      expect(page).to have_content work.resource_type.first
+    end
   end
   it "displays expected facets" do
     importer.import
     visit("/catalog?search_field=all_fields&q=")
-    facet_headings = page.all(:css, 'h3.facet-field-heading/a').to_a.map { |a| a.text }
+    facet_headings = page.all(:css, 'h3.facet-field-heading/a').to_a.map(&:text)
     expect(facet_headings).to contain_exactly("Subject", "Resource type", "Genre", "Name (Subject)", "Location", "Normalized Date", "Extent", "Medium", "Dimensions", "Language")
   end
 end
