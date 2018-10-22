@@ -26,6 +26,7 @@ RSpec.feature 'Import and Display a Work', :clean, js: false do
       expect(page).to have_content "Historic buildings--California--Los Angeles" # $subject: $z has been replaced with --
       expect(page).to have_content "still image" # resource_type
       expect(page).to have_content "copyrighted" # rights_statement
+      expect(page).not_to have_css('li.attribute-rights_statement/a') # Rights statement should not link anywhere
       expect(page).to have_content "news photographs" # genre
       expect(page).to have_content "Plaza Church (Los Angeles, Calif.)" # named_subject
       expect(page).to have_content "University of California, Los Angeles. Library. Department of Special Collections" # repository
