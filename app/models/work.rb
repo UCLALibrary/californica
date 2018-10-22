@@ -9,7 +9,7 @@ class Work < ActiveFedora::Base
   validates :title, presence: { message: 'Your work must have a title.' }
 
   property :extent, predicate: ::RDF::Vocab::DC11.format do |index|
-    index.as :stored_searchable
+    index.as :stored_searchable, :facetable
   end
 
   property :caption, predicate: ::RDF::Vocab::SCHEMA.caption do |index|
@@ -17,7 +17,7 @@ class Work < ActiveFedora::Base
   end
 
   property :dimensions, predicate: ::RDF::Vocab::MODS.physicalExtent do |index|
-    index.as :stored_searchable
+    index.as :stored_searchable, :facetable
   end
 
   property :funding_note, predicate: ::RDF::URI.intern('http://bibfra.me/vocab/marc/fundingInformation') do |index|
@@ -25,7 +25,7 @@ class Work < ActiveFedora::Base
   end
 
   property :genre, predicate: ::RDF::Vocab::EDM.hasType do |index|
-    index.as :stored_searchable
+    index.as :stored_searchable, :facetable
   end
 
   property :latitude, predicate: ::RDF::Vocab::EXIF.gpsLatitude do |index|
@@ -45,14 +45,14 @@ class Work < ActiveFedora::Base
   end
 
   property :medium, predicate: ::RDF::Vocab::DC.medium do |index|
-    index.as :stored_searchable
+    index.as :stored_searchable, :facetable
   end
 
   property :named_subject, predicate: ::RDF::Vocab::MODS.subjectName do |index|
-    index.as :stored_searchable
+    index.as :stored_searchable, :facetable
   end
   property :normalized_date, predicate: ::RDF::Vocab::DC11.date do |index|
-    index.as :stored_searchable
+    index.as :stored_searchable, :facetable
   end
 
   property :repository, predicate: ::RDF::Vocab::MODS.locationCopySublocation do |index|

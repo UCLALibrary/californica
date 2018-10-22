@@ -4,7 +4,6 @@ en:
     search:
       fields:
         facet:
-          named_subject: 'Name (subject)'
           repository_sim: 'Repository'
           normalized_date_sim: 'Normalized Date'
           rights_country: 'Rights (country of creation)'

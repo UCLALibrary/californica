@@ -41,25 +41,24 @@ class CatalogController < ApplicationController
 
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
-    config.add_facet_field solr_name('human_readable_type', :facetable), label: 'Type', limit: 5
     config.add_facet_field solr_name('resource_type', :facetable), label: 'Resource Type', limit: 5
     config.add_facet_field solr_name('creator', :facetable), limit: 5
     config.add_facet_field solr_name('contributor', :facetable), label: 'Contributor', limit: 5
     config.add_facet_field solr_name('keyword', :facetable), limit: 5
     config.add_facet_field solr_name('subject', :facetable), limit: 5
     config.add_facet_field solr_name('language', :facetable), limit: 5
-    config.add_facet_field solr_name('based_near_label', :facetable), limit: 5
-    config.add_facet_field solr_name('publisher', :facetable), limit: 5
     config.add_facet_field solr_name('file_format', :facetable), limit: 5
     config.add_facet_field solr_name('member_of_collection_ids', :symbol), limit: 5, label: 'Collections', helper_method: :collection_title_by_id
     config.add_facet_field solr_name('repository', :facetable), limit: 5
-    config.add_facet_field solr_name('normalized_date', :facetable), limit: 5
-    config.add_facet_field solr_name('named_subject', :facetable), limit: 5
+    config.add_facet_field solr_name('normalized_date', :facetable), label: 'Normalized Date', limit: 5
+    config.add_facet_field solr_name('named_subject', :facetable), label: 'Name (Subject)', limit: 5
     config.add_facet_field solr_name('rights_country', :facetable), limit: 5
-    config.add_facet_field solr_name('medium', :facetable), limit: 5
-    config.add_facet_field solr_name('dimensions', :facetable), limit: 5
-    config.add_facet_field solr_name('extent', :facetable), limit: 5
+    config.add_facet_field solr_name('medium', :facetable), label: 'Medium', limit: 5
+    config.add_facet_field solr_name('dimensions', :facetable), label: 'Dimensions', limit: 5
+    config.add_facet_field solr_name('extent', :facetable), label: 'Extent', limit: 5
+    config.add_facet_field solr_name('genre', :facetable), label: 'Genre', limit: 5
     config.add_facet_field solr_name('location', :facetable), label: 'Location', limit: 5
+
 
     # The generic_type isn't displayed on the facet list
     # It's used to give a label to the filter that comes from the user profile
@@ -118,10 +117,8 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('extent', :stored_searchable)
     config.add_show_field solr_name('funding_note', :stored_searchable)
     config.add_show_field solr_name('genre', :stored_searchable)
-    config.add_show_field solr_name('latitude', :stored_searchable)
     config.add_show_field solr_name('location', :stored_searchable)
     config.add_show_field solr_name('local_identifier', :stored_searchable)
-    config.add_show_field solr_name('longitude', :stored_searchable)
     config.add_show_field solr_name('medium', :stored_searchable)
     config.add_show_field solr_name('named_subject', :stored_searchable)
     config.add_show_field solr_name('normalized_date', :stored_searchable)
