@@ -9,10 +9,10 @@ en:
         index:
           named_subject: 'Name (subject)'
           repository_sim: 'Repository'
-          normalized_date_sim: 'Date'
+          normalized_date_sim: 'Normalized Date'
           rights_country: 'Rights (country of creation)'
         show:
           named_subject: 'Name (subject)'
           repository_sim: 'Repository'
-          normalized_date_sim: 'Date'
+          normalized_date_sim: 'Normalized Date'
           rights_country: 'Rights (country of creation)'
