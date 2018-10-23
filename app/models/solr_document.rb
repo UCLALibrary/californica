@@ -78,6 +78,10 @@ class SolrDocument
     self[Solrizer.solr_name('normalized_date')]
   end
 
+  def photographer
+    self[Solrizer.solr_name('photographer')]
+  end
+
   def repository
     self[Solrizer.solr_name('repository')]
   end

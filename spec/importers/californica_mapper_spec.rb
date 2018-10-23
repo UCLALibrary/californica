@@ -64,6 +64,7 @@ RSpec.describe CalifornicaMapper do
         # "masterImageName" => nil,
         "Coverage.geographic" => "Los Angeles (Calif.)",
         "Name.subject" => "Los Angeles County (Calif.). $b Board of Supervisors",
+        "Photographer" => "Ansel Adams",
         "Language" => "English" }
     end
     it "does not throw an error if masterImageName is empty" do
@@ -79,7 +80,7 @@ RSpec.describe CalifornicaMapper do
         :longitude, :extent, :local_identifier,
         :date_created, :caption, :dimensions, :rights_country,
         :funding_note, :genre, :rights_holder,
-        :medium, :normalized_date, :location, :publisher
+        :medium, :normalized_date, :location, :publisher, :photographer
       )
     end
   end
