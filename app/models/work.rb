@@ -51,7 +51,12 @@ class Work < ActiveFedora::Base
   property :named_subject, predicate: ::RDF::Vocab::MODS.subjectName do |index|
     index.as :stored_searchable, :facetable
   end
+
   property :normalized_date, predicate: ::RDF::Vocab::DC11.date do |index|
+    index.as :stored_searchable, :facetable
+  end
+
+  property :photographer, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/pht.html') do |index|
     index.as :stored_searchable, :facetable
   end
 

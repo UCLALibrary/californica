@@ -6,7 +6,7 @@ module Hyrax
     delegate :resource_type, :extent, :caption, :dimensions,
              :funding_note, :genre, :location, :geographic_coordinates,
              :medium, :local_identifier,
-             :named_subject, :normalized_date, :repository,
+             :named_subject, :normalized_date, :photographer, :repository,
              :rights_country, :rights_holder, to: :solr_document
   end
 end

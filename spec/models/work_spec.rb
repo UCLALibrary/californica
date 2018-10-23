@@ -109,4 +109,10 @@ RSpec.describe Work do
     expect(work.location).to include 'a location'
     expect(work.resource.dump(:ttl)).to match(/purl.org\/dc\/terms\/coverage/)
   end
+
+  it "has photographer" do
+    work.photographer = ['Ansel Adams']
+    expect(work.photographer).to include 'Ansel Adams'
+    expect(work.resource.dump(:ttl)).to match(/id.loc.gov\/vocabulary\/relators\/pht.html/)
+  end
 end
