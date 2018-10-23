@@ -44,6 +44,7 @@ en:
           publisher_tesim: Publisher
           rights_statement_tesim: Rights Statement
           subject_tesim: Subject
+          subject: Subjects
           title_tesim: Title
   simple_form:
     labels:
