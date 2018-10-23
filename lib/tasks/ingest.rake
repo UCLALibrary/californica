@@ -13,6 +13,17 @@ namespace :californica do
       CalifornicaImporter.new(csv_file).import
     end
 
+    # This task is best run in production like this:
+    # cd /opt/californica/current
+    # RAILS_ENV=production nohup bundle exec rake californica:ingest:reingest &
+    # Note that this is a very long running task and if you do not run it
+    # with nohup or a similar strategy it might fail when your ssh connection ends.
+    desc 'Reingest LADNN'
+    task reingest: [:environment] do
+      Rake::Task["californica:ingest:clean"].invoke
+      Rake::Task["californica:ingest:ingest_ladnn"].invoke
+    end
+
     desc 'Ingest sample data'
     task sample: [:environment] do
       require 'active_fedora/cleaner'
