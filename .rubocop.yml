@@ -4,6 +4,12 @@ inherit_gem:
 AllCops:
   TargetRubyVersion: 2.4
 
+Metrics/ClassLength:
+  Enabled: true
+  Exclude:
+    - 'app/controllers/catalog_controller.rb'
+    - 'app/importers/californica_mapper.rb'
+
 Metrics/BlockLength:
   Enabled: true
   Exclude:

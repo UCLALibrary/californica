@@ -145,6 +145,18 @@ RSpec.describe CalifornicaMapper do
     end
   end
 
+  describe '#named_subject' do
+    context 'when it contains MaRC separators' do
+      let(:metadata) do
+        { "Project Name" => "Los Angeles Daily News Negatives",
+          "Name.subject" => "Nagurski, Bronko, $d 1908-1990|~|Olympic Games $n (8th : $d 1924 : $c Paris, France)" }
+      end
+      it 'removes them and their surrounding spaces' do
+        expect(mapper.named_subject).to contain_exactly("Nagurski, Bronko, 1908-1990", "Olympic Games (8th : 1924 : Paris, France)")
+      end
+    end
+  end
+
   context "UCLA has not agreed to use rightsstatement.org" do
     describe '#rights_statement' do
       context 'when the field is blank' do

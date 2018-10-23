@@ -81,8 +81,15 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   end
 
   # Normalize subject to remove MaRC codes (e.g., $z separators)
+  # Replace subject marc codes with double dashes with no surrounding spaces
   def subject
     map_field(:subject)&.map { |a| a.gsub(/ \$[a-z] /, '--') }
+  end
+
+  # Normalize named subject to remove MaRC codes (e.g., $d separators)
+  # Replace named subject marc codes and their surrounding spaces with a single space
+  def named_subject
+    map_field(:named_subject)&.map { |a| a.gsub(/ \$[a-z] /, ' ') }
   end
 
   # Hard-code language for LADNN collection. Story #48
