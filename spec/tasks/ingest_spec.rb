@@ -54,7 +54,7 @@ RSpec.describe 'californica:ingest:csv', :clean do
       expect(created_work.genre).to eq ['news photographs']
       expect(created_work.rights_holder).to eq ['UCLA Charles E. Young Research Library Department of Special Collections, A1713 Young Research Library, Box 951575, Los Angeles, CA 90095-1575. E-mail: spec-coll@library.ucla.edu. Phone: (310)825-4988']
       expect(created_work.rights_country).to eq ['US']
-      expect(created_work.medium).to eq ['1 photograph']
+      expect(created_work.medium).to eq ['b&w negative']
       expect(created_work.normalized_date).to eq ['1947-09-17']
       expect(created_work.repository).to eq ['University of California, Los Angeles. Library. Department of Special Collections']
       expect(created_work.location).to eq ['Los Angeles (Calif.)']
