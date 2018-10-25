@@ -13,11 +13,21 @@ class WorkIndexer < Hyrax::WorkIndexer
   def generate_solr_document
     super.tap do |solr_doc|
       solr_doc['geographic_coordinates_ssim'] = coordinates
+      solr_doc['human_readable_rights_statement_tesim'] = human_readable_rights_statement
     end
   end
 
   def coordinates
     return unless object.latitude.first && object.longitude.first
     [object.latitude.first, object.longitude.first].join(', ')
+  end
+
+  def human_readable_rights_statement
+    rights_terms = Qa::Authorities::Local.subauthority_for('rights_statements').all
+
+    object.rights_statement.map do |rs|
+      term = rights_terms.find { |entry| entry[:id] == rs }
+      term.blank? ? rs : term[:label]
+    end
   end
 end
