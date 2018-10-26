@@ -198,6 +198,7 @@ GEM
     devise-guests (0.6.1)
       devise
     diff-lcs (1.3)
+    docile (1.3.1)
     dotenv (2.2.2)
     dotenv-rails (2.2.2)
       dotenv (= 2.2.2)
@@ -736,6 +737,11 @@ GEM
     simple_form (3.5.0)
       actionpack (> 4, < 5.2)
       activemodel (> 4, < 5.2)
+    simplecov (0.16.1)
+      docile (~> 1.1)
+      json (>= 1.8, < 3)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.2)
     slop (4.6.2)
     solr_wrapper (2.0.0)
       faraday
@@ -858,6 +864,7 @@ DEPENDENCIES
   selenium-webdriver
   sidekiq (~> 5.1.3)
   sidekiq-failures
+  simplecov (~> 0.16.1)
   solr_wrapper (>= 0.3)
   spring
   spring-watcher-listen (~> 2.0.0)

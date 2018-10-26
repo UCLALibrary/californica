@@ -77,5 +77,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'rubocop-rspec'
   gem 'selenium-webdriver'
+  gem 'simplecov', '~> 0.16.1'
   gem 'solr_wrapper', '>= 0.3'
 end
