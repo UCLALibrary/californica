@@ -30,7 +30,8 @@ RSpec.feature 'Edit an existing work', :clean do
       repository: ['Old Repository'],
       location: ['Old Loc'],
       rights_country: ['Old Rights Country'],
-      rights_holder: ['Old Rights Holder']
+      rights_holder: ['Old Rights Holder'],
+      photographer: ['Old Photographer']
     }
   end
 
@@ -68,6 +69,7 @@ RSpec.feature 'Edit an existing work', :clean do
       expect(find_field('Location').value).to eq 'Old Loc'
       expect(find_field('Rights (country of creation)').value).to eq 'Old Rights Country'
       expect(find_field('Rights Holder').value).to eq 'Old Rights Holder'
+      expect(find_field('Photographer').value).to eq 'Old Photographer'
 
       # Edit some fields in the form
       fill_in 'Title', with: 'New Title'
