@@ -17,6 +17,7 @@ Metrics/BlockLength:
     - 'config/**/*'
     - 'spec/**/*'
     - 'lib/tasks/ingest.rake'
+    - 'lib/tasks/derivatives.rake'
 
 Metrics/LineLength:
   Exclude:
