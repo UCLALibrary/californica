@@ -10,8 +10,19 @@ namespace :derivatives do
         total += 1
       end
 
-      puts "Regenerated derivatives for #{total} #{work_type} works(s)"
+      puts "Queued jobs to regenerate derivatives for #{total} #{work_type} works(s)"
     end
+  end
+
+  desc "Regenerate derivatives for a single work, e.g. rake derivatives:regenerate['c821gj76b']"
+  task :regenerate, [:id] => :environment do |_task, args|
+    id = args[:id]
+    abort "ERROR: no work id specified, aborting" unless id
+    abort "ERROR: cannot find work with id #{id}, aborting" unless ActiveFedora::Base.exists?(id)
+
+    work = ActiveFedora::Base.find(id)
+    regenerate_derivatives(work)
+    puts "Queued background jobs to regenerate derivatives for record: #{id}"
   end
 
   def regenerate_derivatives(work)
