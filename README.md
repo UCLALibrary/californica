@@ -10,9 +10,7 @@
    
 ---
 
-[![Build Status](https://travis-ci.org/UCLALibrary/californica.svg?branch=master)](https://travis-ci.org/UCLALibrary/californica) [![Apache 2.0 License](http://img.shields.io/badge/APACHE2-license-blue.svg)](./LICENSE)
-
-[![Test Coverage](https://coveralls.io/repos/github/UCLALibrary/californica/badge.svg?branch=master)](https://coveralls.io/github/UCLALibrary/californica?branch=master)
+[![Build Status](https://travis-ci.org/UCLALibrary/californica.svg?branch=master)](https://travis-ci.org/UCLALibrary/californica) &nbsp; [![Apache 2.0 License](http://img.shields.io/badge/APACHE2-license-blue.svg)](./LICENSE) &nbsp;  [![Test Coverage](https://coveralls.io/repos/github/UCLALibrary/californica/badge.svg?branch=master)](https://coveralls.io/github/UCLALibrary/californica?branch=master)
 
 ---
 
