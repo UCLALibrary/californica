@@ -55,4 +55,22 @@ RSpec.describe WorkIndexer do
       end
     end
   end
+
+  describe 'integer years for date slider facet' do
+    context 'with a normalized_date' do
+      let(:attributes) { { normalized_date: ['1940-10-15'] } }
+
+      it 'indexes the year' do
+        expect(solr_document['year_isim']).to eq [1940]
+      end
+    end
+
+    context 'when normalized_date field is blank' do
+      let(:attributes) { {} }
+
+      it 'doesn\'t index the year' do
+        expect(solr_document['year_isim']).to eq nil
+      end
+    end
+  end
 end

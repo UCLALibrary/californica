@@ -59,3 +59,11 @@ Layout/MultilineBlockLayout:
 Layout/BlockEndNewline:
   Exclude:
     - 'spec/features/search_catalog_spec.rb'
+
+Naming/PredicateName:
+  Exclude:
+    - 'app/indexers/year_parser.rb'
+
+Style/IfUnlessModifier:
+  Exclude:
+    - 'app/indexers/year_parser.rb'

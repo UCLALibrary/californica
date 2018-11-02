@@ -14,6 +14,7 @@ class WorkIndexer < Hyrax::WorkIndexer
     super.tap do |solr_doc|
       solr_doc['geographic_coordinates_ssim'] = coordinates
       solr_doc['human_readable_rights_statement_tesim'] = human_readable_rights_statement
+      solr_doc['year_isim'] = years
     end
   end
 
@@ -29,5 +30,12 @@ class WorkIndexer < Hyrax::WorkIndexer
       term = rights_terms.find { |entry| entry[:id] == rs }
       term.blank? ? rs : term[:label]
     end
+  end
+
+  # The 'to_a' is needed to force ActiveTriples::Relation to resolve into the String value(s), else you get an error trying to parse the date.
+  def years
+    integer_years = YearParser.integer_years(object.normalized_date.to_a)
+    return nil if integer_years.blank?
+    integer_years
   end
 end
