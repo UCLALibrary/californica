@@ -15,9 +15,6 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
-require 'simplecov'
-SimpleCov.start
-
 if ENV['TRAVIS'] == 'true'
   require 'coveralls'
   Coveralls.wear!('rails')
