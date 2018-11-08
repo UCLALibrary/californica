@@ -73,4 +73,13 @@ RSpec.describe WorkIndexer do
       end
     end
   end
+
+  describe 'identifier' do
+    let(:attributes) { { identifier: ['123', '456'] } }
+
+    # To be able search for an ark with an exact match, we need to index is as a 'string' instead of 'text English'.  Otherwise search results might accidentally match similar arks.
+    it 'indexes as a "string"' do
+      expect(solr_document['identifier_ssim']).to contain_exactly('123', '456')
+    end
+  end
 end
