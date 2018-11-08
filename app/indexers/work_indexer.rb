@@ -15,6 +15,7 @@ class WorkIndexer < Hyrax::WorkIndexer
       solr_doc['geographic_coordinates_ssim'] = coordinates
       solr_doc['human_readable_rights_statement_tesim'] = human_readable_rights_statement
       solr_doc['year_isim'] = years
+      solr_doc['identifier_ssim'] = object.identifier
     end
   end
 
