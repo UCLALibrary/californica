@@ -1,6 +1,6 @@
 # UCLA Library Management - Californica
 
-<img align="left" width="150" src="http://digital2.library.ucla.edu/imageResize.do?contentFileId=58393&scaleFactor=0.4">
+<img align="left" width="150" src="app/assets/images/CalifornicaPoppy.jpeg">
 
 ---
 
