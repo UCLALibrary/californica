@@ -7,12 +7,12 @@ en:
           repository_sim: 'Repository'
           rights_country: 'Rights (country of creation)'
         index:
-          named_subject: 'Name (subject)'
+          named_subject: 'Names'
           repository_sim: 'Repository'
           normalized_date_sim: 'Normalized Date'
           rights_country: 'Rights (country of creation)'
         show:
-          named_subject: 'Name (subject)'
+          named_subject: 'Names'
           repository_sim: 'Repository'
           normalized_date_sim: 'Normalized Date'
           rights_country: 'Rights (country of creation)'
