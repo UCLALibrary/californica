@@ -19,6 +19,8 @@ gem 'pkg-config', '~> 1.1'
 gem 'mysql2', '~> 0.5'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -76,7 +78,6 @@ group :development, :test do
   gem 'ffaker'
   gem 'rspec-rails'
   gem 'rubocop-rspec'
-  gem 'sassc-rails'
   gem 'selenium-webdriver'
   gem 'simplecov', '~> 0.16.1'
   gem 'solr_wrapper', '>= 0.3'
