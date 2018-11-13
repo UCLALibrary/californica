@@ -22,16 +22,21 @@
   margin-right: 0.225em;
 }
 
-.navbar-collapse, .navbar-brand, .navbar-header {
-  background: $ucla-blue;
+.navbar-collapse, .navbar-brand, .navbar-header, .site-footer {
+  background: $californica-yellow;
 }
 
 #user_utility_links {
-  background: $ucla-blue;
+  background: $californica-yellow;
+}
+
+.navbar-nav, .nav-item, .nav-link, .searchbar-right label {
+  color: $ucla-blue-darker;
 }
 
 #californica-institution_name {
   font-family: TimesNewRoman,"Times New Roman",Times,Baskerville,Georgia,serif;
   font-weight: bold;
   letter-spacing: 2px;
+  color: $ucla-blue-darker;
 }
