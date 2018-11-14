@@ -1,0 +1,22 @@
+@import 'variables';
+
+.feedback-link {
+  text-transform: uppercase;
+  background-color: $ucla-blue;
+  border-radius: 2rem 2rem 0rem 0rem;
+  a {
+  	color: $ucla-gold;
+  	border-bottom: 1px solid $ucla-gold;
+  }
+  font-size: 1.25em;
+  font-weight: 500;
+  margin: 0px;
+  padding: 2rem 1.25rem 5rem 1.25rem;
+  position: fixed;
+  bottom: 0;
+  left: 3rem;
+  a:hover {
+  	color: $ucla-tertiary-yellow;
+  	border-bottom: 1px solid $ucla-tertiary-yellow;
+  }
+}
