@@ -2,6 +2,7 @@ $ucla-blue: #3185c1;
 $ucla-blue-lighter: #c2ddf0;
 $ucla-blue-darker: #24628f;
 
+$californica-yellow: #f3c950;
 $ucla-gold: #FFE800;
 $ucla-blue-text-only: #347BAD;
 $ucla-secondary-blue-dark: #1E4B87;
@@ -15,14 +16,13 @@ $ucla-tertiary-gray: #666666;
 $ucla-tertiary-orange: #FFB300;
 $ucla-link: #8237FF;
 $ucla-link-hover: #1e4b87;
-
-$navbar-transparent-color: $ucla-blue !default;
+$navbar-transparent-color: $californica-yellow !default;
 $navbar-transparent-bg: rgba(0, 0, 0, 0.6) !default;
-$navbar-transparent-border: $ucla-blue !default;
+$navbar-transparent-border: $californica-yellow !default;
 $navbar-transparent-link-color: $ucla-blue-lighter !default;
 $navbar-transparent-link-hover-color: $ucla-blue-lighter !default;
 $navbar-transparent-link-hover-bg: rgba(255, 255, 255, 0.15) !default;
 $navbar-transparent-link-active-color: $ucla-blue-lighter !default;
 $navbar-transparent-link-active-bg: #585050 !default;
 
-$navbar-default-bg: $ucla-blue !default;
+$navbar-default-bg: $californica-yellow !default;
