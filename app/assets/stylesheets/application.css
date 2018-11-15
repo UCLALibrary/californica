@@ -14,3 +14,7 @@
  *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
  *= require_self
  */
+
+#facet-panel-collapse {
+  background: inherit;
+}
