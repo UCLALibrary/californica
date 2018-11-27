@@ -13,7 +13,8 @@ rvm:
 env:
   global:
     - DATABASE_USERNAME=travis
-    - secure: eTxFESeEn4I3u5sHFtg4/EFsOlryXVRv21Va7OZbZGbCY/mbDtaKDkW7IRkMkARKDxIo9RNnFNvKULCQZTkF24LWa3Ohjbse3UdEPv2FsW9sRZSLBAOaKUiKX6l7xbiaMRD5iwcZ+PMXaRxGhFhKFp+Rl3s4+R/8gJNJn8G75j+q7dzqTS8dPdAseidv8Dm2SJVTXgYp4v965RJMG3tKw3VW1IASWO342+HIfQYPL4qaUFMhDbrAol0hXLk8wH6FN0HQsb8OvxRr+xb6yOa5NKnWDmGVQ/P0vUQRy6jmTIUd+X/tFBQv4NfrkHjcyphGdIwrEgGG7rpWNQDVCXXQCIYTO0eAkC3lR+PFAB3iwJHdoeOm6kS8HQW87e27HdQl4asPyj4z4t+SMPW/jO+u/fRKQCDISABwudLFL+ad2pNTffoCs2hsRf64NMVcAoY/vVjden5Rzon2Ww6xGkPzez0T89ANsdOsqrVrg1hvaxkM8n3gFpazOAhPY1gziX2LR7rMSZT04FzQLQVnxVafqsZDpWB4Gbv2yeokf7xnqUY86WqiIzpQRfIRPxkIdWemO7WWSPTsinAZg7TLQKRDtjKMKbsb4UNxM4vD4GPTzBpt95+mTlF2L8jrq9EuwNpFrw4CXgLpAEA3/DBl/VdpeVyxa/3gBOo6jISmMgd8riY=
+    - secure: "eTxFESeEn4I3u5sHFtg4/EFsOlryXVRv21Va7OZbZGbCY/mbDtaKDkW7IRkMkARKDxIo9RNnFNvKULCQZTkF24LWa3Ohjbse3UdEPv2FsW9sRZSLBAOaKUiKX6l7xbiaMRD5iwcZ+PMXaRxGhFhKFp+Rl3s4+R/8gJNJn8G75j+q7dzqTS8dPdAseidv8Dm2SJVTXgYp4v965RJMG3tKw3VW1IASWO342+HIfQYPL4qaUFMhDbrAol0hXLk8wH6FN0HQsb8OvxRr+xb6yOa5NKnWDmGVQ/P0vUQRy6jmTIUd+X/tFBQv4NfrkHjcyphGdIwrEgGG7rpWNQDVCXXQCIYTO0eAkC3lR+PFAB3iwJHdoeOm6kS8HQW87e27HdQl4asPyj4z4t+SMPW/jO+u/fRKQCDISABwudLFL+ad2pNTffoCs2hsRf64NMVcAoY/vVjden5Rzon2Ww6xGkPzez0T89ANsdOsqrVrg1hvaxkM8n3gFpazOAhPY1gziX2LR7rMSZT04FzQLQVnxVafqsZDpWB4Gbv2yeokf7xnqUY86WqiIzpQRfIRPxkIdWemO7WWSPTsinAZg7TLQKRDtjKMKbsb4UNxM4vD4GPTzBpt95+mTlF2L8jrq9EuwNpFrw4CXgLpAEA3/DBl/VdpeVyxa/3gBOo6jISmMgd8riY="
+    - secure: "dSuFNjRouIzzplbNG4ZdqCMbtaoxTckQiI1zg0HQ5Y2l9Xb4ghCtKaayljjF2FqsGncl2b89ul4UN3ZvEXbWNDaiYVb0ciAM1jO0AoltoMQHKaHcCT/3Zqg0puu13//kGhaeCkht47KzROis/5QO9c/1N4X7rkclJexXXmxIa3HlgSWGgpRqv+2zsPNqbAT7UI0xdbT9MvwDWVlFkJxsV75jGvx8XbHJ+tPXGwelmKehgV+Bdfo4NiGKND/VTSFR9/+HRqeew60Fq9sQkPNoYGrDOZySVYfc17c95FXPiqLlthL4RaEPNH1WbEmXh1EKYysH8ZhJnOZpQ0TPYadK+3rhNfE9ke/vz4tD3m794THlLbahjKxMiIWDSiV/JlJwhdrjObZClF/fn1GAzoAf8V487wGasJ3rVLLo88nLplu+6AcjnBLlpAVBEVldHAvuRheut/T/Alc1ovTtbdTsktLFolhNpj2Cz0pG8/zxTcVVGctQS39hBJNOwkvjcIlK6lOIDKbmmnvy67MhAuIaBQDXuanmFdqS/ymUcG9+dYyqHE5qHWa60rxEk3962R7b51URm8IDU0sf7Yi5NYdDEPJ1gxssQvmE92K53hAxuAH+g71lZyDxPvxVhgPgZiTNo8/d+beiFlqMpKYrQk4NFKYGhLzhvvKY/7I01TxEQ6M="
 before_script:
 - bundle exec rake db:create
 script:
@@ -24,10 +25,8 @@ services:
 after_success:
 - |
   if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_PULL_REQUEST == 'false' ]]; then
-    openssl aes-256-cbc -K $encrypted_b2e2a85c6b8e_key -iv $encrypted_b2e2a85c6b8e_iv -in ucla_deploy_rsa.enc -out ucla_deploy_rsa -d
-    bundle exec cap cd deploy
-  fi
-- |
-  if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_PULL_REQUEST == 'false' ]]; then
     curl "$JENKINS_DEPLOY_URL"
+  fi
+  if [[ $TRAVIS_TAG =~ ^sprint[0-9]*\.rc[0-9]* ]]; then
+    curl "$JENKINS_TAG_DEPLOY_URL"
   fi
