@@ -299,7 +299,6 @@ GEM
     hamster (3.0.0)
       concurrent-ruby (~> 1.0)
     hiredis (0.6.1)
-    honeybadger (3.3.1)
     htmlentities (4.3.4)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
@@ -674,6 +673,8 @@ GEM
     riiif (1.7.1)
       deprecation (>= 1.0.0)
       railties (>= 4.2, < 6)
+    rollbar (2.18.0)
+      multi_json
     rsolr (2.2.1)
       builder (>= 2.1.2)
       faraday (>= 0.9.0)
@@ -867,7 +868,6 @@ DEPENDENCIES
   factory_bot_rails
   fcrepo_wrapper
   ffaker
-  honeybadger (~> 3.1)
   hydra-role-management (~> 1.0.0)
   hyrax (~> 2.2, >= 2.3.3)
   jbuilder (~> 2.5)
@@ -881,6 +881,7 @@ DEPENDENCIES
   rails (~> 5.1.6)
   retries
   riiif (~> 1.1)
+  rollbar
   rsolr (>= 1.0)
   rspec-rails
   rubocop-rspec
