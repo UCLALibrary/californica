@@ -26,8 +26,8 @@ if ENV['VIA_JUMP'] == "yes"
 end
 
 set :rollbar_token, ENV['ROLLBAR_ACCESS_TOKEN']
-set :rollbar_env, Proc.new { fetch :stage }
-set :rollbar_role, Proc.new { :app }
+set :rollbar_env, proc { fetch :stage }
+set :rollbar_role, proc { :app }
 
 set :ssh_options, keys: ["ucla_deploy_rsa"] if File.exist?("ucla_deploy_rsa")
 
