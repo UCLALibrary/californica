@@ -25,6 +25,10 @@ if ENV['VIA_JUMP'] == "yes"
   set :ssh_options, proxy: Net::SSH::Proxy::Command.new(ssh_command)
 end
 
+set :rollbar_token, ENV['ROLLBAR_ACCESS_TOKEN']
+set :rollbar_env, proc { fetch :stage }
+set :rollbar_role, proc { :app }
+
 set :ssh_options, keys: ["ucla_deploy_rsa"] if File.exist?("ucla_deploy_rsa")
 
 set :log_level, :debug
