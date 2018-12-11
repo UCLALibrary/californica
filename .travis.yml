@@ -27,6 +27,6 @@ after_success:
   if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_PULL_REQUEST == 'false' ]]; then
     curl "$JENKINS_DEPLOY_URL"
   fi
-  if [[ $TRAVIS_TAG =~ ^sprint[0-9]*\.rc[0-9]* ]]; then
+  if [[ $TRAVIS_TAG != "" ]]; then
     curl "$JENKINS_TAG_DEPLOY_URL"
   fi
