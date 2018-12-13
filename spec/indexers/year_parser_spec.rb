@@ -36,7 +36,7 @@ RSpec.describe YearParser do
     end
 
     context 'with an unparseable value' do
-      let(:unparseable) { 'ABCDEF' }
+      let(:unparseable) { '[between 1928-1939]' }
       let(:dates) { ['1953', unparseable] }
       let(:parsed_dates) { subject }
 

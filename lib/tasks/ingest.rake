@@ -10,13 +10,24 @@ IMPORT_FILE_PATH = ENV['IMPORT_FILE_PATH']
 namespace :californica do
   namespace :ingest do
     desc 'Ingest LADNN sample data'
-    task sample: [:environment] do
+    task ladnn_sample: [:environment] do
       Rake::Task["hyrax:default_admin_set:create"].invoke
       Rake::Task["hyrax:default_collection_types:create"].invoke
       Rake::Task["hyrax:workflow:load"].invoke
       csv_file = Rails.root.join('spec', 'fixtures', 'ladnn-sample.csv')
       puts "------"
       puts "Benchmark for ingest of 25 sample records (elapsed real time is last):"
+      puts Benchmark.measure { CalifornicaImporter.new(csv_file).import }
+    end
+
+    desc 'Ingest Connell sample data'
+    task connell_sample: [:environment] do
+      Rake::Task["hyrax:default_admin_set:create"].invoke
+      Rake::Task["hyrax:default_collection_types:create"].invoke
+      Rake::Task["hyrax:workflow:load"].invoke
+      csv_file = Rails.root.join('spec', 'fixtures', 'connell_sample.csv')
+      puts "------"
+      puts "Benchmark for ingest of 21 sample records (elapsed real time is last):"
       puts Benchmark.measure { CalifornicaImporter.new(csv_file).import }
     end
 

@@ -49,5 +49,11 @@ class YearParser
 
   def self.parse_year(date_string)
     Date.strptime(date_string, '%Y').year
+  # Sometimes strangely formatted dates creep in, like [between 1928-1939]
+  # which really shouldn't be in the normalized date field, but we shouldn't
+  # crash if we encounter it.
+  rescue ArgumentError => e
+    Rollbar.error(e, "Invalid date string encountered in normalized date field: #{date_string}")
+    nil
   end
 end
