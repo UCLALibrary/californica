@@ -1,39 +1,16 @@
 # frozen_string_literal: true
 require 'retries'
 
-# Set this value in .env.development or .env.production, according to your
-# environment
+# Set these values on the command line when you invoke the rake task.
+# CSV_FILE should point to the csv you want to import, and
+# IMPORT_FILE_PATH should point to a directory containing the files to be attached.
 CSV_FILE = ENV['CSV_FILE']
+IMPORT_FILE_PATH = ENV['IMPORT_FILE_PATH']
 
 namespace :californica do
   namespace :ingest do
-    desc 'Ingest an item from CSV'
-    task :csv, [:filename] => [:environment] do |_task, args|
-      csv_file = args[:filename]
-      CalifornicaImporter.new(csv_file).import
-    end
-
-    # This task is best run in production like this:
-    # cd /opt/californica/current
-    # RAILS_ENV=production nohup bundle exec rake californica:ingest:reingest &
-    # Note that this is a very long running task and if you do not run it
-    # with nohup or a similar strategy it might fail when your ssh connection ends.
-    desc 'Reingest LADNN'
-    task reingest: [:environment] do
-      Rake::Task["californica:ingest:clean"].invoke
-      Rake::Task["californica:ingest:ingest_ladnn"].invoke
-    end
-
-    desc 'Ingest sample data'
+    desc 'Ingest LADNN sample data'
     task sample: [:environment] do
-      require 'active_fedora/cleaner'
-      # Re-try the cleanout process a few times in case it times out
-      with_retries(max_tries: 10, base_sleep_seconds: 1, max_sleep_seconds: 10) do
-        ActiveFedora::Cleaner.clean!
-      end
-
-      Hyrax::PermissionTemplate.destroy_all
-
       Rake::Task["hyrax:default_admin_set:create"].invoke
       Rake::Task["hyrax:default_collection_types:create"].invoke
       Rake::Task["hyrax:workflow:load"].invoke
@@ -43,33 +20,46 @@ namespace :californica do
       puts Benchmark.measure { CalifornicaImporter.new(csv_file).import }
     end
 
-    # While we are in development mode, this task is scheduled to run nightly.
-    # Adjust this in config/schedule.rb if necessary.
-    desc "Cleanout fedora"
+    # Note: This is a super-extra thorough clean out because we were hitting timeout
+    # errors. Much of this might be overkill at this point and a simple ActiveFedora::Cleaner.clean!
+    # should probably suffice in most development environments.
+    desc "Cleanout development instance of fedora and solr"
     task clean: :environment do
-      require 'active_fedora/cleaner'
-      # Re-try the cleanout process a few times in case it times out
-      with_retries(max_tries: 10, base_sleep_seconds: 500, max_sleep_seconds: 1000) do
-        ActiveFedora::Cleaner.clean!
-      end
-      with_retries(max_tries: 10, base_sleep_seconds: 1, max_sleep_seconds: 5) do
-        response = remove_tombstone
-        raise "tombstone not deleted" unless response.code == "404"
-      end
+      if Rails.env.development?
+        puts "Cleaning out local fedora and solr..."
+        require 'active_fedora/cleaner'
+        # Re-try the cleanout process a few times in case it times out
+        with_retries(max_tries: 10, base_sleep_seconds: 500, max_sleep_seconds: 1000) do
+          ActiveFedora::Cleaner.clean!
+        end
+        with_retries(max_tries: 10, base_sleep_seconds: 1, max_sleep_seconds: 5) do
+          response = remove_tombstone
+          raise "tombstone not deleted" unless response.code == "404"
+        end
 
-      Hyrax::PermissionTemplate.destroy_all
+        Hyrax::PermissionTemplate.destroy_all
+        puts "Clean complete."
+      else
+        puts "This task is only for use in a development environment"
+      end
     end
 
-    desc "Ingest all LADNN objects"
-    task ingest_ladnn: :environment do
+    desc "Ingest a collection -- Use CSV_FILE and IMPORT_FILE_PATH to specify data locations."
+    task csv: :environment do
+      unless CSV_FILE && IMPORT_FILE_PATH
+        puts "Specify import parameters like this: CSV_FILE=/path/to/file.csv IMPORT_FILE_PATH=/path/to/files/ bundle exec rake californica:ingest"
+        next
+      end
+      puts "Ingesting CSV from #{CSV_FILE} with files from #{IMPORT_FILE_PATH}"
+      puts "Logging ingest to logs/ingest_$timestamp and logs/error_$timestamp"
       Rake::Task["hyrax:default_admin_set:create"].invoke
       Rake::Task["hyrax:default_collection_types:create"].invoke
-      Rake::Task["californica:ingest:csv"].invoke(CSV_FILE)
+      CalifornicaImporter.new(CSV_FILE).import
     end
 
     def remove_tombstone
-      # ActiveFedora::Cleaner sometimes leaves a tombstone resource in place at /prod
-      # This prevents the content from re-ingesting. It has to be explicitly removed.
+      # ActiveFedora::Cleaner sometimes leaves a tombstone resource in place.
+      # This prevents the content from re-ingesting. If this happens, it has to be explicitly removed.
       url = "#{ActiveFedora.config.credentials[:url]}#{ActiveFedora.config.credentials[:base_path]}/fcr:tombstone"
       uri = URI(url)
       http = Net::HTTP.new(uri.host, uri.port)
