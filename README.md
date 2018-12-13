@@ -7,7 +7,7 @@
 #### Californica is designed as a management interface for UCLA's digital library content.  
 
 [Eschscholzia californica, Copa De Oro](https://en.wikipedia.org/wiki/Eschscholzia_californica) The [state flower of California](http://www.parks.ca.gov/?page_id=627), the California poppy is a showy perennial wildflower.
-   
+
 ---
 
 [![Build Status](https://travis-ci.org/UCLALibrary/californica.svg?branch=master)](https://travis-ci.org/UCLALibrary/californica) &nbsp; [![Apache 2.0 License](http://img.shields.io/badge/APACHE2-license-blue.svg)](./LICENSE) &nbsp;  [![Test Coverage](https://coveralls.io/repos/github/UCLALibrary/californica/badge.svg?branch=master)](https://coveralls.io/github/UCLALibrary/californica?branch=master)
@@ -46,7 +46,7 @@ u.admin?
   => true
 ```
 
-If `u.admin?` returns `true` then you know it worked as expected. 
+If `u.admin?` returns `true` then you know it worked as expected.
 
 See also the [Making Admin Users in Hyrax Guide](https://github.com/samvera/hyrax/wiki/Making-Admin-Users-in-Hyrax).
 
@@ -86,14 +86,21 @@ This should already be available for you, but good to verify so you know where y
 Importing from CSV
 ------------------
 
+### Character Encoding
 When importing from a CSV file it is important to ensure that the character encoding
 remains UTF-8.
 
 If you need to make manual edits to a CSV export before importing *do not* use Excel
-unless it is version 2016 or higher. Older versions of Excel will change the encoding when you save the 
+unless it is version 2016 or higher. Older versions of Excel will change the encoding when you save the
 file and re-export it as CSV. Current versions of Excel will have an option to export as 'UTF-8 CSV', which
-should be used. Google Sheets or LibreOffice Calc will allow you to make manual edits and maintain the 
+should be used. Google Sheets or LibreOffice Calc will allow you to make manual edits and maintain the
 correct encoding when saving.
+
+### Import Process
+Use the `rake californica:ingest:csv` task, and specify the CSV_FILE and IMPORT_FILE_PATH when you invoke it. For example:
+```
+CSV_FILE=/opt/data/ladnn/dlcs-ladnn-2018-09-06.csv IMPORT_FILE_PATH=/opt/data/ladnn/ bundle exec rake californica:ingest:csv
+```
 
 What is Hyrax, what is Californica?
 ---
