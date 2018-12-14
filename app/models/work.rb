@@ -20,6 +20,10 @@ class Work < ActiveFedora::Base
     index.as :stored_searchable, :facetable
   end
 
+  property :dlcs_collection_name, predicate: ::RDF::URI.intern('https://bib.schema.org/Collection') do |index|
+    index.as :displayable, :facetable
+  end
+
   property :funding_note, predicate: ::RDF::URI.intern('http://bibfra.me/vocab/marc/fundingInformation') do |index|
     index.as :stored_searchable
   end

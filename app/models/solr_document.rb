@@ -42,6 +42,10 @@ class SolrDocument
     self[Solrizer.solr_name('dimensions')]
   end
 
+  def dlcs_collection_name
+    self[:dlcs_collection_name_ssm]
+  end
+
   def funding_note
     self[Solrizer.solr_name('funding_note')]
   end

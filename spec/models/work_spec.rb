@@ -115,4 +115,10 @@ RSpec.describe Work do
     expect(work.photographer).to include 'Ansel Adams'
     expect(work.resource.dump(:ttl)).to match(/id.loc.gov\/vocabulary\/relators\/pht.html/)
   end
+
+  it "has a collection name" do
+    work.dlcs_collection_name = ["Connell (Will) Papers, 1928-1961"]
+    expect(work.dlcs_collection_name).to include "Connell (Will) Papers, 1928-1961"
+    expect(work.resource.dump(:ttl)).to match(/bib.schema.org\/Collection/)
+  end
 end

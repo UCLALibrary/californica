@@ -28,7 +28,8 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     location: "Coverage.geographic",
     named_subject: "Name.subject",
     language: "Language",
-    photographer: "Name.photographer"
+    photographer: "Name.photographer",
+    dlcs_collection_name: "Relation.isPartOf"
   }.freeze
 
   DELIMITER = '|~|'
