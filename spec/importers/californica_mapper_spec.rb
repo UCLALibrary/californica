@@ -21,7 +21,8 @@ RSpec.describe CalifornicaMapper do
       "masterImageName" => "clusc_1_1_00010432a.tif",
       "Coverage.geographic" => "Los Angeles (Calif.)",
       "Name.subject" => "Los Angeles County (Calif.). $b Board of Supervisors",
-      "Language" => "English" }
+      "Language" => "English",
+      "Relation.isPartOf" => "Connell (Will) Papers, 1928-1961" }
   end
 
   before { mapper.metadata = metadata }
@@ -35,6 +36,10 @@ RSpec.describe CalifornicaMapper do
 
   it "maps the required identifier field" do
     expect(mapper.map_field(:identifier)).to contain_exactly('21198/zz0002nq4w')
+  end
+
+  it "maps the collection (relation.isPartOf) field" do
+    expect(mapper.map_field(:dlcs_collection_name)).to contain_exactly("Connell (Will) Papers, 1928-1961")
   end
 
   it "maps remote_files" do
