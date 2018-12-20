@@ -178,7 +178,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.12.2)
-    concurrent-ruby (1.1.3)
+    concurrent-ruby (1.1.4)
     connection_pool (2.2.2)
     coveralls (0.7.1)
       multi_json (~> 1.3)
@@ -187,8 +187,8 @@ GEM
       term-ansicolor
       thor
     crass (1.0.4)
-    daemons (1.2.6)
-    darlingtonia (1.0.0)
+    daemons (1.3.1)
+    darlingtonia (1.1.0)
       active-fedora (>= 11.0, <= 12.99)
     database_cleaner (1.7.0)
     declarative (0.0.10)
@@ -398,7 +398,7 @@ GEM
       signet
       simple_form (~> 3.2, <= 3.5.0)
       tinymce-rails (~> 4.1)
-    i18n (1.2.0)
+    i18n (1.3.0)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     iiif_manifest (0.5.0)
@@ -506,7 +506,7 @@ GEM
     mime-types-data (3.2018.0812)
     mini_magick (4.9.2)
     mini_mime (1.0.1)
-    mini_portile2 (2.3.0)
+    mini_portile2 (2.4.0)
     minitest (5.11.3)
     multi_json (1.13.1)
     multi_xml (0.6.0)
@@ -525,8 +525,8 @@ GEM
     noid-rails (3.0.0)
       actionpack (>= 5.0.0, < 6)
       noid (~> 0.9)
-    nokogiri (1.8.5)
-      mini_portile2 (~> 2.3.0)
+    nokogiri (1.9.1)
+      mini_portile2 (~> 2.4.0)
     nokogumbo (1.5.0)
       nokogiri
     oauth (0.5.4)
@@ -597,7 +597,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
-    rdf (3.0.4)
+    rdf (3.0.7)
       hamster (~> 3.0)
       link_header (~> 0.0, >= 0.0.8)
     rdf-aggregate-repo (2.2.1)
@@ -646,7 +646,7 @@ GEM
     rdf-turtle (3.0.3)
       ebnf (~> 1.1)
       rdf (~> 3.0)
-    rdf-vocab (3.0.3)
+    rdf-vocab (3.0.4)
       rdf (~> 3.0)
     rdf-xsd (3.0.1)
       rdf (~> 3.0)
@@ -800,7 +800,7 @@ GEM
     sshkit (1.17.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
-    stomp (1.4.4)
+    stomp (1.4.8)
     sxp (1.0.1)
       rdf (>= 2.2, < 4.0)
     temple (0.8.0)
@@ -903,4 +903,4 @@ RUBY VERSION
    ruby 2.4.0p0
 
 BUNDLED WITH
-   1.17.1
+   1.17.2
