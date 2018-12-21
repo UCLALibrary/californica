@@ -43,6 +43,16 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     CALIFORNICA_TERMS_MAP.keys + [:remote_files, :visibility]
   end
 
+  ##
+  # Take a filename and:
+  # 1) Check that it exists. Log it to a missing files log if it doesn't.
+  # 2) Turn the filename into a file:// url
+  # 3) Pass it to the actor stack in the remote_files param. This means that
+  # it will be processed by the CreateWithRemoteFilesActor
+  # Using the remote_files param to ingest local files is misleading.
+  # However, it lets us fetch the file from disk in a background job
+  # instead of creating a Hyrax::UploadedFile object while the CSV is
+  # being parsed, which gives us a performance advantage.
   def remote_files
     if metadata['masterImageName'].nil?
       File.open(@missing_file_log, 'a') { |file| file.puts "Work #{map_field(:identifier)} is missing a filename" }

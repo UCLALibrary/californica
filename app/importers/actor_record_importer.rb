@@ -27,8 +27,10 @@ class ActorRecordImporter < Darlingtonia::RecordImporter
       actor_env  = Hyrax::Actors::Environment.new(created,
                                                   ::Ability.new(creator),
                                                   attributes)
+      terminator = Hyrax::Actors::Terminator.new
+      middleware = Californica::IngestMiddlewareStack.build_stack.build(terminator)
 
-      if Hyrax::CurationConcern.actor.create(actor_env)
+      if middleware.create(actor_env)
         info_stream << "Record created at: #{created.id}"
       else
         created.errors.each do |attr, msg|

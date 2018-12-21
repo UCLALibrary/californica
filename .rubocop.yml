@@ -29,6 +29,7 @@ Metrics/MethodLength:
   Enabled: true
   Exclude:
     - 'app/importers/californica_csv_parser.rb'
+    - app/importers/actor_record_importer.rb
 
 RSpec/DescribeClass:
   Exclude:
