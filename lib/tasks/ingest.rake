@@ -31,6 +31,13 @@ namespace :californica do
       puts Benchmark.measure { CalifornicaImporter.new(csv_file).import }
     end
 
+    desc 'Clean Connell sample data'
+    task clean_connell_sample: [:environment] do
+      csv_file = Rails.root.join('spec', 'fixtures', 'connell_sample.csv')
+      puts "Removing Connell sample data"
+      CalifornicaCsvCleaner.new(file: csv_file).clean
+    end
+
     # Note: This is a super-extra thorough clean out because we were hitting timeout
     # errors. Much of this might be overkill at this point and a simple ActiveFedora::Cleaner.clean!
     # should probably suffice in most development environments.
