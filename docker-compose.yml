@@ -1,0 +1,79 @@
+version: "3.6"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    depends_on:
+      - db
+      - fcrepo
+      - redis
+      - solr
+    env_file:
+      - ./.env.sample
+      - ./docker/samvera-docker.env
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/californica
+      - ./data:/opt/data
+      - bundle_dir:/usr/local/bundle
+    working_dir: /californica
+
+  fcrepo:
+    image: cbeer/fcrepo4:4.7
+    ports:
+      - 8080:8080
+    volumes:
+      - fcrepo_data:/data
+    environment:
+      - JAVA_OPTS=-Dfcrepo.modeshape.configuration="classpath:/config/file-simple/repository.json" -Dfcrepo.object.directory="/data/objects" -Dfcrepo.binary.directory="/data/binaries"
+      # - JAVA_OPTS=${JAVA_OPTS} -Dfcrepo.modeshape.configuration="classpath:/config/file-simple/repository.json" -Dfcrepo.object.directory="/data/objects" -Dfcrepo.binary.directory="/data/binaries"
+
+  db:
+    image: mysql:5.6
+    volumes:
+      - ./docker/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - mysql_data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      # MYSQL_USER: californica
+      # MYSQL_PASSWORD: californica
+
+  redis:
+    image: redis:4
+    volumes:
+      - redis_data:/data
+    ports:
+      - 6379:6379
+
+  solr:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.solr
+    volumes:
+      - solr_data:/opt/solr/server/solr/mycores/californica/data
+    ports:
+      - 8983:8983
+
+  # iiif:
+  #   image: uclalibrary/cantaloupe
+  #   environment:
+  #     DELEGATE_SCRIPT.ENABLED: "true"
+  #     DELEGATE_SCRIPT.PATHNAME: /docker/delegates.rb
+  #     ENDPOINT.ADMIN.ENABLED: "true"
+  #     ENDPOINT.ADMIN.SECRET: cobweb123
+  #   ports:
+  #     - 8182:8182
+  #   volumes:
+  #     - ./cantaloupe-delegate/lib:/delegate
+
+volumes:
+  bundle_dir:
+  fcrepo_data:
+  mysql_data:
+  redis_data:
+  solr_data:
