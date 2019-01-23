@@ -28,8 +28,6 @@ First, clone the repo from GitHub:
 
     git clone git@github.com:UCLALibrary/californica.git
     cd californica
-    git submodule init
-    git submodule update --recursive --remote
 
 After that, you can run `docker-compose` to bring up the development environment:
 
