@@ -7,7 +7,7 @@ RUN apt-get update -qq && apt-get install -y mysql-client build-essential libpq-
 
 RUN mkdir /fits
 WORKDIR /fits
-COPY https://github.com/harvard-lts/fits/releases/download/1.4.0/fits-1.4.0.zip /fits/
+ADD https://github.com/harvard-lts/fits/releases/download/1.4.0/fits-1.4.0.zip /fits/
 RUN unzip fits-1.4.0.zip -d /fits
 ENV PATH "/fits:$PATH"
 
