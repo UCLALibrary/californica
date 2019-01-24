@@ -17,6 +17,8 @@ services:
       - .:/californica
       - ./data:/opt/data
       - bundle_dir:/usr/local/bundle
+      - log:/californica/log
+      - tmp:/californica/tmp
     working_dir: /californica
 
   fcrepo:
@@ -72,6 +74,8 @@ services:
 volumes:
   bundle_dir:
   fcrepo_data:
+  log:
   mysql_data:
   redis_data:
   solr_data:
+  tmp:
