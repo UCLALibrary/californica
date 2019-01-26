@@ -5,7 +5,7 @@ services:
     image: uclalibrary/californica:latest
     depends_on:
       - db
-      - fcrepo
+      - fedora
       - redis
       - solr
     env_file:
@@ -21,7 +21,7 @@ services:
       - tmp:/californica/tmp
     working_dir: /californica
 
-  fcrepo:
+  fedora:
     image: cbeer/fcrepo4:4.7
     ports:
       - 8080:8080
