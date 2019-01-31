@@ -10,7 +10,16 @@ services:
       - solr
     env_file:
       - ./.env.sample
-      - ./docker/samvera-docker.env
+    environment:
+      CSV_FILE: /opt/data/sample_data_set_la_daily_news/dlcs-ladnn-2018-09-06.csv
+      DATABASE_HOST: db
+      FEDORA_URL: http://fedora:8080/rest
+      FEDORA_BASE_PATH: /prod
+      IMPORT_FILE_PATH: /opt/data/ladailynews/image/
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_URL: redis://redis:6379/0
+      SOLR_URL: http://solr:8983/solr/californica
     ports:
       - "3000:3000"
     volumes:
