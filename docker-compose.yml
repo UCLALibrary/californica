@@ -22,14 +22,14 @@ services:
     working_dir: /californica
 
   fedora:
-    image: cbeer/fcrepo4:4.7
+    image: nulib/fcrepo4:4.7.5
     ports:
       - 8080:8080
     volumes:
       - fcrepo_data:/data
-    environment:
-      - JAVA_OPTS=-Dfcrepo.modeshape.configuration="classpath:/config/file-simple/repository.json" -Dfcrepo.object.directory="/data/objects" -Dfcrepo.binary.directory="/data/binaries"
-      # - JAVA_OPTS=${JAVA_OPTS} -Dfcrepo.modeshape.configuration="classpath:/config/file-simple/repository.json" -Dfcrepo.object.directory="/data/objects" -Dfcrepo.binary.directory="/data/binaries"
+    # environment:
+    # - JAVA_OPTS=-Dfcrepo.modeshape.configuration="classpath:/config/file-simple/repository.json" -Dfcrepo.object.directory="/data/objects" -Dfcrepo.binary.directory="/data/binaries"
+    # - JAVA_OPTS=${JAVA_OPTS} -Dfcrepo.modeshape.configuration="classpath:/config/file-simple/repository.json" -Dfcrepo.object.directory="/data/objects" -Dfcrepo.binary.directory="/data/binaries"
 
   db:
     image: mysql:5.6
