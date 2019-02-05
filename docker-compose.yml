@@ -8,6 +8,8 @@ services:
       - fedora
       - redis
       - solr
+      - fedora_test
+      - solr_test
     env_file:
       - ./.env.sample
     environment:
