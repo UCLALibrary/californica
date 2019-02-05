@@ -9,12 +9,12 @@ development:
 
 test:
   <<: *default
-  url: <%= ENV['FEDORA_URL'] || 'http://127.0.0.1:8986/rest' %>
-  base_path: <%= ENV['FEDORA_BASE_PATH'] || '/test' %>
+  url: <%= ENV['FEDORA_TEST_URL'] || 'http://127.0.0.1:8986/rest' %>
+  base_path: <%= ENV['FEDORA_TEST_BASE_PATH'] || '/test' %>
 
 production:
   user: <%= ENV['FEDORA_USER'] %>
   password: <%= ENV['FEDORA_PASSWORD'] %>
   url: <%= ENV['FEDORA_URL'] %>
   base_path: <%= ENV['FEDORA_BASE_PATH'] || '/prod' %>
-  request: { timeout: 7200, open_timeout: 60}
+  request: { timeout: 7200, open_timeout: 60 }

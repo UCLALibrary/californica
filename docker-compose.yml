@@ -5,29 +5,47 @@ services:
     image: uclalibrary/californica:latest
     depends_on:
       - db
-      - fcrepo
+      - fedora
       - redis
       - solr
+      - fedora_test
+      - solr_test
     env_file:
       - ./.env.sample
-      - ./docker/samvera-docker.env
+    environment:
+      CSV_FILE: /opt/data/sample_data_set_la_daily_news/dlcs-ladnn-2018-09-06.csv
+      DATABASE_HOST: db
+      FEDORA_URL: http://fedora:8080/rest
+      FEDORA_BASE_PATH: /dev
+      FEDORA_TEST_URL: http://fedora_test:8080/rest
+      FEDORA_TEST_BASE_PATH: /test
+      IMPORT_FILE_PATH: /opt/data/ladailynews/image/
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_URL: redis://redis:6379/0
+      SOLR_URL: http://solr:8983/solr/californica
+      SOLR_TEST_URL: http://solr_test:8983/solr/californica
     ports:
       - "3000:3000"
     volumes:
       - .:/californica
       - ./data:/opt/data
       - bundle_dir:/usr/local/bundle
+      - log:/californica/log
+      - tmp:/californica/tmp
     working_dir: /californica
 
-  fcrepo:
-    image: cbeer/fcrepo4:4.7
+  fedora:
+    image: nulib/fcrepo4:4.7.5
     ports:
-      - 8080:8080
+      - "8984:8080"
     volumes:
       - fcrepo_data:/data
-    environment:
-      - JAVA_OPTS=-Dfcrepo.modeshape.configuration="classpath:/config/file-simple/repository.json" -Dfcrepo.object.directory="/data/objects" -Dfcrepo.binary.directory="/data/binaries"
-      # - JAVA_OPTS=${JAVA_OPTS} -Dfcrepo.modeshape.configuration="classpath:/config/file-simple/repository.json" -Dfcrepo.object.directory="/data/objects" -Dfcrepo.binary.directory="/data/binaries"
+
+  fedora_test:
+    image: nulib/fcrepo4:4.7.5
+    ports:
+      - "8986:8080"
 
   db:
     image: mysql:5.6
@@ -35,7 +53,7 @@ services:
       - ./docker/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
       - mysql_data:/var/lib/mysql
     ports:
-      - 3306:3306
+      - "3306:3306"
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       # MYSQL_USER: californica
@@ -46,7 +64,7 @@ services:
     volumes:
       - redis_data:/data
     ports:
-      - 6379:6379
+      - "6379:6379"
 
   solr:
     build:
@@ -55,7 +73,14 @@ services:
     volumes:
       - solr_data:/opt/solr/server/solr/mycores/californica/data
     ports:
-      - 8983:8983
+      - "8983:8983"
+
+  solr_test:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.solr
+    ports:
+      - "8985:8983"
 
   # iiif:
   #   image: uclalibrary/cantaloupe
@@ -72,6 +97,8 @@ services:
 volumes:
   bundle_dir:
   fcrepo_data:
+  log:
   mysql_data:
   redis_data:
   solr_data:
+  tmp:
