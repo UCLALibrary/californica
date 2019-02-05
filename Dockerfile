@@ -10,6 +10,13 @@ ENV PATH "/fits:$PATH"
 # Install system dependencies
 RUN apt-get update -qq && apt-get install -y mysql-client build-essential libpq-dev nodejs imagemagick libreoffice ffmpeg unzip
 
+# Set up user
+# RUN groupadd -r --gid 3000 docker && \
+#   useradd -r --uid 3000 --gid 3000 docker
+# RUN mkdir /home/docker
+# RUN chown docker:docker /home/docker
+# USER docker
+
 # Install Ruby Gems
 RUN gem install bundler
 ENV BUNDLE_PATH /usr/local/bundle
