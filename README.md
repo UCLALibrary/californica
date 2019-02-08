@@ -16,6 +16,8 @@
 
 ## Development
 
+TO DO: Move this [into the wiki](https://github.com/UCLALibrary/californica/wiki)
+
 ### Prerequisites
 
 The developer environment relies on Docker Engine and Docker Compose. Make sure you're running the latest versions.
@@ -37,7 +39,7 @@ The first time you create the environment, you'll also need to provision the dat
 
     docker-compose run web bash
     bundle exec rake db:setup
-    bundle exec rake californica:ingest:sample
+    bundle exec rake californica:ingest:ladnn_sample
 
 If this succeeds without error, you've successfully created your Californica environment and loaded some sample records.
 
