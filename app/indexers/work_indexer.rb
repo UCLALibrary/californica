@@ -16,6 +16,7 @@ class WorkIndexer < Hyrax::WorkIndexer
       solr_doc['human_readable_rights_statement_tesim'] = human_readable_rights_statement
       solr_doc['year_isim'] = years
       solr_doc['identifier_ssim'] = object.identifier
+      solr_doc['ark_ssi'] = get_ark_from_identifier(object.identifier)
     end
   end
 
@@ -39,4 +40,9 @@ class WorkIndexer < Hyrax::WorkIndexer
     return nil if integer_years.blank?
     integer_years
   end
+
+  def get_ark_from_identifier(identifiers=[])
+    identifiers.find { |id| id.include?("ark:/") }
+  end
+
 end
