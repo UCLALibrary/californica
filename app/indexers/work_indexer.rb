@@ -41,8 +41,7 @@ class WorkIndexer < Hyrax::WorkIndexer
     integer_years
   end
 
-  def get_ark_from_identifier(identifiers=[])
+  def get_ark_from_identifier(identifiers = [])
     identifiers.find { |id| id.include?("ark:/") }
   end
-
 end
