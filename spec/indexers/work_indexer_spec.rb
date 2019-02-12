@@ -82,4 +82,13 @@ RSpec.describe WorkIndexer do
       expect(solr_document['identifier_ssim']).to contain_exactly('123', '456')
     end
   end
+
+  describe 'ark' do
+    let(:attributes) { { identifier: ['123', 'ark:/67531/metadc1213294/', '456'] } }
+
+    # To be able use the ark as the Blacklight identifier we need it to be a single value string.
+    it 'indexes as a single value "string"' do
+      expect(solr_document['ark_ssi']).to eq 'ark:/67531/metadc1213294/'
+    end
+  end
 end
