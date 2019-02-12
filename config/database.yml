@@ -1,12 +1,11 @@
 default: &default
-  adapter:      <%= ENV['DATABASE_ADAPTER'] || 'mysql2' %>
-  pool:         <%= ENV['DATABASE_POOL'] || 5 %>
-  timeout:      5000
-  host:         <%= ENV['DATABASE_HOST'] || 'localhost' %>
+  adapter: <%= ENV['DATABASE_ADAPTER'] || 'mysql2' %>
+  pool: <%= ENV['DATABASE_POOL'] || 5 %>
+  timeout: 5000
+  host: <%= ENV['DATABASE_HOST'] || '127.0.0.1' %>
   min_messages: <%= ENV['DATABASE_MIN_MESSAGES'] || 'warning' %>
-  username:     <%= ENV['DATABASE_USERNAME'] || 'californica' %>
-  password:     <%= ENV['DATABASE_PASSWORD'] %>
-
+  username: <%= ENV['DATABASE_USERNAME'] || 'californica' %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
 
 development:
   <<: *default
@@ -21,6 +20,6 @@ test:
 
 production:
   <<: *default
-  adapter:  'mysql2'
+  adapter: "mysql2"
   database: <%= ENV['DATABASE_NAME'] %>
-  pool:     <%= ENV['DATABASE_POOL'] || 20 %>
+  pool: <%= ENV['DATABASE_POOL'] || 20 %>
