@@ -14,6 +14,9 @@ require 'ffaker'
 
 ENV['IMPORT_FILE_PATH'] = "#{::Rails.root}/spec/fixtures"
 ENV['MISSING_FILE_LOG'] = "#{::Rails.root}/log/missing_files_test"
+ENV['IMPORT_PATH'] = "#{::Rails.root}/spec/fixtures"
+ENV['UPLOAD_PATH'] = "#{::Rails.root}/tmp/uploads"
+ENV['CACHE_PATH'] = "#{::Rails.root}/tmp/uploads/cache"
 
 # Allow Hyrax to upload files from the fixtures directory. Needed for testing
 # file attachment.
