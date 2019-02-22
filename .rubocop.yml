@@ -24,6 +24,7 @@ Metrics/LineLength:
     - 'spec/tasks/ingest_spec.rb'
     - 'app/importers/rights_statement_validator.rb'
     - 'spec/features/import_and_show_work_spec.rb'
+    - app/importers/actor_record_importer.rb
 
 Metrics/MethodLength:
   Enabled: true

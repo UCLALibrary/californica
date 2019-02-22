@@ -6,10 +6,16 @@ RSpec.describe ActorRecordImporter, :clean do
     described_class.new(error_stream: error_stream, info_stream: info_stream)
   end
 
-  let(:record)        { Darlingtonia::InputRecord.from(metadata: metadata_hash) }
+  let(:record)        { Darlingtonia::InputRecord.from(metadata: metadata, mapper: CalifornicaMapper.new) }
   let(:error_stream)  { [] }
   let(:info_stream)   { [] }
-  let(:metadata_hash) { { 'title' => ['Comet in Moominland'] } }
+  let(:metadata) do
+    {
+      'Title' => 'Comet in Moominland',
+      'language' => 'English',
+      'visibility' => 'open'
+    }
+  end
 
   describe '#import' do
     include_context 'with workflow'
@@ -21,30 +27,35 @@ RSpec.describe ActorRecordImporter, :clean do
     end
 
     it 'writes to the info_stream before and after create' do
-      expect { importer.import(record: record) }
-        .to change { info_stream }
-        .to contain_exactly(/^Creating record/, /^Record created/)
+      importer.import(record: record)
+      expect(importer.info_stream.first).to match(/event: record_import_started/)
+      expect(importer.info_stream.last).to match(/event: record_created/)
     end
 
-    context 'with remote_files' do
-      let(:metadata_hash) do
-        { 'title'        => ['Comet in Moominland'],
-          'remote_files' => [{ url: "file://#{::Rails.root}/spec/fixtures/clusc_1_1_00010432a.tif" }] }
+    context 'with masterImageName' do
+      let(:metadata) do
+        {
+          'Title' => 'Comet in Moominland',
+          'masterImageName' => "clusc_1_1_00010432a.tif"
+        }
       end
 
-      it 'attaches a remote file' do
+      it 'attaches a file' do
+        ENV['IMPORT_PATH'] = fixture_path
         expect { importer.import(record: record) }
           .to have_enqueued_job(IngestLocalFileJob)
       end
     end
 
     context 'with an invalid input record' do
-      let(:record) { Darlingtonia::InputRecord.new } # no title
+      let(:metadata) do
+        { 'visibility' => 'open' }
+      end
 
       it 'logs an error' do
         expect { importer.import(record: record) }
-          .to change { error_stream }
-          .to contain_exactly(/^Validation failed: Title/)
+          .to change { error_stream.first }
+          .to match(/^event: validation_failed/)
       end
     end
   end

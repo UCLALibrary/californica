@@ -57,8 +57,14 @@ RSpec.describe CalifornicaImporter, :clean do
 
     context 'when the records error' do
       let(:ldp_error)    { Ldp::PreconditionFailed }
-      let(:error_record) { instance_double('Darlingtonia::InputRecord') }
-
+      let(:error_record) { Darlingtonia::InputRecord.from(metadata: metadata, mapper: CalifornicaMapper.new) }
+      let(:metadata) do
+        {
+          'Title' => 'Comet in Moominland',
+          'language' => 'English',
+          'visibility' => 'open'
+        }
+      end
       before do
         allow(error_record).to receive(:attributes).and_raise(ldp_error)
         allow(importer.parser).to receive(:records).and_return([error_record])
