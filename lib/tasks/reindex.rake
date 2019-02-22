@@ -15,7 +15,7 @@ task reindex: :environment do
   models_to_reindex = [::Collection] + Hyrax.config.curation_concerns
   models_to_reindex.each do |klass|
     rows = klass.count
-    puts "Re-indexing #{klass.count} #{klass} records: #{Time.zone.now.localtime}"
+    puts "Re-indexing #{rows} #{klass} records: #{Time.zone.now.localtime}"
 
     id_list(klass, rows).each do |id|
       next unless ActiveFedora::Base.exists?(id)
