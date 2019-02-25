@@ -3,7 +3,7 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 RSpec.feature 'Import and Display a Work', :clean, js: false do
-  subject(:importer) { CalifornicaImporter.new(file) }
+  subject(:importer) { CalifornicaImporter.new(file, collection_id: collection.id) }
   let(:file)       { File.open(csv_file) }
   let(:csv_file)   { File.join(fixture_path, 'coordinates_example.csv') }
   let(:collection) { FactoryBot.create(:collection_lw) }
@@ -16,8 +16,13 @@ RSpec.feature 'Import and Display a Work', :clean, js: false do
   end
 
   context "after import" do
-    it "displays expected fields on show work page" do
+    it "adds works to the specified collection" do
       expect(collection.title.first).to match(/Collection Title/)
+      importer.import
+      work = Work.last
+      expect(work.member_of_collections).to eq [collection]
+    end
+    it "displays expected fields on show work page" do
       importer.import
       work = Work.last
       visit("/concern/works/#{work.id}")

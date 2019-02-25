@@ -4,7 +4,7 @@
 class CalifornicaImporter
   attr_reader :error_log, :ingest_log
 
-  def initialize(csv_file)
+  def initialize(csv_file, collection_id: nil)
     @csv_file = csv_file
     raise "Cannot find expected input file #{csv_file}" unless File.exist?(csv_file)
     setup_logging
