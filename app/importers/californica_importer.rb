@@ -2,18 +2,27 @@
 
 # Import CSV files according to UCLA ingest rules
 class CalifornicaImporter
-  attr_reader :error_log, :ingest_log
+  attr_reader :error_log, :ingest_log, :collection_id, :depositor_id
 
-  def initialize(csv_file)
+  def initialize(csv_file, collection_id: nil, depositor_id: nil)
     @csv_file = csv_file
+    @collection_id = collection_id
+    @depositor_id = depositor_id
     raise "Cannot find expected input file #{csv_file}" unless File.exist?(csv_file)
     setup_logging
   end
 
   def import
+    raise "Cannot find expected input file #{@csv_file}" unless File.exist?(@csv_file)
+
+    attrs = {
+      collection_id: @collection_id,
+      depositor_id: @depositor_id
+    }
+
     start_time = Time.zone.now
     @info_stream << "Beginning ingest process at #{start_time}"
-    record_importer = ActorRecordImporter.new(error_stream: @error_stream, info_stream: @info_stream)
+    record_importer = ActorRecordImporter.new(error_stream: @error_stream, info_stream: @info_stream, attributes: attrs)
     Darlingtonia::Importer.new(parser: parser, record_importer: record_importer).import if parser.validate
     end_time = Time.zone.now
     elapsed_time = end_time - start_time
