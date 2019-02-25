@@ -6,6 +6,7 @@ RSpec.feature 'Import and Display a Work', :clean, js: false do
   subject(:importer) { CalifornicaImporter.new(file) }
   let(:file)       { File.open(csv_file) }
   let(:csv_file)   { File.join(fixture_path, 'coordinates_example.csv') }
+  let(:collection) { FactoryBot.create(:collection_lw) }
 
   # Cleanup log files after each test run
   after do
@@ -16,6 +17,7 @@ RSpec.feature 'Import and Display a Work', :clean, js: false do
 
   context "after import" do
     it "displays expected fields on show work page" do
+      expect(collection.title.first).to match(/Collection Title/)
       importer.import
       work = Work.last
       visit("/concern/works/#{work.id}")
