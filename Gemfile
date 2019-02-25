@@ -17,6 +17,7 @@ gem 'pkg-config', '~> 1.1'
 # Error reporting tool
 gem 'rollbar'
 
+gem "bootstrap-sass", ">= 3.4.1"
 # Use mysql
 gem 'mysql2', '~> 0.5'
 # Use Puma as the app server
