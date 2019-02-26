@@ -10,10 +10,10 @@ class ActorRecordImporter < Darlingtonia::HyraxRecordImporter
 
   ##
   # @param creator   [User]
-  def initialize(*)
-    self.creator = User.find_or_create_system_user(DEFAULT_CREATOR_KEY)
-
-    super
+  def initialize(error_stream: Darlingtonia.config.default_error_stream,
+                 info_stream: Darlingtonia.config.default_info_stream,
+                 attributes: {})
+    super(error_stream: error_stream, info_stream: info_stream, attributes: attributes)
   end
 
   # I am commenting this out for now, so we will go back to using the default Darlingtonia import process, which includes the full actor stack.
