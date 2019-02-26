@@ -2,6 +2,7 @@
 
 # Import CSV files according to UCLA ingest rules
 class CalifornicaImporter
+  DEDUPLICATION_FIELD = 'identifier'
   attr_reader :error_log, :ingest_log, :collection_id, :depositor_id
 
   def initialize(csv_file, collection_id: nil, depositor_id: nil)
@@ -17,7 +18,8 @@ class CalifornicaImporter
 
     attrs = {
       collection_id: @collection_id,
-      depositor_id: @depositor_id
+      depositor_id: @depositor_id,
+      deduplication_field: DEDUPLICATION_FIELD
     }
 
     start_time = Time.zone.now

@@ -16,7 +16,28 @@ RSpec.feature 'Import and Display a Work', :clean, js: false do
     File.delete(ENV['MISSING_FILE_LOG']) if File.exist?(ENV['MISSING_FILE_LOG'])
   end
 
-  context "after import" do
+  context "importing the same object twice" do
+    let(:first_csv_file)   { File.open(File.join(fixture_path, 'coordinates_example.csv')) }
+    let(:second_csv_file)  { File.open(File.join(fixture_path, 'coordinates_example_update.csv')) }
+    let(:first_importer) { CalifornicaImporter.new(first_csv_file, collection_id: collection.id, depositor_id: user.user_key) }
+    let(:second_importer) { CalifornicaImporter.new(second_csv_file, collection_id: collection.id, depositor_id: user.user_key) }
+    after do
+      first_csv_file.close
+      second_csv_file.close
+    end
+    it 'updates existing records if the ARK matches' do
+      first_importer.import
+      work = Work.last
+      expect(work.funding_note.first).to eq "Fake Funding Note"
+      expect(work.medium.first).to eq "Fake Medium"
+      second_importer.import
+      work.reload
+      expect(work.funding_note.first).to eq "Better Funding Note"
+      expect(work.medium).to eq []
+    end
+  end
+
+  context "importing a CSV" do
     it "adds works to the specified collection" do
       expect(collection.title.first).to match(/Collection Title/)
       importer.import
