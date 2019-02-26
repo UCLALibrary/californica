@@ -8,8 +8,7 @@ end
 
 ruby '>= 2.4.0', '<= 2.5.99'
 
-# gem 'darlingtonia', '>= 3.0.5'
-gem "darlingtonia", github: "curationexperts/darlingtonia", branch: "update_from_ark"
+gem 'darlingtonia', '~> 3.1'
 
 gem 'hyrax', '~> 2.2', '>= 2.3.3'
 gem 'rails', '~> 5.1.6'

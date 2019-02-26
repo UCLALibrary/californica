@@ -1,11 +1,3 @@
-GIT
-  remote: https://github.com/curationexperts/darlingtonia.git
-  revision: eb4f384975dc7f6f63dd93c2fe6229142790ba6a
-  branch: update_from_ark
-  specs:
-    darlingtonia (3.0.5)
-      active-fedora (>= 11.5.2)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -196,6 +188,8 @@ GEM
       thor
     crass (1.0.4)
     daemons (1.3.1)
+    darlingtonia (3.1.0)
+      active-fedora (>= 11.5.2)
     database_cleaner (1.7.0)
     declarative (0.0.10)
     declarative-option (0.1.0)
@@ -866,7 +860,7 @@ DEPENDENCIES
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
   coveralls
-  darlingtonia!
+  darlingtonia (~> 3.1)
   database_cleaner
   devise
   devise-guests (~> 0.6)
