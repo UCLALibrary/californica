@@ -133,6 +133,15 @@ Use the `rake californica:ingest:csv` task, and specify the CSV_FILE and IMPORT_
 CSV_FILE=/opt/data/ladnn/dlcs-ladnn-2018-09-06.csv IMPORT_FILE_PATH=/opt/data/ladnn/ bundle exec rake californica:ingest:csv
 ```
 
+### Adding works to a collection
+1. Create a collection manually.
+  1. Make sure it is public.
+  1. Make sure you grant deposit rights to all registered users (Sharing --> Add Group --> Then add 'registered' to the deposit role).
+2. Note the id of the collection and specify it on the command line:
+```
+COLLECTION_ID=abc123 CSV_FILE=/opt/data/ladnn/dlcs-ladnn-2018-09-06.csv IMPORT_FILE_PATH=/opt/data/ladnn/ bundle exec rake californica:ingest:csv
+```
+
 ## What is Hyrax, what is Californica?
 
 _Hyrax_ is a [Rails Engine](http://guides.rubyonrails.org/engines.html#what-are-engines-questionmark)

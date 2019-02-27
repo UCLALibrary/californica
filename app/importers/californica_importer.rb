@@ -3,11 +3,13 @@
 # Import CSV files according to UCLA ingest rules
 class CalifornicaImporter
   DEDUPLICATION_FIELD = 'identifier'
+  COLLECTION_ID = ENV['COLLECTION_ID']
+
   attr_reader :error_log, :ingest_log, :collection_id, :depositor_id
 
   def initialize(csv_file, collection_id: nil, depositor_id: nil)
     @csv_file = csv_file
-    @collection_id = collection_id
+    @collection_id = collection_id || COLLECTION_ID
     @depositor_id = depositor_id
     raise "Cannot find expected input file #{csv_file}" unless File.exist?(csv_file)
     setup_logging
