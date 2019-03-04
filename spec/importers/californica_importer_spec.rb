@@ -38,7 +38,7 @@ RSpec.describe CalifornicaImporter, :clean do
 
     it "records the time it took to ingest" do
       importer.import
-      expect(File.readlines(importer.ingest_log_filename).each(&:chomp!).last).to match(/Elapsed time/)
+      expect(File.readlines(importer.ingest_log_filename).each(&:chomp!).last).to match(/elapsed_time/)
     end
 
     it "records the number of records ingested" do

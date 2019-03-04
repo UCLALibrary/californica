@@ -8,7 +8,8 @@ end
 
 ruby '>= 2.4.0', '<= 2.5.99'
 
-gem 'darlingtonia', '>= 3.1.1'
+# gem 'darlingtonia', '>= 3.1.1'
+gem "darlingtonia", github: "curationexperts/darlingtonia", branch: "pared_down_update_stack"
 
 gem 'hyrax', '~> 2.2', '>= 2.3.3'
 gem 'rails', '~> 5.1.6'
