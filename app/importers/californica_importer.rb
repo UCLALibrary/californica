@@ -24,14 +24,8 @@ class CalifornicaImporter
       deduplication_field: DEDUPLICATION_FIELD
     }
 
-    start_time = Time.zone.now
-    @info_stream << "Beginning ingest process at #{start_time}"
     record_importer = ActorRecordImporter.new(error_stream: @error_stream, info_stream: @info_stream, attributes: attrs)
-    Darlingtonia::Importer.new(parser: parser, record_importer: record_importer).import if parser.validate
-    end_time = Time.zone.now
-    elapsed_time = end_time - start_time
-    @info_stream << "Finished ingest process at #{end_time}"
-    @info_stream << "Elapsed time: #{elapsed_time}"
+    Darlingtonia::Importer.new(parser: parser, record_importer: record_importer, info_stream: @info_stream, error_stream: @error_stream).import if parser.validate
   end
 
   def parser

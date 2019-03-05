@@ -3,9 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe CalifornicaCsvParser do
-  subject(:parser) { described_class.new(file: file) }
-  let(:file)       { File.open(csv_path) }
-  let(:csv_path)   { 'spec/fixtures/example.csv' }
+  subject(:parser)    { described_class.new(file: file) }
+  let(:file)          { File.open(csv_path) }
+  let(:csv_path)      { 'spec/fixtures/example.csv' }
+  let(:info_stream)   { [] }
+  let(:error_stream)  { [] }
 
   after do
     ENV['SKIP'] = '0'
@@ -15,7 +17,7 @@ RSpec.describe CalifornicaCsvParser do
     include_context 'with workflow'
 
     let(:importer) do
-      Darlingtonia::Importer.new(parser: parser, record_importer: ActorRecordImporter.new)
+      Darlingtonia::Importer.new(parser: parser, record_importer: ActorRecordImporter.new, info_stream: info_stream, error_stream: error_stream)
     end
 
     it 'imports records' do

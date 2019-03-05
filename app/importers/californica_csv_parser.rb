@@ -40,20 +40,12 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
   def records
     return enum_for(:records) unless block_given?
     file.rewind
-    actual_records_processed = 0
-    expected_records_processed = 0
-
     # use the CalifornicaMapper
     CSV.parse(file.read, headers: true).each_with_index do |row, index|
       next unless index >= skip
       next if row.to_h.values.all?(&:nil?)
       yield Darlingtonia::InputRecord.from(metadata: row, mapper: CalifornicaMapper.new)
-      actual_records_processed += 1
-      expected_records_processed = index + 1 # index starts with 0, we want to start with 1
     end
-
-    info_stream << "Expected #{expected_records_processed} records"
-    info_stream << "Actually processed #{actual_records_processed} records"
   rescue CSV::MalformedCSVError
     # error reporting for this case is handled by validation
     []

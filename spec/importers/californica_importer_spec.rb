@@ -38,12 +38,12 @@ RSpec.describe CalifornicaImporter, :clean do
 
     it "records the time it took to ingest" do
       importer.import
-      expect(File.readlines(importer.ingest_log_filename).each(&:chomp!).last).to match(/Elapsed time/)
+      expect(File.readlines(importer.ingest_log_filename).each(&:chomp!).last).to match(/elapsed_time/)
     end
 
     it "records the number of records ingested" do
       importer.import
-      expect(File.read(importer.ingest_log_filename)).to match(/Actually processed 1 records/)
+      expect(File.read(importer.ingest_log_filename)).to match(/successful_record_count: 1/)
     end
 
     context 'when the image file is missing' do

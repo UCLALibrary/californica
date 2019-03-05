@@ -38,6 +38,12 @@ namespace :californica do
       CalifornicaCsvCleaner.new(file: csv_file).clean
     end
 
+    desc 'Remove data indicated by CSV_FILE'
+    task clean: [:environment] do
+      puts "Removing data indicated by CSV_FILE"
+      CalifornicaCsvCleaner.new(file: CSV_FILE).clean
+    end
+
     # Note: This is a super-extra thorough clean out because we were hitting timeout
     # errors. Much of this might be overkill at this point and a simple ActiveFedora::Cleaner.clean!
     # should probably suffice in most development environments.
@@ -62,7 +68,7 @@ namespace :californica do
       end
     end
 
-    desc "Ingest a collection -- Use CSV_FILE and IMPORT_FILE_PATH to specify data locations."
+    desc "Ingest a collection -- Use CSV_FILE and IMPORT_FILE_PATH to specify data locations and COLLECTION_ID to indicate collection membership."
     task csv: :environment do
       unless CSV_FILE && IMPORT_FILE_PATH
         puts "Specify import parameters like this: CSV_FILE=/path/to/file.csv IMPORT_FILE_PATH=/path/to/files/ COLLECTION_ID=abc123 bundle exec rake californica:ingest"
