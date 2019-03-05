@@ -18,6 +18,7 @@ Metrics/BlockLength:
     - 'spec/**/*'
     - 'lib/tasks/ingest.rake'
     - 'lib/tasks/derivatives.rake'
+    - app/models/ucla_metadata.rb
 
 Metrics/LineLength:
   Exclude:
