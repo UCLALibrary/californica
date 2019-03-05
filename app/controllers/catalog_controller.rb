@@ -48,7 +48,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('subject', :facetable), limit: 5
     config.add_facet_field solr_name('language', :facetable), limit: 5
     config.add_facet_field solr_name('file_format', :facetable), limit: 5
-    config.add_facet_field solr_name('member_of_collection_ids', :symbol), limit: 5, label: 'Collections', helper_method: :collection_title_by_id
+    config.add_facet_field solr_name('member_of_collections', :symbol), limit: 5, label: 'Collection'
     config.add_facet_field solr_name('repository', :facetable), limit: 5
     config.add_facet_field solr_name('normalized_date', :facetable), label: 'Normalized Date', limit: 5
     config.add_facet_field solr_name('named_subject', :facetable), label: 'Names', limit: 5

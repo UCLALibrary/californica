@@ -89,6 +89,6 @@ RSpec.feature 'Import and Display a Work', :clean, js: false do
     importer.import
     visit("/catalog?search_field=all_fields&q=")
     facet_headings = page.all(:css, 'h3.facet-field-heading/a').to_a.map(&:text)
-    expect(facet_headings).to contain_exactly("Subject", "Resource type", "Genre", "Names", "Location", "Normalized Date", "Extent", "Medium", "Dimensions", "Language")
+    expect(facet_headings).to contain_exactly("Subject", "Resource type", "Genre", "Names", "Location", "Normalized Date", "Extent", "Medium", "Dimensions", "Language", "Collection")
   end
 end
