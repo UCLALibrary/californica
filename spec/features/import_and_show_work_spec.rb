@@ -73,7 +73,6 @@ RSpec.feature 'Import and Display a Work', :clean, js: false do
       expect(page).to have_content "No linguistic content" # language
       expect(page).to have_content "Famous Photographer" # photographer
       expect(page).to have_content "34.05707, -118.239577" # geographic_coordinates, a.k.a. latitude and longitude
-      expect(page).to have_content "DLCS Collection Name"
       expect(page).to have_content "Los Angeles Daily News Negatives. Department of Special Collections, Charles E. Young Research Library, University of California at Los Angeles." # relation.isPartOf
     end
     it "displays expected fields on search results page" do
@@ -90,6 +89,6 @@ RSpec.feature 'Import and Display a Work', :clean, js: false do
     importer.import
     visit("/catalog?search_field=all_fields&q=")
     facet_headings = page.all(:css, 'h3.facet-field-heading/a').to_a.map(&:text)
-    expect(facet_headings).to contain_exactly("Subject", "Resource type", "Genre", "Names", "Location", "Normalized Date", "Extent", "Medium", "Dimensions", "Language", "DLCS Collection Name")
+    expect(facet_headings).to contain_exactly("Subject", "Resource type", "Genre", "Names", "Location", "Normalized Date", "Extent", "Medium", "Dimensions", "Language")
   end
 end
