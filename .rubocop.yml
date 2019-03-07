@@ -32,6 +32,7 @@ Metrics/MethodLength:
   Exclude:
     - 'app/importers/californica_csv_parser.rb'
     - app/importers/actor_record_importer.rb
+    - app/forms/hyrax/californica_collections_form.rb
 
 RSpec/DescribeClass:
   Exclude:
