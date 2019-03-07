@@ -15,6 +15,9 @@ module Californica
     config.action_mailer.default_url_options = { host: ENV["RAILS_HOST"] || 'localhost' }
 
     config.active_job.queue_adapter = :sidekiq
+    config.to_prepare do
+      Hyrax::Dashboard::CollectionsController.prepend Hyrax::Dashboard::CollectionsControllerOverride
+    end
   end
 end
 Rails.application.routes.default_url_options[:host] = ENV["RAILS_HOST"] || 'localhost'
