@@ -63,7 +63,7 @@ class SolrDocument
   end
 
   def local_identifier
-    self[Solrizer.solr_name('local_identifier')]
+    self[:local_identifier_ssm]
   end
 
   def longitude

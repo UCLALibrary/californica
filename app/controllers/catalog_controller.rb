@@ -101,7 +101,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('funding_note', :stored_searchable)
     config.add_show_field solr_name('genre', :stored_searchable)
     config.add_show_field solr_name('location', :stored_searchable)
-    config.add_show_field solr_name('local_identifier', :stored_searchable)
+    config.add_show_field 'local_identifier_ssm'
     config.add_show_field solr_name('medium', :stored_searchable)
     config.add_show_field solr_name('named_subject', :stored_searchable)
     config.add_show_field solr_name('normalized_date', :stored_searchable)
@@ -127,7 +127,7 @@ class CatalogController < ApplicationController
     # solr request handler? The one set in config[:default_solr_parameters][:qt],
     # since we aren't specifying it otherwise.
     config.add_search_field('all_fields', label: 'All Fields') do |field|
-      search_fields = 'title_tesim subject_tesim named_subject_tesim location_tesim description_tesim caption_tesim identifier_tesim local_identifier_tesim normalized_date_tesim photographer_tesim'
+      search_fields = 'title_tesim subject_tesim named_subject_tesim location_tesim description_tesim caption_tesim identifier_tesim local_identifier_sim normalized_date_tesim photographer_tesim'
 
       field.solr_parameters = {
         qf: search_fields,

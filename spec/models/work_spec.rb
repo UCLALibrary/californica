@@ -47,7 +47,7 @@ RSpec.describe Work do
   it "has local_identifier" do
     work.local_identifier = ['local_identifier']
     expect(work.local_identifier).to include 'local_identifier'
-    expect(work.resource.dump(:ttl)).to match(/purl.org\/dc\/elements\/1.1\/identifier/)
+    expect(work.resource.dump(:ttl)).to match(/id.loc.gov\/vocabulary\/identifiers\/local/)
   end
 
   it "has funding_note" do

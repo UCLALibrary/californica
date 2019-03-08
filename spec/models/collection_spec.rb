@@ -47,7 +47,7 @@ RSpec.describe Collection do
   it "has local_identifier" do
     collection.local_identifier = ['local_identifier']
     expect(collection.local_identifier).to include 'local_identifier'
-    expect(collection.resource.dump(:ttl)).to match(/purl.org\/dc\/elements\/1.1\/identifier/)
+    expect(collection.resource.dump(:ttl)).to match(/id.loc.gov\/vocabulary\/identifiers\/local/)
   end
 
   it "has funding_note" do
