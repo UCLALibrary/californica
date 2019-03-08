@@ -1,0 +1,4 @@
+<% ursus_url = ::Ursus::Record.url_for(presenter) %>
+<% if ursus_url %>
+  <p> <%= link_to 'View this record in Ursus', ursus_url %> </p>
+<% end %>
