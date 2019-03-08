@@ -1,0 +1,5 @@
+<%= render 'hyrax/base/ursus_link', presenter: presenter %>
+
+<% presenter.description.each do |description| %>
+  <%= simple_format(auto_link(description)) %>
+<% end %>
