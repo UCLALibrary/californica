@@ -35,8 +35,8 @@ module UclaMetadata
       index.as :stored_searchable, :facetable
     end
 
-    property :local_identifier, predicate: ::RDF::Vocab::DC11.identifier do |index|
-      index.as :stored_searchable
+    property :local_identifier, predicate: ::RDF::Vocab::Identifiers.local do |index|
+      index.as :displayable, :facetable
     end
 
     property :longitude, predicate: ::RDF::Vocab::EXIF.gpsLongitude do |index|
