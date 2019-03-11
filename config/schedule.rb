@@ -30,12 +30,7 @@ every :day, at: '3:00am' do
   command "/usr/bin/find /tmp -type f -mtime +7 -user deploy -execdir /bin/rm -- {} \\;"
 end
 
-# Delete everything and give Fedora time to process the request
-# every :day, at: '1:00am' do
-#   rake "californica:ingest:clean"
-# end
-
-# Reingest news negatives collection daily
-# every :day, at: '2:00am' do
-#   rake "californica:ingest:reingest"
-# end
+# Remove files in /opt/uploads owned by the deploy user that are older than 7 days
+every :day, at: '3:00am' do
+  command "/usr/bin/find /opt/uploads -type f -mtime +7 -user deploy -execdir /bin/rm -- {} \\;"
+end
