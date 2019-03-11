@@ -4,7 +4,6 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 RSpec.feature 'Show a collection', :clean do
-  let(:collection) { Collection.create!(collection_attrs) }
   let(:collection) { FactoryBot.create(:collection_lw, user: admin) }
   let(:admin) { FactoryBot.create :admin }
 
