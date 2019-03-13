@@ -31,3 +31,5 @@
 .env.production
 .env.test
 coverage
+
+public/branding/
