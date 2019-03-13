@@ -2,6 +2,8 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  get 'branding_info/:id', to: 'branding_info#show', as: 'branding_info'
+
   root 'catalog#index'
   mount Riiif::Engine => 'images', as: :riiif if Hyrax.config.iiif_image_server?
   mount Blacklight::Engine => '/'
