@@ -80,7 +80,7 @@ end
 # This creates the default admin user
 after 'deploy:published', 'rails:rake:db:seed'
 
-prior_to "bundler:install", "bundler:gem_install"
+before "bundler:install", "bundler:gem_install"
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
