@@ -10,13 +10,15 @@ class WorkIndexer < Hyrax::WorkIndexer
   # this behavior
   include Hyrax::IndexesLinkedMetadata
 
+  # Handle ARK and identifier fields
+  include IndexesArk
+
   def generate_solr_document
     super.tap do |solr_doc|
       solr_doc['geographic_coordinates_ssim'] = coordinates
       solr_doc['human_readable_rights_statement_tesim'] = human_readable_rights_statement
       solr_doc['year_isim'] = years
-      solr_doc['identifier_ssim'] = object.identifier
-      solr_doc['ark_ssi'] = ark
+      index_ark_fields(solr_doc)
     end
   end
 
@@ -39,14 +41,5 @@ class WorkIndexer < Hyrax::WorkIndexer
     integer_years = YearParser.integer_years(object.normalized_date.to_a)
     return nil if integer_years.blank?
     integer_years
-  end
-
-  def ark
-    return if object.identifier.blank?
-    if object.identifier.first.start_with?('ark:/')
-      object.identifier.first
-    else
-      "ark:/" + object.identifier.first
-    end
   end
 end
