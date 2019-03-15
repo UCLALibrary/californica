@@ -144,7 +144,9 @@ Hyrax.config do |config|
   # If we have an external IIIF server, use it for image requests; else, use riiif
   config.iiif_image_url_builder = lambda do |file_id, base_url, size|
     if ENV['IIIF_SERVER_URL'].present?
-      ENV['IIIF_SERVER_URL'] + file_id.gsub('/', '%2F') + "/" + size + "/full/0/default.jpg"
+      iiif_url = ENV['IIIF_SERVER_URL'] + file_id.gsub('/', '%2F') + "/full/" + size + "/0/default.jpg"
+      Rails.logger.debug "event: iiif_image_request: #{iiif_url}"
+      iiif_url
     else
       Riiif::Engine.routes.url_helpers.image_url(file_id, host: base_url, size: size)
     end
