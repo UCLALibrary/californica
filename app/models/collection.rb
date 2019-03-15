@@ -7,4 +7,24 @@ class Collection < ActiveFedora::Base
   # You can replace these metadata if they're not suitable
   include Hyrax::BasicMetadata
   self.indexer = ::CollectionIndexer
+
+  # @param ark [String] The ARK
+  # @return [Collection] The Collection with that ARK
+  def self.find_by_ark(ark)
+    where(ark_ssi: ark).limit(1).first
+  end
+
+  # @param ark [String] The ARK
+  # @return [Collection] The Collection with that ARK
+  def self.find_or_create_by_ark(ark)
+    collection = find_by_ark(ark)
+    return collection if collection
+
+    Collection.create(
+      title: ["Collection #{ark}"],
+      identifier: [ark],
+      collection_type: Hyrax::CollectionType.find_or_create_default_collection_type,
+      visibility: Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
+    )
+  end
 end

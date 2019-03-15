@@ -101,6 +101,12 @@ FactoryBot.define do
   #                include `:with_nested_reindexing`
   #    it "returns the collection and its members", :with_nested_reindexing do
 
+  factory :collection do
+    sequence(:title) { |n| ["Collection #{n}"] }
+    visibility { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
+    collection_type { Hyrax::CollectionType.find_or_create_default_collection_type }
+  end
+
   factory :collection_lw, class: Collection do
     transient do
       user { create(:user) }
