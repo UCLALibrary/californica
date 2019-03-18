@@ -10,7 +10,7 @@ ruby '>= 2.4.0', '<= 2.5.99'
 
 gem 'darlingtonia', '>= 3.2.0'
 
-gem 'hyrax', '~> 2.2', '>= 2.3.3'
+gem 'hyrax', '2.5.0'
 gem 'rails', '~> 5.1.6'
 
 gem 'pkg-config', '~> 1.1'
