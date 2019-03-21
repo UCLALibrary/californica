@@ -136,6 +136,16 @@ RSpec.describe CalifornicaMapper do
         expect(mapper.repository).to contain_exactly("Repo 1", "Repo 2")
       end
     end
+
+    context 'when it contains MaRC relators' do
+      let(:metadata) do
+        { "Project Name" => "Another Collection",
+          "Name.repository" => "UCLA. $b Library Special Collections" }
+      end
+      it 'replaces them with a space' do
+        expect(mapper.repository).to contain_exactly("UCLA. Library Special Collections")
+      end
+    end
   end
 
   describe '#subject' do
@@ -194,6 +204,17 @@ RSpec.describe CalifornicaMapper do
         it 'returns the same value' do
           expect(mapper.rights_statement).to eq 'something invalid'
         end
+      end
+    end
+  end
+
+  describe '#photographer' do
+    context 'when it contains MaRC relators' do
+      let(:metadata) do
+        { "Name.photographer" => "Connell, Will, $d 1898-1961" }
+      end
+      it 'replaces them with a space' do
+        expect(mapper.photographer).to contain_exactly("Connell, Will, 1898-1961")
       end
     end
   end

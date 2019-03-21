@@ -83,12 +83,18 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     end
   end
 
+  # Replace marc codes with double dashes with no surrounding spaces
+  def photographer
+    map_field(:photographer)&.map { |a| a.gsub(/ \$[a-z] /, ' ') }
+  end
+
   # Hard-code repository for LADNN collection. Story #121
   def repository
     if ladnn?
       ['University of California, Los Angeles. Library. Department of Special Collections']
     else
-      map_field(:repository)
+      # Replace marc codes with double dashes and no surrounding spaces
+      map_field(:repository)&.map { |a| a.gsub(/ \$[a-z] /, ' ') }
     end
   end
 
