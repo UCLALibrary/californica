@@ -3,11 +3,11 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 RSpec.feature 'Import and Display a Work', :clean, js: false do
-  subject(:importer) { CalifornicaImporter.new(file, collection_id: collection.id, depositor_id: user.user_key) }
+  subject(:importer) { CalifornicaImporter.new(file, depositor_id: user.user_key) }
   let(:file)       { File.open(csv_file) }
   let(:csv_file)   { File.join(fixture_path, 'coordinates_example.csv') }
-  let(:user)       { FactoryBot.create(:user) }
-  let(:collection) { FactoryBot.create(:collection_lw, user: user) }
+  let(:user)       { FactoryBot.create(:admin) }
+  let(:collection) { Collection.find_or_create_by_ark('ark:/111/222') }
 
   # Cleanup log files after each test run
   after do
@@ -19,8 +19,8 @@ RSpec.feature 'Import and Display a Work', :clean, js: false do
   context "importing the same object twice" do
     let(:first_csv_file)   { File.open(File.join(fixture_path, 'coordinates_example.csv')) }
     let(:second_csv_file)  { File.open(File.join(fixture_path, 'coordinates_example_update.csv')) }
-    let(:first_importer) { CalifornicaImporter.new(first_csv_file, collection_id: collection.id, depositor_id: user.user_key) }
-    let(:second_importer) { CalifornicaImporter.new(second_csv_file, collection_id: collection.id, depositor_id: user.user_key) }
+    let(:first_importer) { CalifornicaImporter.new(first_csv_file, depositor_id: user.user_key) }
+    let(:second_importer) { CalifornicaImporter.new(second_csv_file, depositor_id: user.user_key) }
     after do
       first_csv_file.close
       second_csv_file.close
@@ -39,7 +39,7 @@ RSpec.feature 'Import and Display a Work', :clean, js: false do
 
   context "importing a CSV" do
     it "adds works to the specified collection" do
-      expect(collection.title.first).to match(/Collection Title/)
+      expect(collection.identifier.first).to eq 'ark:/111/222'
       importer.import
       work = Work.last
       expect(work.member_of_collections).to eq [collection]

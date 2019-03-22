@@ -134,13 +134,8 @@ CSV_FILE=/opt/data/ladnn/dlcs-ladnn-2018-09-06.csv IMPORT_FILE_PATH=/opt/data/la
 ```
 
 ### Adding works to a collection
-1. Create a collection manually.
-  1. Make sure it is public.
-  1. Make sure you grant deposit rights to all registered users (Sharing --> Add Group --> Then add 'registered' to the deposit role).
-2. Note the id of the collection and specify it on the command line:
-```
-COLLECTION_ID=abc123 CSV_FILE=/opt/data/ladnn/dlcs-ladnn-2018-09-06.csv IMPORT_FILE_PATH=/opt/data/ladnn/ bundle exec rake californica:ingest:csv
-```
+
+You can add a `Parent ARK` column to the CSV file.  For each row of the CSV, add the ARK for the collection that work should belong to.  The importer will find the `Collection` record with the matching ARK.  If the `Collection` record doesn't exist yet, the importer will create a new `Collection` using that ARK.
 
 ## What is Hyrax, what is Californica?
 
