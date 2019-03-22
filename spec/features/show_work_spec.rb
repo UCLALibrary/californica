@@ -12,6 +12,7 @@ RSpec.feature 'Display a Work', js: false do
       visit("/concern/works/#{work.id}")
       expect(page).to have_content work.title.first
       expect(page).to have_content work.subject.first
+      expect(page).to have_content work.ark
     end
   end
 end

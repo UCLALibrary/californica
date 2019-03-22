@@ -95,6 +95,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('resource_type', :stored_searchable), label: 'Resource Type'
     config.add_show_field solr_name('format', :stored_searchable)
     config.add_show_field solr_name('identifier', :stored_searchable)
+    config.add_show_field 'ark_ssm', label: 'ARK'
 
     config.add_show_field solr_name('caption', :stored_searchable)
     config.add_show_field solr_name('dimensions', :stored_searchable)

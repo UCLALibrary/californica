@@ -3,6 +3,10 @@ module UclaMetadata
   extend ActiveSupport::Concern
 
   included do
+    property :ark, predicate: ::RDF::Vocab::DC11.identifier, multiple: false do |index|
+      index.as :displayable, :facetable
+    end
+
     property :extent, predicate: ::RDF::Vocab::DC11.format do |index|
       index.as :stored_searchable, :facetable
     end
