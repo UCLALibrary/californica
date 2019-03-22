@@ -68,10 +68,10 @@ namespace :californica do
       end
     end
 
-    desc "Ingest a collection -- Use CSV_FILE and IMPORT_FILE_PATH to specify data locations and COLLECTION_ID to indicate collection membership."
+    desc "Ingest a collection -- Use CSV_FILE and IMPORT_FILE_PATH to specify data locations."
     task csv: :environment do
       unless CSV_FILE && IMPORT_FILE_PATH
-        puts "Specify import parameters like this: CSV_FILE=/path/to/file.csv IMPORT_FILE_PATH=/path/to/files/ COLLECTION_ID=abc123 bundle exec rake californica:ingest"
+        puts "Specify import parameters like this: CSV_FILE=/path/to/file.csv IMPORT_FILE_PATH=/path/to/files/ bundle exec rake californica:ingest"
         next
       end
       puts "Ingesting CSV from #{CSV_FILE} with files from #{IMPORT_FILE_PATH}"
