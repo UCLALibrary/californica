@@ -20,11 +20,17 @@ class Collection < ActiveFedora::Base
     collection = find_by_ark(ark)
     return collection if collection
 
-    Collection.create(
+    collection = Collection.create(
       title: ["Collection #{ark}"],
       identifier: [ark],
       collection_type: Hyrax::CollectionType.find_or_create_default_collection_type,
       visibility: Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
     )
+
+    # Members of the 'admin' group can edit this Collection
+    grants = [{ agent_type: 'group', agent_id: 'admin', access: Hyrax::PermissionTemplateAccess::MANAGE }]
+    Hyrax::Collections::PermissionsCreateService.create_default(collection: collection, creating_user: User.batch_user, grants: grants)
+
+    collection
   end
 end

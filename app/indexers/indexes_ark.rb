@@ -7,11 +7,6 @@ module IndexesArk
   end
 
   def ark
-    return if object.identifier.blank?
-    if object.identifier.first.start_with?('ark:/')
-      object.identifier.first
-    else
-      "ark:/" + object.identifier.first
-    end
+    Ark.ensure_prefix(object.identifier.first)
   end
 end
