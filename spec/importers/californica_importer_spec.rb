@@ -46,6 +46,57 @@ RSpec.describe CalifornicaImporter, :clean do
       expect(File.read(importer.ingest_log_filename)).to match(/successful_record_count: 1/)
     end
 
+    context 'when the collection doesn\'t exist yet' do
+      it 'creates a new collection and adds the work to it' do
+        expect(Collection.count).to eq 0
+        expect(Work.count).to eq 0
+
+        importer.import
+
+        expect(Collection.count).to eq 1
+        expect(Work.count).to eq 1
+
+        new_collection = Collection.first
+        new_work = Work.first
+
+        expect(new_work.member_of_collections).to eq [new_collection]
+      end
+    end
+
+    context 'when the parent collection already exists' do
+      let!(:collection) { Collection.find_or_create_by_ark(ark) }
+      let(:ark) { 'ark:/21198/zz00294nz8' }
+
+      it 'adds the work to the existing collection' do
+        expect(Collection.count).to eq 1
+        expect(Work.count).to eq 0
+
+        importer.import
+
+        expect(Collection.count).to eq 1
+        expect(Work.count).to eq 1
+
+        existing_collection = Collection.first
+        new_work = Work.first
+
+        expect(new_work.member_of_collections).to eq [existing_collection]
+      end
+    end
+
+    context 'when there is no parent collection in the CSV' do
+      let(:csv_path) { 'spec/fixtures/no_parent_collection.csv' }
+
+      it 'doesn\'t cause any errors' do
+        expect(Collection.count).to eq 0
+        expect(Work.count).to eq 0
+
+        importer.import
+
+        expect(Collection.count).to eq 0
+        expect(Work.count).to eq 1
+      end
+    end
+
     context 'when the image file is missing' do
       let(:csv_path) { 'spec/fixtures/example-missingimage.csv' }
 

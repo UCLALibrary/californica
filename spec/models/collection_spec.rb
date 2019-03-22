@@ -60,6 +60,7 @@ RSpec.describe Collection do
           expect { result }.to change { described_class.count }.to(1)
           expect(result.title).to eq ["Collection #{ark}"]
           expect(result.identifier).to eq [ark]
+          expect(result.edit_groups).to eq ['admin']
         end
       end
     end

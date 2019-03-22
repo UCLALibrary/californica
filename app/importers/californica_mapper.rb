@@ -40,7 +40,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   end
 
   def fields
-    CALIFORNICA_TERMS_MAP.keys + [:remote_files, :visibility]
+    CALIFORNICA_TERMS_MAP.keys + [:remote_files, :visibility, :member_of_collections_attributes]
   end
 
   ##
@@ -140,6 +140,13 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     return unless CALIFORNICA_TERMS_MAP.keys.include?(name)
 
     metadata[CALIFORNICA_TERMS_MAP[name]]&.split(DELIMITER)
+  end
+
+  def member_of_collections_attributes
+    ark = Ark.ensure_prefix(metadata['Parent ARK'])
+    return unless ark
+    collection = Collection.find_or_create_by_ark(ark)
+    { '0' => { id: collection.id } }
   end
 
   private

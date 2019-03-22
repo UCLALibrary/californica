@@ -44,6 +44,7 @@ RSpec/ExampleLength:
     - 'spec/features**/*'
     - 'spec/tasks/ingest_spec.rb'
     - 'spec/importers/californica_mapper_spec.rb'
+    - 'spec/importers/californica_importer_spec.rb'
 
 RSpec/NotToNot:
   Enabled: false
@@ -51,6 +52,7 @@ RSpec/NotToNot:
 RSpec/LetSetup:
   Exclude:
     - 'spec/features/search_catalog_spec.rb'
+    - 'spec/importers/californica_importer_spec.rb'
 
 Style/BlockDelimiters:
   Exclude:
