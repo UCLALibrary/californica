@@ -11,6 +11,7 @@ require 'rspec/rails'
 require 'database_cleaner'
 require 'active_fedora/cleaner'
 require 'ffaker'
+require 'webdrivers'
 
 ENV['IMPORT_FILE_PATH'] = "#{::Rails.root}/spec/fixtures"
 ENV['MISSING_FILE_LOG'] = "#{::Rails.root}/log/missing_files_test"
@@ -48,6 +49,17 @@ def database_cleaner_strategy(example)
     :transaction
   end
 end
+
+Capybara.register_driver :selenium_chrome_headless_sandboxless do |app|
+  browser_options = ::Selenium::WebDriver::Chrome::Options.new
+  browser_options.args << '--headless'
+  browser_options.args << '--disable-gpu'
+  browser_options.args << '--no-sandbox'
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: browser_options)
+end
+
+Capybara.default_driver = :rack_test # This is a faster driver
+Capybara.javascript_driver = :selenium_chrome_headless_sandboxless # This is slower
 
 RSpec.configure do |config|
   config.before(:suite) do
