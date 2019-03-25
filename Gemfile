@@ -84,7 +84,7 @@ group :development, :test do
   gem 'ffaker'
   gem 'rspec-rails'
   gem 'rubocop-rspec'
-  gem "webdrivers", "~> 3.0"
   gem 'simplecov', '~> 0.16.1'
   gem 'solr_wrapper', '>= 0.3'
+  gem 'webdrivers', '~> 3.0'
 end
