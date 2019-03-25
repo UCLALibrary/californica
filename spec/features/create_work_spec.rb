@@ -1,11 +1,14 @@
 # frozen_string_literal: true
-# Generated via
-#  `rails generate hyrax:work Work`
 require 'rails_helper'
+require 'database_cleaner'
+
 include Warden::Test::Helpers
 
 # NOTE: If you generated more than one work, you have to set "js: true"
-RSpec.feature 'Create a Work', :clean, js: false do
+RSpec.feature 'Create a Work', js: true do
+  DatabaseCleaner.strategy = :truncation
+  DatabaseCleaner.start
+
   context 'a logged in user' do
     let(:user_attributes) do
       { email: 'test@example.com' }
@@ -17,7 +20,10 @@ RSpec.feature 'Create a Work', :clean, js: false do
 
     include_context 'with workflow'
 
-    before { login_as user }
+    before do
+      AdminSet.find_or_create_default_admin_set_id
+      login_as user
+    end
 
     scenario do
       visit '/dashboard'
@@ -38,8 +44,7 @@ RSpec.feature 'Create a Work', :clean, js: false do
       end
       click_link "Descriptions" # switch tab
       fill_in('Title', with: 'My Test Work')
-      fill_in('Creator', with: 'Doe, Jane')
-      fill_in('Keyword', with: 'testing')
+      fill_in('Ark', with: 'ark:/abc/123')
       select('copyrighted', from: 'Copyright Status')
 
       # With selenium and the chrome driver, focus remains on the
@@ -52,7 +57,8 @@ RSpec.feature 'Create a Work', :clean, js: false do
 
       click_on('Save')
       expect(page).to have_content('My Test Work')
-      expect(page).to have_content "Your files are being processed"
+      expect(page).to have_content("ark:/abc/123")
+      expect(page).to have_content("Your files are being processed")
     end
   end
 end

@@ -41,6 +41,25 @@ Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
+def database_cleaner_strategy(example)
+  if example.metadata[:type] == :feature && Capybara.current_driver != :rack_test
+    :truncation
+  else
+    :transaction
+  end
+end
+
+Capybara.register_driver :selenium_chrome_headless_sandboxless do |app|
+  browser_options = ::Selenium::WebDriver::Chrome::Options.new
+  browser_options.args << '--headless'
+  browser_options.args << '--disable-gpu'
+  browser_options.args << '--no-sandbox'
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: browser_options)
+end
+
+Capybara.default_driver = :rack_test # This is a faster driver
+Capybara.javascript_driver = :selenium_chrome_headless_sandboxless # This is slower
+
 RSpec.configure do |config|
   config.before(:suite) do
     ActiveJob::Base.queue_adapter = :test
@@ -50,13 +69,8 @@ RSpec.configure do |config|
   end
 
   config.before(clean: true) do |example|
-    if example.metadata[:type] == :feature && Capybara.current_driver != :rack_test
-      DatabaseCleaner.strategy = :truncation
-    else
-      DatabaseCleaner.strategy = :transaction
-      DatabaseCleaner.start
-    end
-
+    DatabaseCleaner.strategy = database_cleaner_strategy(example)
+    DatabaseCleaner.start
     ActiveFedora::Cleaner.clean!
   end
 
