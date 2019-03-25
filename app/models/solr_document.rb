@@ -26,6 +26,10 @@ class SolrDocument
 
   use_extension(Hydra::ContentNegotiation)
 
+  def ark
+    self[:ark_ssm]
+  end
+
   def extent
     self[Solrizer.solr_name('extent')]
   end

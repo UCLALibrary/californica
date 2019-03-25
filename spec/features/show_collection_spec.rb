@@ -10,6 +10,7 @@ RSpec.feature 'Show a collection', :clean do
   let(:collection_attrs) do
     {
       title: ['Old Title'],
+      ark: 'ark:/abc/123456',
       rights_statement: ['http://rightsstatements.org/vocab/InC/1.0/'], # "copyrighted"
       publisher: ['Old Pub'],
       date_created: ['Old Creation Date'],
@@ -56,6 +57,10 @@ RSpec.feature 'Show a collection', :clean do
       expect(page).to have_content collection.title.first
 
       collection_attrs.delete(:rights_statement) # Rights Statement display is a special case
+
+      ark_value = collection_attrs.delete(:ark)
+      expect(page).to have_content ark_value
+
       collection_attrs.each_value do |v|
         expect(page).to have_content v.first
       end
@@ -68,6 +73,10 @@ RSpec.feature 'Show a collection', :clean do
       expect(page).to have_content collection.title.first
 
       collection_attrs.delete(:rights_statement) # Rights Statement display is a special case
+
+      ark_value = collection_attrs.delete(:ark)
+      expect(page).to have_content ark_value
+
       collection_attrs.each_value do |v|
         expect(page).to have_content v.first
       end

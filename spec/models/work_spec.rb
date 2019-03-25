@@ -20,6 +20,12 @@ RSpec.describe Work do
     end
   end
 
+  it "has a single-valued ark" do
+    work.ark = 'ark:/abc/123456'
+    expect(work.ark).to eq 'ark:/abc/123456'
+    expect(work.resource.dump(:ttl)).to match(/purl.org\/dc\/elements\/1.1\/identifier/)
+  end
+
   it "has publisher" do
     work.publisher = ['publisher']
     expect(work.publisher).to include 'publisher'
