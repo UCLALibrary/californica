@@ -8,50 +8,39 @@ end
 
 ruby '>= 2.4.0', '<= 2.5.99'
 
-gem 'darlingtonia', '>= 3.2.0'
-
-gem 'hyrax', '2.5.0'
-gem 'rails', '~> 5.1.6'
-
-gem 'pkg-config', '~> 1.1'
-
-# Error reporting tool
-gem 'rollbar'
-
-gem "bootstrap-sass", ">= 3.4.1"
-# Use mysql
-gem 'mysql2', '~> 0.5'
-# Use Puma as the app server
-gem 'puma', '~> 3.7'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-
+gem 'bootstrap-sass', ">= 3.4.1"
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'coveralls', require: false
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-
+gem 'darlingtonia', '>= 3.2.0'
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
 gem 'dotenv-rails', '~> 2.2.1'
 gem 'hydra-role-management', '~> 1.0.0'
+gem 'hyrax', '2.5.0'
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 2.5'
 gem 'jquery-rails'
 gem 'loofah', '>= 2.2.3'
+gem 'mysql2', '~> 0.5'
+gem 'pkg-config', '~> 1.1'
+# Use Puma as the app server
+gem 'puma', '~> 3.7'
 gem 'rack', '>= 2.0.6'
+gem 'rails', '~> 5.1.6'
 gem 'retries'
 gem 'riiif', '~> 1.1'
+# Error reporting tool
+gem 'rollbar'
 gem 'rsolr', '>= 1.0'
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 5.0'
 gem 'sidekiq', '~> 5.1.3'
 gem 'sidekiq-failures'
+# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
+gem 'turbolinks', '~> 5'
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
 gem 'whenever', require: false
 
 group :development do
