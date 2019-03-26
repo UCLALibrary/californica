@@ -12,7 +12,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     latitude: "Description.latitude",
     longitude: "Description.longitude",
     extent: "Format.extent",
-    local_identifier: "Alternate Identifier.local",
+    local_identifier: "AltIdentifier.local",
     date_created: "Date.creation",
     caption: "Description.caption",
     dimensions: "Format.dimensions",
