@@ -59,7 +59,7 @@ RSpec.describe CalifornicaCsvParser do
        'Name.photographer', 'Relation.hasVersion',
        'Name.repository', 'Rights.permission',
        'Name.architect', 'Date.normalized',
-       'Alternate Identifier.local', 'Title',
+       'AltIdentifier.local', 'Title',
        'Date.creation', 'Format.extent',
        'Format.medium', 'Format.dimensions',
        'Description.note', 'Description.fundingNote',
