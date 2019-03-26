@@ -2,13 +2,20 @@
 
 module Hyrax
   class CalifornicaCollectionsForm < Hyrax::Forms::CollectionForm
-    self.terms += [:resource_type, :extent, :caption,
+    self.terms += [:ark, :resource_type, :extent, :caption,
                    :dimensions, :funding_note, :genre,
                    :latitude, :longitude,
                    :local_identifier, :medium,
                    :named_subject, :normalized_date,
                    :repository, :location,
                    :rights_country, :rights_holder, :photographer]
+
+    self.required_fields = [:title, :ark]
+
+    # Terms that appear above the accordion
+    def primary_terms
+      [:title, :ark, :description]
+    end
 
     def secondary_terms
       [
