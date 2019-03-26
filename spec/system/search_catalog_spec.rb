@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe 'Search the catalog', :clean, type: :system, js: false do
+RSpec.describe 'Search the catalog', :clean, type: :system, js: true do
   # Create works with unique values for each field.
   # This metadata is contrived so we can test different types of searches.
 

@@ -2,7 +2,7 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-RSpec.describe 'Import and Display a Work', :clean, type: :system, js: false do
+RSpec.describe 'Import and Display a Work', :clean, type: :system, js: true do
   subject(:importer) { CalifornicaImporter.new(file, depositor_id: user.user_key) }
   let(:file)       { File.open(csv_file) }
   let(:csv_file)   { File.join(fixture_path, 'coordinates_example.csv') }

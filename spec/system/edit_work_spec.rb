@@ -3,7 +3,7 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-RSpec.describe 'Edit an existing work', :clean, type: :system, js: false do
+RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
   let(:work) { Work.create!(work_attrs) }
 
   let(:work_attrs) do

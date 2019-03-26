@@ -3,7 +3,7 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-RSpec.describe 'Edit an existing collection', :clean, type: :system, js: false do
+RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
   let(:collection) { Collection.create!(collection_attrs) }
   let(:collection) { FactoryBot.create(:collection_lw, user: admin) }
   let(:admin) { FactoryBot.create :admin }

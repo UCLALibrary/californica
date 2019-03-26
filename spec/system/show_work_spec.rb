@@ -2,7 +2,7 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-RSpec.describe 'Display a Work', type: :system, js: false do
+RSpec.describe 'Display a Work', type: :system, js: true do
   let(:work) { FactoryBot.create(:work) }
   let(:admin) { FactoryBot.create(:admin) }
 
