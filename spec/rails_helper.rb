@@ -8,7 +8,6 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 
-require 'database_cleaner'
 require 'active_fedora/cleaner'
 require 'ffaker'
 
@@ -41,12 +40,9 @@ Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 # If you are not using ActiveRecord, you can remove this line.
 ActiveRecord::Migration.maintain_test_schema!
 
-def database_cleaner_strategy(example)
-  if example.metadata[:type] == :feature && Capybara.current_driver != :rack_test
-    :truncation
-  else
-    :transaction
-  end
+Capybara.register_driver :googlebot do |app|
+  browser_options.args << '--user-agent Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)'
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: browser_options)
 end
 
 Capybara.register_driver :selenium_chrome_headless_sandboxless do |app|
@@ -61,16 +57,20 @@ Capybara.default_driver = :rack_test # This is a faster driver
 Capybara.javascript_driver = :selenium_chrome_headless_sandboxless # This is slower
 
 RSpec.configure do |config|
+  config.before(:each, type: :system, js: true) do
+    driven_by :selenium_chrome_headless_sandboxless
+  end
+
+  config.before(:each, type: :system, js: false) do
+    driven_by :rack_test
+  end
+
   config.before(:suite) do
     ActiveJob::Base.queue_adapter = :test
     ActiveFedora::Cleaner.clean!
-    DatabaseCleaner.clean_with(:truncation)
-    DatabaseCleaner.start
   end
 
-  config.before(clean: true) do |example|
-    DatabaseCleaner.strategy = database_cleaner_strategy(example)
-    DatabaseCleaner.start
+  config.before(clean: true) do
     ActiveFedora::Cleaner.clean!
   end
 

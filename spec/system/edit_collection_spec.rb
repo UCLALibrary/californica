@@ -3,7 +3,7 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-RSpec.feature 'Edit an existing collection', :clean do
+RSpec.describe 'Edit an existing collection', :clean, type: :system, js: false do
   let(:collection) { Collection.create!(collection_attrs) }
   let(:collection) { FactoryBot.create(:collection_lw, user: admin) }
   let(:admin) { FactoryBot.create :admin }
@@ -59,6 +59,7 @@ RSpec.feature 'Edit an existing collection', :clean do
       expect(find_field('Title').value).to eq 'Old Title'
       # expect(page.all(:css, 'div.select.work_rights_statement/select').first.text).to eq 'copyrighted'
       expect(first(:css, '#collection_description').value).to eq 'Old Desc'
+      click_on 'Additional fields'
       expect(find_field('Publisher').value).to eq 'Old Pub'
       expect(find_field('Date Created').value).to eq 'Old Creation Date'
       expect(find_field('Subject').value).to eq 'Old Subj'

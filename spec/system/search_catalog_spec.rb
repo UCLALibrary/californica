@@ -1,37 +1,41 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.feature 'Search the catalog', :clean do
+RSpec.describe 'Search the catalog', :clean, type: :system, js: false do
   # Create works with unique values for each field.
   # This metadata is contrived so we can test different types of searches.
 
-  let!(:banana) { Work.create!(
-    title: ['Yellow Banana'],
-    visibility: visible,
-    subject: ['fruit'],
-    named_subject: ['dessert'],
-    location: ['on the table'],
-    description: ['potassium'],
-    caption: ['tropical'],
-    identifier: ['ban_ark'],
-    local_identifier: ['12345'],
-    normalized_date: ['2015-10-06'],
-    photographer: ['Sherlock']
-  ) }
+  let!(:banana) do
+    Work.create!(
+      title: ['Yellow Banana'],
+      visibility: visible,
+      subject: ['fruit'],
+      named_subject: ['dessert'],
+      location: ['on the table'],
+      description: ['potassium'],
+      caption: ['tropical'],
+      identifier: ['ban_ark'],
+      local_identifier: ['12345'],
+      normalized_date: ['2015-10-06'],
+      photographer: ['Sherlock']
+    )
+  end
 
-  let!(:carrot) { Work.create!(
-    title: ['Orange Carrot'],
-    visibility: visible,
-    subject: ['veg'],
-    named_subject: ['side dish'],
-    location: ['in the fridge'],
-    description: ['beta carotene'],
-    caption: ['northern'],
-    identifier: ['car_ark'],
-    local_identifier: ['67890'],
-    normalized_date: ['2018-07-07'],
-    photographer: ['Watson']
-  ) }
+  let!(:carrot) do
+    Work.create!(
+      title: ['Orange Carrot'],
+      visibility: visible,
+      subject: ['veg'],
+      named_subject: ['side dish'],
+      location: ['in the fridge'],
+      description: ['beta carotene'],
+      caption: ['northern'],
+      identifier: ['car_ark'],
+      local_identifier: ['67890'],
+      normalized_date: ['2018-07-07'],
+      photographer: ['Watson']
+    )
+  end
 
   let(:visible) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
 

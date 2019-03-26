@@ -3,7 +3,7 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-RSpec.feature 'Show a collection', :clean do
+RSpec.describe 'Show a collection', :clean, type: :system, js: false do
   let(:collection) { FactoryBot.create(:collection_lw, user: admin) }
   let(:admin) { FactoryBot.create :admin }
 

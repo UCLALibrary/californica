@@ -191,7 +191,6 @@ GEM
     crass (1.0.4)
     darlingtonia (3.2.0)
       active-fedora (>= 11.5.2)
-    database_cleaner (1.7.0)
     declarative (0.0.10)
     declarative-option (0.1.0)
     deprecation (1.0.0)
@@ -863,7 +862,6 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   coveralls
   darlingtonia (>= 3.2.0)
-  database_cleaner
   devise
   devise-guests (~> 0.6)
   dotenv-rails (~> 2.2.1)
@@ -885,7 +883,7 @@ DEPENDENCIES
   riiif (~> 1.1)
   rollbar
   rsolr (>= 1.0)
-  rspec-rails
+  rspec-rails (~> 3.8)
   rubocop-rspec
   sass-rails (~> 5.0)
   selenium-webdriver

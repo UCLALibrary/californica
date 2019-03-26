@@ -1,14 +1,10 @@
 # frozen_string_literal: true
 require 'rails_helper'
-require 'database_cleaner'
 
 include Warden::Test::Helpers
 
 # NOTE: If you generated more than one work, you have to set "js: true"
-RSpec.feature 'Create a Work', js: true do
-  DatabaseCleaner.strategy = :truncation
-  DatabaseCleaner.start
-
+RSpec.describe 'Create a Work', type: :system, js: true do
   context 'a logged in user' do
     let(:user_attributes) do
       { email: 'test@example.com' }

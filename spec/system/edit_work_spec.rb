@@ -3,13 +3,14 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-RSpec.feature 'Edit an existing work', :clean do
+RSpec.describe 'Edit an existing work', :clean, type: :system, js: false do
   let(:work) { Work.create!(work_attrs) }
 
   let(:work_attrs) do
     {
       title: ['Old Title'],
-      rights_statement: ['http://rightsstatements.org/vocab/InC/1.0/'], # "copyrighted"
+      ark: 'ark:/abc/3456',
+      rights_statement: ['http://vocabs.library.ucla.edu/rights/copyrighted'], # "copyrighted"
       publisher: ['Old Pub'],
       date_created: ['Old Creation Date'],
       subject: ['Old Subj'],
@@ -44,10 +45,11 @@ RSpec.feature 'Edit an existing work', :clean do
 
     scenario 'successfully edits the work' do
       visit edit_hyrax_work_path(work.id)
-
       # When the form first loads, it should contain all the old values
       expect(find_field('Title').value).to eq 'Old Title'
-      expect(page.all(:css, 'div.select.work_rights_statement/select').first.text).to eq 'copyrighted'
+      expect(find_field('Ark').value).to eq 'ark:/abc/3456'
+      expect(page.all(:css, 'div.select.work_rights_statement').first.has_content?('copyrighted')).to eq true
+      click_on 'Additional fields'
       expect(first(:css, '#work_description').value).to eq 'Old Desc'
       expect(find_field('Publisher').value).to eq 'Old Pub'
       expect(find_field('Date Created').value).to eq 'Old Creation Date'

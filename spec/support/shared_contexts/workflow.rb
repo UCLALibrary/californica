@@ -14,6 +14,5 @@ RSpec.shared_context 'with workflow' do
 
   after do
     ActiveFedora::Cleaner.clean!
-    DatabaseCleaner.clean
   end
 end

@@ -24,7 +24,7 @@ Metrics/LineLength:
   Exclude:
     - 'spec/tasks/ingest_spec.rb'
     - 'app/importers/rights_statement_validator.rb'
-    - 'spec/features/import_and_show_work_spec.rb'
+    - 'spec/system/import_and_show_work_spec.rb'
     - app/importers/actor_record_importer.rb
 
 Metrics/MethodLength:
@@ -34,39 +34,39 @@ Metrics/MethodLength:
     - app/importers/actor_record_importer.rb
     - app/forms/hyrax/californica_collections_form.rb
 
-RSpec/DescribeClass:
-  Exclude:
-    - 'spec/tasks/**/*'
-
 RSpec/ExampleLength:
   Enabled: true
   Exclude:
-    - 'spec/features**/*'
+    - 'spec/system**/*'
     - 'spec/tasks/ingest_spec.rb'
     - 'spec/importers/californica_mapper_spec.rb'
     - 'spec/importers/californica_importer_spec.rb'
+
+RSpec/LetSetup:
+  Enabled: false
 
 RSpec/NotToNot:
   Enabled: false
 
 RSpec/LetSetup:
   Exclude:
-    - 'spec/features/search_catalog_spec.rb'
+    - 'spec/system/search_catalog_spec.rb'
     - 'spec/importers/californica_importer_spec.rb'
 
 Style/BlockDelimiters:
   Exclude:
-    - 'spec/features/search_catalog_spec.rb'
+    - 'spec/system/search_catalog_spec.rb'
 
 Layout/MultilineBlockLayout:
   Exclude:
-    - 'spec/features/search_catalog_spec.rb'
+    - 'spec/system/search_catalog_spec.rb'
 
 Layout/BlockEndNewline:
   Exclude:
-    - 'spec/features/search_catalog_spec.rb'
+    - 'spec/system/search_catalog_spec.rb'
 
 RSpec/DescribeClass:
   Exclude:
     - 'spec/tasks/**/*'
-    - 'spec/features/search_crawler_spec.rb'
+    - 'spec/system/search_crawler_spec.rb'
+    - 'spec/tasks/**/*'

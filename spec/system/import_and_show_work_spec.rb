@@ -2,7 +2,7 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-RSpec.feature 'Import and Display a Work', :clean, js: false do
+RSpec.describe 'Import and Display a Work', :clean, type: :system, js: false do
   subject(:importer) { CalifornicaImporter.new(file, depositor_id: user.user_key) }
   let(:file)       { File.open(csv_file) }
   let(:csv_file)   { File.join(fixture_path, 'coordinates_example.csv') }
@@ -55,7 +55,7 @@ RSpec.feature 'Import and Display a Work', :clean, js: false do
       expect(page).to have_content "Historic buildings--California--Los Angeles" # $subject: $z has been replaced with --
       expect(page).to have_content "still image" # resource_type
       expect(page).to have_content "copyrighted" # rights_statement
-      expect(page).not_to have_css('li.attribute-rights_statement/a') # Rights statement should not link anywhere
+      expect(page).not_to have_link "copyrighted" # Rights statement should not link anywhere
       expect(page).to have_content "news photographs" # genre
       expect(page).to have_content "Plaza Church (Los Angeles, Calif.)" # named_subject
       expect(page).to have_content "University of California, Los Angeles. Library. Department of Special Collections" # repository
@@ -88,7 +88,7 @@ RSpec.feature 'Import and Display a Work', :clean, js: false do
   it "displays expected facets" do
     importer.import
     visit("/catalog?search_field=all_fields&q=")
-    facet_headings = page.all(:css, 'h3.facet-field-heading/a').to_a.map(&:text)
+    facet_headings = page.all(:css, 'h3.facet-field-heading').to_a.map(&:text)
     expect(facet_headings).to contain_exactly("Subject", "Resource type", "Genre", "Names", "Location", "Normalized Date", "Extent", "Medium", "Dimensions", "Language", "Collection")
   end
 end
