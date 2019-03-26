@@ -3,7 +3,7 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-RSpec.feature 'Read Only Mode', :clean do
+RSpec.describe 'Read Only Mode', :clean, type: :system, js: true do
   let(:user)  { FactoryBot.create(:user) }
   let(:admin) { FactoryBot.create :admin }
 
