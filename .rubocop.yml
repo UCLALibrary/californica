@@ -58,6 +58,10 @@ Style/BlockDelimiters:
   Exclude:
     - 'spec/features/search_catalog_spec.rb'
 
+Style/IfUnlessModifier:
+  Exclude:
+    - 'app/importers/csv_validator.rb'
+
 Layout/MultilineBlockLayout:
   Exclude:
     - 'spec/features/search_catalog_spec.rb'
