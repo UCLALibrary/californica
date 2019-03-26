@@ -127,10 +127,27 @@ correct encoding when saving.
 
 ### Import Process
 
-Use the `rake californica:ingest:csv` task, and specify the CSV_FILE and IMPORT_FILE_PATH when you invoke it. For example:
+Use the `rake californica:ingest:csv` task, and specify the CSV_FILE and IMPORT_FILE_PATH when you invoke it.
+
+In the docker-compose development environment, `/opt/data/` mounts the `californica/data` directory
+from your host machine. This directory is empty by default and included in .gitignore, so you'll
+need to obtain the data on your own and put it here: metadata CSVs are stored in the box drive and
+master images are on the Netapp `Masters` volume.
+
+Once the data is in place, the ingest command looks something like:
 
 ```
-CSV_FILE=/opt/data/ladnn/dlcs-ladnn-2018-09-06.csv IMPORT_FILE_PATH=/opt/data/ladnn/ bundle exec rake californica:ingest:csv
+CSV_FILE=/opt/data/ladnn/dlcs-dlcs_ladnn-2018-12-12.csv IMPORT_FILE_PATH=/opt/data/ladnn/ bundle exec rake californica:ingest:csv
+```
+
+In our server environments, csv files are copied to `/opt/data/` and the entire `Masters` volume is
+mounted at `/opt/data/Masters/`. To set the IMPORT_FILE_PATH variable, you will need to find the
+directory within `Masters` that contains the collections image files. For example:
+
+```
+CSV_FILE=/opt/data/ladnn/dlcs-dlcs_ladnn-2018-12-12.csv \
+IMPORT_FILE_PATH=/opt/data/Masters/dlmasters/ladailynews/image/ \
+bundle exec rake californica:ingest:csv
 ```
 
 ### Adding works to a collection
