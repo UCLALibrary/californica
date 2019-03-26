@@ -23,6 +23,7 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
 
     self.validators = [
       Darlingtonia::CsvFormatValidator.new(error_stream: error_stream),
+      CsvValidator.new(error_stream: error_stream),
       Darlingtonia::TitleValidator.new(error_stream: error_stream),
       RightsStatementValidator.new(error_stream: error_stream)
     ]
@@ -35,6 +36,16 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
   def skip
     return 0 unless ENV['SKIP']
     ENV['SKIP'].to_s.to_i
+  end
+
+  def headers
+    return @headers if @headers
+    file.rewind
+    first_row = file.readline
+    @headers = CSV.parse(first_row, headers: true, return_headers: true).headers
+  rescue CSV::MalformedCSVError
+    # This error will be handled by Darlingtonia::CsvFormatValidator
+    []
   end
 
   def records

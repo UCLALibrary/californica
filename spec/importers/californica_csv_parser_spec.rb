@@ -46,6 +46,44 @@ RSpec.describe CalifornicaCsvParser do
     end
   end
 
+  describe '#headers' do
+    let(:expected_headers) do
+      ['Project Name', 'Parent ARK', 'Item Title',
+       'Item Ark', 'Item Sequence', 'Subject',
+       'Type.typeOfResource',
+       'Rights.copyrightStatus', 'Type.genre',
+       'Name.subject', 'Coverage.geographic',
+       'Relation.isPartOf', 'Publisher.publisherName',
+       'Rights.countryCreation',
+       'Rights.rightsHolderContact',
+       'Name.photographer', 'Relation.hasVersion',
+       'Name.repository', 'Rights.permission',
+       'Name.architect', 'Date.normalized',
+       'AltIdentifier.local', 'Title',
+       'Date.creation', 'Format.extent',
+       'Format.medium', 'Format.dimensions',
+       'Description.note', 'Description.fundingNote',
+       'Description.longitude',
+       'Description.latitude', 'Description.caption',
+       'Alternate Identifier.url',
+       'Description.abstract', 'Description.contents',
+       'thumbnailImageName', 'masterImageName']
+    end
+
+    it 'knows the headers for this CSV file' do
+      expect(parser.headers).to eq expected_headers
+    end
+
+    context 'headers that are wrapped in quotes' do
+      let(:csv_path) { File.join(fixture_path, 'quoted_headers.csv') }
+      let(:expected_headers) { ['Item Ark', 'Title'] }
+
+      it 'knows the headers for this CSV file' do
+        expect(parser.headers).to eq expected_headers
+      end
+    end
+  end
+
   describe '#validate' do
     it 'is valid' do
       expect(parser.validate).to be_truthy
@@ -66,7 +104,7 @@ RSpec.describe CalifornicaCsvParser do
     let(:error_stream) { CalifornicaLogStream.new }
 
     it 'use the same error stream as the parser' do
-      expect(parser.validators.map(&:error_stream)).to eq [error_stream, error_stream, error_stream]
+      expect(parser.validators.map(&:error_stream)).to eq [error_stream, error_stream, error_stream, error_stream]
     end
   end
 end
