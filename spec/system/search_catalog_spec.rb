@@ -8,6 +8,7 @@ RSpec.describe 'Search the catalog', :clean, type: :system, js: true do
   let!(:banana) do
     Work.create!(
       title: ['Yellow Banana'],
+      ark: 'ark:/abc/123456',
       visibility: visible,
       subject: ['fruit'],
       named_subject: ['dessert'],
@@ -24,6 +25,7 @@ RSpec.describe 'Search the catalog', :clean, type: :system, js: true do
   let!(:carrot) do
     Work.create!(
       title: ['Orange Carrot'],
+      ark: 'ark:/abc/67890',
       visibility: visible,
       subject: ['veg'],
       named_subject: ['side dish'],
@@ -41,7 +43,6 @@ RSpec.describe 'Search the catalog', :clean, type: :system, js: true do
 
   scenario 'get correct search results' do
     expect(Work.count).to eq 2
-
     visit root_path
 
     # When we first load the page, we should see all records
@@ -128,6 +129,14 @@ RSpec.describe 'Search the catalog', :clean, type: :system, js: true do
 
     # Search by photographer
     fill_in 'search-field-header', with: 'Sherlock'
+    click_on 'search-submit-header'
+    within '#search-results' do
+      expect(page).to     have_link('Yellow Banana')
+      expect(page).to_not have_link('Orange Carrot')
+    end
+
+    # Search by ark
+    fill_in 'search-field-header', with: 'ark:/abc/123456'
     click_on 'search-submit-header'
     within '#search-results' do
       expect(page).to     have_link('Yellow Banana')
