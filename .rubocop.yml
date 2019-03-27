@@ -26,6 +26,7 @@ Metrics/LineLength:
     - 'app/importers/rights_statement_validator.rb'
     - 'spec/system/import_and_show_work_spec.rb'
     - app/importers/actor_record_importer.rb
+    - app/controllers/catalog_controller.rb
 
 Metrics/MethodLength:
   Enabled: true
