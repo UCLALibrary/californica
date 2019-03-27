@@ -39,6 +39,12 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     super
   end
 
+  # What columns are allowed in the CSV
+  def self.allowed_headers
+    CALIFORNICA_TERMS_MAP.values +
+      ['masterImageName', 'Parent ARK', 'Project Name']
+  end
+
   def fields
     CALIFORNICA_TERMS_MAP.keys + [:remote_files, :visibility, :member_of_collections_attributes]
   end
