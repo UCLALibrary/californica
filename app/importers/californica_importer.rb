@@ -2,7 +2,7 @@
 
 # Import CSV files according to UCLA ingest rules
 class CalifornicaImporter
-  DEDUPLICATION_FIELD = 'identifier'
+  DEDUPLICATION_FIELD = 'ark'
 
   attr_reader :error_log, :ingest_log, :depositor_id
 

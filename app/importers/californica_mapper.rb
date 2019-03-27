@@ -4,7 +4,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   attr_reader :missing_file_log
 
   CALIFORNICA_TERMS_MAP = {
-    identifier: "Item Ark",
+    ark: "Item Ark",
     title: "Title",
     subject: "Subject",
     description: "Description.note",
@@ -67,6 +67,10 @@ class CalifornicaMapper < Darlingtonia::HashMapper
       File.open(@missing_file_log, 'a') { |file| file.puts "Work #{map_field(:identifier)} has an invalid file: #{file_name} not found" }
     end
     return_value
+  end
+
+  def ark
+    Ark.ensure_prefix(map_field(:ark).to_a.first)
   end
 
   def visibility
