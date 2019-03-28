@@ -48,26 +48,22 @@ RSpec.describe CalifornicaCsvParser do
 
   describe '#headers' do
     let(:expected_headers) do
-      ['Project Name', 'Parent ARK', 'Item Title',
-       'Item Ark', 'Item Sequence', 'Subject',
-       'Type.typeOfResource',
+      ['Project Name', 'Parent ARK', 'Item Ark',
+       'Subject', 'Type.typeOfResource',
        'Rights.copyrightStatus', 'Type.genre',
        'Name.subject', 'Coverage.geographic',
        'Relation.isPartOf', 'Publisher.publisherName',
        'Rights.countryCreation',
        'Rights.rightsHolderContact',
-       'Name.photographer', 'Relation.hasVersion',
-       'Name.repository', 'Rights.permission',
-       'Name.architect', 'Date.normalized',
+       'Name.photographer', 'Name.repository',
+       'Date.normalized',
        'AltIdentifier.local', 'Title',
        'Date.creation', 'Format.extent',
        'Format.medium', 'Format.dimensions',
        'Description.note', 'Description.fundingNote',
        'Description.longitude',
        'Description.latitude', 'Description.caption',
-       'Alternate Identifier.url',
-       'Description.abstract', 'Description.contents',
-       'thumbnailImageName', 'masterImageName']
+       'masterImageName']
     end
 
     it 'knows the headers for this CSV file' do
