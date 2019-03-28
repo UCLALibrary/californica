@@ -10,15 +10,11 @@ class WorkIndexer < Hyrax::WorkIndexer
   # this behavior
   include Hyrax::IndexesLinkedMetadata
 
-  # Handle ARK and identifier fields
-  include IndexesArk
-
   def generate_solr_document
     super.tap do |solr_doc|
       solr_doc['geographic_coordinates_ssim'] = coordinates
       solr_doc['human_readable_rights_statement_tesim'] = human_readable_rights_statement
       solr_doc['year_isim'] = years
-      index_ark_fields(solr_doc)
     end
   end
 

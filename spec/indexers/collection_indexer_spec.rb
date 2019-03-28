@@ -7,11 +7,10 @@ RSpec.describe ::CollectionIndexer do
   let(:collection) { ::Collection.new(attributes) }
 
   describe 'indexing ARK and identifier fields' do
-    let(:attributes) { { identifier: ['ark:/123/456'] } }
+    let(:attributes) { { ark: 'ark:/123/456' } }
 
     it 'add the fields to the solr document' do
-      expect(solr_document['ark_ssi']).to eq 'ark:/123/456'
-      expect(solr_document['identifier_ssim']).to eq ['ark:/123/456']
+      expect(solr_document['ark_sim']).to eq ['ark:/123/456']
     end
   end
 end

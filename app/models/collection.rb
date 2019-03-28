@@ -11,7 +11,7 @@ class Collection < ActiveFedora::Base
   # @param ark [String] The ARK
   # @return [Collection] The Collection with that ARK
   def self.find_by_ark(ark)
-    where(ark_ssi: ark).limit(1).first
+    where(ark_sim: ark).limit(1).first
   end
 
   # @param ark [String] The ARK
@@ -22,7 +22,7 @@ class Collection < ActiveFedora::Base
 
     collection = Collection.create(
       title: ["Collection #{ark}"],
-      identifier: [ark],
+      ark: ark,
       collection_type: Hyrax::CollectionType.find_or_create_default_collection_type,
       visibility: Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
     )

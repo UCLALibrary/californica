@@ -5,12 +5,11 @@ RSpec.describe Collection do
   subject(:collection) { described_class.new }
 
   describe 'with ARK' do
-    let(:ark) { "ark:/#{identifier}" }
-    let(:identifier) { 'coll/222' }
-    let(:similar_identifier) { 'coll/222111' }
+    let(:ark) { "ark:/coll/222" }
+    let(:similar_ark) { 'ark:/coll/222111' }
 
-    let(:collection) { FactoryBot.create(:collection, identifier: [identifier]) }
-    let(:collection_with_similar_ark) { FactoryBot.create(:collection, identifier: [similar_identifier]) }
+    let(:collection) { FactoryBot.create(:collection, ark: ark) }
+    let(:collection_with_similar_ark) { FactoryBot.create(:collection, ark: similar_ark) }
 
     # Clean up any old collections, so we know exactly what we're working with.
     before { described_class.destroy_all }
@@ -59,7 +58,7 @@ RSpec.describe Collection do
         it 'creates a new collection' do
           expect { result }.to change { described_class.count }.to(1)
           expect(result.title).to eq ["Collection #{ark}"]
-          expect(result.identifier).to eq [ark]
+          expect(result.ark).to eq ark
           expect(result.edit_groups).to eq ['admin']
         end
       end

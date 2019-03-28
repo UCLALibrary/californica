@@ -39,7 +39,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, js: true do
 
   context "importing a CSV" do
     it "adds works to the specified collection" do
-      expect(collection.identifier.first).to eq 'ark:/111/222'
+      expect(collection.ark).to eq 'ark:/111/222'
       importer.import
       work = Work.last
       expect(work.member_of_collections).to eq [collection]

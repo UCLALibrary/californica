@@ -74,29 +74,19 @@ RSpec.describe WorkIndexer do
     end
   end
 
-  describe 'identifier' do
-    let(:attributes) { { identifier: ['123', '456'] } }
-
-    # To be able search for an ark with an exact match, we need to index is as a 'string' instead of 'text English'.  Otherwise search results might accidentally match similar arks.
-    it 'indexes as a "string"' do
-      expect(solr_document['identifier_ssim']).to contain_exactly('123', '456')
-    end
-  end
-
   describe 'ark' do
-    let(:attributes) { { identifier: ['123/456'] } }
+    let(:attributes) { { ark: 'ark:/123/456' } }
 
-    # To be able use the ark as the Blacklight identifier we need it to be a single value string.
     it 'indexes as a single value "string"' do
-      expect(solr_document['ark_ssi']).to eq 'ark:/123/456'
+      expect(solr_document['ark_sim']).to eq ['ark:/123/456']
     end
   end
 
   describe 'ark' do
-    let(:attributes) { { identifier: ['ark:/123/456'] } }
+    let(:attributes) { { ark: 'ark:/123/456' } }
 
     it 'does not duplicate the "ark:/"' do
-      expect(solr_document['ark_ssi']).to eq 'ark:/123/456'
+      expect(solr_document['ark_sim']).to eq ['ark:/123/456']
     end
   end
 end
