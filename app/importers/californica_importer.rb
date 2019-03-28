@@ -2,7 +2,9 @@
 
 # Import CSV files according to UCLA ingest rules
 class CalifornicaImporter
-  DEDUPLICATION_FIELD = 'identifier'
+  # Note that because we are using ARK, this is a little non-standard from darlingtonia.
+  # See actor_record_importer.rb for our custom de-deuplication method.
+  DEDUPLICATION_FIELD = 'ark'
 
   attr_reader :error_log, :ingest_log, :depositor_id
 

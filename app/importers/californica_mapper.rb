@@ -4,7 +4,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   attr_reader :missing_file_log
 
   CALIFORNICA_TERMS_MAP = {
-    identifier: "Item Ark",
+    ark: "Item Ark",
     title: "Title",
     subject: "Subject",
     description: "Description.note",
@@ -77,6 +77,10 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
   def visibility
     Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
+  end
+
+  def ark
+    Ark.ensure_prefix(map_field(:ark).to_a.first)
   end
 
   # To avoid having to normalize data before import,

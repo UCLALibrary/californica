@@ -6,7 +6,7 @@ RSpec.describe CalifornicaMapper do
   subject(:mapper) { described_class.new }
 
   let(:metadata) do
-    { "Item Ark" => "21198/zz0002nq4w",
+    { "Item Ark" => "ark:/21198/zz0002nq4w",
       "Title" => "Protesters with signs in gallery of Los Angeles County Supervisors " \
       "hearing over eminent domain for construction of Harbor Freeway, Calif., 1947",
       "Type.typeOfResource" => "still image",
@@ -32,10 +32,6 @@ RSpec.describe CalifornicaMapper do
     expect(mapper.map_field(:title))
       .to contain_exactly("Protesters with signs in gallery of Los Angeles County Supervisors " \
                           "hearing over eminent domain for construction of Harbor Freeway, Calif., 1947")
-  end
-
-  it "maps the required identifier field" do
-    expect(mapper.map_field(:identifier)).to contain_exactly('21198/zz0002nq4w')
   end
 
   it "maps the collection (relation.isPartOf) field" do
@@ -80,13 +76,29 @@ RSpec.describe CalifornicaMapper do
   describe '#fields' do
     it 'has expected fields' do
       expect(mapper.fields).to include(
-        :visibility, :identifier, :title, :subject,
+        :visibility, :ark, :title, :subject,
         :resource_type, :description, :latitude,
         :longitude, :extent, :local_identifier,
         :date_created, :caption, :dimensions, :rights_country,
         :funding_note, :genre, :rights_holder,
         :medium, :normalized_date, :location, :publisher, :photographer, :remote_files
       )
+    end
+  end
+
+  describe '#ark' do
+    it "maps the required ark field" do
+      expect(mapper.ark).to eq('ark:/21198/zz0002nq4w')
+    end
+
+    context 'when input has no prefix' do
+      let(:metadata) do
+        { "Item Ark" => "21198/zz0002nq4w" }
+      end
+
+      it 'adds the prefix "ark:/"' do
+        expect(mapper.ark).to eq('ark:/21198/zz0002nq4w')
+      end
     end
   end
 
