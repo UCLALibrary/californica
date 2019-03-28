@@ -76,6 +76,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       # Edit some fields in the form
       fill_in 'Title', with: 'New Title'
       fill_in 'Dimensions', with: 'New Dim'
+      fill_in 'Ark', with: 'ark:/not/myark' # This field is read-only and an attempt to change it should not result in a change
 
       # Submit the form.  When the page reloads, it should be on the show page.
       click_on 'Save changes'
@@ -86,6 +87,8 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(page).to_not have_content 'Old Title'
       expect(page).to     have_content 'New Dim'
       expect(page).to_not have_content 'Old Dim'
+      expect(page).to     have_content 'ark:/abc/3456'
+      expect(page).to_not have_content 'ark:/not/myark'
     end
   end
 end
