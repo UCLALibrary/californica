@@ -41,7 +41,9 @@ namespace :californica do
     desc 'Remove data indicated by CSV_FILE'
     task clean: [:environment] do
       puts "Removing data indicated by CSV_FILE"
-      CalifornicaCsvCleaner.new(file: CSV_FILE).clean
+      file = File.open(CSV_FILE)
+      CalifornicaCsvCleaner.new(file: file).clean
+      file.close
     end
 
     # Note: This is a super-extra thorough clean out because we were hitting timeout
