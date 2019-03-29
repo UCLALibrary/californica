@@ -21,7 +21,7 @@ class CsvValidator < Darlingtonia::Validator
   end
 
   def required_headers
-    ['Title', 'Item Ark']
+    CalifornicaMapper.required_headers
   end
 
   def allowed_headers

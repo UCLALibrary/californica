@@ -45,6 +45,11 @@ class CalifornicaMapper < Darlingtonia::HashMapper
       ['masterImageName', 'Parent ARK', 'Project Name']
   end
 
+  # What columns must exist in the CSV
+  def self.required_headers
+    ['Title', 'Item Ark']
+  end
+
   def fields
     CALIFORNICA_TERMS_MAP.keys + [:remote_files, :visibility, :member_of_collections_attributes]
   end
