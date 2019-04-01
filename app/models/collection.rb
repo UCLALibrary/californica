@@ -21,6 +21,7 @@ class Collection < ActiveFedora::Base
     return collection if collection
 
     collection = Collection.create(
+      id: Californica::IdGenerator.id_from_ark(ark),
       title: ["Collection #{ark}"],
       ark: ark,
       collection_type: Hyrax::CollectionType.find_or_create_default_collection_type,
