@@ -18,7 +18,7 @@ RSpec.describe 'Create a new collection', :clean, type: :system, js: true do
   context 'logged in as an admin user' do
     before { login_as admin }
 
-    scenario 'successfully edits the work' do
+    scenario 'successfully creates a new collection with an ark based identifier' do
       visit "/dashboard/my/collections"
       click_on 'New Collection'
       choose('User Collection')
@@ -29,6 +29,8 @@ RSpec.describe 'Create a new collection', :clean, type: :system, js: true do
       expect(page).to have_content title
       expect(find_field('Ark').value).to eq ark
       expect(page).to have_content 'Collection was successfully created.'
+      collection = Collection.last
+      expect(collection.id).to eq '1234-abc'
     end
   end
 end

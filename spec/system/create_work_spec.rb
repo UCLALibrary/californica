@@ -55,6 +55,8 @@ RSpec.describe 'Create a Work', :clean, type: :system, js: true do
       expect(page).to have_content('My Test Work')
       expect(page).to have_content("ark:/abc/123")
       expect(page).to have_content("Your files are being processed")
+      work = Work.last
+      expect(work.id).to eq '123-abc'
     end
   end
 end
