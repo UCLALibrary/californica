@@ -68,8 +68,32 @@ RSpec.describe CalifornicaMapper do
         "Photographer" => "Ansel Adams",
         "Language" => "English" }
     end
+
     it "does not throw an error if File Name is empty" do
       expect(mapper.remote_files).to eq []
+    end
+
+    it "logs the missing file" do
+      mapper.remote_files
+      File.open(ENV['MISSING_FILE_LOG']) do |file|
+        expect(file.read).to eq "Work ark:/21198/zz0002nq4w is missing a filename\n"
+      end
+    end
+  end
+
+  context 'with a blank filename for a "Collection" row' do
+    let(:metadata) do
+      { "Item Ark" => "123/abc",
+        "Object Type" => "Collection",
+        "Title" => "Collection Title" }
+    end
+
+    it 'doesn\'t log a missing file' do
+      FileUtils.touch(ENV['MISSING_FILE_LOG'])
+      expect(mapper.remote_files).to eq []
+      File.open(ENV['MISSING_FILE_LOG']) do |file|
+        expect(file.read).to eq ""
+      end
     end
   end
 
@@ -203,7 +227,7 @@ RSpec.describe CalifornicaMapper do
         end
 
         it 'finds the correct ID for the given value' do
-          expect(mapper.rights_statement).to eq "http://vocabs.library.ucla.edu/rights/copyrighted"
+          expect(mapper.rights_statement).to eq ["http://vocabs.library.ucla.edu/rights/copyrighted"]
         end
       end
 
@@ -214,7 +238,7 @@ RSpec.describe CalifornicaMapper do
         end
 
         it 'returns the same value' do
-          expect(mapper.rights_statement).to eq 'something invalid'
+          expect(mapper.rights_statement).to eq ['something invalid']
         end
       end
     end

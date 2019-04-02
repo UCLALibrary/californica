@@ -23,7 +23,7 @@ class CalifornicaImporter
       deduplication_field: DEDUPLICATION_FIELD
     }
 
-    record_importer = ActorRecordImporter.new(error_stream: @error_stream, info_stream: @info_stream, attributes: attrs)
+    record_importer = ::RecordImporter.new(error_stream: @error_stream, info_stream: @info_stream, attributes: attrs)
     Darlingtonia::Importer.new(parser: parser, record_importer: record_importer, info_stream: @info_stream, error_stream: @error_stream).import if parser.validate
   end
 

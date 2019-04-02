@@ -16,7 +16,9 @@ RSpec.describe CalifornicaImporter, :clean do
 
   describe 'CSV import' do
     it 'imports records' do
-      expect { importer.import }.to change { Work.count }.by 1
+      expect { importer.import }
+        .to change { Work.count }.by(1)
+        .and(change { Collection.count }.by(1))
     end
 
     it 'sets #date_uploaded' do
@@ -99,6 +101,32 @@ RSpec.describe CalifornicaImporter, :clean do
 
         expect(Collection.count).to eq 0
         expect(Work.count).to eq 1
+      end
+    end
+
+    describe 'when there is a metadata row for the collection' do
+      context 'when the collection row is before the work row' do
+        let(:csv_path) { 'spec/fixtures/example_work_with_collection_reverse_order.csv' }
+        let(:collection) { Collection.first }
+
+        it 'creates the records' do
+          expect { importer.import }
+            .to change { Work.count }.to(1)
+            .and(change { Collection.count }.to(1))
+          expect(collection.title).to eq ['Los Angeles Daily News Negatives']
+        end
+      end
+
+      context 'when the work row is before the collection row' do
+        let(:csv_path) { 'spec/fixtures/example_work_with_collection.csv' }
+        let(:collection) { Collection.first }
+
+        it 'creates the records' do
+          expect { importer.import }
+            .to change { Work.count }.to(1)
+            .and(change { Collection.count }.to(1))
+          expect(collection.title).to eq ['Los Angeles Daily News Negatives']
+        end
       end
     end
 

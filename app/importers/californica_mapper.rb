@@ -42,7 +42,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   # What columns are allowed in the CSV
   def self.allowed_headers
     CALIFORNICA_TERMS_MAP.values +
-      ['File Name', 'Parent ARK', 'Project Name']
+      ['File Name', 'Parent ARK', 'Project Name', 'Object Type']
   end
 
   # What columns must exist in the CSV
@@ -52,6 +52,14 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
   def fields
     CALIFORNICA_TERMS_MAP.keys + [:remote_files, :visibility, :member_of_collections_attributes]
+  end
+
+  def object_type
+    metadata['Object Type']
+  end
+
+  def collection?
+    object_type&.downcase&.chomp == 'collection'
   end
 
   ##
@@ -65,8 +73,9 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   # instead of creating a Hyrax::UploadedFile object while the CSV is
   # being parsed, which gives us a performance advantage.
   def remote_files
+    return [] if collection?
     if metadata['File Name'].nil?
-      File.open(@missing_file_log, 'a') { |file| file.puts "Work #{map_field(:identifier)} is missing a filename" }
+      File.open(@missing_file_log, 'a') { |file| file.puts "Work #{ark} is missing a filename" }
       return []
     end
     file_name = file_uri_base_path.join(metadata['File Name']).to_s
@@ -75,7 +84,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     if file_exists
       return_value = [{ url: file_uri_for(name: metadata['File Name']) }]
     else
-      File.open(@missing_file_log, 'a') { |file| file.puts "Work #{map_field(:identifier)} has an invalid file: #{file_name} not found" }
+      File.open(@missing_file_log, 'a') { |file| file.puts "Work #{ark} has an invalid file: #{file_name} not found" }
     end
     return_value
   end
@@ -148,7 +157,8 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   def rights_statement
     return unless metadata['Rights.copyrightStatus']
     rights_term = Qa::Authorities::Local.subauthority_for('rights_statements').all.find { |h| h[:label] == metadata['Rights.copyrightStatus'] }
-    rights_term.blank? ? metadata['Rights.copyrightStatus'] : rights_term[:id]
+    rights_value = rights_term.blank? ? metadata['Rights.copyrightStatus'] : rights_term[:id]
+    Array(rights_value)
   end
 
   def map_field(name)
