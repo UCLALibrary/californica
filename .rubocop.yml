@@ -22,6 +22,7 @@ Metrics/BlockLength:
 
 Metrics/LineLength:
   Exclude:
+    - 'app/importers/collection_record_importer.rb'
     - 'spec/tasks/ingest_spec.rb'
     - 'app/importers/rights_statement_validator.rb'
     - 'spec/system/import_and_show_work_spec.rb'
@@ -36,6 +37,9 @@ Metrics/MethodLength:
     - app/forms/hyrax/californica_collections_form.rb
     - 'app/importers/csv_validator.rb'
 
+RSpec/AnyInstance:
+  Enabled: false
+
 RSpec/ExampleLength:
   Enabled: true
   Exclude:
@@ -43,17 +47,13 @@ RSpec/ExampleLength:
     - 'spec/tasks/ingest_spec.rb'
     - 'spec/importers/californica_mapper_spec.rb'
     - 'spec/importers/californica_importer_spec.rb'
+    - 'spec/importers/collection_record_importer_spec.rb'
 
 RSpec/LetSetup:
   Enabled: false
 
 RSpec/NotToNot:
   Enabled: false
-
-RSpec/LetSetup:
-  Exclude:
-    - 'spec/system/search_catalog_spec.rb'
-    - 'spec/importers/californica_importer_spec.rb'
 
 Style/BlockDelimiters:
   Exclude:
@@ -66,6 +66,10 @@ Style/IfUnlessModifier:
 Layout/MultilineBlockLayout:
   Exclude:
     - 'spec/system/search_catalog_spec.rb'
+
+Layout/MultilineMethodCallIndentation:
+  Exclude:
+    - 'spec/importers/californica_importer_spec.rb'
 
 Layout/BlockEndNewline:
   Exclude:
