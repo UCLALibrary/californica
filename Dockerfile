@@ -7,8 +7,19 @@ ADD https://github.com/harvard-lts/fits/releases/download/1.4.0/fits-1.4.0.zip /
 RUN unzip fits-1.4.0.zip -d /fits
 ENV PATH "/fits:$PATH"
 
+RUN apt-get update -qq
+# Add https support to apt to download yarn & newer node
+RUN apt-get install -y  apt-transport-https
+
+# Add node and yarn repos and install them along
+# along with other rails deps
+RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get update -qq
+
 # Install system dependencies
-RUN apt-get update -qq && apt-get install -y mysql-client build-essential libpq-dev nodejs imagemagick libreoffice ffmpeg unzip
+RUN apt-get update -qq && apt-get install -y mysql-client build-essential libpq-dev nodejs yarn imagemagick libreoffice ffmpeg unzip chromium chromedriver
 
 # Set up user
 # RUN groupadd -r --gid 3000 docker && \
