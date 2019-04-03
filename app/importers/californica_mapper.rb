@@ -42,7 +42,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   # What columns are allowed in the CSV
   def self.allowed_headers
     CALIFORNICA_TERMS_MAP.values +
-      ['masterImageName', 'Parent ARK', 'Project Name']
+      ['File Name', 'Parent ARK', 'Project Name']
   end
 
   # What columns must exist in the CSV
@@ -65,15 +65,15 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   # instead of creating a Hyrax::UploadedFile object while the CSV is
   # being parsed, which gives us a performance advantage.
   def remote_files
-    if metadata['masterImageName'].nil?
+    if metadata['File Name'].nil?
       File.open(@missing_file_log, 'a') { |file| file.puts "Work #{map_field(:identifier)} is missing a filename" }
       return []
     end
-    file_name = file_uri_base_path.join(metadata['masterImageName']).to_s
+    file_name = file_uri_base_path.join(metadata['File Name']).to_s
     file_exists = File.exist?(file_name)
     return_value = []
     if file_exists
-      return_value = [{ url: file_uri_for(name: metadata['masterImageName']) }]
+      return_value = [{ url: file_uri_for(name: metadata['File Name']) }]
     else
       File.open(@missing_file_log, 'a') { |file| file.puts "Work #{map_field(:identifier)} has an invalid file: #{file_name} not found" }
     end

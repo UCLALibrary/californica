@@ -18,7 +18,7 @@ RSpec.describe CalifornicaMapper do
       "Rights.countryCreation" => "US",
       "Name.repository" => "University of California, Los Angeles. $b Library Special Collections",
       "Description.caption" => "This example does not have a caption.",
-      "masterImageName" => "clusc_1_1_00010432a.tif",
+      "File Name" => "clusc_1_1_00010432a.tif",
       "Coverage.geographic" => "Los Angeles (Calif.)",
       "Name.subject" => "Los Angeles County (Calif.). $b Board of Supervisors",
       "Language" => "English",
@@ -62,13 +62,13 @@ RSpec.describe CalifornicaMapper do
         "Rights.countryCreation" => "US",
         "Name.repository" => "University of California, Los Angeles. $b Library Special Collections",
         "Description.caption" => "This example does not have a caption.",
-        # "masterImageName" => nil,
+        # "File Name" => nil,
         "Coverage.geographic" => "Los Angeles (Calif.)",
         "Name.subject" => "Los Angeles County (Calif.). $b Board of Supervisors",
         "Photographer" => "Ansel Adams",
         "Language" => "English" }
     end
-    it "does not throw an error if masterImageName is empty" do
+    it "does not throw an error if File Name is empty" do
       expect(mapper.remote_files).to eq []
     end
   end
