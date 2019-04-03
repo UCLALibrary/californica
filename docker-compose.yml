@@ -43,16 +43,21 @@ services:
       - "8984:8080"
     volumes:
       - fcrepo_data:/data
+    environment:
+      JAVA_OPTIONS: "-Xmx512m"
 
   fedora_test:
     image: nulib/fcrepo4:4.7.5
     ports:
       - "8986:8080"
+    environment:
+      JAVA_OPTIONS: "-Xmx512m"
 
   db:
     image: mysql:5.6
     volumes:
       - ./docker/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+      - ./docker/conf.d:/etc/mysql/conf.d
       - mysql_data:/var/lib/mysql
     ports:
       - "3306:3306"
