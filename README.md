@@ -154,6 +154,16 @@ bundle exec rake californica:ingest:csv
 
 You can add a `Parent ARK` column to the CSV file.  For each row of the CSV, add the ARK for the collection that work should belong to.  The importer will find the `Collection` record with the matching ARK.  If the `Collection` record doesn't exist yet, the importer will create a new `Collection` using that ARK.
 
+## Read-only mode
+Californica has a read-only mode, which can be enabled via the `Settings` menu on the admin dashboard, and is useful for making consistent backups or migrating data.
+
+Ideally, a user should log in as an admin, enable read-only mode, and keep the window open so they can then disable it again. If the window accidentally gets closed, and the system is stuck in read-only mode, open a rails console and fix the problem like this:
+
+```
+% RAILS_ENV=production bundle exec rails c
+irb(main):006:0> Hyrax::Feature.where(key: "read_only").first.destroy!
+```
+
 ## What is Hyrax, what is Californica?
 
 _Hyrax_ is a [Rails Engine](http://guides.rubyonrails.org/engines.html#what-are-engines-questionmark)
