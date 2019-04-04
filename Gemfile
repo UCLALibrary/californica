@@ -12,7 +12,7 @@ gem 'bootstrap-sass', ">= 3.4.1"
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 gem 'coveralls', require: false
-gem 'darlingtonia', '>= 3.2.0'
+gem 'darlingtonia', '>= 3.2.2'
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
 gem 'dotenv-rails', '~> 2.2.1'
