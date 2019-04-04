@@ -50,7 +50,7 @@ namespace :californica do
     # errors. Much of this might be overkill at this point and a simple ActiveFedora::Cleaner.clean!
     # should probably suffice in most development environments.
     desc "Cleanout development instance of fedora and solr"
-    task clean: :environment do
+    task clean_all: :environment do
       if Rails.env.development?
         puts "Cleaning out local fedora and solr..."
         require 'active_fedora/cleaner'
