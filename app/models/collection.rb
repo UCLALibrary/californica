@@ -11,7 +11,7 @@ class Collection < ActiveFedora::Base
   # @param ark [String] The ARK
   # @return [Collection] The Collection with that ARK
   def self.find_by_ark(ark)
-    where(ark_sim: ark).limit(1).first
+    where(ark_ssi: ark).limit(1).first
   end
 
   # @param ark [String] The ARK

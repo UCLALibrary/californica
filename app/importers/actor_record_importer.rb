@@ -28,7 +28,7 @@ class ActorRecordImporter < Darlingtonia::HyraxRecordImporter
     return unless record.respond_to?(deduplication_field)
     return if record.mapper.send(deduplication_field).nil?
     return if record.mapper.send(deduplication_field).empty?
-    existing_records = import_type.where(ark_sim: record.mapper.send(deduplication_field).to_s)
+    existing_records = import_type.where(ark_ssi: record.mapper.send(deduplication_field).to_s)
     raise "More than one record matches deduplication_field #{deduplication_field} with value #{record.mapper.send(deduplication_field)}" if existing_records.count > 1
     existing_records&.first
   end

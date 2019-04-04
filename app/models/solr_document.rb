@@ -27,7 +27,7 @@ class SolrDocument
   use_extension(Hydra::ContentNegotiation)
 
   def ark
-    self[:ark_ssm]
+    self[:ark_ssi]
   end
 
   def extent
