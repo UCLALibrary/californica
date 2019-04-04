@@ -50,7 +50,7 @@ RSpec.describe CalifornicaImporter, :clean do
       it 'creates a new collection with a modified ark as the id' do
         importer.import
         new_collection = Collection.first
-        expect(new_collection.id).to eq "zz00294nz8-21198"
+        expect(new_collection.id).to eq "8zn49200zz-89112"
       end
       it 'creates a new collection and adds the work to it' do
         expect(Collection.count).to eq 0

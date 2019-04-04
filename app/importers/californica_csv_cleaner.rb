@@ -41,7 +41,7 @@ class CalifornicaCsvCleaner < Darlingtonia::CsvParser
       Work.where(identifier: ark).each do |work|
         work&.destroy!
       end
-      Work.where(ark_sim: ark).each do |work|
+      Work.where(ark_ssi: ark).each do |work|
         work&.destroy!
       end
     end

@@ -4,7 +4,7 @@ module UclaMetadata
 
   included do
     property :ark, predicate: ::RDF::Vocab::DC11.identifier, multiple: false do |index|
-      index.as :displayable, :facetable
+      index.as :stored_sortable
     end
 
     property :extent, predicate: ::RDF::Vocab::DC11.format do |index|

@@ -78,7 +78,7 @@ RSpec.describe WorkIndexer do
     let(:attributes) { { ark: 'ark:/123/456' } }
 
     it 'indexes as a single value "string"' do
-      expect(solr_document['ark_sim']).to eq ['ark:/123/456']
+      expect(solr_document['ark_ssi']).to eq 'ark:/123/456'
     end
   end
 
@@ -86,7 +86,7 @@ RSpec.describe WorkIndexer do
     let(:attributes) { { ark: 'ark:/123/456' } }
 
     it 'does not duplicate the "ark:/"' do
-      expect(solr_document['ark_sim']).to eq ['ark:/123/456']
+      expect(solr_document['ark_ssi']).to eq 'ark:/123/456'
     end
   end
 end

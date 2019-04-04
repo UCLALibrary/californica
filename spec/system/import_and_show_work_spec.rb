@@ -47,7 +47,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, js: true do
     it "displays expected fields on show work page" do
       importer.import
       work = Work.last
-      expect(work.id).to eq "hb338nb26f-13030"
+      expect(work.id).to eq "f62bn833bh-03031"
       visit("/concern/works/#{work.id}")
       expect(page).to have_content "Communion at Plaza Church, Los Angeles, 1942-1952" # title
       expect(page).to have_content "ark:/13030/hb338nb26f" # ark

@@ -30,7 +30,7 @@ RSpec.describe 'Create a new collection', :clean, type: :system, js: true do
       expect(find_field('Ark').value).to eq ark
       expect(page).to have_content 'Collection was successfully created.'
       collection = Collection.last
-      expect(collection.id).to eq '1234-abc'
+      expect(collection.id).to eq '4321-cba'
     end
   end
 end
