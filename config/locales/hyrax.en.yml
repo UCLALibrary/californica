@@ -4,7 +4,7 @@ en:
     search:
       fields:
         facet:
-          based_near_label_sim: Location
+          based_near_label_sim: Based Near
           creator_sim: Creator
           file_format_sim: Format
           generic_type_sim: Type
@@ -13,7 +13,7 @@ en:
           publisher_sim: Publisher
           subject_sim: Subject
         index:
-          based_near_tesim: Location
+          based_near_tesim: Based Near
           contributor_tesim: Contributor
           creator_tesim: Creator
           date_created_tesim: Date Created
@@ -29,7 +29,7 @@ en:
           rights_statement_tesim: Rights Statement
           subject_tesim: Subject
         show:
-          based_near_tesim: Location
+          based_near_tesim: Based Near
           contributor_tesim: Contributor
           creator_tesim: Creator
           date_created_tesim: Date Created
@@ -47,8 +47,12 @@ en:
           subject: Subjects
           title_tesim: Title
   simple_form:
+    hints:
+      defaults:
+        based_near: A hyrax default field that we're not using. Use Location instead.
     labels:
       defaults:
+        based_near: Based Near
         description: Description
         funding_note: 'Funding Note'
         local_identifier: 'Local Identifier'
