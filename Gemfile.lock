@@ -189,7 +189,7 @@ GEM
       thor (~> 0.19.4)
       tins (~> 1.6)
     crass (1.0.4)
-    darlingtonia (3.2.0)
+    darlingtonia (3.2.2)
       active-fedora (>= 11.5.2)
     declarative (0.0.10)
     declarative-option (0.1.0)
@@ -861,7 +861,7 @@ DEPENDENCIES
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
   coveralls
-  darlingtonia (>= 3.2.0)
+  darlingtonia (>= 3.2.2)
   devise
   devise-guests (~> 0.6)
   dotenv-rails (~> 2.2.1)
