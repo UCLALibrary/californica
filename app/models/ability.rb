@@ -18,5 +18,6 @@ class Ability
     # if user_groups.include? 'special_group'
     #   can [:create], ActiveFedora::Base
     # end
+    can :manage, CsvImport if current_user.admin?
   end
 end

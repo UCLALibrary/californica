@@ -1,0 +1,16 @@
+<h2> Importing Records from a CSV File </h2>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <label> CSV Manifest: </label>
+  <span> <%= File.basename(@csv_import.manifest.to_s) %> </span>
+  <br />
+  <label> Uploaded by: </label>
+  <span> <%= @csv_import.user.name %> </span>
+  <br />
+  <label> Start time: </label>
+  <span> <%= @csv_import.created_at %> </span>
+</p>
+
+<p> TODO: Put info about the current status of the import here. </p>
+
