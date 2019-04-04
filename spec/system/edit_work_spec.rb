@@ -45,11 +45,14 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
 
     scenario 'successfully edits the work' do
       visit edit_hyrax_work_path(work.id)
+
       # When the form first loads, it should contain all the old values
       expect(find_field('Title').value).to eq 'Old Title'
       expect(find_field('Ark').value).to eq 'ark:/abc/3456'
       expect(page.all(:css, 'div.select.work_rights_statement').first.has_content?('copyrighted')).to eq true
+
       click_on 'Additional fields'
+      expect(find(:xpath, '//label[@for="work_based_near"]').text).to eq 'Based Near'
       expect(first(:css, '#work_description').value).to eq 'Old Desc'
       expect(find_field('Publisher').value).to eq 'Old Pub'
       expect(find_field('Date Created').value).to eq 'Old Creation Date'
