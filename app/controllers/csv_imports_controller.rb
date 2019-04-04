@@ -6,19 +6,15 @@ class CsvImportsController < ApplicationController
 
   with_themed_layout 'dashboard'
 
-  def index
-  end
+  def index; end
 
-  def show
-  end
+  def show; end
 
-  def new
-  end
+  def new; end
 
   # Validate the CSV file and display errors or
   # warnings to the user.
-  def preview
-  end
+  def preview; end
 
   def create
     @csv_import.user = current_user

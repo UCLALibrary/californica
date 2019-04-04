@@ -1,12 +1,9 @@
+# frozen_string_literal: true
 class CsvImport < ApplicationRecord
   belongs_to :user
   mount_uploader :manifest, CsvManifestUploader
 
-  def manifest_warnings
-    manifest.warnings
-  end
+  delegate :warnings, to: :manifest, prefix: true
 
-  def manifest_errors
-    manifest.errors
-  end
+  delegate :errors, to: :manifest, prefix: true
 end

@@ -54,9 +54,9 @@ RSpec.describe CsvImportsController, type: :controller do
       end
 
       it 'doesn\'t create a record' do
-        expect {
+        expect do
           post :create, params: { csv_import: valid_attributes }
-        }.to change(CsvImport, :count).by(0)
+        end.to change(CsvImport, :count).by(0)
       end
     end
   end
@@ -105,9 +105,9 @@ RSpec.describe CsvImportsController, type: :controller do
       end
 
       it 'doesn\'t create a record' do
-        expect {
+        expect do
           post :create, params: { csv_import: valid_attributes }
-        }.to change(CsvImport, :count).by(0)
+        end.to change(CsvImport, :count).by(0)
       end
     end
   end
@@ -150,9 +150,9 @@ RSpec.describe CsvImportsController, type: :controller do
     describe 'POST #create' do
       context 'with valid params' do
         it 'creates a new CsvImport' do
-          expect {
+          expect do
             post :create, params: { csv_import: valid_attributes }
-          }.to change(CsvImport, :count).by(1)
+          end.to change(CsvImport, :count).by(1)
         end
 
         it 'redirects to the show page for the newly created record' do
@@ -167,9 +167,9 @@ RSpec.describe CsvImportsController, type: :controller do
         end
 
         it 'doesn\'t create a record' do
-          expect {
+          expect do
             post :create, params: { csv_import: {} }
-          }.to change(CsvImport, :count).by(0)
+          end.to change(CsvImport, :count).by(0)
 
           expect(response).to be_successful # renders :new
         end

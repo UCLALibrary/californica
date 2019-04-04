@@ -20,7 +20,7 @@ class CsvManifestUploader < CarrierWave::Uploader::Base
   # For images you might use something like this:
   #   %w(jpg jpeg gif png)
   def extension_whitelist
-    %w(csv)
+    %w[csv]
   end
 
   # These are stored in memory only, not persisted

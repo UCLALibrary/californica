@@ -36,6 +36,9 @@ Metrics/MethodLength:
     - app/forms/hyrax/californica_collections_form.rb
     - 'app/importers/csv_validator.rb'
 
+RSpec/AnyInstance:
+  Enabled: false
+
 RSpec/ExampleLength:
   Enabled: true
   Exclude:
