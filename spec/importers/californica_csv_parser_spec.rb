@@ -63,7 +63,7 @@ RSpec.describe CalifornicaCsvParser do
        'Description.note', 'Description.fundingNote',
        'Description.longitude',
        'Description.latitude', 'Description.caption',
-       'masterImageName']
+       'File Name']
     end
 
     it 'knows the headers for this CSV file' do

@@ -33,11 +33,11 @@ RSpec.describe ActorRecordImporter, :clean do
       expect(importer.info_stream.last).to match(/event: record_created/)
     end
 
-    context 'with masterImageName' do
+    context 'with File Name' do
       let(:metadata) do
         {
           'Title' => 'Comet in Moominland',
-          'masterImageName' => "clusc_1_1_00010432a.tif",
+          'File Name' => "clusc_1_1_00010432a.tif",
           'Item Ark' => "ark:/abc/1234"
         }
       end
