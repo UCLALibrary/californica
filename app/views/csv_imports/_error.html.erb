@@ -1,0 +1,10 @@
+<% if csv_import.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(csv_import.errors.size, "error") %> prohibited this csv_import from being saved:</h2>
+    <ul>
+      <% csv_import.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

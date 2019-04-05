@@ -1,24 +1,61 @@
 <%= form_with(model: csv_import, local: true, html: { multipart: true }, url: preview_csv_import_path) do |form| %>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-8">
+          <h2> Getting Started </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="well well-lg">
+            <p><b>Read the CSV Field Guide</b> to learn what is required in your CSV.</p>
+            <div class="text-center">
+              <a href="/importer_documentation/guide" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-book"></i> CSV Field Guide</a>
+            </div>
+          </div>
+        </div>
+         <div class="col-md-4">
+          <div class="well well-lg">
+            <p><b>Download a CSV template</b> to get started.</b></p>
+            <div class="text-center">
+              <a href="/importer_documentation/csv" data-turbolinks="false" class="btn btn-default btn-lg"><i class="glyphicon glyphicon-list"></i> Download a CSV Template</a>            </div>
+            </div>
+          </div>
+        </div>
+      <hr/>
+      <div class="row">
+        <div class="col-md-8">
+          <h2> Upload Your CSV </h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="well well-lg">
+            <p> <b>Upload a CSV</b> that has your content. </p>
+            <div class="text-center">
+              <%= render "file_upload", form: form  %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="well well-lg">
+            <p> <b>Preview your import</b> before starting the process. </p>
+            <div class="text-center">
+              <%= render "actions", form: form %>
+            </div>
+          </div>
+        </div>
+      </div>
 
-  <% if csv_import.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(csv_import.errors.size, "error") %> prohibited this csv_import from being saved:</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <%= render "error", csv_import: csv_import %>
+        </div>
+        <div class="col-md-4">
+        </div>
+      </div>
 
-      <ul>
-      <% csv_import.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
 
-  <p>
-    <label>Select your CSV Manifest</label>
-    <%= form.file_field :manifest, required: true %>
-    <%= form.hidden_field :manifest_cache %>
-  </p>
-
-  <div class="actions">
-    <%= form.submit 'Preview Import' %>
-  </div>
+      <%= form.hidden_field :manifest_cache %>
 <% end %>

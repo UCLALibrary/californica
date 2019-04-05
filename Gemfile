@@ -9,6 +9,7 @@ end
 ruby '>= 2.4.0', '<= 2.5.99'
 
 gem 'bootstrap-sass', ">= 3.4.1"
+gem 'bundler', "~> 1"
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 gem 'coveralls', require: false
@@ -28,6 +29,7 @@ gem 'pkg-config', '~> 1.1'
 gem 'puma', '~> 3.7'
 gem 'rack', '>= 2.0.6'
 gem 'rails', '~> 5.1.6'
+gem 'redcarpet'
 gem 'retries'
 gem 'riiif', '~> 1.1'
 # Error reporting tool
