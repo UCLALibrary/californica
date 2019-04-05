@@ -36,6 +36,10 @@ Metrics/MethodLength:
     - app/importers/actor_record_importer.rb
     - app/forms/hyrax/californica_collections_form.rb
     - 'app/importers/csv_validator.rb'
+    - app/uploaders/csv_manifest_validator.rb
+
+RSpec/AnyInstance:
+  Enabled: false
 
 RSpec/AnyInstance:
   Enabled: false

@@ -1,0 +1,42 @@
+<h2> Preview of your CSV-based Import </h2>
+
+<div id='csv_info'>
+  <% if @csv_import.manifest.file %>
+    <label> CSV Manifest: </label>
+    <%= File.basename(@csv_import.manifest.to_s) %>
+  <% end %>
+  <br />
+
+  <p> TODO: This import will add XXX new records. </p>
+</div>
+
+<% unless @csv_import.manifest_errors.empty? %>
+  <div id='csv_errors'>
+    The CSV file has the following errors:
+    <ul>
+      <% @csv_import.manifest_errors.each do |error| %>
+        <li> <%= error %> </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<% unless @csv_import.manifest_warnings.empty? %>
+  <div id='csv_warnings'>
+    The CSV file has the following warnings:
+    <ul>
+      <% @csv_import.manifest_warnings.each do |warning| %>
+        <li> <%= warning %> </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<% if @csv_import.manifest_errors.empty? %>
+  <%= link_to 'Cancel', new_csv_import_path %>
+  <br />
+  <%= render 'start_import_form', csv_import: @csv_import %>
+<% else %>
+  <p> You will need to correct the errors with the CSV file before you can continue. </p>
+  <%= link_to 'Try Again', new_csv_import_path %>
+<% end %>

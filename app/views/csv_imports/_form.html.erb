@@ -1,0 +1,24 @@
+<%= form_with(model: csv_import, local: true, html: { multipart: true }, url: preview_csv_import_path) do |form| %>
+
+  <% if csv_import.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(csv_import.errors.size, "error") %> prohibited this csv_import from being saved:</h2>
+
+      <ul>
+      <% csv_import.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <label>Select your CSV Manifest</label>
+    <%= form.file_field :manifest, required: true %>
+    <%= form.hidden_field :manifest_cache %>
+  </p>
+
+  <div class="actions">
+    <%= form.submit 'Preview Import' %>
+  </div>
+<% end %>

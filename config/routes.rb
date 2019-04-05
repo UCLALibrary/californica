@@ -2,6 +2,9 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  resources :csv_imports, only: [:index, :show, :new, :create]
+  post 'csv_imports/preview', as: 'preview_csv_import'
+
   get 'branding_info/:id', to: 'branding_info#show', as: 'branding_info'
 
   root 'catalog#index'
