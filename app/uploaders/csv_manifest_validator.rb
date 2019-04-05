@@ -40,7 +40,10 @@ class CsvManifestValidator
     [
       'Item Ark',
       'Title',
-      'Object Type'
+      'Object Type',
+      'Parent ARK',
+      'Rights.copyrightStatus',
+      'File Name'
     ]
   end
 
@@ -59,15 +62,12 @@ class CsvManifestValidator
       'Format.extent',
       'Format.medium',
       'Language',
-      'File Name',
       'Name.photographer',
       'Name.repository',
       'Name.subject',
-      'Parent ARK',
       'Project Name',
       'Publisher.publisherName',
       'Relation.isPartOf',
-      'Rights.copyrightStatus',
       'Rights.countryCreation',
       'Rights.rightsHolderContact',
       'Subject',
