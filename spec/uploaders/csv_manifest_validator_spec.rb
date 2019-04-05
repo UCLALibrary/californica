@@ -38,8 +38,10 @@ RSpec.describe CsvManifestValidator, type: :model do
     let(:csv_file) { File.join(fixture_path, 'csv_import', 'csv_files_with_problems', 'missing_title_header.csv') }
 
     it 'has an error' do
+      missing_ark_error = 'Missing required column: Item Ark.  Your spreadsheet must have this column.  If you already have this column, please check the spelling and capitalization.'
+      missing_title_error = 'Missing required column: Title.  Your spreadsheet must have this column.  If you already have this column, please check the spelling and capitalization.'
       validator.validate
-      expect(validator.errors).to eq ['Missing required column: "title".  Your spreadsheet must have this column.  If you already have this column, please check the spelling and capitalization.']
+      expect(validator.errors).to contain_exactly(missing_ark_error, missing_title_error)
     end
   end
 

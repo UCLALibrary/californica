@@ -1,2 +1,2 @@
-files,representative_media,thumbnail,rendering,depositor,date_uploaded,date_modified,label,relative_path,import_url,resource_type,creator,contributor,description,keyword,license,rights_statement,publisher,date_created,subject,language,identifier,based_near,related_url,bibliographic_citation,source,visibility
-,,,,,,,Work 1 label,,,,,,,,,,,,,,,,,,,open
+Object Type,Item ARK,Parent ARK,Rights.copyrightStatus,File Name
+Work,ark:/abc/123456,ark:/abc/7890123,copyrighted,clusc_1_1_00010432a.tif

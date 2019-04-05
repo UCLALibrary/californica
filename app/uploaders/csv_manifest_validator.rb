@@ -36,24 +36,61 @@ class CsvManifestValidator
     @rows.size - 1 # Don't include the header row
   end
 
+  def required_headers
+    [
+      'Item Ark',
+      'Title',
+      'Object Type'
+    ]
+  end
+
+  def optional_headers
+    [
+      'AltIdentifier.local',
+      'Coverage.geographic',
+      'Date.creation',
+      'Date.normalized',
+      'Description.caption',
+      'Description.fundingNote',
+      'Description.latitude',
+      'Description.longitude',
+      'Description.note',
+      'Format.dimensions',
+      'Format.extent',
+      'Format.medium',
+      'Language',
+      'File Name',
+      'Name.photographer',
+      'Name.repository',
+      'Name.subject',
+      'Parent ARK',
+      'Project Name',
+      'Publisher.publisherName',
+      'Relation.isPartOf',
+      'Rights.copyrightStatus',
+      'Rights.countryCreation',
+      'Rights.rightsHolderContact',
+      'Subject',
+      'Type.genre',
+      'Type.typeOfResource'
+    ]
+  end
+
   def valid_headers
-    ['title', 'files', 'representative_media',
-     'thumbnail', 'rendering', 'depositor',
-     'date_uploaded', 'date_modified', 'label',
-     'relative_path', 'import_url', 'resource_type',
-     'creator', 'contributor', 'description',
-     'keyword', 'license', 'rights_statement',
-     'publisher', 'date_created', 'subject',
-     'language', 'identifier', 'based_near',
-     'related_url', 'bibliographic_citation',
-     'source', 'visibility']
+    required_headers + optional_headers
   end
 
 private
 
   def missing_headers
-    return if @rows.first.include?('title')
-    @errors << 'Missing required column: "title".  Your spreadsheet must have this column.  If you already have this column, please check the spelling and capitalization.'
+    required_headers.each do |required_header|
+      missing_required_header?(@rows.first, required_header)
+    end
+  end
+
+  def missing_required_header?(row, header)
+    return if row.include?(header)
+    @errors << "Missing required column: #{header}.  Your spreadsheet must have this column.  If you already have this column, please check the spelling and capitalization."
   end
 
   # Warn the user if we find any unexpected headers.
