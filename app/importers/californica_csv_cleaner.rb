@@ -43,6 +43,7 @@ class CalifornicaCsvCleaner < Darlingtonia::CsvParser
       ark = Ark.ensure_prefix(ark)
       Work.where(identifier: ark).each { |work| work&.destroy! }
       Work.where(ark_ssi: ark).each { |work| work&.destroy! }
+      Work.where(local_identifier: item.mapper.metadata["AltIdentifier.local"]).each { |work| work&.destroy! }
     end
 
     # info_stream << "Actually processed #{actual_records_processed} records"
