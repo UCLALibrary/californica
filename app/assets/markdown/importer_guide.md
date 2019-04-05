@@ -34,7 +34,7 @@
 
 ## Required Fields
 
-### File Name
+### File Name (required)
 A filename to attach to the object. Can be multivalued.
 
 This field is a string.  **This field is required**.
@@ -44,7 +44,7 @@ Examples:
 * `clusc_1_1_00010432a.tif` (single value)
 * `clusc_1_1_00010432a.tif|~|clusc_1_1_00010432b.tif` (multivalued)
 
-### Item Ark
+### Item Ark (required)
 
 A persistent unique identifier associated with a work. It takes the form `ark:/shoulder/blade` where `shoulder` is an institutional identifier, and `blade` is a work identifier. Every work and collection in Californica must have an ark value. The ark is not multivalued -- each work can only have one.
 
@@ -54,7 +54,7 @@ Examples:
 
 * `ark:/21198/zz002h2fpt` (single value)
 
-### Object Type
+### Object Type (required)
 
 A controlled vocabulary term referring to the type of repository object that will be created for this CSV row. Current legal values are `Collection` and `Work`. Only one value can be given per CSV row.
 
@@ -64,7 +64,7 @@ Examples:
 
 * `Work` (single value)
 
-### Parent ARK
+### Parent ARK (required)
 
 The ark value of this object's hierarchical parent. For a single-image `Work` object, this will be the ark of a `Collection` object. When we start importing multi-page objects, this will become more complex.
 
@@ -74,7 +74,7 @@ Examples:
 
 * `ark:/21198/zz002h2fpt` (single value)
 
-### Rights.copyrightStatus
+### Rights.copyrightStatus (required)
 
 The copyright status of this work. The only currently allowed value is `copyrighted`.
 
@@ -84,7 +84,7 @@ Examples:
 
 * `copyrighted` (single value)
 
-### Title
+### Title (required)
 
 A name to aid in identifying a work.
 
