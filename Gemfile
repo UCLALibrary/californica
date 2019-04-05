@@ -28,6 +28,7 @@ gem 'pkg-config', '~> 1.1'
 gem 'puma', '~> 3.7'
 gem 'rack', '>= 2.0.6'
 gem 'rails', '~> 5.1.6'
+gem 'redcarpet'
 gem 'retries'
 gem 'riiif', '~> 1.1'
 # Error reporting tool
