@@ -4,6 +4,11 @@ inherit_gem:
 AllCops:
   TargetRubyVersion: 2.4
 
+Metrics/AbcSize:
+  Enabled: true
+  Exclude:
+    - 'app/importers/californica_csv_cleaner.rb'
+  
 Metrics/ClassLength:
   Enabled: true
   Exclude:
