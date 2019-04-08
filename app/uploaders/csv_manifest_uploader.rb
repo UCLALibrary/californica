@@ -33,6 +33,10 @@ class CsvManifestUploader < CarrierWave::Uploader::Base
     @validator ? @validator.warnings : []
   end
 
+  def records
+    @validator ? @validator.record_count : 0
+  end
+
   private
 
     def validate_csv

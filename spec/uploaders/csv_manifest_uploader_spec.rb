@@ -20,6 +20,10 @@ RSpec.describe CsvManifestUploader, type: :model do
     it 'has no warnings' do
       expect(uploader.warnings).to eq []
     end
+
+    it 'has a correct record count' do
+      expect(uploader.records).to eq 3
+    end
   end
 
   context 'a CSV that has warnings' do

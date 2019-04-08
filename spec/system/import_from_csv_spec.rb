@@ -21,7 +21,7 @@ RSpec.describe 'Importing records from a CSV file', :perform_jobs, :clean, type:
       expect(page).to have_content("You sucessfully uploaded this CSV: all_fields.csv")
       click_on 'Preview Import'
 
-      expect(page).to have_content 'This import will add XXX new records.'
+      expect(page).to have_content 'This import will add 2 new records.'
 
       # There is a link so the user can cancel.
       expect(page).to have_link 'Cancel', href: new_csv_import_path(locale: I18n.locale)
