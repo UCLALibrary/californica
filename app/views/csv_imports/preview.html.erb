@@ -5,10 +5,9 @@
     <label> CSV Manifest: </label>
     <%= File.basename(@csv_import.manifest.to_s) %>
   <% end %>
-  <br />
-
-  <p> TODO: This import will add XXX new records. </p>
 </div>
+
+<%= render 'record_count', locals: { csv_import: @csv_import } %>
 
 <% unless @csv_import.manifest_errors.empty? %>
   <div id='csv_errors'>
