@@ -58,7 +58,9 @@ Capybara.javascript_driver = :selenium_chrome_headless_sandboxless # This is slo
 
 RSpec.configure do |config|
   config.before(:each, type: :system, js: true) do
-    driven_by :selenium_chrome_headless_sandboxless
+    driven_by :selenium_chrome
+    # driven_by :selenium_chrome_headless_sandboxless
+
   end
 
   config.before(:each, type: :system, js: false) do

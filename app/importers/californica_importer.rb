@@ -8,10 +8,12 @@ class CalifornicaImporter
 
   attr_reader :error_log, :ingest_log, :depositor_id
 
-  def initialize(csv_file, depositor_id: nil)
-    @csv_file = csv_file
-    @depositor_id = depositor_id
-    raise "Cannot find expected input file #{csv_file}" unless File.exist?(csv_file)
+  # @param [CsvImport] csv_import
+  def initialize(csv_import)
+    @csv_import = csv_import
+    @csv_file = csv_import.manifest.to_s
+    @depositor_id = csv_import.user_id
+    raise "Cannot find expected input file #{@csv_file}" unless File.exist?(@csv_file)
     setup_logging
   end
 
@@ -20,6 +22,7 @@ class CalifornicaImporter
 
     attrs = {
       depositor_id: @depositor_id,
+      batch_id: @csv_import.id,
       deduplication_field: DEDUPLICATION_FIELD
     }
 

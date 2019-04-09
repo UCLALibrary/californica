@@ -29,6 +29,7 @@ RSpec.describe 'Importing records from a CSV file', :perform_jobs, :clean, type:
       # After reading the warnings, the user decides
       # to continue with the import.
       click_on 'Start Import'
+      expect(page).to have_content('Importing Records from a CSV File')
     end
   end
 end

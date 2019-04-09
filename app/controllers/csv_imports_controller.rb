@@ -21,6 +21,7 @@ class CsvImportsController < ApplicationController
     preserve_cache
 
     if @csv_import.save
+      @csv_import.queue_start_job
       redirect_to @csv_import
     else
       render :new
