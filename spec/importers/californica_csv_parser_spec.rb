@@ -48,7 +48,7 @@ RSpec.describe CalifornicaCsvParser do
 
   describe '#headers' do
     let(:expected_headers) do
-      ['Project Name', 'Parent ARK', 'Item Ark',
+      ['Object Type', 'Project Name', 'Parent ARK', 'Item Ark',
        'Subject', 'Type.typeOfResource',
        'Rights.copyrightStatus', 'Type.genre',
        'Name.subject', 'Coverage.geographic',

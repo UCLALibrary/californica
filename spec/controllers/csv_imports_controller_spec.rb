@@ -161,9 +161,9 @@ RSpec.describe CsvImportsController, type: :controller do
         end
 
         it 'queues a job to start the import' do
-          expect {
+          expect do
             post :create, params: { csv_import: valid_attributes }
-          }.to have_enqueued_job(StartCsvImportJob)
+          end.to have_enqueued_job(StartCsvImportJob)
         end
       end
 
