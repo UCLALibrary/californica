@@ -15,6 +15,7 @@ class WorkIndexer < Hyrax::WorkIndexer
       solr_doc['geographic_coordinates_ssim'] = coordinates
       solr_doc['human_readable_rights_statement_tesim'] = human_readable_rights_statement
       solr_doc['year_isim'] = years
+      solr_doc['ursus_id_ssi'] = Californica::IdGenerator.blacklight_id_from_ark(object.ark)
     end
   end
 
