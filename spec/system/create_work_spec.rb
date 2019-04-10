@@ -30,7 +30,7 @@ RSpec.describe 'Create a Work', :clean, type: :system, js: true do
       # choose "payload_concern", option: "Work"
       # click_button "Create work"
 
-      expect(page).to have_content "Add New Work"
+      expect(page).to have_content "Add new work"
       click_link "Files" # switch tab
       expect(page).to have_content "Add files"
       expect(page).to have_content "Add folder"
