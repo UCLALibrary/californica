@@ -32,9 +32,19 @@
       <div class="row">
         <div class="col-md-4">
           <div class="well well-lg">
-            <p> <b>Upload a CSV</b> that has your content. </p>
+            <p> <b>Upload a CSV</b> that has your metadata. </p>
             <div class="text-center">
               <%= render "file_upload", form: form  %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="well well-lg">
+            <p> <b>Type a directory path</b> where your binary attachments can be found.<br/>
+              It should look something like this: <b>/opt/data/Masters/dlmasters/bennett/masters</b>
+             </p>
+            <div class="text-center">
+              <%= render "import_file_path", form: form  %>
             </div>
           </div>
         </div>

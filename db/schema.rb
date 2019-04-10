@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190404170828) do
+ActiveRecord::Schema.define(version: 20190410165638) do
 
   create_table "bookmarks", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "user_id", null: false
@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(version: 20190404170828) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "manifest"
+    t.string "import_file_path"
     t.index ["user_id"], name: "index_csv_imports_on_user_id"
   end
 
