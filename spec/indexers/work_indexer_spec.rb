@@ -8,7 +8,12 @@ RSpec.describe WorkIndexer do
 
   describe 'rights statement' do
     context 'a work with a rights statement' do
-      let(:attributes) { { rights_statement: ['http://vocabs.library.ucla.edu/rights/copyrighted'] } }
+      let(:attributes) do
+        {
+          ark: 'ark:/123/456',
+          rights_statement: ['http://vocabs.library.ucla.edu/rights/copyrighted']
+        }
+      end
 
       it 'indexes a human-readable rights statement' do
         expect(solr_document['human_readable_rights_statement_tesim']).to eq ['copyrighted']
@@ -19,7 +24,12 @@ RSpec.describe WorkIndexer do
     # but if it does, handle it gracefully.
     context 'when there is no human-readable value' do
       let(:no_match) { "a rights statement that doesn't have a matching value in config/authorities/rights_statements.yml" }
-      let(:attributes) { { rights_statement: [no_match, 'http://vocabs.library.ucla.edu/rights/copyrighted'] } }
+      let(:attributes) do
+        {
+          ark: 'ark:/123/456',
+          rights_statement: [no_match, 'http://vocabs.library.ucla.edu/rights/copyrighted']
+        }
+      end
 
       it 'just returns the original value' do
         expect(solr_document['human_readable_rights_statement_tesim']).to contain_exactly(no_match, 'copyrighted')
@@ -30,8 +40,11 @@ RSpec.describe WorkIndexer do
   describe 'latitude and longitude' do
     context 'a work with latitude and longitude' do
       let(:attributes) do
-        { latitude: ['45.0'],
-          longitude: ['-93.0'] }
+        {
+          ark: 'ark:/123/456',
+          latitude: ['45.0'],
+          longitude: ['-93.0']
+        }
       end
 
       it 'indexes the coordinates in a single field' do
@@ -40,7 +53,12 @@ RSpec.describe WorkIndexer do
     end
 
     context 'a work that is missing latitude' do
-      let(:attributes) { { longitude: ['-93.0'] } }
+      let(:attributes) do
+        {
+          ark: 'ark:/123/456',
+          longitude: ['-93.0']
+        }
+      end
 
       it 'doesn\'t index the coordinates' do
         expect(solr_document['geographic_coordinates_ssim']).to eq nil
@@ -48,7 +66,12 @@ RSpec.describe WorkIndexer do
     end
 
     context 'a work that is missing longitude' do
-      let(:attributes) { { latitude: ['45.0'] } }
+      let(:attributes) do
+        {
+          ark: 'ark:/123/456',
+          latitude: ['45.0']
+        }
+      end
 
       it 'doesn\'t index the coordinates' do
         expect(solr_document['geographic_coordinates_ssim']).to eq nil
@@ -58,7 +81,12 @@ RSpec.describe WorkIndexer do
 
   describe 'integer years for date slider facet' do
     context 'with a normalized_date' do
-      let(:attributes) { { normalized_date: ['1940-10-15'] } }
+      let(:attributes) do
+        {
+          ark: 'ark:/123/456',
+          normalized_date: ['1940-10-15']
+        }
+      end
 
       it 'indexes the year' do
         expect(solr_document['year_isim']).to eq [1940]
@@ -66,7 +94,11 @@ RSpec.describe WorkIndexer do
     end
 
     context 'when normalized_date field is blank' do
-      let(:attributes) { {} }
+      let(:attributes) do
+        {
+          ark: 'ark:/123/456'
+        }
+      end
 
       it 'doesn\'t index the year' do
         expect(solr_document['year_isim']).to eq nil
@@ -75,18 +107,18 @@ RSpec.describe WorkIndexer do
   end
 
   describe 'ark' do
-    let(:attributes) { { ark: 'ark:/123/456' } }
+    let(:attributes) do
+      {
+        ark: 'ark:/123/456'
+      }
+    end
 
-    it 'indexes as a single value "string"' do
+    it 'indexes as a single value "string" without duplicating the prefix ("ark:/ark:/")' do
       expect(solr_document['ark_ssi']).to eq 'ark:/123/456'
     end
-  end
 
-  describe 'ark' do
-    let(:attributes) { { ark: 'ark:/123/456' } }
-
-    it 'does not duplicate the "ark:/"' do
-      expect(solr_document['ark_ssi']).to eq 'ark:/123/456'
+    it 'indexes a simplified id for ursus' do
+      expect(solr_document['ursus_id_ssi']).to eq '123-456'
     end
   end
 end

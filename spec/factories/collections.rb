@@ -105,6 +105,7 @@ FactoryBot.define do
     sequence(:title) { |n| ["Collection #{n}"] }
     visibility { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
     collection_type { Hyrax::CollectionType.find_or_create_default_collection_type }
+    sequence(:ark, 1_234_567) { |n| "ark:/99999/#{n}" }
   end
 
   factory :collection_lw, class: Collection do
@@ -117,6 +118,7 @@ FactoryBot.define do
       with_solr_document { false }
     end
     sequence(:title) { |n| ["Collection Title #{n}"] }
+    sequence(:ark, 1_234_567) { |n| "ark:/aaaaa/#{n}" }
 
     after(:build) do |collection, evaluator|
       collection.apply_depositor_metadata(evaluator.user.user_key)

@@ -10,7 +10,6 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
   let(:collection_attrs) do
     {
       title: ['Old Title'],
-      ark: 'ark:/abc/123456',
       rights_statement: ['http://rightsstatements.org/vocab/InC/1.0/'], # "copyrighted"
       publisher: ['Old Pub'],
       date_created: ['Old Creation Date'],
@@ -58,8 +57,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
 
       collection_attrs.delete(:rights_statement) # Rights Statement display is a special case
 
-      ark_value = collection_attrs.delete(:ark)
-      expect(page).to have_content ark_value
+      expect(page).to have_content collection.ark
 
       collection_attrs.each_value do |v|
         expect(page).to have_content v.first

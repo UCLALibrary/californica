@@ -8,6 +8,8 @@ class Collection < ActiveFedora::Base
   include Hyrax::BasicMetadata
   self.indexer = ::CollectionIndexer
 
+  validates :ark, presence: { message: 'Your Collection must have an ARK.' }
+
   # @param ark [String] The ARK
   # @return [Collection] The Collection with that ARK
   def self.find_by_ark(ark)

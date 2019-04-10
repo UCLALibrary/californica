@@ -12,5 +12,9 @@ RSpec.describe ::CollectionIndexer do
     it 'add the fields to the solr document' do
       expect(solr_document['ark_ssi']).to eq 'ark:/123/456'
     end
+
+    it 'indexes a simplified id for ursus' do
+      expect(solr_document['ursus_id_ssi']).to eq '123-456'
+    end
   end
 end

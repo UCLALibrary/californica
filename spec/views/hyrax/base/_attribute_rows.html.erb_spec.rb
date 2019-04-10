@@ -12,6 +12,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   let(:solr_document) { SolrDocument.new(work.to_solr) }
   let(:work)          do
     Work.new(title: ['title'],
+             ark: 'ark:/abcde/1234567',
              description: ['description'],
              extent: ['extent'],
              caption: ['caption'], dimensions: ['dimensions'],
