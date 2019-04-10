@@ -6,7 +6,7 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
   #   @return [#<<]
   # @!attribute [rw] info_stream
   #   @return [#<<]
-  attr_accessor :error_stream, :info_stream
+  attr_accessor :error_stream, :info_stream, :import_file_path
 
   ##
   # @todo should error_stream and info_stream be moved to the base
@@ -15,11 +15,13 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
   # @param [#<<] error_stream
   # @param [#<<] info_stream
   def initialize(file:,
+                 import_file_path: ENV['IMPORT_FILE_PATH'] || '/opt/data',
                  error_stream: Darlingtonia.config.default_error_stream,
                  info_stream:  Darlingtonia.config.default_info_stream,
                  **opts)
     self.error_stream = error_stream
     self.info_stream  = info_stream
+    @import_file_path = import_file_path
 
     self.validators = [
       Darlingtonia::CsvFormatValidator.new(error_stream: error_stream),
@@ -55,7 +57,7 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
     CSV.parse(file.read, headers: true).each_with_index do |row, index|
       next unless index >= skip
       next if row.to_h.values.all?(&:nil?)
-      yield Darlingtonia::InputRecord.from(metadata: row, mapper: CalifornicaMapper.new)
+      yield Darlingtonia::InputRecord.from(metadata: row, mapper: CalifornicaMapper.new(import_file_path: @import_file_path))
     end
   rescue CSV::MalformedCSVError
     # error reporting for this case is handled by validation

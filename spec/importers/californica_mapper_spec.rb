@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe CalifornicaMapper do
-  subject(:mapper) { described_class.new }
+  subject(:mapper) { described_class.new(import_file_path: fixture_path) }
 
   let(:metadata) do
     { "Item Ark" => "ark:/21198/zz0002nq4w",

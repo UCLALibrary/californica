@@ -6,12 +6,13 @@ class CalifornicaImporter
   # See actor_record_importer.rb for our custom de-deuplication method.
   DEDUPLICATION_FIELD = 'ark'
 
-  attr_reader :error_log, :ingest_log, :depositor_id
+  attr_reader :error_log, :ingest_log, :depositor_id, :import_file_path
 
   # @param [CsvImport] csv_import
   def initialize(csv_import)
     @csv_import = csv_import
     @csv_file = csv_import.manifest.to_s
+    @import_file_path = csv_import.import_file_path
     @depositor_id = csv_import.user_id
     raise "Cannot find expected input file #{@csv_file}" unless File.exist?(@csv_file)
     setup_logging
@@ -33,6 +34,7 @@ class CalifornicaImporter
   def parser
     @parser ||=
       CalifornicaCsvParser.new(file:         File.open(@csv_file),
+                               import_file_path: @import_file_path,
                                error_stream: @error_stream,
                                info_stream:  @info_stream)
   end
