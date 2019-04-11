@@ -3,9 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe CalifornicaImporter, :clean do
-  subject(:importer) { described_class.new(file) }
-  let(:file)       { File.open(csv_path) }
-  let(:csv_path)   { 'spec/fixtures/example.csv' }
+  subject(:importer) { described_class.new(csv_import) }
+  let(:csv_import) { FactoryBot.create(:csv_import, user: user, manifest: manifest) }
+  let(:manifest) { Rack::Test::UploadedFile.new(Rails.root.join(csv_path), 'text/csv') }
+  let(:user) { FactoryBot.create(:admin) }
+  let(:csv_path) { 'spec/fixtures/example.csv' }
 
   # Cleanup log files after each test run
   after do
@@ -15,6 +17,10 @@ RSpec.describe CalifornicaImporter, :clean do
   end
 
   describe 'CSV import' do
+    it 'has an import_file_path' do
+      expect(importer.import_file_path).to eq csv_import.import_file_path
+    end
+
     it 'imports records' do
       expect { importer.import }
         .to change { Work.count }.by(1)

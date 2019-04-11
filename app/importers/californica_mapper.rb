@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CalifornicaMapper < Darlingtonia::HashMapper
-  attr_reader :missing_file_log
+  attr_reader :missing_file_log, :import_file_path
 
   CALIFORNICA_TERMS_MAP = {
     ark: "Item Ark",
@@ -34,9 +34,10 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
   DELIMITER = '|~|'
 
-  def initialize
+  def initialize(attributes = {})
     @missing_file_log = ENV['MISSING_FILE_LOG'] || "#{::Rails.root}/log/missing_files_#{Rails.env}"
-    super
+    @import_file_path = attributes[:import_file_path] || ENV['IMPORT_FILE_PATH'] || '/opt/data'
+    super()
   end
 
   # What columns are allowed in the CSV
@@ -182,7 +183,9 @@ class CalifornicaMapper < Darlingtonia::HashMapper
       uri.to_s
     end
 
+    # Prefer the import_file_path that's been explicitly passed to this instance of CalifornicaMapper
+    # if it exists.
     def file_uri_base_path
-      Pathname.new(ENV['IMPORT_FILE_PATH'] || '/opt/data')
+      Pathname.new(@import_file_path)
     end
 end

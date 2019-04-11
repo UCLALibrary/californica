@@ -3,9 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe CalifornicaCsvParser do
-  subject(:parser)    { described_class.new(file: file) }
+  subject(:parser)    { described_class.new(file: file, import_file_path: import_file_path) }
   let(:file)          { File.open(csv_path) }
   let(:csv_path)      { 'spec/fixtures/example.csv' }
+  let(:import_file_path) { fixture_path }
   let(:info_stream)   { [] }
   let(:error_stream)  { [] }
 
@@ -15,6 +16,10 @@ RSpec.describe CalifornicaCsvParser do
 
   describe 'use in an importer', :clean do
     include_context 'with workflow'
+
+    it 'has an import_file_path' do
+      expect(parser.import_file_path).to eq fixture_path
+    end
 
     let(:importer) do
       Darlingtonia::Importer.new(parser: parser, record_importer: ActorRecordImporter.new, info_stream: info_stream, error_stream: error_stream)
@@ -48,7 +53,7 @@ RSpec.describe CalifornicaCsvParser do
 
   describe '#headers' do
     let(:expected_headers) do
-      ['Project Name', 'Parent ARK', 'Item Ark',
+      ['Object Type', 'Project Name', 'Parent ARK', 'Item Ark',
        'Subject', 'Type.typeOfResource',
        'Rights.copyrightStatus', 'Type.genre',
        'Name.subject', 'Coverage.geographic',

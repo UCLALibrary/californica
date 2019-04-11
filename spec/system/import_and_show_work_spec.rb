@@ -3,8 +3,9 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 RSpec.describe 'Import and Display a Work', :clean, type: :system, js: true do
-  subject(:importer) { CalifornicaImporter.new(file, depositor_id: user.user_key) }
-  let(:file)       { File.open(csv_file) }
+  subject(:importer) { CalifornicaImporter.new(csv_import) }
+  let(:csv_import) { FactoryBot.create(:csv_import, user: user, manifest: manifest) }
+  let(:manifest) { Rack::Test::UploadedFile.new(csv_file, 'text/csv') }
   let(:csv_file)   { File.join(fixture_path, 'coordinates_example.csv') }
   let(:user)       { FactoryBot.create(:admin) }
   let(:collection) { Collection.find_or_create_by_ark('ark:/111/222') }
@@ -17,14 +18,14 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, js: true do
   end
 
   context "importing the same object twice" do
-    let(:first_csv_file)   { File.open(File.join(fixture_path, 'coordinates_example.csv')) }
-    let(:second_csv_file)  { File.open(File.join(fixture_path, 'coordinates_example_update.csv')) }
-    let(:first_importer) { CalifornicaImporter.new(first_csv_file, depositor_id: user.user_key) }
-    let(:second_importer) { CalifornicaImporter.new(second_csv_file, depositor_id: user.user_key) }
-    after do
-      first_csv_file.close
-      second_csv_file.close
-    end
+    let(:first_csv_import) { FactoryBot.create(:csv_import, user: user, manifest: first_manifest) }
+    let(:first_manifest) { Rack::Test::UploadedFile.new(File.join(fixture_path, 'coordinates_example.csv'), 'text/csv') }
+    let(:first_importer) { CalifornicaImporter.new(first_csv_import) }
+
+    let(:second_csv_import) { FactoryBot.create(:csv_import, user: user, manifest: second_manifest) }
+    let(:second_manifest) { Rack::Test::UploadedFile.new(File.join(fixture_path, 'coordinates_example_update.csv'), 'text/csv') }
+    let(:second_importer) { CalifornicaImporter.new(second_csv_import) }
+
     it 'updates existing records if the ARK matches' do
       first_importer.import
       work = Work.last
