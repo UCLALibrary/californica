@@ -64,6 +64,11 @@ en:
         rights_statement: 'Copyright Status'
   hyrax:
     account_name: My Institution Account Id
+    dashboard:
+      my:
+        heading:
+          collection_type: 'Collection Type'
+          visibility: Visibility
     directory:
       suffix: "@example.org"
     footer:
