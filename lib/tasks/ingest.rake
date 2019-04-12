@@ -15,9 +15,13 @@ namespace :californica do
       Rake::Task["hyrax:default_collection_types:create"].invoke
       Rake::Task["hyrax:workflow:load"].invoke
       csv_file = Rails.root.join('spec', 'fixtures', 'ladnn-sample.csv')
+      user = User.batch_user
+      manifest = Rack::Test::UploadedFile.new(csv_file, 'text/csv')
+      csv_import = CsvImport.new(user: user, manifest: manifest)
+      csv_import.save
       puts "------"
       puts "Benchmark for ingest of 25 sample records (elapsed real time is last):"
-      puts Benchmark.measure { CalifornicaImporter.new(csv_file).import }
+      puts Benchmark.measure { CalifornicaImporter.new(csv_import).import }
     end
 
     desc 'Ingest Connell sample data'
@@ -26,9 +30,13 @@ namespace :californica do
       Rake::Task["hyrax:default_collection_types:create"].invoke
       Rake::Task["hyrax:workflow:load"].invoke
       csv_file = Rails.root.join('spec', 'fixtures', 'connell_sample.csv')
+      user = User.batch_user
+      manifest = Rack::Test::UploadedFile.new(csv_file, 'text/csv')
+      csv_import = CsvImport.new(user: user, manifest: manifest)
+      csv_import.save
       puts "------"
       puts "Benchmark for ingest of 21 sample records (elapsed real time is last):"
-      puts Benchmark.measure { CalifornicaImporter.new(csv_file).import }
+      puts Benchmark.measure { CalifornicaImporter.new(csv_import).import }
     end
 
     desc 'Clean Connell sample data'
@@ -80,7 +88,11 @@ namespace :californica do
       puts "Logging ingest to logs/ingest_$timestamp and logs/error_$timestamp"
       Rake::Task["hyrax:default_admin_set:create"].invoke
       Rake::Task["hyrax:default_collection_types:create"].invoke
-      CalifornicaImporter.new(CSV_FILE).import
+      user = User.batch_user
+      manifest = Rack::Test::UploadedFile.new(CSV_FILE, 'text/csv')
+      csv_import = CsvImport.new(user: user, manifest: manifest)
+      csv_import.save
+      CalifornicaImporter.new(csv_import).import
     end
 
     def remove_tombstone
