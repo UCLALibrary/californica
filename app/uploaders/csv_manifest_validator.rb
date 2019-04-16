@@ -11,6 +11,48 @@
 # should be run in background jobs during the import
 # instead of here.
 
+REQUIRED_HEADERS = [
+  'Item Ark',
+  'Title',
+  'Object Type',
+  'Parent ARK',
+  'Rights.copyrightStatus',
+  'File Name'
+].freeze
+
+REQUIRED_VALUES = [
+  'Item Ark',
+  'Title',
+  'Object Type'
+].freeze
+
+OPTIONAL_HEADERS = [
+  'AltIdentifier.local',
+  'Coverage.geographic',
+  'Date.creation',
+  'Date.normalized',
+  'Description.caption',
+  'Description.fundingNote',
+  'Description.latitude',
+  'Description.longitude',
+  'Description.note',
+  'Format.dimensions',
+  'Format.extent',
+  'Format.medium',
+  'Language',
+  'Name.photographer',
+  'Name.repository',
+  'Name.subject',
+  'Project Name',
+  'Publisher.publisherName',
+  'Relation.isPartOf',
+  'Rights.countryCreation',
+  'Rights.rightsHolderContact',
+  'Subject',
+  'Type.genre',
+  'Type.typeOfResource'
+].freeze
+
 class CsvManifestValidator
   # @param manifest_uploader [CsvManifestUploader] The manifest that's mounted to a CsvImport record.  See carrierwave gem documentation.  This is basically a wrapper for the CSV file.
   def initialize(manifest_uploader)
@@ -25,9 +67,13 @@ class CsvManifestValidator
 
   def validate
     @rows = CSV.read(csv_file.path)
+    @headers = @rows.first || []
+    # TODO: follow transformed_headers breadcrumb to make case-insensitive
+    # @transformed_headers = @headers.map { |header| header.downcase.strip }
 
     missing_headers
     unrecognized_headers
+    missing_values
   end
 
   # One record per row
@@ -36,54 +82,14 @@ class CsvManifestValidator
     @rows.size - 1 # Don't include the header row
   end
 
-  def required_headers
-    [
-      'Item Ark',
-      'Title',
-      'Object Type',
-      'Parent ARK',
-      'Rights.copyrightStatus',
-      'File Name'
-    ]
-  end
-
-  def optional_headers
-    [
-      'AltIdentifier.local',
-      'Coverage.geographic',
-      'Date.creation',
-      'Date.normalized',
-      'Description.caption',
-      'Description.fundingNote',
-      'Description.latitude',
-      'Description.longitude',
-      'Description.note',
-      'Format.dimensions',
-      'Format.extent',
-      'Format.medium',
-      'Language',
-      'Name.photographer',
-      'Name.repository',
-      'Name.subject',
-      'Project Name',
-      'Publisher.publisherName',
-      'Relation.isPartOf',
-      'Rights.countryCreation',
-      'Rights.rightsHolderContact',
-      'Subject',
-      'Type.genre',
-      'Type.typeOfResource'
-    ]
-  end
-
   def valid_headers
-    required_headers + optional_headers
+    REQUIRED_HEADERS + OPTIONAL_HEADERS
   end
 
 private
 
   def missing_headers
-    required_headers.each do |required_header|
+    REQUIRED_HEADERS.each do |required_header|
       missing_required_header?(@rows.first, required_header)
     end
   end
@@ -91,6 +97,17 @@ private
   def missing_required_header?(row, header)
     return if row.include?(header)
     @errors << "Missing required column: #{header}.  Your spreadsheet must have this column.  If you already have this column, please check the spelling and capitalization."
+  end
+
+  def missing_values
+    column_numbers = REQUIRED_VALUES.map { |header| @headers.find_index(header) }.compact
+
+    @rows.each_with_index do |row, i|
+      column_numbers.each_with_index do |column_number, j|
+        next unless row[column_number].blank?
+        @errors << "Missing required metadata in row #{i + 1}: \"#{REQUIRED_VALUES[j]}\" field cannot be blank"
+      end
+    end
   end
 
   # Warn the user if we find any unexpected headers.

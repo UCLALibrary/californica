@@ -57,6 +57,7 @@ RSpec/ExampleLength:
     - 'spec/importers/californica_mapper_spec.rb'
     - 'spec/importers/californica_importer_spec.rb'
     - 'spec/importers/collection_record_importer_spec.rb'
+    - 'spec/uploaders/csv_manifest_validator_spec.rb'
 
 RSpec/LetSetup:
   Enabled: false
