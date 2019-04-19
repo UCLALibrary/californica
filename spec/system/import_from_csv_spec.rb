@@ -2,7 +2,7 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-RSpec.describe 'Importing records from a CSV file', :perform_jobs, :clean, type: :system, js: true do
+RSpec.describe 'Importing records from a CSV file', :clean, type: :system, js: true do
   let(:csv_file) { File.join(fixture_path, 'csv_import', 'good', 'all_fields.csv') }
   let(:import_file_path) { fixture_path }
 
@@ -36,6 +36,7 @@ RSpec.describe 'Importing records from a CSV file', :perform_jobs, :clean, type:
 
       csv_import = CsvImport.last
       expect(csv_import.import_file_path).to eq import_file_path
+      expect(StartCsvImportJob).to have_been_enqueued
     end
   end
 end
