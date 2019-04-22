@@ -10,6 +10,7 @@ require 'rspec/rails'
 
 require 'active_fedora/cleaner'
 require 'ffaker'
+require 'sidekiq/api'
 
 ENV['IMPORT_FILE_PATH'] = "#{::Rails.root}/spec/fixtures"
 ENV['MISSING_FILE_LOG'] = "#{::Rails.root}/log/missing_files_test"
@@ -57,6 +58,10 @@ Capybara.default_driver = :rack_test # This is a faster driver
 Capybara.javascript_driver = :selenium_chrome_headless_sandboxless # This is slower
 
 RSpec.configure do |config|
+  config.before do
+    ActiveJob::Base.queue_adapter.enqueued_jobs = []
+  end
+
   config.before(:each, type: :system, js: true) do
     driven_by :selenium_chrome_headless_sandboxless
   end
@@ -72,6 +77,15 @@ RSpec.configure do |config|
 
   config.before(clean: true) do
     ActiveFedora::Cleaner.clean!
+  end
+
+  config.before perform_jobs: true do
+    ActiveJob::Base.queue_adapter.perform_enqueued_jobs = true
+  end
+
+  config.after perform_jobs: true do
+    ActiveJob::Base.queue_adapter.filter                = nil
+    ActiveJob::Base.queue_adapter.perform_enqueued_jobs = false
   end
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
