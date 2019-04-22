@@ -3,12 +3,17 @@ inherit_gem:
 
 AllCops:
   TargetRubyVersion: 2.4
+  Exclude:
+    - 'fits-*/**/**'
+    - 'db/**/*.rb'
+    - 'vendor/**/*'
 
 Metrics/AbcSize:
   Enabled: true
   Exclude:
     - 'app/importers/californica_csv_cleaner.rb'
-  
+    - app/jobs/hyrax/characterize_job.rb
+
 Metrics/ClassLength:
   Enabled: true
   Exclude:
@@ -58,6 +63,7 @@ RSpec/ExampleLength:
     - 'spec/importers/californica_importer_spec.rb'
     - 'spec/importers/collection_record_importer_spec.rb'
     - 'spec/uploaders/csv_manifest_validator_spec.rb'
+    - spec/jobs/start_csv_import_job_spec.rb
 
 RSpec/LetSetup:
   Enabled: false
