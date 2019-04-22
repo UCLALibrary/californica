@@ -15,7 +15,7 @@ RSpec.describe 'Importing records from a CSV file', :clean, type: :system, js: t
     end
 
     it 'starts the import' do
-      expect(ActiveJob::Base.queue_adapter.enqueued_jobs.count).to eq 0
+      expect(ActiveJob::Base.queue_adapter.enqueued_jobs.map { |a| a[:job] }).not_to include(StartCsvImportJob)
       visit new_csv_import_path
       # Fill in and submit the form
       attach_file('csv_import[manifest]', csv_file, make_visible: true)
@@ -36,8 +36,7 @@ RSpec.describe 'Importing records from a CSV file', :clean, type: :system, js: t
 
       csv_import = CsvImport.last
       expect(csv_import.import_file_path).to eq import_file_path
-      expect(ActiveJob::Base.queue_adapter.enqueued_jobs.count).to eq 1
-      expect(StartCsvImportJob).to have_been_enqueued
+      expect(ActiveJob::Base.queue_adapter.enqueued_jobs.map { |a| a[:job] }).to include(StartCsvImportJob)
     end
   end
 end
