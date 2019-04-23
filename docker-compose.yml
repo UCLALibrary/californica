@@ -13,13 +13,11 @@ services:
     env_file:
       - ./.env.sample
     environment:
-      CSV_FILE: /opt/data/sample_data_set_la_daily_news/dlcs-ladnn-2018-09-06.csv
       DATABASE_HOST: db
       FEDORA_URL: http://fedora:8080/rest
       FEDORA_BASE_PATH: /dev
       FEDORA_TEST_URL: http://fedora_test:8080/rest
       FEDORA_TEST_BASE_PATH: /test
-      IMPORT_FILE_PATH: /opt/data/ladailynews/image/
       REDIS_HOST: redis
       REDIS_PORT: 6379
       REDIS_URL: redis://redis:6379/0
@@ -34,7 +32,42 @@ services:
       - uploads:/opt/uploads
       - bundle_dir:/usr/local/bundle
       - log:/californica/log
-      - tmp:/californica/tmp
+      - californica_tmp:/californica/tmp
+      - tmp:/tmp
+    working_dir: /californica
+
+  sidekiq:
+    image: uclalibrary/californica:latest
+    command: ['bundle', 'exec', 'sidekiq']
+    depends_on:
+      - db
+      - fedora
+      - redis
+      - solr
+      - fedora_test
+      - solr_test
+    env_file:
+      - ./.env.sample
+    environment:
+      DATABASE_HOST: db
+      FEDORA_URL: http://fedora:8080/rest
+      FEDORA_BASE_PATH: /dev
+      FEDORA_TEST_URL: http://fedora_test:8080/rest
+      FEDORA_TEST_BASE_PATH: /test
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_URL: redis://redis:6379/0
+      SOLR_URL: http://solr:8983/solr/californica
+      SOLR_TEST_URL: http://solr_test:8983/solr/californica
+    volumes:
+      - .:/californica
+      - ./data:/opt/data
+      - derivatives:/opt/derivatives
+      - uploads:/opt/uploads
+      - bundle_dir:/usr/local/bundle
+      - log:/californica/log
+      - californica_tmp:/californica/tmp
+      - tmp:/tmp
     working_dir: /californica
 
   fedora:
@@ -110,4 +143,5 @@ volumes:
   redis_data:
   solr_data:
   tmp:
+  californica_tmp:
   uploads:
