@@ -13,6 +13,7 @@ Metrics/AbcSize:
   Exclude:
     - 'app/importers/californica_csv_cleaner.rb'
     - app/jobs/hyrax/characterize_job.rb
+    - app/importers/actor_record_importer.rb
 
 Metrics/ClassLength:
   Enabled: true
@@ -29,6 +30,10 @@ Metrics/BlockLength:
     - 'lib/tasks/ingest.rake'
     - 'lib/tasks/derivatives.rake'
     - app/models/ucla_metadata.rb
+
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - app/importers/actor_record_importer.rb
 
 Metrics/LineLength:
   Exclude:
@@ -47,6 +52,11 @@ Metrics/MethodLength:
     - app/forms/hyrax/californica_collections_form.rb
     - 'app/importers/csv_validator.rb'
     - app/uploaders/csv_manifest_validator.rb
+
+Metrics/PerceivedComplexity:
+  Enabled: true
+  Exclude:
+    - app/importers/actor_record_importer.rb
 
 RSpec/AnyInstance:
   Enabled: false
