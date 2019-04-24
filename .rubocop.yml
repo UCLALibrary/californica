@@ -33,7 +33,7 @@ Metrics/BlockLength:
     - 'lib/tasks/ingest.rake'
     - 'lib/tasks/derivatives.rake'
     - app/models/ucla_metadata.rb
-  
+
 Metrics/ClassLength:
   Enabled: true
   Exclude:
@@ -43,10 +43,7 @@ Metrics/ClassLength:
 Metrics/CyclomaticComplexity:
   Enabled: true
   Exclude:
-    - 'app/uploaders/csv_manifest_validator.rb'
-
-Metrics/CyclomaticComplexity:
-  Exclude:
+    - app/uploaders/csv_manifest_validator.rb
     - app/importers/actor_record_importer.rb
 
 Metrics/LineLength:
