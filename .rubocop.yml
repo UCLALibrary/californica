@@ -12,6 +12,15 @@ Metrics/AbcSize:
   Enabled: true
   Exclude:
     - 'app/importers/californica_csv_cleaner.rb'
+    - app/jobs/hyrax/characterize_job.rb
+    - app/importers/actor_record_importer.rb
+    - app/uploaders/csv_manifest_validator.rb
+
+Metrics/ClassLength:
+  Enabled: true
+  Exclude:
+    - 'app/controllers/catalog_controller.rb'
+    - 'app/importers/californica_mapper.rb'
     - 'app/jobs/hyrax/characterize_job.rb'
     - 'app/uploaders/csv_manifest_validator.rb'
 
@@ -24,7 +33,7 @@ Metrics/BlockLength:
     - 'lib/tasks/ingest.rake'
     - 'lib/tasks/derivatives.rake'
     - app/models/ucla_metadata.rb
-  
+
 Metrics/ClassLength:
   Enabled: true
   Exclude:
@@ -34,7 +43,8 @@ Metrics/ClassLength:
 Metrics/CyclomaticComplexity:
   Enabled: true
   Exclude:
-    - 'app/uploaders/csv_manifest_validator.rb'
+    - app/uploaders/csv_manifest_validator.rb
+    - app/importers/actor_record_importer.rb
 
 Metrics/LineLength:
   Exclude:
@@ -57,6 +67,7 @@ Metrics/MethodLength:
 Metrics/PerceivedComplexity:
   Enabled: true
   Exclude:
+    - app/importers/actor_record_importer.rb
     - 'app/uploaders/csv_manifest_validator.rb'
 
 RSpec/AnyInstance:

@@ -1,21 +1,13 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe StartCsvImportJob, :clean do
+RSpec.describe StartCsvImportJob, :clean, :inline_jobs do
   let(:csv_file) { File.join(fixture_path, 'csv_import', 'good', 'all_fields.csv') }
   let(:csv_import) { FactoryBot.create(:csv_import, user: user, manifest: manifest, import_file_path: import_file_path) }
   let(:manifest) { Rack::Test::UploadedFile.new(Rails.root.join(csv_file), 'text/csv') }
   let(:user) { FactoryBot.create(:admin) }
 
-  before do
-    ActiveJob::Base.queue_adapter = :inline
-  end
-
-  after do
-    ActiveJob::Base.queue_adapter = :test
-  end
-
-  context 'happy path' do
+  context 'happy path', :clean do
     let(:import_file_path) { File.join(fixture_path, 'images', 'good') }
     it 'imports expected objects' do
       described_class.perform_now(csv_import.id)
@@ -25,7 +17,7 @@ RSpec.describe StartCsvImportJob, :clean do
     end
   end
 
-  context 'a corrupt file' do
+  context 'a corrupt file', :clean do
     let(:import_file_path) { File.join(fixture_path, 'images', 'corrupted') }
     let(:original_logger) { Rails.logger }
     let(:output) { StringIO.new }
@@ -44,7 +36,7 @@ RSpec.describe StartCsvImportJob, :clean do
       expect(Collection.count).to eq 1
       expect(Work.count).to eq 1
       expect(Work.last.members.first.files.first.metadata.mime_type.first).not_to match(/tiff/)
-      characterization_error = output.string.split("\n").last
+      characterization_error = output.string
       expect(characterization_error).to match(/event: unexpected file characterization/)
       expect(characterization_error).to match(/ark: #{Work.last.ark}/)
       expect(characterization_error).to match(/work_id: #{Work.last.id}/)

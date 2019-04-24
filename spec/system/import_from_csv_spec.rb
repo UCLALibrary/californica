@@ -10,7 +10,6 @@ RSpec.describe 'Importing records from a CSV file', :clean, type: :system, js: t
     let(:admin_user) { FactoryBot.create(:admin) }
 
     before do
-      allow(CharacterizeJob).to receive(:perform_later) # There is no fits installed on travis-ci
       login_as admin_user
     end
 

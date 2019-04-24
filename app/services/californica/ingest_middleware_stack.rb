@@ -22,10 +22,10 @@ module Californica
         # middleware.use Hyrax::Actors::CreateWithFilesActor
 
         # Add/remove the resource to/from a collection
-        # middleware.use Hyrax::Actors::CollectionsMembershipActor
+        middleware.use Hyrax::Actors::CollectionsMembershipActor
 
         # Add/remove to parent work
-        # middleware.use Hyrax::Actors::AddToWorkActor
+        middleware.use Hyrax::Actors::AddToWorkActor
 
         # Add/remove children (works or file_sets)
         middleware.use Hyrax::Actors::AttachMembersActor
@@ -47,10 +47,10 @@ module Californica
         # middleware.use Hyrax::Actors::TransferRequestActor
 
         # Copies default permissions from the PermissionTemplate to the work
-        middleware.use Hyrax::Actors::ApplyPermissionTemplateActor
+        # middleware.use Hyrax::Actors::ApplyPermissionTemplateActor
 
         # Remove attached FileSets when destroying a work
-        middleware.use Hyrax::Actors::CleanupFileSetsActor
+        # middleware.use Hyrax::Actors::CleanupFileSetsActor
 
         # Destroys the trophies in the database when the work is destroyed
         # middleware.use Hyrax::Actors::CleanupTrophiesActor

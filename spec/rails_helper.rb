@@ -79,6 +79,14 @@ RSpec.configure do |config|
     ActiveFedora::Cleaner.clean!
   end
 
+  config.before(inline_jobs: true) do
+    ActiveJob::Base.queue_adapter = :inline
+  end
+
+  config.after(inline_jobs: true) do
+    ActiveJob::Base.queue_adapter = :test
+  end
+
   config.before perform_jobs: true do
     ActiveJob::Base.queue_adapter.perform_enqueued_jobs = true
   end
