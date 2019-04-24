@@ -14,6 +14,7 @@ Metrics/AbcSize:
     - 'app/importers/californica_csv_cleaner.rb'
     - app/jobs/hyrax/characterize_job.rb
     - app/importers/actor_record_importer.rb
+    - app/uploaders/csv_manifest_validator.rb
 
 Metrics/ClassLength:
   Enabled: true
