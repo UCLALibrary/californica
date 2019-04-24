@@ -48,12 +48,15 @@ RSpec.describe CsvManifestValidator, type: :model do
   context 'a CSV that is missing required values' do
     let(:csv_file) { File.join(fixture_path, 'csv_import', 'csv_files_with_problems', 'missing_values.csv') }
 
-    it 'has errors', :wip do
+    it 'has warnings' do
       validator.validate
-      expect(validator.errors).to contain_exactly(
-        'Missing required metadata in row 3: "Item Ark" field cannot be blank',
-        'Missing required metadata in row 4: "Title" field cannot be blank',
-        'Missing required metadata in row 5: "Object Type" field cannot be blank'
+      expect(validator.warnings).to contain_exactly(
+        'Can\'t import Row 3: missing "Item Ark".',
+        'Can\'t import Row 4: missing "Title".',
+        'Can\'t import Row 5: missing "Object Type".',
+        'Can\'t import Row 6: missing "Parent ARK".',
+        'Can\'t import Row 7: missing "Rights.copyrightStatus".',
+        'Can\'t import Row 8: missing "File Name".'
       )
     end
   end
@@ -63,10 +66,10 @@ RSpec.describe CsvManifestValidator, type: :model do
 
     it 'has a warning' do
       validator.validate
-      expect(validator.warnings).to eq [
+      expect(validator.warnings).to include(
         'The field name "another_header_1" is not supported.  This field will be ignored, and the metadata for this field will not be imported.',
         'The field name "another_header_2" is not supported.  This field will be ignored, and the metadata for this field will not be imported.'
-      ]
+      )
     end
   end
 end

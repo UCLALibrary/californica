@@ -3,3 +3,6 @@ Collection,Apple,ark:/123/abc,,copyrighted,clusc_1_1_00010432a.tif
 Work,Missing Item Ark,,ark:/123/abc,copyrighted,clusc_1_1_00010432a.tif
 Work,,ark:/123/def,ark:/123/abc,copyrighted,clusc_1_1_00010432a.tif
 ,Missing Object Type,ark:/123/def,ark:/123/abc,copyrighted,clusc_1_1_00010432a.tif
+Work,Missing Parent ARK,ark:/123/def,,copyrighted,clusc_1_1_00010432a.tif
+Work,Missing Rights.copyrightStatus,ark:/123/def,ark:/123/abc,,clusc_1_1_00010432a.tif
+Work,Missing File Name,ark:/123/def,ark:/123/abc,copyrighted,

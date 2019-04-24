@@ -11,6 +11,8 @@
 # should be run in background jobs during the import
 # instead of here.
 
+OBJECT_TYPES = ['Collection', 'Work'].freeze
+
 REQUIRED_HEADERS = [
   'Item Ark',
   'Title',
@@ -21,9 +23,12 @@ REQUIRED_HEADERS = [
 ].freeze
 
 REQUIRED_VALUES = [
-  'Item Ark',
-  'Title',
-  'Object Type'
+  ['Item Ark', ['Collection', 'Work']],
+  ['Title', ['Collection', 'Work']],
+  # ['Object Type', ['Collection', 'Work']],  # hard-coded
+  ['Parent ARK', ['Work']],
+  ['Rights.copyrightStatus', ['Work']],
+  ['File Name', ['Work']]
 ].freeze
 
 OPTIONAL_HEADERS = [
@@ -73,7 +78,7 @@ class CsvManifestValidator
 
     missing_headers
     unrecognized_headers
-    missing_values
+    validate_records
   end
 
   # One record per row
@@ -99,17 +104,6 @@ private
     @errors << "Missing required column: #{header}.  Your spreadsheet must have this column.  If you already have this column, please check the spelling and capitalization."
   end
 
-  def missing_values
-    column_numbers = REQUIRED_VALUES.map { |header| @headers.find_index(header) }.compact
-
-    @rows.each_with_index do |row, i|
-      column_numbers.each_with_index do |column_number, j|
-        next unless row[column_number].blank?
-        @errors << "Missing required metadata in row #{i + 1}: \"#{REQUIRED_VALUES[j]}\" field cannot be blank"
-      end
-    end
-  end
-
   # Warn the user if we find any unexpected headers.
   def unrecognized_headers
     extra_headers = @rows.first - valid_headers
@@ -117,5 +111,44 @@ private
       @warnings << "The field name \"#{header}\" is not supported.  This field will be ignored, and the metadata for this field will not be imported."
     end
     extra_headers
+  end
+
+  def validate_records
+    column_numbers = REQUIRED_VALUES.map { |header, _object_types| @headers.find_index(header) }.compact
+    object_type_column = @headers.find_index('Object Type')
+
+    @rows.each_with_index do |row, i|
+      # Skip header row
+      next if i.zero?
+
+      # Row has the wrong number of columns
+      if row.length != @headers.length
+        @warnings << "Can't import Row #{i + 1}: expected #{@headers.length} columns, got #{row.length}."
+        next
+      end
+
+      # If there's no "Object Type" header, assume everything's a Work
+      # so we so we can validate other required fields
+      object_type = object_type_column ? row[object_type_column] : 'Work'
+
+      # Row has no "Object Type"
+      if object_type.blank?
+        @warnings << "Can't import Row #{i + 1}: missing \"Object Type\"."
+        object_type = 'Work' # so we can validate other required fields
+      end
+
+      # Row has invalid "Object Type"
+      unless OBJECT_TYPES.include?(object_type)
+        @warnings << "Can't import Row #{i + 1}: invalid \"Object Type\"."
+        object_type = 'Work' # so we can validate other required fields
+      end
+
+      # Row missing reqired field values
+      column_numbers.each_with_index do |column_number, j|
+        next unless REQUIRED_VALUES[j][1].include?(object_type)
+        next unless row[column_number].blank?
+        @warnings << "Can't import Row #{i + 1}: missing \"#{REQUIRED_VALUES[j][0]}\"."
+      end
+    end
   end
 end
