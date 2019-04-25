@@ -39,9 +39,9 @@ The first time you create the environment, you'll also need to provision the dat
 
     docker-compose run web bash
     bundle exec rake db:setup
-    bundle exec rake californica:ingest:ladnn_sample
+    bundle exec rake hyrax:default_admin_set:create
 
-If this succeeds without error, you've successfully created your Californica environment and loaded some sample records.
+If this succeeds without error, you've successfully created your Californica environment.
 
 To access some of the services that you'll need, try finding them at the following locations:
 
@@ -71,6 +71,10 @@ u.admin?
 If `u.admin?` returns `true` then you know it worked as expected.
 
 See also the [Making Admin Users in Hyrax Guide](https://github.com/samvera/hyrax/wiki/Making-Admin-Users-in-Hyrax).
+
+## Loading data
+
+You can load data from a csv via the Hyrax Dashboard interface.
 
 ## Deployment
 
