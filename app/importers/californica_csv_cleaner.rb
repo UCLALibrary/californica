@@ -31,19 +31,17 @@ class CalifornicaCsvCleaner < Darlingtonia::CsvParser
   end
 
   def clean
-    # use the CalifornicaMapper
+    # Use the CalifornicaMapper to extract an ark.
     # Match on ark. For every ark in the file, find the corresponding object
-    # and destroy it. Find the object regardless of whether the ark is in the
-    # identifier field or the ark field.
+    # and destroy it.
     CSV.parse(file.read, headers: true).each_with_index do |row, _index|
       item = Darlingtonia::InputRecord.from(metadata: row, mapper: CalifornicaMapper.new)
       ark = item.mapper.metadata["Item Ark"]
-      Work.where(identifier: ark).each { |work| work&.destroy&.eradicate }
-      Work.where(ark_ssi: ark).each { |work| work&.destroy&.eradicate }
+      next unless ark
       ark = Ark.ensure_prefix(ark)
-      Work.where(identifier: ark).each { |work| work&.destroy&.eradicate }
-      Work.where(ark_ssi: ark).each { |work| work&.destroy&.eradicate }
-      Work.where(local_identifier: item.mapper.metadata["AltIdentifier.local"]).each { |work| work&.destroy&.eradicate }
+      ActiveFedora::Base.where(ark_ssi: ark).each do |work|
+        work&.destroy&.eradicate
+      end
     end
 
     # info_stream << "Actually processed #{actual_records_processed} records"
