@@ -38,12 +38,12 @@ class CalifornicaCsvCleaner < Darlingtonia::CsvParser
     CSV.parse(file.read, headers: true).each_with_index do |row, _index|
       item = Darlingtonia::InputRecord.from(metadata: row, mapper: CalifornicaMapper.new)
       ark = item.mapper.metadata["Item Ark"]
-      Work.where(identifier: ark).each { |work| work&.destroy! }
-      Work.where(ark_ssi: ark).each { |work| work&.destroy! }
+      Work.where(identifier: ark).each { |work| work&.destroy&.eradicate }
+      Work.where(ark_ssi: ark).each { |work| work&.destroy&.eradicate }
       ark = Ark.ensure_prefix(ark)
-      Work.where(identifier: ark).each { |work| work&.destroy! }
-      Work.where(ark_ssi: ark).each { |work| work&.destroy! }
-      Work.where(local_identifier: item.mapper.metadata["AltIdentifier.local"]).each { |work| work&.destroy! }
+      Work.where(identifier: ark).each { |work| work&.destroy&.eradicate }
+      Work.where(ark_ssi: ark).each { |work| work&.destroy&.eradicate }
+      Work.where(local_identifier: item.mapper.metadata["AltIdentifier.local"]).each { |work| work&.destroy&.eradicate }
     end
 
     # info_stream << "Actually processed #{actual_records_processed} records"
