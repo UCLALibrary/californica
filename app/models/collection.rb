@@ -4,6 +4,11 @@ class Collection < ActiveFedora::Base
   include ::Hyrax::CollectionBehavior
   include UclaMetadata
 
+  # Re-calculating a collection's size is very expensive, and we need a way to turn it off during bulk import
+  property :recalculate_size, predicate: ::RDF::URI.intern('https://library.ucla.edu/bytes_computing_disabled'), multiple: false do |index|
+    index.as :stored_sortable
+  end
+
   # You can replace these metadata if they're not suitable
   include Hyrax::BasicMetadata
   self.indexer = ::CollectionIndexer
@@ -14,6 +19,13 @@ class Collection < ActiveFedora::Base
   # @return [Collection] The Collection with that ARK
   def self.find_by_ark(ark)
     where(ark_ssi: ark).limit(1).first
+  end
+
+  # Do not recalculate size unless recalculate_size == true
+  # Recalculating collection size is expensive, so only do it if we really need it.
+  def bytes
+    return 0 unless recalculate_size
+    super
   end
 
   # @param ark [String] The ARK

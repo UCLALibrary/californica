@@ -2,7 +2,7 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-RSpec.describe 'Delete a Work', type: :system, js: true do
+RSpec.describe 'Delete a Work', :clean, type: :system, js: true do
   let(:work) { FactoryBot.create(:work, ark: 'ark:/abc/1234') }
   let(:recreated_work) { FactoryBot.create(:work, ark: 'ark:/abc/1234') }
 

@@ -15,6 +15,7 @@ Metrics/AbcSize:
     - app/jobs/hyrax/characterize_job.rb
     - app/importers/actor_record_importer.rb
     - app/uploaders/csv_manifest_validator.rb
+    - app/importers/collection_record_importer.rb
 
 Metrics/ClassLength:
   Enabled: true
@@ -45,6 +46,7 @@ Metrics/CyclomaticComplexity:
   Exclude:
     - app/uploaders/csv_manifest_validator.rb
     - app/importers/actor_record_importer.rb
+    - app/importers/californica_csv_parser.rb
 
 Metrics/LineLength:
   Exclude:
