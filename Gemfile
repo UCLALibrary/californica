@@ -60,7 +60,6 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'xray-rails'
 end
 
 group :development, :test do
@@ -78,4 +77,5 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'simplecov', '~> 0.16.1'
   gem 'solr_wrapper', '>= 0.3'
+  gem 'xray-rails'
 end

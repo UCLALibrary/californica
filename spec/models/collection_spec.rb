@@ -182,4 +182,12 @@ RSpec.describe Collection do
     expect(collection.services_contact).to include 'UCLA Charles E. Young Research Library Department of Special Collections'
     expect(collection.resource.dump(:ttl)).to match(/www.ebu.ch\/metadata\/ontologies\/ebucore\/ebucore\#hasRightsContact/)
   end
+
+  # Re-calculating a collection's size is very expensive, and we need a way to turn it off during bulk import
+  it 'can disable re-computing of size' do
+    collection.recalculate_size = false
+    expect(collection.recalculate_size).to eq false
+    collection.recalculate_size = true
+    expect(collection.recalculate_size).to eq true
+  end
 end
