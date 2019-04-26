@@ -13,7 +13,7 @@ RSpec.describe 'Search the catalog', :clean, type: :system, js: true do
       subject: ['fruit'],
       named_subject: ['dessert'],
       location: ['on the table'],
-      description: ['potassium'],
+      description: ['potassium', 'yum'],
       caption: ['tropical'],
       identifier: ['ban_ark'],
       local_identifier: ['12345'],
@@ -30,7 +30,7 @@ RSpec.describe 'Search the catalog', :clean, type: :system, js: true do
       subject: ['veg'],
       named_subject: ['side dish'],
       location: ['in the fridge'],
-      description: ['beta carotene'],
+      description: ['beta carotene', 'yum'],
       caption: ['northern'],
       identifier: ['car_ark'],
       local_identifier: ['67890'],
@@ -88,7 +88,7 @@ RSpec.describe 'Search the catalog', :clean, type: :system, js: true do
     end
 
     # Search by description
-    fill_in 'search-field-header', with: 'potassium'
+    fill_in 'search-field-header', with: 'potassium yum'
     click_on 'search-submit-header'
     within '#search-results' do
       expect(page).to     have_link('Yellow Banana')
