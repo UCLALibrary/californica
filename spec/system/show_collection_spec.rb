@@ -32,7 +32,8 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       location: ['Old Loc'],
       rights_country: ['Old Rights Country'],
       rights_holder: ['Old Rights Holder'],
-      photographer: ['Old Photographer']
+      photographer: ['Old Photographer'],
+      services_contact: ['UCLA Special Collections']
     }
   end
 

@@ -62,6 +62,7 @@ en:
         rights_country: 'Rights (country of creation)'
         rights_holder: 'Rights Holder'
         rights_statement: 'Copyright Status'
+        services_contact: 'Rights services contact'
   hyrax:
     account_name: My Institution Account Id
     dashboard:

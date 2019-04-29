@@ -9,7 +9,8 @@ RSpec.describe CollectionRecordImporter, :clean do
   let(:metadata) do
     { 'Title' => 'Collection ABC 123',
       'Item Ark' => 'ark:/abc/123',
-      'Description.note' => 'desc 1|~|desc 2' }
+      'Description.note' => 'desc 1|~|desc 2',
+      'Rights.servicesContact' => 'UCLA Charles E. Young Research Library Department of Special Collections' }
   end
 
   describe '#import' do
@@ -26,6 +27,7 @@ RSpec.describe CollectionRecordImporter, :clean do
         expect(collection.title).to eq ['Collection ABC 123']
         expect(collection.ark).to eq 'ark:/abc/123'
         expect(collection.description).to contain_exactly('desc 1', 'desc 2')
+        expect(collection.services_contact.first).to match(/Young Research Library/)
 
         # Check log messages
         expect(importer.info_stream.first).to match(/event: collection_import_started/)

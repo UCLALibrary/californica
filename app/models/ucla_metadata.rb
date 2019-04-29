@@ -74,5 +74,9 @@ module UclaMetadata
     property :rights_holder, predicate: ::RDF::Vocab::EBUCore.hasRightsHolder do |index|
       index.as :stored_searchable
     end
+
+    property :services_contact, predicate: ::RDF::Vocab::EBUCore.hasRightsContact do |index|
+      index.as :displayable
+    end
   end
 end
