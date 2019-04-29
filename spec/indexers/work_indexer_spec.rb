@@ -106,6 +106,46 @@ RSpec.describe WorkIndexer do
     end
   end
 
+  describe 'sort_year' do
+    context 'with a normalized_date' do
+      let(:attributes) do
+        {
+          ark: 'ark:/123/456',
+          normalized_date: ['1940-10-15']
+        }
+      end
+
+      it 'indexes the earliest year' do
+        expect(solr_document['sort_year_isi']).to eq 1940
+      end
+    end
+
+    context 'when normalized_date field is blank' do
+      let(:attributes) do
+        {
+          ark: 'ark:/123/456'
+        }
+      end
+
+      it 'doesn\'t index the earliest year' do
+        expect(solr_document['sort_year_isi']).to eq nil
+      end
+    end
+
+    context 'when normalized_date field is a range' do
+      let(:attributes) do
+        {
+          ark: 'ark:/123/456',
+          normalized_date: ['1934-06/1937-07']
+        }
+      end
+
+      it 'indexes the earliest year' do
+        expect(solr_document['sort_year_isi']).to eq 1934
+      end
+    end
+  end
+
   describe 'ark' do
     let(:attributes) do
       {
@@ -119,6 +159,19 @@ RSpec.describe WorkIndexer do
 
     it 'indexes a simplified id for ursus' do
       expect(solr_document['ursus_id_ssi']).to eq '123-456'
+    end
+  end
+
+  describe 'sort_title' do
+    let(:attributes) do
+      {
+        ark: 'ark:/123/456',
+        title: ['Primary title']
+      }
+    end
+
+    it 'indexs the only value' do
+      expect(solr_document['sort_title_tesi']).to eq 'Primary title'
     end
   end
 end

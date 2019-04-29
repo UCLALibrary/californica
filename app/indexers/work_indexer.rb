@@ -12,10 +12,12 @@ class WorkIndexer < Hyrax::WorkIndexer
 
   def generate_solr_document
     super.tap do |solr_doc|
+      solr_doc['sort_year_isi'] = years.to_a.min
       solr_doc['geographic_coordinates_ssim'] = coordinates
       solr_doc['human_readable_rights_statement_tesim'] = human_readable_rights_statement
-      solr_doc['year_isim'] = years
+      solr_doc['sort_title_tesi'] = object.title.first
       solr_doc['ursus_id_ssi'] = Californica::IdGenerator.blacklight_id_from_ark(object.ark)
+      solr_doc['year_isim'] = years
     end
   end
 
