@@ -282,7 +282,7 @@ Hyrax.config do |config|
   # ingest files from the file system that are not part of the BrowseEverything
   # mount point.
   #
-  config.whitelisted_ingest_dirs = [ENV['IMPORT_FILE_PATH'] || '/opt/data']
+  config.whitelisted_ingest_dirs = ['/opt/data']
 end
 
 Date::DATE_FORMATS[:standard] = '%m/%d/%Y'
