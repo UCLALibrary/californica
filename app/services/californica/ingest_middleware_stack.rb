@@ -47,7 +47,7 @@ module Californica
         # middleware.use Hyrax::Actors::TransferRequestActor
 
         # Copies default permissions from the PermissionTemplate to the work
-        # middleware.use Hyrax::Actors::ApplyPermissionTemplateActor
+        middleware.use Hyrax::Actors::ApplyPermissionTemplateActor
 
         # Remove attached FileSets when destroying a work
         # middleware.use Hyrax::Actors::CleanupFileSetsActor
