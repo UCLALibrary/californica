@@ -8,7 +8,7 @@ module Hyrax
                    :local_identifier, :medium,
                    :named_subject, :normalized_date,
                    :repository, :location,
-                   :rights_country, :rights_holder, :photographer]
+                   :rights_country, :rights_holder, :services_contact, :photographer]
 
     self.required_fields = [:title, :ark]
 
@@ -56,6 +56,7 @@ module Hyrax
         :location,
         :rights_country,
         :rights_holder,
+        :services_contact,
         :photographer
       ]
     end

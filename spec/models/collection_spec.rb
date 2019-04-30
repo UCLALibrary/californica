@@ -176,4 +176,10 @@ RSpec.describe Collection do
     expect(collection.photographer).to include 'Ansel Adams'
     expect(collection.resource.dump(:ttl)).to match(/id.loc.gov\/vocabulary\/relators\/pht.html/)
   end
+
+  it "has services_contact" do
+    collection.services_contact = ['UCLA Charles E. Young Research Library Department of Special Collections']
+    expect(collection.services_contact).to include 'UCLA Charles E. Young Research Library Department of Special Collections'
+    expect(collection.resource.dump(:ttl)).to match(/www.ebu.ch\/metadata\/ontologies\/ebucore\/ebucore\#hasRightsContact/)
+  end
 end

@@ -6,13 +6,16 @@ en:
         facet:
           repository_sim: 'Repository'
           rights_country: 'Rights (country of creation)'
+          services_contact: 'Rights services contact'
         index:
           named_subject: 'Names'
           repository_sim: 'Repository'
           normalized_date_sim: 'Normalized Date'
           rights_country: 'Rights (country of creation)'
+          services_contact: 'Rights services contact'
         show:
           named_subject: 'Names'
           repository_sim: 'Repository'
           normalized_date_sim: 'Normalized Date'
           rights_country: 'Rights (country of creation)'
+          services_contact: 'Rights services contact'

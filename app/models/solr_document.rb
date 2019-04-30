@@ -101,4 +101,8 @@ class SolrDocument
   def rights_holder
     self[Solrizer.solr_name('rights_holder')]
   end
+
+  def services_contact
+    self[:services_contact_ssm]
+  end
 end

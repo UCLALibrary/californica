@@ -53,6 +53,7 @@ OPTIONAL_HEADERS = [
   'Relation.isPartOf',
   'Rights.countryCreation',
   'Rights.rightsHolderContact',
+  'Rights.servicesContact',
   'Subject',
   'Type.genre',
   'Type.typeOfResource'
