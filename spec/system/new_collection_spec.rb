@@ -31,6 +31,27 @@ RSpec.describe 'Create a new collection', :clean, type: :system, js: true do
       expect(page).to have_content 'Collection was successfully created.'
       collection = Collection.last
       expect(collection.id).to eq '4321-cba'
+
+      # If you delete the collection, you should be able to re-create it with the same ark
+      visit "/dashboard/collections/#{collection.id}"
+      click_on 'Delete collection'
+      page.driver.browser.switch_to.alert.accept
+      expect(page).to have_content("Collection was successfully deleted")
+      expect(Collection.count).to eq 0
+
+      visit "/dashboard/my/collections"
+      click_on 'New Collection'
+      choose('User Collection')
+      click_on 'Create collection'
+      fill_in('Title', with: title)
+      fill_in('Ark', with: ark)
+      click_on 'Save'
+      expect(page).to have_content title
+      expect(find_field('Ark').value).to eq ark
+      expect(page).to have_content 'Collection was successfully created.'
+      expect(Collection.count).to eq 1
+      collection = Collection.last
+      expect(collection.id).to eq '4321-cba'
     end
   end
 end
