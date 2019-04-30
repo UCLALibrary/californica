@@ -254,4 +254,23 @@ RSpec.describe CalifornicaMapper do
       end
     end
   end
+
+  describe '#license' do
+    context 'when the collection is LADNN' do
+      let(:metadata) do
+        { "Project Name" => 'Los Angeles Daily News Negatives' }
+      end
+      it 'assigns a cc license' do
+        expect(mapper.license).to contain_exactly("https://creativecommons.org/licenses/by/4.0/")
+      end
+    end
+    context 'when the collection is not LADNN' do
+      let(:metadata) do
+        { "Project Name" => 'Anything Else' }
+      end
+      it 'does not assign a license' do
+        expect(mapper.license).to be_nil
+      end
+    end
+  end
 end

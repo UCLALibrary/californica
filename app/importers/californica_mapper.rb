@@ -53,7 +53,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   end
 
   def fields
-    CALIFORNICA_TERMS_MAP.keys + [:remote_files, :visibility, :member_of_collections_attributes]
+    CALIFORNICA_TERMS_MAP.keys + [:remote_files, :visibility, :member_of_collections_attributes, :license]
   end
 
   def object_type
@@ -107,6 +107,12 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     else
       map_field(:extent)
     end
+  end
+
+  # License is applied at import time, and only for specific collections
+  def license
+    return nil unless ladnn?
+    ["https://creativecommons.org/licenses/by/4.0/"]
   end
 
   # Replace marc codes with double dashes with no surrounding spaces
