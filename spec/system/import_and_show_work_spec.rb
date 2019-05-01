@@ -85,7 +85,6 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, js: true do
       expect(page).to have_content work.title.first
       expect(page).to have_content work.description.first
       expect(page).to have_content work.normalized_date.first
-      expect(page).to have_content work.resource_type.first
     end
   end
   it "displays expected facets" do

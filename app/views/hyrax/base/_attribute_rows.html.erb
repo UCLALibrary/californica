@@ -9,7 +9,7 @@
 <%= presenter.attribute_to_html(:date_created, render_as: :linked, search_field: 'date_created_tesim', html_dl: true) %>
 <%= presenter.attribute_to_html(:based_near_label, html_dl: true) %>
 <%= presenter.attribute_to_html(:related_url, render_as: :external_link, html_dl: true) %>
-<%= presenter.attribute_to_html(:resource_type, render_as: :faceted, html_dl: true) %>
+<%= presenter.attribute_to_html(:resource_type, render_as: :resource_type, html_dl: true) %>
 <%= presenter.attribute_to_html(:source, html_dl: true) %>
 <%= presenter.attribute_to_html(:dlcs_collection_name, render_as: :faceted, html_dl: true, label: "DLCS Collection Name") %>
 <%= presenter.attribute_to_html(:rights_statement, render_as: :rights_statement, html_dl: true) %>
@@ -28,6 +28,5 @@
 <%= presenter.attribute_to_html(:photographer, html_dl: true) %>
 <%= presenter.attribute_to_html(:normalized_date, html_dl: true) %>
 <%= presenter.attribute_to_html(:repository, html_dl: true) %>
-<%= presenter.attribute_to_html(:resource_type, html_dl: true) %>
 <%= presenter.attribute_to_html(:rights_country, html_dl: true) %>
 <%= presenter.attribute_to_html(:rights_holder, html_dl: true) %>

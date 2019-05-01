@@ -18,7 +18,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       subject: ['Old Subj'],
       language: ['Old Lang'],
       description: ['Old Desc'],
-      resource_type: ['Image'],
+      resource_type: ['http://id.loc.gov/vocabulary/resourceTypes/col'], # "collection"
       extent: ['Old Extent'],
       caption: ['Old Cap'],
       dimensions: ['Old Dim'],
@@ -66,7 +66,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Date Created').value).to eq 'Old Creation Date'
       expect(find_field('Subject').value).to eq 'Old Subj'
       expect(find_field('Language').value).to eq 'Old Lang'
-      expect(find_field('Resource type').value).to eq ['Image']
+      expect(find_field('Resource type').value).to eq ["http://id.loc.gov/vocabulary/resourceTypes/col"]
       expect(find_field('Extent').value).to eq 'Old Extent'
       expect(find_field('Caption').value).to eq 'Old Cap'
       expect(find_field('Dimensions').value).to eq 'Old Dim'
