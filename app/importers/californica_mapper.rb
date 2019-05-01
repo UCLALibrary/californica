@@ -155,6 +155,13 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     metadata['Project Name'] == 'Los Angeles Daily News Negatives'
   end
 
+  def resource_type
+    map_field(:resource_type).to_a.map do |label|
+      term = Qa::Authorities::Local.subauthority_for('resource_types').all.find { |h| h[:label] == label }
+      term.blank? ? nil : term[:id]
+    end.compact
+  end
+
   # The CSV file contains the label, so we'll find the
   # corresponding ID to store on the work record.
   # If the term isn't found in

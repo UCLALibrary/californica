@@ -9,7 +9,7 @@ RSpec.describe CalifornicaMapper do
     { "Item Ark" => "ark:/21198/zz0002nq4w",
       "Title" => "Protesters with signs in gallery of Los Angeles County Supervisors " \
       "hearing over eminent domain for construction of Harbor Freeway, Calif., 1947",
-      "Type.typeOfResource" => "still image",
+      "Type.typeOfResource" => "still image|~|acetate film",
       "Subject" => "Express highways--California--Los Angeles County--Design and construction|~|" \
       "Eminent domain--California--Los Angeles|~|Demonstrations--California--Los Angeles County|~|" \
       "Transportation|~|Government|~|Activism|~|Interstate 10",
@@ -27,6 +27,12 @@ RSpec.describe CalifornicaMapper do
 
   before { mapper.metadata = metadata }
   after { File.delete(ENV['MISSING_FILE_LOG']) if File.exist?(ENV['MISSING_FILE_LOG']) }
+
+  it "maps resource type to local authority values, if possible" do
+    expect(mapper.resource_type).to contain_exactly(
+      'http://id.loc.gov/vocabulary/resourceTypes/img'
+    )
+  end
 
   it "maps the required title field" do
     expect(mapper.map_field(:title))

@@ -6,6 +6,37 @@ RSpec.describe WorkIndexer do
   let(:work) { Work.new(attributes) }
   let(:indexer) { described_class.new(work) }
 
+  describe 'resource type' do
+    context 'a work with a resource type' do
+      let(:attributes) do
+        {
+          ark: 'ark:/123/456',
+          resource_type: ['http://id.loc.gov/vocabulary/resourceTypes/img']
+        }
+      end
+
+      it 'indexes a human-readable resource type' do
+        expect(solr_document['human_readable_resource_type_tesim']).to eq ['still image']
+      end
+    end
+
+    # This should never happen in production data,
+    # but if it does, handle it gracefully.
+    context 'when there is no human-readable value' do
+      let(:no_match) { "a resource type that doesn't have a matching value in config/authorities/resource_types.yml" }
+      let(:attributes) do
+        {
+          ark: 'ark:/123/456',
+          resource_type: [no_match, 'http://id.loc.gov/vocabulary/resourceTypes/img']
+        }
+      end
+
+      it 'just returns the original value' do
+        expect(solr_document['human_readable_resource_type_tesim']).to contain_exactly(no_match, 'still image')
+      end
+    end
+  end
+
   describe 'rights statement' do
     context 'a work with a rights statement' do
       let(:attributes) do
