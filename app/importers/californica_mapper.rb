@@ -182,17 +182,10 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     metadata[CALIFORNICA_TERMS_MAP[name]]&.split(DELIMITER)
   end
 
-  def ensure_recalculate_size_is_off(collection)
-    return unless collection.recalculate_size
-    collection.recalculate_size = false
-    collection.save
-  end
-
   def member_of_collections_attributes
     ark = Ark.ensure_prefix(metadata['Parent ARK'])
     return unless ark
     collection = Collection.find_or_create_by_ark(ark)
-    # ensure_recalculate_size_is_off(collection)
     { '0' => { id: collection.id } }
   end
 

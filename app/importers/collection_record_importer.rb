@@ -13,7 +13,7 @@ class CollectionRecordImporter < Darlingtonia::HyraxRecordImporter
     collection = Collection.find_or_create_by_ark(record.ark)
     collection.attributes = attributes_for(record: record)
     collection.recalculate_size = false
-    if collection.save
+    if collection.save(update_index: false)
       info_stream << "event: collection_created, batch_id: #{batch_id}, record_id: #{collection.id}, record_title: #{collection.title}"
       @success_count += 1
     else

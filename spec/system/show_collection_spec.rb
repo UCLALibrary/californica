@@ -46,6 +46,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
     collection_attrs.each do |k, v|
       collection.send((k.to_s + "=").to_sym, v)
     end
+    collection.recalculate_size = true
     collection.save
   end
 
