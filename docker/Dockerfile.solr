@@ -1,4 +1,4 @@
-FROM solr
+FROM solr:6.5
 
 RUN mkdir /opt/solr/server/solr/mycores/californica
 RUN mkdir /opt/solr/server/solr/mycores/californica/data
