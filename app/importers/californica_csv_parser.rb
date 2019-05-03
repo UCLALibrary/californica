@@ -27,8 +27,8 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
     self.validators = [
       Darlingtonia::CsvFormatValidator.new(error_stream: error_stream),
       CsvValidator.new(error_stream: error_stream),
-      Darlingtonia::TitleValidator.new(error_stream: error_stream),
-      RightsStatementValidator.new(error_stream: error_stream)
+      # Darlingtonia::TitleValidator.new(error_stream: error_stream),
+      # RightsStatementValidator.new(error_stream: error_stream)
     ]
 
     super
