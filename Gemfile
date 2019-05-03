@@ -17,6 +17,7 @@ gem 'darlingtonia', '>= 3.2.2'
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
 gem 'dotenv-rails', '~> 2.2.1'
+gem 'hydra-file_characterization', '~> 1.1'
 gem 'hydra-role-management', '~> 1.0.0'
 gem 'hyrax', '2.5.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

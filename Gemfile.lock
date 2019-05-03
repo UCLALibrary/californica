@@ -343,7 +343,7 @@ GEM
       rails (>= 4.2.0, < 6)
       simple_form (~> 3.2)
       sprockets-es6
-    hydra-file_characterization (0.3.3)
+    hydra-file_characterization (1.1.0)
       activesupport (>= 3.0.0)
     hydra-head (10.6.2)
       hydra-access-controls (= 10.6.2)
@@ -356,10 +356,10 @@ GEM
       blacklight
       bootstrap_form
       cancancan
-    hydra-works (1.1.0)
+    hydra-works (1.2.0)
       activesupport (>= 4.2.10, < 6.0)
       hydra-derivatives (~> 3.0)
-      hydra-file_characterization (~> 0.3, >= 0.3.3)
+      hydra-file_characterization (~> 1.0)
       hydra-pcdm (>= 0.9)
     hyrax (2.5.0)
       active-fedora (~> 11.5, >= 11.5.2)
@@ -535,7 +535,7 @@ GEM
     noid-rails (3.0.1)
       actionpack (>= 5.0.0, < 6)
       noid (~> 0.9)
-    nokogiri (1.10.2)
+    nokogiri (1.10.3)
       mini_portile2 (~> 2.4.0)
     nokogumbo (1.5.0)
       nokogiri
@@ -603,7 +603,7 @@ GEM
     rb-inotify (0.10.0)
       ffi (~> 1.0)
     rb-readline (0.5.5)
-    rdf (3.0.10)
+    rdf (3.0.12)
       hamster (~> 3.0)
       link_header (~> 0.0, >= 0.0.8)
     rdf-aggregate-repo (2.2.1)
@@ -649,11 +649,11 @@ GEM
       rdf-turtle (~> 3.0, >= 3.0.3)
     rdf-trix (2.2.1)
       rdf (>= 2.2, < 4.0)
-    rdf-turtle (3.0.5)
+    rdf-turtle (3.0.6)
       ebnf (~> 1.1)
       rdf (~> 3.0)
-    rdf-vocab (3.0.4)
-      rdf (~> 3.0)
+    rdf-vocab (3.0.6)
+      rdf (~> 3.0, >= 3.0.11)
     rdf-xsd (3.0.1)
       rdf (~> 3.0)
     redcarpet (3.4.0)
@@ -871,6 +871,7 @@ DEPENDENCIES
   factory_bot_rails
   fcrepo_wrapper
   ffaker
+  hydra-file_characterization (~> 1.1)
   hydra-role-management (~> 1.0.0)
   hyrax (= 2.5.0)
   jbuilder (~> 2.5)

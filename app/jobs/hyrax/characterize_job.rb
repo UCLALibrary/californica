@@ -17,10 +17,16 @@ class Hyrax::CharacterizeJob < Hyrax::ApplicationJob
     file_set.characterization_proxy.save!
     file_set.update_index
     file_set.parent&.in_collections&.each(&:update_index)
-    unless file_set.characterization_proxy.mime_type.match?(/tiff/)
+
+    # Check that MiniMagick agrees that this is a TIFF
+    if Californica::IsValidImage.new(image: filepath).valid?
+      # Continue to create derivatives
+      CreateDerivativesJob.perform_later(file_set, file_id, filepath)
+    else
+      # If there is a MiniMagick error, record an error and don't continue to
+      # create derivatives for that file
       error = Californica::CorruptFileError.new(file_set_id: file_set.id, mime_type: file_set.characterization_proxy.mime_type)
       Rails.logger.error error.message
     end
-    CreateDerivativesJob.perform_later(file_set, file_id, filepath)
   end
 end
