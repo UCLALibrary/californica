@@ -28,6 +28,17 @@ class Collection < ActiveFedora::Base
     super
   end
 
+  # Do not reindex the collection upon save unless reindex is on explicitly
+  def update_index(*args)
+    super if recalculate_size
+  end
+
+  # Do a "limited" reindex unless recalculate_size is turned on
+  def reindex_extent
+    return "limited" unless recalculate_size
+    Hyrax::Adapters::NestingIndexAdapter::FULL_REINDEX
+  end
+
   # @param ark [String] The ARK
   # @return [Collection] The Collection with that ARK
   def self.find_or_create_by_ark(ark)

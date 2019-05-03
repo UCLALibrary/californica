@@ -65,6 +65,7 @@ Metrics/MethodLength:
     - app/forms/hyrax/californica_collections_form.rb
     - 'app/importers/csv_validator.rb'
     - app/uploaders/csv_manifest_validator.rb
+    - app/indexers/collection_indexer.rb
 
 Metrics/PerceivedComplexity:
   Enabled: true
