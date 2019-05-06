@@ -76,9 +76,21 @@ namespace :sidekiq do
   end
 end
 
+namespace :californica do
+  task :fix_collection_type_labels do
+    on roles(:app) do
+      execute "cd #{deploy_to}/current; /usr/bin/env bundle exec rake californica:fix_collection_type_labels RAILS_ENV=production"
+    end
+  end
+end
+
 # After the code has been deployed, run db:seed
 # This creates the default admin user
 after 'deploy:published', 'rails:rake:db:seed'
+
+# After the code has been deployed, run californica:fix_collection_type_labels
+# This will fix the translation labels for any collections that are missing them.
+after 'deploy:published', 'californica:fix_collection_type_labels'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
