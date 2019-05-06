@@ -14,6 +14,7 @@ class WorkIndexer < Hyrax::WorkIndexer
     super.tap do |solr_doc|
       solr_doc['sort_year_isi'] = years.to_a.min
       solr_doc['geographic_coordinates_ssim'] = coordinates
+      solr_doc['human_readable_resource_type_sim'] = human_readable_resource_type
       solr_doc['human_readable_resource_type_tesim'] = human_readable_resource_type
       solr_doc['human_readable_rights_statement_tesim'] = human_readable_rights_statement
       solr_doc['sort_title_tesi'] = object.title.first
