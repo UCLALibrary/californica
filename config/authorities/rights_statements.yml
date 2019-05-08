@@ -4,3 +4,6 @@ terms:
 - id: http://vocabs.library.ucla.edu/rights/copyrighted
   term: "copyrighted"
   active: true
+- id: http://vocabs.library.ucla.edu/rights/unknown
+  term: "unknown"
+  active: true
