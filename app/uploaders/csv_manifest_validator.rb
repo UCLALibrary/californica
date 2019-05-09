@@ -11,7 +11,7 @@
 # should be run in background jobs during the import
 # instead of here.
 
-OBJECT_TYPES = ['Collection', 'Work'].freeze
+OBJECT_TYPES = ['Collection', 'Work', 'Manuscript', 'Page'].freeze
 
 REQUIRED_HEADERS = [
   'Item Ark',

@@ -62,6 +62,10 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
     list = @collections_needing_reindex.reject(&:blank?).uniq
     list.each do |ark|
       collection = Collection.find_by_ark(Ark.ensure_prefix(ark))
+      unless collection
+        Rails.logger.error "Tried to reindex collection with ark #{ark} but could not find one."
+        next
+      end
       collection.recalculate_size = true
       collection.save # The save should kick off a reindex
     end
