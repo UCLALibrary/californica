@@ -221,19 +221,22 @@ RSpec.describe CalifornicaMapper do
         # No value for "Rights.copyrightStatus"
         let(:metadata) { { 'Title' => 'A title' } }
 
-        it 'returns nil' do
-          expect(mapper.rights_statement).to eq nil
+        it 'returns \'unknown\'' do
+          expect(mapper.rights_statement).to eq ["http://vocabs.library.ucla.edu/rights/unknown"]
         end
       end
 
-      context 'with a valid value' do
+      context 'with valid values' do
         let(:metadata) do
           { 'Title' => 'A title',
-            'Rights.copyrightStatus' => 'copyrighted' }
+            'Rights.copyrightStatus' => 'copyrighted|~|unknown' }
         end
 
         it 'finds the correct ID for the given value' do
-          expect(mapper.rights_statement).to eq ["http://vocabs.library.ucla.edu/rights/copyrighted"]
+          expect(mapper.rights_statement).to contain_exactly(
+            "http://vocabs.library.ucla.edu/rights/copyrighted",
+            "http://vocabs.library.ucla.edu/rights/unknown"
+          )
         end
       end
 

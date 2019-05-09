@@ -170,10 +170,13 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   # not a valid value, it will eventually be rejected
   # by the RightsStatementValidator.
   def rights_statement
-    return unless metadata['Rights.copyrightStatus']
-    rights_term = Qa::Authorities::Local.subauthority_for('rights_statements').all.find { |h| h[:label] == metadata['Rights.copyrightStatus'] }
-    rights_value = rights_term.blank? ? metadata['Rights.copyrightStatus'] : rights_term[:id]
-    Array(rights_value)
+    authority = Qa::Authorities::Local.subauthority_for('rights_statements')
+    rights_statement = map_field(:rights_statement).to_a.map do |label|
+      term = authority.all.find { |h| h[:label] == label }
+      term.blank? ? label : term[:id]
+    end
+    rights_statement << authority.all.find { |h| h[:label] == 'unknown' }[:id] if rights_statement.empty?
+    rights_statement
   end
 
   def map_field(name)

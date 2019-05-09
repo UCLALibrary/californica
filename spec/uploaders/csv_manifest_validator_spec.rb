@@ -55,7 +55,7 @@ RSpec.describe CsvManifestValidator, type: :model do
         'Can\'t import Row 4: missing "Title".',
         'Can\'t import Row 5: missing "Object Type".',
         'Can\'t import Row 6: missing "Parent ARK".',
-        'Can\'t import Row 7: missing "Rights.copyrightStatus".',
+        'Row 7: missing \'Rights.copyrightStatus\' will be set to \'unknown\'.',
         'Can\'t import Row 8: missing "File Name".'
       )
     end
