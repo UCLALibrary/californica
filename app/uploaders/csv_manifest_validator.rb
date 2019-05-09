@@ -146,9 +146,14 @@ private
 
       # Row missing reqired field values
       column_numbers.each_with_index do |column_number, j|
-        next unless REQUIRED_VALUES[j][1].include?(object_type)
+        field_label, types_that_require = REQUIRED_VALUES[j]
+        next unless types_that_require.include?(object_type)
         next unless row[column_number].blank?
-        @warnings << "Can't import Row #{i + 1}: missing \"#{REQUIRED_VALUES[j][0]}\"."
+        @warnings << if field_label == 'Rights.copyrightStatus'
+                       "Row #{i + 1}: missing 'Rights.copyrightStatus' will be set to 'unknown'."
+                     else
+                       "Can't import Row #{i + 1}: missing \"#{REQUIRED_VALUES[j][0]}\"."
+                     end
       end
     end
   end

@@ -7,3 +7,6 @@ terms:
 - id: http://vocabs.library.ucla.edu/rights/unknown
   term: "unknown"
   active: true
+- id: http://vocabs.library.ucla.edu/rights/publicDomain
+  term: "public domain"
+  active: true
