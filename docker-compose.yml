@@ -10,6 +10,7 @@ services:
       - solr
       - fedora_test
       - solr_test
+      - fits
     env_file:
       - ./.env.sample
     environment:
@@ -23,6 +24,7 @@ services:
       REDIS_URL: redis://redis:6379/0
       SOLR_URL: http://solr:8983/solr/californica
       SOLR_TEST_URL: http://solr_test:8983/solr/californica
+      FITS_SERVLET_URL: http://fits:8080/fits
     ports:
       - "3000:3000"
     volumes:
@@ -121,6 +123,11 @@ services:
       dockerfile: docker/Dockerfile.solr
     ports:
       - "8985:8983"
+
+  fits:
+    image: harvardlts/fitsservlet_container:latest
+    ports:
+      - "8889:8080"
 
   # iiif:
   #   image: uclalibrary/cantaloupe
