@@ -9,6 +9,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
   let(:work_attrs) do
     {
       title: ['Old Title'],
+      architect: ['Old Architect'],
       ark: 'ark:/abc/3456',
       rights_statement: ['http://vocabs.library.ucla.edu/rights/copyrighted'], # "copyrighted"
       publisher: ['Old Pub'],
@@ -54,6 +55,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       click_on 'Additional fields'
       expect(find(:xpath, '//label[@for="work_based_near"]').text).to eq 'Based Near'
       expect(first(:css, '#work_description').value).to eq 'Old Desc'
+      expect(find_field('Architect').value).to eq 'Old Architect'
       expect(find_field('Publisher').value).to eq 'Old Pub'
       expect(find_field('Date Created').value).to eq 'Old Creation Date'
       expect(find_field('Subject').value).to eq 'Old Subj'

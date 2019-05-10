@@ -20,6 +20,7 @@ RSpec.describe CalifornicaMapper do
       "Description.caption" => "This example does not have a caption.",
       "File Name" => "clusc_1_1_00010432a.tif",
       "Coverage.geographic" => "Los Angeles (Calif.)",
+      "Name.architect" => "Imhotep",
       "Name.subject" => "Los Angeles County (Calif.). $b Board of Supervisors",
       "Language" => "English",
       "Relation.isPartOf" => "Connell (Will) Papers, 1928-1961" }
@@ -106,7 +107,7 @@ RSpec.describe CalifornicaMapper do
   describe '#fields' do
     it 'has expected fields' do
       expect(mapper.fields).to include(
-        :visibility, :ark, :title, :subject,
+        :visibility, :ark, :title, :architect, :subject,
         :resource_type, :description, :latitude,
         :longitude, :extent, :local_identifier,
         :date_created, :caption, :dimensions, :rights_country,

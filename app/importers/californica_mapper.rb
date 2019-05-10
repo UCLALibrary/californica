@@ -4,6 +4,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   attr_reader :missing_file_log, :import_file_path
 
   CALIFORNICA_TERMS_MAP = {
+    architect: "Name.architect",
     ark: "Item Ark",
     caption: "Description.caption",
     date_created: "Date.creation",
@@ -97,6 +98,11 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
   def ark
     Ark.ensure_prefix(map_field(:ark).to_a.first)
+  end
+
+  # Replace marc codes with double dashes with no surrounding spaces
+  def architect
+    map_field(:architect)&.map { |a| a.gsub(/ \$[a-z] /, ' ') }
   end
 
   # To avoid having to normalize data before import,

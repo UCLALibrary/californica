@@ -30,6 +30,10 @@ class SolrDocument
     self[:ark_ssi]
   end
 
+  def architect
+    self[Solrizer.solr_name('architect')]
+  end
+
   def extent
     self[Solrizer.solr_name('extent')]
   end

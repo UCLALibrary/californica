@@ -45,6 +45,7 @@ OPTIONAL_HEADERS = [
   'Format.extent',
   'Format.medium',
   'Language',
+  'Name.architect',
   'Name.photographer',
   'Name.repository',
   'Name.subject',

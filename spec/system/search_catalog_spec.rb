@@ -8,6 +8,7 @@ RSpec.describe 'Search the catalog', :clean, type: :system, js: true do
   let!(:banana) do
     Work.create!(
       title: ['Yellow Banana'],
+      architect: ['David Allison', 'George W. Kelham'],
       ark: 'ark:/abc/123456',
       visibility: visible,
       subject: ['fruit'],
@@ -25,6 +26,7 @@ RSpec.describe 'Search the catalog', :clean, type: :system, js: true do
   let!(:carrot) do
     Work.create!(
       title: ['Orange Carrot'],
+      architect: ['A. Quincy Jones'],
       ark: 'ark:/abc/67890',
       visibility: visible,
       subject: ['veg'],
@@ -69,6 +71,14 @@ RSpec.describe 'Search the catalog', :clean, type: :system, js: true do
     within '#search-results' do
       expect(page).to_not have_link('Yellow Banana')
       expect(page).to     have_link('Orange Carrot')
+    end
+
+    # Search by architect
+    fill_in 'search-field-header', with: 'kelham'
+    click_on 'search-submit-header'
+    within '#search-results' do
+      expect(page).to     have_link('Yellow Banana')
+      expect(page).to_not have_link('Orange Carrot')
     end
 
     # Search by named_subject

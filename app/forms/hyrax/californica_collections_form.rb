@@ -2,7 +2,7 @@
 
 module Hyrax
   class CalifornicaCollectionsForm < Hyrax::Forms::CollectionForm
-    self.terms += [:ark, :resource_type, :extent, :caption,
+    self.terms += [:ark, :resource_type, :extent, :architect, :caption,
                    :dimensions, :funding_note, :genre,
                    :latitude, :longitude,
                    :local_identifier, :medium,
@@ -29,6 +29,7 @@ module Hyrax
 
     def secondary_terms
       [
+        :architect,
         :creator,
         :contributor,
         :keyword,

@@ -100,6 +100,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('identifier', :stored_searchable)
     config.add_show_field 'ark_ssi', label: 'ARK'
 
+    config.add_show_field solr_name('architect', :stored_searchable)
     config.add_show_field solr_name('caption', :stored_searchable)
     config.add_show_field solr_name('dimensions', :stored_searchable)
     config.add_show_field solr_name('extent', :stored_searchable)
@@ -110,6 +111,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('medium', :stored_searchable)
     config.add_show_field solr_name('named_subject', :stored_searchable)
     config.add_show_field solr_name('normalized_date', :stored_searchable)
+    config.add_show_field solr_name('photographer', :stored_searchable)
     config.add_show_field solr_name('repository', :stored_searchable)
     config.add_show_field solr_name('rights_country', :stored_searchable)
     config.add_show_field solr_name('rights_holder', :stored_searchable)
@@ -132,7 +134,7 @@ class CatalogController < ApplicationController
     # solr request handler? The one set in config[:default_solr_parameters][:qt],
     # since we aren't specifying it otherwise.
     config.add_search_field('all_fields', label: 'All Fields') do |field|
-      search_fields = 'title_tesim subject_tesim named_subject_tesim location_tesim description_tesim caption_tesim identifier_tesim local_identifier_sim ark_ssi normalized_date_tesim photographer_tesim'
+      search_fields = 'title_tesim subject_tesim named_subject_tesim location_tesim description_tesim caption_tesim identifier_tesim local_identifier_sim ark_ssi normalized_date_tesim architect_tesim photographer_tesim'
 
       field.solr_parameters = {
         qf: search_fields,

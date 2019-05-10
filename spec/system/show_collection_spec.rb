@@ -11,6 +11,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
     {
       title: ['Old Title'],
       rights_statement: ['http://rightsstatements.org/vocab/InC/1.0/'], # "copyrighted"
+      architect: ['Old Architect'],
       publisher: ['Old Pub'],
       date_created: ['Old Creation Date'],
       subject: ['Old Subj'],

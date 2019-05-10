@@ -20,6 +20,7 @@
 * [Format.extent](#format.extent)
 * [Format.medium](#format.medium)
 * [Language](#language)
+* [Name.architect](#name.architect)
 * [Name.photographer](#name.photographer)
 * [Name.repository](#name.repository)
 * [Name.subject](#name.subject)
@@ -117,6 +118,7 @@ Examples:
 ### Format.extent
 ### Format.medium
 ### Language
+### Name.architect
 ### Name.photographer
 ### Name.repository
 ### Name.subject
