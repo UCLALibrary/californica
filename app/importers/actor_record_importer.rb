@@ -18,6 +18,11 @@ class ActorRecordImporter < Darlingtonia::HyraxRecordImporter
     super(error_stream: error_stream, info_stream: info_stream, attributes: attributes)
   end
 
+  def import_type(object_type = nil)
+    return ::ChildWork if object_type == 'Page'
+    ::Work
+  end
+
   # Create an object using the Hyrax actor stack
   # We assume the object was created as expected if the actor stack returns true.
   def create_for(record:)
@@ -29,7 +34,8 @@ class ActorRecordImporter < Darlingtonia::HyraxRecordImporter
       batch_id: batch_id
     }
 
-    created = import_type.new
+    object_type = record.mapper.metadata["Object Type"]
+    created = import_type(object_type).new
 
     attrs = record.attributes.merge(additional_attrs)
 
