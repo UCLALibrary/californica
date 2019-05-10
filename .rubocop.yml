@@ -89,6 +89,7 @@ RSpec/ExampleLength:
     - 'spec/importers/collection_record_importer_spec.rb'
     - 'spec/uploaders/csv_manifest_validator_spec.rb'
     - spec/jobs/start_csv_import_job_spec.rb
+    - spec/jobs/mss_csv_import_job_spec.rb
 
 RSpec/LetSetup:
   Enabled: false

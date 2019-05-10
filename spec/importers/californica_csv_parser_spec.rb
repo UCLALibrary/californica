@@ -105,7 +105,7 @@ RSpec.describe CalifornicaCsvParser do
     let(:error_stream) { CalifornicaLogStream.new }
 
     it 'use the same error stream as the parser' do
-      expect(parser.validators.map(&:error_stream)).to eq [error_stream, error_stream, error_stream, error_stream]
+      expect(parser.validators.map(&:error_stream)).to eq [error_stream, error_stream, error_stream]
     end
   end
 end
