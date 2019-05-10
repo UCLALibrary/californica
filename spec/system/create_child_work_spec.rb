@@ -4,7 +4,7 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 # NOTE: If you generated more than one work, you have to set "js: true"
-RSpec.describe 'Create a Work', :clean, type: :system, js: true do
+RSpec.describe 'Create a ChildWork', :clean, type: :system, js: true do
   context 'a logged in user' do
     let(:user_attributes) do
       { email: 'test@example.com' }
@@ -27,10 +27,9 @@ RSpec.describe 'Create a Work', :clean, type: :system, js: true do
       click_link "Add new work"
 
       # If you generate more than one work uncomment these lines
-      choose "payload_concern", option: "Work"
+      choose "payload_concern", option: "ChildWork"
       click_button "Create work"
-
-      expect(page).to have_content "Add New Work"
+      expect(page).to have_content "Add New Child Work"
       click_link "Files" # switch tab
       expect(page).to have_content "Add files"
       expect(page).to have_content "Add folder"
@@ -40,23 +39,23 @@ RSpec.describe 'Create a Work', :clean, type: :system, js: true do
       end
       click_link "Descriptions" # switch tab
       fill_in('Title', with: 'My Test Work')
-      fill_in('Ark', with: 'ark:/abc/123')
+      fill_in('Ark', with: 'ark:/abc/1236')
       select('copyrighted', from: 'Copyright Status')
 
       # With selenium and the chrome driver, focus remains on the
       # select box. Click outside the box so the next line can't find
       # its element
       find('body').click
-      choose('work_visibility_open')
+      choose('child_work_visibility_open')
       expect(page).to have_content('Please note, making something visible to the world (i.e. marking this as Public) may be viewed as publishing which could impact your ability to')
       check('agreement')
 
       click_on('Save')
       expect(page).to have_content('My Test Work')
-      expect(page).to have_content("ark:/abc/123")
+      expect(page).to have_content("ark:/abc/1236")
       expect(page).to have_content("Your files are being processed")
-      work = Work.last
-      expect(work.id).to eq '321-cba'
+      work = ChildWork.last
+      expect(work.id).to eq '6321-cba'
     end
   end
 end

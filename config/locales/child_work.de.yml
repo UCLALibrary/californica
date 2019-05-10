@@ -1,0 +1,8 @@
+de:
+  hyrax:
+    icons:
+      child_work:     'fa fa-file-text-o'
+    select_type:
+      child_work:
+        description:        "Child work Werke"
+        name:               "Child Work"

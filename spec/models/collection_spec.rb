@@ -4,6 +4,11 @@ require 'rails_helper'
 RSpec.describe Collection do
   subject(:collection) { described_class.new }
 
+  context 'it has UCLA metadata' do
+    subject(:work) { described_class.new }
+    it_behaves_like 'a work with UCLA metadata'
+  end
+
   describe 'with ARK' do
     let(:ark) { "ark:/coll/222" }
     let(:similar_ark) { 'ark:/coll/222111' }
@@ -63,130 +68,6 @@ RSpec.describe Collection do
         end
       end
     end
-  end
-
-  describe '#genre' do
-    let(:values) { ['SciFi'] }
-
-    it 'can set a genre' do
-      expect { collection.genre = values }
-        .to change { collection.genre.to_a }
-        .to contain_exactly(*values)
-    end
-
-    it 'sets to edm:hasType' do
-      expect { collection.genre = values }
-        .to change { collection.resource.predicates }
-        .to include RDF::Vocab::EDM.hasType
-    end
-  end
-
-  it "has architect" do
-    collection.architect = ['architect']
-    expect(collection.architect).to include 'architect'
-    expect(collection.resource.dump(:ttl)).to match(/id.loc.gov\/vocabulary\/relators\/arc/)
-  end
-
-  it "has publisher" do
-    collection.publisher = ['publisher']
-    expect(collection.publisher).to include 'publisher'
-    expect(collection.resource.dump(:ttl)).to match(/purl.org\/dc\/elements\/1.1\/publisher/)
-  end
-
-  it "has extent" do
-    collection.extent = ['1 photograph']
-    expect(collection.extent).to include '1 photograph'
-    expect(collection.resource.dump(:ttl)).to match(/purl.org\/dc\/elements\/1.1\/format/)
-  end
-
-  it "has repository" do
-    collection.repository = ['a repository']
-    expect(collection.repository).to include 'a repository'
-    expect(collection.resource.dump(:ttl)).to match(/loc.gov\/mods\/rdf\/v1#locationCopySublocation/)
-  end
-
-  it "has normalized date" do
-    collection.normalized_date = ['01/01/01']
-    expect(collection.normalized_date).to include '01/01/01'
-    expect(collection.resource.dump(:ttl)).to match(/purl.org\/dc\/elements\/1.1\/date/)
-  end
-
-  it "has local_identifier" do
-    collection.local_identifier = ['local_identifier']
-    expect(collection.local_identifier).to include 'local_identifier'
-    expect(collection.resource.dump(:ttl)).to match(/id.loc.gov\/vocabulary\/identifiers\/local/)
-  end
-
-  it "has funding_note" do
-    collection.funding_note = ['funding_note']
-    expect(collection.funding_note).to include 'funding_note'
-    expect(collection.resource.dump(:ttl)).to match(/bibfra.me\/vocab\/marc\/fundingInformation/)
-  end
-
-  it "has latitude" do
-    collection.latitude = ['39']
-    expect(collection.latitude).to include '39'
-    expect(collection.resource.dump(:ttl)).to match(/w3.org\/2003\/12\/exif\/ns#gpsLatitude/)
-  end
-
-  it "has longitude" do
-    collection.longitude = ['-94']
-    expect(collection.longitude).to include '-94'
-    expect(collection.resource.dump(:ttl)).to match(/w3.org\/2003\/12\/exif\/ns#gpsLongitude/)
-  end
-
-  it "has named subject" do
-    collection.named_subject = ['Person, A']
-    expect(collection.named_subject).to include 'Person, A'
-    expect(collection.resource.dump(:ttl)).to match(/loc.gov\/mods\/rdf\/v1#subjectName/)
-  end
-
-  it "rights country" do
-    collection.rights_country = ['rights_country']
-    expect(collection.rights_country).to include 'rights_country'
-    expect(collection.resource.dump(:ttl)).to match(/ebu.ch\/metadata\/ontologies\/ebucore\/ebucore#rightsType/)
-  end
-
-  it "has rights holder" do
-    collection.rights_holder = ['rights_holder']
-    expect(collection.rights_holder).to include 'rights_holder'
-    expect(collection.resource.dump(:ttl)).to match(/ebu.ch\/metadata\/ontologies\/ebucore\/ebucore#hasRightsHolder/)
-  end
-
-  it "has medium" do
-    collection.medium = ['Capacitance Electronic Disc']
-    expect(collection.medium).to include 'Capacitance Electronic Disc'
-    expect(collection.resource.dump(:ttl)).to match(/purl.org\/dc\/terms\/medium/)
-  end
-
-  it "has dimensions" do
-    collection.dimensions = ['2x4']
-    expect(collection.dimensions).to include '2x4'
-    expect(collection.resource.dump(:ttl)).to match(/loc.gov\/mods\/rdf\/v1#physicalExtent/)
-  end
-
-  it "has caption" do
-    collection.caption = ['a caption']
-    expect(collection.caption).to include 'a caption'
-    expect(collection.resource.dump(:ttl)).to match(/schema.org\/caption/)
-  end
-
-  it "has location" do
-    collection.location = ['a location']
-    expect(collection.location).to include 'a location'
-    expect(collection.resource.dump(:ttl)).to match(/purl.org\/dc\/terms\/coverage/)
-  end
-
-  it "has photographer" do
-    collection.photographer = ['Ansel Adams']
-    expect(collection.photographer).to include 'Ansel Adams'
-    expect(collection.resource.dump(:ttl)).to match(/id.loc.gov\/vocabulary\/relators\/pht.html/)
-  end
-
-  it "has services_contact" do
-    collection.services_contact = ['UCLA Charles E. Young Research Library Department of Special Collections']
-    expect(collection.services_contact).to include 'UCLA Charles E. Young Research Library Department of Special Collections'
-    expect(collection.resource.dump(:ttl)).to match(/www.ebu.ch\/metadata\/ontologies\/ebucore\/ebucore\#hasRightsContact/)
   end
 
   # Re-calculating a collection's size is very expensive, and we need a way to turn it off during bulk import
