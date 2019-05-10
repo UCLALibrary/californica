@@ -185,7 +185,12 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     metadata[CALIFORNICA_TERMS_MAP[name]]&.split(DELIMITER)
   end
 
+  # Determine what Collection this object should be part of.
+  # Ensure that Collection object exists.
+  # Assume the parent of this object is a collection unless the Object Type is Page
   def member_of_collections_attributes
+    # A Page will never be a direct member of a Collection
+    return if metadata["Object Type"] == "Page"
     ark = Ark.ensure_prefix(metadata['Parent ARK'])
     return unless ark
     collection = Collection.find_or_create_by_ark(ark)
