@@ -26,6 +26,12 @@ RSpec.describe Work do
     expect(work.resource.dump(:ttl)).to match(/purl.org\/dc\/elements\/1.1\/identifier/)
   end
 
+  it "has architect" do
+    work.architect = ['Imhotep']
+    expect(work.architect).to include 'Imhotep'
+    expect(work.resource.dump(:ttl)).to match(/id.loc.gov\/vocabulary\/relators\/arc/)
+  end
+
   it "has publisher" do
     work.publisher = ['publisher']
     expect(work.publisher).to include 'publisher'

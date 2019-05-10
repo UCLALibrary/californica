@@ -60,7 +60,7 @@ RSpec.describe CalifornicaCsvParser do
        'Relation.isPartOf', 'Publisher.publisherName',
        'Rights.countryCreation',
        'Rights.rightsHolderContact',
-       'Name.photographer', 'Name.repository',
+       'Name.architect', 'Name.photographer', 'Name.repository',
        'Date.normalized',
        'AltIdentifier.local', 'Title',
        'Date.creation', 'Format.extent',

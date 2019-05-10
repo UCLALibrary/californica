@@ -11,6 +11,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
   let(:collection_attrs) do
     {
       title: ['Old Title'],
+      architect: ['Old architect'],
       ark: 'ark:/abc/1234',
       rights_statement: ['http://vocabs.library.ucla.edu/rights/copyrighted'], # "copyrighted"
       publisher: ['Old Pub'],

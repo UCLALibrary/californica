@@ -81,6 +81,12 @@ RSpec.describe Collection do
     end
   end
 
+  it "has architect" do
+    collection.architect = ['architect']
+    expect(collection.architect).to include 'architect'
+    expect(collection.resource.dump(:ttl)).to match(/id.loc.gov\/vocabulary\/relators\/arc/)
+  end
+
   it "has publisher" do
     collection.publisher = ['publisher']
     expect(collection.publisher).to include 'publisher'

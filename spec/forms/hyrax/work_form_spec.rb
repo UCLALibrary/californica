@@ -6,7 +6,7 @@ RSpec.describe Hyrax::WorkForm do
   let(:form) { described_class.new(Work.new, {}, {}) }
 
   it 'has all the custom terms' do
-    expect(form.terms).to include(:extent, :caption, :dimensions,
+    expect(form.terms).to include(:extent, :architect, :caption, :dimensions,
                                   :funding_note, :genre, :latitude,
                                   :longitude, :local_identifier, :medium,
                                   :named_subject, :normalized_date, :repository,

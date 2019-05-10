@@ -11,6 +11,10 @@ module UclaMetadata
       index.as :stored_searchable, :facetable
     end
 
+    property :architect, predicate: ::RDF::Vocab::MARCRelators.arc do |index|
+      index.as :stored_searchable
+    end
+
     property :caption, predicate: ::RDF::Vocab::SCHEMA.caption do |index|
       index.as :stored_searchable
     end
