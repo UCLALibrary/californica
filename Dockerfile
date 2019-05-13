@@ -34,7 +34,7 @@ ENV BUNDLE_PATH /usr/local/bundle
 WORKDIR /californica
 COPY Gemfile /californica/Gemfile
 COPY Gemfile.lock /californica/Gemfile.lock
-RUN bundle install --frozen
+RUN bundle install
 
 # Add californica
 COPY / /californica
