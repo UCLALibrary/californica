@@ -1,0 +1,10 @@
+es:
+  hyrax:
+    icons:
+      child_work:     'fa fa-file-text-o'
+    select_type:
+      child_work:
+        # TODO: translate `human_name` into Spanish
+        description:        "Child work trabajos"
+        name:               "Child Work"
+        # TODO: translate `human_name` into Spanish

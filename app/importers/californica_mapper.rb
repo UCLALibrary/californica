@@ -54,7 +54,11 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   end
 
   def fields
-    CALIFORNICA_TERMS_MAP.keys + [:remote_files, :visibility, :member_of_collections_attributes, :license]
+    # The fields common to all object types
+    common_fields = CALIFORNICA_TERMS_MAP.keys + [:remote_files, :visibility, :member_of_collections_attributes, :license]
+    # Pages additionally have a field :in_works_ids, which defines their parent work
+    return common_fields + [:in_works_ids] if metadata["Object Type"] == "Page"
+    common_fields
   end
 
   def object_type
@@ -201,6 +205,13 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     return unless ark
     collection = Collection.find_or_create_by_ark(ark)
     { '0' => { id: collection.id } }
+  end
+
+  def in_works_ids
+    return unless metadata["Object Type"] == "Page"
+    ark = Ark.ensure_prefix(metadata['Parent ARK'])
+    parent_work = Work.find_or_create_by_ark(ark)
+    [parent_work.id]
   end
 
   private

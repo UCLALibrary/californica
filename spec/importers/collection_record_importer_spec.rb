@@ -10,7 +10,8 @@ RSpec.describe CollectionRecordImporter, :clean do
     { 'Title' => 'Collection ABC 123',
       'Item Ark' => 'ark:/abc/123',
       'Description.note' => 'desc 1|~|desc 2',
-      'Rights.servicesContact' => 'UCLA Charles E. Young Research Library Department of Special Collections' }
+      'Rights.servicesContact' => 'UCLA Charles E. Young Research Library Department of Special Collections',
+      'Object Type' => 'Collection' }
   end
 
   describe '#import' do
@@ -42,7 +43,8 @@ RSpec.describe CollectionRecordImporter, :clean do
     context 'when the collection creation fails' do
       let(:metadata) do
         { 'Title' => nil, # Nil title is invalid
-          'Item Ark' => 'ark:/abc/123' }
+          'Item Ark' => 'ark:/abc/123',
+          'Object Type' => 'Collection' }
       end
 
       it 'logs the failure' do
@@ -95,7 +97,8 @@ RSpec.describe CollectionRecordImporter, :clean do
 
       let(:metadata) do
         { 'Title' => nil, # Nil title is invalid
-          'Item Ark' => 'ark:/abc/123' }
+          'Item Ark' => 'ark:/abc/123',
+          'Object Type' => 'Collection' }
       end
 
       it 'logs the failure' do

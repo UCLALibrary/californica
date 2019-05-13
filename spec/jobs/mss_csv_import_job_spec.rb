@@ -14,11 +14,19 @@ RSpec.describe StartCsvImportJob, :clean, :inline_jobs do
       expect(Collection.count).to eq 1
       # For the moment, there are 4 works.
       # Next, we'll turn this into three pages, each attached to a work
-      expect(Work.count).to eq 4
+      expect(Work.count).to eq 1
+      expect(ChildWork.count).to eq 3
       collection = Collection.last
       # The work is attached to the Collection as expected
       expect(collection.child_works.count).to eq 1
       expect(collection.child_works.first.title.first).to eq "Ms. 50 Marbabeta Salomon, Ṣalota Susnyos"
+      # The Pages are attached to the Work as expected
+      work = Work.last
+      expect(work.members.size).to eq 3
     end
+  end
+
+  context 'the pages are defined before the work' do
+    pending
   end
 end
