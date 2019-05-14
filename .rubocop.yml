@@ -71,7 +71,8 @@ Metrics/PerceivedComplexity:
   Enabled: true
   Exclude:
     - app/importers/actor_record_importer.rb
-    - 'app/uploaders/csv_manifest_validator.rb'
+    - app/uploaders/csv_manifest_validator.rb
+    - app/importers/californica_csv_parser.rb
 
 RSpec/AnyInstance:
   Enabled: false

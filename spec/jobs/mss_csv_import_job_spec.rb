@@ -25,6 +25,7 @@ RSpec.describe StartCsvImportJob, :clean, :inline_jobs do
       expect(work.members.size).to eq 3
       # It makes a PageOrder object for each Page
       expect(PageOrder.count).to eq 3
+      expect(work.ordered_member_ids).to eq ["rm6zp100zz-89112", "qj6zp100zz-89112", "7k6zp100zz-89112"]
     end
   end
 

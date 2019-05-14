@@ -23,6 +23,8 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
     self.info_stream  = info_stream
     @import_file_path = import_file_path
     @collections_needing_reindex = []
+    # An array of work ids with attached ChildWorks, which might need a reordering of the attached ChildWorks
+    @works_needing_ordering = []
 
     self.validators = [
       Darlingtonia::CsvFormatValidator.new(error_stream: error_stream),
@@ -48,6 +50,21 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
   rescue CSV::MalformedCSVError
     # This error will be handled by Darlingtonia::CsvFormatValidator
     []
+  end
+
+  # Given an array of Work arks that have had ChildWorks added to them during this import,
+  # iterate through each and use the PageOrder objects to ensure the ChildWorks are
+  # in the right order. In other works, ensure a manuscript's pages are ordered by the
+  # values in `Item Sequence`
+  def order_child_works
+    works_arks = @works_needing_ordering.reject(&:blank?).uniq
+    works_arks.each do |work_ark|
+      page_orderings = PageOrder.where(parent: Ark.ensure_prefix(work_ark))
+      ordered_arks = page_orderings.sort_by(&:sequence)
+      work = Work.find_by_ark(Ark.ensure_prefix(work_ark))
+      work.ordered_members = ordered_arks.map { |b| ChildWork.find_by_ark(b.child) }
+      work.save
+    end
   end
 
   # Given an array of ARKs:
@@ -81,6 +98,7 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
       # Gather all collection objects that have been touched during this import so we can reindex them all at the end
       @collections_needing_reindex << row["Item Ark"] if row["Object Type"] == "Collection"
       @collections_needing_reindex << row["Parent ARK"] if row["Object Type"] == "Work"
+      @works_needing_ordering << row["Parent ARK"] if row["Object Type"] == "Page"
     end
   rescue CSV::MalformedCSVError
     # error reporting for this case is handled by validation
