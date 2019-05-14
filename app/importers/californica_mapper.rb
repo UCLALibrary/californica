@@ -45,7 +45,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   # What columns are allowed in the CSV
   def self.allowed_headers
     CALIFORNICA_TERMS_MAP.values +
-      ['File Name', 'Parent ARK', 'Project Name', 'Object Type']
+      ['File Name', 'Parent ARK', 'Project Name', 'Object Type', 'Item Sequence']
   end
 
   # What columns must exist in the CSV
@@ -207,10 +207,28 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     { '0' => { id: collection.id } }
   end
 
+  def sequence
+    metadata['Item Sequence']
+  end
+
+  def parent_ark
+    Ark.ensure_prefix(metadata['Parent ARK'])
+  end
+
+  # Record the page sequence in the database so it's quick to access and sort.
+  # At the end of an import for a multi-page work, we'll use these to order the Pages.
+  def record_page_sequence
+    PageOrder.find_by(child: ark)&.destroy
+    PageOrder.create(parent: parent_ark, child: ark, sequence: sequence)
+  end
+
+  def parent_work
+    Work.find_or_create_by_ark(parent_ark)
+  end
+
   def in_works_ids
     return unless metadata["Object Type"] == "Page"
-    ark = Ark.ensure_prefix(metadata['Parent ARK'])
-    parent_work = Work.find_or_create_by_ark(ark)
+    record_page_sequence
     [parent_work.id]
   end
 
