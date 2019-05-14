@@ -16,6 +16,7 @@ Metrics/AbcSize:
     - app/importers/actor_record_importer.rb
     - app/uploaders/csv_manifest_validator.rb
     - app/importers/collection_record_importer.rb
+    - spec/jobs/mss_csv_import_job_spec.rb
 
 Metrics/ClassLength:
   Enabled: true
