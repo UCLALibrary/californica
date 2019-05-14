@@ -23,6 +23,8 @@ RSpec.describe StartCsvImportJob, :clean, :inline_jobs do
       # The Pages are attached to the Work as expected
       work = Work.last
       expect(work.members.size).to eq 3
+      # It makes a PageOrder object for each Page
+      expect(PageOrder.count).to eq 3
     end
   end
 

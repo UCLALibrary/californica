@@ -44,6 +44,7 @@ OPTIONAL_HEADERS = [
   'Format.dimensions',
   'Format.extent',
   'Format.medium',
+  'Item Sequence',
   'Language',
   'Name.architect',
   'Name.photographer',

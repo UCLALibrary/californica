@@ -19,6 +19,7 @@
 * [Format.dimensions](#format.dimensions)
 * [Format.extent](#format.extent)
 * [Format.medium](#format.medium)
+* [Item Sequence](#item-sequence)
 * [Language](#language)
 * [Name.architect](#name.architect)
 * [Name.photographer](#name.photographer)
@@ -117,6 +118,7 @@ Examples:
 ### Format.dimensions
 ### Format.extent
 ### Format.medium
+### Item Sequence
 ### Language
 ### Name.architect
 ### Name.photographer
