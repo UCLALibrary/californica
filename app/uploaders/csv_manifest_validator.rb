@@ -61,6 +61,14 @@ OPTIONAL_HEADERS = [
   'Type.typeOfResource'
 ].freeze
 
+CONTROLLED_VOCABULARIES = {
+  'License' => Qa::Authorities::Local.subauthority_for('licenses').all.map { |x| x['label'] },
+  'Rights.copyrightStatus' => Qa::Authorities::Local.subauthority_for('rights_statements').all.map { |x| x['label'] },
+  'Type.typeOfResource' => Qa::Authorities::Local.subauthority_for('resource_types').all.map { |x| x['label'] }
+}.freeze
+
+N_ROWS_TO_WARN = 5 # use Float::INFINITY to show all row numbers in warnings
+
 class CsvManifestValidator
   # @param manifest_uploader [CsvManifestUploader] The manifest that's mounted to a CsvImport record.  See carrierwave gem documentation.  This is basically a wrapper for the CSV file.
   def initialize(manifest_uploader)
@@ -117,8 +125,10 @@ private
   end
 
   def validate_records
-    column_numbers = REQUIRED_VALUES.map { |header, _object_types| @headers.find_index(header) }.compact
+    required_column_numbers = REQUIRED_VALUES.map { |header, _object_types| @headers.find_index(header) }.compact
+    controlled_column_numbers = CONTROLLED_VOCABULARIES.keys.map { |header| @headers.find_index(header) }.compact
     object_type_column = @headers.find_index('Object Type')
+    row_warnings = Hash.new { |hash, key| hash[key] = [] }
 
     @rows.each_with_index do |row, i|
       # Skip header row
@@ -147,7 +157,7 @@ private
       end
 
       # Row missing reqired field values
-      column_numbers.each_with_index do |column_number, j|
+      required_column_numbers.each_with_index do |column_number, j|
         field_label, types_that_require = REQUIRED_VALUES[j]
         next unless types_that_require.include?(object_type)
         next unless row[column_number].blank?
@@ -157,6 +167,23 @@ private
                        "Can't import Row #{i + 1}: missing \"#{REQUIRED_VALUES[j][0]}\"."
                      end
       end
+
+      # Row has invalid value in a controlled-vocabulary field
+      controlled_column_numbers.each do |column_number|
+        field_name = @headers[column_number]
+        allowed_values = CONTROLLED_VOCABULARIES[field_name]
+        row[column_number].to_s.split('|~|').each do |this_value|
+          unless allowed_values.include?(this_value)
+            message = "'#{this_value}' is not a valid value for '#{field_name}'"
+            row_warnings[message] << i + 1
+          end
+        end
+      end
+    end
+
+    row_warnings.each do |warning, rows|
+      rows = rows[0, N_ROWS_TO_WARN] + ['...'] if rows.length > N_ROWS_TO_WARN
+      @warnings << "Row #{rows.join(', ')}: #{warning}"
     end
   end
 end

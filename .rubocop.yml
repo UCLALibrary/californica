@@ -22,6 +22,8 @@ Metrics/ClassLength:
   Enabled: true
   Exclude:
     - 'app/controllers/catalog_controller.rb'
+    - 'app/controllers/catalog_controller.rb'
+    - 'app/importers/californica_mapper.rb'
     - 'app/importers/californica_mapper.rb'
     - 'app/jobs/hyrax/characterize_job.rb'
     - 'app/uploaders/csv_manifest_validator.rb'
@@ -30,17 +32,12 @@ Metrics/BlockLength:
   Enabled: true
   Exclude:
     - '**/*/catalog_controller.rb'
+    - 'app/uploaders/csv_manifest_validator.rb'
     - 'config/**/*'
     - 'spec/**/*'
     - 'lib/tasks/ingest.rake'
     - 'lib/tasks/derivatives.rake'
     - app/models/ucla_metadata.rb
-
-Metrics/ClassLength:
-  Enabled: true
-  Exclude:
-    - 'app/controllers/catalog_controller.rb'
-    - 'app/importers/californica_mapper.rb'
 
 Metrics/CyclomaticComplexity:
   Enabled: true
@@ -74,9 +71,6 @@ Metrics/PerceivedComplexity:
     - app/importers/actor_record_importer.rb
     - app/uploaders/csv_manifest_validator.rb
     - app/importers/californica_csv_parser.rb
-
-RSpec/AnyInstance:
-  Enabled: false
 
 RSpec/AnyInstance:
   Enabled: false
