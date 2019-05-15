@@ -72,4 +72,16 @@ RSpec.describe CsvManifestValidator, type: :model do
       )
     end
   end
+
+  context 'a CSV with invalid values in controlled-vocabulary fields' do
+    let(:csv_file) { File.join(fixture_path, 'csv_import', 'csv_files_with_problems', 'invalid_values.csv') }
+
+    it 'has warnings' do
+      validator.validate
+      expect(validator.warnings).to contain_exactly(
+        'Row 2: \'invalid rights statement\' is not a valid value for \'Rights.copyrightStatus\'',
+        'Row 3, 4: \'invalid type\' is not a valid value for \'Type.typeOfResource\''
+      )
+    end
+  end
 end
