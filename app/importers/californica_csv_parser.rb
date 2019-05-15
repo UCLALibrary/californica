@@ -22,9 +22,9 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
     self.error_stream = error_stream
     self.info_stream  = info_stream
     @import_file_path = import_file_path
-    @collections_needing_reindex = []
+    @collections_needing_reindex = Set.new
     # An array of work ids with attached ChildWorks, which might need a reordering of the attached ChildWorks
-    @works_needing_ordering = []
+    @works_needing_ordering = Set.new
 
     self.validators = [
       Darlingtonia::CsvFormatValidator.new(error_stream: error_stream),
@@ -57,7 +57,7 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
   # in the right order. In other works, ensure a manuscript's pages are ordered by the
   # values in `Item Sequence`
   def order_child_works
-    works_arks = @works_needing_ordering.reject(&:blank?).uniq
+    works_arks = @works_needing_ordering.reject(&:blank?)
     works_arks.each do |work_ark|
       page_orderings = PageOrder.where(parent: Ark.ensure_prefix(work_ark))
       ordered_arks = page_orderings.sort_by(&:sequence)
@@ -75,7 +75,7 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
   # This is so we can remove expensive collection reindexing behavior during
   # ingest and only add it back after the ingest is complete.
   def reindex_collections
-    list = @collections_needing_reindex.reject(&:blank?).uniq
+    list = @collections_needing_reindex.reject(&:blank?)
     list.each do |ark|
       collection = Collection.find_by_ark(Ark.ensure_prefix(ark))
       unless collection
