@@ -26,11 +26,7 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
     # An array of work ids with attached ChildWorks, which might need a reordering of the attached ChildWorks
     @works_needing_ordering = Set.new
 
-    self.validators = [
-      Darlingtonia::CsvFormatValidator.new(error_stream: error_stream),
-      CsvValidator.new(error_stream: error_stream),
-      Darlingtonia::TitleValidator.new(error_stream: error_stream)
-    ]
+    self.validators = []
 
     super
   end
