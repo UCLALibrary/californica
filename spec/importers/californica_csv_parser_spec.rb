@@ -84,28 +84,4 @@ RSpec.describe CalifornicaCsvParser do
       end
     end
   end
-
-  describe '#validate' do
-    it 'is valid' do
-      expect(parser.validate).to be_truthy
-    end
-
-    context 'with an invalid csv' do
-      let(:file) { File.open('spec/fixtures/mods_example.xml') }
-
-      it 'is invalid' do
-        expect(parser.validate).to be_falsey
-      end
-    end
-  end
-
-  describe 'validators' do
-    subject(:parser) { described_class.new(file: file, error_stream: error_stream) }
-
-    let(:error_stream) { CalifornicaLogStream.new }
-
-    it 'use the same error stream as the parser' do
-      expect(parser.validators.map(&:error_stream)).to eq [error_stream, error_stream, error_stream]
-    end
-  end
 end
