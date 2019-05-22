@@ -182,6 +182,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   def rights_statement
     authority = Qa::Authorities::Local.subauthority_for('rights_statements')
     rights_statement = map_field(:rights_statement).to_a.map do |label|
+      label = { 'pd' => 'public domain' }[label] || label # these values need to be mapped
       term = authority.all.find { |h| h[:label] == label }
       term.blank? ? label : term[:id]
     end

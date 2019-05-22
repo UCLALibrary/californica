@@ -242,6 +242,21 @@ RSpec.describe CalifornicaMapper do
         end
       end
 
+      context 'with values that need to be mapped' do
+        let(:metadata) do
+          { 'Title' => 'A title',
+            'Rights.copyrightStatus' => ['copyrighted', 'unknown', 'pd'].join('|~|') }
+        end
+
+        it 'finds the correct ID for the given value' do
+          expect(mapper.rights_statement).to contain_exactly(
+            "http://vocabs.library.ucla.edu/rights/copyrighted",
+            "http://vocabs.library.ucla.edu/rights/publicDomain",
+            "http://vocabs.library.ucla.edu/rights/unknown"
+          )
+        end
+      end
+
       context 'with an invalid value' do
         let(:metadata) do
           { 'Title' => 'A title',
