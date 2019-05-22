@@ -43,7 +43,7 @@ class CatalogController < ApplicationController
 
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
-    config.add_facet_field solr_name('resource_type', :facetable), label: 'Resource Type', limit: 5
+    config.add_facet_field solr_name('human_readable_resource_type', :facetable), label: 'Resource Type', limit: 5
     config.add_facet_field solr_name('creator', :facetable), limit: 5
     config.add_facet_field solr_name('contributor', :facetable), label: 'Contributor', limit: 5
     config.add_facet_field solr_name('keyword', :facetable), limit: 5
@@ -77,7 +77,7 @@ class CatalogController < ApplicationController
     config.add_index_field solr_name('normalized_date', :stored_searchable), label: 'Date', link_to_search: solr_name('normalized_date', :facetable)
 
     # Currently disabled resource_type in index view bc the implementation makes it hard to tap into our custom presenter
-    # config.add_index_field solr_name('resource_type', :stored_searchable), label: 'Resource Type', link_to_search: solr_name('resource_type', :facetable)
+    config.add_index_field solr_name('human_readable_resource_type', :stored_searchable), label: 'Resource Type', link_to_search: solr_name('human_readable_resource_type', :facetable)
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
