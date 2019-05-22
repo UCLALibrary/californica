@@ -45,6 +45,17 @@ RSpec.describe CsvManifestValidator, type: :model do
     end
   end
 
+  context 'a CSV with duplicate headers' do
+    let(:csv_file) { File.join(fixture_path, 'csv_import', 'csv_files_with_problems', 'duplicate_headers.csv') }
+
+    it 'has an error' do
+      validator.validate
+      expect(validator.errors).to contain_exactly(
+        'Duplicate column header: Title (used 2 times). Each column must have a unique header.'
+      )
+    end
+  end
+
   context 'a CSV that is missing required values' do
     let(:csv_file) { File.join(fixture_path, 'csv_import', 'csv_files_with_problems', 'missing_values.csv') }
 

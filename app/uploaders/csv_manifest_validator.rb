@@ -88,6 +88,7 @@ class CsvManifestValidator
     # @transformed_headers = @headers.map { |header| header.downcase.strip }
 
     missing_headers
+    duplicate_headers
     unrecognized_headers
     validate_records
   end
@@ -122,6 +123,12 @@ private
       @warnings << "The field name \"#{header}\" is not supported.  This field will be ignored, and the metadata for this field will not be imported."
     end
     extra_headers
+  end
+
+  def duplicate_headers
+    @rows.first.group_by { |header| header }.each do |header, copies|
+      @errors << "Duplicate column header: #{header} (used #{copies.length} times). Each column must have a unique header." if copies.length > 1
+    end
   end
 
   def validate_records
