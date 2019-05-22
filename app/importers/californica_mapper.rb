@@ -155,8 +155,9 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   # Hard-code language for LADNN collection. Story #48
   def language
     if ladnn?
-      ['No linguistic content']
+      ['zxx'] # MARC code for 'No linguistic content'
     else
+      # If it's populated, DLCS uses MARC IDs, not labels, so we don't need to map like w/ resource_type
       map_field(:language)
     end
   end

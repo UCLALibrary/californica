@@ -22,7 +22,7 @@ RSpec.describe CalifornicaMapper do
       "Coverage.geographic" => "Los Angeles (Calif.)",
       "Name.architect" => "Imhotep",
       "Name.subject" => "Los Angeles County (Calif.). $b Board of Supervisors",
-      "Language" => "English",
+      "Language" => "eng",
       "Relation.isPartOf" => "Connell (Will) Papers, 1928-1961" }
   end
 
