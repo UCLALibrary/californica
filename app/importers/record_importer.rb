@@ -14,6 +14,9 @@ class RecordImporter < Darlingtonia::HyraxRecordImporter
   end
 
   def import(record:)
+   csv_row = CsvRow.create(metadata: record.mapper.metadata, 
+      row_number: record.mapper.row_number)
+
     selected_importer = if record.mapper.collection?
                           collection_record_importer
                         else

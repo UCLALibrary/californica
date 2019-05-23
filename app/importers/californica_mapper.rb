@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CalifornicaMapper < Darlingtonia::HashMapper
-  attr_reader :missing_file_log, :import_file_path
+  attr_reader :missing_file_log, :import_file_path, :row_number
 
   CALIFORNICA_TERMS_MAP = {
     architect: "Name.architect",
@@ -39,6 +39,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   def initialize(attributes = {})
     @missing_file_log = ENV['MISSING_FILE_LOG'] || "#{::Rails.root}/log/missing_files_#{Rails.env}"
     @import_file_path = attributes[:import_file_path] || ENV['IMPORT_FILE_PATH'] || '/opt/data'
+    @row_number = attributes[:row_number]
     super()
   end
 
