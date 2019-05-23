@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190514132636) do
+ActiveRecord::Schema.define(version: 20190523194336) do
 
   create_table "bookmarks", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "user_id", null: false
@@ -74,6 +74,17 @@ ActiveRecord::Schema.define(version: 20190514132636) do
     t.string "manifest"
     t.string "import_file_path"
     t.index ["user_id"], name: "index_csv_imports_on_user_id"
+  end
+
+  create_table "csv_rows", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "row_number"
+    t.string "job_id"
+    t.string "csv_import_id"
+    t.string "status"
+    t.text "error_messages"
+    t.text "metadata"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "curation_concerns_operations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -584,7 +595,10 @@ ActiveRecord::Schema.define(version: 20190514132636) do
     t.index ["work_id"], name: "index_work_view_stats_on_work_id"
   end
 
+  add_foreign_key "collection_type_participants", "hyrax_collection_types"
   add_foreign_key "csv_imports", "users"
+  add_foreign_key "curation_concerns_operations", "users"
+  add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"
   add_foreign_key "mailboxer_notifications", "mailboxer_conversations", column: "conversation_id", name: "notifications_on_conversation_id"
   add_foreign_key "mailboxer_receipts", "mailboxer_notifications", column: "notification_id", name: "receipts_on_notification_id"
   add_foreign_key "permission_template_accesses", "permission_templates"

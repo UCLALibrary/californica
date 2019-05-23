@@ -1,0 +1,2 @@
+class CsvRow < ApplicationRecord
+end
