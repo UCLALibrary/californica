@@ -69,9 +69,9 @@ class ActorRecordImporter < Darlingtonia::HyraxRecordImporter
 
     object_type = record.mapper.metadata["Object Type"]
     created = import_type(object_type).new
-
+    created.apply_depositor_metadata(@depositor.user_key)
     attrs = record.attributes.merge(additional_attrs)
-
+    
     attrs = attrs.merge(member_of_collections_attributes: { '0' => { id: collection_id } }) if collection_id
 
     # Ensure nothing is passed in the files field,

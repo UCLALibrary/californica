@@ -50,7 +50,9 @@ class Collection < ActiveFedora::Base
       title: ["Collection #{ark}"],
       ark: ark,
       collection_type: Hyrax::CollectionType.find_or_create_default_collection_type,
-      visibility: Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
+      visibility: Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC,
+      depositor: ::User.batch_user.user_key,
+      edit_users: [::User.batch_user.user_key]
     )
 
     # Members of the 'admin' group can edit this Collection

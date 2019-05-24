@@ -30,7 +30,10 @@ class Work < ActiveFedora::Base
       id: Californica::IdGenerator.id_from_ark(ark),
       title: ["Work #{ark}"],
       ark: ark,
-      visibility: Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
+      visibility: Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC,
+      admin_set_id: AdminSet.find_or_create_default_admin_set_id,
+      depositor: ::User.batch_user.user_key,
+      edit_users: [::User.batch_user.user_key]
     )
     work
   end
