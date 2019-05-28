@@ -1,6 +1,6 @@
 # <a href="#required-fields">Required Fields</a>
 * [File Name](#file-name)
-* [Item Ark](#item-ark)
+* [Item ARK](#item-ark)
 * [Object Type](#object-type)
 * [Parent ARK](#parent-ark) (required for `Work` objects)
 * [Rights.copyrightStatus](#rights.copyrightstatus)
@@ -46,7 +46,7 @@ Examples:
 * `clusc_1_1_00010432a.tif` (single value)
 * `clusc_1_1_00010432a.tif|~|clusc_1_1_00010432b.tif` (multivalued)
 
-### Item Ark (required)
+### Item ARK (required)
 
 A persistent unique identifier associated with a work. It takes the form `ark:/shoulder/blade` where `shoulder` is an institutional identifier, and `blade` is a work identifier. Every work and collection in Californica must have an ark value. The ark is not multivalued -- each work can only have one.
 

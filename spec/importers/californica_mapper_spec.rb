@@ -6,7 +6,7 @@ RSpec.describe CalifornicaMapper do
   subject(:mapper) { described_class.new(import_file_path: fixture_path) }
 
   let(:metadata) do
-    { "Item Ark" => "ark:/21198/zz0002nq4w",
+    { "Item ARK" => "ark:/21198/zz0002nq4w",
       "Title" => "Protesters with signs in gallery of Los Angeles County Supervisors " \
       "hearing over eminent domain for construction of Harbor Freeway, Calif., 1947",
       "Type.typeOfResource" => "still image|~|acetate film",
@@ -57,7 +57,7 @@ RSpec.describe CalifornicaMapper do
 
   context 'with a blank filename' do
     let(:metadata) do
-      { "Item Ark" => "21198/zz0002nq4w",
+      { "Item ARK" => "21198/zz0002nq4w",
         "Title" => "Protesters with signs in gallery of Los Angeles County Supervisors " \
         "hearing over eminent domain for construction of Harbor Freeway, Calif., 1947",
         "Type.typeOfResource" => "still image",
@@ -90,7 +90,7 @@ RSpec.describe CalifornicaMapper do
 
   context 'with a blank filename for a "Collection" row' do
     let(:metadata) do
-      { "Item Ark" => "123/abc",
+      { "Item ARK" => "123/abc",
         "Object Type" => "Collection",
         "Title" => "Collection Title" }
     end
@@ -124,7 +124,7 @@ RSpec.describe CalifornicaMapper do
 
     context 'when input has no prefix' do
       let(:metadata) do
-        { "Item Ark" => "21198/zz0002nq4w" }
+        { "Item ARK" => "21198/zz0002nq4w" }
       end
 
       it 'adds the prefix "ark:/"' do
