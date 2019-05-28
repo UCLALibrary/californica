@@ -68,6 +68,40 @@ RSpec.describe WorkIndexer do
     end
   end
 
+  describe 'language' do
+    context 'a work with a language' do
+      let(:attributes) do
+        {
+          ark: 'ark:/123/456',
+          language: ['eng']
+        }
+      end
+
+      it 'indexes a human-readable language' do
+        expect(solr_document['human_readable_language_tesim']).to eq ['English']
+      end
+    end
+
+    # This should never happen in production data,
+    # but if it does, handle it gracefully.
+    context 'when there is no human-readable value' do
+      let(:no_match) { "a language that doesn't have a matching value in config/authorities/languages.yml" }
+      let(:attributes) do
+        {
+          ark: 'ark:/123/456',
+          language: [no_match, 'ang']
+        }
+      end
+
+      it 'just returns the original value' do
+        expect(solr_document['human_readable_language_tesim']).to contain_exactly(
+          no_match,
+          'English, Old (ca. 450-1100)'
+        )
+      end
+    end
+  end
+
   describe 'latitude and longitude' do
     context 'a work with latitude and longitude' do
       let(:attributes) do

@@ -62,6 +62,7 @@ OPTIONAL_HEADERS = [
 ].freeze
 
 CONTROLLED_VOCABULARIES = {
+  'Language' => Qa::Authorities::Local.subauthority_for('languages').all.map { |x| x['id'] },
   'License' => Qa::Authorities::Local.subauthority_for('licenses').all.map { |x| x['label'] },
   'Rights.copyrightStatus' => Qa::Authorities::Local.subauthority_for('rights_statements').all.map { |x| x['label'] },
   'Type.typeOfResource' => Qa::Authorities::Local.subauthority_for('resource_types').all.map { |x| x['label'] }

@@ -15,7 +15,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       publisher: ['Old Pub'],
       date_created: ['Old Creation Date'],
       subject: ['Old Subj'],
-      language: ['Old Lang'],
+      language: ['ang'],
       description: ['Old Desc'],
       resource_type: ['Image'],
       extent: ['Old Extent'],

@@ -14,6 +14,8 @@ class WorkIndexer < Hyrax::WorkIndexer
     super.tap do |solr_doc|
       solr_doc['sort_year_isi'] = years.to_a.min
       solr_doc['geographic_coordinates_ssim'] = coordinates
+      solr_doc['human_readable_language_sim'] = human_readable_language
+      solr_doc['human_readable_language_tesim'] = human_readable_language
       solr_doc['human_readable_resource_type_sim'] = human_readable_resource_type
       solr_doc['human_readable_resource_type_tesim'] = human_readable_resource_type
       solr_doc['human_readable_rights_statement_tesim'] = human_readable_rights_statement
@@ -26,6 +28,15 @@ class WorkIndexer < Hyrax::WorkIndexer
   def coordinates
     return unless object.latitude.first && object.longitude.first
     [object.latitude.first, object.longitude.first].join(', ')
+  end
+
+  def human_readable_language
+    rights_terms = Qa::Authorities::Local.subauthority_for('languages').all
+
+    object.language.map do |lang|
+      term = rights_terms.find { |entry| entry[:id] == lang }
+      term.blank? ? lang : term[:label]
+    end
   end
 
   def human_readable_resource_type
