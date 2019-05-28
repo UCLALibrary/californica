@@ -18,7 +18,6 @@ REQUIRED_HEADERS = [
   'Title',
   'Object Type',
   'Parent ARK',
-  'Rights.copyrightStatus',
   'File Name'
 ].freeze
 
@@ -53,6 +52,7 @@ OPTIONAL_HEADERS = [
   'Project Name',
   'Publisher.publisherName',
   'Relation.isPartOf',
+  'Rights.copyrightStatus',
   'Rights.countryCreation',
   'Rights.rightsHolderContact',
   'Rights.servicesContact',
