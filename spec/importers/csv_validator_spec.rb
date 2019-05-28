@@ -23,7 +23,7 @@ RSpec.describe CsvValidator do
     it 'has errors for missing headers' do
       errors = validator.validate(parser: parser)
       expect(errors.map(&:class)).to eq [Darlingtonia::Validator::Error]
-      expect(errors.map(&:description)).to eq ['Missing required columns in CSV file: Title, Item Ark']
+      expect(errors.map(&:description)).to eq ['Missing required columns in CSV file: Title, Item ARK']
     end
   end
 end

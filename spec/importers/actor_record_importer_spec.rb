@@ -14,7 +14,7 @@ RSpec.describe ActorRecordImporter, :clean do
       'Title' => 'Comet in Moominland',
       'language' => 'English',
       'visibility' => 'open',
-      'Item Ark' => 'ark:/abc/123'
+      'Item ARK' => 'ark:/abc/123'
     }
   end
 
@@ -38,7 +38,7 @@ RSpec.describe ActorRecordImporter, :clean do
         {
           'Title' => 'Comet in Moominland',
           'File Name' => "clusc_1_1_00010432a.tif",
-          'Item Ark' => "ark:/abc/1234"
+          'Item ARK' => "ark:/abc/1234"
         }
       end
 
@@ -53,7 +53,7 @@ RSpec.describe ActorRecordImporter, :clean do
       let(:metadata) do
         {
           'visibility' => 'open',
-          'Item Ark' => 'ark:/abc/123'
+          'Item ARK' => 'ark:/abc/123'
         }
       end
 

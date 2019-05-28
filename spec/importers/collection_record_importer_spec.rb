@@ -8,7 +8,7 @@ RSpec.describe CollectionRecordImporter, :clean do
 
   let(:metadata) do
     { 'Title' => 'Collection ABC 123',
-      'Item Ark' => 'ark:/abc/123',
+      'Item ARK' => 'ark:/abc/123',
       'Description.note' => 'desc 1|~|desc 2',
       'Rights.servicesContact' => 'UCLA Charles E. Young Research Library Department of Special Collections',
       'Object Type' => 'Collection' }
@@ -43,7 +43,7 @@ RSpec.describe CollectionRecordImporter, :clean do
     context 'when the collection creation fails' do
       let(:metadata) do
         { 'Title' => nil, # Nil title is invalid
-          'Item Ark' => 'ark:/abc/123',
+          'Item ARK' => 'ark:/abc/123',
           'Object Type' => 'Collection' }
       end
 
@@ -62,7 +62,7 @@ RSpec.describe CollectionRecordImporter, :clean do
 
     context 'when the collection already exists' do
       let(:collection) do
-        coll = Collection.find_or_create_by_ark(metadata['Item Ark'])
+        coll = Collection.find_or_create_by_ark(metadata['Item ARK'])
         coll.description = ['old description']
         coll.genre = ['old genre']
         coll.save!
@@ -93,11 +93,11 @@ RSpec.describe CollectionRecordImporter, :clean do
     end
 
     context 'when the collection update fails' do
-      let!(:collection) { Collection.find_or_create_by_ark(metadata['Item Ark']) }
+      let!(:collection) { Collection.find_or_create_by_ark(metadata['Item ARK']) }
 
       let(:metadata) do
         { 'Title' => nil, # Nil title is invalid
-          'Item Ark' => 'ark:/abc/123',
+          'Item ARK' => 'ark:/abc/123',
           'Object Type' => 'Collection' }
       end
 

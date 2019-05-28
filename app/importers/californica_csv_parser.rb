@@ -92,7 +92,7 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
       # use the CalifornicaMapper
       yield Darlingtonia::InputRecord.from(metadata: row, mapper: CalifornicaMapper.new(import_file_path: @import_file_path))
       # Gather all collection objects that have been touched during this import so we can reindex them all at the end
-      @collections_needing_reindex << row["Item Ark"] if row["Object Type"] == "Collection"
+      @collections_needing_reindex << row["Item ARK"] if row["Object Type"] == "Collection"
       @collections_needing_reindex << row["Parent ARK"] if row["Object Type"] == "Work"
       @works_needing_ordering << row["Parent ARK"] if row["Object Type"] == "Page"
     end

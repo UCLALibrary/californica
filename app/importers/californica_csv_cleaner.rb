@@ -35,7 +35,7 @@ class CalifornicaCsvCleaner < Darlingtonia::CsvParser
     # and destroy it.
     CSV.parse(file.read, headers: true).each_with_index do |row, _index|
       item = Darlingtonia::InputRecord.from(metadata: row, mapper: CalifornicaMapper.new)
-      ark = item.mapper.metadata["Item Ark"]
+      ark = item.mapper.metadata["Item ARK"]
       next unless ark
       ark = Ark.ensure_prefix(ark)
       ActiveFedora::Base.where(ark_ssi: ark).each do |work|

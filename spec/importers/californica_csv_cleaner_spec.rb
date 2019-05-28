@@ -13,7 +13,7 @@ RSpec.describe CalifornicaCsvCleaner, :clean do
       'Title' => 'Comet in Moominland',
       'language' => 'English',
       'visibility' => 'open',
-      'Item Ark' => 'ark:/21198/zz0002nq4w'
+      'Item ARK' => 'ark:/21198/zz0002nq4w'
     }
   end
   let(:metadata2) do
@@ -21,7 +21,7 @@ RSpec.describe CalifornicaCsvCleaner, :clean do
       'Title' => 'World Tales',
       'language' => 'English',
       'visibility' => 'open',
-      'Item Ark' => 'ark:/21198/zz0002nq4x'
+      'Item ARK' => 'ark:/21198/zz0002nq4x'
     }
   end
 

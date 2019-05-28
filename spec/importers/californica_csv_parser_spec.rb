@@ -53,7 +53,7 @@ RSpec.describe CalifornicaCsvParser do
 
   describe '#headers' do
     let(:expected_headers) do
-      ['Object Type', 'Project Name', 'Parent ARK', 'Item Ark',
+      ['Object Type', 'Project Name', 'Parent ARK', 'Item ARK',
        'Subject', 'Type.typeOfResource',
        'Rights.copyrightStatus', 'Type.genre',
        'Name.subject', 'Coverage.geographic',
@@ -77,7 +77,7 @@ RSpec.describe CalifornicaCsvParser do
 
     context 'headers that are wrapped in quotes' do
       let(:csv_path) { File.join(fixture_path, 'quoted_headers.csv') }
-      let(:expected_headers) { ['Item Ark', 'Title'] }
+      let(:expected_headers) { ['Item ARK', 'Title'] }
 
       it 'knows the headers for this CSV file' do
         expect(parser.headers).to eq expected_headers

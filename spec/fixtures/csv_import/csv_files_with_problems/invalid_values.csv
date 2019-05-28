@@ -1,4 +1,4 @@
-Object Type,Title,Item Ark,Parent ARK,Rights.copyrightStatus,File Name,Type.typeOfResource
+Object Type,Title,Item ARK,Parent ARK,Rights.copyrightStatus,File Name,Type.typeOfResource
 Work,Invalid rights_statement,ark:/123/defg,ark:/123/abc,invalid rights statement,clusc_1_1_00010432a.tif,still image
 Work,Invalid resource_type,ark:/123/hijk,ark:/123/abc,copyrighted,clusc_1_1_00010433a.tif,invalid type|~|still image
 Work,Invalid resource_type #2,ark:/123/lmnop,ark:/123/abc,copyrighted|~|unknown,clusc_1_1_00010434a.tif,invalid type

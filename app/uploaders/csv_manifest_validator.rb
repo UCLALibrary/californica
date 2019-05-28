@@ -14,7 +14,7 @@
 OBJECT_TYPES = ['Collection', 'Work', 'Manuscript', 'Page'].freeze
 
 REQUIRED_HEADERS = [
-  'Item Ark',
+  'Item ARK',
   'Title',
   'Object Type',
   'Parent ARK',
@@ -23,7 +23,7 @@ REQUIRED_HEADERS = [
 ].freeze
 
 REQUIRED_VALUES = [
-  ['Item Ark', ['Collection', 'Work']],
+  ['Item ARK', ['Collection', 'Work']],
   ['Title', ['Collection', 'Work']],
   # ['Object Type', ['Collection', 'Work']],  # hard-coded
   ['Parent ARK', ['Work']],

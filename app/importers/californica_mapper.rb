@@ -5,7 +5,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
   CALIFORNICA_TERMS_MAP = {
     architect: "Name.architect",
-    ark: "Item Ark",
+    ark: "Item ARK",
     caption: "Description.caption",
     date_created: "Date.creation",
     description: "Description.note",
@@ -50,7 +50,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
   # What columns must exist in the CSV
   def self.required_headers
-    ['Title', 'Item Ark']
+    ['Title', 'Item ARK']
   end
 
   def fields
