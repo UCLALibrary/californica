@@ -74,13 +74,14 @@ class CsvManifestValidator
   # @param manifest_uploader [CsvManifestUploader] The manifest that's mounted to a CsvImport record.  See carrierwave gem documentation.  This is basically a wrapper for the CSV file.
   def initialize(manifest_uploader)
     @csv_file = manifest_uploader.file
+    @file_uri_base_path = manifest_uploader.model.import_file_path.to_s
     @errors = []
     @warnings = []
   end
 
   # Errors and warnings for the CSV file.
   attr_reader :errors, :warnings
-  attr_reader :csv_file
+  attr_reader :csv_file, :file_uri_base_path
 
   def validate
     @rows = CSV.read(csv_file.path)
@@ -136,6 +137,7 @@ private
     required_column_numbers = REQUIRED_VALUES.map { |header, _object_types| @headers.find_index(header) }.compact
     controlled_column_numbers = CONTROLLED_VOCABULARIES.keys.map { |header| @headers.find_index(header) }.compact
     object_type_column = @headers.find_index('Object Type')
+    filename_column = @headers.find_index('File Name')
     row_warnings = Hash.new { |hash, key| hash[key] = [] }
 
     @rows.each_with_index do |row, i|
@@ -185,6 +187,14 @@ private
             message = "'#{this_value}' is not a valid value for '#{field_name}'"
             row_warnings[message] << i + 1
           end
+        end
+      end
+
+      # Row has a File Name that doesn't exist
+      unless file_uri_base_path.empty?
+        row[filename_column].to_s.split('|~|').each do |file_name|
+          full_path = File.join(file_uri_base_path, file_name)
+          row_warnings["cannot find \'#{full_path}\'"] << i + 1 unless File.exist?(full_path)
         end
       end
     end

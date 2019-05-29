@@ -4,7 +4,7 @@ require 'rails_helper'
 RSpec.describe CsvManifestUploader, type: :model do
   let(:uploader) { csv_import.manifest }
   let(:csv_import) do
-    import = CsvImport.new(user: user)
+    import = CsvImport.new(user: user, import_file_path: fixture_path)
     File.open(csv_file) { |f| import.manifest = f }
     import
   end

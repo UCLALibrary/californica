@@ -6,7 +6,7 @@ RSpec.describe CsvManifestValidator, type: :model do
   let(:manifest) { csv_import.manifest }
   let(:user) { FactoryBot.build(:user) }
   let(:csv_import) do
-    import = CsvImport.new(user: user)
+    import = CsvImport.new(user: user, import_file_path: fixture_path)
     File.open(csv_file) { |f| import.manifest = f }
     import
   end
@@ -88,10 +88,40 @@ RSpec.describe CsvManifestValidator, type: :model do
 
     it 'has warnings' do
       validator.validate
-      expect(validator.warnings).to contain_exactly(
+      expect(validator.warnings).to include(
         'Row 2: \'invalid rights statement\' is not a valid value for \'Rights.copyrightStatus\'',
         'Row 3, 4: \'invalid type\' is not a valid value for \'Type.typeOfResource\''
       )
+    end
+  end
+
+  context 'when the csv has a missing file' do
+    let(:csv_file) { 'spec/fixtures/example-missingimage.csv' }
+
+    it 'has warnings' do
+      validator.validate
+      path = File.join(fixture_path, 'missing_file.tif')
+      expect(validator.warnings).to include("Row 2: cannot find '#{path}'")
+    end
+
+    it 'doesn\'t warn about files that aren\'t missing' do
+      validator.validate
+      path = File.join(fixture_path, 'clusc_1_1_00010432a.tif')
+      expect(validator.warnings).to_not include("Row 2: cannot find '#{path}'")
+    end
+  end
+
+  context 'when import_file_path is nil' do
+    let(:csv_import) do
+      import = CsvImport.new(user: user, import_file_path: nil)
+      File.open(csv_file) { |f| import.manifest = f }
+      import
+    end
+    let(:csv_file) { 'spec/fixtures/example-missingimage.csv' }
+
+    it 'doesn\'t warn about missing files' do
+      validator.validate
+      expect(validator.warnings).to eq []
     end
   end
 end

@@ -118,3 +118,7 @@ RSpec/DescribeClass:
     - 'spec/tasks/**/*'
     - 'spec/system/search_crawler_spec.rb'
     - 'spec/tasks/**/*'
+
+Style/Next:
+  Exclude:
+    - 'app/uploaders/csv_manifest_validator.rb'
