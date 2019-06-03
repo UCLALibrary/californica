@@ -10,6 +10,7 @@ module CommonRecordImporter
   # which is managed just differently enough that using it as a de-duplication field won't
   # work in the standard darlingtonia way.
   def find_existing_record(record)
+    deduplication_field = Californica::Importer.deduplication_field
     return unless deduplication_field
     return unless record.respond_to?(deduplication_field)
     return if record.mapper.send(deduplication_field).nil?
