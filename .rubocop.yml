@@ -119,6 +119,10 @@ RSpec/DescribeClass:
     - 'spec/system/search_crawler_spec.rb'
     - 'spec/tasks/**/*'
 
+Style/BracesAroundHashParameters:
+  Exclude:
+    - 'spec/importers/californica_mapper_spec.rb'
+
 Style/Next:
   Exclude:
     - 'app/uploaders/csv_manifest_validator.rb'

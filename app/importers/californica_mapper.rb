@@ -194,7 +194,9 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   def map_field(name)
     return unless CALIFORNICA_TERMS_MAP.keys.include?(name)
 
-    metadata[CALIFORNICA_TERMS_MAP[name]]&.split(DELIMITER)
+    Array.wrap(CALIFORNICA_TERMS_MAP[name]).map do |source_field|
+      metadata[source_field]&.split(DELIMITER)
+    end.flatten.compact
   end
 
   # Determine what Collection this object should be part of.
