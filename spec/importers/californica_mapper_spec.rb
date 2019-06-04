@@ -117,6 +117,24 @@ RSpec.describe CalifornicaMapper do
     end
   end
 
+  describe '#map_field' do
+    let(:metadata) do
+      { 'Single.source' => 'specific',
+        'Source.one' => 'ecolog|~|next',
+        'Source.two' => 'nihilism' }
+    end
+
+    it 'maps from a single source field' do
+      stub_const('CalifornicaMapper::CALIFORNICA_TERMS_MAP', { 'single_source' => 'Single.source' })
+      expect(mapper.map_field('single_source')).to eq(['specific'])
+    end
+
+    it 'maps from a list of source fields' do
+      stub_const('CalifornicaMapper::CALIFORNICA_TERMS_MAP', { 'multi_source' => ['Source.one', 'Source.two'] })
+      expect(mapper.map_field('multi_source')).to eq(['ecolog', 'next', 'nihilism'])
+    end
+  end
+
   describe '#ark' do
     it "maps the required ark field" do
       expect(mapper.ark).to eq('ark:/21198/zz0002nq4w')
