@@ -3,6 +3,7 @@
 class Work < ActiveFedora::Base
   include ::Hyrax::WorkBehavior
   include UclaMetadata
+  include ::Discoverable
 
   self.indexer = WorkIndexer
   # Change this to restrict which works can be added as a child.

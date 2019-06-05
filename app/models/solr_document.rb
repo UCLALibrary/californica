@@ -113,4 +113,21 @@ class SolrDocument
   def services_contact
     self[:services_contact_ssm]
   end
+
+  # Override this method from hyrax gem to allow
+  # Californica to use "discovery" visibility.
+  # app/models/concerns/hyrax/solr_document_behavior.rb
+  def visibility
+    return @visibility if @visibility
+
+    discovery = self[:visibility_ssi] == Work::VISIBILITY_TEXT_VALUE_DISCOVERY &&
+                lease_expiration_date.blank? &&
+                embargo_release_date.blank?
+
+    @visibility = if discovery
+                    Work::VISIBILITY_TEXT_VALUE_DISCOVERY
+                  else
+                    super
+                  end
+  end
 end

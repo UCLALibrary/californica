@@ -1,4 +1,18 @@
 # frozen_string_literal: true
+
+# Override this constant from the hyrax gem so that we
+# can add the "discovery" visibility to Californica.
+Californica::Application.config.after_initialize do
+  Hyrax::PermissionBadge::VISIBILITY_LABEL_CLASS = {
+    authenticated: "label-info",
+    embargo: "label-warning",
+    lease: "label-warning",
+    open: "label-success",
+    restricted: "label-danger",
+    discovery: "label-info"
+  }.freeze
+end
+
 Hyrax.config do |config|
   # Injected via `rails g hyrax:work Work`
   config.register_curation_concern :work
