@@ -3,20 +3,22 @@
 require 'rails_helper'
 
 RSpec.describe SolrDocument do
-  let(:solr_document) do
-    described_class.new(extent_tesim: [''],
-                        caption_tesim: [''],
-                        dimensions_tesim: [''],
-                        funding_note_tesim: [''],
-                        genre_tesim: [''],
-                        latitude_tesim: [''],
-                        longitude_tesim: [''],
-                        medium_tesim: [''],
-                        named_subject_tesim: [''],
-                        normalized_date_tesim: [''],
-                        repository_tesim: [''],
-                        rights_country_tesim: [''],
-                        rights_holder_tesim: [''])
+  let(:solr_document) { described_class.new(fields) }
+
+  let(:fields) do
+    { caption_tesim: [''],
+      dimensions_tesim: [''],
+      extent_tesim: [''],
+      funding_note_tesim: [''],
+      genre_tesim: [''],
+      latitude_tesim: [''],
+      longitude_tesim: [''],
+      medium_tesim: [''],
+      named_subject_tesim: [''],
+      normalized_date_tesim: [''],
+      repository_tesim: [''],
+      rights_country_tesim: [''],
+      rights_holder_tesim: [''] }
   end
 
   it 'has extent' do
@@ -65,5 +67,39 @@ RSpec.describe SolrDocument do
 
   it 'has rights_holder' do
     expect(solr_document.rights_holder).to eq([''])
+  end
+
+  describe 'visibility' do
+    subject(:visibility) { solr_document.visibility }
+    let(:solr_document) { described_class.new(work.to_solr) }
+
+    let(:discovery_access) { Work::VISIBILITY_TEXT_VALUE_DISCOVERY }
+    let(:public_access) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
+    let(:embargo_access) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_EMBARGO }
+    let(:lease_access) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_LEASE }
+
+    context 'a work with an embargo that has current visibility set to "discovery"' do
+      let(:work) do
+        w = Work.new(ark: 'ark:/abc/1234')
+        w.apply_embargo(Date.tomorrow.to_s, discovery_access, public_access)
+        w
+      end
+
+      it 'returns the correct visibility for an embargo' do
+        expect(visibility).to eq embargo_access
+      end
+    end
+
+    context 'a work with a lease that has current visibility set to "discovery"' do
+      let(:work) do
+        w = Work.new(ark: 'ark:/abc/1234')
+        w.apply_lease(Date.tomorrow.to_s, discovery_access, public_access)
+        w
+      end
+
+      it 'returns the correct visibility for a lease' do
+        expect(visibility).to eq lease_access
+      end
+    end
   end
 end

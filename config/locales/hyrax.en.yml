@@ -79,3 +79,7 @@ en:
     institution_name_full: Data Curation Experts, LLC
     product_name: Hyrax
     product_twitter_handle: "@SamveraRepo"
+    visibility:
+      discovery:
+        text: Discovery
+        note_html: Make metadata available to all users, but restrict access to files.
