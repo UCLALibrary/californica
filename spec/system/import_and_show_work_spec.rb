@@ -2,7 +2,7 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-RSpec.describe 'Import and Display a Work', :clean, type: :system, js: true do
+RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: true, js: true do
   subject(:importer) { CalifornicaImporter.new(csv_import) }
   let(:csv_import) { FactoryBot.create(:csv_import, user: user, manifest: manifest) }
   let(:manifest) { Rack::Test::UploadedFile.new(csv_file, 'text/csv') }
