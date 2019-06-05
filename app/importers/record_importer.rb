@@ -15,9 +15,12 @@ class RecordImporter < Darlingtonia::HyraxRecordImporter
   end
 
   def import(record:)
-   csv_row = CsvRow.create(metadata: record.mapper.metadata.to_json,
-      row_number: record.mapper.row_number)
-  CsvRowImportJob.perform_later(row_id: csv_row.id )
+    csv_row = CsvRow.create(
+                metadata: record.mapper.metadata.to_json,
+                row_number: record.mapper.row_number,
+                csv_import_id: batch_id
+              )
+    CsvRowImportJob.perform_later(row_id: csv_row.id )
   end
 
   def success_count
