@@ -23,6 +23,12 @@ RSpec.shared_examples 'a work with UCLA metadata' do
       expect(work.resource.dump(:ttl)).to match(/purl.org\/dc\/elements\/1.1\/identifier/)
     end
 
+    it "alternative_title" do
+      work.alternative_title = ['Alternative title']
+      expect(work.alternative_title).to include 'Alternative title'
+      expect(work.resource.dump(:ttl)).to match(/purl.org\/dc\/terms\/alternative/)
+    end
+
     it "has architect" do
       work.architect = ['Imhotep']
       expect(work.architect).to include 'Imhotep'

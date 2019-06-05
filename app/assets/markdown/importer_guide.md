@@ -8,6 +8,7 @@
 
 # <a href="#other-allowed-fields">Other Allowed Fields</a>
 * [AltIdentifier.local](#altidentifier.local)
+* [AltTitle.other](#alttitle.other)
 * [Coverage.geographic](#coverage.geographic)
 * [Date.creation](#date.creation)
 * [Date.normalized](#date.normalized)
@@ -107,6 +108,8 @@ Examples:
 * `uclamss_686_b6_f24_18` (single value)
 * `uclamss_686_b6_f24_18|~|uclamss_abc1234` (multivalued)
 
+### AltTitle.other
+accepts AltTitle.translated
 ### Coverage.geographic
 ### Date.creation
 ### Date.normalized

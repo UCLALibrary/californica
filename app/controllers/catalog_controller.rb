@@ -100,6 +100,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('identifier', :stored_searchable)
     config.add_show_field 'ark_ssi', label: 'ARK'
 
+    config.add_show_field solr_name('alternative_title', :stored_searchable)
     config.add_show_field solr_name('architect', :stored_searchable)
     config.add_show_field solr_name('caption', :stored_searchable)
     config.add_show_field solr_name('dimensions', :stored_searchable)

@@ -23,7 +23,9 @@ RSpec.describe CalifornicaMapper do
       "Name.architect" => "Imhotep",
       "Name.subject" => "Los Angeles County (Calif.). $b Board of Supervisors",
       "Language" => "eng",
-      "Relation.isPartOf" => "Connell (Will) Papers, 1928-1961" }
+      "Relation.isPartOf" => "Connell (Will) Papers, 1928-1961",
+      "AltTitle.other" => "alternative title",
+      "AltTitle.translated" => "translated alternative title" }
   end
 
   before { mapper.metadata = metadata }

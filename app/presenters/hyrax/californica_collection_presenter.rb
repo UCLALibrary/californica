@@ -5,7 +5,7 @@ module Hyrax
     # app/views/collections/_show_descriptions.html.erb
     def self.terms
       [
-        :ark, :total_items, :size, :resource_type, :architect, :creator, :contributor,
+        :alternative_title, :ark, :total_items, :size, :resource_type, :architect, :creator, :contributor,
         :keyword, :license, :publisher, :date_created, :subject,
         :language, :identifier, :based_near, :related_url,
         :extent, :caption,

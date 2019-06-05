@@ -32,6 +32,8 @@ REQUIRED_VALUES = [
 
 OPTIONAL_HEADERS = [
   'AltIdentifier.local',
+  'AltTitle.other',
+  'AltTitle.translated',
   'Coverage.geographic',
   'Date.creation',
   'Date.normalized',
