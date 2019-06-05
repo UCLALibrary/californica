@@ -6,7 +6,6 @@ class RecordImporter < Darlingtonia::HyraxRecordImporter
   attr_reader :actor_record_importer
   attr_reader :collection_record_importer
 
-
   def initialize(error_stream:, info_stream:, attributes: {})
     @actor_record_importer = ::ActorRecordImporter.new(error_stream: error_stream, info_stream: info_stream, attributes: attributes)
     @collection_record_importer = ::CollectionRecordImporter.new(error_stream: error_stream, info_stream: info_stream, attributes: attributes)
@@ -16,11 +15,11 @@ class RecordImporter < Darlingtonia::HyraxRecordImporter
 
   def import(record:)
     csv_row = CsvRow.create(
-                metadata: record.mapper.metadata.to_json,
-                row_number: record.mapper.row_number,
-                csv_import_id: batch_id
-              )
-    CsvRowImportJob.perform_later(row_id: csv_row.id )
+      metadata: record.mapper.metadata.to_json,
+      row_number: record.mapper.row_number,
+      csv_import_id: batch_id
+    )
+    CsvRowImportJob.perform_later(row_id: csv_row.id)
   end
 
   def success_count

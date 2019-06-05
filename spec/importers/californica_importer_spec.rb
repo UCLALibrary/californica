@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe CalifornicaImporter, :clean do
+RSpec.describe CalifornicaImporter, :clean, inline_jobs: true do
   subject(:importer) { described_class.new(csv_import) }
   let(:csv_import) { FactoryBot.create(:csv_import, user: user, manifest: manifest) }
   let(:manifest) { Rack::Test::UploadedFile.new(Rails.root.join(csv_path), 'text/csv') }
@@ -32,10 +32,6 @@ RSpec.describe CalifornicaImporter, :clean do
       expect(Work.last.date_uploaded).not_to be_nil
     end
 
-    it 'enqueues local file attachment job' do
-      expect { importer.import }.to have_enqueued_job(IngestLocalFileJob)
-    end
-
     it "has an ingest log" do
       expect(importer.ingest_log).to be_kind_of(Logger)
     end
@@ -47,11 +43,6 @@ RSpec.describe CalifornicaImporter, :clean do
     it "records the time it took to ingest" do
       importer.import
       expect(File.readlines(importer.ingest_log_filename).each(&:chomp!).last).to match(/elapsed_time/)
-    end
-
-    it "records the number of records ingested" do
-      importer.import
-      expect(File.read(importer.ingest_log_filename)).to match(/successful_record_count: 1/)
     end
 
     context 'when the collection doesn\'t exist yet' do
@@ -142,34 +133,6 @@ RSpec.describe CalifornicaImporter, :clean do
       it "records missing files" do
         importer.import
         expect(File.readlines(ENV['MISSING_FILE_LOG']).each(&:chomp!).last).to match(/missing_file.tif/)
-      end
-    end
-
-    context 'when the records error' do
-      let(:ldp_error)    { Ldp::PreconditionFailed }
-      let(:error_record) { Darlingtonia::InputRecord.from(metadata: metadata, mapper: CalifornicaMapper.new) }
-      let(:metadata) do
-        {
-          'Title' => 'Comet in Moominland',
-          'language' => 'English',
-          'visibility' => 'open'
-        }
-      end
-      before do
-        allow(error_record).to receive(:attributes).and_raise(ldp_error)
-        allow(importer.parser).to receive(:records).and_return([error_record])
-        allow(importer.parser).to receive(:validate).and_return(true)
-      end
-
-      it 'does not ingest the item' do
-        expect { importer.import }.not_to change { Work.count }
-      end
-
-      it 'logs the errors' do
-        importer.import
-
-        expect(File.readlines(importer.error_log_filename).each(&:chomp!))
-          .to include(/ERROR.+#{ldp_error}/)
       end
     end
   end

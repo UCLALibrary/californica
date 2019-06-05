@@ -33,8 +33,8 @@ RSpec.describe StartCsvImportJob, :clean, :inline_jobs do
     expect(work.member_of_collections.first.id).to eq "x3xg9000zz-89112"
 
     # The work is attached to the Collection as expected
-    #expect(collection.child_works.count).to eq 1
-    #expect(collection.child_works.first.title.first).to eq "Ms. 50 Marbabeta Salomon, Ṣalota Susnyos"
+    expect(collection.child_works.count).to eq 1
+    expect(collection.child_works.first.title.first).to eq "Ms. 50 Marbabeta Salomon, Ṣalota Susnyos"
     # The Pages are attached to the Work as expected
     work = Work.last
     expect(work.members.size).to eq 3

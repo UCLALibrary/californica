@@ -71,7 +71,7 @@ class ActorRecordImporter < Darlingtonia::HyraxRecordImporter
     created = import_type(object_type).new
     created.apply_depositor_metadata(@depositor.user_key)
     attrs = record.attributes.merge(additional_attrs)
-    
+
     attrs = attrs.merge(member_of_collections_attributes: { '0' => { id: collection_id } }) if collection_id
 
     # Ensure nothing is passed in the files field,
@@ -90,12 +90,15 @@ class ActorRecordImporter < Darlingtonia::HyraxRecordImporter
 
     if middleware.create(actor_env)
       info_stream << "event: record_created, batch_id: #{batch_id}, record_id: #{created.id}, collection_id: #{collection_id}, record_title: #{attrs[:title]&.first}"
-      @success_count += 1
     else
+      error_messages = []
       created.errors.each do |attr, msg|
         error_stream << "event: validation_failed, batch_id: #{batch_id}, collection_id: #{collection_id}, attribute: #{attr.capitalize}, message: #{msg}, record_title: record_title: #{attrs[:title] ? attrs[:title] : attrs}"
+        error_messages << msg
       end
-      @failure_count += 1
+      # Errors raised here should be rescued in the CsvRowImportJob and the
+      # message should be recorded on the CsvRow object for reporting in the UI
+      raise "Validation failed: #{error_messages.join(', ')}"
     end
   end
 end

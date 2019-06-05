@@ -10,6 +10,7 @@ AllCops:
 
 Metrics/AbcSize:
   Enabled: true
+  Max: 30
   Exclude:
     - 'app/importers/californica_csv_cleaner.rb'
     - app/jobs/hyrax/characterize_job.rb
@@ -57,6 +58,7 @@ Metrics/LineLength:
 
 Metrics/MethodLength:
   Enabled: true
+  Max: 20
   Exclude:
     - 'app/importers/californica_csv_parser.rb'
     - app/importers/actor_record_importer.rb

@@ -57,10 +57,8 @@ RSpec.describe ActorRecordImporter, :clean do
         }
       end
 
-      it 'logs an error' do
-        expect { importer.import(record: record) }
-          .to change { error_stream.first }
-          .to match(/^event: validation_failed/)
+      it 'raises an error' do
+        expect { importer.import(record: record) }.to raise_error(RuntimeError, /Validation failed/)
       end
     end
   end
