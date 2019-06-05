@@ -25,6 +25,6 @@ RSpec.describe CsvRow, type: :model do
 
   it 'has metadata that is parsable as json' do
     metadata_hash = JSON.parse(csv_row.metadata)
-    expect(metadata_hash['Item Ark']).to eq('21198/zz001pz6jq')
+    expect(metadata_hash['Item ARK']).to eq('21198/zz001pz6jq')
   end
 end
