@@ -25,13 +25,13 @@ class CollectionRecordImporter < Darlingtonia::HyraxRecordImporter
   end
 
   def update_for(existing_record:, update_record:)
-    info_stream << "event: collection_update_started, batch_id: #{batch_id}, #{deduplication_field}: #{update_record.respond_to?(deduplication_field) ? update_record.send(deduplication_field) : update_record}"
+    info_stream << "event: collection_update_started, batch_id: #{batch_id}, ark: #{update_record.ark}"
 
     collection = existing_record
     collection.attributes = attributes_for(record: update_record)
     collection.recalculate_size = false
     if collection.save
-      info_stream << "event: collection_updated, batch_id: #{batch_id}, record_id: #{collection.id}, #{deduplication_field}: #{collection.respond_to?(deduplication_field) ? collection.send(deduplication_field) : collection}"
+      info_stream << "event: collection_updated, batch_id: #{batch_id}, record_id: #{collection.id}, ark: #{collection.ark}"
       @success_count += 1
     else
       collection.errors.each do |attr, msg|
