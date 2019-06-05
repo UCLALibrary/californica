@@ -12,6 +12,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
     {
       title: ['Old Title'],
       architect: ['Old architect'],
+      alternative_title: ['alternative title'],
       ark: 'ark:/abc/1234',
       rights_statement: ['http://vocabs.library.ucla.edu/rights/copyrighted'], # "copyrighted"
       publisher: ['Old Pub'],

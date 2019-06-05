@@ -10,6 +10,7 @@ RSpec.describe Hyrax::WorkForm do
                                   :funding_note, :genre, :latitude,
                                   :longitude, :local_identifier, :medium,
                                   :named_subject, :normalized_date, :repository,
-                                  :rights_country, :rights_holder, :photographer)
+                                  :rights_country, :rights_holder, :photographer,
+                                  :alternative_title)
   end
 end

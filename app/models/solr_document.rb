@@ -26,6 +26,10 @@ class SolrDocument
 
   use_extension(Hydra::ContentNegotiation)
 
+  def alternative_title
+    self[:alternative_title_tesim]
+  end
+
   def ark
     self[:ark_ssi]
   end

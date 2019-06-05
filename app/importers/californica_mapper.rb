@@ -4,6 +4,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   attr_reader :missing_file_log, :import_file_path
 
   CALIFORNICA_TERMS_MAP = {
+    alternative_title: ["AltTitle.other", "AltTitle.translated"],
     architect: "Name.architect",
     ark: "Item ARK",
     caption: "Description.caption",

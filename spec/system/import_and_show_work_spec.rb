@@ -53,6 +53,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, js: true do
       expect(page).to have_content "Communion at Plaza Church, Los Angeles, 1942-1952" # title
       expect(page).to have_content "ark:/13030/hb338nb26f" # ark
       expect(page).to have_content "Imhotep" # architect
+      expect(page).to have_content "Alternative title" # alternative_title
       expect(page).to have_content "Guadalupe, Our Lady of" # subject
       expect(page).to have_content "Churches--California--Los Angeles" # subject
       expect(page).to have_content "Historic buildings--California--Los Angeles" # $subject: $z has been replaced with --

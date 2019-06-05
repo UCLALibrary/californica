@@ -3,12 +3,12 @@ module UclaMetadata
   extend ActiveSupport::Concern
 
   included do
-    property :ark, predicate: ::RDF::Vocab::DC11.identifier, multiple: false do |index|
-      index.as :stored_sortable
+    property :alternative_title, predicate: ::RDF::Vocab::DC.alternative, multiple: true do |index|
+      index.as :stored_searchable
     end
 
-    property :extent, predicate: ::RDF::Vocab::DC11.format do |index|
-      index.as :stored_searchable, :facetable
+    property :ark, predicate: ::RDF::Vocab::DC11.identifier, multiple: false do |index|
+      index.as :stored_sortable
     end
 
     property :architect, predicate: ::RDF::Vocab::MARCRelators.arc do |index|
@@ -25,6 +25,10 @@ module UclaMetadata
 
     property :dlcs_collection_name, predicate: ::RDF::URI.intern('https://bib.schema.org/Collection') do |index|
       index.as :displayable, :facetable
+    end
+
+    property :extent, predicate: ::RDF::Vocab::DC11.format do |index|
+      index.as :stored_searchable, :facetable
     end
 
     property :funding_note, predicate: ::RDF::URI.intern('http://bibfra.me/vocab/marc/fundingInformation') do |index|
