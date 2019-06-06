@@ -43,4 +43,14 @@ module Discoverable
     super
     set_discover_groups([], represented_visibility)
   end
+
+  def registered_visibility!
+    super
+    set_discover_groups([], represented_visibility)
+  end
+
+  def public_visibility!
+    super
+    set_discover_groups([], represented_visibility)
+  end
 end
