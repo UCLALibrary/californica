@@ -19,7 +19,6 @@ class CsvImportsController < ApplicationController
   def create
     @csv_import.user = current_user
     preserve_cache
-
     if @csv_import.save
       @csv_import.queue_start_job
       redirect_to @csv_import
@@ -36,7 +35,7 @@ class CsvImportsController < ApplicationController
     end
 
     def create_params
-      params.fetch(:csv_import, {}).permit(:manifest, :import_file_path)
+      params.fetch(:csv_import, {}).permit(:manifest, :import_file_path, :manifest_records)
     end
 
     # Since we are re-rendering the form (once for
@@ -48,5 +47,6 @@ class CsvImportsController < ApplicationController
       return unless params['csv_import']
       @csv_import.manifest_cache = params['csv_import']['manifest_cache']
       @csv_import.import_file_path = params['csv_import']['import_file_path']
+      @csv_import.record_count = params['csv_import']['record_count']
     end
 end

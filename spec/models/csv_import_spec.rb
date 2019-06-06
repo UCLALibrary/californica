@@ -17,4 +17,14 @@ RSpec.describe CsvImport, type: :model do
     csv_import.import_file_path = path
     expect(csv_import.import_file_path).to eq path
   end
+
+  it 'has a status' do
+    csv_import.status = "complete"
+    expect(csv_import.status).to eq "complete"
+  end
+
+  it 'has a record count' do
+    csv_import.record_count = 2
+    expect(csv_import.record_count).to eq 2
+  end
 end

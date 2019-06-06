@@ -35,6 +35,7 @@ RSpec.describe 'Importing records from a CSV file', :clean, type: :system, js: t
 
       csv_import = CsvImport.last
       expect(csv_import.import_file_path).to eq import_file_path
+      expect(csv_import.record_count).to eq 2
       expect(ActiveJob::Base.queue_adapter.enqueued_jobs.map { |a| a[:job] }).to include(StartCsvImportJob)
     end
   end
