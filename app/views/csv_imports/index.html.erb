@@ -1,21 +1,43 @@
 <p id="notice"><%= notice %></p>
-
-<h2>CSV Imports</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @csv_imports.each do |csv_import| %>
-      <tr>
-        <td><%= csv_import.id %></td>
-        <td><%= link_to 'Show', csv_import %></td>
+<div class="col-xs-12 main-header">
+  <h2>CSV Imports</h2>
+</div>
+<div class="panel-body">
+  <table class="table-condensed table-striped datatable dataTable no-footer" role="grid" data-order="[[ 1, &quot;desc&quot; ]]">
+    <thead>
+      <tr role="row">
+        <th class="sorting_desc">
+          CSV Import ID
+        </th>
+        <th>
+          Created at
+        </th>
+        <th>
+          Created by
+        </th>
+        <th>
+          Filename
+        </th>
+        <th>
+          Record Count
+        </th>
+        <th>
+          Status
+        </th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
+    <tbody>
+      <% @csv_imports.each do |csv_import| %>
+        <tr>
+          <td><%= link_to csv_import.id, csv_import %></td>
+          <td><%= csv_import.created_at.strftime('%e %b %Y %l:%M %p') %></td>
+          <td><%= ::User.find(csv_import.user_id).display_name || "Unknown" %></td>
+          <td><%= link_to csv_import.manifest.file.file, csv_import %></td>
+          <td><%= csv_import.record_count || "Unknown" %></td>
+          <td><%= csv_import.status || "Unknown" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

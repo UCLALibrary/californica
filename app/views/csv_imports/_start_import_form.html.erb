@@ -2,6 +2,7 @@
 
   <%= form.hidden_field :manifest_cache %>
   <%= form.hidden_field :import_file_path %>
+  <%= form.hidden_field :record_count, value: csv_import.manifest_records %>
 
   <div class="actions">
     <%= form.submit 'Start Import' %>
