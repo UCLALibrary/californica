@@ -40,7 +40,8 @@ Metrics/BlockLength:
     - 'lib/tasks/ingest.rake'
     - 'lib/tasks/derivatives.rake'
     - app/models/ucla_metadata.rb
-
+    - app/views/manifest.json.jbuilder
+    
 Metrics/CyclomaticComplexity:
   Enabled: true
   Exclude:
@@ -91,6 +92,10 @@ RSpec/ExampleLength:
     - 'spec/jobs/mss_csv_import_job_spec.rb'
     - 'spec/forms/hyrax/work_form_spec.rb'
     - 'spec/models/concerns/discoverable_spec.rb'
+    - spec/jobs/start_csv_import_job_spec.rb
+    - spec/jobs/mss_csv_import_job_spec.rb
+    - spec/views/manifest.json.jbuilder_spec.rb
+
 
 RSpec/LetSetup:
   Enabled: false

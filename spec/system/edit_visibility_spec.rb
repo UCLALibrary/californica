@@ -36,7 +36,7 @@ RSpec.describe 'Edit the visibility for a work', :clean, type: :system, js: true
       click_on 'Save changes'
 
       # When the show page loads, it should have the new visibility
-      expect(page).to have_current_path(hyrax_work_path(work, locale: I18n.locale))
+      expect(page).to have_current_path(hyrax_work_path(work, locale: I18n.locale)).or(hyrax_work_path(work))
       expect(page).to have_content 'Discovery'
     end
   end
