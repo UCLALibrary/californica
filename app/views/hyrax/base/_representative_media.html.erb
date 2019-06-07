@@ -1,0 +1,11 @@
+<% has_child_works = !Californica::ChildWorkService.new.child_works(member_ids_ssim: SolrDocument.find(presenter.id)[:member_ids_ssim]).empty? %>
+<% if presenter.representative_id.present? && presenter.representative_presenter.present? || has_child_works %>
+    <% if defined?(viewer) && viewer || has_child_works %>
+	<%= iiif_viewer_display presenter %>
+    <% else %>
+	<%= media_display presenter.representative_presenter %>
+    <% end %>
+<% else %>
+    <%= image_tag 'default.png', class: "canonical-image" %>
+<% end %>
+

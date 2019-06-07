@@ -21,5 +21,21 @@ module Hyrax
       Hyrax.config.callback.run(:after_destroy, curation_concern.id, current_user)
       after_destroy_response(title)
     end
+
+    def manifest_builder
+      curation_concern = _curation_concern_type.find(params[:id]) unless curation_concern
+      builder_service = Californica::ManifestBuilderService.new(curation_concern: curation_concern)
+      @sets = builder_service.sets
+      @solr_doc = ::SolrDocument.find(curation_concern.id)
+      @root_url = "#{request.protocol}#{request.host_with_port}/concern/works/#{@solr_doc.id}/manifest"
+      render '/manifest.json'
+    end
+
+    def manifest
+      headers['Access-Control-Allow-Origin'] = '*'
+      curation_concern = _curation_concern_type.find(params[:id]) unless curation_concern
+      authorize! :show, curation_concern
+      manifest_builder
+    end
   end
 end
