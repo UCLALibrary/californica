@@ -15,14 +15,20 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
              ark: 'ark:/abcde/1234567',
              description: ['description'],
              extent: ['extent'],
-             caption: ['caption'], dimensions: ['dimensions'],
-             funding_note: ['funding_note'], genre: ['genre'],
+             caption: ['caption'],
+             dimensions: ['dimensions'],
+             funding_note: ['funding_note'],
+             genre: ['genre'],
              location: ['location'],
-             latitude: ['latitude'], local_identifier: ['local'],
-             longitude: ['longitude'], medium: ['medium'],
+             latitude: ['latitude'],
+             local_identifier: ['local'],
+             longitude: ['longitude'],
+             medium: ['medium'],
              named_subject: ['named_subject'],
              normalized_date: ['normalized_date'],
-             repository: ['repostiory'], resource_type: ['resource_type'],
+             place_of_origin: ['place_of_origin'],
+             repository: ['repostiory'],
+             resource_type: ['resource_type'],
              rights_country: ['rights_country'],
              rights_holder: ['rights_holder'])
   end
@@ -66,6 +72,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   end
   it 'has normalized_date' do
     expect(page).to match(/normalized_date/)
+  end
+  it 'has place_of_origin' do
+    expect(page).to match(/place_of_origin/)
   end
   it 'has repo' do
     expect(page).to match(/repository/)

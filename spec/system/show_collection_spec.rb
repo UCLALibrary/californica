@@ -9,33 +9,34 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
 
   let(:collection_attrs) do
     {
-      title: ['Old Title'],
-      rights_statement: ['http://rightsstatements.org/vocab/InC/1.0/'], # "copyrighted"
+      alternative_title: ['Alternative Title'],
       architect: ['Old Architect'],
-      publisher: ['Old Pub'],
       date_created: ['Old Creation Date'],
-      subject: ['Old Subj'],
-      language: ['ang'],
       description: ['Old Desc'],
-      resource_type: ['Image'],
+      dimensions: ['Old Dim'],
       extent: ['Old Extent'],
       caption: ['Old Cap'],
-      dimensions: ['Old Dim'],
       funding_note: ['Old Fund Note'],
       genre: ['Old Genre'],
+      language: ['ang'],
       latitude: ['Old Lat'],
       longitude: ['Old Long'],
       local_identifier: ['Old Local ID'],
+      location: ['Old Loc'],
       medium: ['Old Medium'],
       named_subject: ['Old Name/Subj'],
       normalized_date: ['Old Normalized Date'],
+      photographer: ['Old Photographer'],
+      place_of_origin: ['Old Place of origin'],
+      publisher: ['Old Pub'],
       repository: ['Old Repository'],
-      location: ['Old Loc'],
+      resource_type: ['Image'],
       rights_country: ['Old Rights Country'],
       rights_holder: ['Old Rights Holder'],
-      photographer: ['Old Photographer'],
+      rights_statement: ['http://rightsstatements.org/vocab/InC/1.0/'], # "copyrighted"
       services_contact: ['UCLA Special Collections'],
-      alternative_title: ['Alternative Title']
+      subject: ['Old Subj'],
+      title: ['Old Title']
     }
   end
 

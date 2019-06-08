@@ -24,6 +24,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     named_subject: "Name.subject",
     normalized_date: "Date.normalized",
     photographer: "Name.photographer",
+    place_of_origin: "Place of origin",
     publisher: "Publisher.publisherName",
     repository: "Name.repository",
     resource_type: "Type.typeOfResource",

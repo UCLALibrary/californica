@@ -98,6 +98,10 @@ class SolrDocument
     self[Solrizer.solr_name('photographer')]
   end
 
+  def place_of_origin
+    self[Solrizer.solr_name('place_of_origin')]
+  end
+
   def repository
     self[Solrizer.solr_name('repository')]
   end

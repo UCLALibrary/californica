@@ -25,7 +25,8 @@ RSpec.describe CalifornicaMapper do
       "Language" => "eng",
       "Relation.isPartOf" => "Connell (Will) Papers, 1928-1961",
       "AltTitle.other" => "alternative title",
-      "AltTitle.translated" => "translated alternative title" }
+      "AltTitle.translated" => "translated alternative title",
+      'Place of origin' => 'Los Angeles, CA' }
   end
 
   before { mapper.metadata = metadata }

@@ -8,33 +8,34 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
 
   let(:work_attrs) do
     {
-      title: ['Old Title'],
       alternative_title: ['Alternative title'],
       architect: ['Old Architect'],
       ark: 'ark:/abc/3456',
-      rights_statement: ['http://vocabs.library.ucla.edu/rights/copyrighted'], # "copyrighted"
+      caption: ['Old Cap'],
       publisher: ['Old Pub'],
       date_created: ['Old Creation Date'],
-      subject: ['Old Subj'],
-      language: ['Old Lang'],
       description: ['Old Desc'],
-      resource_type: ['http://id.loc.gov/vocabulary/resourceTypes/img'], # "image"
       extent: ['Old Extent'],
-      caption: ['Old Cap'],
       dimensions: ['Old Dim'],
       funding_note: ['Old Fund Note'],
       genre: ['Old Genre'],
+      language: ['Old Lang'],
+      location: ['Old Loc'],
       latitude: ['Old Lat'],
       longitude: ['Old Long'],
       local_identifier: ['Old Local ID'],
       medium: ['Old Medium'],
       named_subject: ['Old Name/Subj'],
       normalized_date: ['Old Normalized Date'],
+      photographer: ['Old Photographer'],
+      place_of_origin: ['Old Place of origin'],
       repository: ['Old Repository'],
-      location: ['Old Loc'],
+      resource_type: ['http://id.loc.gov/vocabulary/resourceTypes/img'], # "image"
       rights_country: ['Old Rights Country'],
       rights_holder: ['Old Rights Holder'],
-      photographer: ['Old Photographer']
+      rights_statement: ['http://vocabs.library.ucla.edu/rights/copyrighted'], # "copyrighted"
+      subject: ['Old Subj'],
+      title: ['Old Title']
     }
   end
 
@@ -58,7 +59,6 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(first(:css, '#work_description').value).to eq 'Old Desc'
       expect(find_field('Alternative title').value).to eq 'Alternative title'
       expect(find_field('Architect').value).to eq 'Old Architect'
-      expect(find_field('Publisher').value).to eq 'Old Pub'
       expect(find_field('Date Created').value).to eq 'Old Creation Date'
       expect(find_field('Subject').value).to eq 'Old Subj'
       expect(find_field('Language').value).to eq 'Old Lang'
@@ -74,6 +74,8 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Medium').value).to eq 'Old Medium'
       expect(find_field('Name (Subject)').value).to eq 'Old Name/Subj'
       expect(find_field('Normalized Date').value).to eq 'Old Normalized Date'
+      expect(find_field('Publisher').value).to eq 'Old Pub'
+      expect(find_field('Place of origin').value).to eq 'Old Place of origin'
       expect(find_field('Repository').value).to eq 'Old Repository'
       expect(find_field('Location').value).to eq 'Old Loc'
       expect(find_field('Rights (country of creation)').value).to eq 'Old Rights Country'

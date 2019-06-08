@@ -32,6 +32,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       medium: ['Old Medium'],
       named_subject: ['Old Name/Subj'],
       normalized_date: ['Old Normalized Date'],
+      place_of_origin: ['Old Place of origin'],
       repository: ['Old Repository'],
       location: ['Old Loc'],
       rights_country: ['Old Rights Country'],
@@ -81,6 +82,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Name (Subject)').value).to eq 'Old Name/Subj'
       expect(find_field('Normalized Date').value).to eq 'Old Normalized Date'
       expect(find_field('Repository').value).to eq 'Old Repository'
+      expect(find_field('Place of origin').value).to eq 'Old Place of origin'
       # expect(find_field('Location').value).to eq 'Old Loc'
       expect(find_field('Rights (country of creation)').value).to eq 'Old Rights Country'
       expect(find_field('Rights Holder').value).to eq 'Old Rights Holder'
