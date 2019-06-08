@@ -51,6 +51,7 @@ OPTIONAL_HEADERS = [
   'Name.photographer',
   'Name.repository',
   'Name.subject',
+  'Place of origin',
   'Project Name',
   'Publisher.publisherName',
   'Relation.isPartOf',

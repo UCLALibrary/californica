@@ -2,15 +2,11 @@
 
 module Hyrax
   class CalifornicaCollectionsForm < Hyrax::Forms::CollectionForm
-    self.terms += [:ark, :resource_type, :extent, :architect, :caption,
-                   :dimensions, :funding_note, :genre,
-                   :latitude, :longitude,
-                   :local_identifier, :medium,
-                   :named_subject, :normalized_date,
-                   :repository, :location,
-                   :rights_country, :rights_holder,
-                   :services_contact, :photographer,
-                   :alternative_title]
+    self.terms += [:alternative_title, :ark, :extent, :architect, :caption,
+                   :dimensions, :funding_note, :genre, :latitude, :longitude,
+                   :local_identifier, :location, :medium, :named_subject, :normalized_date,
+                   :photographer, :place_of_origin, :repository, :resource_type,
+                   :rights_country, :rights_holder, :services_contact]
 
     self.required_fields = [:title, :ark]
 
@@ -32,35 +28,36 @@ module Hyrax
     def secondary_terms
       [
         :architect,
+        :based_near,
+        :caption,
         :creator,
         :contributor,
-        :keyword,
-        :license,
-        :publisher,
         :date_created,
-        :subject,
-        :language,
-        :identifier,
-        :based_near,
-        :related_url,
-        :resource_type,
-        :extent,
-        :caption,
         :dimensions,
+        :extent,
         :funding_note,
         :genre,
+        :identifier,
+        :keyword,
+        :language,
+        :license,
         :latitude,
         :longitude,
         :local_identifier,
         :medium,
         :named_subject,
         :normalized_date,
+        :photographer,
+        :place_of_origin,
+        :publisher,
         :repository,
         :location,
+        :related_url,
+        :resource_type,
         :rights_country,
         :rights_holder,
         :services_contact,
-        :photographer
+        :subject
       ]
     end
   end

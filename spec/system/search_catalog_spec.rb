@@ -19,7 +19,8 @@ RSpec.describe 'Search the catalog', :clean, type: :system, js: true do
       identifier: ['ban_ark'],
       local_identifier: ['12345'],
       normalized_date: ['2015-10-06'],
-      photographer: ['Sherlock']
+      photographer: ['Sherlock'],
+      place_of_origin: ['London']
     )
   end
 
@@ -37,7 +38,8 @@ RSpec.describe 'Search the catalog', :clean, type: :system, js: true do
       identifier: ['car_ark'],
       local_identifier: ['67890'],
       normalized_date: ['2018-07-07'],
-      photographer: ['Watson']
+      photographer: ['Watson'],
+      place_of_origin: ['Scotland Yard']
     )
   end
 

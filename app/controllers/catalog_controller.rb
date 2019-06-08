@@ -113,6 +113,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('named_subject', :stored_searchable)
     config.add_show_field solr_name('normalized_date', :stored_searchable)
     config.add_show_field solr_name('photographer', :stored_searchable)
+    config.add_show_field 'place_of_origin_tesim'
     config.add_show_field solr_name('repository', :stored_searchable)
     config.add_show_field solr_name('rights_country', :stored_searchable)
     config.add_show_field solr_name('rights_holder', :stored_searchable)

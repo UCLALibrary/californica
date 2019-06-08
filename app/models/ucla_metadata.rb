@@ -71,6 +71,10 @@ module UclaMetadata
       index.as :stored_searchable, :facetable
     end
 
+    property :place_of_origin, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/prp.html') do |index|
+      index.as :stored_searchable
+    end
+
     property :repository, predicate: ::RDF::Vocab::MODS.locationCopySublocation do |index|
       index.as :stored_searchable
     end

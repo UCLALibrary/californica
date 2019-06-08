@@ -5,13 +5,12 @@ module Hyrax
   # Generated form for Work
   class WorkForm < Hyrax::Forms::WorkForm
     self.model_class = ::Work
-    self.terms += [:ark, :resource_type, :extent, :architect, :caption,
-                   :dimensions, :funding_note, :genre,
-                   :latitude, :longitude,
-                   :local_identifier, :medium,
-                   :named_subject, :normalized_date,
-                   :repository, :location,
-                   :rights_country, :rights_holder, :photographer, :alternative_title]
+    self.terms += [:alternative_title, :ark, :architect, :caption,
+                   :dimensions, :extent, :funding_note, :genre, :latitude,
+                   :longitude, :local_identifier, :location, :medium,
+                   :named_subject, :normalized_date, :photographer,
+                   :place_of_origin, :rights_country, :rights_holder,
+                   :repository, :resource_type]
 
     self.required_fields = [:title, :ark, :rights_statement]
 

@@ -27,6 +27,7 @@
 * [Name.repository](#name.repository)
 * [Name.subject](#name.subject)
 * [Project Name](#project-name)
+* [Place of origin](#place-of-origin)
 * [Publisher.publisherName](#publisher.publishername)
 * [Relation.isPartOf](#relation.ispartof)
 * [Rights.countryCreation](#rights.countrycreation)
@@ -127,6 +128,7 @@ accepts AltTitle.translated
 ### Name.photographer
 ### Name.repository
 ### Name.subject
+### Place of origin
 ### Project Name
 ### Publisher.publisherName
 ### Relation.isPartOf
