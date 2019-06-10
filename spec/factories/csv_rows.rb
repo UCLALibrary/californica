@@ -5,7 +5,7 @@ FactoryBot.define do
     job_id { "23452" }
     csv_import_id { "193453" }
     status { "complete" }
-    error_messages { "here is your error" }
+    error_messages { ["here is your error"] }
     metadata do
       {
         "Project Name" => "Ethiopic Manuscripts",

@@ -3,6 +3,7 @@ require 'rails_helper'
 
 RSpec.describe CsvRow, type: :model do
   subject(:csv_row) { FactoryBot.create(:csv_row) }
+  let(:job_id) { "4344db9d-eef0-46c2-a3f6-5ebc19043b76" }
 
   it 'has a row number' do
     expect(csv_row.row_number).to be_instance_of(Integer)
@@ -20,11 +21,27 @@ RSpec.describe CsvRow, type: :model do
   end
 
   it 'has a error messages' do
-    expect(csv_row.error_messages).to eq('here is your error')
+    csv_row.error_messages << 'another error'
+    expect(csv_row.error_messages).to contain_exactly('here is your error', 'another error')
   end
 
   it 'has metadata that is parsable as json' do
     metadata_hash = JSON.parse(csv_row.metadata)
     expect(metadata_hash['Item ARK']).to eq('21198/zz001pz6jq')
+  end
+
+  it 'collects job ids queued' do
+    csv_row.job_ids_queued << job_id
+    expect(csv_row.job_ids_queued).to contain_exactly(job_id)
+  end
+
+  it 'collects job ids completed' do
+    csv_row.job_ids_completed << job_id
+    expect(csv_row.job_ids_completed).to contain_exactly(job_id)
+  end
+
+  it 'collects job ids errored' do
+    csv_row.job_ids_errored << job_id
+    expect(csv_row.job_ids_errored).to contain_exactly(job_id)
   end
 end

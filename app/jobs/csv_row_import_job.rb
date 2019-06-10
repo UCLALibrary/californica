@@ -20,7 +20,7 @@ class CsvRowImportJob < ActiveJob::Base
     @row.save
   rescue => e
     @row.status = 'error'
-    @row.error_messages = e.message
+    @row.error_messages << e.message
     @row.save
   end
 
