@@ -16,11 +16,11 @@ class CsvRowImportJob < ActiveJob::Base
                         end
     selected_importer.import(record: record)
 
-    @row.status = 'complete'
+    @row.job_ids_completed << job_id
     @row.save
   rescue => e
-    @row.status = 'error'
-    @row.error_messages = e.message
+    @row.job_ids_errored << job_id
+    @row.error_messages << e.message
     @row.save
   end
 
