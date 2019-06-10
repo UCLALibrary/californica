@@ -8,7 +8,9 @@ class CsvImportsController < ApplicationController
 
   def index; end
 
-  def show; end
+  def show
+    @csv_rows = CsvRow.where(csv_import_id: @csv_import.id)
+  end
 
   def new; end
 

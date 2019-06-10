@@ -15,6 +15,7 @@ class ActorRecordImporter < Darlingtonia::HyraxRecordImporter
   def initialize(error_stream: Darlingtonia.config.default_error_stream,
                  info_stream: Darlingtonia.config.default_info_stream,
                  attributes: {})
+    @row_id = attributes[:row_id]
     super(error_stream: error_stream, info_stream: info_stream, attributes: attributes)
   end
 
@@ -24,12 +25,11 @@ class ActorRecordImporter < Darlingtonia::HyraxRecordImporter
   end
 
   def update_for(existing_record:, update_record:)
-    info_stream << "event: record_update_started, batch_id: #{batch_id}, collection_id: #{collection_id}, ark: #{existing_record.ark}"
+    info_stream << "event: record_update_started, row_id: #{@row_id}, collection_id: #{collection_id}, ark: #{existing_record.ark}"
 
     additional_attrs = {
       uploaded_files: create_upload_files(update_record),
-      depositor: @depositor.user_key,
-      batch_id: batch_id
+      depositor: @depositor.user_key
     }
     existing_record.apply_depositor_metadata(@depositor.user_key)
     attrs = update_record.attributes.merge(additional_attrs)
@@ -46,11 +46,11 @@ class ActorRecordImporter < Darlingtonia::HyraxRecordImporter
     terminator = Hyrax::Actors::Terminator.new
     middleware = Californica::IngestMiddlewareStack.build_stack.build(terminator)
     if middleware.update(actor_env)
-      info_stream << "event: record_updated, batch_id: #{batch_id}, record_id: #{existing_record.id}, collection_id: #{collection_id}, record_title: #{attrs[:title]&.first}"
+      info_stream << "event: record_updated, row_id: #{@row_id}, record_id: #{existing_record.id}, collection_id: #{collection_id}, record_title: #{attrs[:title]&.first}"
       @success_count += 1
     else
       existing_record.errors.each do |attr, msg|
-        error_stream << "event: validation_failed, batch_id: #{batch_id}, collection_id: #{collection_id}, attribute: #{attr.capitalize}, message: #{msg}, record_title: record_title: #{attrs[:title] ? attrs[:title] : attrs}"
+        error_stream << "event: validation_failed, row_id: #{@row_id}, collection_id: #{collection_id}, attribute: #{attr.capitalize}, message: #{msg}, record_title: record_title: #{attrs[:title] ? attrs[:title] : attrs}"
       end
       @failure_count += 1
     end
@@ -59,12 +59,11 @@ class ActorRecordImporter < Darlingtonia::HyraxRecordImporter
   # Create an object using the Hyrax actor stack
   # We assume the object was created as expected if the actor stack returns true.
   def create_for(record:)
-    info_stream << "event: record_import_started, batch_id: #{batch_id}, collection_id: #{collection_id}, record_title: #{record.respond_to?(:title) ? record.title : record}"
+    info_stream << "event: record_import_started, row_id: #{@row_id}, ark: #{record.ark}"
 
     additional_attrs = {
       uploaded_files: create_upload_files(record),
-      depositor: @depositor.user_key,
-      batch_id: batch_id
+      depositor: @depositor.user_key
     }
 
     object_type = record.mapper.metadata["Object Type"]
@@ -89,11 +88,11 @@ class ActorRecordImporter < Darlingtonia::HyraxRecordImporter
     middleware = Californica::IngestMiddlewareStack.build_stack.build(terminator)
 
     if middleware.create(actor_env)
-      info_stream << "event: record_created, batch_id: #{batch_id}, record_id: #{created.id}, collection_id: #{collection_id}, record_title: #{attrs[:title]&.first}"
+      info_stream << "event: record_created, row_id: #{@row_id}, record_id: #{created.id}, ark: #{created.ark}"
     else
       error_messages = []
       created.errors.each do |attr, msg|
-        error_stream << "event: validation_failed, batch_id: #{batch_id}, collection_id: #{collection_id}, attribute: #{attr.capitalize}, message: #{msg}, record_title: record_title: #{attrs[:title] ? attrs[:title] : attrs}"
+        error_stream << "event: validation_failed, row_id: #{@row_id}, attribute: #{attr.capitalize}, message: #{msg}, ark: #{attrs[:ark] ? attrs[:ark] : attrs}"
         error_messages << msg
       end
       # Errors raised here should be rescued in the CsvRowImportJob and the

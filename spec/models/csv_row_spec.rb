@@ -5,7 +5,7 @@ RSpec.describe CsvRow, type: :model do
   subject(:csv_row) { FactoryBot.create(:csv_row) }
 
   it 'has a row number' do
-    expect(csv_row.row_number).to eq(1)
+    expect(csv_row.row_number).to be_instance_of(Integer)
   end
 
   it 'has a job id' do
