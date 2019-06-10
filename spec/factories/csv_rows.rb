@@ -4,7 +4,6 @@ FactoryBot.define do
     sequence(:row_number, &:to_s)
     job_id { "23452" }
     csv_import_id { "193453" }
-    status { "complete" }
     error_messages { ["here is your error"] }
     metadata do
       {
