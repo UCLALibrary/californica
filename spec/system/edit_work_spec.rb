@@ -35,7 +35,8 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       rights_holder: ['Old Rights Holder'],
       rights_statement: ['http://vocabs.library.ucla.edu/rights/copyrighted'], # "copyrighted"
       subject: ['Old Subj'],
-      title: ['Old Title']
+      title: ['Old Title'],
+      uniform_title: ['Old Uniform title']
     }
   end
 
@@ -75,12 +76,13 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Name (Subject)').value).to eq 'Old Name/Subj'
       expect(find_field('Normalized Date').value).to eq 'Old Normalized Date'
       expect(find_field('Publisher').value).to eq 'Old Pub'
+      expect(find_field('Photographer').value).to eq 'Old Photographer'
       expect(find_field('Place of origin').value).to eq 'Old Place of origin'
       expect(find_field('Repository').value).to eq 'Old Repository'
       expect(find_field('Location').value).to eq 'Old Loc'
       expect(find_field('Rights (country of creation)').value).to eq 'Old Rights Country'
       expect(find_field('Rights Holder').value).to eq 'Old Rights Holder'
-      expect(find_field('Photographer').value).to eq 'Old Photographer'
+      expect(find_field('Uniform title').value).to eq 'Old Uniform title'
 
       # Edit some fields in the form
       fill_in 'Title', with: 'New Title'

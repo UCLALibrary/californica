@@ -6,7 +6,7 @@ module Hyrax
                    :dimensions, :funding_note, :genre, :latitude, :longitude,
                    :local_identifier, :location, :medium, :named_subject, :normalized_date,
                    :photographer, :place_of_origin, :repository, :resource_type,
-                   :rights_country, :rights_holder, :services_contact]
+                   :rights_country, :rights_holder, :services_contact, :uniform_title]
 
     self.required_fields = [:title, :ark]
 
@@ -57,7 +57,8 @@ module Hyrax
         :rights_country,
         :rights_holder,
         :services_contact,
-        :subject
+        :subject,
+        :uniform_title
       ]
     end
   end

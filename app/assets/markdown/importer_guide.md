@@ -9,6 +9,7 @@
 # <a href="#other-allowed-fields">Other Allowed Fields</a>
 * [AltIdentifier.local](#altidentifier.local)
 * [AltTitle.other](#alttitle.other)
+* [AltTitle.uniform](#alttitle.uniform)
 * [Coverage.geographic](#coverage.geographic)
 * [Date.creation](#date.creation)
 * [Date.normalized](#date.normalized)
@@ -111,6 +112,7 @@ Examples:
 
 ### AltTitle.other
 accepts AltTitle.translated
+### AltTitle.uniform
 ### Coverage.geographic
 ### Date.creation
 ### Date.normalized

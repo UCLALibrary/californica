@@ -38,7 +38,8 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       rights_country: ['Old Rights Country'],
       rights_holder: ['Old Rights Holder'],
       photographer: ['Old Photographer'],
-      services_contact: ['Old Services Contact']
+      services_contact: ['Old Services Contact'],
+      uniform_title: ['Old Uniform title']
     }
   end
 
@@ -88,6 +89,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Rights Holder').value).to eq 'Old Rights Holder'
       expect(find_field('Photographer').value).to eq 'Old Photographer'
       expect(find_field('Rights services contact').value).to eq 'Old Services Contact'
+      expect(find_field('Uniform title').value).to eq 'Old Uniform title'
 
       #
       # # Edit some fields in the form

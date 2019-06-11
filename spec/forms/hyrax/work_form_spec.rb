@@ -9,6 +9,6 @@ RSpec.describe Hyrax::WorkForm do
     expect(form.terms).to include(:alternative_title, :architect, :caption, :dimensions, :extent, :funding_note,
                                   :genre, :latitude, :longitude, :local_identifier, :medium,
                                   :named_subject, :normalized_date, :photographer, :place_of_origin,
-                                  :repository, :rights_country, :rights_holder)
+                                  :repository, :rights_country, :rights_holder, :uniform_title)
   end
 end

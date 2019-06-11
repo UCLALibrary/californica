@@ -26,7 +26,8 @@ RSpec.describe CalifornicaMapper do
       "Relation.isPartOf" => "Connell (Will) Papers, 1928-1961",
       "AltTitle.other" => "alternative title",
       "AltTitle.translated" => "translated alternative title",
-      'Place of origin' => 'Los Angeles, CA' }
+      'Place of origin' => 'Los Angeles, CA',
+      "Uniform title" => "Protesters with signs in gallery of Los Angeles County Supervisors" }
   end
 
   before { mapper.metadata = metadata }
@@ -61,7 +62,7 @@ RSpec.describe CalifornicaMapper do
   context 'with a blank filename' do
     let(:metadata) do
       { "Item ARK" => "21198/zz0002nq4w",
-        "Title" => "Protesters with signs in gallery of Los Angeles County Supervisors " \
+        "Title" => "Protesters with signs in gallery of Los Angeles County Supervisors" \
         "hearing over eminent domain for construction of Harbor Freeway, Calif., 1947",
         "Type.typeOfResource" => "still image",
         "Subject" => "Express highways--California--Los Angeles County--Design and construction|~|" \
@@ -76,7 +77,8 @@ RSpec.describe CalifornicaMapper do
         "Coverage.geographic" => "Los Angeles (Calif.)",
         "Name.subject" => "Los Angeles County (Calif.). $b Board of Supervisors",
         "Photographer" => "Ansel Adams",
-        "Language" => "English" }
+        "Language" => "English",
+        "Uniform title" => "Protesters with signs in gallery of Los Angeles County Supervisors" }
     end
 
     it "does not throw an error if File Name is empty" do
@@ -115,7 +117,8 @@ RSpec.describe CalifornicaMapper do
         :longitude, :extent, :local_identifier,
         :date_created, :caption, :dimensions, :rights_country,
         :funding_note, :genre, :rights_holder,
-        :medium, :normalized_date, :location, :publisher, :photographer, :remote_files
+        :medium, :normalized_date, :location, :publisher, :photographer,
+        :remote_files, :uniform_title
       )
     end
   end

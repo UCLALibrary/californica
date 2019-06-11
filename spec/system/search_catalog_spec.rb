@@ -20,7 +20,8 @@ RSpec.describe 'Search the catalog', :clean, type: :system, js: true do
       local_identifier: ['12345'],
       normalized_date: ['2015-10-06'],
       photographer: ['Sherlock'],
-      place_of_origin: ['London']
+      place_of_origin: ['London'],
+      uniform_title: ['Yellow Banana']
     )
   end
 
