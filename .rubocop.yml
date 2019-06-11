@@ -48,6 +48,7 @@ Metrics/CyclomaticComplexity:
     - app/uploaders/csv_manifest_validator.rb
     - app/importers/actor_record_importer.rb
     - app/importers/californica_csv_parser.rb
+    - app/models/concerns/discoverable.rb
 
 Metrics/LineLength:
   Exclude:
@@ -68,6 +69,7 @@ Metrics/MethodLength:
     - 'app/importers/csv_validator.rb'
     - app/uploaders/csv_manifest_validator.rb
     - app/indexers/collection_indexer.rb
+    - app/models/concerns/discoverable.rb
 
 Metrics/PerceivedComplexity:
   Enabled: true
@@ -75,6 +77,7 @@ Metrics/PerceivedComplexity:
     - app/importers/actor_record_importer.rb
     - app/uploaders/csv_manifest_validator.rb
     - app/importers/californica_csv_parser.rb
+    - app/models/concerns/discoverable.rb
 
 RSpec/AnyInstance:
   Enabled: false
@@ -95,7 +98,7 @@ RSpec/ExampleLength:
     - spec/jobs/start_csv_import_job_spec.rb
     - spec/jobs/mss_csv_import_job_spec.rb
     - spec/views/manifest.json.jbuilder_spec.rb
-
+    - 'spec/jobs/inherit_permissions_job_spec.rb'
 
 RSpec/LetSetup:
   Enabled: false
