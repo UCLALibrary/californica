@@ -23,19 +23,35 @@ module Hyrax
     end
 
     def manifest_builder
-      curation_concern = _curation_concern_type.find(params[:id]) unless curation_concern
-      builder_service = Californica::ManifestBuilderService.new(curation_concern: curation_concern)
-      @sets = builder_service.sets
-      @solr_doc = ::SolrDocument.find(curation_concern.id)
-      @root_url = "#{request.protocol}#{request.host_with_port}/concern/works/#{@solr_doc.id}/manifest"
-      render '/manifest.json'
+      @solr_doc = ::SolrDocument.find(params[:id])
+      key = cache_key
+      redis = Redis.current
+
+      if redis.get(key)
+        render json: redis.get(key)
+      else
+        curation_concern = _curation_concern_type.find(params[:id]) unless curation_concern
+        builder_service = Californica::ManifestBuilderService.new(curation_concern: curation_concern)
+        @sets = builder_service.sets
+        @root_url = "#{request.protocol}#{request.host_with_port}/concern/works/#{@solr_doc.id}/manifest"
+        redis.set(key, render_to_string('/manifest.json'))
+        render json: redis.get(key)
+      end
     end
 
     def manifest
       headers['Access-Control-Allow-Origin'] = '*'
+      headers['Cache-Control'] = 'max_age=86400'
       curation_concern = _curation_concern_type.find(params[:id]) unless curation_concern
       authorize! :show, curation_concern
       manifest_builder
     end
+
+    private
+
+      def cache_key
+        return Time.zone.now.to_datetime.strftime('%Y-%m-%d_%H-%M-%S') + @solr_doc[:id] unless @solr_doc[:date_modified_ssi]
+        @solr_doc[:date_modified_ssi].to_datetime.strftime('%Y-%m-%d_%H-%M-%S') + @solr_doc[:id]
+      end
   end
 end

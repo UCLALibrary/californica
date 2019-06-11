@@ -139,3 +139,7 @@ Style/BracesAroundHashParameters:
 Style/Next:
   Exclude:
     - 'app/uploaders/csv_manifest_validator.rb'
+
+Style/IdenticalConditionalBranches:
+  Exclude:
+    - 'app/controllers/hyrax/works_controller.rb'

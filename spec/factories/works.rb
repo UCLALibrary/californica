@@ -8,5 +8,6 @@ FactoryBot.define do
     subject { [] << FFaker::Education.major }
     description { [] << FFaker::Lorem.paragraph }
     visibility { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
+    date_modified { '09-09-1999' }
   end
 end
