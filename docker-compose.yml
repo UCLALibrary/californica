@@ -13,6 +13,8 @@ services:
       - fits
     env_file:
       - ./.env.sample
+    stdin_open: true
+    tty: true
     environment:
       DATABASE_HOST: db
       FEDORA_URL: http://fedora:8080/rest
