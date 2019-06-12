@@ -3,6 +3,7 @@
 # Override this constant from the hyrax gem so that we
 # can add the "discovery" visibility to Californica.
 Californica::Application.config.after_initialize do
+  Hyrax::PermissionBadge.send(:remove_const, :VISIBILITY_LABEL_CLASS)
   Hyrax::PermissionBadge::VISIBILITY_LABEL_CLASS = {
     authenticated: "label-info",
     embargo: "label-warning",
