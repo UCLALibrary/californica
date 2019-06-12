@@ -24,10 +24,15 @@ json.sequences [''] do
                       child_image.id
                     end
 
-      original_file = ::FileSet.find(file_set_id).original_file
+      solr_file_id = SolrDocument.find(file_set_id)[:original_filename_ssim].first
+      original_file = if solr_file_id
+                        solr_file_id
+                      else
+                        ::FileSet.find(file_set_id).original_file.id
+                      end
 
       url = Hyrax.config.iiif_image_url_builder.call(
-        original_file.id,
+        original_file,
         request.base_url,
         Hyrax.config.iiif_image_size_default
       )
@@ -41,7 +46,7 @@ json.sequences [''] do
         json.height 480
         json.service do
           json.set! :@context, 'http://iiif.io/api/image/2/context.json'
-          json.set! :@id, "#{request.base_url}/images/#{CGI.escape(original_file.id)}"
+          json.set! :@id, "#{request.base_url}/images/#{CGI.escape(original_file)}"
           json.profile 'http://iiif.io/api/image/2/level2.json'
         end
       end

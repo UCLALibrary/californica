@@ -50,8 +50,8 @@ module Hyrax
     private
 
       def cache_key
-        return Time.zone.now.to_datetime.strftime('%Y-%m-%d_%H-%M-%S') + @solr_doc[:id] unless @solr_doc[:date_modified_ssi]
-        @solr_doc[:date_modified_ssi].to_datetime.strftime('%Y-%m-%d_%H-%M-%S') + @solr_doc[:id]
+        return Time.zone.now.to_datetime.strftime('%Y-%m-%d_%H-%M-%S') + @solr_doc[:id] unless @solr_doc[:date_modified_dtsi]
+        @solr_doc[:date_modified_dtsi].to_datetime.strftime('%Y-%m-%d_%H-%M-%S') + @solr_doc[:id]
       end
   end
 end

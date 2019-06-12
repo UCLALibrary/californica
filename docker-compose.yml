@@ -73,7 +73,8 @@ services:
       - californica_tmp:/californica/tmp
       - tmp:/tmp
     working_dir: /californica
-
+    stdin_open: true
+    tty: true
   fedora:
     image: nulib/fcrepo4:4.7.5
     ports:
