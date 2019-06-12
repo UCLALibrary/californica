@@ -36,7 +36,8 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       rights_statement: ['http://rightsstatements.org/vocab/InC/1.0/'], # "copyrighted"
       services_contact: ['UCLA Special Collections'],
       subject: ['Old Subj'],
-      title: ['Old Title']
+      title: ['Old Title'],
+      uniform_title: ['Old Uniform title']
     }
   end
 

@@ -33,7 +33,8 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     rights_statement: "Rights.copyrightStatus",
     services_contact: "Rights.servicesContact",
     subject: "Subject",
-    title: "Title"
+    title: "Title",
+    uniform_title: "AltTitle.uniform"
   }.freeze
 
   DELIMITER = '|~|'

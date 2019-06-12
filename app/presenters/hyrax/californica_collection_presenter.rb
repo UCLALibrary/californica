@@ -10,7 +10,7 @@ module Hyrax
         :based_near, :related_url, :extent, :caption, :dimensions, :funding_note, :genre,
         :latitude, :longitude, :local_identifier, :medium, :named_subject, :normalized_date,
         :repository, :location, :rights_country, :rights_holder, :services_contact,
-        :photographer, :place_of_origin
+        :photographer, :place_of_origin, :uniform_title
       ]
     end
   end

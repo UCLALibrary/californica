@@ -118,6 +118,10 @@ class SolrDocument
     self[:services_contact_ssm]
   end
 
+  def uniform_title
+    self[Solrizer.solr_name('uniform_title')]
+  end
+
   # Override this method from hyrax gem to allow
   # Californica to use "discovery" visibility.
   # app/models/concerns/hyrax/solr_document_behavior.rb
