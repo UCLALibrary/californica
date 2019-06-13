@@ -29,6 +29,16 @@ class CsvImportsController < ApplicationController
     end
   end
 
+  def log
+    log_file = Rails.root.join('log', "ingest_#{params[:id]}.log")
+    log_text = if File.exist?(log_file)
+                 File.open(log_file).read
+               else
+                 'Could not read a log file for this import'
+               end
+    render plain: log_text
+  end
+
   private
 
     def load_and_authorize_preview

@@ -42,11 +42,11 @@ class CalifornicaImporter
   end
 
   def ingest_log_filename
-    @ingest_log_filename ||= ENV['INGEST_LOG'] || Rails.root.join('log', "ingest_#{timestamp}.log").to_s
+    Rails.root.join('log', "ingest_#{@csv_import.id}.log").to_s
   end
 
   def error_log_filename
-    @error_log_filename ||= ENV['ERROR_LOG'] || Rails.root.join('log', "errors_#{timestamp}.log").to_s
+    Rails.root.join('log', "errors_#{@csv_import.id}.log").to_s
   end
 
   def setup_logging

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post 'csv_imports/preview', as: 'preview_csv_import'
   get 'csv_imports/preview', to: redirect('csv_imports/new')
   resources :csv_imports, only: [:index, :show, :new, :create]
+  get 'csv_imports/:id/log', to: 'csv_imports#log'
 
   get 'branding_info/:id', to: 'branding_info#show', as: 'branding_info'
 
