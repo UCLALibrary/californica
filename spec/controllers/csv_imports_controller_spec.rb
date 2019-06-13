@@ -46,6 +46,15 @@ RSpec.describe CsvImportsController, type: :controller do
       end
     end
 
+    describe 'GET #log' do
+      before { get :log, params: { id: csv_import.to_param } }
+
+      it 'denies access' do
+        expect(flash[:alert]).to eq access_denied_message
+        expect(response).to redirect_to(new_user_session_path)
+      end
+    end
+
     describe "POST #create" do
       it 'denies access' do
         post :create, params: { csv_import: valid_attributes }
@@ -78,6 +87,15 @@ RSpec.describe CsvImportsController, type: :controller do
 
       it 'denies access' do
         expect(response).to have_http_status(:unauthorized)
+      end
+    end
+
+    describe "GET #log" do
+      before { get :log, params: { id: csv_import.to_param } }
+
+      it 'denies access' do
+        expect(flash[:alert]).to eq access_denied_message
+        expect(response).to redirect_to(root_path)
       end
     end
 
@@ -133,6 +151,14 @@ RSpec.describe CsvImportsController, type: :controller do
 
     describe "GET #new" do
       before { get :new }
+
+      it 'is successful' do
+        expect(response).to be_successful
+      end
+    end
+
+    describe "GET #log" do
+      before { get :log, params: { id: csv_import.to_param } }
 
       it 'is successful' do
         expect(response).to be_successful

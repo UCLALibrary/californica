@@ -16,6 +16,10 @@
 
     <label> Queued records: </label>
     <span> <%= @csv_import.record_count %> </span>
+
+    <br />
+    <label> Logs: </label>
+    <span> <a href="/csv_imports/<%= @csv_import.id %>/log">Ingest Log</a> </span>
   </p>
   <table class="table-condensed table-striped datatable dataTable no-footer" role="grid" data-order="[[ 1, &quot;asc&quot; ]]">
     <thead>
