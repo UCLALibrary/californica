@@ -81,6 +81,8 @@ module Discoverable
       prop['id'] = selected.id if selected
     end
 
+    # We also added this line in californica to remove duplicate values from the array
+    attributes_collection = attributes_collection.uniq
     clean_collection = remove_bad_deletes(attributes_collection)
 
     self.permissions_attributes_without_uniqueness = clean_collection
