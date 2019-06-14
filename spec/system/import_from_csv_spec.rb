@@ -31,10 +31,9 @@ RSpec.describe 'Importing records from a CSV file', :clean, type: :system, js: t
       # After reading the warnings, the user decides
       # to continue with the import.
       click_on 'Start Import'
+      expect(page).to have_content('Importing Records from a CSV File')
+
       csv_import = CsvImport.last
-
-      expect(page).to have_content("CSV Import #{csv_import.id}")
-
       expect(csv_import.import_file_path).to eq import_file_path
       expect(csv_import.record_count).to eq 2
       expect(ActiveJob::Base.queue_adapter.enqueued_jobs.map { |a| a[:job] }).to include(StartCsvImportJob)

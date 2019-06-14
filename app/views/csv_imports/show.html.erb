@@ -1,52 +1,16 @@
+<h2> Importing Records from a CSV File </h2>
 <p id="notice"><%= notice %></p>
-<div class="col-xs-12 main-header">
-  <h2>CSV Import <%= @csv_import.id %></h2>
-</div>
-<div class="panel-body">
-  <p>
-    <label> CSV Manifest: </label>
-    <span> <%= File.basename(@csv_import.manifest.to_s) %> </span>
-    <br />
-    <label> Uploaded by: </label>
-    <span> <%= @csv_import.user.name %> </span>
-    <br />
-    <label> Start time: </label>
-    <span> <%= @csv_import.created_at.strftime('%e %b %Y %l:%M %p') %> </span>
-    <br />
 
-    <label> Queued records: </label>
-    <span> <%= @csv_import.record_count %> </span>
-  </p>
-  <table class="table-condensed table-striped datatable dataTable no-footer" role="grid" data-order="[[ 1, &quot;asc&quot; ]]">
-    <thead>
-      <tr role="row">
-        <th class="sorting_desc">
-          Row Number
-        </th>
-        <th>
-          Item Ark
-        </th>
-        <th>
-          Last Updated
-        </th>
-        <th>
-          Error message(s)
-        </th>
-        <th>
-          Status
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @csv_rows.each do |csv_row| %>
-        <tr>
-          <td><%= csv_row.row_number || "Unknown" %></td>
-          <td><%= JSON.parse(csv_row.metadata)["Item ARK"] || "Unknown" %></td>
-          <td><%= csv_row.updated_at.strftime('%e %b %Y %l:%M %p') || "Unknown" %></td>
-          <td><%= csv_row.error_messages || "" %></td>
-          <td><%= csv_row.status || "Unknown" %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+<p>
+  <label> CSV Manifest: </label>
+  <span> <%= File.basename(@csv_import.manifest.to_s) %> </span>
+  <br />
+  <label> Uploaded by: </label>
+  <span> <%= @csv_import.user.name %> </span>
+  <br />
+  <label> Start time: </label>
+  <span> <%= @csv_import.created_at %> </span>
+</p>
+
+<p> TODO: Put info about the current status of the import here. </p>
+

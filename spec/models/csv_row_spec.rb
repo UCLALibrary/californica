@@ -6,7 +6,7 @@ RSpec.describe CsvRow, type: :model do
   let(:job_id) { "4344db9d-eef0-46c2-a3f6-5ebc19043b76" }
 
   it 'has a row number' do
-    expect(csv_row.row_number).to be_instance_of(Integer)
+    expect(csv_row.row_number).to eq(1)
   end
 
   it 'has a job id' do

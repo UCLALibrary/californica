@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 FactoryBot.define do
   factory :csv_row do
-    sequence(:row_number, &:to_s)
+    row_number { 1 }
     job_id { "23452" }
     csv_import_id { "193453" }
     error_messages { ["here is your error"] }
