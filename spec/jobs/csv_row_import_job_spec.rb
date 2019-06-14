@@ -29,7 +29,7 @@ RSpec.describe CsvRowImportJob, :clean do
       described_class.perform_now(row_id: csv_row.id)
       csv_row.reload
       expect(csv_row.status).to eq('error')
-      expect(csv_row.error_messages).to contain_exactly 'Cannot set id without a valid ark'
+      expect(csv_row.error_messages).to eq 'Cannot set id without a valid ark'
     end
   end
 end
