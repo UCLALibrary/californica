@@ -19,7 +19,10 @@ class RecordImporter < Darlingtonia::HyraxRecordImporter
       row_number: record.mapper.row_number,
       csv_import_id: batch_id
     )
-    CsvRowImportJob.perform_later(row_id: csv_row.id)
+
+    csv_import = CsvImport.find(csv_row.csv_import_id)
+    CsvRowImportJob.perform_later(row: csv_row,
+                                  csv_import: csv_import)
   end
 
   def success_count
