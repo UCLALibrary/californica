@@ -40,6 +40,7 @@ gem 'rsolr', '>= 1.0'
 gem 'sass-rails', '~> 5.0'
 gem 'sidekiq', '~> 5.1.3'
 gem 'sidekiq-failures'
+gem 'sidekiq-status'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
