@@ -10,6 +10,9 @@ class WorkIndexer < Hyrax::WorkIndexer
   # this behavior
   include Hyrax::IndexesLinkedMetadata
 
+  # See https://github.com/UCLALibrary/californica/blob/master/solr/config/schema.xml#194
+  # for extensions that can be used below
+
   def generate_solr_document
     super.tap do |solr_doc|
       solr_doc['sort_year_isi'] = years.to_a.min
@@ -19,7 +22,7 @@ class WorkIndexer < Hyrax::WorkIndexer
       solr_doc['human_readable_resource_type_sim'] = human_readable_resource_type
       solr_doc['human_readable_resource_type_tesim'] = human_readable_resource_type
       solr_doc['human_readable_rights_statement_tesim'] = human_readable_rights_statement
-      solr_doc['sort_title_tesi'] = object.title.first
+      solr_doc['sort_title_ssort'] = object.title.first
       solr_doc['ursus_id_ssi'] = Californica::IdGenerator.blacklight_id_from_ark(object.ark)
       solr_doc['year_isim'] = years
     end
