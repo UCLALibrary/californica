@@ -8,7 +8,7 @@ RSpec.describe CsvRowImportJob, :clean do
     let(:csv_row) { FactoryBot.create(:csv_row, status: nil, csv_import_id: csv_import.id) }
 
     it 'can set a status' do
-      described_class.perform_now(row_id: csv_row.id)
+      described_class.perform_now(row: csv_row, csv_import: csv_import)
       csv_row.reload
       expect(csv_row.status).to eq('complete')
     end
@@ -26,7 +26,7 @@ RSpec.describe CsvRowImportJob, :clean do
     let(:csv_row) { FactoryBot.create(:csv_row, status: nil, metadata: metadata, error_messages: nil, csv_import_id: csv_import.id) }
 
     it 'records an error state and error messages' do
-      described_class.perform_now(row_id: csv_row.id)
+      described_class.perform_now(row: csv_row, csv_import: csv_import)
       csv_row.reload
       expect(csv_row.status).to eq('error')
       expect(csv_row.error_messages).to contain_exactly 'Cannot set id without a valid ark'

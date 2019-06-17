@@ -5,10 +5,10 @@
     - [default, 1]
 
   test: # n/a
-    :concurrency: 1
+    :concurrency: 2
 
   development:
-    :concurrency: <%= ENV['SIDEKIQ_WORKERS'] || 1 %>
+    :concurrency: <%= ENV['SIDEKIQ_WORKERS'] || 5 %>
 
   production:
     :concurrency: <%= ENV['SIDEKIQ_WORKERS'] || 5 %>
