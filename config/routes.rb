@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 require 'sidekiq/web'
+require 'sidekiq-status/web'
 
 Rails.application.routes.draw do
   get 'importer_documentation/guide'
