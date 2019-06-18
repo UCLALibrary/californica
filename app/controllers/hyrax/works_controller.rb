@@ -36,8 +36,8 @@ module Hyrax
         date_modified = @solr_doc[:date_modified_dtsi] || @solr_doc[:system_create_dtsi]
         key = date_modified.to_datetime.strftime('%Y-%m-%d_%H-%M-%S') + @solr_doc[:id]
 
-        if Manifest.exists?(cache_manifest_key: key)
-          render json: Manifest.find_by(cache_manifest_key: key).json
+        if File.exist?(Rails.root.join('tmp', key))
+          render_manifest_file(key: key)
         else
           curation_concern = _curation_concern_type.find(params[:id]) unless curation_concern
           builder_service = Californica::ManifestBuilderService.new(curation_concern: curation_concern)
@@ -50,9 +50,16 @@ module Hyrax
         end
       end
 
+      def render_manifest_file(key:)
+        manifest_file = File.open(Rails.root.join('tmp', key))
+        render json: manifest_file.read
+        manifest_file.close
+      end
+
       def persist_manifest(key:, json:)
-        manifest = Manifest.new(cache_manifest_key: key, json: json)
-        manifest.save
+        File.open(Rails.root.join('tmp', key), 'w+') do |f|
+          f.write json
+        end
       end
   end
 end

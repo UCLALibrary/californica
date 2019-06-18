@@ -41,7 +41,14 @@ json.sequences [''] do
         json.height 480
         json.service do
           json.set! :@context, 'http://iiif.io/api/image/2/context.json'
-          json.set! :@id, "#{request.base_url}/images/#{CGI.escape(original_file.id)}"
+
+          # The base url for the info.json file
+          info_url = Hyrax.config.iiif_info_url_builder.call(
+            original_file.id,
+            ENV['IIIF_SERVER_URL'] || request.base_url
+          )
+
+          json.set! :@id, info_url
           json.profile 'http://iiif.io/api/image/2/level2.json'
         end
       end
