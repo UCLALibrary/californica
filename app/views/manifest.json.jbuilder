@@ -41,7 +41,8 @@ json.sequences [''] do
         json.height 480
         json.service do
           json.set! :@context, 'http://iiif.io/api/image/2/context.json'
-          json.set! :@id, "#{request.base_url}/images/#{CGI.escape(original_file.id)}"
+          # The base url for the info.json file
+          json.set! :@id, "#{ENV['IIIF_SERVER_URL']}#{CGI.escape(original_file.id)}"
           json.profile 'http://iiif.io/api/image/2/level2.json'
         end
       end
