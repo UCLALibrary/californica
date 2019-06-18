@@ -22,30 +22,37 @@ module Hyrax
       after_destroy_response(title)
     end
 
-    def manifest_builder
-      @solr_doc = ::SolrDocument.find(params[:id])
-      date_modified = @solr_doc[:date_modified_dtsi] || @solr_doc[:system_create_dtsi]
-      key = date_modified.to_datetime.strftime('%Y-%m-%d_%H-%M-%S') + @solr_doc[:id]
-      redis = Redis.current
-
-      if redis.get(key)
-        render json: redis.get(key)
-      else
-        curation_concern = _curation_concern_type.find(params[:id]) unless curation_concern
-        builder_service = Californica::ManifestBuilderService.new(curation_concern: curation_concern)
-        @sets = builder_service.sets
-        @root_url = "#{request.protocol}#{request.host_with_port}/concern/works/#{@solr_doc.id}/manifest"
-        redis.set(key, render_to_string('/manifest.json'))
-        render json: redis.get(key)
-      end
-    end
-
     def manifest
       headers['Access-Control-Allow-Origin'] = '*'
-      headers['Cache-Control'] = 'max_age=86400'
       curation_concern = _curation_concern_type.find(params[:id]) unless curation_concern
       authorize! :show, curation_concern
       manifest_builder
     end
+
+    private
+
+      def manifest_builder
+        @solr_doc = ::SolrDocument.find(params[:id])
+        date_modified = @solr_doc[:date_modified_dtsi] || @solr_doc[:system_create_dtsi]
+        key = date_modified.to_datetime.strftime('%Y-%m-%d_%H-%M-%S') + @solr_doc[:id]
+
+        if Manifest.exists?(key)
+          render json: Manifest.find(key).json
+        else
+          curation_concern = _curation_concern_type.find(params[:id]) unless curation_concern
+          builder_service = Californica::ManifestBuilderService.new(curation_concern: curation_concern)
+          @sets = builder_service.sets
+          @root_url = "#{request.protocol}#{request.host_with_port}/concern/works/#{@solr_doc.id}/manifest"
+
+          manifest_json = render_to_string('/manifest.json')
+          persist_manifest(key: key, json: manifest_json)
+          render json: manifest_json
+        end
+      end
+
+      def persist_manifest(key:, json:)
+        manifest = Manifest.new(id: key, json: json)
+        manifest.save
+      end
   end
 end
