@@ -49,7 +49,7 @@ en:
   simple_form:
     hints:
       defaults:
-        based_near: A hyrax default field that we're not using. Use Location instead.
+        based_near: A hyrax default field that we are not using. Use Location instead.
     labels:
       defaults:
         based_near: Based Near
