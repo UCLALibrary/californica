@@ -62,7 +62,8 @@ OPTIONAL_HEADERS = [
   'Rights.servicesContact',
   'Subject',
   'Type.genre',
-  'Type.typeOfResource'
+  'Type.typeOfResource',
+  'Visibility'
 ].freeze
 
 CONTROLLED_VOCABULARIES = {

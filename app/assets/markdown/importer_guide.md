@@ -36,6 +36,7 @@
 * [Subject](#subject)
 * [Type.genre](#type.genre)
 * [Type.typeOfResource](#type.typeofresource)
+* [Visibility](#visibility)
 
 ## Required Fields
 
@@ -139,3 +140,17 @@ accepts AltTitle.translated
 ### Subject
 ### Type.genre
 ### Type.typeOfResource
+
+### Visibility
+
+A single-value field that must contain one of the allowed values.
+
+This field is not required.  If you omit this column or leave the value blank, it will default to `private` visibility (to avoid accidentally exposing records that should be restricted).
+
+Examples:
+
+* `public` - All users can view the record
+* `authenticated` - Logged in users can view the record
+* `discovery` - All users can view the metadata, but not the files
+* `private` - Only admin users or users who have been granted special permission may view the record
+
