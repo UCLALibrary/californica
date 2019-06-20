@@ -54,11 +54,6 @@ RSpec.describe CalifornicaMapper do
       .to contain_exactly(url: match(/clusc_1_1_00010432a\.tif/))
   end
 
-  it "maps visibility to open" do
-    expect(mapper.visibility)
-      .to eq Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
-  end
-
   context 'with a blank filename' do
     let(:metadata) do
       { "Item ARK" => "21198/zz0002nq4w",
@@ -321,6 +316,68 @@ RSpec.describe CalifornicaMapper do
       it 'does not assign a license' do
         expect(mapper.license).to be_nil
       end
+    end
+  end
+
+  describe '#visibility' do
+    subject { mapper.visibility }
+
+    let(:private_vis) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE }
+    let(:disc_vis) { ::Work::VISIBILITY_TEXT_VALUE_DISCOVERY }
+    let(:auth_vis) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_AUTHENTICATED }
+    let(:public_vis) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
+
+    context 'when visibility field is blank' do
+      let(:metadata) { {} }
+
+      it 'defaults to private visibility' do
+        expect(mapper.visibility).to eq private_vis
+      end
+    end
+
+    context 'visibility: private' do
+      let(:metadata) { { 'Visibility' => 'private' } }
+      it { is_expected.to eq private_vis }
+    end
+
+    context 'visibility: restricted' do
+      let(:metadata) { { 'Visibility' => 'restricted' } }
+      it { is_expected.to eq private_vis }
+    end
+
+    context 'visibility: discovery' do
+      let(:metadata) { { 'Visibility' => 'discovery' } }
+      it { is_expected.to eq disc_vis }
+    end
+
+    context 'visibility: authenticated' do
+      let(:metadata) { { 'Visibility' => 'authenticated' } }
+      it { is_expected.to eq auth_vis }
+    end
+
+    context 'visibility: registered' do
+      let(:metadata) { { 'Visibility' => 'registered' } }
+      it { is_expected.to eq auth_vis }
+    end
+
+    context 'visibility: UCLA' do
+      let(:metadata) { { 'Visibility' => 'UCLA' } }
+      it { is_expected.to eq auth_vis }
+    end
+
+    context 'visibility: public' do
+      let(:metadata) { { 'Visibility' => 'public' } }
+      it { is_expected.to eq public_vis }
+    end
+
+    context 'visibility: open' do
+      let(:metadata) { { 'Visibility' => 'open' } }
+      it { is_expected.to eq public_vis }
+    end
+
+    context 'with different capitalization and whitespace' do
+      let(:metadata) { { 'Visibility' => ' Public  ' } }
+      it { is_expected.to eq public_vis }
     end
   end
 end

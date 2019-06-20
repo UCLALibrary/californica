@@ -49,7 +49,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   # What columns are allowed in the CSV
   def self.allowed_headers
     CALIFORNICA_TERMS_MAP.values +
-      ['File Name', 'Parent ARK', 'Project Name', 'Object Type', 'Item Sequence']
+      ['File Name', 'Parent ARK', 'Project Name', 'Object Type', 'Item Sequence', 'Visibility']
   end
 
   # What columns must exist in the CSV
@@ -101,7 +101,25 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   end
 
   def visibility
-    Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
+    value_from_csv = metadata['Visibility']&.squish&.downcase
+    visibility_mapping.fetch(value_from_csv, Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE)
+  end
+
+  # The visibility values have different values when
+  # they are calculated or indexed in solr than the
+  # values that appear in the UI edit form.  We should
+  # accept both.
+  def visibility_mapping
+    {
+      'private' => Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE,
+      'restricted' => Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE,
+      'discovery' => ::Work::VISIBILITY_TEXT_VALUE_DISCOVERY,
+      'authenticated' => Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_AUTHENTICATED,
+      'registered' => Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_AUTHENTICATED,
+      'ucla' => Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_AUTHENTICATED,
+      'open' => Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC,
+      'public' => Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
+    }.freeze
   end
 
   def ark
