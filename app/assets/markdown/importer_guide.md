@@ -34,6 +34,7 @@
 * [Rights.countryCreation](#rights.countrycreation)
 * [Rights.rightsHolderContact](#rights.rightsholdercontact)
 * [Subject](#subject)
+* [Support](#support)
 * [Type.genre](#type.genre)
 * [Type.typeOfResource](#type.typeofresource)
 * [Visibility](#visibility)
@@ -140,6 +141,7 @@ accepts AltTitle.translated
 ### Rights.countryCreation
 ### Rights.rightsHolderContact
 ### Subject
+### Support
 ### Type.genre
 ### Type.typeOfResource
 
@@ -155,4 +157,3 @@ Examples:
 * `authenticated` - Logged in users can view the record
 * `discovery` - All users can view the metadata, but not the files
 * `private` - Only admin users or users who have been granted special permission may view the record
-

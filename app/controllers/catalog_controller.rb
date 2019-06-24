@@ -117,6 +117,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('repository', :stored_searchable)
     config.add_show_field solr_name('rights_country', :stored_searchable)
     config.add_show_field solr_name('rights_holder', :stored_searchable)
+    config.add_show_field solr_name('support', :stored_searchable)
     config.add_show_field solr_name('uniform_title', :stored_searchable)
 
     # "fielded" search configuration. Used by pulldown among other places.
@@ -288,6 +289,14 @@ class CatalogController < ApplicationController
 
     config.add_search_field('uniform_title') do |field|
       solr_name = solr_name('uniform_title', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('support') do |field|
+      solr_name = solr_name('support', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name

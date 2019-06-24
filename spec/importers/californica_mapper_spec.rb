@@ -27,7 +27,8 @@ RSpec.describe CalifornicaMapper do
       "AltTitle.other" => "alternative title",
       "AltTitle.translated" => "translated alternative title",
       'Place of origin' => 'Los Angeles, CA',
-      "Uniform title" => "Protesters with signs in gallery of Los Angeles County Supervisors" }
+      "Uniform title" => "Protesters with signs in gallery of Los Angeles County Supervisors",
+      "Support" => "Support" }
   end
 
   before { mapper.metadata = metadata }
@@ -73,7 +74,8 @@ RSpec.describe CalifornicaMapper do
         "Name.subject" => "Los Angeles County (Calif.). $b Board of Supervisors",
         "Photographer" => "Ansel Adams",
         "Language" => "English",
-        "Uniform title" => "Protesters with signs in gallery of Los Angeles County Supervisors" }
+        "Uniform title" => "Protesters with signs in gallery of Los Angeles County Supervisors",
+        "Support" => "Support" }
     end
 
     it "does not throw an error if File Name is empty" do

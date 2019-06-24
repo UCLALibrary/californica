@@ -600,7 +600,6 @@ ActiveRecord::Schema.define(version: 20190618220047) do
     t.index ["work_id"], name: "index_work_view_stats_on_work_id"
   end
 
-  add_foreign_key "csv_imports", "users"
   add_foreign_key "mailboxer_notifications", "mailboxer_conversations", column: "conversation_id", name: "notifications_on_conversation_id"
   add_foreign_key "mailboxer_receipts", "mailboxer_notifications", column: "notification_id", name: "receipts_on_notification_id"
   add_foreign_key "permission_template_accesses", "permission_templates"
