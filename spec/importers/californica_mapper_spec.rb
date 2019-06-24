@@ -330,8 +330,8 @@ RSpec.describe CalifornicaMapper do
     context 'when visibility field is blank' do
       let(:metadata) { {} }
 
-      it 'defaults to private visibility' do
-        expect(mapper.visibility).to eq private_vis
+      it 'defaults to public visibility' do
+        expect(mapper.visibility).to eq public_vis
       end
     end
 
