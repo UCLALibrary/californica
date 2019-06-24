@@ -102,7 +102,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
   def visibility
     value_from_csv = metadata['Visibility']&.squish&.downcase
-    visibility_mapping.fetch(value_from_csv, Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE)
+    visibility_mapping.fetch(value_from_csv, Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC)
   end
 
   # The visibility values have different values when
