@@ -11,7 +11,7 @@
 # should be run in background jobs during the import
 # instead of here.
 
-OBJECT_TYPES = ['Collection', 'Work', 'Manuscript', 'Page'].freeze
+OBJECT_TYPES = ['Collection', 'Work', 'ChildWork', 'Manuscript', 'Page'].freeze
 
 REQUIRED_HEADERS = [
   'Item ARK',
@@ -22,12 +22,12 @@ REQUIRED_HEADERS = [
 ].freeze
 
 REQUIRED_VALUES = [
-  ['Item ARK', ['Collection', 'Work']],
-  ['Title', ['Collection', 'Work']],
+  ['Item ARK', ['Collection', 'Work', 'ChildWork', 'Manuscript', 'Page']],
+  ['Title', ['Collection', 'Work', 'Manuscript']],
   # ['Object Type', ['Collection', 'Work']],  # hard-coded
-  ['Parent ARK', ['Work']],
-  ['Rights.copyrightStatus', ['Work']],
-  ['File Name', ['Work']]
+  ['Parent ARK', ['Work', 'ChildWork', 'Manuscript', 'Page']],
+  ['Rights.copyrightStatus', ['Work', 'ChildWork', 'Manuscript', 'Page']],
+  ['File Name', ['Work', 'ChildWork', 'Page']]
 ].freeze
 
 OPTIONAL_HEADERS = [

@@ -20,7 +20,7 @@ class ActorRecordImporter < Darlingtonia::HyraxRecordImporter
   end
 
   def import_type(object_type = nil)
-    return ::ChildWork if object_type == 'Page'
+    return ::ChildWork if ['ChildWork', 'Page'].include?(object_type)
     ::Work
   end
 
