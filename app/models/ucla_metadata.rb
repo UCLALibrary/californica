@@ -91,6 +91,10 @@ module UclaMetadata
       index.as :displayable
     end
 
+    property :support, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/BaseMaterial') do |index|
+      index.as :stored_searchable
+    end
+
     property :uniform_title, predicate: ::RDF::URI.intern('http://purl.org/dc/elements/1.1/title') do |index|
       index.as :stored_searchable
     end

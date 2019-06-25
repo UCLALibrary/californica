@@ -7,6 +7,6 @@ module Hyrax
              :dlcs_collection_name, :funding_note, :genre, :geographic_coordinates,
              :local_identifier, :location, :medium,
              :named_subject, :normalized_date, :photographer, :place_of_origin,
-             :repository, :rights_country, :rights_holder, :uniform_title, to: :solr_document
+             :repository, :rights_country, :rights_holder, :support, :uniform_title, to: :solr_document
   end
 end
