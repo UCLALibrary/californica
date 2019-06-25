@@ -62,7 +62,9 @@ Examples:
 
 ### Object Type (required)
 
-A controlled vocabulary term referring to the type of repository object that will be created for this CSV row. Current legal values are `Collection` and `Work`. Only one value can be given per CSV row.
+A controlled vocabulary term referring to the type of repository object that will be created for this CSV row. Current legal values are `Collection`, `Work`, and `ChildWork`. Only one value can be given per CSV row.
+
+Currently, `Manuscript` is also accepted as a synonym of `Work` and `Page` as a synonym of `ChildWork`, but this functionality may be removed at some point in the future.
 
 This field is a string.  **This field is required**.
 

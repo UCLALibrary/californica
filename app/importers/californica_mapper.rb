@@ -61,7 +61,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     # The fields common to all object types
     common_fields = CALIFORNICA_TERMS_MAP.keys + [:remote_files, :visibility, :member_of_collections_attributes, :license]
     # Pages additionally have a field :in_works_ids, which defines their parent work
-    return common_fields + [:in_works_ids] if metadata["Object Type"] == "Page"
+    return common_fields + [:in_works_ids] if ['ChildWork', 'Page'].include?(metadata["Object Type"])
     common_fields
   end
 
@@ -223,10 +223,10 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
   # Determine what Collection this object should be part of.
   # Ensure that Collection object exists.
-  # Assume the parent of this object is a collection unless the Object Type is Page
+  # Assume the parent of this object is a collection unless the Object Type is ChildWork
   def member_of_collections_attributes
-    # A Page will never be a direct member of a Collection
-    return if metadata["Object Type"] == "Page"
+    # A ChildWork will never be a direct member of a Collection
+    return if ['ChildWork', 'Page'].include?(metadata["Object Type"])
     ark = Ark.ensure_prefix(metadata['Parent ARK'])
     return unless ark
     collection = Collection.find_or_create_by_ark(ark)
@@ -242,7 +242,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   end
 
   # Record the page sequence in the database so it's quick to access and sort.
-  # At the end of an import for a multi-page work, we'll use these to order the Pages.
+  # At the end of an import for a multi-page work, we'll use these to order the ChildWorks.
   def record_page_sequence
     PageOrder.find_by(child: ark)&.destroy
     PageOrder.create(parent: parent_ark, child: ark, sequence: sequence)
@@ -253,7 +253,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   end
 
   def in_works_ids
-    return unless metadata["Object Type"] == "Page"
+    return unless ['ChildWork', 'Page'].include?(metadata["Object Type"])
     record_page_sequence
     [parent_work.id]
   end

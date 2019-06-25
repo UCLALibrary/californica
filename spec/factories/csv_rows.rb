@@ -10,7 +10,7 @@ FactoryBot.define do
         "Project Name" => "Ethiopic Manuscripts",
         "Item ARK" => "21198/zz001pz6jq",
         "Parent ARK" => "21198/zz001pz6h6",
-        "Object Type" => "Page",
+        "Object Type" => "ChildWork",
         "File Name" => "mss_page2.png",
         "Item Sequence" => "2",
         "Type.typeOfResource" => "text",

@@ -20,7 +20,7 @@ RSpec.describe CsvRowImportJob, :clean do
         "Project Name" => "Ethiopic Manuscripts",
         "Item ARK" => "",
         "Parent ARK" => "21198/zz001pz6h6",
-        "Object Type" => "Page"
+        "Object Type" => "ChildWork"
       }.to_json
     end
     let(:csv_row) { FactoryBot.create(:csv_row, status: nil, metadata: metadata, error_messages: nil, csv_import_id: csv_import.id) }

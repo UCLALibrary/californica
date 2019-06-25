@@ -95,7 +95,7 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
       # Gather all collection objects that have been touched during this import so we can reindex them all at the end
       @collections_needing_reindex << row["Item ARK"] if row["Object Type"] == "Collection"
       @collections_needing_reindex << row["Parent ARK"] if row["Object Type"] == "Work"
-      @works_needing_ordering << row["Parent ARK"] if row["Object Type"] == "Page"
+      @works_needing_ordering << row["Parent ARK"] if ['ChildWork', 'Page'].include?(row["Object Type"])
     end
   rescue CSV::MalformedCSVError
     # error reporting for this case is handled by validation

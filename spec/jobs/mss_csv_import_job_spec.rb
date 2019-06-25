@@ -35,12 +35,12 @@ RSpec.describe StartCsvImportJob, :clean, :inline_jobs do
     # The work is attached to the Collection as expected
     expect(collection.child_works.count).to eq 1
     expect(collection.child_works.first.title.first).to eq "Ms. 50 Marbabeta Salomon, Ṣalota Susnyos"
-    # The Pages are attached to the Work as expected
+    # The ChildWorks are attached to the Work as expected
     work = Work.last
     expect(work.members.size).to eq 3
-    # It makes a PageOrder object for each Page
+    # It makes a PageOrder object for each ChildWork
     expect(PageOrder.count).to eq 3
-    # It ensures the Pages are in the right order
+    # It ensures the ChildWorks are in the right order
     expect(work.ordered_member_ids).to eq ["rm6zp100zz-89112", "qj6zp100zz-89112", "7k6zp100zz-89112"]
   end
 end
