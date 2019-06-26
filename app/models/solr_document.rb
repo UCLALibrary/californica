@@ -118,6 +118,10 @@ class SolrDocument
     self[:services_contact_ssm]
   end
 
+  def subject_topic
+    self[Solrizer.solr_name('subject_topic')]
+  end
+
   def support
     self[Solrizer.solr_name('support')]
   end

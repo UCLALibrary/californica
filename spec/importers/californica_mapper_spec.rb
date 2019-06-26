@@ -28,7 +28,8 @@ RSpec.describe CalifornicaMapper do
       "AltTitle.translated" => "translated alternative title",
       'Place of origin' => 'Los Angeles, CA',
       "Uniform title" => "Protesters with signs in gallery of Los Angeles County Supervisors",
-      "Support" => "Support" }
+      "Support" => "Support",
+      "Subject topic" => "Subject topic" }
   end
 
   before { mapper.metadata = metadata }
@@ -115,7 +116,7 @@ RSpec.describe CalifornicaMapper do
         :date_created, :caption, :dimensions, :rights_country,
         :funding_note, :genre, :rights_holder,
         :medium, :normalized_date, :location, :publisher, :photographer,
-        :remote_files, :uniform_title
+        :remote_files, :uniform_title, :subject_topic
       )
     end
   end

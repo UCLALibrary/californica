@@ -10,7 +10,7 @@ module Hyrax
                    :longitude, :local_identifier, :location, :medium,
                    :named_subject, :normalized_date, :photographer,
                    :place_of_origin, :rights_country, :rights_holder,
-                   :repository, :resource_type, :support, :uniform_title]
+                   :repository, :resource_type, :subject_topic, :support, :uniform_title]
 
     self.required_fields = [:title, :ark, :rights_statement]
 

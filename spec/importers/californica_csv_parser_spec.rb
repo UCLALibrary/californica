@@ -53,23 +53,12 @@ RSpec.describe CalifornicaCsvParser do
 
   describe '#headers' do
     let(:expected_headers) do
-      ['Object Type', 'Project Name', 'Parent ARK', 'Item ARK',
-       'Subject', 'Type.typeOfResource',
-       'Rights.copyrightStatus', 'Type.genre',
-       'Name.subject', 'Coverage.geographic',
-       'Relation.isPartOf', 'Publisher.publisherName',
-       'Rights.countryCreation',
-       'Rights.rightsHolderContact',
-       'Name.architect', 'Name.photographer', 'Name.repository',
-       'Date.normalized',
-       'AltIdentifier.local', 'Title',
-       'Date.creation', 'Format.extent',
-       'Format.medium', 'Format.dimensions',
-       'Description.note', 'Description.fundingNote',
-       'Description.longitude',
-       'Description.latitude', 'Description.caption',
-       'File Name', 'AltTitle.other', 'AltTitle.translated',
-       'Place of origin', 'AltTitle.uniform', 'Support']
+      ['Object Type', 'Project Name', 'Parent ARK', 'Item ARK', 'Title', 'AltIdentifier.local', 'AltTitle.other', 'AltTitle.translated',
+       'AltTitle.uniform', 'Subject', 'Subject.conceptTopic', 'Subject.descriptiveTopic', 'Description.caption', 'Description.fundingNote',
+       'Description.latitude', 'Description.note', 'Description.longitude', 'Type.typeOfResource', 'Type.genre', 'Coverage.geographic',
+       'Relation.isPartOf', 'Publisher.publisherName', 'Rights.copyrightStatus', 'Rights.countryCreation', 'Rights.rightsHolderContact',
+       'Name.architect', 'Name.photographer', 'Name.repository', 'Name.subject', 'Date.normalized', 'Date.creation', 'File Name',
+       'Format.extent', 'Format.medium', 'Format.dimensions', 'Place of origin', 'Support']
     end
 
     it 'knows the headers for this CSV file' do

@@ -21,6 +21,7 @@ RSpec.describe 'Search the catalog', :clean, type: :system, js: true do
       normalized_date: ['2015-10-06'],
       photographer: ['Sherlock'],
       place_of_origin: ['London'],
+      subject_topic: ['Subject topic'],
       support: ['Support'],
       uniform_title: ['Yellow Banana']
     )

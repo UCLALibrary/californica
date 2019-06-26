@@ -34,6 +34,8 @@
 * [Rights.countryCreation](#rights.countrycreation)
 * [Rights.rightsHolderContact](#rights.rightsholdercontact)
 * [Subject](#subject)
+* [Subject.conceptTopic](#Subject.conceptTopic)
+* [Subject.descriptiveTopic}](#SSubject.descriptiveTopic)
 * [Support](#support)
 * [Type.genre](#type.genre)
 * [Type.typeOfResource](#type.typeofresource)
@@ -140,7 +142,8 @@ accepts AltTitle.translated
 ### Relation.isPartOf
 ### Rights.countryCreation
 ### Rights.rightsHolderContact
-### Subject
+### Subject.conceptTopic
+### Subject.descriptiveTopic
 ### Support
 ### Type.genre
 ### Type.typeOfResource

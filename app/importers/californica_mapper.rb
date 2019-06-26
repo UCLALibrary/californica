@@ -33,6 +33,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     rights_statement: "Rights.copyrightStatus",
     services_contact: "Rights.servicesContact",
     subject: "Subject",
+    subject_topic: "Subject topic",
     support: "Support",
     title: "Title",
     uniform_title: "AltTitle.uniform"
