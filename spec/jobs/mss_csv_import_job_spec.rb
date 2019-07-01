@@ -41,6 +41,6 @@ RSpec.describe StartCsvImportJob, :clean, :inline_jobs do
     # It makes a PageOrder object for each ChildWork
     expect(PageOrder.count).to eq 3
     # It ensures the ChildWorks are in the right order
-    expect(work.ordered_member_ids).to eq ["rm6zp100zz-89112", "qj6zp100zz-89112", "7k6zp100zz-89112"]
+    expect(work.ordered_member_ids).to eq ["rm6zp100zz-89112", "cba-6h6zp100zz-89112", "zyx-6h6zp100zz-89112"]
   end
 end

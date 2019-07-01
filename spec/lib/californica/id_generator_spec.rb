@@ -34,8 +34,9 @@ RSpec.describe Californica::IdGenerator, :clean do
     expect(id).to eq 'x0c9nd8t-03031'
   end
 
-  it 'raises an error for arks with extensions' do
-    expect { Californica::IdGenerator.id_from_ark(extended_ark) }.to raise_error(ArgumentError, /ARK/)
+  it 'allows arks with extensions' do
+    id = Californica::IdGenerator.id_from_ark(extended_ark)
+    expect(id).to eq '100-x0c9nd8t-03031'
   end
 
   it 'raises an error for arks that do not have a shoulder & blade' do

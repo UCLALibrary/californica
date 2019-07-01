@@ -9,14 +9,12 @@ module Californica
     # Take an ark value and return an identifier that can be used in blacklight catalog controllers
     def self.blacklight_id_from_ark(ark)
       id = ark.gsub(/\s+/, "").gsub(/ark:?\/?/, '')
-      shoulder, blade, extension = id.split('/')
+      ark_parts = id.split('/')
 
       # didn't see {shoulder}/{blade} format ark
-      raise ArgumentError, 'Could not parse ARK shoulder and blade' if blade.nil?
-      # looks like an extended ark
-      raise ArgumentError, 'ARK appears to have too many segments or extensions' unless extension.nil?
+      raise ArgumentError, 'Could not parse ARK shoulder and blade' if ark_parts.count < 2
 
-      "#{shoulder}-#{blade}"
+      ark_parts.join('-')
     end
   end
 end
