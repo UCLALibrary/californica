@@ -46,7 +46,7 @@ If this succeeds without error, you've successfully created your Californica env
 To access some of the services that you'll need, try finding them at the following locations:
 
 - Californica -> http://localhost:3000/
-- Fedora -> http://localhost:8080/fcrepo/rest
+- Fedora -> http://localhost:8984/
 - Solr -> http://localhost:8983/solr/#/
 
 ## Default admin user
