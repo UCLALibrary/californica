@@ -8,7 +8,9 @@ namespace :californica do
     end
     puts "Auditing works listed in #{CSV_FILE}"
     file = File.open(CSV_FILE)
-    CalifornicaCsvAuditor.new(file: file, error_stream: $stdout, info_stream: $stdout).audit
+    errors = []
+    CalifornicaCsvAuditor.new(file: file, error_stream: errors).audit
     file.close
+    puts errors.join("\n")
   end
 end
