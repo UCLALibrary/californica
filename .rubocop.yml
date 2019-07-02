@@ -137,6 +137,10 @@ Style/BracesAroundHashParameters:
   Exclude:
     - 'spec/importers/californica_mapper_spec.rb'
 
+# Controlling flow w/ guard clauses can be overly clever and makes code harder to read - ABW
+Style/GuardClause:
+  Enabled: false
+
 Style/Next:
   Exclude:
     - 'app/uploaders/csv_manifest_validator.rb'
