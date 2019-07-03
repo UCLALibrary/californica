@@ -39,6 +39,7 @@ Metrics/BlockLength:
     - 'spec/**/*'
     - 'lib/tasks/ingest.rake'
     - 'lib/tasks/derivatives.rake'
+    - 'lib/tasks/purge.rake'
     - app/models/ucla_metadata.rb
     - app/views/manifest.json.jbuilder
     
