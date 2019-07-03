@@ -9,5 +9,7 @@ class StartCsvImportJob < ApplicationJob
     log_stream << "Starting import with batch ID: #{csv_import_id}"
     importer = CalifornicaImporter.new(csv_import)
     importer.import
+  rescue => e
+    log_stream << "CsvImportJob failed: #{e.message}"
   end
 end

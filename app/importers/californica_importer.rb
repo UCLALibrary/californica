@@ -27,6 +27,8 @@ class CalifornicaImporter
     Darlingtonia::Importer.new(parser: parser, record_importer: record_importer, info_stream: @info_stream, error_stream: @error_stream).import
     parser.order_child_works
     parser.reindex_collections
+  rescue => e
+    @error_stream << "CsvImportJob failed: #{e.message}"
   end
 
   def parser
