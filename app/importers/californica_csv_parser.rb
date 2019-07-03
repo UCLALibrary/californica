@@ -55,11 +55,15 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
   def order_child_works
     works_arks = @works_needing_ordering.reject(&:blank?)
     works_arks.each do |work_ark|
-      page_orderings = PageOrder.where(parent: Ark.ensure_prefix(work_ark))
-      ordered_arks = page_orderings.sort_by(&:sequence)
-      work = Work.find_by_ark(Ark.ensure_prefix(work_ark))
-      work.ordered_members = ordered_arks.map { |b| ChildWork.find_by_ark(b.child) }
-      work.save
+      begin
+        page_orderings = PageOrder.where(parent: Ark.ensure_prefix(work_ark))
+        ordered_arks = page_orderings.sort_by(&:sequence)
+        work = Work.find_by_ark(Ark.ensure_prefix(work_ark))
+        work.ordered_members = ordered_arks.map { |b| ChildWork.find_by_ark(b.child) }
+        work.save
+      rescue e
+        error_stream << "#{work_ark}: #{e.message}"
+      end
     end
   end
 
