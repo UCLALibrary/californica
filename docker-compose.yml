@@ -12,21 +12,9 @@ services:
       - solr_test
       - fits
     env_file:
-      - ./.env.sample
+      - ./docker.env
     stdin_open: true
     tty: true
-    environment:
-      DATABASE_HOST: db
-      FEDORA_URL: http://fedora:8080/rest
-      FEDORA_BASE_PATH: /dev
-      FEDORA_TEST_URL: http://fedora_test:8080/rest
-      FEDORA_TEST_BASE_PATH: /test
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
-      REDIS_URL: redis://redis:6379/0
-      SOLR_URL: http://solr:8983/solr/californica
-      SOLR_TEST_URL: http://solr_test:8983/solr/californica
-      FITS_SERVLET_URL: http://fits:8080/fits
     ports:
       - "3000:3000"
     volumes:
@@ -35,7 +23,6 @@ services:
       - derivatives:/opt/derivatives
       - uploads:/opt/uploads
       - bundle_dir:/usr/local/bundle
-      - log:/californica/log
       - californica_tmp:/californica/tmp
       - tmp:/tmp
     working_dir: /californica
@@ -51,25 +38,13 @@ services:
       - fedora_test
       - solr_test
     env_file:
-      - ./.env.sample
-    environment:
-      DATABASE_HOST: db
-      FEDORA_URL: http://fedora:8080/rest
-      FEDORA_BASE_PATH: /dev
-      FEDORA_TEST_URL: http://fedora_test:8080/rest
-      FEDORA_TEST_BASE_PATH: /test
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
-      REDIS_URL: redis://redis:6379/0
-      SOLR_URL: http://solr:8983/solr/californica
-      SOLR_TEST_URL: http://solr_test:8983/solr/californica
+      - ./docker.env
     volumes:
       - .:/californica
       - ./data:/opt/data
       - derivatives:/opt/derivatives
       - uploads:/opt/uploads
       - bundle_dir:/usr/local/bundle
-      - log:/californica/log
       - californica_tmp:/californica/tmp
       - tmp:/tmp
     working_dir: /californica
@@ -100,8 +75,6 @@ services:
       - "3306:3306"
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
-      # MYSQL_USER: californica
-      # MYSQL_PASSWORD: californica
 
   redis:
     image: redis:4
@@ -147,7 +120,6 @@ volumes:
   bundle_dir:
   derivatives:
   fcrepo_data:
-  log:
   mysql_data:
   redis_data:
   solr_data:
