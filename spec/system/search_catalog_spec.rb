@@ -10,19 +10,19 @@ RSpec.describe 'Search the catalog', :clean, type: :system, js: true do
       title: ['Yellow Banana'],
       architect: ['David Allison', 'George W. Kelham'],
       ark: 'ark:/abc/123456',
-      visibility: visible,
-      subject: ['fruit'],
-      named_subject: ['dessert'],
-      location: ['on the table'],
-      description: ['potassium', 'yum'],
       caption: ['tropical'],
+      description: ['potassium', 'yum'],
       identifier: ['ban_ark'],
       local_identifier: ['12345'],
+      location: ['on the table'],
+      named_subject: ['dessert'],
       normalized_date: ['2015-10-06'],
       photographer: ['Sherlock'],
       place_of_origin: ['London'],
+      subject: ['fruit'],
       support: ['Support'],
-      uniform_title: ['Yellow Banana']
+      uniform_title: ['Yellow Banana'],
+      visibility: visible
     )
   end
 
@@ -31,18 +31,18 @@ RSpec.describe 'Search the catalog', :clean, type: :system, js: true do
       title: ['Orange Carrot'],
       architect: ['A. Quincy Jones'],
       ark: 'ark:/abc/67890',
-      visibility: visible,
-      subject: ['veg'],
-      named_subject: ['side dish'],
-      location: ['in the fridge'],
-      description: ['beta carotene', 'yum'],
       caption: ['northern'],
+      description: ['beta carotene', 'yum'],
       identifier: ['car_ark'],
       local_identifier: ['67890'],
+      location: ['in the fridge'],
+      named_subject: ['side dish'],
       normalized_date: ['2018-07-07'],
       photographer: ['Watson'],
+      place_of_origin: ['Scotland Yard'],
+      subject: ['veg'],
       support: ['UCLA'],
-      place_of_origin: ['Scotland Yard']
+      visibility: visible
     )
   end
 
