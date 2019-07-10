@@ -18,6 +18,7 @@ module Hyrax
       :local_identifier,
       :location,
       :longitude,
+      :master_file_path,
       :medium,
       :named_subject,
       :normalized_date,

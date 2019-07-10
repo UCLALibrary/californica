@@ -24,6 +24,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       latitude: ['Old Lat'],
       longitude: ['Old Long'],
       local_identifier: ['Old Local ID'],
+      master_file_path: 'dlmasters/ethiopian/masters/abc123.tif',
       medium: ['Old Medium'],
       named_subject: ['Old Name/Subj'],
       normalized_date: ['Old Normalized Date'],
@@ -73,6 +74,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Latitude').value).to eq 'Old Lat'
       expect(find_field('Longitude').value).to eq 'Old Long'
       expect(find_field('Local Identifier').value).to eq 'Old Local ID'
+      expect(find_field('Master file path').value).to eq 'dlmasters/ethiopian/masters/abc123.tif'
       expect(find_field('Medium').value).to eq 'Old Medium'
       expect(find_field('Name (Subject)').value).to eq 'Old Name/Subj'
       expect(find_field('Normalized Date').value).to eq 'Old Normalized Date'

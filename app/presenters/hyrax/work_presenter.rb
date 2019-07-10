@@ -16,6 +16,7 @@ module Hyrax
       :geographic_coordinates,
       :local_identifier,
       :location,
+      :master_file_path,
       :medium,
       :named_subject,
       :normalized_date,

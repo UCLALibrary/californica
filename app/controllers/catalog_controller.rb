@@ -109,6 +109,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('genre', :stored_searchable)
     config.add_show_field solr_name('location', :stored_searchable)
     config.add_show_field 'local_identifier_ssm'
+    config.add_show_field 'master_file_path_ssi'
     config.add_show_field solr_name('medium', :stored_searchable)
     config.add_show_field solr_name('named_subject', :stored_searchable)
     config.add_show_field solr_name('normalized_date', :stored_searchable)

@@ -17,6 +17,7 @@ RSpec.describe Hyrax::WorkForm do
       :latitude,
       :local_identifier,
       :longitude,
+      :master_file_path,
       :medium,
       :named_subject,
       :normalized_date,
