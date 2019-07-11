@@ -4,7 +4,6 @@ include Warden::Test::Helpers
 
 RSpec.describe 'Importing a multi-page mss from a CSV file', :clean, type: :system, js: true do
   let(:csv_file) { File.join(fixture_path, 'csv_import', 'multipage_mss', 'mss_sample.csv') }
-  let(:import_file_path) { File.join(fixture_path, 'images', 'ethiopian_mss').to_s }
 
   context 'logged in as an admin user' do
     let(:admin_user) { FactoryBot.create(:admin) }
@@ -19,7 +18,6 @@ RSpec.describe 'Importing a multi-page mss from a CSV file', :clean, type: :syst
       # Fill in and submit the form
       attach_file('csv_import[manifest]', csv_file, make_visible: true)
       expect(page).to have_content("You sucessfully uploaded this CSV: mss_sample.csv")
-      fill_in('import-file-path', with: import_file_path)
 
       click_on 'Preview Import'
 
@@ -34,7 +32,6 @@ RSpec.describe 'Importing a multi-page mss from a CSV file', :clean, type: :syst
       csv_import = CsvImport.last
 
       expect(page).to have_content("CSV Import #{csv_import.id}")
-      expect(csv_import.import_file_path).to eq import_file_path
       expect(ActiveJob::Base.queue_adapter.enqueued_jobs.map { |a| a[:job] }).to include(StartCsvImportJob)
     end
   end
