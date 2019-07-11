@@ -6,29 +6,44 @@ RSpec.describe CalifornicaMapper do
   subject(:mapper) { described_class.new(import_file_path: fixture_path) }
 
   let(:metadata) do
-    { "Item ARK" => "ark:/21198/zz0002nq4w",
-      "Title" => "Protesters with signs in gallery of Los Angeles County Supervisors " \
-      "hearing over eminent domain for construction of Harbor Freeway, Calif., 1947",
-      "Type.typeOfResource" => "still image|~|acetate film",
+    { "AltTitle.other" => "alternative title", # alternative_title
+      "AltTitle.translated" => "translated alternative title", # alternative_title
+      "Name.architect" => "Imhotep", # architect
+      "Item ARK" => "ark:/21198/zz0002nq4w", # ark
+      "Description.caption" => "This example does not have a caption.", # caption
+      "Date.creation" => "July 4th 1947", # date_created
+      "Description.note" => "Protesters with signs", # description
+      "Format.dimensions" => "8 inches by 12 inches", # dimensions
+      "Relation.isPartOf" => "Connell (Will) Papers, 1928-1961", # lcs_collection_named
+      "Format.extent" => "1 photograph", # extent
+      "Description.fundingNote" => "Funded by LA County", # funding_note
+      "Type.genre" => "Journalism", # genre
+      "Language" => "eng", # language
+      "Description.latitude" => "34.052235", # latitude
+      "AltIdentifier.local" => "UCLA-1234", # local_identifier
+      "Coverage.geographic" => "Los Angeles (Calif.)", # location
+      "Description.longitude" => "-118.243683", # longitude
+      "File Name" => "clusc_1_1_00010432a.tif", # master_file_path
+      "Format.medium" => "photograph", # medium
+      "Name.subject" => "Los Angeles County (Calif.). $b Board of Supervisors", # named_subject
+      "Date.normalized" => "July 4th 1947", # normalized_date
+      "Name.photographer" => "Unknown", # photographer
+      "Personal or Corporate Name.photographer" => "Unknown", # photographer
+      "Place of origin" => 'Los Angeles, CA', # place_of_origin
+      "Publisher.publisherName" => "Los Angeles Daily News", # publisher
+      "Name.repository" => "University of California, Los Angeles. $b Library Special Collections", # repository
+      "Type.typeOfResource" => "still image|~|acetate film", # resource_type
+      "Rights.countryCreation" => "US", # rights_country
+      "Rights.rightsHolderContact" => "UCLA", # rights_holder
+      "Rights.copyrightStatus" => "Public Domain", # rights_statement
+      "Rights.servicesContact" => "UCLA", # services_contact
       "Subject" => "Express highways--California--Los Angeles County--Design and construction|~|" \
-      "Eminent domain--California--Los Angeles|~|Demonstrations--California--Los Angeles County|~|" \
-      "Transportation|~|Government|~|Activism|~|Interstate 10",
-      "Publisher.publisherName" => "Los Angeles Daily News",
-      "Format.medium" => "1 photograph",
-      "Rights.countryCreation" => "US",
-      "Name.repository" => "University of California, Los Angeles. $b Library Special Collections",
-      "Description.caption" => "This example does not have a caption.",
-      "File Name" => "clusc_1_1_00010432a.tif",
-      "Coverage.geographic" => "Los Angeles (Calif.)",
-      "Name.architect" => "Imhotep",
-      "Name.subject" => "Los Angeles County (Calif.). $b Board of Supervisors",
-      "Language" => "eng",
-      "Relation.isPartOf" => "Connell (Will) Papers, 1928-1961",
-      "AltTitle.other" => "alternative title",
-      "AltTitle.translated" => "translated alternative title",
-      'Place of origin' => 'Los Angeles, CA',
-      "Uniform title" => "Protesters with signs in gallery of Los Angeles County Supervisors",
-      "Support" => "Support" }
+        "Eminent domain--California--Los Angeles|~|Demonstrations--California--Los Angeles County|~|" \
+        "Transportation|~|Government|~|Activism|~|Interstate 10", # subject
+      "Support" => "Support", # support
+      "Title" => "Protesters with signs in gallery of Los Angeles County Supervisors " \
+        "hearing over eminent domain for construction of Harbor Freeway, Calif., 1947", # title
+      "AltTitle.uniform" => "Protesters with signs in gallery of Los Angeles County Supervisors" } # uniform_title
   end
 
   before { mapper.metadata = metadata }
@@ -109,13 +124,40 @@ RSpec.describe CalifornicaMapper do
   describe '#fields' do
     it 'has expected fields' do
       expect(mapper.fields).to include(
-        :visibility, :ark, :title, :architect, :subject,
-        :resource_type, :description, :latitude,
-        :longitude, :extent, :local_identifier,
-        :date_created, :caption, :dimensions, :rights_country,
-        :funding_note, :genre, :rights_holder,
-        :medium, :normalized_date, :location, :publisher, :photographer,
-        :remote_files, :uniform_title
+        :alternative_title,
+        :architect,
+        :ark,
+        :caption,
+        :date_created,
+        :description,
+        :dimensions,
+        :dlcs_collection_name,
+        :extent,
+        :funding_note,
+        :genre,
+        :language,
+        :latitude,
+        :local_identifier,
+        :location,
+        :longitude,
+        :medium,
+        :normalized_date,
+        :publisher,
+        :photographer,
+        :place_of_origin,
+        :publisher,
+        :repository,
+        :remote_files,
+        :resource_type,
+        :rights_country,
+        :rights_holder,
+        :rights_statement,
+        :services_contact,
+        :subject,
+        :support,
+        :title,
+        :uniform_title,
+        :visibility
       )
     end
   end
