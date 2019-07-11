@@ -20,6 +20,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     local_identifier: "AltIdentifier.local",
     location: "Coverage.geographic",
     longitude: "Description.longitude",
+    master_file_path: "File Name",
     medium: "Format.medium",
     named_subject: "Name.subject",
     normalized_date: "Date.normalized",
@@ -187,6 +188,10 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
   def ladnn?
     metadata['Project Name'] == 'Los Angeles Daily News Negatives'
+  end
+
+  def master_file_path
+    map_field(:master_file_path).first
   end
 
   def resource_type

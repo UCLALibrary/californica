@@ -82,6 +82,10 @@ class SolrDocument
     self[Solrizer.solr_name('longitude')]
   end
 
+  def master_file_path
+    self['master_file_path_ssi']
+  end
+
   def medium
     self[Solrizer.solr_name('medium')]
   end
