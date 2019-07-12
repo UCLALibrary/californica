@@ -33,3 +33,7 @@
 coverage
 
 public/branding/
+
+.DS_Store
+.vscode/
+
