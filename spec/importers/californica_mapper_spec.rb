@@ -220,6 +220,32 @@ RSpec.describe CalifornicaMapper do
     end
   end
 
+  describe '#master_file_path' do
+    context 'when the path starts with a \'/\'' do
+      let(:metadata) { { 'File Name' => '/Masters/dlmasters/abc/xyz.tif' } }
+
+      it 'gets removed' do
+        expect(mapper.master_file_path).to eq 'Masters/dlmasters/abc/xyz.tif'
+      end
+    end
+
+    context 'when the path starts with \'Masters/\'' do
+      let(:metadata) { { 'File Name' => 'Masters/dlmasters/abc/xyz.tif' } }
+
+      it 'imports as is' do
+        expect(mapper.master_file_path).to eq 'Masters/dlmasters/abc/xyz.tif'
+      end
+    end
+
+    context 'when the path doesn\'t start with \'Masters\'' do
+      let(:metadata) { { 'File Name' => 'abc/xyz.tif' } }
+
+      it 'prepends \'Masters/dlmasters\'' do
+        expect(mapper.master_file_path).to eq 'Masters/dlmasters/abc/xyz.tif'
+      end
+    end
+  end
+
   describe '#repository' do
     context 'when collection is LADNN' do
       let(:metadata) do

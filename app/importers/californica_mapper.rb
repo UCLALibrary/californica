@@ -191,7 +191,13 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   end
 
   def master_file_path
-    map_field(:master_file_path).first
+    path = map_field(:master_file_path).first.to_s.strip.sub(/^\//, '')
+    return nil if path.empty?
+    if path.start_with?('Masters/')
+      path
+    else
+      'Masters/dlmasters/' + path
+    end
   end
 
   def resource_type
