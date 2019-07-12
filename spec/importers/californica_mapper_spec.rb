@@ -8,6 +8,11 @@ RSpec.describe CalifornicaMapper do
   let(:metadata) do
     { "AltTitle.other" => "alternative title", # alternative_title
       "AltTitle.translated" => "translated alternative title", # alternative_title
+      "AltTitle.parallel" => "parallel alternative title", # alternative_title
+      "Alternate Title.creator" => "alternative title creator", # alternative_title
+      "Alternate Title.descriptive" => "descriptive alternative title", # alternative_title
+      "Alternate Title.inscribed" => "alternative title inscribed", # alternative_title
+      "Alternate Title.other" => "alternative title other", # alternative_title
       "Name.architect" => "Imhotep", # architect
       "Item ARK" => "ark:/21198/zz0002nq4w", # ark
       "Description.caption" => "This example does not have a caption.", # caption
@@ -20,21 +25,29 @@ RSpec.describe CalifornicaMapper do
       "Type.genre" => "Journalism", # genre
       "Language" => "eng", # language
       "Description.latitude" => "34.052235", # latitude
-      "AltIdentifier.local" => "UCLA-1234", # local_identifier
+      "AltIdentifier.local" => "UCLA-1234a", # local_identifier
+      "Alternate Identifier.local" => "UCLA-1234b", # local_identifier
+      "AltIdentifier.callNo" => "UCLA-1234c", # local_identifier
+      "Alt ID.local" => "UCLA-1234d", # local_identifier
       "Coverage.geographic" => "Los Angeles (Calif.)", # location
       "Description.longitude" => "-118.243683", # longitude
       "File Name" => "clusc_1_1_00010432a.tif", # master_file_path
       "Format.medium" => "photograph", # medium
       "Name.subject" => "Los Angeles County (Calif.). $b Board of Supervisors", # named_subject
+      "Personal or Corporate Name.subject" => "LA County", # named_subject
+      "Subject.personalName" => "Alan Smithee", # named_subject
+      "Subject.corporateName" => "The Corporation", # named_subject
       "Date.normalized" => "July 4th 1947", # normalized_date
       "Name.photographer" => "Unknown", # photographer
       "Personal or Corporate Name.photographer" => "Unknown", # photographer
       "Place of origin" => 'Los Angeles, CA', # place_of_origin
       "Publisher.publisherName" => "Los Angeles Daily News", # publisher
       "Name.repository" => "University of California, Los Angeles. $b Library Special Collections", # repository
+      "Personal or Corporate Name.repository" => "Personal || Corporate Repo", # repository
       "Type.typeOfResource" => "still image|~|acetate film", # resource_type
       "Rights.countryCreation" => "US", # rights_country
       "Rights.rightsHolderContact" => "UCLA", # rights_holder
+      "Personal or Corporate Name.copyrightHolder" => "UCLA", # rights_holder
       "Rights.copyrightStatus" => "Public Domain", # rights_statement
       "Rights.servicesContact" => "UCLA", # services_contact
       "Subject" => "Express highways--California--Los Angeles County--Design and construction|~|" \
@@ -141,6 +154,7 @@ RSpec.describe CalifornicaMapper do
         :location,
         :longitude,
         :medium,
+        :named_subject,
         :normalized_date,
         :publisher,
         :photographer,
