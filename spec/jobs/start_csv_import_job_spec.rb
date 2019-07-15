@@ -14,7 +14,6 @@ RSpec.describe StartCsvImportJob, :clean, inline_jobs: true do
       expect(Collection.count).to eq 1
       expect(Work.count).to eq 1
       expect(CsvRow.count).to eq 2
-      expect(Work.last.members.first.files.first.metadata.mime_type.first).to match(/tiff/)
     end
   end
 end

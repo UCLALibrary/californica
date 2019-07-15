@@ -106,7 +106,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
       File.open(@missing_file_log, 'a') { |file| file.puts "Work #{ark} is missing a filename" }
       return []
     end
-    file_name = file_uri_base_path.join(metadata['File Name']).to_s
+    file_name = file_uri_base_path.join(master_file_path).to_s
     file_exists = File.exist?(file_name)
     return_value = []
     if file_exists
