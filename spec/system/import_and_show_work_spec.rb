@@ -3,7 +3,7 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: true, js: true do
-  subject(:importer) { CalifornicaImporter.new(csv_import) }
+  subject(:importer) { CalifornicaImporter.new(csv_import, info_stream: [], error_stream: []) }
   let(:csv_import) { FactoryBot.create(:csv_import, user: user, manifest: manifest) }
   let(:manifest) { Rack::Test::UploadedFile.new(csv_file, 'text/csv') }
   let(:csv_file)   { File.join(fixture_path, 'coordinates_example.csv') }
@@ -12,8 +12,6 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
 
   # Cleanup log files after each test run
   after do
-    File.delete(importer.ingest_log_filename) if File.exist? importer.ingest_log_filename
-    File.delete(importer.error_log_filename) if File.exist? importer.error_log_filename
     File.delete(ENV['MISSING_FILE_LOG']) if File.exist?(ENV['MISSING_FILE_LOG'])
   end
 
