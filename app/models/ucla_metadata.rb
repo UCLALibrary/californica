@@ -56,7 +56,7 @@ module UclaMetadata
     end
 
     property :master_file_path, predicate: ::RDF::URI.intern('http://www.europeana.eu/schemas/edm/object'), multiple: false do |index|
-      index.as :symbol
+      index.as :stored_sortable
     end
 
     property :medium, predicate: ::RDF::Vocab::DC.medium do |index|

@@ -33,22 +33,6 @@ RSpec.describe ActorRecordImporter, :clean do
       expect(importer.info_stream.last).to match(/event: record_created/)
     end
 
-    context 'with File Name' do
-      let(:metadata) do
-        {
-          'Title' => 'Comet in Moominland',
-          'File Name' => "clusc_1_1_00010432a.tif",
-          'Item ARK' => "ark:/abc/1234"
-        }
-      end
-
-      it 'attaches a file' do
-        ENV['IMPORT_PATH'] = fixture_path
-        expect { importer.import(record: record) }
-          .to have_enqueued_job(IngestLocalFileJob)
-      end
-    end
-
     context 'with an invalid input record' do
       let(:metadata) do
         {

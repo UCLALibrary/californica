@@ -78,11 +78,6 @@ RSpec.describe CalifornicaMapper do
     expect(mapper.map_field(:dlcs_collection_name)).to contain_exactly("Connell (Will) Papers, 1928-1961")
   end
 
-  it "maps remote_files" do
-    expect(mapper.remote_files)
-      .to contain_exactly(url: match(/clusc_1_1_00010432a\.tif/))
-  end
-
   context 'with a blank filename' do
     let(:metadata) do
       { "Item ARK" => "21198/zz0002nq4w",
