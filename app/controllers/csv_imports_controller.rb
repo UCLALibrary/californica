@@ -20,6 +20,7 @@ class CsvImportsController < ApplicationController
 
   def create
     @csv_import.user = current_user
+    @csv_import.import_file_path = '/opt/data'
     preserve_cache
     if @csv_import.save
       @csv_import.queue_start_job
