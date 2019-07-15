@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe CalifornicaImporter, :clean, inline_jobs: true do
-  subject(:importer) { described_class.new(csv_import) }
+  subject(:importer) { described_class.new(csv_import, info_stream: [], error_stream: []) }
   let(:csv_import) { FactoryBot.create(:csv_import, user: user, manifest: manifest) }
   let(:manifest) { Rack::Test::UploadedFile.new(Rails.root.join(csv_path), 'text/csv') }
   let(:user) { FactoryBot.create(:admin) }
@@ -11,8 +11,6 @@ RSpec.describe CalifornicaImporter, :clean, inline_jobs: true do
 
   # Cleanup log files after each test run
   after do
-    File.delete(importer.ingest_log_filename) if File.exist? importer.ingest_log_filename
-    File.delete(importer.error_log_filename) if File.exist? importer.error_log_filename
     File.delete(ENV['MISSING_FILE_LOG']) if File.exist?(ENV['MISSING_FILE_LOG'])
   end
 
@@ -32,17 +30,9 @@ RSpec.describe CalifornicaImporter, :clean, inline_jobs: true do
       expect(Work.last.date_uploaded).not_to be_nil
     end
 
-    it "has an ingest log" do
-      expect(importer.ingest_log).to be_kind_of(Logger)
-    end
-
-    it "has an error log" do
-      expect(importer.error_log).to be_kind_of(Logger)
-    end
-
     it "records the time it took to ingest" do
       importer.import
-      expect(File.readlines(importer.ingest_log_filename).each(&:chomp!).last).to match(/elapsed_time/)
+      expect(importer.info_stream.join('\n')).to match(/elapsed_time/)
     end
 
     context 'when the collection doesn\'t exist yet' do

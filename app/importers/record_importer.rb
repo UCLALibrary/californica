@@ -5,12 +5,15 @@
 class RecordImporter < Darlingtonia::HyraxRecordImporter
   attr_reader :actor_record_importer
   attr_reader :collection_record_importer
+  attr_reader :info_stream, :error_stream
 
   def initialize(error_stream:, info_stream:, attributes: {})
-    @actor_record_importer = ::ActorRecordImporter.new(error_stream: error_stream, info_stream: info_stream, attributes: attributes)
-    @collection_record_importer = ::CollectionRecordImporter.new(error_stream: error_stream, info_stream: info_stream, attributes: attributes)
+    @info_stream = info_stream
+    @error_stream = error_stream
+    @actor_record_importer = ::ActorRecordImporter.new(error_stream: @error_stream, info_stream: @info_stream, attributes: attributes)
+    @collection_record_importer = ::CollectionRecordImporter.new(error_stream: @error_stream, info_stream: @info_stream, attributes: attributes)
 
-    super(error_stream: error_stream, info_stream: info_stream, attributes: attributes)
+    super(error_stream: @error_stream, info_stream: @info_stream, attributes: attributes)
   end
 
   def import(record:)

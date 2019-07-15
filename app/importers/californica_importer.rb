@@ -2,16 +2,17 @@
 
 # Import CSV files according to UCLA ingest rules
 class CalifornicaImporter
-  attr_reader :error_log, :ingest_log, :depositor_id, :import_file_path
+  attr_reader :error_stream, :info_stream, :depositor_id, :import_file_path
 
   # @param [CsvImport] csv_import
-  def initialize(csv_import)
+  def initialize(csv_import, error_stream: Darlingtonia.config.default_error_stream, info_stream: Darlingtonia.config.default_info_stream)
+    @info_stream = info_stream
+    @error_stream = error_stream
     @csv_import = csv_import
     @csv_file = csv_import.manifest.to_s
     @import_file_path = csv_import.import_file_path
     @depositor_id = csv_import.user_id
     raise "Cannot find expected input file #{@csv_file}" unless File.exist?(@csv_file)
-    setup_logging
   end
 
   def import
@@ -41,20 +42,5 @@ class CalifornicaImporter
 
   def timestamp
     @timestamp ||= Time.zone.now.strftime('%Y-%m-%d-%H-%M-%S')
-  end
-
-  def ingest_log_filename
-    Rails.root.join('log', "ingest_#{@csv_import.id}.log").to_s
-  end
-
-  def error_log_filename
-    Rails.root.join('log', "errors_#{@csv_import.id}.log").to_s
-  end
-
-  def setup_logging
-    @ingest_log   = Logger.new(ingest_log_filename)
-    @error_log    = Logger.new(error_log_filename)
-    @info_stream  = CalifornicaLogStream.new(logger: @ingest_log, severity: Logger::INFO)
-    @error_stream = CalifornicaLogStream.new(logger: @error_log,  severity: Logger::ERROR)
   end
 end
