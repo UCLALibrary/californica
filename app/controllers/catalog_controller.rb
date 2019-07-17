@@ -102,6 +102,7 @@ class CatalogController < ApplicationController
 
     config.add_show_field solr_name('alternative_title', :stored_searchable)
     config.add_show_field solr_name('architect', :stored_searchable)
+    config.add_show_field 'author_tesim'
     config.add_show_field solr_name('caption', :stored_searchable)
     config.add_show_field solr_name('dimensions', :stored_searchable)
     config.add_show_field solr_name('extent', :stored_searchable)
@@ -160,6 +161,14 @@ class CatalogController < ApplicationController
       # Solr parameter de-referencing like $title_qf.
       # See: http://wiki.apache.org/solr/LocalParams
       solr_name = solr_name('contributor', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('author') do |field|
+      solr_name = solr_name('author', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name

@@ -15,6 +15,10 @@ module UclaMetadata
       index.as :stored_searchable
     end
 
+    property :author, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/aut') do |index|
+      index.as :stored_searchable
+    end
+
     property :caption, predicate: ::RDF::Vocab::SCHEMA.caption do |index|
       index.as :stored_searchable
     end

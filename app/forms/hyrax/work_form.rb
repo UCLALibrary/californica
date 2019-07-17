@@ -9,6 +9,7 @@ module Hyrax
       :alternative_title,
       :architect,
       :ark,
+      :author,
       :caption,
       :dimensions,
       :extent,

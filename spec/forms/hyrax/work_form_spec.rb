@@ -9,6 +9,7 @@ RSpec.describe Hyrax::WorkForm do
     expect(form.terms).to include(
       :alternative_title,
       :architect,
+      :author,
       :caption,
       :dimensions,
       :extent,

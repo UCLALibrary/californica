@@ -35,6 +35,7 @@ OPTIONAL_HEADERS = [
   'AltTitle.other',
   'AltTitle.uniform',
   'AltTitle.translated',
+  'Author',
   'Coverage.geographic',
   'Date.creation',
   'Date.normalized',

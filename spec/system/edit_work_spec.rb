@@ -11,6 +11,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       alternative_title: ['Alternative title'],
       architect: ['Old Architect'],
       ark: 'ark:/abc/3456',
+      author: ['Old Author'],
       caption: ['Old Cap'],
       publisher: ['Old Pub'],
       date_created: ['Old Creation Date'],
