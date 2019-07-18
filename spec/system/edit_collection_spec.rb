@@ -40,6 +40,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       rights_holder: ['Old Rights Holder'],
       photographer: ['Old Photographer'],
       services_contact: ['Old Services Contact'],
+      suummary: ['Old Summary'],
       support: ['Old Supprt'],
       uniform_title: ['Old Uniform title']
     }

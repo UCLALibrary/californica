@@ -54,6 +54,7 @@ RSpec.describe CalifornicaMapper do
       "Subject" => "Express highways--California--Los Angeles County--Design and construction|~|" \
         "Eminent domain--California--Los Angeles|~|Demonstrations--California--Los Angeles County|~|" \
         "Transportation|~|Government|~|Activism|~|Interstate 10", # subject
+      "Summary" => "Summary", # summary
       "Support" => "Support", # support
       "Title" => "Protesters with signs in gallery of Los Angeles County Supervisors " \
         "hearing over eminent domain for construction of Harbor Freeway, Calif., 1947", # title
