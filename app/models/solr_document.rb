@@ -30,6 +30,10 @@ class SolrDocument
     self[:alternative_title_tesim]
   end
 
+  def author
+    self[:author_tesim]
+  end
+
   def ark
     self[:ark_ssi]
   end

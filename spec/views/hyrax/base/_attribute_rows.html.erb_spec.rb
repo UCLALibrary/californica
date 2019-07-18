@@ -13,6 +13,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   let(:work)          do
     Work.new(title: ['title'],
              ark: 'ark:/abcde/1234567',
+             author: ['author'],
              description: ['description'],
              extent: ['extent'],
              caption: ['caption'],
@@ -39,6 +40,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
     allow(ability).to receive(:admin?) { true }
   end
 
+  it 'has author' do
+    expect(page).to match(/author/)
+  end
   it 'has caption' do
     expect(page).to match(/caption/)
   end

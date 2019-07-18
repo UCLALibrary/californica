@@ -11,6 +11,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
     {
       alternative_title: ['Alternative Title'],
       architect: ['Old Architect'],
+      author: ['Old Author'],
       date_created: ['Old Creation Date'],
       description: ['Old Desc'],
       dimensions: ['Old Dim'],

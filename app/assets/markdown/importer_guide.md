@@ -12,6 +12,7 @@
 - [AltIdentifier.local](#altidentifier.local)
 - [AltTitle.other](#alttitle.other)
 - [AltTitle.uniform](#alttitle.uniform)
+- [Author](#author)
 - [Coverage.geographic](#coverage.geographic)
 - [Date.creation](#date.creation)
 - [Date.normalized](#date.normalized)
@@ -127,6 +128,8 @@ Examples:
 accepts AltTitle.translated
 
 ### AltTitle.uniform
+
+### Author
 
 ### Coverage.geographic
 
