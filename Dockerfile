@@ -1,12 +1,5 @@
 FROM ruby:2.5
 
-# Install fits
-RUN mkdir /fits
-WORKDIR /fits
-ADD https://github.com/harvard-lts/fits/releases/download/1.4.0/fits-1.4.0.zip /fits/
-RUN unzip fits-1.4.0.zip -d /fits
-ENV PATH "/fits:$PATH"
-
 RUN apt-get update -qq
 # Add https support to apt to download yarn & newer node
 RUN apt-get install -y  apt-transport-https

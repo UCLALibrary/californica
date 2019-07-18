@@ -10,11 +10,6 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
   let(:user)       { FactoryBot.create(:admin) }
   let(:collection) { Collection.find_or_create_by_ark('ark:/111/222') }
 
-  # Cleanup log files after each test run
-  after do
-    File.delete(ENV['MISSING_FILE_LOG']) if File.exist?(ENV['MISSING_FILE_LOG'])
-  end
-
   context "importing the same object twice" do
     let(:first_csv_import) { FactoryBot.create(:csv_import, user: user, manifest: first_manifest) }
     let(:first_manifest) { Rack::Test::UploadedFile.new(File.join(fixture_path, 'coordinates_example.csv'), 'text/csv') }

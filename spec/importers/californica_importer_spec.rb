@@ -9,11 +9,6 @@ RSpec.describe CalifornicaImporter, :clean, inline_jobs: true do
   let(:user) { FactoryBot.create(:admin) }
   let(:csv_path) { 'spec/fixtures/example.csv' }
 
-  # Cleanup log files after each test run
-  after do
-    File.delete(ENV['MISSING_FILE_LOG']) if File.exist?(ENV['MISSING_FILE_LOG'])
-  end
-
   describe 'CSV import' do
     it 'has an import_file_path' do
       expect(importer.import_file_path).to eq csv_import.import_file_path
@@ -114,15 +109,6 @@ RSpec.describe CalifornicaImporter, :clean, inline_jobs: true do
             .and(change { Collection.count }.to(1))
           expect(collection.title).to eq ['Los Angeles Daily News Negatives']
         end
-      end
-    end
-
-    context 'when the image file is missing' do
-      let(:csv_path) { 'spec/fixtures/example-missingimage.csv' }
-
-      it "records missing files" do
-        importer.import
-        expect(File.readlines(ENV['MISSING_FILE_LOG']).each(&:chomp!).last).to match(/missing_file.tif/)
       end
     end
   end

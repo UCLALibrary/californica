@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe CalifornicaMapper do
-  subject(:mapper) { described_class.new(import_file_path: fixture_path) }
+  subject(:mapper) { described_class.new }
 
   let(:metadata) do
     { "AltTitle.other" => "alternative title", # alternative_title
@@ -60,7 +60,6 @@ RSpec.describe CalifornicaMapper do
   end
 
   before { mapper.metadata = metadata }
-  after { File.delete(ENV['MISSING_FILE_LOG']) if File.exist?(ENV['MISSING_FILE_LOG']) }
 
   it "maps resource type to local authority values, if possible" do
     expect(mapper.resource_type).to contain_exactly(
@@ -76,57 +75,6 @@ RSpec.describe CalifornicaMapper do
 
   it "maps the collection (relation.isPartOf) field" do
     expect(mapper.map_field(:dlcs_collection_name)).to contain_exactly("Connell (Will) Papers, 1928-1961")
-  end
-
-  context 'with a blank filename' do
-    let(:metadata) do
-      { "Item ARK" => "21198/zz0002nq4w",
-        "Title" => "Protesters with signs in gallery of Los Angeles County Supervisors" \
-        "hearing over eminent domain for construction of Harbor Freeway, Calif., 1947",
-        "Type.typeOfResource" => "still image",
-        "Subject" => "Express highways--California--Los Angeles County--Design and construction|~|" \
-        "Eminent domain--California--Los Angeles|~|Demonstrations--California--Los Angeles County|~|" \
-        "Transportation|~|Government|~|Activism|~|Interstate 10",
-        "Publisher.publisherName" => "Los Angeles Daily News",
-        "Format.medium" => "1 photograph",
-        "Rights.countryCreation" => "US",
-        "Name.repository" => "University of California, Los Angeles. $b Library Special Collections",
-        "Description.caption" => "This example does not have a caption.",
-        # "File Name" => nil,
-        "Coverage.geographic" => "Los Angeles (Calif.)",
-        "Name.subject" => "Los Angeles County (Calif.). $b Board of Supervisors",
-        "Photographer" => "Ansel Adams",
-        "Language" => "English",
-        "Uniform title" => "Protesters with signs in gallery of Los Angeles County Supervisors",
-        "Support" => "Support" }
-    end
-
-    it "does not throw an error if File Name is empty" do
-      expect(mapper.remote_files).to eq []
-    end
-
-    it "logs the missing file" do
-      mapper.remote_files
-      File.open(ENV['MISSING_FILE_LOG']) do |file|
-        expect(file.read).to eq "Work ark:/21198/zz0002nq4w is missing a filename\n"
-      end
-    end
-  end
-
-  context 'with a blank filename for a "Collection" row' do
-    let(:metadata) do
-      { "Item ARK" => "123/abc",
-        "Object Type" => "Collection",
-        "Title" => "Collection Title" }
-    end
-
-    it 'doesn\'t log a missing file' do
-      FileUtils.touch(ENV['MISSING_FILE_LOG'])
-      expect(mapper.remote_files).to eq []
-      File.open(ENV['MISSING_FILE_LOG']) do |file|
-        expect(file.read).to eq ""
-      end
-    end
   end
 
   describe '#fields' do
@@ -156,7 +104,6 @@ RSpec.describe CalifornicaMapper do
         :place_of_origin,
         :publisher,
         :repository,
-        :remote_files,
         :resource_type,
         :rights_country,
         :rights_holder,

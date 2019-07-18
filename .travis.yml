@@ -25,10 +25,6 @@ env:
 before_install:
   - gem update --system
   - gem install bundler:1.17.3
-  - curl -sLO https://projects.iq.harvard.edu/files/fits/files/fits-0.8.6_1.zip
-  - unzip fits-0.8.6_1.zip
-  - chmod +x fits-0.8.6/fits.sh
-  - export PATH="$(pwd)/fits-0.8.6:$PATH"
 before_script:
   - bundle exec rake db:create
   - ln --symbolic /usr/lib/chromium-browser/chromedriver "${HOME}/bin/chromedriver"
