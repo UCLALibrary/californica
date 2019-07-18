@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CalifornicaMapper < Darlingtonia::HashMapper
-  attr_reader :missing_file_log, :import_file_path, :row_number
+  attr_reader :row_number
 
   CALIFORNICA_TERMS_MAP = {
     alternative_title: ["AltTitle.other",
@@ -58,8 +58,6 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   DELIMITER = '|~|'
 
   def initialize(attributes = {})
-    @missing_file_log = ENV['MISSING_FILE_LOG'] || "#{::Rails.root}/log/missing_files_#{Rails.env}"
-    @import_file_path = attributes[:import_file_path] || ENV['IMPORT_FILE_PATH'] || '/opt/data'
     @row_number = attributes[:row_number]
     super()
   end
@@ -77,7 +75,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
   def fields
     # The fields common to all object types
-    common_fields = CALIFORNICA_TERMS_MAP.keys + [:remote_files, :visibility, :member_of_collections_attributes, :license]
+    common_fields = CALIFORNICA_TERMS_MAP.keys + [:visibility, :member_of_collections_attributes, :license]
     # Pages additionally have a field :in_works_ids, which defines their parent work
     return common_fields + [:in_works_ids] if ['ChildWork', 'Page'].include?(metadata["Object Type"])
     common_fields
@@ -89,33 +87,6 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
   def collection?
     object_type&.downcase&.chomp == 'collection'
-  end
-
-  ##
-  # Take a filename and:
-  # 1) Check that it exists. Log it to a missing files log if it doesn't.
-  # 2) Turn the filename into a file:// url
-  # 3) Pass it to the actor stack in the remote_files param. This means that
-  # it will be processed by the CreateWithRemoteFilesActor
-  # Using the remote_files param to ingest local files is misleading.
-  # However, it lets us fetch the file from disk in a background job
-  # instead of creating a Hyrax::UploadedFile object while the CSV is
-  # being parsed, which gives us a performance advantage.
-  def remote_files
-    return [] if collection?
-    if metadata['File Name'].nil?
-      File.open(@missing_file_log, 'a') { |file| file.puts "Work #{ark} is missing a filename" }
-      return []
-    end
-    file_name = file_uri_base_path.join(master_file_path).to_s
-    file_exists = File.exist?(file_name)
-    return_value = []
-    if file_exists
-      return_value = [{ url: file_uri_for(name: metadata['File Name']) }]
-    else
-      File.open(@missing_file_log, 'a') { |file| file.puts "Work #{ark} has an invalid file: #{file_name} not found" }
-    end
-    return_value
   end
 
   def visibility
@@ -285,18 +256,4 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     record_page_sequence
     [parent_work.id]
   end
-
-  private
-
-    def file_uri_for(name:)
-      uri      = URI('file:///')
-      uri.path = file_uri_base_path.join(name).to_s
-      uri.to_s
-    end
-
-    # Prefer the import_file_path that's been explicitly passed to this instance of CalifornicaMapper
-    # if it exists.
-    def file_uri_base_path
-      Pathname.new(@import_file_path)
-    end
 end

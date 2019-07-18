@@ -10,7 +10,6 @@ services:
       - solr
       - fedora_test
       - solr_test
-      - fits
     env_file:
       - ./docker.env
     stdin_open: true
@@ -98,11 +97,6 @@ services:
       dockerfile: docker/Dockerfile.solr
     ports:
       - "8985:8983"
-
-  fits:
-    image: harvardlts/fitsservlet_container:latest
-    ports:
-      - "8889:8080"
 
   # iiif:
   #   image: uclalibrary/cantaloupe
