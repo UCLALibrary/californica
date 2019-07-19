@@ -23,7 +23,7 @@ Metrics/ClassLength:
   Enabled: true
   Exclude:
     - 'app/controllers/catalog_controller.rb'
-    - 'app/controllers/catalog_controller.rb'
+    - 'app/models/solr_document.rb'
     - 'app/importers/californica_mapper.rb'
     - 'app/importers/californica_mapper.rb'
     - 'app/jobs/hyrax/characterize_job.rb'
@@ -41,7 +41,7 @@ Metrics/BlockLength:
     - 'lib/tasks/purge.rake'
     - app/models/ucla_metadata.rb
     - app/views/manifest.json.jbuilder
-    
+
 Metrics/CyclomaticComplexity:
   Enabled: true
   Exclude:
@@ -101,7 +101,7 @@ RSpec/ExampleLength:
     - 'spec/uploaders/csv_manifest_validator_spec.rb'
     - 'spec/views**/*'
     - 'spec/views/manifest.json.jbuilder_spec.rb'
-    
+
 RSpec/LetSetup:
   Enabled: false
 
