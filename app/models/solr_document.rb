@@ -126,10 +126,6 @@ class SolrDocument
     self[:services_contact_ssm]
   end
 
-  def summary
-    self[Solrizer.solr_name('Summary')]
-  end
-
   def support
     self[Solrizer.solr_name('support')]
   end

@@ -20,7 +20,6 @@ RSpec.describe 'Search the catalog', :clean, type: :system, js: true do
       photographer: ['Sherlock'],
       place_of_origin: ['London'],
       subject: ['fruit'],
-      summary: ['Edible Fruit'],
       support: ['Support'],
       uniform_title: ['Yellow Banana'],
       visibility: visible
@@ -42,7 +41,6 @@ RSpec.describe 'Search the catalog', :clean, type: :system, js: true do
       photographer: ['Watson'],
       place_of_origin: ['Scotland Yard'],
       subject: ['veg'],
-      summary: ['Edible Vegetable'],
       support: ['UCLA'],
       visibility: visible
     )
