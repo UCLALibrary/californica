@@ -37,7 +37,6 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       rights_holder: ['Old Rights Holder'],
       rights_statement: ['http://vocabs.library.ucla.edu/rights/copyrighted'], # "copyrighted"
       subject: ['Old Subj'],
-      summary: ['Old Summary'],
       support: ['Old Support'],
       title: ['Old Title'],
       uniform_title: ['Old Uniform title']

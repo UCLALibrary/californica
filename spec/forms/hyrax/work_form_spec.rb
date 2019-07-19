@@ -27,7 +27,6 @@ RSpec.describe Hyrax::WorkForm do
       :repository,
       :rights_country,
       :rights_holder,
-      :summary,
       :support,
       :uniform_title
     )
