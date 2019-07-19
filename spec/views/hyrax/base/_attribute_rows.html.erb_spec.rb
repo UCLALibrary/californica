@@ -32,6 +32,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
              resource_type: ['resource_type'],
              rights_country: ['rights_country'],
              rights_holder: ['rights_holder'],
+             summary: ['summary'],
              support: ['support'],
              uniform_title: ['Old Uniform title'])
   end
