@@ -12,12 +12,13 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       architect: ['Old Architect'],
       ark: 'ark:/abc/3456',
       author: ['Old Author'],
-      caption: ['Old Cap'],
-      publisher: ['Old Pub'],
+      caption: ['Old Caption'],
+      contributor: ['Old Contributor'],
+      creator: ['Old Creator'],
       date_created: ['Old Creation Date'],
       description: ['Old Desc'],
-      extent: ['Old Extent'],
       dimensions: ['Old Dim'],
+      extent: ['Old Extent'],
       funding_note: ['Old Fund Note'],
       genre: ['Old Genre'],
       language: ['Old Lang'],
@@ -31,12 +32,14 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       normalized_date: ['Old Normalized Date'],
       photographer: ['Old Photographer'],
       place_of_origin: ['Old Place of origin'],
+      publisher: ['Old Pub'],
       repository: ['Old Repository'],
       resource_type: ['http://id.loc.gov/vocabulary/resourceTypes/img'], # "image"
       rights_country: ['Old Rights Country'],
       rights_holder: ['Old Rights Holder'],
       rights_statement: ['http://vocabs.library.ucla.edu/rights/copyrighted'], # "copyrighted"
       subject: ['Old Subj'],
+      summary: ['Old Summary'],
       support: ['Old Support'],
       title: ['Old Title'],
       uniform_title: ['Old Uniform title']
@@ -63,12 +66,13 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(first(:css, '#work_description').value).to eq 'Old Desc'
       expect(find_field('Alternative title').value).to eq 'Alternative title'
       expect(find_field('Architect').value).to eq 'Old Architect'
+      expect(find_field('Author').value).to eq 'Old Author'
       expect(find_field('Date Created').value).to eq 'Old Creation Date'
       expect(find_field('Subject').value).to eq 'Old Subj'
       expect(find_field('Language').value).to eq 'Old Lang'
       expect(find_field('Resource type').value).to eq ['http://id.loc.gov/vocabulary/resourceTypes/img']
       expect(find_field('Extent').value).to eq 'Old Extent'
-      expect(find_field('Caption').value).to eq 'Old Cap'
+      expect(find_field('Caption').value).to eq 'Old Caption'
       expect(find_field('Dimensions').value).to eq 'Old Dim'
       expect(find_field('Funding Note').value).to eq 'Old Fund Note'
       expect(find_field('Genre').value).to eq 'Old Genre'
@@ -86,6 +90,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Location').value).to eq 'Old Loc'
       expect(find_field('Rights (country of creation)').value).to eq 'Old Rights Country'
       expect(find_field('Rights Holder').value).to eq 'Old Rights Holder'
+      expect(find_field('Summary').value).to eq 'Old Summary'
       expect(find_field('Uniform title').value).to eq 'Old Uniform title'
 
       # Edit some fields in the form

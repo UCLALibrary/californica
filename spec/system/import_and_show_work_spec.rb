@@ -75,6 +75,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
       expect(page).to have_content "Creative Commons BY Attribution 4.0 International" # License assigned at import time for LADNN collection
       expect(page).to have_content "Place of origin" # place_of_origin
       expect(page).to have_content "Support" # support
+      expect(page).to have_content "Summary" # summary
       expect(page).to have_content "Uniform title" # uniform_title
       expect(page).to have_content "clusc_1_1_00010432a.tif" # master_file_path
     end

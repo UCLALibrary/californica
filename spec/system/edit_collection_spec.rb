@@ -40,6 +40,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       rights_holder: ['Old Rights Holder'],
       photographer: ['Old Photographer'],
       services_contact: ['Old Services Contact'],
+      summary: ['Old Summary'],
       support: ['Old Supprt'],
       uniform_title: ['Old Uniform title']
     }
@@ -64,7 +65,6 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       visit "/dashboard/collections/#{collection.id}/edit"
 
       # When the form first loads, it should contain all the old values
-      expect(find_field('Title').value).to eq 'Old Title'
       # expect(page.all(:css, 'div.select.work_rights_statement/select').first.text).to eq 'copyrighted'
       expect(first(:css, '#collection_description').value).to eq 'Old Desc'
       click_on 'Additional fields'
@@ -91,6 +91,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Rights Holder').value).to eq 'Old Rights Holder'
       expect(find_field('Photographer').value).to eq 'Old Photographer'
       expect(find_field('Rights services contact').value).to eq 'Old Services Contact'
+      expect(find_field('Summary').value).to eq 'Old Summary'
       expect(find_field('Uniform title').value).to eq 'Old Uniform title'
 
       #
@@ -104,7 +105,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
 
       # Now the form should have the new values
       expect(page).to     have_content 'New Title'
-      expect(page).to_not have_content 'Old Title'
+      expect(page).not_to have_content 'Old Title'
       expect(page).to     have_content 'New Description'
       expect(page).to_not have_content 'Old Desc'
       col = Collection.last
