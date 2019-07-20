@@ -29,6 +29,7 @@ module Hyrax
       :resource_type,
       :rights_country,
       :rights_holder,
+      :summary,
       :support,
       :uniform_title
     ]

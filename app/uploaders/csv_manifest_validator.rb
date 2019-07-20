@@ -62,6 +62,7 @@ OPTIONAL_HEADERS = [
   'Rights.rightsHolderContact',
   'Rights.servicesContact',
   'Subject',
+  'Summary',
   'Support',
   'Type.genre',
   'Type.typeOfResource',
