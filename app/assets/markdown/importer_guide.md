@@ -37,6 +37,7 @@
 - [Rights.countryCreation](#rights.countrycreation)
 - [Rights.rightsHolderContact](#rights.rightsholdercontact)
 - [Subject](#subject)
+- [Summary](#summary)
 - [Support](#support)
 - [Type.genre](#type.genre)
 - [Type.typeOfResource](#type.typeofresource)
@@ -178,6 +179,8 @@ accepts AltTitle.translated
 ### Rights.rightsHolderContact
 
 ### Subject
+
+### Summary
 
 ### Support
 
