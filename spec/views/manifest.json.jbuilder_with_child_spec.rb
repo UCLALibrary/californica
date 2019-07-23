@@ -43,12 +43,12 @@ RSpec.describe "manifest", type: :view do
               "motivation": "sc:painting",
               "resource": {
                 "@type": "dctypes:Image",
-                "@id": "http://test.host/images/#{file_id}/full/600,/0/default.jpg",
+                "@id": "#{ENV['IIIF_SERVER_URL']}#{file_id}/full/600,/0/default.jpg",
                 "width": 640,
                 "height": 480,
                 "service": {
                   "@context": "http://iiif.io/api/image/2/context.json",
-                  "@id": "http://test.host/images/#{file_id}",
+                  "@id": "#{ENV['IIIF_SERVER_URL']}#{file_id}",
                   "profile": "http://iiif.io/api/image/2/level2.json"
                 }
               },

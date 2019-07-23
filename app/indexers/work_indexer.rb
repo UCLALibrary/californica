@@ -25,6 +25,7 @@ class WorkIndexer < Hyrax::WorkIndexer
       solr_doc['sort_title_ssort'] = object.title.first
       solr_doc['ursus_id_ssi'] = Californica::IdGenerator.blacklight_id_from_ark(object.ark)
       solr_doc['year_isim'] = years
+      solr_doc['thumbnail_url_ss'] = thumbnail_url
     end
   end
 
@@ -58,6 +59,20 @@ class WorkIndexer < Hyrax::WorkIndexer
       term = rights_terms.find { |entry| entry[:id] == rs }
       term.blank? ? rs : term[:label]
     end
+  end
+
+  def thumbnail_url
+    # this record has an image path attached
+    master_file_path = object.master_file_path
+    children = Array.wrap(object.members.to_a.clone)
+    until master_file_path || children.empty?
+      child = children.shift
+      next unless child.respond_to? :master_file_path
+      master_file_path = child.master_file_path
+    end
+
+    return nil unless master_file_path
+    "#{ENV['IIIF_SERVER_URL']}#{CGI.escape(master_file_path)}/full/!200,200/0/default.jpg"
   end
 
   # The 'to_a' is needed to force ActiveTriples::Relation to resolve into the String value(s), else you get an error trying to parse the date.
