@@ -7,13 +7,12 @@ AllCops:
     - 'db/**/*.rb'
     - 'vendor/**/*'
     - 'tmp/**/*'
-    - app/forms/hyrax/californica_collections_form.rb
 
 Metrics/AbcSize:
   Enabled: true
   Max: 30
   Exclude:
-    - app/importers/californica_csv_cleaner.rb
+    - 'app/importers/californica_csv_cleaner.rb'
     - app/jobs/hyrax/characterize_job.rb
     - app/importers/actor_record_importer.rb
     - app/uploaders/csv_manifest_validator.rb
@@ -23,13 +22,12 @@ Metrics/AbcSize:
 Metrics/ClassLength:
   Enabled: true
   Exclude:
-    - app/models/solr_document.rb
-    - app/controllers/catalog_controller.rb
-    - app/controllers/catalog_controller.rb
-    - app/importers/californica_mapper.rb
-    - app/importers/californica_mapper.rb
-    - app/jobs/hyrax/characterize_job.rb
-    - app/uploaders/csv_manifest_validator.rb
+    - 'app/controllers/catalog_controller.rb'
+    - 'app/controllers/catalog_controller.rb'
+    - 'app/importers/californica_mapper.rb'
+    - 'app/importers/californica_mapper.rb'
+    - 'app/jobs/hyrax/characterize_job.rb'
+    - 'app/uploaders/csv_manifest_validator.rb'
 
 Metrics/BlockLength:
   Enabled: true
@@ -65,15 +63,13 @@ Metrics/MethodLength:
   Enabled: true
   Max: 20
   Exclude:
-    - app/models/solr_document.rb
-    - app/importers/californica_csv_parser.rb
+    - 'app/importers/californica_csv_parser.rb'
     - app/importers/actor_record_importer.rb
     - app/forms/hyrax/californica_collections_form.rb
-    - app/importers/csv_validator.rb
+    - 'app/importers/csv_validator.rb'
     - app/uploaders/csv_manifest_validator.rb
     - app/indexers/collection_indexer.rb
     - app/models/concerns/discoverable.rb
-    - app/presenters/hyrax/californica_collection_presenter.rb
 
 Metrics/PerceivedComplexity:
   Enabled: true

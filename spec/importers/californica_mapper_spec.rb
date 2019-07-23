@@ -57,8 +57,7 @@ RSpec.describe CalifornicaMapper do
       "Support" => "Support", # support
       "Title" => "Protesters with signs in gallery of Los Angeles County Supervisors " \
         "hearing over eminent domain for construction of Harbor Freeway, Calif., 1947", # title
-      "AltTitle.uniform" => "Protesters with signs in gallery of Los Angeles County Supervisors", # uniform_title
-      "Summary" => "Protesters with signs" } # summary
+      "AltTitle.uniform" => "Protesters with signs in gallery of Los Angeles County Supervisors" } # uniform_title
   end
 
   before { mapper.metadata = metadata }
@@ -112,7 +111,6 @@ RSpec.describe CalifornicaMapper do
         :rights_statement,
         :services_contact,
         :subject,
-        :summary,
         :support,
         :title,
         :uniform_title,
