@@ -7,8 +7,10 @@ namespace :californica do
 
       n = FileSet.count
       FileSet.all.each_with_index do |fs, i|
-        print "#{i} / #{n}\r"
-        $stdout.flush
+        if (i % 100).zero?
+          print "#{i} / #{n}\r"
+          $stdout.flush
+        end
 
         next unless fs.import_url
         computed_path = fs.import_url.match(/Masters\/dlmasters\/.*$/).to_s
@@ -18,6 +20,9 @@ namespace :californica do
           parent.save if parent.changed?
         end
       end
+
+      puts 'Reindexing...'
+      Rake::Task["reindex"].invoke
 
       puts "AFTER: #{Work.where(master_file_path: nil).count} Works, #{ChildWork.where(master_file_path: nil).count} ChildWorks have no master_file_path"
     end
