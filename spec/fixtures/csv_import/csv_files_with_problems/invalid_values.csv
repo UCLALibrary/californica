@@ -2,3 +2,4 @@ Object Type,Title,Item ARK,Parent ARK,Rights.copyrightStatus,File Name,Type.type
 Work,Invalid rights_statement,ark:/123/defg,ark:/123/abc,invalid rights statement,clusc_1_1_00010432a.tif,still image
 Work,Invalid resource_type,ark:/123/hijk,ark:/123/abc,copyrighted,clusc_1_1_00010432a.tif,invalid type|~|still image
 Work,Invalid resource_type #2,ark:/123/lmnop,ark:/123/abc,copyrighted|~|unknown,clusc_1_1_00010432a.tif,invalid type
+InvalidWork,Invalid object_type,ark:/123/qrstuv,ark:/123/abc,copyrighted|~|unknown,clusc_1_1_00010432a.tif,still image
