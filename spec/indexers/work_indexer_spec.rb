@@ -239,4 +239,46 @@ RSpec.describe WorkIndexer do
       expect(solr_document['sort_title_ssort']).to eq 'Primary title'
     end
   end
+
+  describe '#thumbnail_url' do
+    let(:attributes) do
+      {
+        ark: 'ark:/123/456',
+        master_file_path: 'master/file/path.jpg'
+      }
+    end
+    let(:expected_url) { "#{ENV['IIIF_SERVER_URL']}master%2Ffile%2Fpath.jpg/full/!200,200/0/default.jpg" }
+
+    context 'when the work has an image path' do
+      it 'uses that image' do
+        expect(solr_document['thumbnail_url_ss']).to eq expected_url
+      end
+    end
+
+    context 'when the work has no image' do
+      let(:attributes) do
+        {
+          ark: 'ark:/123/456'
+        }
+      end
+
+      it 'asks the document\'s children' do
+        child_work = ChildWork.new(ark: 'ark:/abc/xyz', master_file_path: 'master/file/path.jpg')
+        allow(work).to receive(:members).and_return([child_work])
+        expect(solr_document['thumbnail_url_ss']).to eq expected_url
+      end
+    end
+
+    context 'when the document has neither an image path nor children' do
+      let(:attributes) do
+        {
+          ark: 'ark:/123/456'
+        }
+      end
+
+      it 'returns nil' do
+        expect(solr_document['thumbnail_url_ss']).to eq nil
+      end
+    end
+  end
 end
