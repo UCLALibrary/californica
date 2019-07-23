@@ -39,15 +39,15 @@ class SolrDocument
   end
 
   def architect
-    self[Solrizer.solr_name('architect')]
+    self[:architect_tesim]
   end
 
   def extent
-    self[Solrizer.solr_name('extent')]
+    self[:extent_tesim]
   end
 
   def caption
-    self[Solrizer.solr_name('caption')]
+    self[:caption_tesim]
   end
 
   def geographic_coordinates
@@ -55,7 +55,7 @@ class SolrDocument
   end
 
   def dimensions
-    self[Solrizer.solr_name('dimensions')]
+    self[:dimensions_tesim]
   end
 
   def dlcs_collection_name
@@ -63,11 +63,11 @@ class SolrDocument
   end
 
   def funding_note
-    self[Solrizer.solr_name('funding_note')]
+    self[:funding_note_tesim]
   end
 
   def genre
-    self[Solrizer.solr_name('genre')]
+    self[:genre_tesim]
   end
 
   def latitude
@@ -91,43 +91,47 @@ class SolrDocument
   end
 
   def medium
-    self[Solrizer.solr_name('medium')]
+    self[:medium_tesim]
   end
 
   def named_subject
-    self[Solrizer.solr_name('named_subject')]
+    self[:named_subject_tesim]
   end
 
   def normalized_date
-    self[Solrizer.solr_name('normalized_date')]
+    self[:normalized_date_tesim]
   end
 
   def photographer
-    self[Solrizer.solr_name('photographer')]
+    self[:photographer_tesim]
   end
 
   def place_of_origin
-    self[Solrizer.solr_name('place_of_origin')]
+    self[:place_of_origin_tesim]
   end
 
   def repository
-    self[Solrizer.solr_name('repository')]
+    self[:repository_tesim]
   end
 
   def rights_country
-    self[Solrizer.solr_name('rights_country')]
+    self[:rights_country_tesim]
   end
 
   def rights_holder
-    self[Solrizer.solr_name('rights_holder')]
+    self[:rights_holder_tesim]
   end
 
   def services_contact
     self[:services_contact_ssm]
   end
 
+  def summary
+    self[:summary_tesim]
+  end
+
   def support
-    self[Solrizer.solr_name('support')]
+    self[:support_tesim]
   end
 
   def uniform_title
