@@ -101,6 +101,8 @@ class CsvManifestValidator
     duplicate_headers
     unrecognized_headers
     validate_records
+  rescue => e
+    @errors << "#{e.class}: #{e.message}"
   end
 
   # One record per row
