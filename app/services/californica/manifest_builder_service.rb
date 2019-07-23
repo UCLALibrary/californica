@@ -1,19 +1,14 @@
 # frozen_string_literal: true
 module Californica
   class ManifestBuilderService
+    attr_accessor :curation_concern
+
     def initialize(curation_concern:)
       @curation_concern = curation_concern
-      @child_works = @curation_concern.ordered_members.to_a.select { |member| member.class == ChildWork || member.class == Work }
-      @file_sets = @curation_concern.ordered_members.to_a.select { |member| member.class == FileSet }
     end
 
-    def sets
-      sets = if @child_works.length >= 1
-               @child_works.each(&:file_sets) + @file_sets.each(&:files)
-             else
-               @file_sets.each(&:files)
-             end
-      sets
+    def image_concerns
+      @image_concerns ||= ([@curation_concern] + @curation_concern.ordered_members.to_a).select { |member| member.respond_to?(:master_file_path) && member.master_file_path }
     end
   end
 end

@@ -10,7 +10,7 @@ json.description @solr_doc.description.first
 json.sequences [''] do
   json.set! :@type, 'sc:Sequence'
   json.set! :@id, "#{@root_url}/sequence/normal"
-  json.canvases @sets do |child|
+  json.canvases @image_concerns do |child|
     json.set! :@id, "#{@root_url}/canvas/#{child.id}"
     json.set! :@type, 'sc:Canvas'
     json.label child.title.first
@@ -18,16 +18,8 @@ json.sequences [''] do
     json.width 640
     json.height 480
     json.images [child] do |child_image|
-      file_set_id = if child_image.try(:file_sets)
-                      child_image.file_sets.first.id
-                    else
-                      child_image.id
-                    end
-
-      original_file = ::FileSet.find(file_set_id).original_file
-
       url = Hyrax.config.iiif_image_url_builder.call(
-        original_file.id,
+        CGI.escape(child_image.master_file_path),
         request.base_url,
         Hyrax.config.iiif_image_size_default
       )
@@ -44,7 +36,7 @@ json.sequences [''] do
 
           # The base url for the info.json file
           info_url = Hyrax.config.iiif_info_url_builder.call(
-            original_file.id,
+            CGI.escape(child_image.master_file_path),
             ENV['IIIF_SERVER_URL'] || request.base_url
           )
 

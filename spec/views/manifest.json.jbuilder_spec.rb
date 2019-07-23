@@ -3,20 +3,20 @@ require "rails_helper"
 require 'cgi'
 
 RSpec.describe "manifest", type: :view do
-  let(:tif) { File.open(Rails.root.join('spec', 'fixtures', 'images', 'good', 'food.tif')) }
-  let(:work) { FactoryBot.create(:work, tif: tif) }
+  let(:master_file_path) { 'a/b.tif' }
+  let(:work) { FactoryBot.create(:work, master_file_path: master_file_path) }
   let(:solr_doc) { SolrDocument.find(work.id) }
-  let(:sets) { Californica::ManifestBuilderService.new(curation_concern: work).sets }
+  let(:image_concerns) { Californica::ManifestBuilderService.new(curation_concern: work).image_concerns }
 
   before do
     assign(:root_url, 'http://localhost:3000/manifest')
     assign(:solr_doc, solr_doc)
-    assign(:sets, sets)
+    assign(:image_concerns, image_concerns)
   end
 
   it "displays a valid IIIF Presentation API manifest" do
     render
-    file_id = CGI.escape(work.file_sets.first.original_file.id)
+    iiif_id = CGI.escape(work.master_file_path)
     doc = <<~HEREDOC
 {
   "@context": "http://iiif.io/api/presentation/2/context.json",
@@ -30,10 +30,10 @@ RSpec.describe "manifest", type: :view do
       "@id": "http://localhost:3000/manifest/sequence/normal",
       "canvases": [
         {
-          "@id": "http://localhost:3000/manifest/canvas/#{work.file_sets.first.id}",
+          "@id": "http://localhost:3000/manifest/canvas/#{work.id}",
           "@type": "sc:Canvas",
-          "label": null,
-          "description": null,
+          "label": "#{work.title.first}",
+          "description": "#{work.description.first}",
           "width": 640,
           "height": 480,
           "images": [
@@ -42,16 +42,16 @@ RSpec.describe "manifest", type: :view do
               "motivation": "sc:painting",
               "resource": {
                 "@type": "dctypes:Image",
-                "@id": "#{ENV['IIIF_SERVER_URL']}#{file_id}/full/600,/0/default.jpg",
+                "@id": "#{ENV['IIIF_SERVER_URL']}#{iiif_id}/full/600,/0/default.jpg",
                 "width": 640,
                 "height": 480,
                 "service": {
                   "@context": "http://iiif.io/api/image/2/context.json",
-                  "@id": "#{ENV['IIIF_SERVER_URL']}#{file_id}",
+                  "@id": "#{ENV['IIIF_SERVER_URL']}#{iiif_id}",
                   "profile": "http://iiif.io/api/image/2/level2.json"
                 }
               },
-              "on": "http://test.host/concern/works/#{work.id}/manifest/canvas/#{work.file_sets.first.id}"
+              "on": "http://test.host/concern/works/#{work.id}/manifest/canvas/#{work.id}"
             }
           ]
         }
