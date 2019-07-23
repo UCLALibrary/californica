@@ -11,6 +11,14 @@ RSpec.describe CsvManifestValidator, type: :model do
     import
   end
 
+  before do
+    allow(ENV).to receive(:[]).and_call_original
+    allow(ENV).to receive(:[]).with('IMPORT_FILE_PATH').and_return(fixture_path)
+
+    allow(File).to receive(:exist?).and_call_original
+    allow(File).to receive(:exist?).with(File.join(ENV['IMPORT_FILE_PATH'], 'Masters/dlmasters/clusc_1_1_00010432a.tif')).and_return(true)
+  end
+
   context 'a valid CSV file' do
     let(:csv_file) { File.join(fixture_path, 'csv_import', 'import_manifest.csv') }
 
@@ -61,12 +69,12 @@ RSpec.describe CsvManifestValidator, type: :model do
     it 'has warnings' do
       validator.validate
       expect(validator.warnings).to contain_exactly(
-        'Can\'t import Row 3: missing "Item ARK".',
-        'Can\'t import Row 4: missing "Title".',
-        'Can\'t import Row 5: missing "Object Type".',
-        'Can\'t import Row 6: missing "Parent ARK".',
-        'Row 7: missing \'Rights.copyrightStatus\' will be set to \'unknown\'.',
-        'Can\'t import Row 8: missing "File Name".'
+        'Row 3: Rows missing "Item ARK" cannot be imported.',
+        'Row 4: Rows missing "Title" cannot be imported.',
+        'Row 5: Rows missing "Object Type" cannot be imported.',
+        'Row 6: Rows missing "Parent ARK" cannot be imported.',
+        'Row 7: Rows missing "Rights.copyrightStatus" will have the value set to "unknown".',
+        'Row 8: Rows missing "File Name" will import metadata-only.'
       )
     end
   end
@@ -90,38 +98,26 @@ RSpec.describe CsvManifestValidator, type: :model do
       validator.validate
       expect(validator.warnings).to include(
         'Row 2: \'invalid rights statement\' is not a valid value for \'Rights.copyrightStatus\'',
-        'Row 3, 4: \'invalid type\' is not a valid value for \'Type.typeOfResource\''
+        'Row 3, 4: \'invalid type\' is not a valid value for \'Type.typeOfResource\'',
+        'Row 5: Rows with invalid Object Type "InvalidWork" cannot be imported.'
       )
     end
   end
 
   context 'when the csv has a missing file' do
     let(:csv_file) { 'spec/fixtures/example-missingimage.csv' }
+    let(:path) { File.join(ENV['IMPORT_FILE_PATH'], 'Masters/dlmasters/missing_file.tif') }
 
     it 'has warnings' do
+      allow(File).to receive(:exist?).with(path).and_return(false)
       validator.validate
-      path = File.join(fixture_path, 'missing_file.tif')
-      expect(validator.warnings).to include("Row 2: cannot find '#{path}'")
+      expect(validator.warnings).to include("Row 2: Rows contain a File Name that does not exist. Incorrect values may be imported.")
     end
 
     it 'doesn\'t warn about files that aren\'t missing' do
+      allow(File).to receive(:exist?).with(path).and_return(true)
       validator.validate
-      path = File.join(fixture_path, 'clusc_1_1_00010432a.tif')
       expect(validator.warnings).to_not include("Row 2: cannot find '#{path}'")
-    end
-  end
-
-  context 'when import_file_path is nil' do
-    let(:csv_import) do
-      import = CsvImport.new(user: user, import_file_path: nil)
-      File.open(csv_file) { |f| import.manifest = f }
-      import
-    end
-    let(:csv_file) { 'spec/fixtures/example-missingimage.csv' }
-
-    it 'doesn\'t warn about missing files' do
-      validator.validate
-      expect(validator.warnings).to eq []
     end
   end
 end

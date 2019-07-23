@@ -81,9 +81,10 @@ class CsvManifestValidator
   # @param manifest_uploader [CsvManifestUploader] The manifest that's mounted to a CsvImport record.  See carrierwave gem documentation.  This is basically a wrapper for the CSV file.
   def initialize(manifest_uploader)
     @csv_file = manifest_uploader.file
-    @file_uri_base_path = manifest_uploader.model.import_file_path.to_s
+    @file_uri_base_path = ENV['IMPORT_FILE_PATH']
     @errors = []
     @warnings = []
+    @mapper = CalifornicaMapper.new
   end
 
   # Errors and warnings for the CSV file.
@@ -91,8 +92,8 @@ class CsvManifestValidator
   attr_reader :csv_file, :file_uri_base_path
 
   def validate
-    @rows = CSV.read(csv_file.path)
-    @headers = @rows.first || []
+    @rows = CSV.read(csv_file.path, headers: true)
+    @headers = @rows.headers || []
     # TODO: follow transformed_headers breadcrumb to make case-insensitive
     # @transformed_headers = @headers.map { |header| header.downcase.strip }
 
@@ -105,7 +106,7 @@ class CsvManifestValidator
   # One record per row
   def record_count
     return nil unless @rows
-    @rows.size - 1 # Don't include the header row
+    @rows.size
   end
 
   def valid_headers
@@ -116,18 +117,14 @@ private
 
   def missing_headers
     REQUIRED_HEADERS.each do |required_header|
-      missing_required_header?(@rows.first, required_header)
+      next if @headers.include?(required_header)
+      @errors << "Missing required column: #{required_header}.  Your spreadsheet must have this column.  If you already have this column, please check the spelling and capitalization."
     end
-  end
-
-  def missing_required_header?(row, header)
-    return if row.include?(header)
-    @errors << "Missing required column: #{header}.  Your spreadsheet must have this column.  If you already have this column, please check the spelling and capitalization."
   end
 
   # Warn the user if we find any unexpected headers.
   def unrecognized_headers
-    extra_headers = @rows.first - valid_headers
+    extra_headers = @headers - valid_headers
     extra_headers.each do |header|
       @warnings << "The field name \"#{header}\" is not supported.  This field will be ignored, and the metadata for this field will not be imported."
     end
@@ -135,7 +132,7 @@ private
   end
 
   def duplicate_headers
-    @rows.first.group_by { |header| header }.each do |header, copies|
+    @headers.group_by { |header| header }.each do |header, copies|
       @errors << "Duplicate column header: #{header} (used #{copies.length} times). Each column must have a unique header." if copies.length > 1
     end
   end
@@ -144,18 +141,11 @@ private
     required_column_numbers = REQUIRED_VALUES.map { |header, _object_types| @headers.find_index(header) }.compact
     controlled_column_numbers = CONTROLLED_VOCABULARIES.keys.map { |header| @headers.find_index(header) }.compact
     object_type_column = @headers.find_index('Object Type')
-    filename_column = @headers.find_index('File Name')
     row_warnings = Hash.new { |hash, key| hash[key] = [] }
 
     @rows.each_with_index do |row, i|
-      # Skip header row
-      next if i.zero?
-
-      # Row has the wrong number of columns
-      if row.length != @headers.length
-        @warnings << "Can't import Row #{i + 1}: expected #{@headers.length} columns, got #{row.length}."
-        next
-      end
+      @mapper.metadata = row
+      this_row_warnings = []
 
       # If there's no "Object Type" header, assume everything's a Work
       # so we so we can validate other required fields
@@ -163,13 +153,13 @@ private
 
       # Row has no "Object Type"
       if object_type.blank?
-        @warnings << "Can't import Row #{i + 1}: missing \"Object Type\"."
+        this_row_warnings << "Rows missing \"Object Type\" cannot be imported."
         object_type = 'Work' # so we can validate other required fields
       end
 
       # Row has invalid "Object Type"
-      unless OBJECT_TYPES.include?(object_type)
-        @warnings << "Can't import Row #{i + 1}: invalid \"Object Type\"."
+      unless object_type.blank? || OBJECT_TYPES.include?(object_type)
+        this_row_warnings << "Rows with invalid Object Type \"#{object_type}\" cannot be imported."
         object_type = 'Work' # so we can validate other required fields
       end
 
@@ -178,11 +168,13 @@ private
         field_label, types_that_require = REQUIRED_VALUES[j]
         next unless types_that_require.include?(object_type)
         next unless row[column_number].blank?
-        @warnings << if field_label == 'Rights.copyrightStatus'
-                       "Row #{i + 1}: missing 'Rights.copyrightStatus' will be set to 'unknown'."
-                     else
-                       "Can't import Row #{i + 1}: missing \"#{REQUIRED_VALUES[j][0]}\"."
-                     end
+        this_row_warnings << if field_label == 'Rights.copyrightStatus'
+                               'Rows missing "Rights.copyrightStatus" will have the value set to "unknown".'
+                             elsif field_label == 'File Name'
+                               'Rows missing "File Name" will import metadata-only.'
+                             else
+                               "Rows missing \"#{REQUIRED_VALUES[j][0]}\" cannot be imported."
+                             end
       end
 
       # Row has invalid value in a controlled-vocabulary field
@@ -190,19 +182,19 @@ private
         field_name = @headers[column_number]
         allowed_values = CONTROLLED_VOCABULARIES[field_name]
         row[column_number].to_s.split('|~|').each do |this_value|
-          unless allowed_values.include?(this_value)
-            message = "'#{this_value}' is not a valid value for '#{field_name}'"
-            row_warnings[message] << i + 1
-          end
+          this_row_warnings << "'#{this_value}' is not a valid value for '#{field_name}'" unless allowed_values.include?(this_value)
         end
       end
 
       # Row has a File Name that doesn't exist
-      unless file_uri_base_path.empty?
-        row[filename_column].to_s.split('|~|').each do |file_name|
-          full_path = File.join(file_uri_base_path, file_name)
-          row_warnings["cannot find \'#{full_path}\'"] << i + 1 unless File.exist?(full_path)
-        end
+      if @mapper.master_file_path
+        full_path = File.join(file_uri_base_path, @mapper.master_file_path)
+        this_row_warnings << "Rows contain a File Name that does not exist. Incorrect values may be imported." unless File.exist?(full_path)
+      end
+
+      this_row_warnings.each do |warning|
+        # +1 for 0-based indexing, +1 for skipped headers
+        row_warnings[warning] << i + 2
       end
     end
 

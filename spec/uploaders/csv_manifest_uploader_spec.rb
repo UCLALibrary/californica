@@ -10,6 +10,11 @@ RSpec.describe CsvManifestUploader, type: :model do
   end
   let(:user) { FactoryBot.build(:user) }
 
+  before do
+    allow(File).to receive(:exist?).and_call_original
+    allow(File).to receive(:exist?).with(File.join(ENV['IMPORT_FILE_PATH'], 'Masters/dlmasters/clusc_1_1_00010432a.tif')).and_return(true)
+  end
+
   context 'a valid CSV file' do
     let(:csv_file) { File.join(fixture_path, 'csv_import', 'import_manifest.csv') }
 
