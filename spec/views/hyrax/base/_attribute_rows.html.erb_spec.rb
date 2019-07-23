@@ -32,7 +32,6 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
              resource_type: ['resource_type'],
              rights_country: ['rights_country'],
              rights_holder: ['rights_holder'],
-             summary: ['summary'],
              support: ['support'],
              uniform_title: ['Old Uniform title'])
   end
@@ -94,9 +93,6 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   end
   it 'has rights_holder' do
     expect(page).to match(/rights_holder/)
-  end
-  it 'has summary' do
-    expect(page).to match(/summary/)
   end
   it 'has support' do
     expect(page).to match(/support/)
