@@ -37,8 +37,14 @@ RSpec.describe CsvManifestValidator, type: :model do
   end
 
   context 'a file that can\'t be parsed' do
+    let(:csv_file) { File.join(fixture_path, 'csv_import', 'import_manifest.csv') }
+
     it 'has an error' do
-      skip # TODO
+      allow(CSV).to receive(:read).and_raise(CSV::MalformedCSVError, 'abcdefg')
+      validator.validate
+      expect(validator.errors).to contain_exactly(
+        "CSV::MalformedCSVError: abcdefg"
+      )
     end
   end
 
