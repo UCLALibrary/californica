@@ -41,7 +41,7 @@ module Hyrax
         else
           curation_concern = _curation_concern_type.find(params[:id]) unless curation_concern
           builder_service = Californica::ManifestBuilderService.new(curation_concern: curation_concern)
-          @sets = builder_service.sets
+          @image_concerns = builder_service.image_concerns
           @root_url = "#{request.protocol}#{request.host_with_port}/concern/works/#{@solr_doc.id}/manifest"
 
           manifest_json = render_to_string('/manifest.json')

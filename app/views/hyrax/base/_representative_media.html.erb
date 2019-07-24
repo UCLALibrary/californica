@@ -1,6 +1,6 @@
-<% has_child_works = !Californica::ChildWorkService.new.child_works(member_ids_ssim: SolrDocument.find(presenter.id)[:member_ids_ssim]).empty? %>
-<% if presenter.representative_id.present? && presenter.representative_presenter.present? || has_child_works %>
-    <% if defined?(viewer) && viewer || has_child_works %>
+<% has_images = !Californica::ManifestBuilderService.new(curation_concern: ActiveFedora::Base.find(presenter.id)).image_concerns.empty? %>
+<% if presenter.representative_id.present? && presenter.representative_presenter.present? || has_images %>
+    <% if defined?(viewer) && viewer || has_images %>
 	<%= iiif_viewer_display presenter %>
     <% else %>
 	<%= media_display presenter.representative_presenter %>
