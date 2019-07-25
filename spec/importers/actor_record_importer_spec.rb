@@ -45,5 +45,18 @@ RSpec.describe ActorRecordImporter, :clean do
         expect { importer.import(record: record) }.to raise_error(RuntimeError, /Validation failed/)
       end
     end
+
+    context 'if the record title starts with "DUPLICATE"' do
+      let(:metadata) do
+        {
+          'Title' => 'DUPLICATE: Comet in Moominland',
+          'Item ARK' => 'ark:/abc/123'
+        }
+      end
+
+      it 'raises an error' do
+        expect { importer.import(record: record) }.to raise_error(ArgumentError, 'Title starts "DUPLICATE" – record will not be imported.')
+      end
+    end
   end
 end
