@@ -113,6 +113,8 @@ Examples:
 - `[Fannie Lou Hamer, Mississippi Freedom Democratic Party delegate, at the Democratic National Convention, Atlantic City, New Jersey, August 1964] / [WKL].` (single value)
 - `[Fannie Lou Hamer, Mississippi Freedom Democratic Party delegate, at the Democratic National Convention, Atlantic City, New Jersey, August 1964] / [WKL].|~|Fannie Lou Hamer Portrait` (multivalued)
 
+If the title begins with 'DUPLICATE' (case sensitive), then no new record will be created. If a record already exists with the same ark, then that record will be updated as usual. Such records can be found and manually deleted by searching for 'DUPLICATE'
+
 ## Other Allowed Fields
 
 ### AltIdentifier.local

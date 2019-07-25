@@ -61,6 +61,8 @@ class ActorRecordImporter < Darlingtonia::HyraxRecordImporter
   def create_for(record:)
     info_stream << "event: record_import_started, row_id: #{@row_id}, ark: #{record.ark}\n"
 
+    raise(ArgumentError, 'Title starts "DUPLICATE" – record will not be imported.') if record.mapper.title[0].to_s.start_with?('DUPLICATE')
+
     additional_attrs = {
       uploaded_files: create_upload_files(record),
       depositor: @depositor.user_key
