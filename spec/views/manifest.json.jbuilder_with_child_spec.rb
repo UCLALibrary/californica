@@ -7,10 +7,15 @@ RSpec.describe "manifest", type: :view do
   let(:work) { FactoryBot.create(:work, child_work: child_work) }
   let(:child_work) { FactoryBot.create(:work, master_file_path: master_file_path) }
   let(:solr_doc) { SolrDocument.find(work.id) }
-  let(:image_concerns) { Californica::ManifestBuilderService.new(curation_concern: work).image_concerns }
+  let(:builder_service) { Californica::ManifestBuilderService.new(curation_concern: work) }
+  let(:image_concerns) { builder_service.image_concerns }
+  let(:root_url) { builder_service.root_url }
 
   before do
-    assign(:root_url, 'http://localhost:3000/manifest')
+    allow(ENV).to receive(:[]).and_call_original
+    allow(ENV).to receive(:[]).with('RAILS_HOST').and_return('my.url')
+
+    assign(:root_url, root_url)
     assign(:solr_doc, solr_doc)
     assign(:image_concerns, image_concerns)
   end
@@ -22,16 +27,16 @@ RSpec.describe "manifest", type: :view do
 {
   "@context": "http://iiif.io/api/presentation/2/context.json",
   "@type": "sc:Manifest",
-  "@id": "http://localhost:3000/manifest",
+  "@id": "http://my.url/concern/works/#{work.id}/manifest",
   "label": "#{work.title.first}",
   "description": "#{work.description.first}",
   "sequences": [
     {
       "@type": "sc:Sequence",
-      "@id": "http://localhost:3000/manifest/sequence/normal",
+      "@id": "http://my.url/concern/works/#{work.id}/manifest/sequence/normal",
       "canvases": [
         {
-          "@id": "http://localhost:3000/manifest/canvas/#{child_work.id}",
+          "@id": "http://my.url/concern/works/#{work.id}/manifest/canvas/#{CGI.escape(child_work.ark)}",
           "@type": "sc:Canvas",
           "label": "#{child_work.title.first}",
           "description": "#{child_work.description.first}",
@@ -52,7 +57,7 @@ RSpec.describe "manifest", type: :view do
                   "profile": "http://iiif.io/api/image/2/level2.json"
                 }
               },
-              "on": "http://test.host/concern/works/#{work.id}/manifest/canvas/#{child_work.id}"
+              "on": "http://my.url/concern/works/#{work.id}/manifest/canvas/#{CGI.escape(child_work.ark)}"
             }
           ]
         }

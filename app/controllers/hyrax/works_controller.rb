@@ -29,26 +29,26 @@ module Hyrax
       manifest_builder
     end
 
-    private
+    def manifest_builder
+      @solr_doc = ::SolrDocument.find(params[:id])
+      date_modified = @solr_doc[:date_modified_dtsi] || @solr_doc[:system_create_dtsi]
+      key = date_modified.to_datetime.strftime('%Y-%m-%d_%H-%M-%S') + @solr_doc[:id]
 
-      def manifest_builder
-        @solr_doc = ::SolrDocument.find(params[:id])
-        date_modified = @solr_doc[:date_modified_dtsi] || @solr_doc[:system_create_dtsi]
-        key = date_modified.to_datetime.strftime('%Y-%m-%d_%H-%M-%S') + @solr_doc[:id]
+      if File.exist?(Rails.root.join('tmp', key)) && Flipflop.cache_manifests?
+        render_manifest_file(key: key)
+      else
+        curation_concern = _curation_concern_type.find(params[:id]) unless curation_concern
+        builder_service = Californica::ManifestBuilderService.new(curation_concern: curation_concern)
+        @image_concerns = builder_service.image_concerns
+        @root_url = builder_service.root_url
 
-        if File.exist?(Rails.root.join('tmp', key))
-          render_manifest_file(key: key)
-        else
-          curation_concern = _curation_concern_type.find(params[:id]) unless curation_concern
-          builder_service = Californica::ManifestBuilderService.new(curation_concern: curation_concern)
-          @image_concerns = builder_service.image_concerns
-          @root_url = "#{request.protocol}#{request.host_with_port}/concern/works/#{@solr_doc.id}/manifest"
-
-          manifest_json = render_to_string('/manifest.json')
-          persist_manifest(key: key, json: manifest_json)
-          render json: manifest_json
-        end
+        manifest_json = render_to_string('/manifest.json')
+        persist_manifest(key: key, json: manifest_json) if Flipflop.cache_manifests?
+        render json: manifest_json
       end
+    end
+
+    private
 
       def render_manifest_file(key:)
         manifest_file = File.open(Rails.root.join('tmp', key))

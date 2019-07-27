@@ -10,5 +10,9 @@ module Californica
     def image_concerns
       @image_concerns ||= ([@curation_concern] + @curation_concern.ordered_members.to_a).select { |member| member.respond_to?(:master_file_path) && member.master_file_path }
     end
+
+    def root_url
+      "http://#{ENV['RAILS_HOST'] || 'localhost'}/concern/works/#{@curation_concern.id}/manifest"
+    end
   end
 end
