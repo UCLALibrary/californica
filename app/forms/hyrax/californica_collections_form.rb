@@ -26,6 +26,7 @@ module Hyrax
       :rights_holder,
       :services_contact,
       :summary,
+      :text_direction,
       :uniform_title]
 
     self.required_fields = [:title, :ark]
@@ -79,6 +80,7 @@ module Hyrax
         :services_contact,
         :subject,
         :summary,
+        :text_direction,
         :uniform_title
       ]
     end

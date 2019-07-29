@@ -52,6 +52,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     subject: "Subject",
     summary: "Summary",
     support: "Support",
+    text_direction: "Text direction",
     title: "Title",
     uniform_title: "AltTitle.uniform"
   }.freeze

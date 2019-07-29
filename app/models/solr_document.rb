@@ -134,6 +134,10 @@ class SolrDocument
     self[:support_tesim]
   end
 
+  def text_direction
+    self[:text_direction_tesi]
+  end
+
   def uniform_title
     self[Solrizer.solr_name('uniform_title')]
   end

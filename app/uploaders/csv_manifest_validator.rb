@@ -64,6 +64,7 @@ OPTIONAL_HEADERS = [
   'Subject',
   'Summary',
   'Support',
+  'Text direction',
   'Type.genre',
   'Type.typeOfResource',
   'Visibility'

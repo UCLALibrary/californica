@@ -58,7 +58,9 @@ RSpec.describe CalifornicaMapper do
       "Title" => "Protesters with signs in gallery of Los Angeles County Supervisors " \
         "hearing over eminent domain for construction of Harbor Freeway, Calif., 1947", # title
       "AltTitle.uniform" => "Protesters with signs in gallery of Los Angeles County Supervisors", # uniform_title
-      "Summary" => "Protesters with signs" } # summary
+      "Summary" => "Protesters with signs", # summary
+      "Text direction" => "left-to-right" # text_direction
+    }
   end
 
   before { mapper.metadata = metadata }
@@ -114,6 +116,7 @@ RSpec.describe CalifornicaMapper do
         :subject,
         :summary,
         :support,
+        :text_direction,
         :title,
         :uniform_title,
         :visibility

@@ -42,6 +42,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       services_contact: ['Old Services Contact'],
       summary: ['Old Summary'],
       support: ['Old Supprt'],
+      text_direction: ['Old Text direction'],
       uniform_title: ['Old Uniform title']
     }
   end
@@ -92,6 +93,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Photographer').value).to eq 'Old Photographer'
       expect(find_field('Rights services contact').value).to eq 'Old Services Contact'
       expect(find_field('Summary').value).to eq 'Old Summary'
+      expect(find_field('Text direction').value).to eq 'Old Text direction'
       expect(find_field('Uniform title').value).to eq 'Old Uniform title'
 
       #

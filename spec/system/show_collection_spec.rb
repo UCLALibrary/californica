@@ -39,6 +39,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       subject: ['Old Subj'],
       summary: ['Old Summary'],
       support: ['Old Support'],
+      text_direction: ['Old Text direction'],
       title: ['Old Title'],
       uniform_title: ['Old Uniform title']
     }

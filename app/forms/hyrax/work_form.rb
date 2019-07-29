@@ -31,6 +31,7 @@ module Hyrax
       :rights_holder,
       :summary,
       :support,
+      :text_direction,
       :uniform_title
     ]
 

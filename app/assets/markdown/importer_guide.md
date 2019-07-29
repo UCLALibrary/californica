@@ -39,6 +39,7 @@
 - [Subject](#subject)
 - [Summary](#summary)
 - [Support](#support)
+- [Text direction](#text_direction)
 - [Type.genre](#type.genre)
 - [Type.typeOfResource](#type.typeofresource)
 - [Visibility](#visibility)
@@ -185,6 +186,8 @@ accepts AltTitle.translated
 ### Summary
 
 ### Support
+
+### Text direction
 
 ### Type.genre
 

@@ -41,6 +41,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       subject: ['Old Subj'],
       summary: ['Old Summary'],
       support: ['Old Support'],
+      text_direction: ['Old Text direction'],
       title: ['Old Title'],
       uniform_title: ['Old Uniform title']
     }
@@ -91,6 +92,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Rights (country of creation)').value).to eq 'Old Rights Country'
       expect(find_field('Rights Holder').value).to eq 'Old Rights Holder'
       expect(find_field('Summary').value).to eq 'Old Summary'
+      expect(find_field('Text direction').value).to eq 'Old Text direction'
       expect(find_field('Uniform title').value).to eq 'Old Uniform title'
 
       # Edit some fields in the form
