@@ -53,4 +53,18 @@ RSpec.describe Californica::ManifestBuilderService do
       end
     end
   end
+
+  describe '#root_url' do
+    it 'uses ENV[\'RAILS_HOST\']' do
+      allow(ENV).to receive(:[]).and_call_original
+      allow(ENV).to receive(:[]).with('RAILS_HOST').and_return('my.url')
+      expect(service.root_url).to eq "http://my.url/concern/works/#{work.id}/manifest"
+    end
+
+    it 'defaults to use localhost' do
+      allow(ENV).to receive(:[]).and_call_original
+      allow(ENV).to receive(:[]).with('RAILS_HOST').and_return(nil)
+      expect(service.root_url).to eq "http://localhost/concern/works/#{work.id}/manifest"
+    end
+  end
 end
