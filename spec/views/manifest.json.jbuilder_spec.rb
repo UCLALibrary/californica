@@ -3,8 +3,8 @@ require "rails_helper"
 require 'cgi'
 
 RSpec.describe "manifest", type: :view do
-  let(:master_file_path) { 'a/b.tif' }
-  let(:work) { FactoryBot.create(:work, master_file_path: master_file_path) }
+  let(:access_copy) { 'a/b.tif' }
+  let(:work) { FactoryBot.create(:work, access_copy: access_copy) }
   let(:solr_doc) { SolrDocument.find(work.id) }
   let(:builder_service) { Californica::ManifestBuilderService.new(curation_concern: work) }
   let(:image_concerns) { builder_service.image_concerns }
@@ -21,7 +21,7 @@ RSpec.describe "manifest", type: :view do
 
   it "displays a valid IIIF Presentation API manifest" do
     render
-    iiif_id = CGI.escape(work.master_file_path)
+    iiif_id = CGI.escape(work.access_copy)
     doc = <<~HEREDOC
 {
   "@context": "http://iiif.io/api/presentation/2/context.json",

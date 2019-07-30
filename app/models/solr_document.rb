@@ -26,6 +26,10 @@ class SolrDocument
 
   use_extension(Hydra::ContentNegotiation)
 
+  def access_copy
+    self['access_copy_ssi']
+  end
+
   def alternative_title
     self[:alternative_title_tesim]
   end
@@ -86,10 +90,6 @@ class SolrDocument
     self[Solrizer.solr_name('longitude')]
   end
 
-  def master_file_path
-    self['master_file_path_ssi']
-  end
-
   def medium
     self[:medium_tesim]
   end
@@ -108,6 +108,10 @@ class SolrDocument
 
   def place_of_origin
     self[:place_of_origin_tesim]
+  end
+
+  def preservation_copy
+    self['preservation_copy_ssi']
   end
 
   def repository

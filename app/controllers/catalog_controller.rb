@@ -100,6 +100,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('identifier', :stored_searchable)
     config.add_show_field 'ark_ssi', label: 'ARK'
 
+    config.add_show_field 'access_copy_ssi'
     config.add_show_field solr_name('alternative_title', :stored_searchable)
     config.add_show_field solr_name('architect', :stored_searchable)
     config.add_show_field 'author_tesim'
@@ -110,12 +111,12 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('genre', :stored_searchable)
     config.add_show_field solr_name('location', :stored_searchable)
     config.add_show_field 'local_identifier_ssm'
-    config.add_show_field 'master_file_path_ssi'
     config.add_show_field solr_name('medium', :stored_searchable)
     config.add_show_field solr_name('named_subject', :stored_searchable)
     config.add_show_field solr_name('normalized_date', :stored_searchable)
     config.add_show_field solr_name('photographer', :stored_searchable)
     config.add_show_field 'place_of_origin_tesim'
+    config.add_show_field 'preservation_copy_ssi'
     config.add_show_field solr_name('repository', :stored_searchable)
     config.add_show_field solr_name('rights_country', :stored_searchable)
     config.add_show_field solr_name('rights_holder', :stored_searchable)

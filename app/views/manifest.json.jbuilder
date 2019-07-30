@@ -20,7 +20,7 @@ json.sequences [''] do
     json.height 480
     json.images [child] do |child_image|
       url = Hyrax.config.iiif_image_url_builder.call(
-        CGI.escape(child_image.master_file_path),
+        CGI.escape(child_image.access_copy),
         ENV['IIIF_SERVER_URL'],
         Hyrax.config.iiif_image_size_default
       )
@@ -37,7 +37,7 @@ json.sequences [''] do
 
           # The base url for the info.json file
           info_url = Hyrax.config.iiif_info_url_builder.call(
-            CGI.escape(child_image.master_file_path),
+            CGI.escape(child_image.access_copy),
             ENV['IIIF_SERVER_URL']
           )
 

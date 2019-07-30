@@ -32,24 +32,24 @@ class CollectionIndexer < Hyrax::CollectionWithBasicMetadataIndexer
   def thumbnail_url
     # this record has an image path attached
 
-    master_file_path = object.master_file_path
+    access_copy = object.access_copy
     children = Array.wrap(object.members).clone
 
-    until master_file_path || children.empty?
+    until access_copy || children.empty?
       child = children.shift
 
-      if (child.respond_to? 'master_file_path') && !child.master_file_path.nil?
-        master_file_path = child.master_file_path
+      if (child.respond_to? 'access_copy') && !child.access_copy.nil?
+        access_copy = child.access_copy
       else
         grandchildren = Array.wrap(child.members).clone
-        until master_file_path || grandchildren.empty?
+        until access_copy || grandchildren.empty?
           grandchild = grandchildren.shift
-          master_file_path = grandchild.master_file_path
+          access_copy = grandchild.access_copy
         end
       end
     end
 
-    return nil unless master_file_path
-    "#{ENV['IIIF_SERVER_URL']}#{CGI.escape(master_file_path)}/full/!200,200/0/default.jpg"
+    return nil unless access_copy
+    "#{ENV['IIIF_SERVER_URL']}#{CGI.escape(access_copy)}/full/!200,200/0/default.jpg"
   end
 end

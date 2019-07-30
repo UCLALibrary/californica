@@ -4,6 +4,7 @@
 module Hyrax
   class WorkPresenter < Hyrax::WorkShowPresenter
     delegate(
+      :access_copy,
       :alternative_title,
       :architect,
       :ark,
@@ -17,12 +18,12 @@ module Hyrax
       :geographic_coordinates,
       :local_identifier,
       :location,
-      :master_file_path,
       :medium,
       :named_subject,
       :normalized_date,
       :photographer,
       :place_of_origin,
+      :preservation_copy,
       :repository,
       :resource_type,
       :rights_country,
