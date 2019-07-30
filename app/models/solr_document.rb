@@ -135,7 +135,7 @@ class SolrDocument
   end
 
   def text_direction
-    self[:text_direction_tesi]
+    self[:text_direction_ssi]
   end
 
   def uniform_title

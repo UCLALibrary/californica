@@ -71,6 +71,12 @@ RSpec.describe CalifornicaMapper do
     )
   end
 
+  it "maps Text direction to local authority values, if possible" do
+    expect(mapper.text_direction).to contain_exactly(
+      'http://iiif.io/api/presentation/2#leftToRightDirection'
+    )
+  end
+
   it "maps the required title field" do
     expect(mapper.map_field(:title))
       .to contain_exactly("Protesters with signs in gallery of Los Angeles County Supervisors " \

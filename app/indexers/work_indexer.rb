@@ -21,6 +21,7 @@ class WorkIndexer < Hyrax::WorkIndexer
       solr_doc['human_readable_language_tesim'] = human_readable_language
       solr_doc['human_readable_resource_type_sim'] = human_readable_resource_type
       solr_doc['human_readable_resource_type_tesim'] = human_readable_resource_type
+      solr_doc['human_readable_text_direction_ssi'] = human_readable_text_direction
       solr_doc['human_readable_rights_statement_tesim'] = human_readable_rights_statement
       solr_doc['sort_title_ssort'] = object.title.first
       solr_doc['ursus_id_ssi'] = Californica::IdGenerator.blacklight_id_from_ark(object.ark)
@@ -35,28 +36,36 @@ class WorkIndexer < Hyrax::WorkIndexer
   end
 
   def human_readable_language
-    rights_terms = Qa::Authorities::Local.subauthority_for('languages').all
+    terms = Qa::Authorities::Local.subauthority_for('languages').all
 
     object.language.map do |lang|
-      term = rights_terms.find { |entry| entry[:id] == lang }
+      term = terms.find { |entry| entry[:id] == lang }
       term.blank? ? lang : term[:label]
     end
   end
 
   def human_readable_resource_type
-    rights_terms = Qa::Authorities::Local.subauthority_for('resource_types').all
+    terms = Qa::Authorities::Local.subauthority_for('resource_types').all
 
     object.resource_type.map do |rt|
-      term = rights_terms.find { |entry| entry[:id] == rt }
+      term = terms.find { |entry| entry[:id] == rt }
       term.blank? ? rt : term[:label]
     end
   end
 
+  def human_readable_text_direction
+    terms = Qa::Authorities::Local.subauthority_for('text_directions').all
+
+    term = terms.find { |entry| entry[:id] == object.text_direction }
+    term.blank? ? object.text_direction : term[:label]
+
+  end
+
   def human_readable_rights_statement
-    rights_terms = Qa::Authorities::Local.subauthority_for('rights_statements').all
+    terms = Qa::Authorities::Local.subauthority_for('rights_statements').all
 
     object.rights_statement.map do |rs|
-      term = rights_terms.find { |entry| entry[:id] == rs }
+      term = terms.find { |entry| entry[:id] == rs }
       term.blank? ? rs : term[:label]
     end
   end

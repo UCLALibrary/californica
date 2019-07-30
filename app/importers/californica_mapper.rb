@@ -196,6 +196,13 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     end.compact
   end
 
+  def text_direction
+    map_field(:text_direction).to_a.map do |label|
+      term = Qa::Authorities::Local.subauthority_for('text_directions').all.find { |h| h[:label] == label }
+      term.blank? ? nil : term[:id]
+    end.compact
+  end
+
   # The CSV file contains the label, so we'll find the
   # corresponding ID to store on the work record.
   # If the term isn't found in

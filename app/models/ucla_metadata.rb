@@ -108,7 +108,7 @@ module UclaMetadata
     end
 
     property :text_direction, predicate: ::RDF::URI.intern('http://iiif.io/api/presentation/2#viewingDirection') do |index|
-      index.as :displayable
+      index.as :stored_sortable
     end
 
     property :uniform_title, predicate: ::RDF::URI.intern('http://purl.org/dc/elements/1.1/title') do |index|

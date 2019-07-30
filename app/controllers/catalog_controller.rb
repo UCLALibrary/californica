@@ -121,7 +121,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('rights_holder', :stored_searchable)
     config.add_show_field solr_name('support', :stored_searchable)
     config.add_show_field solr_name('summary', :stored_searchable)
-    config.add_show_field 'text_direction_tesi'
+    config.add_show_field 'text_direction_ssi'
     config.add_show_field solr_name('uniform_title', :stored_searchable)
 
     # "fielded" search configuration. Used by pulldown among other places.
