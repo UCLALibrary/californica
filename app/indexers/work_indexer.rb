@@ -64,7 +64,7 @@ class WorkIndexer < Hyrax::WorkIndexer
   def thumbnail_url
     # this record has an image path attached
     master_file_path = object.master_file_path
-    children = Array.wrap(object.members.to_a.clone)
+    children = Array.wrap(object.members).clone
     until master_file_path || children.empty?
       child = children.shift
       next unless child.respond_to? :master_file_path
