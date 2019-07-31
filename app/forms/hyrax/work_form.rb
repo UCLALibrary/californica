@@ -6,6 +6,7 @@ module Hyrax
   class WorkForm < Hyrax::Forms::WorkForm
     self.model_class = ::Work
     self.terms += [
+      :access_copy,
       :alternative_title,
       :architect,
       :ark,
@@ -19,12 +20,12 @@ module Hyrax
       :local_identifier,
       :location,
       :longitude,
-      :master_file_path,
       :medium,
       :named_subject,
       :normalized_date,
       :photographer,
       :place_of_origin,
+      :preservation_copy,
       :repository,
       :resource_type,
       :rights_country,

@@ -8,6 +8,7 @@ RSpec.describe Hyrax::ChildWorkForm do
 
   it 'has all the custom terms' do
     expect(form.terms).to include(
+      :access_copy,
       :architect,
       :caption,
       :dimensions,
@@ -17,11 +18,11 @@ RSpec.describe Hyrax::ChildWorkForm do
       :latitude,
       :local_identifier,
       :longitude,
-      :master_file_path,
       :medium,
       :named_subject,
       :normalized_date,
       :photographer,
+      :preservation_copy,
       :repository,
       :rights_country,
       :rights_holder

@@ -6,7 +6,9 @@ RSpec.describe CalifornicaMapper do
   subject(:mapper) { described_class.new }
 
   let(:metadata) do
-    { "AltTitle.other" => "alternative title", # alternative_title
+    {
+      "File Name" => "clusc_1_1_00010432a.tif", # access_copy, preservation_copy
+      "AltTitle.other" => "alternative title", # alternative_title
       "AltTitle.translated" => "translated alternative title", # alternative_title
       "AltTitle.parallel" => "parallel alternative title", # alternative_title
       "Alternate Title.creator" => "alternative title creator", # alternative_title
@@ -32,7 +34,6 @@ RSpec.describe CalifornicaMapper do
       "Alt ID.local" => "UCLA-1234d", # local_identifier
       "Coverage.geographic" => "Los Angeles (Calif.)", # location
       "Description.longitude" => "-118.243683", # longitude
-      "File Name" => "clusc_1_1_00010432a.tif", # master_file_path
       "Format.medium" => "photograph", # medium
       "Name.subject" => "Los Angeles County (Calif.). $b Board of Supervisors", # named_subject
       "Personal or Corporate Name.subject" => "LA County", # named_subject
@@ -58,7 +59,8 @@ RSpec.describe CalifornicaMapper do
       "Title" => "Protesters with signs in gallery of Los Angeles County Supervisors " \
         "hearing over eminent domain for construction of Harbor Freeway, Calif., 1947", # title
       "AltTitle.uniform" => "Protesters with signs in gallery of Los Angeles County Supervisors", # uniform_title
-      "Summary" => "Protesters with signs" } # summary
+      "Summary" => "Protesters with signs" # summary
+    }
   end
 
   before { mapper.metadata = metadata }
@@ -139,6 +141,32 @@ RSpec.describe CalifornicaMapper do
     end
   end
 
+  describe '#preservation_copy' do
+    context 'when the path starts with a \'/\'' do
+      let(:metadata) { { 'File Name' => '/Masters/dlmasters/abc/xyz.tif' } }
+
+      it 'gets removed' do
+        expect(mapper.preservation_copy).to eq 'Masters/dlmasters/abc/xyz.tif'
+      end
+    end
+
+    context 'when the path starts with \'Masters/\'' do
+      let(:metadata) { { 'File Name' => 'Masters/dlmasters/abc/xyz.tif' } }
+
+      it 'imports as is' do
+        expect(mapper.preservation_copy).to eq 'Masters/dlmasters/abc/xyz.tif'
+      end
+    end
+
+    context 'when the path doesn\'t start with \'Masters\'' do
+      let(:metadata) { { 'File Name' => 'abc/xyz.tif' } }
+
+      it 'prepends \'Masters/dlmasters\'' do
+        expect(mapper.preservation_copy).to eq 'Masters/dlmasters/abc/xyz.tif'
+      end
+    end
+  end
+
   describe '#ark' do
     it "maps the required ark field" do
       expect(mapper.ark).to eq('ark:/21198/zz0002nq4w')
@@ -179,12 +207,12 @@ RSpec.describe CalifornicaMapper do
     end
   end
 
-  describe '#master_file_path' do
+  describe '#preservation_copy' do
     context 'when the path starts with a \'/\'' do
       let(:metadata) { { 'File Name' => '/Masters/dlmasters/abc/xyz.tif' } }
 
       it 'gets removed' do
-        expect(mapper.master_file_path).to eq 'Masters/dlmasters/abc/xyz.tif'
+        expect(mapper.preservation_copy).to eq 'Masters/dlmasters/abc/xyz.tif'
       end
     end
 
@@ -192,7 +220,7 @@ RSpec.describe CalifornicaMapper do
       let(:metadata) { { 'File Name' => 'Masters/dlmasters/abc/xyz.tif' } }
 
       it 'imports as is' do
-        expect(mapper.master_file_path).to eq 'Masters/dlmasters/abc/xyz.tif'
+        expect(mapper.preservation_copy).to eq 'Masters/dlmasters/abc/xyz.tif'
       end
     end
 
@@ -200,7 +228,7 @@ RSpec.describe CalifornicaMapper do
       let(:metadata) { { 'File Name' => 'abc/xyz.tif' } }
 
       it 'prepends \'Masters/dlmasters\'' do
-        expect(mapper.master_file_path).to eq 'Masters/dlmasters/abc/xyz.tif'
+        expect(mapper.preservation_copy).to eq 'Masters/dlmasters/abc/xyz.tif'
       end
     end
   end

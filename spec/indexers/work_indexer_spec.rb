@@ -244,7 +244,7 @@ RSpec.describe WorkIndexer do
     let(:attributes) do
       {
         ark: 'ark:/123/456',
-        master_file_path: 'master/file/path.jpg'
+        access_copy: 'master/file/path.jpg'
       }
     end
     let(:expected_url) { "#{ENV['IIIF_SERVER_URL']}master%2Ffile%2Fpath.jpg/full/!200,200/0/default.jpg" }
@@ -263,7 +263,7 @@ RSpec.describe WorkIndexer do
       end
 
       it 'asks the document\'s children' do
-        child_work = ChildWork.new(ark: 'ark:/abc/xyz', master_file_path: 'master/file/path.jpg')
+        child_work = ChildWork.new(ark: 'ark:/abc/xyz', access_copy: 'master/file/path.jpg')
         allow(work).to receive(:members).and_return([child_work])
         expect(solr_document['thumbnail_url_ss']).to eq expected_url
       end

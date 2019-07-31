@@ -8,7 +8,7 @@ module Californica
     end
 
     def image_concerns
-      @image_concerns ||= ([@curation_concern] + @curation_concern.ordered_members.to_a).select { |member| member.respond_to?(:master_file_path) && member.master_file_path }
+      @image_concerns ||= ([@curation_concern] + @curation_concern.ordered_members.to_a).select { |member| member.respond_to?(:access_copy) && member.access_copy }
     end
 
     def root_url

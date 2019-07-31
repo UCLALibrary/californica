@@ -7,6 +7,7 @@ RSpec.describe Hyrax::WorkForm do
 
   it 'has all the custom terms' do
     expect(form.terms).to include(
+      :access_copy,
       :alternative_title,
       :architect,
       :author,
@@ -18,12 +19,12 @@ RSpec.describe Hyrax::WorkForm do
       :latitude,
       :local_identifier,
       :longitude,
-      :master_file_path,
       :medium,
       :named_subject,
       :normalized_date,
       :photographer,
       :place_of_origin,
+      :preservation_copy,
       :repository,
       :rights_country,
       :rights_holder,

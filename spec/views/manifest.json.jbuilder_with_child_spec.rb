@@ -3,9 +3,9 @@ require "rails_helper"
 require 'cgi'
 
 RSpec.describe "manifest", type: :view do
-  let(:master_file_path) { 'a/b/c.tif' }
+  let(:access_copy) { 'a/b/c.tif' }
   let(:work) { FactoryBot.create(:work, child_work: child_work) }
-  let(:child_work) { FactoryBot.create(:work, master_file_path: master_file_path) }
+  let(:child_work) { FactoryBot.create(:work, access_copy: access_copy) }
   let(:solr_doc) { SolrDocument.find(work.id) }
   let(:builder_service) { Californica::ManifestBuilderService.new(curation_concern: work) }
   let(:image_concerns) { builder_service.image_concerns }
@@ -22,7 +22,7 @@ RSpec.describe "manifest", type: :view do
 
   it "displays manifest for a work with child works" do
     render
-    iiif_id = CGI.escape(master_file_path)
+    iiif_id = CGI.escape(access_copy)
     doc = <<~HEREDOC
 {
   "@context": "http://iiif.io/api/presentation/2/context.json",
