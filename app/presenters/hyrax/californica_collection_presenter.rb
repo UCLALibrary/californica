@@ -9,6 +9,7 @@ module Hyrax
         :architect,
         :ark,
         :author,
+        :binding_note,
         :based_near,
         :creator,
         :contributor,

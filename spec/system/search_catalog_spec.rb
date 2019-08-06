@@ -10,6 +10,7 @@ RSpec.describe 'Search the catalog', :clean, type: :system, js: true do
       title: ['Yellow Banana'],
       architect: ['David Allison', 'George W. Kelham'],
       ark: 'ark:/abc/123456',
+      binding_note: ['Standard', 'Green'],
       caption: ['tropical'],
       description: ['potassium', 'yum'],
       identifier: ['ban_ark'],
@@ -31,6 +32,7 @@ RSpec.describe 'Search the catalog', :clean, type: :system, js: true do
       title: ['Orange Carrot'],
       architect: ['A. Quincy Jones'],
       ark: 'ark:/abc/67890',
+      binding_note: ['Deluxe', 'Red'],
       caption: ['northern'],
       description: ['beta carotene', 'yum'],
       identifier: ['car_ark'],
@@ -103,7 +105,7 @@ RSpec.describe 'Search the catalog', :clean, type: :system, js: true do
     end
 
     # Search by description
-    fill_in 'search-field-header', with: 'potassium yum'
+    fill_in 'search-field-header', with: 'potassium'
     click_on 'search-submit-header'
     within '#search-results' do
       expect(page).to     have_link('Yellow Banana')
@@ -152,6 +154,14 @@ RSpec.describe 'Search the catalog', :clean, type: :system, js: true do
 
     # Search by ark
     fill_in 'search-field-header', with: 'ark:/abc/123456'
+    click_on 'search-submit-header'
+    within '#search-results' do
+      expect(page).to     have_link('Yellow Banana')
+      expect(page).to_not have_link('Orange Carrot')
+    end
+
+    # Search by binding_note
+    fill_in 'search-field-header', with: 'Standard'
     click_on 'search-submit-header'
     within '#search-results' do
       expect(page).to     have_link('Yellow Banana')

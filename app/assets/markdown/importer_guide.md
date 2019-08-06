@@ -13,6 +13,7 @@
 - [AltTitle.other](#alttitle.other)
 - [AltTitle.uniform](#alttitle.uniform)
 - [Author](#author)
+- [Binding note](#binding_note)
 - [Coverage.geographic](#coverage.geographic)
 - [Date.creation](#date.creation)
 - [Date.normalized](#date.normalized)
@@ -133,6 +134,8 @@ accepts AltTitle.translated
 ### AltTitle.uniform
 
 ### Author
+
+### Binding note
 
 ### Coverage.geographic
 

@@ -11,6 +11,7 @@ RSpec.describe Hyrax::WorkForm do
       :alternative_title,
       :architect,
       :author,
+      :binding_note,
       :caption,
       :dimensions,
       :extent,

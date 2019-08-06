@@ -9,6 +9,7 @@ module Hyrax
       :architect,
       :ark,
       :author,
+      :binding_note,
       :caption,
       :dimensions,
       :dlcs_collection_name,

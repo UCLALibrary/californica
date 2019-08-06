@@ -7,6 +7,7 @@ module Hyrax
       :ark,
       :extent,
       :architect,
+      :binding_note,
       :caption,
       :dimensions,
       :funding_note,
@@ -48,6 +49,7 @@ module Hyrax
     def secondary_terms
       [
         :architect,
+        :binding_note,
         :based_near,
         :caption,
         :creator,

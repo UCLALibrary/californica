@@ -41,6 +41,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       rights_statement: ['http://vocabs.library.ucla.edu/rights/copyrighted'], # "copyrighted"
       subject: ['Old Subj'],
       summary: ['Old Summary'],
+      binding_note: ['Old Binding note'],
       support: ['Old Support'],
       title: ['Old Title'],
       uniform_title: ['Old Uniform title']
@@ -91,6 +92,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Rights Holder').value).to eq 'Old Rights Holder'
       expect(find_field('Subject').value).to eq 'Old Subj'
       expect(find_field('Summary').value).to eq 'Old Summary'
+      expect(find_field('Binding note').value).to eq 'Old Binding note'
       expect(find_field('Uniform title').value).to eq 'Old Uniform title'
       expect(find(:xpath, '//label[@for="work_based_near"]').text).to eq 'Based Near'
       expect(first(:css, '#work_description').value).to eq 'Old Desc'

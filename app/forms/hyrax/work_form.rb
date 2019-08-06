@@ -10,6 +10,7 @@ module Hyrax
       :alternative_title,
       :architect,
       :ark,
+      :binding_note,
       :author,
       :caption,
       :dimensions,

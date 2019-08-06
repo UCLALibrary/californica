@@ -105,6 +105,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('architect', :stored_searchable)
     config.add_show_field 'author_tesim'
     config.add_show_field solr_name('caption', :stored_searchable)
+    config.add_show_field solr_name('binding_note', :stored_searchable)
     config.add_show_field solr_name('dimensions', :stored_searchable)
     config.add_show_field solr_name('extent', :stored_searchable)
     config.add_show_field solr_name('funding_note', :stored_searchable)
@@ -142,7 +143,7 @@ class CatalogController < ApplicationController
     # solr request handler? The one set in config[:default_solr_parameters][:qt],
     # since we aren't specifying it otherwise.
     config.add_search_field('all_fields', label: 'All Fields') do |field|
-      search_fields = 'title_tesim subject_tesim named_subject_tesim location_tesim description_tesim caption_tesim identifier_tesim local_identifier_sim ark_ssi normalized_date_tesim architect_tesim photographer_tesim'
+      search_fields = 'title_tesim subject_tesim named_subject_tesim location_tesim description_tesim caption_tesim identifier_tesim local_identifier_sim ark_ssi normalized_date_tesim architect_tesim photographer_tesim binding_note_tesim'
 
       field.solr_parameters = {
         qf: search_fields,
@@ -171,6 +172,14 @@ class CatalogController < ApplicationController
 
     config.add_search_field('author') do |field|
       solr_name = solr_name('author', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('binding_note') do |field|
+      solr_name = solr_name('binding_note', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name

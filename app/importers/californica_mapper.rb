@@ -14,6 +14,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
                         "Alternate Title.other"],
     architect: "Name.architect",
     ark: "Item ARK",
+    binding_note: "Binding note",
     author: "Author",
     caption: "Description.caption",
     date_created: "Date.creation",

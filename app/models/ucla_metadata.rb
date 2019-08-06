@@ -23,6 +23,10 @@ module UclaMetadata
       index.as :stored_searchable
     end
 
+    property :binding_note, predicate: ::RDF::URI.intern('http://marc21rdf.info/elements/5XX/M563__a') do |index|
+      index.as :stored_searchable
+    end
+
     property :caption, predicate: ::RDF::Vocab::SCHEMA.caption do |index|
       index.as :stored_searchable
     end

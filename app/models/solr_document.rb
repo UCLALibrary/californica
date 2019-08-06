@@ -46,6 +46,10 @@ class SolrDocument
     self[:architect_tesim]
   end
 
+  def binding_note
+    self[:binding_note_tesim]
+  end
+
   def extent
     self[:extent_tesim]
   end
