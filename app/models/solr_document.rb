@@ -102,6 +102,10 @@ class SolrDocument
     self[:normalized_date_tesim]
   end
 
+  def page_layout
+    self[:page_layout_ssim]
+  end
+
   def photographer
     self[:photographer_tesim]
   end

@@ -30,6 +30,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       medium: ['Old Medium'],
       named_subject: ['Old Name/Subj'],
       normalized_date: ['Old Normalized Date'],
+      page_layout: ['Old Page layout'],
       photographer: ['Old Photographer'],
       place_of_origin: ['Old Place of origin'],
       preservation_copy: 'dlmasters/ethiopian/masters/abc123.tif',
@@ -81,6 +82,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Medium').value).to eq 'Old Medium'
       expect(find_field('Name (Subject)').value).to eq 'Old Name/Subj'
       expect(find_field('Normalized Date').value).to eq 'Old Normalized Date'
+      expect(find_field('Page layout').value).to eq 'Old Page layout'
       expect(find_field('Photographer').value).to eq 'Old Photographer'
       expect(find_field('Place of origin').value).to eq 'Old Place of origin'
       expect(find_field('Preservation copy').value).to eq 'dlmasters/ethiopian/masters/abc123.tif'

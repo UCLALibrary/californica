@@ -41,6 +41,7 @@ RSpec.describe CalifornicaMapper do
       "Subject.corporateName" => "The Corporation", # named_subject
       "Date.normalized" => "July 4th 1947", # normalized_date
       "Name.photographer" => "Unknown", # photographer
+      "Page layout" => "images", # page_layout
       "Personal or Corporate Name.photographer" => "Unknown", # photographer
       "Place of origin" => 'Los Angeles, CA', # place_of_origin
       "Publisher.publisherName" => "Los Angeles Daily News", # publisher
@@ -105,6 +106,7 @@ RSpec.describe CalifornicaMapper do
         :normalized_date,
         :publisher,
         :photographer,
+        :page_layout,
         :place_of_origin,
         :publisher,
         :repository,

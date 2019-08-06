@@ -75,6 +75,10 @@ module UclaMetadata
       index.as :stored_searchable, :facetable
     end
 
+    property :page_layout, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe.html#p_layout') do |index|
+      index.as :symbol
+    end
+
     property :photographer, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/pht.html') do |index|
       index.as :stored_searchable, :facetable
     end
