@@ -53,6 +53,7 @@ OPTIONAL_HEADERS = [
   'Name.photographer',
   'Name.repository',
   'Name.subject',
+  'Page layout',
   'Place of origin',
   'Project Name',
   'Publisher.publisherName',

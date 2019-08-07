@@ -29,6 +29,7 @@ module Hyrax
         :medium,
         :named_subject,
         :normalized_date,
+        :page_layout,
         :photographer,
         :place_of_origin,
         :publisher,

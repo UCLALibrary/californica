@@ -37,6 +37,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
                     "Subject.corporateName",
                     "Subject.personalName"],
     normalized_date: "Date.normalized",
+    page_layout: "Page layout",
     photographer: ["Name.photographer",
                    "Personal or Corporate Name.photographer"],
     place_of_origin: "Place of origin",

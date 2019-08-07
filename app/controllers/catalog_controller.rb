@@ -114,6 +114,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('medium', :stored_searchable)
     config.add_show_field solr_name('named_subject', :stored_searchable)
     config.add_show_field solr_name('normalized_date', :stored_searchable)
+    config.add_show_field 'page_layout_ssim'
     config.add_show_field solr_name('photographer', :stored_searchable)
     config.add_show_field 'place_of_origin_tesim'
     config.add_show_field 'preservation_copy_ssi'
