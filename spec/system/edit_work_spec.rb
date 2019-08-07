@@ -8,6 +8,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
 
   let(:work_attrs) do
     {
+      access_copy: 'dlmasters/ethiopian/masters/abc123.tif',
       alternative_title: ['Alternative title'],
       architect: ['Old Architect'],
       ark: 'ark:/abc/3456',
@@ -22,16 +23,17 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       funding_note: ['Old Fund Note'],
       genre: ['Old Genre'],
       language: ['Old Lang'],
-      location: ['Old Loc'],
       latitude: ['Old Lat'],
-      longitude: ['Old Long'],
       local_identifier: ['Old Local ID'],
-      master_file_path: 'dlmasters/ethiopian/masters/abc123.tif',
+      location: ['Old Loc'],
+      longitude: ['Old Long'],
       medium: ['Old Medium'],
       named_subject: ['Old Name/Subj'],
       normalized_date: ['Old Normalized Date'],
+      page_layout: ['Old Page layout'],
       photographer: ['Old Photographer'],
       place_of_origin: ['Old Place of origin'],
+      preservation_copy: 'dlmasters/ethiopian/masters/abc123.tif',
       publisher: ['Old Pub'],
       repository: ['Old Repository'],
       resource_type: ['http://id.loc.gov/vocabulary/resourceTypes/img'], # "image"
@@ -63,37 +65,39 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(page.all(:css, 'div.select.work_rights_statement').first.has_content?('copyrighted')).to eq true
 
       click_on 'Additional fields'
-      expect(find(:xpath, '//label[@for="work_based_near"]').text).to eq 'Based Near'
-      expect(first(:css, '#work_description').value).to eq 'Old Desc'
+      expect(find_field('Access copy').value).to eq 'dlmasters/ethiopian/masters/abc123.tif'
       expect(find_field('Alternative title').value).to eq 'Alternative title'
       expect(find_field('Architect').value).to eq 'Old Architect'
       expect(find_field('Author').value).to eq 'Old Author'
-      expect(find_field('Date Created').value).to eq 'Old Creation Date'
-      expect(find_field('Subject').value).to eq 'Old Subj'
-      expect(find_field('Language').value).to eq 'Old Lang'
-      expect(find_field('Resource type').value).to eq ['http://id.loc.gov/vocabulary/resourceTypes/img']
-      expect(find_field('Extent').value).to eq 'Old Extent'
       expect(find_field('Caption').value).to eq 'Old Caption'
+      expect(find_field('Date Created').value).to eq 'Old Creation Date'
       expect(find_field('Dimensions').value).to eq 'Old Dim'
+      expect(find_field('Extent').value).to eq 'Old Extent'
       expect(find_field('Funding Note').value).to eq 'Old Fund Note'
       expect(find_field('Genre').value).to eq 'Old Genre'
+      expect(find_field('Language').value).to eq 'Old Lang'
       expect(find_field('Latitude').value).to eq 'Old Lat'
-      expect(find_field('Longitude').value).to eq 'Old Long'
       expect(find_field('Local Identifier').value).to eq 'Old Local ID'
-      expect(find_field('Master file path').value).to eq 'dlmasters/ethiopian/masters/abc123.tif'
+      expect(find_field('Location').value).to eq 'Old Loc'
+      expect(find_field('Longitude').value).to eq 'Old Long'
       expect(find_field('Medium').value).to eq 'Old Medium'
       expect(find_field('Name (Subject)').value).to eq 'Old Name/Subj'
       expect(find_field('Normalized Date').value).to eq 'Old Normalized Date'
-      expect(find_field('Publisher').value).to eq 'Old Pub'
+      expect(find_field('Page layout').value).to eq 'Old Page layout'
       expect(find_field('Photographer').value).to eq 'Old Photographer'
       expect(find_field('Place of origin').value).to eq 'Old Place of origin'
+      expect(find_field('Preservation copy').value).to eq 'dlmasters/ethiopian/masters/abc123.tif'
+      expect(find_field('Publisher').value).to eq 'Old Pub'
       expect(find_field('Repository').value).to eq 'Old Repository'
-      expect(find_field('Location').value).to eq 'Old Loc'
+      expect(find_field('Resource type').value).to eq ['http://id.loc.gov/vocabulary/resourceTypes/img']
       expect(find_field('Rights (country of creation)').value).to eq 'Old Rights Country'
       expect(find_field('Rights Holder').value).to eq 'Old Rights Holder'
+      expect(find_field('Subject').value).to eq 'Old Subj'
       expect(find_field('Summary').value).to eq 'Old Summary'
       expect(find_field('Text direction').value).to eq 'http://iiif.io/api/presentation/2#leftToRightDirection'
       expect(find_field('Uniform title').value).to eq 'Old Uniform title'
+      expect(find(:xpath, '//label[@for="work_based_near"]').text).to eq 'Based Near'
+      expect(first(:css, '#work_description').value).to eq 'Old Desc'
 
       # Edit some fields in the form
       fill_in 'Title', with: 'New Title'

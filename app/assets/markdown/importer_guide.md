@@ -30,6 +30,7 @@
 - [Name.photographer](#name.photographer)
 - [Name.repository](#name.repository)
 - [Name.subject](#name.subject)
+- [Page layout](#page-layout)
 - [Project Name](#project-name)
 - [Place of origin](#place-of-origin)
 - [Publisher.publisherName](#publisher.publishername)
@@ -168,6 +169,8 @@ accepts AltTitle.translated
 ### Name.repository
 
 ### Name.subject
+
+### Page layout
 
 ### Place of origin
 

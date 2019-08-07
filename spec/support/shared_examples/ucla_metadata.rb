@@ -17,6 +17,12 @@ RSpec.shared_examples 'a work with UCLA metadata' do
       end
     end
 
+    it "has access_copy" do
+      work.access_copy = 'dlmasters/ethiopian/masters/abc123.tif'
+      expect(work.access_copy).to eq 'dlmasters/ethiopian/masters/abc123.tif'
+      expect(work.resource.dump(:ttl)).to match(/www.europeana.eu\/schemas\/edm\/object/)
+    end
+
     it "has a single-valued ark" do
       work.ark = 'ark:/abc/123456'
       expect(work.ark).to eq 'ark:/abc/123456'
@@ -47,10 +53,10 @@ RSpec.shared_examples 'a work with UCLA metadata' do
       expect(work.resource.dump(:ttl)).to match(/purl.org\/dc\/elements\/1.1\/format/)
     end
 
-    it "has master_file_path" do
-      work.master_file_path = 'dlmasters/ethiopian/masters/abc123.tif'
-      expect(work.master_file_path).to eq 'dlmasters/ethiopian/masters/abc123.tif'
-      expect(work.resource.dump(:ttl)).to match(/www.europeana.eu\/schemas\/edm\/object/)
+    it "has preservation_copy" do
+      work.preservation_copy = 'dlmasters/ethiopian/masters/abc123.tif'
+      expect(work.preservation_copy).to eq 'dlmasters/ethiopian/masters/abc123.tif'
+      expect(work.resource.dump(:ttl)).to match(/https\:\/\/pcdm\.org\/models\#hasFile/)
     end
 
     it "has repository" do

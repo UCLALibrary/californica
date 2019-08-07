@@ -6,10 +6,10 @@ RSpec.describe Californica::ManifestBuilderService do
   let(:parent_image_path) { 'parent/image.tif' }
   let(:child_image_path_1) { 'child/image_1.tif' }
   let(:child_image_path_2) { 'child/image_2.tif' }
-  let(:child_work1) { FactoryBot.create(:child_work, master_file_path: child_image_path_1) }
-  let(:child_work2) { FactoryBot.create(:child_work, master_file_path: child_image_path_2) }
+  let(:child_work1) { FactoryBot.create(:child_work, access_copy: child_image_path_1) }
+  let(:child_work2) { FactoryBot.create(:child_work, access_copy: child_image_path_2) }
   let(:work) do
-    w = FactoryBot.create(:work, master_file_path: parent_image_path)
+    w = FactoryBot.create(:work, access_copy: parent_image_path)
     w.ordered_members << child_work1
     w.ordered_members << child_work2
     w
@@ -21,7 +21,7 @@ RSpec.describe Californica::ManifestBuilderService do
       expect(service.image_concerns).to eq [work, child_work1, child_work2]
     end
 
-    context 'When the parent work has no master_file_path' do
+    context 'When the parent work has no access_copy' do
       let(:parent_image_path) { nil }
 
       it 'returns the set of child works' do
@@ -30,27 +30,41 @@ RSpec.describe Californica::ManifestBuilderService do
     end
 
     context 'When the parent work has no children' do
-      let(:work) { FactoryBot.create(:work, master_file_path: parent_image_path) }
+      let(:work) { FactoryBot.create(:work, access_copy: parent_image_path) }
 
       it 'returns only the parent' do
         expect(service.image_concerns).to eq [work]
       end
     end
 
-    context 'When the parent work has neither master_file_path nor children' do
-      let(:work) { FactoryBot.create(:work, master_file_path: nil) }
+    context 'When the parent work has neither access_copy nor children' do
+      let(:work) { FactoryBot.create(:work, access_copy: nil) }
 
       it 'returns nothing' do
         expect(service.image_concerns).to eq []
       end
     end
 
-    context 'When the a child work has no master_file_path' do
+    context 'When the a child work has no access_copy' do
       let(:child_image_path_1) { nil }
 
       it 'does not include the child' do
         expect(service.image_concerns).to eq [work, child_work2]
       end
+    end
+  end
+
+  describe '#root_url' do
+    it 'uses ENV[\'RAILS_HOST\']' do
+      allow(ENV).to receive(:[]).and_call_original
+      allow(ENV).to receive(:[]).with('RAILS_HOST').and_return('my.url')
+      expect(service.root_url).to eq "http://my.url/concern/works/#{work.id}/manifest"
+    end
+
+    it 'defaults to use localhost' do
+      allow(ENV).to receive(:[]).and_call_original
+      allow(ENV).to receive(:[]).with('RAILS_HOST').and_return(nil)
+      expect(service.root_url).to eq "http://localhost/concern/works/#{work.id}/manifest"
     end
   end
 end

@@ -3,6 +3,10 @@ module UclaMetadata
   extend ActiveSupport::Concern
 
   included do
+    property :access_copy, predicate: ::RDF::URI.intern('http://www.europeana.eu/schemas/edm/object'), multiple: false do |index|
+      index.as :stored_sortable
+    end
+
     property :alternative_title, predicate: ::RDF::Vocab::DC.alternative, multiple: true do |index|
       index.as :stored_searchable
     end
@@ -59,10 +63,6 @@ module UclaMetadata
       index.as :stored_searchable
     end
 
-    property :master_file_path, predicate: ::RDF::URI.intern('http://www.europeana.eu/schemas/edm/object'), multiple: false do |index|
-      index.as :stored_sortable
-    end
-
     property :medium, predicate: ::RDF::Vocab::DC.medium do |index|
       index.as :stored_searchable, :facetable
     end
@@ -75,12 +75,20 @@ module UclaMetadata
       index.as :stored_searchable, :facetable
     end
 
+    property :page_layout, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe.html#p_layout') do |index|
+      index.as :symbol
+    end
+
     property :photographer, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/pht.html') do |index|
       index.as :stored_searchable, :facetable
     end
 
     property :place_of_origin, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/prp.html') do |index|
       index.as :stored_searchable
+    end
+
+    property :preservation_copy, predicate: ::RDF::URI.intern('https://pcdm.org/models#hasFile'), multiple: false do |index|
+      index.as :stored_sortable
     end
 
     property :repository, predicate: ::RDF::Vocab::MODS.locationCopySublocation do |index|

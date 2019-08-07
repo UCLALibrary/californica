@@ -6,7 +6,9 @@ RSpec.describe CalifornicaMapper do
   subject(:mapper) { described_class.new }
 
   let(:metadata) do
-    { "AltTitle.other" => "alternative title", # alternative_title
+    {
+      "File Name" => "clusc_1_1_00010432a.tif", # access_copy, preservation_copy
+      "AltTitle.other" => "alternative title", # alternative_title
       "AltTitle.translated" => "translated alternative title", # alternative_title
       "AltTitle.parallel" => "parallel alternative title", # alternative_title
       "Alternate Title.creator" => "alternative title creator", # alternative_title
@@ -32,7 +34,6 @@ RSpec.describe CalifornicaMapper do
       "Alt ID.local" => "UCLA-1234d", # local_identifier
       "Coverage.geographic" => "Los Angeles (Calif.)", # location
       "Description.longitude" => "-118.243683", # longitude
-      "File Name" => "clusc_1_1_00010432a.tif", # master_file_path
       "Format.medium" => "photograph", # medium
       "Name.subject" => "Los Angeles County (Calif.). $b Board of Supervisors", # named_subject
       "Personal or Corporate Name.subject" => "LA County", # named_subject
@@ -40,6 +41,7 @@ RSpec.describe CalifornicaMapper do
       "Subject.corporateName" => "The Corporation", # named_subject
       "Date.normalized" => "July 4th 1947", # normalized_date
       "Name.photographer" => "Unknown", # photographer
+      "Page layout" => "images", # page_layout
       "Personal or Corporate Name.photographer" => "Unknown", # photographer
       "Place of origin" => 'Los Angeles, CA', # place_of_origin
       "Publisher.publisherName" => "Los Angeles Daily News", # publisher
@@ -111,6 +113,7 @@ RSpec.describe CalifornicaMapper do
         :normalized_date,
         :publisher,
         :photographer,
+        :page_layout,
         :place_of_origin,
         :publisher,
         :repository,
@@ -145,6 +148,32 @@ RSpec.describe CalifornicaMapper do
     it 'maps from a list of source fields' do
       stub_const('CalifornicaMapper::CALIFORNICA_TERMS_MAP', { 'multi_source' => ['Source.one', 'Source.two'] })
       expect(mapper.map_field('multi_source')).to eq(['ecolog', 'next', 'nihilism'])
+    end
+  end
+
+  describe '#preservation_copy' do
+    context 'when the path starts with a \'/\'' do
+      let(:metadata) { { 'File Name' => '/Masters/dlmasters/abc/xyz.tif' } }
+
+      it 'gets removed' do
+        expect(mapper.preservation_copy).to eq 'Masters/dlmasters/abc/xyz.tif'
+      end
+    end
+
+    context 'when the path starts with \'Masters/\'' do
+      let(:metadata) { { 'File Name' => 'Masters/dlmasters/abc/xyz.tif' } }
+
+      it 'imports as is' do
+        expect(mapper.preservation_copy).to eq 'Masters/dlmasters/abc/xyz.tif'
+      end
+    end
+
+    context 'when the path doesn\'t start with \'Masters\'' do
+      let(:metadata) { { 'File Name' => 'abc/xyz.tif' } }
+
+      it 'prepends \'Masters/dlmasters\'' do
+        expect(mapper.preservation_copy).to eq 'Masters/dlmasters/abc/xyz.tif'
+      end
     end
   end
 
@@ -188,12 +217,12 @@ RSpec.describe CalifornicaMapper do
     end
   end
 
-  describe '#master_file_path' do
+  describe '#preservation_copy' do
     context 'when the path starts with a \'/\'' do
       let(:metadata) { { 'File Name' => '/Masters/dlmasters/abc/xyz.tif' } }
 
       it 'gets removed' do
-        expect(mapper.master_file_path).to eq 'Masters/dlmasters/abc/xyz.tif'
+        expect(mapper.preservation_copy).to eq 'Masters/dlmasters/abc/xyz.tif'
       end
     end
 
@@ -201,7 +230,7 @@ RSpec.describe CalifornicaMapper do
       let(:metadata) { { 'File Name' => 'Masters/dlmasters/abc/xyz.tif' } }
 
       it 'imports as is' do
-        expect(mapper.master_file_path).to eq 'Masters/dlmasters/abc/xyz.tif'
+        expect(mapper.preservation_copy).to eq 'Masters/dlmasters/abc/xyz.tif'
       end
     end
 
@@ -209,7 +238,7 @@ RSpec.describe CalifornicaMapper do
       let(:metadata) { { 'File Name' => 'abc/xyz.tif' } }
 
       it 'prepends \'Masters/dlmasters\'' do
-        expect(mapper.master_file_path).to eq 'Masters/dlmasters/abc/xyz.tif'
+        expect(mapper.preservation_copy).to eq 'Masters/dlmasters/abc/xyz.tif'
       end
     end
   end

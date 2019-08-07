@@ -27,6 +27,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       medium: ['Old Medium'],
       named_subject: ['Old Name/Subj'],
       normalized_date: ['Old Normalized Date'],
+      page_layout: ['Old Page layout'],
       photographer: ['Old Photographer'],
       place_of_origin: ['Old Place of origin'],
       publisher: ['Old Pub'],

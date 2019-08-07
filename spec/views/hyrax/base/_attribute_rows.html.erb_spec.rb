@@ -27,6 +27,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
              medium: ['medium'],
              named_subject: ['named_subject'],
              normalized_date: ['normalized_date'],
+             page_layout: ['page_layout'],
              place_of_origin: ['place_of_origin'],
              repository: ['repostiory'],
              resource_type: ['resource_type'],
@@ -80,6 +81,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   end
   it 'has normalized_date' do
     expect(page).to match(/normalized_date/)
+  end
+  it 'has page_layout' do
+    expect(page).to match(/page_layout/)
   end
   it 'has place_of_origin' do
     expect(page).to match(/place_of_origin/)

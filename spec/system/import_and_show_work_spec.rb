@@ -68,6 +68,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
       expect(page).to have_content "Fake Funding Note" # funding_note
       expect(page).to have_content "Fake Caption" # caption
       expect(page).to have_content "No linguistic content" # language
+      expect(page).to have_content "images" # page_layout
       expect(page).to have_content "Famous Photographer" # photographer
       expect(page).to have_content "Famous Author" # photographer
       expect(page).to have_content "34.05707, -118.239577" # geographic_coordinates, a.k.a. latitude and longitude
@@ -78,7 +79,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
       expect(page).to have_content "Summary" # summary
       expect(page).to have_content "left-to-right" # text_direction
       expect(page).to have_content "Uniform title" # uniform_title
-      expect(page).to have_content "clusc_1_1_00010432a.tif" # master_file_path
+      expect(page).to have_content "clusc_1_1_00010432a.tif" # preservation_copy
     end
     it "displays expected fields on search results page" do
       importer.import

@@ -4,6 +4,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   attr_reader :row_number
 
   CALIFORNICA_TERMS_MAP = {
+    access_copy: "Access copy",
     alternative_title: ["AltTitle.other",
                         "AltTitle.parallel",
                         "AltTitle.translated",
@@ -30,16 +31,17 @@ class CalifornicaMapper < Darlingtonia::HashMapper
                        "Alt ID.local"],
     location: "Coverage.geographic",
     longitude: "Description.longitude",
-    master_file_path: "File Name",
     medium: "Format.medium",
     named_subject: ["Name.subject",
                     "Personal or Corporate Name.subject",
                     "Subject.corporateName",
                     "Subject.personalName"],
     normalized_date: "Date.normalized",
+    page_layout: "Page layout",
     photographer: ["Name.photographer",
                    "Personal or Corporate Name.photographer"],
     place_of_origin: "Place of origin",
+    preservation_copy: "File Name",
     publisher: "Publisher.publisherName",
     repository: ["Name.repository",
                  "Personal or Corporate Name.repository"],
@@ -66,7 +68,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
   # What columns are allowed in the CSV
   def self.allowed_headers
-    CALIFORNICA_TERMS_MAP.values +
+    CALIFORNICA_TERMS_MAP.values.flatten +
       ['File Name', 'Parent ARK', 'Project Name', 'Object Type', 'Item Sequence', 'Visibility']
   end
 
@@ -111,6 +113,16 @@ class CalifornicaMapper < Darlingtonia::HashMapper
       'open' => Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC,
       'public' => Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
     }.freeze
+  end
+
+  def access_copy
+    path = map_field(:access_copy).first.to_s.strip.sub(/^\//, '')
+    return nil if path.empty?
+    if path.start_with?('Masters/')
+      path
+    else
+      'Masters/dlmasters/' + path
+    end
   end
 
   def ark
@@ -179,8 +191,8 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     metadata['Project Name'] == 'Los Angeles Daily News Negatives'
   end
 
-  def master_file_path
-    path = map_field(:master_file_path).first.to_s.strip.sub(/^\//, '')
+  def preservation_copy
+    path = map_field(:preservation_copy).first.to_s.strip.sub(/^\//, '')
     return nil if path.empty?
     if path.start_with?('Masters/')
       path

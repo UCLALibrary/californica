@@ -11,7 +11,8 @@ json.sequences [''] do
   json.set! :@type, 'sc:Sequence'
   json.set! :@id, "#{@root_url}/sequence/normal"
   json.canvases @image_concerns do |child|
-    json.set! :@id, "#{@root_url}/canvas/#{child.id}"
+    canvas_uri = "#{@root_url}/canvas/#{CGI.escape(child.ark)}"
+    json.set! :@id, canvas_uri
     json.set! :@type, 'sc:Canvas'
     json.label child.title.first
     json.description child.description.first
@@ -19,8 +20,8 @@ json.sequences [''] do
     json.height 480
     json.images [child] do |child_image|
       url = Hyrax.config.iiif_image_url_builder.call(
-        CGI.escape(child_image.master_file_path),
-        request.base_url,
+        CGI.escape(child_image.access_copy),
+        ENV['IIIF_SERVER_URL'],
         Hyrax.config.iiif_image_size_default
       )
 
@@ -36,15 +37,15 @@ json.sequences [''] do
 
           # The base url for the info.json file
           info_url = Hyrax.config.iiif_info_url_builder.call(
-            CGI.escape(child_image.master_file_path),
-            ENV['IIIF_SERVER_URL'] || request.base_url
+            CGI.escape(child_image.access_copy),
+            ENV['IIIF_SERVER_URL']
           )
 
           json.set! :@id, info_url
           json.profile 'http://iiif.io/api/image/2/level2.json'
         end
       end
-      json.on "#{request.base_url}/concern/works/#{@solr_doc.id}/manifest/canvas/#{child.id}"
+      json.on canvas_uri
     end
   end
 end

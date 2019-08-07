@@ -11,7 +11,8 @@ services:
       - fedora_test
       - solr_test
     env_file:
-      - ./docker.env
+      - ./default.env # must come first to be overloaded
+      - ./docker.env # must come last to overload default
     stdin_open: true
     tty: true
     ports:
@@ -37,7 +38,8 @@ services:
       - fedora_test
       - solr_test
     env_file:
-      - ./docker.env
+      - ./default.env # must come first to be overloaded
+      - ./docker.env # must come last to overload default
     volumes:
       - .:/californica
       - ./data:/opt/data

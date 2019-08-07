@@ -72,16 +72,16 @@ class WorkIndexer < Hyrax::WorkIndexer
 
   def thumbnail_url
     # this record has an image path attached
-    master_file_path = object.master_file_path
-    children = Array.wrap(object.members.to_a.clone)
-    until master_file_path || children.empty?
+    access_copy = object.access_copy
+    children = Array.wrap(object.members).clone
+    until access_copy || children.empty?
       child = children.shift
-      next unless child.respond_to? :master_file_path
-      master_file_path = child.master_file_path
+      next unless child.respond_to? :access_copy
+      access_copy = child.access_copy
     end
 
-    return nil unless master_file_path
-    "#{ENV['IIIF_SERVER_URL']}#{CGI.escape(master_file_path)}/full/!200,200/0/default.jpg"
+    return nil unless access_copy
+    "#{ENV['IIIF_SERVER_URL']}#{CGI.escape(access_copy)}/full/!200,200/0/default.jpg"
   end
 
   # The 'to_a' is needed to force ActiveTriples::Relation to resolve into the String value(s), else you get an error trying to parse the date.

@@ -53,6 +53,7 @@ OPTIONAL_HEADERS = [
   'Name.photographer',
   'Name.repository',
   'Name.subject',
+  'Page layout',
   'Place of origin',
   'Project Name',
   'Publisher.publisherName',
@@ -192,8 +193,8 @@ private
       end
 
       # Row has a File Name that doesn't exist
-      if @mapper.master_file_path
-        full_path = File.join(file_uri_base_path, @mapper.master_file_path)
+      if @mapper.preservation_copy
+        full_path = File.join(file_uri_base_path, @mapper.preservation_copy)
         this_row_warnings << "Rows contain a File Name that does not exist. Incorrect values may be imported." unless File.exist?(full_path)
       end
 
