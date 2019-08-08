@@ -30,26 +30,21 @@ class CollectionIndexer < Hyrax::CollectionWithBasicMetadataIndexer
   end
 
   def thumbnail_url
-    # this record has an image path attached
+    iiif_url_base = Californica::ManifestBuilderService.new(curation_concern: object).iiif_url
 
-    access_copy = object.access_copy
     children = Array.wrap(object.members).clone
-
-    until access_copy || children.empty?
+    until iiif_url_base || children.empty?
       child = children.shift
+      iiif_url_base = Californica::ManifestBuilderService.new(curation_concern: child).iiif_url
 
-      if (child.respond_to? 'access_copy') && !child.access_copy.nil?
-        access_copy = child.access_copy
-      else
-        grandchildren = Array.wrap(child.members).clone
-        until access_copy || grandchildren.empty?
-          grandchild = grandchildren.shift
-          access_copy = grandchild.access_copy
-        end
+      grandchildren = Array.wrap(child.members).clone
+      until iiif_url_base || grandchildren.empty?
+        grandchild = grandchildren.shift
+        iiif_url_base = Californica::ManifestBuilderService.new(curation_concern: grandchild).iiif_url
       end
     end
 
-    return nil unless access_copy
-    "#{ENV['IIIF_SERVER_URL']}#{CGI.escape(access_copy)}/full/!200,200/0/default.jpg"
+    return nil unless iiif_url_base
+    "#{iiif_url_base}/full/!200,200/0/default.jpg"
   end
 end
