@@ -19,7 +19,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       publisher: ['Old Pub'],
       date_created: ['Old Creation Date'],
       subject: ['Old Subj'],
-      language: ['Old Lang'],
+      language: ['ang'],
       description: ['Old Desc'],
       resource_type: ['http://id.loc.gov/vocabulary/resourceTypes/col'], # "collection"
       extent: ['Old Extent'],
@@ -72,7 +72,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Publisher').value).to eq 'Old Pub'
       expect(find_field('Date Created').value).to eq 'Old Creation Date'
       expect(find_field('Subject').value).to eq 'Old Subj'
-      expect(find_field('Language').value).to eq 'Old Lang'
+      expect(page).to have_select('Language', selected: 'English, Old (ca. 450-1100)', multiple: true)
       expect(find_field('Resource type').value).to eq ["http://id.loc.gov/vocabulary/resourceTypes/col"]
       expect(find_field('Extent').value).to eq 'Old Extent'
       expect(find_field('Caption').value).to eq 'Old Cap'

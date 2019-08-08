@@ -22,7 +22,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       extent: ['Old Extent'],
       funding_note: ['Old Fund Note'],
       genre: ['Old Genre'],
-      language: ['Old Lang'],
+      language: ['ang'],
       latitude: ['Old Lat'],
       local_identifier: ['Old Local ID'],
       location: ['Old Loc'],
@@ -74,7 +74,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Extent').value).to eq 'Old Extent'
       expect(find_field('Funding Note').value).to eq 'Old Fund Note'
       expect(find_field('Genre').value).to eq 'Old Genre'
-      expect(find_field('Language').value).to eq 'Old Lang'
+      expect(page).to have_select('Language', selected: 'English, Old (ca. 450-1100)', multiple: true)
       expect(find_field('Latitude').value).to eq 'Old Lat'
       expect(find_field('Local Identifier').value).to eq 'Old Local ID'
       expect(find_field('Location').value).to eq 'Old Loc'
@@ -94,7 +94,6 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Subject').value).to eq 'Old Subj'
       expect(find_field('Summary').value).to eq 'Old Summary'
       expect(find_field('Uniform title').value).to eq 'Old Uniform title'
-      expect(find(:xpath, '//label[@for="work_based_near"]').text).to eq 'Based Near'
       expect(first(:css, '#work_description').value).to eq 'Old Desc'
 
       # Edit some fields in the form

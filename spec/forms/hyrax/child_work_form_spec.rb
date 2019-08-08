@@ -28,4 +28,18 @@ RSpec.describe Hyrax::ChildWorkForm do
       :rights_holder
     )
   end
+
+  it 'doesn\'t have built-in terms we don\'t want' do
+    expect(form.terms).not_to include(:based_near)
+  end
+
+  it 'has the right terms above the fold' do
+    expect(form.primary_terms).to eq [
+      :title,
+      :ark,
+      :rights_statement,
+      :access_copy,
+      :preservation_copy
+    ]
+  end
 end
