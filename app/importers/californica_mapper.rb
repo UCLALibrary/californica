@@ -4,7 +4,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   attr_reader :row_number
 
   CALIFORNICA_TERMS_MAP = {
-    access_copy: "Access copy",
+    access_copy: "access_copy",
     alternative_title: ["AltTitle.other",
                         "AltTitle.parallel",
                         "AltTitle.translated",
@@ -115,13 +115,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   end
 
   def access_copy
-    path = map_field(:access_copy).first.to_s.strip.sub(/^\//, '')
-    return nil if path.empty?
-    if path.start_with?('Masters/')
-      path
-    else
-      'Masters/dlmasters/' + path
-    end
+    map_field(:access_copy).first || preservation_copy
   end
 
   def ark
