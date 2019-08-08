@@ -143,6 +143,27 @@ RSpec.describe CalifornicaMapper do
     end
   end
 
+  describe '#access_copy' do
+    context 'when the column is filled' do
+      let(:metadata) { { 'access_copy' => 'https://my.cantaloupe/iiif/2/abcxyz' } }
+
+      it 'uses that value' do
+        expect(mapper.access_copy).to eq 'https://my.cantaloupe/iiif/2/abcxyz'
+      end
+    end
+
+    context 'when the column is empty' do
+      let(:metadata) do
+        { 'File Name' => 'abc/xyz.tif',
+          'access_copy' => '' }
+      end
+
+      it 'uses preservation_copy' do
+        expect(mapper.access_copy).to eq 'Masters/dlmasters/abc/xyz.tif'
+      end
+    end
+  end
+
   describe '#preservation_copy' do
     context 'when the path starts with a \'/\'' do
       let(:metadata) { { 'File Name' => '/Masters/dlmasters/abc/xyz.tif' } }
