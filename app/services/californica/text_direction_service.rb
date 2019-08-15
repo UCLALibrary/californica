@@ -20,7 +20,7 @@ module Californica
     #
     # @return [String] the `term` matching the authority id
     #
-    # @raise [ResourceTypeService::LookupError]
+    # @raise [TextDirectionService::LookupError]
     def self.label(id)
       authority.find(id).fetch('term') do
         raise LookupError,

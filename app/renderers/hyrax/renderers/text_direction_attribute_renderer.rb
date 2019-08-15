@@ -2,7 +2,7 @@
 module Hyrax
   module Renderers
     class TextDirectionAttributeRenderer < Hyrax::Renderers::AttributeRenderer
-      SERVICE = Californica::ResourceTypeService
+      SERVICE = Californica::TextDirectionService
 
       ##
       # @private
