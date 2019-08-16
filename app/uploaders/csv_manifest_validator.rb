@@ -76,7 +76,7 @@ CONTROLLED_VOCABULARIES = {
   'License' => Qa::Authorities::Local.subauthority_for('licenses').all.map { |x| x['label'] },
   'Rights.copyrightStatus' => Qa::Authorities::Local.subauthority_for('rights_statements').all.map { |x| x['label'] },
   'Type.typeOfResource' => Qa::Authorities::Local.subauthority_for('resource_types').all.map { |x| x['label'] },
-  'Text direction' => Qa::Authorities::Local.subauthority_for('text_directions').all.map { |x| x['label'] }
+  'IIIF Text direction' => Qa::Authorities::Local.subauthority_for('iiif_text_directions').all.map { |x| x['label'] }
 }.freeze
 
 N_ROWS_TO_WARN = 5 # use Float::INFINITY to show all row numbers in warnings

@@ -31,7 +31,7 @@ RSpec.describe Hyrax::WorkForm do
       :rights_holder,
       :summary,
       :support,
-      :text_direction,
+      :iiif_text_direction,
       :uniform_title
     )
   end

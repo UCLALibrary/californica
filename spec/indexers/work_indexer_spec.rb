@@ -37,6 +37,37 @@ RSpec.describe WorkIndexer do
     end
   end
 
+  describe 'IIIF Text direction' do
+    context 'a work with a IIIF Text direction' do
+      let(:attributes) do
+        {
+          ark: 'ark:/123/456',
+          iiif_text_direction: 'http://iiif.io/api/presentation/2#leftToRightDirection'
+        }
+      end
+
+      it 'indexes a human-readable IIIF Text direction' do
+        expect(solr_document['human_readable_iiif_text_direction_ssi']).to eq 'left-to-right'
+      end
+    end
+
+    # This should never happen in production data,
+    # but if it does, handle it gracefully.
+    context 'when there is no human-readable value' do
+      let(:no_match) { "a IIIF Text direction that doesn't have a matching value in config/authorities/iiif_text_directions.yml" }
+      let(:attributes) do
+        {
+          ark: 'ark:/123/456',
+          iiif_text_direction: 'http://iiif.io/api/presentation/2#leftToRightDirection'
+        }
+      end
+
+      it 'just returns the original value' do
+        expect(solr_document['human_readable_iiif_text_direction_ssi']).to eq 'left-to-right'
+      end
+    end
+  end
+
   describe 'rights statement' do
     context 'a work with a rights statement' do
       let(:attributes) do

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe Californica::TextDirectionService do
+RSpec.describe Californica::IiifTextDirectionService do
   describe '.label' do
     let(:id) { 'http://iiif.io/api/presentation/2#leftToRightDirection' }
     let(:label) { 'left-to-right' }

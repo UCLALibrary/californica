@@ -54,7 +54,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     subject: "Subject",
     summary: "Summary",
     support: "Support",
-    text_direction: "Text direction",
+    iiif_text_direction: "Text direction",
     title: "Title",
     uniform_title: "AltTitle.uniform"
   }.freeze
@@ -208,11 +208,10 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     end.compact
   end
 
-  def text_direction
-    map_field(:text_direction).to_a.map do |label|
-      term = Qa::Authorities::Local.subauthority_for('text_directions').all.find { |h| h[:label] == label }
-      term.blank? ? nil : term[:id]
-    end.compact
+  def iiif_text_direction
+    label = map_field(:iiif_text_direction).first
+    term = Qa::Authorities::Local.subauthority_for('iiif_text_directions').all.find { |h| h[:label] == label }
+    term.blank? ? nil : term[:id]
   end
 
   # The CSV file contains the label, so we'll find the

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 module Hyrax
   module Renderers
-    class TextDirectionAttributeRenderer < Hyrax::Renderers::AttributeRenderer
-      SERVICE = Californica::TextDirectionService
+    class IiifTextDirectionAttributeRenderer < Hyrax::Renderers::AttributeRenderer
+      SERVICE = Californica::IiifTextDirectionService
 
       ##
       # @private

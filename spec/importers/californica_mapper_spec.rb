@@ -61,7 +61,7 @@ RSpec.describe CalifornicaMapper do
         "hearing over eminent domain for construction of Harbor Freeway, Calif., 1947", # title
       "AltTitle.uniform" => "Protesters with signs in gallery of Los Angeles County Supervisors", # uniform_title
       "Summary" => "Protesters with signs", # summary
-      "Text direction" => "left-to-right" # text_direction
+      "Text direction" => "left-to-right" # iiif_text_direction
     }
   end
 
@@ -73,10 +73,8 @@ RSpec.describe CalifornicaMapper do
     )
   end
 
-  it "maps Text direction to local authority values, if possible" do
-    expect(mapper.text_direction).to contain_exactly(
-      'http://iiif.io/api/presentation/2#leftToRightDirection'
-    )
+  it "maps IIIF Text direction to local authority values, if possible" do
+    expect(mapper.iiif_text_direction).to eq 'http://iiif.io/api/presentation/2#leftToRightDirection'
   end
 
   it "maps the required title field" do
@@ -125,7 +123,7 @@ RSpec.describe CalifornicaMapper do
         :subject,
         :summary,
         :support,
-        :text_direction,
+        :iiif_text_direction,
         :title,
         :uniform_title,
         :visibility

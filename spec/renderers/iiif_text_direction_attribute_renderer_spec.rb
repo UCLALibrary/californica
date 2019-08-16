@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 require 'rails_helper'
 
-RSpec.describe Hyrax::Renderers::TextDirectionAttributeRenderer do
+RSpec.describe Hyrax::Renderers::IiifTextDirectionAttributeRenderer do
   subject(:renderer) { described_class.new(field, values) }
   let(:field)        { :text_direction }
   let(:labels)       { ['left-to-right', 'right-to-left'] }

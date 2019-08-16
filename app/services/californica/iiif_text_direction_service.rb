@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 module Californica
-  module TextDirectionService
+  module IiifTextDirectionService
     ##
     # @!attribute [rw] authority
     #   @return [Qa::Authorities::Base]
     mattr_accessor :authority
-    self.authority = Qa::Authorities::Local.subauthority_for('text_directions')
+    self.authority = Qa::Authorities::Local.subauthority_for('iiif_text_directions')
 
     ##
     # @return [Array<Array<String, String>>] a collection of [label, id] pairs
@@ -20,11 +20,11 @@ module Californica
     #
     # @return [String] the `term` matching the authority id
     #
-    # @raise [TextDirectionService::LookupError]
+    # @raise [IIIFTextDirectionService::LookupError]
     def self.label(id)
       authority.find(id).fetch('term') do
         raise LookupError,
-              "Tried to look up missing label for Text direction: #{id}"
+              "Tried to look up missing label for IIIF Text direction: #{id}"
       end
     end
 

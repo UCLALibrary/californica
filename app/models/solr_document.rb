@@ -142,8 +142,8 @@ class SolrDocument
     self[:support_tesim]
   end
 
-  def text_direction
-    self[:text_direction_ssi]
+  def iiif_text_direction
+    self[:iiif_text_direction_ssi]
   end
 
   def uniform_title

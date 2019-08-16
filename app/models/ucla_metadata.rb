@@ -115,7 +115,7 @@ module UclaMetadata
       index.as :stored_searchable
     end
 
-    property :text_direction, predicate: ::RDF::URI.intern('http://iiif.io/api/presentation/2#viewingDirection'), multiple: false do |index|
+    property :iiif_text_direction, predicate: ::RDF::URI.intern('http://iiif.io/api/presentation/2#viewingDirection'), multiple: false do |index|
       index.as :stored_sortable
     end
 
