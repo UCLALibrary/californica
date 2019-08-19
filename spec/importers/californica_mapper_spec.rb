@@ -60,7 +60,8 @@ RSpec.describe CalifornicaMapper do
       "Title" => "Protesters with signs in gallery of Los Angeles County Supervisors " \
         "hearing over eminent domain for construction of Harbor Freeway, Calif., 1947", # title
       "AltTitle.uniform" => "Protesters with signs in gallery of Los Angeles County Supervisors", # uniform_title
-      "Summary" => "Protesters with signs" # summary
+      "Summary" => "Protesters with signs", # summary
+      "Text direction" => "left-to-right" # iiif_text_direction
     }
   end
 
@@ -70,6 +71,10 @@ RSpec.describe CalifornicaMapper do
     expect(mapper.resource_type).to contain_exactly(
       'http://id.loc.gov/vocabulary/resourceTypes/img'
     )
+  end
+
+  it "maps IIIF Text direction to local authority values, if possible" do
+    expect(mapper.iiif_text_direction).to eq 'http://iiif.io/api/presentation/2#leftToRightDirection'
   end
 
   it "maps the required title field" do
@@ -118,6 +123,7 @@ RSpec.describe CalifornicaMapper do
         :subject,
         :summary,
         :support,
+        :iiif_text_direction,
         :title,
         :uniform_title,
         :visibility

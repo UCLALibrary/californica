@@ -115,6 +115,10 @@ module UclaMetadata
       index.as :stored_searchable
     end
 
+    property :iiif_text_direction, predicate: ::RDF::URI.intern('http://iiif.io/api/presentation/2#viewingDirection'), multiple: false do |index|
+      index.as :stored_sortable
+    end
+
     property :uniform_title, predicate: ::RDF::URI.intern('http://purl.org/dc/elements/1.1/title') do |index|
       index.as :stored_searchable
     end

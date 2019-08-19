@@ -1,0 +1,9 @@
+terms:
+  - id: http://iiif.io/api/presentation/2#leftToRightDirection
+    term: left-to-right
+  - id: http://iiif.io/api/presentation/2#rightToLeftDirection
+    term: right-to-left
+  - id: http://iiif.io/api/presentation/2#topToBottomDirection
+    term: top-to-bottom
+  - id: http://iiif.io/api/presentation/2#bottomToTopDirection
+    term: bottom-to-top

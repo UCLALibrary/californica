@@ -33,6 +33,7 @@ module Hyrax
       :rights_holder,
       :summary,
       :support,
+      :iiif_text_direction,
       :uniform_title
     ]
     self.terms -= [:based_near]

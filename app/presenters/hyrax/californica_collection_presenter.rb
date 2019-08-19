@@ -43,6 +43,7 @@ module Hyrax
         :subject,
         :support,
         :summary,
+        :iiif_text_direction,
         :total_items,
         :uniform_title
       ]

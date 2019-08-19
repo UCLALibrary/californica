@@ -40,6 +40,7 @@
 - [Subject](#subject)
 - [Summary](#summary)
 - [Support](#support)
+- [IIIF Text direction](#iiif_text_direction)
 - [Type.genre](#type.genre)
 - [Type.typeOfResource](#type.typeofresource)
 - [Visibility](#visibility)
@@ -188,6 +189,8 @@ accepts AltTitle.translated
 ### Summary
 
 ### Support
+
+### IIIF Text direction
 
 ### Type.genre
 

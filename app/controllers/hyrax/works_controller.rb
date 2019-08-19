@@ -15,6 +15,7 @@ module Hyrax
     # Override from Hyrax. Because we are using ark-based identifiers we need to both
     # destroy and eradicate an object when it is deleted. Otherwise, a tombstone resource
     # is left in fedora and we cannot re-create an object that has the same ark.
+
     def destroy
       title = curation_concern.to_s
       return unless curation_concern&.destroy&.eradicate

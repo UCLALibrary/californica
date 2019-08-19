@@ -90,7 +90,8 @@ RSpec.describe CalifornicaCsvParser do
        'Support',
        'Author',
        'Summary',
-       'Page layout']
+       'Page layout',
+       'Text direction']
     end
 
     it 'knows the headers for this CSV file' do

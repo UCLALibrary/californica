@@ -35,6 +35,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
              rights_holder: ['rights_holder'],
              summary: ['summary'],
              support: ['support'],
+             iiif_text_direction: 'iiif_text_direction',
              uniform_title: ['Old Uniform title'])
   end
 
@@ -104,6 +105,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   end
   it 'has support' do
     expect(page).to match(/support/)
+  end
+  it 'has iiif_text_direction' do
+    expect(page).to match(/iiif_text_direction/)
   end
   it 'has uniform_title' do
     expect(page).to match(/uniform_title/)

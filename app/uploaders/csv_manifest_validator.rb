@@ -65,6 +65,7 @@ OPTIONAL_HEADERS = [
   'Subject',
   'Summary',
   'Support',
+  'Text direction',
   'Type.genre',
   'Type.typeOfResource',
   'Visibility'
@@ -74,7 +75,8 @@ CONTROLLED_VOCABULARIES = {
   'Language' => Qa::Authorities::Local.subauthority_for('languages').all.map { |x| x['id'] },
   'License' => Qa::Authorities::Local.subauthority_for('licenses').all.map { |x| x['label'] },
   'Rights.copyrightStatus' => Qa::Authorities::Local.subauthority_for('rights_statements').all.map { |x| x['label'] },
-  'Type.typeOfResource' => Qa::Authorities::Local.subauthority_for('resource_types').all.map { |x| x['label'] }
+  'Type.typeOfResource' => Qa::Authorities::Local.subauthority_for('resource_types').all.map { |x| x['label'] },
+  'IIIF Text direction' => Qa::Authorities::Local.subauthority_for('iiif_text_directions').all.map { |x| x['label'] }
 }.freeze
 
 N_ROWS_TO_WARN = 5 # use Float::INFINITY to show all row numbers in warnings
