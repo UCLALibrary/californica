@@ -16,6 +16,29 @@ RSpec.describe Californica::ManifestBuilderService do
   end
   let(:service) { described_class.new(curation_concern: work) }
 
+  describe '#filesystem_cache_key' do
+    it 'combines date modified and id' do
+      allow(work).to receive(:date_modified).and_return(DateTime.new(1980, 9, 21, 12, 5, 0, '+00:00'))
+      allow(work).to receive(:id).and_return('abc123')
+      expect(service.filesystem_cache_key).to eq '1980-09-21_12-05-00abc123'
+    end
+
+    context 'when there is no date modified' do
+      it 'just uses the id' do
+        allow(work).to receive(:date_modified).and_return(nil)
+        allow(work).to receive(:id).and_return('abc123')
+        expect(service.filesystem_cache_key).to eq 'abc123'
+      end
+    end
+
+    context 'when there is no id' do
+      it 'raises an error' do
+        allow(work).to receive(:id).and_return(nil)
+        expect { service.filesystem_cache_key }.to raise_error('Cannot persist a IIIF manifest without an object ID. Did you forget to save this object?')
+      end
+    end
+  end
+
   describe '#iiif_url' do
     let(:work) { FactoryBot.create(:work, access_copy: parent_access_copy) }
 
@@ -107,6 +130,133 @@ RSpec.describe Californica::ManifestBuilderService do
       it 'does not include the child' do
         expect(service.image_concerns).to eq [work, child_work2]
       end
+    end
+  end
+
+  describe '#persist' do
+    let(:buffer) { StringIO.new }
+    let(:key) { 'abc123' }
+    let(:content) { 'Manifest content here!' }
+
+    before do
+      allow(File).to receive(:open).and_call_original
+      allow(File).to receive(:open).with(Rails.root.join('tmp', key + '.manifest.json'), 'w+').and_yield(buffer)
+      allow(service).to receive(:filesystem_cache_key).and_return(key)
+      allow(service).to receive(:render).and_return(content)
+    end
+
+    it 'saves the manifest' do
+      service.persist
+      expect(buffer.string).to eq(content)
+    end
+  end
+
+  describe '#render' do
+    let(:expected_result) do
+      <<~HEREDOC
+      {
+        "@context": "http://iiif.io/api/presentation/2/context.json",
+        "@type": "sc:Manifest",
+        "@id": "http://my.url/concern/works/#{work.id}/manifest",
+        "label": "#{work.title.first}",
+        "description": "#{work.description.first}",
+        "sequences": [
+          {
+            "@type": "sc:Sequence",
+            "@id": "http://my.url/concern/works/#{work.id}/manifest/sequence/normal",
+            "canvases": [
+              {
+                "@id": "http://my.url/concern/works/#{work.id}/manifest/canvas/#{CGI.escape(work.ark)}",
+                "@type": "sc:Canvas",
+                "label": "#{work.title.first}",
+                "description": "#{work.description.first}",
+                "width": 640,
+                "height": 480,
+                "images": [
+                  {
+                    "@type": "oa:Annotation",
+                    "motivation": "sc:painting",
+                    "resource": {
+                      "@type": "dctypes:Image",
+                      "@id": "#{ENV['IIIF_SERVER_URL']}#{CGI.escape(parent_access_copy)}/full/600,/0/default.jpg",
+                      "width": 640,
+                      "height": 480,
+                      "service": {
+                        "@context": "http://iiif.io/api/image/2/context.json",
+                        "@id": "#{ENV['IIIF_SERVER_URL']}#{CGI.escape(parent_access_copy)}",
+                        "profile": "http://iiif.io/api/image/2/level2.json"
+                      }
+                    },
+                    "on": "http://my.url/concern/works/#{work.id}/manifest/canvas/#{CGI.escape(work.ark)}"
+                  }
+                ]
+              },
+              {
+                "@id": "http://my.url/concern/works/#{work.id}/manifest/canvas/#{CGI.escape(child_work1.ark)}",
+                "@type": "sc:Canvas",
+                "label": "#{child_work1.title.first}",
+                "description": "#{child_work1.description.first}",
+                "width": 640,
+                "height": 480,
+                "images": [
+                  {
+                    "@type": "oa:Annotation",
+                    "motivation": "sc:painting",
+                    "resource": {
+                      "@type": "dctypes:Image",
+                      "@id": "#{ENV['IIIF_SERVER_URL']}#{CGI.escape(child_access_copy_1)}/full/600,/0/default.jpg",
+                      "width": 640,
+                      "height": 480,
+                      "service": {
+                        "@context": "http://iiif.io/api/image/2/context.json",
+                        "@id": "#{ENV['IIIF_SERVER_URL']}#{CGI.escape(child_access_copy_1)}",
+                        "profile": "http://iiif.io/api/image/2/level2.json"
+                      }
+                    },
+                    "on": "http://my.url/concern/works/#{work.id}/manifest/canvas/#{CGI.escape(child_work1.ark)}"
+                  }
+                ]
+              },
+              {
+                "@id": "http://my.url/concern/works/#{work.id}/manifest/canvas/#{CGI.escape(child_work2.ark)}",
+                "@type": "sc:Canvas",
+                "label": "#{child_work2.title.first}",
+                "description": "#{child_work2.description.first}",
+                "width": 640,
+                "height": 480,
+                "images": [
+                  {
+                    "@type": "oa:Annotation",
+                    "motivation": "sc:painting",
+                    "resource": {
+                      "@type": "dctypes:Image",
+                      "@id": "#{ENV['IIIF_SERVER_URL']}#{CGI.escape(child_access_copy_2)}/full/600,/0/default.jpg",
+                      "width": 640,
+                      "height": 480,
+                      "service": {
+                        "@context": "http://iiif.io/api/image/2/context.json",
+                        "@id": "#{ENV['IIIF_SERVER_URL']}#{CGI.escape(child_access_copy_2)}",
+                        "profile": "http://iiif.io/api/image/2/level2.json"
+                      }
+                    },
+                    "on": "http://my.url/concern/works/#{work.id}/manifest/canvas/#{CGI.escape(child_work2.ark)}"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+      HEREDOC
+    end
+
+    before do
+      allow(ENV).to receive(:[]).and_call_original
+      allow(ENV).to receive(:[]).with('RAILS_HOST').and_return('my.url')
+    end
+
+    it "displays a valid IIIF Presentation API manifest", aggregate_failures: true do
+      expect(JSON.parse(service.render)).to match(JSON.parse(expected_result))
     end
   end
 
