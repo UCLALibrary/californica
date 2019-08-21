@@ -29,6 +29,12 @@ RSpec.shared_examples 'a work with UCLA metadata' do
       expect(work.resource.dump(:ttl)).to match(/purl.org\/dc\/elements\/1.1\/identifier/)
     end
 
+    it "has a single-valued binding_note" do
+      work.binding_note = 'binding note'
+      expect(work.binding_note).to eq 'binding note'
+      expect(work.resource.dump(:ttl)).to match(/http:\/\/marc21rdf\.info\/elements\/5XX\/M563__a/)
+    end
+
     it "alternative_title" do
       work.alternative_title = ['Alternative title']
       expect(work.alternative_title).to include 'Alternative title'

@@ -14,6 +14,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
     Work.new(title: ['title'],
              ark: 'ark:/abcde/1234567',
              author: ['author'],
+             binding_note: 'binding_note',
              description: ['description'],
              extent: ['extent'],
              caption: ['caption'],
@@ -45,6 +46,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
 
   it 'has author' do
     expect(page).to match(/author/)
+  end
+  it 'has binding_note' do
+    expect(page).to match(/binding_note/)
   end
   it 'has caption' do
     expect(page).to match(/caption/)
