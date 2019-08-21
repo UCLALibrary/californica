@@ -16,6 +16,7 @@ RSpec.describe CalifornicaMapper do
       "Alternate Title.inscribed" => "alternative title inscribed", # alternative_title
       "Alternate Title.other" => "alternative title other", # alternative_title
       "Author" => "author", # author
+      "Binding note" => "binding note", # binding_note
       "Name.architect" => "Imhotep", # architect
       "Item ARK" => "ark:/21198/zz0002nq4w", # ark
       "Description.caption" => "This example does not have a caption.", # caption
@@ -93,6 +94,7 @@ RSpec.describe CalifornicaMapper do
         :alternative_title,
         :architect,
         :ark,
+        :binding_note,
         :caption,
         :date_created,
         :description,

@@ -14,6 +14,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
                         "Alternate Title.other"],
     architect: "Name.architect",
     ark: "Item ARK",
+    binding_note: "Binding note",
     author: "Author",
     caption: "Description.caption",
     date_created: "Date.creation",
@@ -121,6 +122,10 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
   def ark
     Ark.ensure_prefix(map_field(:ark).to_a.first)
+  end
+
+  def binding_note
+    map_field(:binding_note).to_a.first
   end
 
   # Replace marc codes with double dashes with no surrounding spaces

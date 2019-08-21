@@ -105,6 +105,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('architect', :stored_searchable)
     config.add_show_field 'author_tesim'
     config.add_show_field solr_name('caption', :stored_searchable)
+    config.add_show_field solr_name('binding_note', :stored_sortable)
     config.add_show_field solr_name('dimensions', :stored_searchable)
     config.add_show_field solr_name('extent', :stored_searchable)
     config.add_show_field solr_name('funding_note', :stored_searchable)
@@ -173,6 +174,14 @@ class CatalogController < ApplicationController
 
     config.add_search_field('author') do |field|
       solr_name = solr_name('author', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('binding_note') do |field|
+      solr_name = solr_name('binding_note', :stored_sortable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
