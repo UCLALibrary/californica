@@ -1,0 +1,11 @@
+terms:
+  - id: http://iiif.io/api/presentation/2#pagedHint
+    term: paged
+  - id: http://iiif.io/api/presentation/2#individualsHint
+    term: individuals
+  - id: http://iiif.io/api/presentation/2#continuousHint
+    term: continuous
+  - id: http://iiif.io/api/presentation/2#nonPagedHint
+    term: non-paged
+  - id: http://iiif.io/api/presentation/2#facingPagesHint
+    term: facing-pages

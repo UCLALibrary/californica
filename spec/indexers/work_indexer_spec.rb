@@ -68,6 +68,37 @@ RSpec.describe WorkIndexer do
     end
   end
 
+  describe 'Iiif viewing hint' do
+    context 'a work with a Iiif viewing hint' do
+      let(:attributes) do
+        {
+          ark: 'ark:/123/458',
+          iiif_viewing_hint: 'http://iiif.io/api/presentation/2#pagedHint'
+        }
+      end
+
+      it 'indexes a human-readable Iiif viewing hint' do
+        expect(solr_document['human_readable_iiif_viewing_hint_ssi']).to eq 'paged'
+      end
+    end
+
+    # This should never happen in production data,
+    # but if it does, handle it gracefully.
+    context 'when there is no human-readable value' do
+      let(:no_match) { "a Iiif viewing hint that doesn't have a matching value in config/authorities/iiif_viewing_hint.yml" }
+      let(:attributes) do
+        {
+          ark: 'ark:/123/458',
+          iiif_viewing_hint: 'http://iiif.io/api/presentation/2#pagedHint'
+        }
+      end
+
+      it 'just returns the original value' do
+        expect(solr_document['human_readable_iiif_viewing_hint_ssi']).to eq 'paged'
+      end
+    end
+  end
+
   describe 'rights statement' do
     context 'a work with a rights statement' do
       let(:attributes) do

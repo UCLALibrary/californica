@@ -69,6 +69,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
       expect(page).to have_content "Fake Caption" # caption
       expect(page).to have_content "No linguistic content" # language
       expect(page).to have_content "images" # page_layout
+      expect(page).to have_content "paged" # iiif_viewing_hint
       expect(page).to have_content "Famous Photographer" # photographer
       expect(page).to have_content "Famous Author" # photographer
       expect(page).to have_content "34.05707, -118.239577" # geographic_coordinates, a.k.a. latitude and longitude

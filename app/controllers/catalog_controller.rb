@@ -110,6 +110,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('extent', :stored_searchable)
     config.add_show_field solr_name('funding_note', :stored_searchable)
     config.add_show_field solr_name('genre', :stored_searchable)
+    config.add_show_field 'property  iiif_viewing_hint_ssi'
     config.add_show_field solr_name('location', :stored_searchable)
     config.add_show_field 'local_identifier_ssm'
     config.add_show_field solr_name('medium', :stored_searchable)
@@ -263,6 +264,14 @@ class CatalogController < ApplicationController
 
     config.add_search_field('identifier') do |field|
       solr_name = solr_name('id', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('iiif_viewing_hint') do |field|
+      solr_name = solr_name('iiif_viewing_hint', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name

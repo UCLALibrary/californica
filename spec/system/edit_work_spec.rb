@@ -22,6 +22,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       extent: ['Old Extent'],
       funding_note: ['Old Fund Note'],
       genre: ['Old Genre'],
+      iiif_viewing_hint: 'Old Iiif viewing hint',
       language: ['ang'],
       latitude: ['Old Lat'],
       local_identifier: ['Old Local ID'],

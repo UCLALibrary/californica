@@ -22,6 +22,7 @@ class WorkIndexer < Hyrax::WorkIndexer
       solr_doc['human_readable_resource_type_sim'] = human_readable_resource_type
       solr_doc['human_readable_resource_type_tesim'] = human_readable_resource_type
       solr_doc['human_readable_iiif_text_direction_ssi'] = human_readable_iiif_text_direction
+      solr_doc['human_readable_iiif_viewing_hint_ssi'] = human_readable_iiif_viewing_hint
       solr_doc['human_readable_rights_statement_tesim'] = human_readable_rights_statement
       solr_doc['sort_title_ssort'] = object.title.first
       solr_doc['ursus_id_ssi'] = Californica::IdGenerator.blacklight_id_from_ark(object.ark)
@@ -57,6 +58,12 @@ class WorkIndexer < Hyrax::WorkIndexer
     terms = Qa::Authorities::Local.subauthority_for('iiif_text_directions').all
     term = terms.find { |entry| entry[:id] == object.iiif_text_direction }
     term.blank? ? object.iiif_text_direction : term[:label]
+  end
+
+  def human_readable_iiif_viewing_hint
+    terms = Qa::Authorities::Local.subauthority_for('iiif_viewing_hints').all
+    term = terms.find { |entry| entry[:id] == object.iiif_viewing_hint }
+    term.blank? ? object.iiif_viewing_hint : term[:label]
   end
 
   def human_readable_rights_statement

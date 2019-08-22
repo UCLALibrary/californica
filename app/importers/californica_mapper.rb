@@ -24,6 +24,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     extent: "Format.extent",
     funding_note: "Description.fundingNote",
     genre: "Type.genre",
+    iiif_viewing_hint: "viewingHint",
     language: "Language",
     latitude: "Description.latitude",
     local_identifier: ["Alternate Identifier.local",
@@ -210,6 +211,12 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   def iiif_text_direction
     label = map_field(:iiif_text_direction).first
     term = Qa::Authorities::Local.subauthority_for('iiif_text_directions').all.find { |h| h[:label] == label }
+    term.blank? ? nil : term[:id]
+  end
+
+  def iiif_viewing_hint
+    label = map_field(:iiif_viewing_hint).first
+    term = Qa::Authorities::Local.subauthority_for('iiif_viewing_hints').all.find { |h| h[:label] == label }
     term.blank? ? nil : term[:id]
   end
 

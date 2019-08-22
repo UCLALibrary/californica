@@ -20,6 +20,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       caption: ['Old Cap'],
       funding_note: ['Old Fund Note'],
       genre: ['Old Genre'],
+      iiif_viewing_hint: 'Old Iiif viewing hint',
       language: ['ang'],
       latitude: ['Old Lat'],
       longitude: ['Old Long'],
