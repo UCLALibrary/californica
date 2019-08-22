@@ -17,6 +17,7 @@
 <%= presenter.attribute_to_html(:genre, html_dl: true) %>
 <%= presenter.attribute_to_html(:geographic_coordinates, html_dl: true) %>
 <%= presenter.attribute_to_html(:identifier, render_as: :linked, search_field: 'identifier_tesim', html_dl: true) %>
+<%= presenter.attribute_to_html(:iiif_viewing_hint, render_as: :iiif_viewing_hint, html_dl: true) %>
 <%= presenter.attribute_to_html(:keyword, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:language, render_as: :language, html_dl: true) %>
 <%= presenter.attribute_to_html(:local_identifier, html_dl: true) %>

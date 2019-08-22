@@ -27,6 +27,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       dimensions: ['Old Dim'],
       funding_note: ['Old Fund Note'],
       genre: ['Old Genre'],
+      iiif_viewing_hint: 'Old Iiif viewing hint',
       latitude: ['Old Lat'],
       longitude: ['Old Long'],
       local_identifier: ['Old Local ID'],

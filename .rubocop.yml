@@ -61,6 +61,7 @@ Metrics/LineLength:
     - 'spec/system/import_and_show_work_spec.rb'
     - app/importers/actor_record_importer.rb
     - app/controllers/catalog_controller.rb
+    - spec/renderers/iiif_viewing_hint_attribute_renderer_spec.rb
 
 Metrics/MethodLength:
   Enabled: true

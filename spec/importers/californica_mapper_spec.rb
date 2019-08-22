@@ -62,7 +62,8 @@ RSpec.describe CalifornicaMapper do
         "hearing over eminent domain for construction of Harbor Freeway, Calif., 1947", # title
       "AltTitle.uniform" => "Protesters with signs in gallery of Los Angeles County Supervisors", # uniform_title
       "Summary" => "Protesters with signs", # summary
-      "Text direction" => "left-to-right" # iiif_text_direction
+      "Text direction" => "left-to-right", # iiif_text_direction
+      "viewingHint" => "paged" # iiif_viewing_hint
     }
   end
 
@@ -103,6 +104,7 @@ RSpec.describe CalifornicaMapper do
         :extent,
         :funding_note,
         :genre,
+        :iiif_viewing_hint,
         :language,
         :latitude,
         :local_identifier,

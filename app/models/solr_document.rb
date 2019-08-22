@@ -150,6 +150,10 @@ class SolrDocument
     self[:iiif_text_direction_ssi]
   end
 
+  def iiif_viewing_hint
+    self[:iiif_viewing_hint_ssi]
+  end
+
   def uniform_title
     self[Solrizer.solr_name('uniform_title')]
   end

@@ -48,6 +48,7 @@ OPTIONAL_HEADERS = [
   'Format.dimensions',
   'Format.extent',
   'Format.medium',
+  'viewingHint',
   'Item Sequence',
   'Language',
   'Name.architect',

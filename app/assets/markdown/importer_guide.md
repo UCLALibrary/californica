@@ -25,6 +25,7 @@
 - [Format.dimensions](#format.dimensions)
 - [Format.extent](#format.extent)
 - [Format.medium](#format.medium)
+- [viewingHint](# viewingHint)
 - [Item Sequence](#item-sequence)
 - [Language](#language)
 - [Name.architect](#name.architect)
@@ -162,6 +163,8 @@ accepts AltTitle.translated
 ### Format.medium
 
 ### Item Sequence
+
+### viewingHint
 
 ### Language
 

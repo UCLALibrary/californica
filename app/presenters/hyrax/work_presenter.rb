@@ -17,6 +17,7 @@ module Hyrax
       :funding_note,
       :genre,
       :geographic_coordinates,
+      :iiif_viewing_hint,
       :local_identifier,
       :location,
       :medium,
