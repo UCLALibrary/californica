@@ -36,6 +36,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
              rights_country: ['rights_country'],
              rights_holder: ['rights_holder'],
              summary: ['summary'],
+             subject_topic: ['subject_topic'],
              support: ['support'],
              iiif_text_direction: 'iiif_text_direction',
              uniform_title: ['Old Uniform title'])
@@ -110,6 +111,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   end
   it 'has summary' do
     expect(page).to match(/summary/)
+  end
+  it 'has subject_topic' do
+    expect(page).to match(/subject_topic/)
   end
   it 'has support' do
     expect(page).to match(/support/)

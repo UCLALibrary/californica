@@ -76,6 +76,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
       expect(page).to have_content "Los Angeles Daily News Negatives. Department of Special Collections, Charles E. Young Research Library, University of California at Los Angeles." # relation.isPartOf
       expect(page).to have_content "Creative Commons BY Attribution 4.0 International" # License assigned at import time for LADNN collection
       expect(page).to have_content "Place of origin" # place_of_origin
+      expect(page).to have_content "Subject topic" # subject_topic
       expect(page).to have_content "Support" # support
       expect(page).to have_content "Summary" # summary
       expect(page).to have_content "Binding note" # binding_note

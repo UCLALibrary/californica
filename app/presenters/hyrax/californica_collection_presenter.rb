@@ -20,6 +20,7 @@ module Hyrax
         :funding_note,
         :genre,
         :iiif_viewing_hint,
+        :iiif_text_direction,
         :identifier,
         :keyword,
         :location,
@@ -43,9 +44,9 @@ module Hyrax
         :services_contact,
         :size,
         :subject,
+        :subject_topic,
         :support,
         :summary,
-        :iiif_text_direction,
         :total_items,
         :uniform_title
       ]

@@ -8,6 +8,7 @@
 - [Title](#title)
 
 # <a href="#other-allowed-fields">Other Allowed Fields</a>
+<<<<<<< HEAD
 
 - [AltIdentifier.local](#altidentifier.local)
 - [AltTitle.other](#alttitle.other)
@@ -40,6 +41,8 @@
 - [Rights.countryCreation](#rights.countrycreation)
 - [Rights.rightsHolderContact](#rights.rightsholdercontact)
 - [Subject](#subject)
+- [Subject.conceptTopic](#Subject.conceptTopic)
+- [Subject.descriptiveTopic}](#Subject.descriptiveTopic)
 - [Summary](#summary)
 - [Support](#support)
 - [IIIF Text direction](#iiif_text_direction)
@@ -191,6 +194,10 @@ accepts AltTitle.translated
 ### Rights.rightsHolderContact
 
 ### Subject
+
+### Subject.conceptTopic
+
+### Subject.descriptiveTopic
 
 ### Summary
 

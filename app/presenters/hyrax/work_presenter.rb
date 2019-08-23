@@ -18,6 +18,7 @@ module Hyrax
       :genre,
       :geographic_coordinates,
       :iiif_viewing_hint,
+      :iiif_text_direction,
       :local_identifier,
       :location,
       :medium,
@@ -31,9 +32,9 @@ module Hyrax
       :resource_type,
       :rights_country,
       :rights_holder,
+      :subject_topic,
       :summary,
       :support,
-      :iiif_text_direction,
       :uniform_title,
       to: :solr_document
     )

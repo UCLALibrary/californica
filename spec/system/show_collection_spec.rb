@@ -41,6 +41,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       services_contact: ['UCLA Special Collections'],
       subject: ['Old Subj'],
       summary: ['Old Summary'],
+      subject_topic: ['Old Subject topic'],
       support: ['Old Support'],
       iiif_text_direction: 'Old IIIF Text direction',
       title: ['Old Title'],

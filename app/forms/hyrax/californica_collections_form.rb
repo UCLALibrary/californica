@@ -2,6 +2,7 @@
 
 module Hyrax
   class CalifornicaCollectionsForm < Hyrax::Forms::CollectionForm
+<<<<<<< HEAD
     self.terms += [
       :alternative_title,
       :ark,
@@ -12,6 +13,7 @@ module Hyrax
       :dimensions,
       :funding_note,
       :genre,
+      :iiif_text_direction,
       :iiif_viewing_hint,
       :latitude,
       :longitude,
@@ -28,8 +30,8 @@ module Hyrax
       :rights_country,
       :rights_holder,
       :services_contact,
+      :subject_topic,
       :summary,
-      :iiif_text_direction,
       :uniform_title]
 
     self.required_fields = [:title, :ark]
@@ -62,6 +64,7 @@ module Hyrax
         :extent,
         :funding_note,
         :genre,
+        :iiif_text_direction,
         :iiif_viewing_hint,
         :identifier,
         :keyword,
@@ -85,8 +88,9 @@ module Hyrax
         :rights_holder,
         :services_contact,
         :subject,
+        :subject_topic,
         :summary,
-        :iiif_text_direction,
+        :support,
         :uniform_title
       ]
     end

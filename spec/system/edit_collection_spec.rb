@@ -44,6 +44,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       services_contact: ['Old Services Contact'],
       binding_note: 'Old Binding note',
       summary: ['Old Summary'],
+      subject_topic: ['Old Subject topic'],
       support: ['Old Supprt'],
       iiif_text_direction: 'http://iiif.io/api/presentation/2#leftToRightDirection', # "left-to-right"
       uniform_title: ['Old Uniform title']
@@ -99,6 +100,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Summary').value).to eq 'Old Summary'
       expect(find_field('Binding note').value).to eq 'Old Binding note'
       expect(page).to have_select('Iiif text direction', selected: 'left-to-right', multiple: false)
+      expect(find_field('Subject topic').value).to eq 'Old Subject topic'
       expect(find_field('Uniform title').value).to eq 'Old Uniform title'
 
       #

@@ -142,6 +142,10 @@ class SolrDocument
     self[:summary_tesim]
   end
 
+  def subject_topic
+    self[Solrizer.solr_name('subject_topic')]
+  end
+
   def support
     self[:support_tesim]
   end

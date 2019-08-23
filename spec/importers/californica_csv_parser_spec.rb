@@ -90,6 +90,8 @@ RSpec.describe CalifornicaCsvParser do
        'Support',
        'Author',
        'Summary',
+       'Subject.conceptTopic',
+       'Subject.descriptiveTopic',
        'Page layout',
        'Text direction',
        'Binding note',
