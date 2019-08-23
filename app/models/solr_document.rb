@@ -143,7 +143,7 @@ class SolrDocument
   end
 
   def subject_topic
-    self[Solrizer.solr_name('subject_topic')]
+    self[:subject_topic_tesim]
   end
 
   def support

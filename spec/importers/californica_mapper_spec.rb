@@ -55,9 +55,10 @@ RSpec.describe CalifornicaMapper do
       "Rights.copyrightStatus" => "Public Domain", # rights_statement
       "Rights.servicesContact" => "UCLA", # services_contact
       "Subject" => "Express highways--California--Los Angeles County--Design and construction|~|" \
-<<<<<<< HEAD
         "Eminent domain--California--Los Angeles|~|Demonstrations--California--Los Angeles County|~|" \
         "Transportation|~|Government|~|Activism|~|Interstate 10", # subject
+      "Subject.conceptTopic" => "Mexican American Altars", # subject_topic
+      "Subject.descriptiveTopic" => "Mexican American Altars of California", # subject_topic
       "Support" => "Support", # support
       "Title" => "Protesters with signs in gallery of Los Angeles County Supervisors " \
         "hearing over eminent domain for construction of Harbor Freeway, Calif., 1947", # title
@@ -66,27 +67,6 @@ RSpec.describe CalifornicaMapper do
       "Text direction" => "left-to-right", # iiif_text_direction
       "viewingHint" => "paged" # iiif_viewing_hint
     }
-=======
-      "Eminent domain--California--Los Angeles|~|Demonstrations--California--Los Angeles County|~|" \
-      "Transportation|~|Government|~|Activism|~|Interstate 10",
-      "Publisher.publisherName" => "Los Angeles Daily News",
-      "Format.medium" => "1 photograph",
-      "Rights.countryCreation" => "US",
-      "Name.repository" => "University of California, Los Angeles. $b Library Special Collections",
-      "Description.caption" => "This example does not have a caption.",
-      "File Name" => "clusc_1_1_00010432a.tif",
-      "Coverage.geographic" => "Los Angeles (Calif.)",
-      "Name.architect" => "Imhotep",
-      "Name.subject" => "Los Angeles County (Calif.). $b Board of Supervisors",
-      "Language" => "eng",
-      "Relation.isPartOf" => "Connell (Will) Papers, 1928-1961",
-      "AltTitle.other" => "alternative title",
-      "AltTitle.translated" => "translated alternative title",
-      'Place of origin' => 'Los Angeles, CA',
-      "Uniform title" => "Protesters with signs in gallery of Los Angeles County Supervisors",
-      "Support" => "Support",
-      "Subject topic" => "Subject topic" }
->>>>>>> 26a7f1e... Add subject_topic field
   end
 
   before { mapper.metadata = metadata }
@@ -114,7 +94,6 @@ RSpec.describe CalifornicaMapper do
   describe '#fields' do
     it 'has expected fields' do
       expect(mapper.fields).to include(
-<<<<<<< HEAD
         :alternative_title,
         :architect,
         :ark,
@@ -148,21 +127,13 @@ RSpec.describe CalifornicaMapper do
         :rights_statement,
         :services_contact,
         :subject,
+        :subject_topic,
         :summary,
         :support,
         :iiif_text_direction,
         :title,
         :uniform_title,
         :visibility
-=======
-        :visibility, :ark, :title, :architect, :subject,
-        :resource_type, :description, :latitude,
-        :longitude, :extent, :local_identifier,
-        :date_created, :caption, :dimensions, :rights_country,
-        :funding_note, :genre, :rights_holder,
-        :medium, :normalized_date, :location, :publisher, :photographer,
-        :remote_files, :uniform_title, :subject_topic
->>>>>>> 26a7f1e... Add subject_topic field
       )
     end
   end

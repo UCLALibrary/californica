@@ -111,11 +111,11 @@ module UclaMetadata
       index.as :displayable
     end
 
-<<<<<<< HEAD
-    property :summary, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/Summary') do |index|
-=======
     property :subject_topic, predicate: ::RDF::URI.intern('http://www.loc.gov/mods/rdf/v1#subjectTopic') do |index|
->>>>>>> 26a7f1e... Add subject_topic field
+      index.as :stored_searchable
+    end
+
+    property :summary, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/Summary') do |index|
       index.as :stored_searchable
     end
 

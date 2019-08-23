@@ -23,7 +23,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
       first_importer.import
       work = Work.last
       expect(work.funding_note.first).to eq "Fake Funding Note"
-      expect(work.medium.first).to eq "Fake Medium"
+      expect(work.medium.first).to eq "photograph"
       second_importer.import
       work.reload
       expect(work.funding_note.first).to eq "Better Funding Note"
@@ -63,7 +63,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
       expect(page).to have_content "uclamss_1387_b112_40911-1" # local_identifier
       expect(page).to have_content "[between 1942-1947]" # date_created
       expect(page).to have_content "1 photograph" # extent
-      expect(page).to have_content "Fake Medium" # medium
+      expect(page).to have_content "photograph" # medium
       expect(page).to have_content "200x200" # dimensions
       expect(page).to have_content "Fake Funding Note" # funding_note
       expect(page).to have_content "Fake Caption" # caption
@@ -76,13 +76,14 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
       expect(page).to have_content "Los Angeles Daily News Negatives. Department of Special Collections, Charles E. Young Research Library, University of California at Los Angeles." # relation.isPartOf
       expect(page).to have_content "Creative Commons BY Attribution 4.0 International" # License assigned at import time for LADNN collection
       expect(page).to have_content "Place of origin" # place_of_origin
-      expect(page).to have_content "Subject topic" # subject_topic
       expect(page).to have_content "Support" # support
       expect(page).to have_content "Summary" # summary
       expect(page).to have_content "Binding note" # binding_note
       expect(page).to have_content "left-to-right" # iiif_text_direction
       expect(page).to have_content "Uniform title" # uniform_title
       expect(page).to have_content "clusc_1_1_00010432a.tif" # preservation_copy
+      # expect(page).to have_content "Mexican American Altars" # subject_topic
+      # expect(page).to have_content "Mexican American Altars of California" # subject_topic
     end
     it "displays expected fields on search results page" do
       importer.import
