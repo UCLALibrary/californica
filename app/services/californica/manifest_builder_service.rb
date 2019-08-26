@@ -39,7 +39,7 @@ module Californica
     end
 
     def persist
-      File.open(Rails.root.join('tmp', filesystem_cache_key + '.manifest.json'), 'w+') do |f|
+      File.open(Rails.root.join('tmp', filesystem_cache_key), 'w+') do |f|
         f.write render
       end
     end

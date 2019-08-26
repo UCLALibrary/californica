@@ -27,6 +27,7 @@ class CalifornicaImporter
     raise "CSV file #{@csv_file} did not validate" unless parser.validate
     Darlingtonia::Importer.new(parser: parser, record_importer: record_importer, info_stream: @info_stream, error_stream: @error_stream).import
     parser.order_child_works
+    parser.build_iiif_manifests
     parser.reindex_collections
   rescue => e
     @error_stream << "CsvImportJob failed: #{e.message}"
