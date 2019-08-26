@@ -9,11 +9,14 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
   let(:csv_import) { FactoryBot.create(:csv_import, user: user, manifest: manifest) }
   let(:manifest) { Rack::Test::UploadedFile.new(csv_file, 'text/csv') }
   let(:second_csv_import) { FactoryBot.create(:csv_import, user: user, manifest: second_manifest) }
-  let(:second_importer) { CalifornicaImporter.new(second_csv_import) }
+  let(:second_importer) { CalifornicaImporter.new(second_csv_import, info_stream: [], error_stream: []) }
   let(:second_manifest) { Rack::Test::UploadedFile.new(File.join(fixture_path, 'coordinates_example_update.csv'), 'text/csv') }
   let(:user) { FactoryBot.create(:admin) }
 
   it "imports records from a csv" do
+    allow(ENV).to receive(:[]).and_call_original
+    allow(ENV).to receive(:[]).with('IIIF_SERVER_URL').and_return('https://cantaloupe.url/iiif/2/')
+
     # adds works to the specified collection
     expect(collection.ark).to eq 'ark:/111/222'
     importer.import
@@ -73,6 +76,11 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     # displays expected facets
     facet_headings = page.all(:css, 'h3.facet-field-heading').to_a.map(&:text)
     expect(facet_headings).to contain_exactly("Subject", "Resource Type", "Genre", "Names", "Location", "Normalized Date", "Extent", "Medium", "Dimensions", "Language", "Collection")
+
+    # iiif manifest was cached
+    filename = Rails.root.join('tmp', work.date_modified.to_datetime.strftime('%Y-%m-%d_%H-%M-%S') + work.id)
+    manifest = JSON.parse(File.open(filename).read)
+    expect(manifest['sequences'][0]['canvases'][0]['images'][0]['resource']['@id']).to eq 'https://cantaloupe.url/iiif/2/Masters%2Fdlmasters%2Fclusc_1_1_00010432a.tif/full/600,/0/default.jpg'
 
     # importing the same object twice
     expect(work.funding_note.first).to eq "Fake Funding Note"

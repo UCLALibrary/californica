@@ -140,7 +140,7 @@ RSpec.describe Californica::ManifestBuilderService do
 
     before do
       allow(File).to receive(:open).and_call_original
-      allow(File).to receive(:open).with(Rails.root.join('tmp', key + '.manifest.json'), 'w+').and_yield(buffer)
+      allow(File).to receive(:open).with(Rails.root.join('tmp', key), 'w+').and_yield(buffer)
       allow(service).to receive(:filesystem_cache_key).and_return(key)
       allow(service).to receive(:render).and_return(content)
     end

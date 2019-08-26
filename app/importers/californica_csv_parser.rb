@@ -48,6 +48,19 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
     []
   end
 
+  # Creates IIIF Manifests for each Work in a CSV. Does not create documents
+  # for Collection or ChildWork objects.
+  #
+  # @return nil
+  def build_iiif_manifests
+    records.each do |row|
+      next if ["Collection", "ChildWork", "Page"].include? row.mapper.metadata["Object Type"]
+      work = Work.find_by_ark(row.ark)
+      Californica::ManifestBuilderService.new(curation_concern: work).persist
+    end
+    nil
+  end
+
   # Given an array of Work arks that have had ChildWorks added to them during this import,
   # iterate through each and use the PageOrder objects to ensure the ChildWorks are
   # in the right order. In other works, ensure a manuscript's pages are ordered by the
