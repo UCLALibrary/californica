@@ -25,7 +25,9 @@
 - [Format.dimensions](#format.dimensions)
 - [Format.extent](#format.extent)
 - [Format.medium](#format.medium)
-- [viewingHint](# viewingHint)
+- [viewingHint](#viewingHint)
+- [IIIF Range](#iiif-range)
+- [Illustrations note](#illustrations-note)
 - [Item Sequence](#item-sequence)
 - [Language](#language)
 - [Name.architect](#name.architect)
@@ -35,6 +37,7 @@
 - [Page layout](#page-layout)
 - [Project Name](#project-name)
 - [Place of origin](#place-of-origin)
+- [Provenance; Description.history](#provenance-description.history)
 - [Publisher.publisherName](#publisher.publishername)
 - [Relation.isPartOf](#relation.ispartof)
 - [Rights.countryCreation](#rights.countrycreation)
@@ -43,6 +46,7 @@
 - [Summary](#summary)
 - [Support](#support)
 - [IIIF Text direction](#iiif_text_direction)
+- [Table of Contents; Description.tableOfContents](#table-of-contents-description.tableOfContents)
 - [Type.genre](#type.genre)
 - [Type.typeOfResource](#type.typeofresource)
 - [Visibility](#visibility)
@@ -162,6 +166,10 @@ accepts AltTitle.translated
 
 ### Format.medium
 
+### IIIF Range
+
+### Illustrations note
+
 ### Item Sequence
 
 ### viewingHint
@@ -182,6 +190,8 @@ accepts AltTitle.translated
 
 ### Project Name
 
+### Provenance; Description.history
+
 ### Publisher.publisherName
 
 ### Relation.isPartOf
@@ -194,9 +204,13 @@ accepts AltTitle.translated
 
 ### Summary
 
+Accepts "Summary", "Description.abstract", "Description.contents"
+
 ### Support
 
 ### IIIF Text direction
+
+### Table of Contents; Description.tableOfContents'
 
 ### Type.genre
 

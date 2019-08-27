@@ -77,6 +77,11 @@ Metrics/MethodLength:
     - app/models/concerns/discoverable.rb
     - app/presenters/hyrax/californica_collection_presenter.rb
 
+Metrics/ModuleLength:
+  Enabled: true
+  Exclude:
+    - app/models/ucla_metadata.rb
+
 Metrics/PerceivedComplexity:
   Enabled: true
   Exclude:

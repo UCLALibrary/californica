@@ -23,6 +23,8 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       funding_note: ['Old Fund Note'],
       genre: ['Old Genre'],
       iiif_viewing_hint: 'Old Iiif viewing hint',
+      iiif_range: 'Old Iiif range',
+      illustrations_note: ['Old Illustrations note'],
       language: ['ang'],
       latitude: ['Old Lat'],
       local_identifier: ['Old Local ID'],
@@ -35,6 +37,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       photographer: ['Old Photographer'],
       place_of_origin: ['Old Place of origin'],
       preservation_copy: 'dlmasters/ethiopian/masters/abc123.tif',
+      provenance: ['Old Provenance'],
       publisher: ['Old Pub'],
       repository: ['Old Repository'],
       resource_type: ['http://id.loc.gov/vocabulary/resourceTypes/img'], # "image"
@@ -47,6 +50,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       support: ['Old Support'],
       iiif_text_direction: 'http://iiif.io/api/presentation/2#leftToRightDirection', # "left-to-right"
       title: ['Old Title'],
+      toc: ['Old Table of contents'],
       uniform_title: ['Old Uniform title']
     }
   end

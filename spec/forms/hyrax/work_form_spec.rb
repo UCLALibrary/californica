@@ -18,6 +18,8 @@ RSpec.describe Hyrax::WorkForm do
       :funding_note,
       :genre,
       :iiif_viewing_hint,
+      :iiif_range,
+      :illustrations_note,
       :latitude,
       :local_identifier,
       :longitude,
@@ -28,11 +30,13 @@ RSpec.describe Hyrax::WorkForm do
       :photographer,
       :place_of_origin,
       :preservation_copy,
+      :provenance,
       :repository,
       :rights_country,
       :rights_holder,
       :summary,
       :support,
+      :toc,
       :iiif_text_direction,
       :uniform_title
     )
