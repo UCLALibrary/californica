@@ -20,7 +20,9 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       caption: ['Old Cap'],
       funding_note: ['Old Fund Note'],
       genre: ['Old Genre'],
+      iiif_range: 'Old Iiif range',
       iiif_viewing_hint: 'Old Iiif viewing hint',
+      illustrations_note: ['Old Illustrations note'],
       language: ['ang'],
       latitude: ['Old Lat'],
       longitude: ['Old Long'],
@@ -32,6 +34,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       page_layout: ['Old Page layout'],
       photographer: ['Old Photographer'],
       place_of_origin: ['Old Place of origin'],
+      provenance: ['Old Provenance'],
       publisher: ['Old Pub'],
       repository: ['Old Repository'],
       resource_type: ['Image'],
@@ -44,6 +47,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       support: ['Old Support'],
       iiif_text_direction: 'Old IIIF Text direction',
       title: ['Old Title'],
+      toc: ['Old Table of contents'],
       uniform_title: ['Old Uniform title']
     }
   end

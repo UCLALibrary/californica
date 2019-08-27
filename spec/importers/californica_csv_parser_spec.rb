@@ -93,7 +93,11 @@ RSpec.describe CalifornicaCsvParser do
        'Page layout',
        'Text direction',
        'Binding note',
-       'viewingHint']
+       'viewingHint',
+       'IIIF Range',
+       'Illustrations note',
+       'Provenance; Description.history',
+       'Table of Contents; Description.tableOfContents']
     end
 
     it 'knows the headers for this CSV file' do

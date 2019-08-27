@@ -24,7 +24,9 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     extent: "Format.extent",
     funding_note: "Description.fundingNote",
     genre: "Type.genre",
+    iiif_range: "IIIF Range",
     iiif_viewing_hint: "viewingHint",
+    illustrations_note: "Illustrations note",
     language: "Language",
     latitude: "Description.latitude",
     local_identifier: ["Alternate Identifier.local",
@@ -44,6 +46,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
                    "Personal or Corporate Name.photographer"],
     place_of_origin: "Place of origin",
     preservation_copy: "File Name",
+    provenance: "Provenance; Description.history",
     publisher: "Publisher.publisherName",
     repository: ["Name.repository",
                  "Personal or Corporate Name.repository"],
@@ -58,6 +61,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     support: "Support",
     iiif_text_direction: "Text direction",
     title: "Title",
+    toc: "Table of Contents; Description.tableOfContents",
     uniform_title: "AltTitle.uniform"
   }.freeze
 
@@ -218,6 +222,10 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     label = map_field(:iiif_viewing_hint).first
     term = Qa::Authorities::Local.subauthority_for('iiif_viewing_hints').all.find { |h| h[:label] == label }
     term.blank? ? nil : term[:id]
+  end
+
+  def iiif_range
+    map_field(:iiif_range).to_a.first
   end
 
   # The CSV file contains the label, so we'll find the

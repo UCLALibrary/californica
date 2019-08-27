@@ -51,6 +51,14 @@ module UclaMetadata
       index.as :stored_searchable, :facetable
     end
 
+    property :iiif_range, predicate: ::RDF::URI.intern('http://iiif.io/api/presentation/2#Range'), multiple: false do |index|
+      index.as :stored_sortable
+    end
+
+    property :illustrations_note, predicate: ::RDF::URI.intern('http://bibfra.me/vocab/marc/illustrations') do |index|
+      index.as :stored_searchable
+    end
+
     property :latitude, predicate: ::RDF::Vocab::EXIF.gpsLatitude do |index|
       index.as :stored_searchable
     end
@@ -95,6 +103,10 @@ module UclaMetadata
       index.as :stored_sortable
     end
 
+    property :provenance, predicate: ::RDF::URI.intern('http://purl.org/dc/terms/provenance') do |index|
+      index.as :stored_searchable
+    end
+
     property :repository, predicate: ::RDF::Vocab::MODS.locationCopySublocation do |index|
       index.as :stored_searchable
     end
@@ -125,6 +137,10 @@ module UclaMetadata
 
     property :iiif_viewing_hint, predicate: ::RDF::URI.intern('http://iiif.io/api/presentation/2#ViewingHint'), multiple: false do |index|
       index.as :stored_sortable
+    end
+
+    property :toc, predicate: ::RDF::URI.intern('http://purl.org/dc/terms/tableOfContents') do |index|
+      index.as :stored_searchable
     end
 
     property :uniform_title, predicate: ::RDF::URI.intern('http://purl.org/dc/elements/1.1/title') do |index|

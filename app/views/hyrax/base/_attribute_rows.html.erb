@@ -17,7 +17,9 @@
 <%= presenter.attribute_to_html(:genre, html_dl: true) %>
 <%= presenter.attribute_to_html(:geographic_coordinates, html_dl: true) %>
 <%= presenter.attribute_to_html(:identifier, render_as: :linked, search_field: 'identifier_tesim', html_dl: true) %>
+<%= presenter.attribute_to_html(:iiif_range, html_dl: true) %>
 <%= presenter.attribute_to_html(:iiif_viewing_hint, render_as: :iiif_viewing_hint, html_dl: true) %>
+<%= presenter.attribute_to_html(:illustrations_note, html_dl: true) %>
 <%= presenter.attribute_to_html(:keyword, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:language, render_as: :language, html_dl: true) %>
 <%= presenter.attribute_to_html(:local_identifier, html_dl: true) %>
@@ -29,6 +31,7 @@
 <%= presenter.attribute_to_html(:photographer, html_dl: true) %>
 <%= presenter.attribute_to_html(:place_of_origin, html_dl: true) %>
 <%= presenter.attribute_to_html(:preservation_copy, html_dl: true) %>
+<%= presenter.attribute_to_html(:provenance, html_dl: true) %>
 <%= presenter.attribute_to_html(:publisher, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:related_url, render_as: :external_link, html_dl: true) %>
 <%= presenter.attribute_to_html(:repository, html_dl: true) %>
@@ -40,5 +43,6 @@
 <%= presenter.attribute_to_html(:subject, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:summary, html_dl: true) %>
 <%= presenter.attribute_to_html(:support, html_dl: true) %>
+<%= presenter.attribute_to_html(:toc, html_dl: true) %>
 <%= presenter.attribute_to_html(:iiif_text_direction, render_as: :iiif_text_direction, html_dl: true) %>
 <%= presenter.attribute_to_html(:uniform_title, html_dl: true) %>
