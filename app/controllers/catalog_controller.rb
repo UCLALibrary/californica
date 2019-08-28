@@ -110,7 +110,9 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('extent', :stored_searchable)
     config.add_show_field solr_name('funding_note', :stored_searchable)
     config.add_show_field solr_name('genre', :stored_searchable)
-    config.add_show_field 'property  iiif_viewing_hint_ssi'
+    config.add_show_field 'iiif_range_ssi'
+    config.add_show_field 'iiif_viewing_hint_ssi'
+    config.add_show_field solr_name('illustrations_note', :stored_searchable)
     config.add_show_field solr_name('location', :stored_searchable)
     config.add_show_field 'local_identifier_ssm'
     config.add_show_field solr_name('medium', :stored_searchable)
@@ -120,12 +122,14 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('photographer', :stored_searchable)
     config.add_show_field 'place_of_origin_tesim'
     config.add_show_field 'preservation_copy_ssi'
+    config.add_show_field solr_name('provenance', :stored_searchable)
     config.add_show_field solr_name('repository', :stored_searchable)
     config.add_show_field solr_name('rights_country', :stored_searchable)
     config.add_show_field solr_name('rights_holder', :stored_searchable)
     config.add_show_field solr_name('support', :stored_searchable)
     config.add_show_field solr_name('summary', :stored_searchable)
     config.add_show_field 'iiif_text_direction_ssi'
+    config.add_show_field solr_name('toc', :stored_searchable)
     config.add_show_field solr_name('uniform_title', :stored_searchable)
 
     # "fielded" search configuration. Used by pulldown among other places.

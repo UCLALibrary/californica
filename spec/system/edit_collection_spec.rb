@@ -28,6 +28,8 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       funding_note: ['Old Fund Note'],
       genre: ['Old Genre'],
       iiif_viewing_hint: 'Old Iiif viewing hint',
+      iiif_range: 'Old IIIF Range',
+      illustrations_note: ['Old Illustrations note'],
       latitude: ['Old Lat'],
       longitude: ['Old Long'],
       local_identifier: ['Old Local ID'],
@@ -36,6 +38,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       normalized_date: ['Old Normalized Date'],
       page_layout: ['Old Page layout'],
       place_of_origin: ['Old Place of origin'],
+      provenance: ['Old Provenance'],
       repository: ['Old Repository'],
       location: ['Old Loc'],
       rights_country: ['Old Rights Country'],
@@ -45,6 +48,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       binding_note: 'Old Binding note',
       summary: ['Old Summary'],
       support: ['Old Supprt'],
+      toc: ['Old Table of Contents'],
       iiif_text_direction: 'http://iiif.io/api/presentation/2#leftToRightDirection', # "left-to-right"
       uniform_title: ['Old Uniform title']
     }
@@ -82,6 +86,8 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Dimensions').value).to eq 'Old Dim'
       expect(find_field('Funding Note').value).to eq 'Old Fund Note'
       expect(find_field('Genre').value).to eq 'Old Genre'
+      expect(find_field('Iiif range').value).to eq 'Old IIIF Range'
+      expect(find_field('Illustrations note').value).to eq 'Old Illustrations note'
       expect(find_field('Latitude').value).to eq 'Old Lat'
       expect(find_field('Longitude').value).to eq 'Old Long'
       expect(find_field('Local Identifier').value).to eq 'Old Local ID'
@@ -89,6 +95,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Name (Subject)').value).to eq 'Old Name/Subj'
       expect(find_field('Normalized Date').value).to eq 'Old Normalized Date'
       expect(find_field('Page layout').value).to eq 'Old Page layout'
+      expect(find_field('Provenance').value).to eq 'Old Provenance'
       expect(find_field('Repository').value).to eq 'Old Repository'
       expect(find_field('Place of origin').value).to eq 'Old Place of origin'
       # expect(find_field('Location').value).to eq 'Old Loc'
@@ -97,6 +104,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Photographer').value).to eq 'Old Photographer'
       expect(find_field('Rights services contact').value).to eq 'Old Services Contact'
       expect(find_field('Summary').value).to eq 'Old Summary'
+      expect(find_field('Toc').value).to eq 'Old Table of Contents'
       expect(find_field('Binding note').value).to eq 'Old Binding note'
       expect(page).to have_select('Iiif text direction', selected: 'left-to-right', multiple: false)
       expect(find_field('Uniform title').value).to eq 'Old Uniform title'

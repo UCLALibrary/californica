@@ -78,6 +78,14 @@ class SolrDocument
     self[:genre_tesim]
   end
 
+  def iiif_range
+    self[:iiif_range_ssi]
+  end
+
+  def illustrations_note
+    self[:illustrations_note_tesim]
+  end
+
   def latitude
     self[Solrizer.solr_name('latitude')]
   end
@@ -122,6 +130,10 @@ class SolrDocument
     self['preservation_copy_ssi']
   end
 
+  def provenance
+    self[:provenance_tesim]
+  end
+
   def repository
     self[:repository_tesim]
   end
@@ -152,6 +164,10 @@ class SolrDocument
 
   def iiif_viewing_hint
     self[:iiif_viewing_hint_ssi]
+  end
+
+  def toc
+    self[:toc_tesim]
   end
 
   def uniform_title

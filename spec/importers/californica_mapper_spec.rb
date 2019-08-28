@@ -63,7 +63,11 @@ RSpec.describe CalifornicaMapper do
       "AltTitle.uniform" => "Protesters with signs in gallery of Los Angeles County Supervisors", # uniform_title
       "Summary" => "Protesters with signs", # summary
       "Text direction" => "left-to-right", # iiif_text_direction
-      "viewingHint" => "paged" # iiif_viewing_hint
+      "viewingHint" => "paged", # iiif_viewing_hint
+      "IIIF Range" => "iiif-range", # iiif_range
+      "Illustrations note" => "illustration-note", # illustrations_note
+      "Provenance; Description.history" => "history-description", # provenance
+      "Table of Contents; Description.tableOfContents" => "table of contents" # toc
     }
   end
 

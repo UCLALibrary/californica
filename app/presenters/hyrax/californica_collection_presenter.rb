@@ -19,6 +19,8 @@ module Hyrax
         :extent,
         :funding_note,
         :genre,
+        :iiif_range,
+        :illustrations_note,
         :iiif_viewing_hint,
         :identifier,
         :keyword,
@@ -34,6 +36,7 @@ module Hyrax
         :page_layout,
         :photographer,
         :place_of_origin,
+        :provenance,
         :publisher,
         :related_url,
         :repository,
@@ -46,6 +49,7 @@ module Hyrax
         :support,
         :summary,
         :iiif_text_direction,
+        :toc,
         :total_items,
         :uniform_title
       ]
