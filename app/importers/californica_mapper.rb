@@ -57,7 +57,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     rights_statement: "Rights.copyrightStatus",
     services_contact: "Rights.servicesContact",
     subject: "Subject",
-    summary: "Summary",
+    summary: ["Summary", "Description.abstract", "Description.contents"],
     support: "Support",
     iiif_text_direction: "Text direction",
     title: "Title",

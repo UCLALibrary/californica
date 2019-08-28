@@ -204,6 +204,8 @@ accepts AltTitle.translated
 
 ### Summary
 
+Accepts "Summary", "Description.abstract", "Description.contents"
+
 ### Support
 
 ### IIIF Text direction

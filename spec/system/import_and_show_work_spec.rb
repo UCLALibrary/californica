@@ -64,7 +64,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "Summary" # summary
     expect(page).to have_content "Binding note" # binding_note
     expect(page).to have_content "left-to-right" # iiif_text_direction
-    expect(page).to have_content "Uniform title" # uniform_title
+    expect(page).to have_content "Uniform title" # uniform_title
     expect(page).to have_content "clusc_1_1_00010432a.tif" # preservation_copy
     expect(page).to have_content "iiif-range" # iiif_range
     expect(page).to have_content "illustration-note" # illustrations_note
