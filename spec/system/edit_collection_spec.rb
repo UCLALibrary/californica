@@ -27,6 +27,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       dimensions: ['Old Dim'],
       funding_note: ['Old Fund Note'],
       genre: ['Old Genre'],
+      iiif_manifest_url: 'https://www.w3.org/TR/2019/WD-appmanifest-20190821/',
       iiif_viewing_hint: 'Old Iiif viewing hint',
       iiif_range: 'Old IIIF Range',
       illustrations_note: ['Old Illustrations note'],
@@ -86,6 +87,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Dimensions').value).to eq 'Old Dim'
       expect(find_field('Funding Note').value).to eq 'Old Fund Note'
       expect(find_field('Genre').value).to eq 'Old Genre'
+      expect(find_field('Iiif manifest url').value).to eq 'https://www.w3.org/TR/2019/WD-appmanifest-20190821/'
       expect(find_field('Iiif range').value).to eq 'Old IIIF Range'
       expect(find_field('Illustrations note').value).to eq 'Old Illustrations note'
       expect(find_field('Latitude').value).to eq 'Old Lat'

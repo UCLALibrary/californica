@@ -22,6 +22,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       extent: ['Old Extent'],
       funding_note: ['Old Fund Note'],
       genre: ['Old Genre'],
+      iiif_manifest_url: 'https://www.w3.org/TR/2019/WD-appmanifest-20190821/',
       iiif_viewing_hint: 'Old Iiif viewing hint',
       iiif_range: 'Old Iiif range',
       illustrations_note: ['Old Illustrations note'],
@@ -82,6 +83,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Funding Note').value).to eq 'Old Fund Note'
       expect(find_field('Genre').value).to eq 'Old Genre'
       expect(page).to have_select('Language', selected: 'English, Old (ca. 450-1100)', multiple: true)
+      expect(find_field('Iiif manifest url').value).to eq 'https://www.w3.org/TR/2019/WD-appmanifest-20190821/'
       expect(find_field('Latitude').value).to eq 'Old Lat'
       expect(find_field('Local Identifier').value).to eq 'Old Local ID'
       expect(find_field('Location').value).to eq 'Old Loc'

@@ -78,6 +78,10 @@ class SolrDocument
     self[:genre_tesim]
   end
 
+  def iiif_manifest_url
+    self[:iiif_manifest_url_ssi]
+  end
+
   def iiif_range
     self[:iiif_range_ssi]
   end

@@ -17,6 +17,7 @@ RSpec.describe Hyrax::WorkForm do
       :extent,
       :funding_note,
       :genre,
+      :iiif_manifest_url,
       :iiif_viewing_hint,
       :iiif_range,
       :illustrations_note,

@@ -17,6 +17,7 @@ module Hyrax
       :extent,
       :funding_note,
       :genre,
+      :iiif_manifest_url,
       :iiif_range,
       :iiif_viewing_hint,
       :illustrations_note,
