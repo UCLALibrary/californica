@@ -51,6 +51,10 @@ module UclaMetadata
       index.as :stored_searchable, :facetable
     end
 
+    property :iiif_manifest_url, predicate: ::RDF::URI.intern('http://iiif.io/api/presentation/2#Manifest'), multiple: false do |index|
+      index.as :stored_sortable
+    end
+
     property :iiif_range, predicate: ::RDF::URI.intern('http://iiif.io/api/presentation/2#Range'), multiple: false do |index|
       index.as :stored_sortable
     end

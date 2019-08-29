@@ -20,6 +20,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       caption: ['Old Cap'],
       funding_note: ['Old Fund Note'],
       genre: ['Old Genre'],
+      iiif_manifest_url: 'Old Iiif manifest url',
       iiif_range: 'Old Iiif range',
       iiif_viewing_hint: 'Old Iiif viewing hint',
       illustrations_note: ['Old Illustrations note'],
