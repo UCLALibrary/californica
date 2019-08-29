@@ -7,16 +7,32 @@
     <label> CSV Manifest: </label>
     <span> <%= File.basename(@csv_import.manifest.to_s) %> </span>
     <br />
-    <label> Uploaded by: </label>
+    <span style="color: gray"><label> Uploaded by: </label></span>
     <span> <%= @csv_import.user.name %> </span>
     <br />
     <label> Start time: </label>
     <span> <%= @csv_import.created_at.strftime('%e %b %Y %l:%M %p') %> </span>
     <br />
-
+    <label> Total record import time: </label>
+    <span>
+      <% if @csv_import.elapsed_time == nil %>
+        <span class="calculating">Calculating...</span>
+      <% else %>
+        <%= @csv_import.elapsed_time.round %> seconds
+      <% end %>
+    </span>
+    <br />
+    <label> Average import time per record: </label>
+    <span>
+      <% if @csv_import.elapsed_time_per_record == nil %>
+        <span class="calculating">Calculating...</span>
+      <% else %>
+        <%= @csv_import.elapsed_time_per_record.round %> seconds
+      <% end %>
+    </span>
+    <br />
     <label> Queued records: </label>
     <span> <%= @csv_import.record_count %> </span>
-
     <br />
     <label> Logs: </label>
     <span> <a href="/csv_imports/<%= @csv_import.id %>/log">Ingest Log</a> </span>
