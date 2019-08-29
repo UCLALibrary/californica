@@ -15,6 +15,11 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
+# Use WebMock to stub HTTP requests
+require 'webmock/rspec'
+WebMock.enable!
+WebMock.allow_net_connect!
+
 if ENV['TRAVIS'] == 'true'
   require 'coveralls'
   Coveralls.wear!('rails')

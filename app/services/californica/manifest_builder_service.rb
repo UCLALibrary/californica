@@ -39,13 +39,25 @@ module Californica
     end
 
     def persist
+      manifest = render
       File.open(Rails.root.join('tmp', filesystem_cache_key), 'w+') do |f|
-        f.write render
+        f.write manifest
+      end
+      if ENV["IIIF_MANIFEST_URL"].present?
+        response = HTTParty.put(root_url, body: manifest, headers: { "Content-Type" => 'application/json' })
+        if response.code == 200
+          @curation_concern.iiif_manifest_url = root_url
+          @curation_concern.save
+        end
       end
     end
 
     def root_url
-      "http://#{ENV['RAILS_HOST'] || 'localhost'}/concern/works/#{@curation_concern.id}/manifest"
+      if ENV["IIIF_MANIFEST_URL"]
+        ENV["IIIF_MANIFEST_URL"] + @curation_concern.ark + '/manifest'
+      else
+        "http://#{ENV['RAILS_HOST'] || 'localhost'}/concern/works/#{@curation_concern.id}/manifest"
+      end
     end
 
     private

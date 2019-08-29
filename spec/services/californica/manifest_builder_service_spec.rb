@@ -8,6 +8,8 @@ RSpec.describe Californica::ManifestBuilderService do
   let(:child_access_copy_2) { 'child/image_2.tif' }
   let(:child_work1) { FactoryBot.create(:child_work, access_copy: child_access_copy_1) }
   let(:child_work2) { FactoryBot.create(:child_work, access_copy: child_access_copy_2) }
+  let(:iiif_manifest_url) { manifest_store_url + work.ark + '/manifest' }
+  let(:manifest_store_url) { 'https://manifest.store.url/' }
   let(:work) do
     w = FactoryBot.create(:work, access_copy: parent_access_copy)
     w.ordered_members << child_work1
@@ -145,9 +147,34 @@ RSpec.describe Californica::ManifestBuilderService do
       allow(service).to receive(:render).and_return(content)
     end
 
-    it 'saves the manifest' do
+    it 'saves the manifest to the filesystem' do
       service.persist
       expect(buffer.string).to eq(content)
+    end
+
+    context 'When ENV[\'IIIF_MANIFEST_URL\'] exists' do
+      before do
+        allow(ENV).to receive(:[]).and_call_original
+        allow(ENV).to receive(:[]).with('IIIF_MANIFEST_URL').and_return(manifest_store_url)
+      end
+
+      it 'saves the manifest to the filesystem' do
+        stub_request(:put, iiif_manifest_url).to_return(status: 200)
+        service.persist
+        expect(buffer.string).to eq(content)
+      end
+
+      it 'submits the manifest to the external service' do
+        stub = stub_request(:put, iiif_manifest_url).to_return(status: 200)
+        service.persist
+        expect(stub).to have_been_requested
+      end
+
+      it 'populates \'iiif_manifest_url\' if the request to the service succeeded' do
+        stub_request(:put, iiif_manifest_url).to_return(status: 200)
+        service.persist
+        expect(work.iiif_manifest_url).to eq iiif_manifest_url
+      end
     end
   end
 
@@ -261,16 +288,32 @@ RSpec.describe Californica::ManifestBuilderService do
   end
 
   describe '#root_url' do
-    it 'uses ENV[\'RAILS_HOST\']' do
-      allow(ENV).to receive(:[]).and_call_original
-      allow(ENV).to receive(:[]).with('RAILS_HOST').and_return('my.url')
-      expect(service.root_url).to eq "http://my.url/concern/works/#{work.id}/manifest"
+    context 'When ENV[\'IIIF_MANIFEST_URL\'] is not set' do
+      before do
+        allow(ENV).to receive(:[]).and_call_original
+        allow(ENV).to receive(:[]).with('IIIF_MANIFEST_URL').and_return(nil)
+      end
+
+      it 'uses ENV[\'RAILS_HOST\']' do
+        allow(ENV).to receive(:[]).with('RAILS_HOST').and_return('my.url')
+        expect(service.root_url).to eq "http://my.url/concern/works/#{work.id}/manifest"
+      end
+
+      it 'defaults to use localhost' do
+        allow(ENV).to receive(:[]).with('RAILS_HOST').and_return(nil)
+        expect(service.root_url).to eq "http://localhost/concern/works/#{work.id}/manifest"
+      end
     end
 
-    it 'defaults to use localhost' do
-      allow(ENV).to receive(:[]).and_call_original
-      allow(ENV).to receive(:[]).with('RAILS_HOST').and_return(nil)
-      expect(service.root_url).to eq "http://localhost/concern/works/#{work.id}/manifest"
+    context 'When ENV[\'IIIF_MANIFEST_URL\'] exists' do
+      before do
+        allow(ENV).to receive(:[]).and_call_original
+        allow(ENV).to receive(:[]).with('IIIF_MANIFEST_URL').and_return(manifest_store_url)
+      end
+
+      it 'points to the IIIF service, and uses the ark as identifier' do
+        expect(service.root_url).to eq manifest_store_url + work.ark + '/manifest'
+      end
     end
   end
 end
