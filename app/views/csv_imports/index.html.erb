@@ -24,6 +24,12 @@
         <th>
           Status
         </th>
+        <th>
+          Total Time <small>(seconds)</small>
+        </th>
+        <th>
+          Time per Record <small>(seconds)</small>
+        </th>
       </tr>
     </thead>
 
@@ -36,6 +42,8 @@
           <td><%= link_to csv_import.manifest.file.file, csv_import %></td>
           <td><%= csv_import.record_count || "Unknown" %></td>
           <td><%= csv_import.status || "Unknown" %></td>
+          <td><% if csv_import.elapsed_time %><%= csv_import.elapsed_time.round || "Unknown" %><% end %></td>
+          <td><% if csv_import.elapsed_time_per_record %><%= csv_import.elapsed_time_per_record.round || "Unknown" %><% end %></td>
         </tr>
       <% end %>
     </tbody>
