@@ -76,6 +76,7 @@ Metrics/MethodLength:
     - app/indexers/collection_indexer.rb
     - app/models/concerns/discoverable.rb
     - app/presenters/hyrax/californica_collection_presenter.rb
+    - app/importers/californica_importer.rb
 
 Metrics/ModuleLength:
   Enabled: true

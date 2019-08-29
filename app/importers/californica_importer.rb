@@ -37,8 +37,9 @@ class CalifornicaImporter
     @csv_import.elapsed_time_per_record = elapsed_time_per_record
     @csv_import.save
     @info_stream << @csv_import
-    rescue => e
-      @error_stream << "CsvImportJob failed: #{e.message}"
+
+  rescue => e
+    @error_stream << "CsvImportJob failed: #{e.message}"
   end
 
   def parser
@@ -52,15 +53,4 @@ class CalifornicaImporter
   def timestamp
     @timestamp ||= Time.zone.now.strftime('%Y-%m-%d-%H-%M-%S')
   end
-
-=begin
-    def get_elapsed_time
-      start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
-      @info_stream << "event: start_import, batch_id: #{record_importer.batch_id}, expecting to import #{records.count} records."
-      records.each { |record| record_importer.import(record: record) }
-      end_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
-      elapsed_time = end_time - start_time
-      @info_stream << "event: finish_import, batch_id: #{record_importer.batch_id}, successful_record_count: #{record_importer.success_count}, failed_record_count: #{record_importer.failure_count}, elapsed_time: #{elapsed_time}, elapsed_time_per_record: #{elapsed_time / records.count}"
-    end
-=end
 end
