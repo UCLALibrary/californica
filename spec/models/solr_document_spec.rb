@@ -6,7 +6,8 @@ RSpec.describe SolrDocument do
   let(:solr_document) { described_class.new(fields) }
 
   let(:fields) do
-    { caption_tesim: [''],
+    { id: '456xyz',
+      caption_tesim: [''],
       dimensions_tesim: [''],
       extent_tesim: [''],
       funding_note_tesim: [''],
@@ -67,6 +68,37 @@ RSpec.describe SolrDocument do
 
   it 'has rights_holder' do
     expect(solr_document.rights_holder).to eq([''])
+  end
+
+  describe '#iiif_manifest_url' do
+    context 'when a url is stored and feature enabled' do
+      let(:fields) do
+        { iiif_manifest_url_ssi: 'https://manifest.store.url/abc123/manifest' }
+      end
+
+      it 'uses that url' do
+        allow(Flipflop).to receive(:use_manifest_store?).and_return(true)
+        expect(solr_document.iiif_manifest_url).to eq 'https://manifest.store.url/abc123/manifest'
+      end
+    end
+
+    context 'when a url is stored but feature is disabled' do
+      let(:fields) do
+        { id: '456xyz',
+          iiif_manifest_url_ssi: 'https://manifest.store.url/abc123/manifest' }
+      end
+
+      it 'builds a local url' do
+        allow(Flipflop).to receive(:use_manifest_store?).and_return(false)
+        expect(solr_document.iiif_manifest_url).to eq '/concern/works/456xyz/manifest'
+      end
+    end
+
+    context 'when nothing is stored' do
+      it 'builds a local url' do
+        expect(solr_document.iiif_manifest_url).to eq '/concern/works/456xyz/manifest'
+      end
+    end
   end
 
   describe 'visibility' do

@@ -79,7 +79,11 @@ class SolrDocument
   end
 
   def iiif_manifest_url
-    self[:iiif_manifest_url_ssi]
+    if Flipflop.use_manifest_store? && self[:iiif_manifest_url_ssi]
+      self[:iiif_manifest_url_ssi]
+    else
+      "/concern/works/#{id}/manifest"
+    end
   end
 
   def iiif_range
