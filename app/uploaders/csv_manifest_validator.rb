@@ -68,6 +68,8 @@ OPTIONAL_HEADERS = [
   'Rights.rightsHolderContact',
   'Rights.servicesContact',
   'Subject',
+  'Subject.conceptTopic',
+  'Subject.descriptiveTopic',
   'Summary',
   'Support',
   'Table of Contents; Description.tableOfContents',

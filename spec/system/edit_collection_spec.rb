@@ -47,6 +47,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       photographer: ['Old Photographer'],
       services_contact: ['Old Services Contact'],
       binding_note: 'Old Binding note',
+      subject_topic: ['Old Subject Topic'],
       summary: ['Old Summary'],
       support: ['Old Supprt'],
       toc: ['Old Table of Contents'],
@@ -104,9 +105,10 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Rights (country of creation)').value).to eq 'Old Rights Country'
       expect(find_field('Rights Holder').value).to eq 'Old Rights Holder'
       expect(find_field('Photographer').value).to eq 'Old Photographer'
-      expect(find_field('Rights services contact').value).to eq 'Old Services Contact'
       expect(find_field('Summary').value).to eq 'Old Summary'
+      expect(find_field('Rights services contact').value).to eq 'Old Services Contact'
       expect(find_field('Toc').value).to eq 'Old Table of Contents'
+      expect(find_field('Subject topic').value).to eq 'Old Subject Topic'
       expect(find_field('Binding note').value).to eq 'Old Binding note'
       expect(page).to have_select('Iiif text direction', selected: 'left-to-right', multiple: false)
       expect(find_field('Uniform title').value).to eq 'Old Uniform title'
