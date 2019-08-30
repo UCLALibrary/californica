@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190827235705) do
+ActiveRecord::Schema.define(version: 20190830171825) do
 
   create_table "bookmarks", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "user_id", null: false
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 20190827235705) do
     t.text "job_ids_queued"
     t.text "job_ids_completed"
     t.text "job_ids_errored"
+    t.float "ingest_duration", limit: 24
   end
 
   create_table "curation_concerns_operations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

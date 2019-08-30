@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 class CsvRowImportJob < ActiveJob::Base
   def perform(row_id:)
+    start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
     @row_id = row_id
     @row = CsvRow.find(@row_id)
     @metadata = JSON.parse(@row.metadata)
@@ -15,7 +16,9 @@ class CsvRowImportJob < ActiveJob::Base
                           actor_record_importer
                         end
     selected_importer.import(record: record)
-
+    end_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+    ingest_duration = end_time - start_time
+    @row.ingest_duration = ingest_duration
     @row.job_ids_completed << job_id
     @row.save
   rescue => e
