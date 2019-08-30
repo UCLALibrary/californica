@@ -39,9 +39,9 @@ module Hyrax
         render_manifest_file(key: key)
       else
         curation_concern = _curation_concern_type.find(params[:id]) unless curation_concern
-        builder_service = Californica::ManifestBuilderService.new(curation_concern: curation_concern)
-        @image_concerns = builder_service.image_concerns
-        @root_url = builder_service.root_url
+        @builder_service = Californica::ManifestBuilderService.new(curation_concern: curation_concern)
+        @image_concerns = @builder_service.image_concerns
+        @root_url = @builder_service.root_url
 
         manifest_json = render_to_string('/manifest.json')
         persist_manifest(key: key, json: manifest_json) if Flipflop.cache_manifests?

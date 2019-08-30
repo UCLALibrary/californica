@@ -4,7 +4,14 @@ require 'cgi'
 
 RSpec.describe "manifest", type: :view do
   let(:access_copy) { 'a/b/c.tif' }
-  let(:work) { FactoryBot.create(:work, child_work: child_work) }
+  let(:work) do
+    FactoryBot.create(
+      :work,
+      child_work: child_work,
+      iiif_text_direction: 'http://iiif.io/api/presentation/2#leftToRightDirection',
+      iiif_viewing_hint: 'http://iiif.io/api/presentation/2#pagedHint'
+    )
+  end
   let(:child_work) { FactoryBot.create(:work, access_copy: access_copy) }
   let(:solr_doc) { SolrDocument.find(work.id) }
   let(:builder_service) { Californica::ManifestBuilderService.new(curation_concern: work) }
@@ -18,6 +25,7 @@ RSpec.describe "manifest", type: :view do
     assign(:root_url, root_url)
     assign(:solr_doc, solr_doc)
     assign(:image_concerns, image_concerns)
+    assign(:builder_service, builder_service)
   end
 
   it "displays manifest for a work with child works" do
@@ -30,6 +38,7 @@ RSpec.describe "manifest", type: :view do
   "@id": "http://my.url/concern/works/#{work.id}/manifest",
   "label": "#{work.title.first}",
   "description": "#{work.description.first}",
+  "viewingDirection": "left-to-right",
   "sequences": [
     {
       "@type": "sc:Sequence",
