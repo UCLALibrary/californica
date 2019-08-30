@@ -54,7 +54,7 @@ module Californica
 
     def root_url
       if ENV["IIIF_MANIFEST_URL"]
-        ENV["IIIF_MANIFEST_URL"] + @curation_concern.ark + '/manifest'
+        ENV["IIIF_MANIFEST_URL"] + CGI.escape(@curation_concern.ark) + '/manifest'
       else
         "http://#{ENV['RAILS_HOST'] || 'localhost'}/concern/works/#{@curation_concern.id}/manifest"
       end

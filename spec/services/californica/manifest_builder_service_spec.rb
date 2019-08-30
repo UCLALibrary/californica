@@ -8,7 +8,7 @@ RSpec.describe Californica::ManifestBuilderService do
   let(:child_access_copy_2) { 'child/image_2.tif' }
   let(:child_work1) { FactoryBot.create(:child_work, access_copy: child_access_copy_1) }
   let(:child_work2) { FactoryBot.create(:child_work, access_copy: child_access_copy_2) }
-  let(:iiif_manifest_url) { manifest_store_url + work.ark + '/manifest' }
+  let(:iiif_manifest_url) { manifest_store_url + CGI.escape(work.ark) + '/manifest' }
   let(:manifest_store_url) { 'https://manifest.store.url/' }
   let(:work) do
     w = FactoryBot.create(:work, access_copy: parent_access_copy)
@@ -312,7 +312,7 @@ RSpec.describe Californica::ManifestBuilderService do
       end
 
       it 'points to the IIIF service, and uses the ark as identifier' do
-        expect(service.root_url).to eq manifest_store_url + work.ark + '/manifest'
+        expect(service.root_url).to eq manifest_store_url + CGI.escape(work.ark) + '/manifest'
       end
     end
   end
