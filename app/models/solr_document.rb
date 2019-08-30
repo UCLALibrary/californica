@@ -154,6 +154,10 @@ class SolrDocument
     self[:services_contact_ssm]
   end
 
+  def subject_topic
+    self[:subject_topic_tesim]
+  end
+
   def summary
     self[:summary_tesim]
   end

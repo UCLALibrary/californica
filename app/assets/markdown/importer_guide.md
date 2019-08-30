@@ -43,6 +43,8 @@
 - [Rights.countryCreation](#rights.countrycreation)
 - [Rights.rightsHolderContact](#rights.rightsholdercontact)
 - [Subject](#subject)
+- [Subject.conceptTopic](#subject.concept_topic)
+- [Subject.descriptiveTopic](#subject.descriptive_topic)
 - [Summary](#summary)
 - [Support](#support)
 - [IIIF Text direction](#iiif_text_direction)
@@ -201,6 +203,12 @@ accepts AltTitle.translated
 ### Rights.rightsHolderContact
 
 ### Subject
+
+### Subject topic
+
+Accepts "Subject.conceptTopic" and "Subject.descriptiveTopic" as valid synonyms.
+
+### Subject.descriptiveTopic
 
 ### Summary
 

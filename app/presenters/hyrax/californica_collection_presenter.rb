@@ -47,6 +47,7 @@ module Hyrax
         :services_contact,
         :size,
         :subject,
+        :subject_topic,
         :support,
         :summary,
         :iiif_text_direction,

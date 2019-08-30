@@ -35,6 +35,7 @@ module Hyrax
       :resource_type,
       :rights_country,
       :rights_holder,
+      :subject_topic,
       :summary,
       :support,
       :toc,

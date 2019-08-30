@@ -97,7 +97,9 @@ RSpec.describe CalifornicaCsvParser do
        'IIIF Range',
        'Illustrations note',
        'Provenance; Description.history',
-       'Table of Contents; Description.tableOfContents']
+       'Table of Contents; Description.tableOfContents',
+       'Subject.conceptTopic',
+       'Subject.descriptiveTopic']
     end
 
     it 'knows the headers for this CSV file' do

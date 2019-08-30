@@ -43,7 +43,13 @@ Metrics/BlockLength:
     - 'lib/tasks/purge.rake'
     - app/models/ucla_metadata.rb
     - app/views/manifest.json.jbuilder
-    
+
+
+Metrics/ModuleLength:
+  Enabled: true
+  Exclude:
+    - app/models/ucla_metadata.rb
+
 Metrics/CyclomaticComplexity:
   Enabled: true
   Exclude:

@@ -35,6 +35,7 @@ RSpec.describe Hyrax::WorkForm do
       :repository,
       :rights_country,
       :rights_holder,
+      :subject_topic,
       :summary,
       :support,
       :toc,

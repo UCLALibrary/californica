@@ -47,6 +47,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       rights_statement: ['http://vocabs.library.ucla.edu/rights/copyrighted'], # "copyrighted"
       subject: ['Old Subj'],
       summary: ['Old Summary'],
+      subject_topic: ['Old Subject topic'],
       binding_note: 'Old Binding note',
       support: ['Old Support'],
       iiif_text_direction: 'http://iiif.io/api/presentation/2#leftToRightDirection', # "left-to-right"
@@ -101,6 +102,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Rights (country of creation)').value).to eq 'Old Rights Country'
       expect(find_field('Rights Holder').value).to eq 'Old Rights Holder'
       expect(find_field('Subject').value).to eq 'Old Subj'
+      expect(find_field('Subject topic').value).to eq 'Old Subject topic'
       expect(find_field('Summary').value).to eq 'Old Summary'
       expect(find_field('Binding note').value).to eq 'Old Binding note'
       expect(page).to have_select('Iiif text direction', selected: 'left-to-right', multiple: false)

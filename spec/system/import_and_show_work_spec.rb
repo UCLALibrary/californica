@@ -70,6 +70,8 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "illustration-note" # illustrations_note
     expect(page).to have_content "history-description" # provenance
     expect(page).to have_content "table of contents" # toc
+    expect(page).to have_content "concept-topic" # subject_topic
+    expect(page).to have_content "descriptive-topic" # subject_topic
 
     # displays expected fields on search results page
     visit("catalog?search_field=all_fields&q=")
