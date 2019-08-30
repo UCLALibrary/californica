@@ -6,6 +6,7 @@ json.set! :@type, 'sc:Manifest'
 json.set! :@id, @root_url
 json.label @solr_doc.title.first
 json.description @solr_doc.description.first
+json.viewingDirection @builder_service.iiif_text_direction if @builder_service.iiif_text_direction
 
 json.sequences [''] do
   json.set! :@type, 'sc:Sequence'

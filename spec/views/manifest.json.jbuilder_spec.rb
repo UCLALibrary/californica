@@ -17,6 +17,7 @@ RSpec.describe "manifest", type: :view do
     assign(:solr_doc, solr_doc)
     assign(:image_concerns, image_concerns)
     assign(:root_url, root_url)
+    assign(:builder_service, builder_service)
   end
 
   it "displays a valid IIIF Presentation API manifest" do

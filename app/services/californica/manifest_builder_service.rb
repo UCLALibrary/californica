@@ -9,7 +9,8 @@ module Californica
 
     def render
       renderer.render template: '/manifest.json',
-                      assigns: { root_url: root_url,
+                      assigns: { builder_service: self,
+                                 root_url: root_url,
                                  solr_doc: SolrDocument.find(@curation_concern.id),
                                  image_concerns: image_concerns }
     end
@@ -22,6 +23,16 @@ module Californica
       raise 'Cannot persist a IIIF manifest without an object ID. Did you forget to save this object?'
     end
 
+    def iiif_text_direction
+      if @curation_concern.iiif_text_direction
+        Qa::Authorities::Local.subauthority_for('iiif_text_directions')
+                              .find(@curation_concern.iiif_text_direction)
+                              .fetch('term')
+      end
+    rescue KeyError
+      nil
+    end
+
     def iiif_url
       if !(@curation_concern.respond_to? :access_copy) || @curation_concern.access_copy.nil?
         nil
@@ -32,6 +43,16 @@ module Californica
       else
         ENV['IIIF_SERVER_URL'] + CGI.escape(@curation_concern.access_copy)
       end
+    end
+
+    def iiif_viewing_hint
+      if @curation_concern.iiif_viewing_hint
+        Qa::Authorities::Local.subauthority_for('iiif_viewing_hints')
+                              .find(@curation_concern.iiif_viewing_hint)
+                              .fetch('term')
+      end
+    rescue KeyError
+      nil
     end
 
     def image_concerns
