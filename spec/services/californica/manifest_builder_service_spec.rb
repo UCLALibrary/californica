@@ -11,7 +11,7 @@ RSpec.describe Californica::ManifestBuilderService do
   let(:iiif_manifest_url) { manifest_store_url + CGI.escape(work.ark) + '/manifest' }
   let(:manifest_store_url) { 'https://manifest.store.url/' }
   let(:work) do
-    w = FactoryBot.create(:work, access_copy: parent_access_copy)
+    w = FactoryBot.create(:work)
     w.ordered_members << child_work1
     w.ordered_members << child_work2
     w
@@ -98,15 +98,13 @@ RSpec.describe Californica::ManifestBuilderService do
   end
 
   describe '#image_concerns' do
-    it 'returns the set of works needed to create a manifest' do
-      expect(service.image_concerns).to eq [work, child_work1, child_work2]
-    end
-
-    context 'When the parent work has no access_copy' do
-      let(:parent_access_copy) { nil }
-
-      it 'returns the set of child works' do
+    context 'when the work has children' do
+      it 'returns a list of those members' do
         expect(service.image_concerns).to eq [child_work1, child_work2]
+      end
+
+      it 'does not include the work, even if it has an access_copy' do
+        expect(service.image_concerns).not_to include(work)
       end
     end
 
@@ -118,19 +116,11 @@ RSpec.describe Californica::ManifestBuilderService do
       end
     end
 
-    context 'When the parent work has neither access_copy nor children' do
-      let(:work) { FactoryBot.create(:work, access_copy: nil) }
-
-      it 'returns nothing' do
-        expect(service.image_concerns).to eq []
-      end
-    end
-
-    context 'When the a child work has no access_copy' do
+    context 'When a child work has no access_copy' do
       let(:child_access_copy_1) { nil }
 
-      it 'does not include the child' do
-        expect(service.image_concerns).to eq [work, child_work2]
+      it 'gets included anyway' do
+        expect(service.image_concerns).to include(child_work1)
       end
     end
   end
@@ -192,32 +182,6 @@ RSpec.describe Californica::ManifestBuilderService do
             "@type": "sc:Sequence",
             "@id": "http://my.url/concern/works/#{work.id}/manifest/sequence/normal",
             "canvases": [
-              {
-                "@id": "http://my.url/concern/works/#{work.id}/manifest/canvas/#{CGI.escape(work.ark)}",
-                "@type": "sc:Canvas",
-                "label": "#{work.title.first}",
-                "description": "#{work.description.first}",
-                "width": 640,
-                "height": 480,
-                "images": [
-                  {
-                    "@type": "oa:Annotation",
-                    "motivation": "sc:painting",
-                    "resource": {
-                      "@type": "dctypes:Image",
-                      "@id": "#{ENV['IIIF_SERVER_URL']}#{CGI.escape(parent_access_copy)}/full/600,/0/default.jpg",
-                      "width": 640,
-                      "height": 480,
-                      "service": {
-                        "@context": "http://iiif.io/api/image/2/context.json",
-                        "@id": "#{ENV['IIIF_SERVER_URL']}#{CGI.escape(parent_access_copy)}",
-                        "profile": "http://iiif.io/api/image/2/level2.json"
-                      }
-                    },
-                    "on": "http://my.url/concern/works/#{work.id}/manifest/canvas/#{CGI.escape(work.ark)}"
-                  }
-                ]
-              },
               {
                 "@id": "http://my.url/concern/works/#{work.id}/manifest/canvas/#{CGI.escape(child_work1.ark)}",
                 "@type": "sc:Canvas",
