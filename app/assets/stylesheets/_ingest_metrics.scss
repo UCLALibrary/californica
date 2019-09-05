@@ -1,0 +1,48 @@
+@import 'variables';
+
+.ingest-metrics {
+  table, th, td {
+    border: 1px solid #D1D1D1;
+    text-align: center;
+    background: white;
+  }
+}
+
+.csv_logs {
+  table, th, td {
+    border: .5px solid #D1D1D1;
+    padding: 0px;
+    margin: 0px;
+  }
+}
+
+.ingest-metrics-table {
+  background-color: $ingest-lt-gray;
+  padding: 1px 10px 25px 10px;
+}
+
+.ingest-small {
+  color: $ingest-dk-gray;
+}
+
+.text-center {
+  td {
+    text-align: center;
+  }
+}
+
+.ingest-hr {
+  border: 1px solid #D1D1D1;
+}
+
+.ingest-lt-gray {
+  color: $ingest-lt-gray;
+}
+
+.ingest-md-gray {
+  color: $ingest-md-gray;
+}
+
+.ingest-dk-gray {
+  color: $ingest-dk-gray;
+}
