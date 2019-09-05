@@ -20,25 +20,27 @@ json.sequences [''] do
     json.description child.description.first
     json.width 640
     json.height 480
-    json.images [child] do
-      json.set! :@type, 'oa:Annotation'
-      json.motivation 'sc:painting'
-      json.resource do
-        json.set! :@type, 'dctypes:Image'
-        json.set! :@id, child_iiif_service.iiif_url + '/full/600,/0/default.jpg'
-        json.width 640
-        json.height 480
-        json.service do
-          json.set! :@context, 'http://iiif.io/api/image/2/context.json'
+    if child.access_copy
+      json.images [child] do
+        json.set! :@type, 'oa:Annotation'
+        json.motivation 'sc:painting'
+        json.resource do
+          json.set! :@type, 'dctypes:Image'
+          json.set! :@id, child_iiif_service.iiif_url + '/full/600,/0/default.jpg'
+          json.width 640
+          json.height 480
+          json.service do
+            json.set! :@context, 'http://iiif.io/api/image/2/context.json'
 
-          # The base url for the info.json file
-          info_url = child_iiif_service.iiif_url
+            # The base url for the info.json file
+            info_url = child_iiif_service.iiif_url
 
-          json.set! :@id, info_url
-          json.profile 'http://iiif.io/api/image/2/level2.json'
+            json.set! :@id, info_url
+            json.profile 'http://iiif.io/api/image/2/level2.json'
+          end
         end
+        json.on canvas_uri
       end
-      json.on canvas_uri
     end
   end
 end

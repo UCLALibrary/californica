@@ -25,7 +25,6 @@ module Hyrax
 
     def manifest
       headers['Access-Control-Allow-Origin'] = '*'
-      curation_concern = _curation_concern_type.find(params[:id]) unless curation_concern
       authorize! :show, curation_concern
       manifest_builder
     end
@@ -38,7 +37,6 @@ module Hyrax
       if File.exist?(Rails.root.join('tmp', key)) && Flipflop.cache_manifests?
         render_manifest_file(key: key)
       else
-        curation_concern = _curation_concern_type.find(params[:id]) unless curation_concern
         @builder_service = Californica::ManifestBuilderService.new(curation_concern: curation_concern)
         @image_concerns = @builder_service.image_concerns
         @root_url = @builder_service.root_url
@@ -51,16 +49,20 @@ module Hyrax
 
     private
 
-      def render_manifest_file(key:)
-        manifest_file = File.open(Rails.root.join('tmp', key))
-        render json: manifest_file.read
-        manifest_file.close
+      def curation_concern
+        @curation_concern ||= ActiveFedora::Base.find(params[:id])
       end
 
       def persist_manifest(key:, json:)
         File.open(Rails.root.join('tmp', key), 'w+') do |f|
           f.write json
         end
+      end
+
+      def render_manifest_file(key:)
+        manifest_file = File.open(Rails.root.join('tmp', key))
+        render json: manifest_file.read
+        manifest_file.close
       end
   end
 end

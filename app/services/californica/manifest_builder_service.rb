@@ -56,7 +56,12 @@ module Californica
     end
 
     def image_concerns
-      @image_concerns ||= ([@curation_concern] + @curation_concern.ordered_members.to_a).select { |member| member.respond_to?(:access_copy) && member.access_copy }
+      ordered_members = @curation_concern.ordered_members.to_a
+      if ordered_members.empty?
+        [@curation_concern]
+      else
+        ordered_members
+      end
     end
 
     def persist
