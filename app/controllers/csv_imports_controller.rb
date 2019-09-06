@@ -74,21 +74,21 @@ class CsvImportsController < ApplicationController
     def min
       if @csv_rows.count == @csv_import.record_count
         @min_ingest_duration = row_times.minimum(:ingest_duration)
-        @min_ingest_duration.round(3)
+        @min_ingest_duration.round(2)
       end
     end
 
     def max
       if @csv_rows.count == @csv_import.record_count
         @max_ingest_duration = row_times.maximum(:ingest_duration)
-        @max_ingest_duration.round(3)
+        @max_ingest_duration.round(2)
       end
     end
 
     def mean
       if @csv_rows.count == @csv_import.record_count
         @mean_ingest_duration = row_times.average(:ingest_duration)
-        @mean_ingest_duration.round(3)
+        @mean_ingest_duration.round(2)
       end
     end
 
@@ -98,7 +98,7 @@ class CsvImportsController < ApplicationController
         durations = @get_ingest_duration_rows.map(&:ingest_duration)
         sorted = durations.compact.sort
         len = sorted.length
-        ((sorted[(len - 1) / 2] + sorted[len / 2]) / 2.0).round(3) if len.positive?
+        ((sorted[(len - 1) / 2] + sorted[len / 2]) / 2.0).round(2) if len.positive?
       end
     end
 
@@ -108,7 +108,7 @@ class CsvImportsController < ApplicationController
         durations = @get_ingest_duration_rows.map(&:ingest_duration)
         @avg = CsvRow.where(csv_import_id: @csv_import.id).average(:ingest_duration)
         sd = Math.sqrt(durations.sum { |x| (x - @avg)**2 } / @get_ingest_duration_rows.size)
-        sd.round(3)
+        sd.round(2)
       end
     end
 end

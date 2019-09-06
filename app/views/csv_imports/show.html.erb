@@ -10,7 +10,7 @@
 <div class="panel-body">
   <div class="ingest-metrics-table">
     <div class="i-m-table">
-    <h4>Full import times<small class='ingest-small'> (in seconds)</small> for  <%= @csv_import.record_count %> records</h4>
+    <h4>Full CSV import metrics (<%= @csv_import.record_count %> records)</h4>
     <table class="table-condensed table-striped no-footer ingest-metrics" role="grid">
       <thead>
         <tr role='row'>
@@ -18,10 +18,10 @@
             Start time
           </th>
           <th>
-            Total record import time
+            Total elapsed time
           </th>
           <th>
-            Average import time per record
+            Average time per record
           </th>
         </tr>
       </thead>
@@ -32,14 +32,14 @@
             <% if @csv_import.elapsed_time == nil %>
               <span class='ingest-md-gray'>waiting for ingest to finish</span>
             <% else %>
-              <%= @csv_import.elapsed_time.round(3) %> seconds
+              <%= @csv_import.elapsed_time.round(2) %> seconds
             <% end %>
           </td>
           <td>
             <% if @csv_import.elapsed_time_per_record == nil %>
               <span class='ingest-md-gray'>waiting for ingest to finish</span>
             <% else %>
-              <%= @csv_import.elapsed_time_per_record.round(3) %> seconds
+              <%= @csv_import.elapsed_time_per_record.round(2) %> seconds
             <% end %>
           </td>
         </tr>
@@ -48,7 +48,8 @@
 
     <br/>
 
-    <h4>Ingest duration metrics per item<small class='ingest-small'> (in seconds)</small> for <%= @csv_import.record_count %> records</h4>
+    <h4>Row ingest metrics (<%= @csv_import.record_count %> records)</h4>
+      (Not including reindexing & manifest creation).
 
     <table class="table-condensed table-striped no-footer ingest-metrics" role="grid">
       <thead>
@@ -60,7 +61,7 @@
             Maximum
           </th>
           <th>
-            Mean (Average)
+            Mean
           </th>
           <th>
             Median

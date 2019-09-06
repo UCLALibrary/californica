@@ -33,11 +33,11 @@ RSpec.describe 'Status of all CSV Imports', :clean, type: :system, js: true do
       expect(page).to have_content 'Mean'
       expect(page).to have_content 'Median'
       expect(page).to have_content 'Standard deviation'
-      expect(page).to have_content 0.869 # min
-      expect(page).to have_content 2.181 # max
-      expect(page).to have_content 1.363 # mean/average 1.363
-      expect(page).to have_content 1.039 # median
-      expect(page).to have_content 0.583 # std_deviation
+      expect(page).to have_content 0.87 # min
+      expect(page).to have_content 2.18 # max
+      expect(page).to have_content 1.36 # mean/average 1.36
+      expect(page).to have_content 1.04 # median
+      expect(page).to have_content 0.58 # std_deviation
     end
   end
 end
