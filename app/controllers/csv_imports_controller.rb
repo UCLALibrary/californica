@@ -10,6 +10,11 @@ class CsvImportsController < ApplicationController
 
   def show
     @csv_rows = CsvRow.where(csv_import_id: @csv_import.id)
+    @min_ingest_duration = min
+    @max_ingest_duration = max
+    @mean_ingest_duration = mean
+    @median_ingest_duration = median
+    @standard_deviation_ingest_duration = std_deviation
   end
 
   def new; end
@@ -60,5 +65,50 @@ class CsvImportsController < ApplicationController
       return unless params['csv_import']
       @csv_import.manifest_cache = params['csv_import']['manifest_cache']
       @csv_import.record_count = params['csv_import']['record_count']
+    end
+
+    def row_times
+      @row_times ||= @csv_rows.select('ingest_duration')
+    end
+
+    def min
+      if @csv_rows.count == @csv_import.record_count
+        @min_ingest_duration = row_times.minimum(:ingest_duration)
+        @min_ingest_duration.round(2)
+      end
+    end
+
+    def max
+      if @csv_rows.count == @csv_import.record_count
+        @max_ingest_duration = row_times.maximum(:ingest_duration)
+        @max_ingest_duration.round(2)
+      end
+    end
+
+    def mean
+      if @csv_rows.count == @csv_import.record_count
+        @mean_ingest_duration = row_times.average(:ingest_duration)
+        @mean_ingest_duration.round(2)
+      end
+    end
+
+    def median
+      if @csv_rows.count == @csv_import.record_count
+        @get_ingest_duration_rows = row_times
+        durations = @get_ingest_duration_rows.map(&:ingest_duration)
+        sorted = durations.compact.sort
+        len = sorted.length
+        ((sorted[(len - 1) / 2] + sorted[len / 2]) / 2.0).round(2) if len.positive?
+      end
+    end
+
+    def std_deviation
+      if @csv_rows.count == @csv_import.record_count
+        @get_ingest_duration_rows = row_times
+        durations = @get_ingest_duration_rows.map(&:ingest_duration)
+        @avg = CsvRow.where(csv_import_id: @csv_import.id).average(:ingest_duration)
+        sd = Math.sqrt(durations.sum { |x| (x - @avg)**2 } / @get_ingest_duration_rows.size)
+        sd.round(2)
+      end
     end
 end

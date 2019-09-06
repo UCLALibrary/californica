@@ -33,8 +33,8 @@ RSpec.describe 'Importing records from a CSV file', :clean, type: :system, js: t
       csv_import = CsvImport.last
 
       expect(page).to have_content("CSV Import #{csv_import.id}")
-      expect(page).to have_content("Total record import time")
-      expect(page).to have_content("Average import time per record")
+      expect(page).to have_content("Full CSV import metrics")
+      expect(page).to have_content("Row ingest metrics")
       expect(csv_import.record_count).to eq 2
       expect(ActiveJob::Base.queue_adapter.enqueued_jobs.map { |a| a[:job] }).to include(StartCsvImportJob)
       expect(page).to have_content("Ingest Duration (in seconds)")

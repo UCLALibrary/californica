@@ -1,80 +1,140 @@
 <p id="notice"><%= notice %></p>
-<div class="col-xs-12 main-header">
-  <h2>CSV Import <%= @csv_import.id %></h2>
-</div>
+<h2>CSV Import <%= @csv_import.id %> <small class='ingest-small'>| <%= File.basename(@csv_import.manifest.to_s) %></small> <small class='ingest-small'> | <%= @csv_import.record_count %> queued records | <a href="/csv_imports/<%= @csv_import.id %>/log"> Ingest Log</a></small></h2>
+<h3>Current row count: <%= @csv_rows.count %> | Total record count: <%= @csv_import.record_count %></h3>
+<h4 class='ingest-gray'>(Refresh page to view updated ingest)</h4>
+<p>
+  <span class='ingest-md-gray'><label> Uploaded by: </label></span>
+  <span> <%= @csv_import.user.name %> </span>
+</p>
+
 <div class="panel-body">
-  <p>
-    <label> CSV Manifest: </label>
-    <span> <%= File.basename(@csv_import.manifest.to_s) %> </span>
-    <br />
-    <span style="color: gray"><label> Uploaded by: </label></span>
-    <span> <%= @csv_import.user.name %> </span>
-    <br />
-    <label> Start time: </label>
-    <span> <%= @csv_import.created_at.strftime('%e %b %Y %l:%M %p') %> </span>
-    <br />
-    <label> Total record import time: </label>
-    <span>
-      <% if @csv_import.elapsed_time == nil %>
-        <span class="calculating">Calculating...</span>
-      <% else %>
-        <%= @csv_import.elapsed_time.round(3) %> seconds
-      <% end %>
-    </span>
-    <br />
-    <label> Average import time per record: </label>
-    <span>
-      <% if @csv_import.elapsed_time_per_record == nil %>
-        <span class="calculating">Calculating...</span>
-      <% else %>
-        <%= @csv_import.elapsed_time_per_record.round(3) %> seconds
-      <% end %>
-    </span>
-    <br />
-    <label> Queued records: </label>
-    <span> <%= @csv_import.record_count %> </span>
-    <br />
-    <label> Logs: </label>
-    <span> <a href="/csv_imports/<%= @csv_import.id %>/log">Ingest Log</a> </span>
-  </p>
-  <table class="table-condensed table-striped datatable dataTable no-footer" role="grid" data-order="[[ 1, &quot;asc&quot; ]]">
-    <thead>
-      <tr role="row">
-        <th class="sorting_desc">
-          Row Number
-        </th>
-        <th>
-          Item Ark
-        </th>
-        <th>
-          Last Updated
-        </th>
-        <th>
-          Error message(s)
-        </th>
-        <th>
-          Status
-        </th>
-        <th>
-          Ingest Duration (in seconds)
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @csv_rows.each do |csv_row| %>
-        <tr>
-          <td><%= csv_row.row_number || "Unknown" %></td>
-          <td><%= JSON.parse(csv_row.metadata)["Item ARK"] || "Unknown" %></td>
-          <td><%= csv_row.updated_at.strftime('%e %b %Y %l:%M %p') || "Unknown" %></td>
-          <td><%= csv_row.error_messages || "" %></td>
-          <td><%= csv_row.status || "Unknown" %></td>
-          <% if csv_row.ingest_duration == nil %>
-            <td>Unknown</td>
-          <% else %>
-          <td><%= csv_row.ingest_duration.round(3) || "Unknown" %></td>
-          <% end %>
+  <div class="ingest-metrics-table">
+    <div class="i-m-table">
+    <h4>Full CSV import metrics (<%= @csv_import.record_count %> records)</h4>
+    <table class="table-condensed table-striped no-footer ingest-metrics" role="grid">
+      <thead>
+        <tr role='row'>
+          <th>
+            Start time
+          </th>
+          <th>
+            Total elapsed time
+          </th>
+          <th>
+            Average time per record
+          </th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @csv_import.created_at.strftime('%e %b %Y %l:%M %p') %></td>
+          <td>
+            <% if @csv_import.elapsed_time == nil %>
+              <span class='ingest-md-gray'>waiting for ingest to finish</span>
+            <% else %>
+              <%= @csv_import.elapsed_time.round(2) %> seconds
+            <% end %>
+          </td>
+          <td>
+            <% if @csv_import.elapsed_time_per_record == nil %>
+              <span class='ingest-md-gray'>waiting for ingest to finish</span>
+            <% else %>
+              <%= @csv_import.elapsed_time_per_record.round(2) %> seconds
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <br/>
+
+    <h4>Row ingest metrics (<%= @csv_import.record_count %> records)</h4>
+      (Not including reindexing & manifest creation).
+
+    <table class="table-condensed table-striped no-footer ingest-metrics" role="grid">
+      <thead>
+        <tr role="row">
+          <th>
+            Minimum
+          </th>
+          <th>
+            Maximum
+          </th>
+          <th>
+            Mean
+          </th>
+          <th>
+            Median
+          </th>
+          <th>
+            Standard deviation
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <% if @csv_rows.count != @csv_import.record_count %>
+         <tr>
+          <td colspan='5' class='ingest-md-gray'>Metrics will display after all records have been ingested.</td>
+        </tr>
+      <% else %>
+        <tr>
+          <td>
+            <%= @min_ingest_duration %><br/></td>
+          <td>
+            <%= @max_ingest_duration || nil %></td>
+          <td>
+            <%= @mean_ingest_duration || nil %></td>
+          <td>
+            <%= @median_ingest_duration || nil %></td>
+          <td>
+            <%= @standard_deviation_ingest_duration || nil %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
+<br/>
+
+<hr class='ingest-hr'>
+<table class="table-condensed table-striped datatable dataTable no-footer 
+v_logs ingest-metrics" role="grid" data-order="[[ 1, &quot;asc&quot; ]]">
+  <thead>
+    <tr role="row">
+      <th class="sorting_desc">
+        Row&nbsp;#
+      </th>
+      <th>
+        Item Ark
+      </th>
+      <th>
+        Last Updated
+      </th>
+      <th>
+        Ingest Duration (in seconds)
+      </th>
+      <th>
+        Status
+      </th>
+      <th>
+        Error message(s)
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @csv_rows.each do |csv_row| %>
+      <tr>
+        <td><%= csv_row.row_number || "Unknown" %></td>
+        <td><%= JSON.parse(csv_row.metadata)["Item ARK"] || "Unknown" %></td>
+        <td><%= csv_row.updated_at.strftime('%e %b %Y %l:%M %p') || "Unknown" %></td>
+        <% if csv_row.ingest_duration == nil %>
+          <td>Unknown</td>
+        <% else %>
+          <td style='text-align: center'><%= csv_row.ingest_duration.round(3) || "Unknown" %></td>
+        <% end %>
+        <td><%= csv_row.status || "Unknown" %></td>
+        <td><%= csv_row.error_messages || "" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
