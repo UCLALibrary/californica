@@ -10,11 +10,17 @@ class CsvImportsController < ApplicationController
 
   def show
     @csv_rows = CsvRow.where(csv_import_id: @csv_import.id)
-    @min_ingest_duration = min
-    @max_ingest_duration = max
-    @mean_ingest_duration = mean
-    @median_ingest_duration = median
-    @standard_deviation_ingest_duration = std_deviation
+    respond_to do |format|
+      format.html do
+        @min_ingest_duration = min
+        @max_ingest_duration = max
+        @mean_ingest_duration = mean
+        @median_ingest_duration = median
+        @standard_deviation_ingest_duration = std_deviation
+        @min_ingest_duration = min
+      end
+      format.csv { send_data service.status_csv, filename: File.basename(@csv_import.manifest.to_s) }
+    end
   end
 
   def new; end
@@ -46,6 +52,10 @@ class CsvImportsController < ApplicationController
   end
 
   private
+
+    def service
+      @service ||= CsvImportService.new @csv_import
+    end
 
     def load_and_authorize_preview
       @csv_import = CsvImport.new(create_params)

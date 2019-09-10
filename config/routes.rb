@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'csv_imports/preview', to: redirect('csv_imports/new')
   resources :csv_imports, only: [:index, :show, :new, :create]
   get 'csv_imports/:id/log', to: 'csv_imports#log'
+  get 'csv_imports/:id/report', to: 'csv_imports#report'
 
   get 'branding_info/:id', to: 'branding_info#show', as: 'branding_info'
 
