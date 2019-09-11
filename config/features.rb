@@ -12,6 +12,6 @@ Flipflop.configure do
           description: "Cache IIIF manifests on the filesystem. Cached manifests will be invalidated whenever a document is reindexed to solr."
 
   feature :use_manifest_store,
-          default: false,
+          default: true,
           description: "Load IIIF manifests from the external manifest-store service when possible."
 end
