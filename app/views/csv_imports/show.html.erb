@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<h2>CSV Import <%= @csv_import.id %> <small class='ingest-small'>| <%= File.basename(@csv_import.manifest.to_s) %></small> <small class='ingest-small'> | <%= @csv_import.record_count %> queued records | <a href="/csv_imports/<%= @csv_import.id %>/log"> Ingest Log</a></small></h2>
+<h2>CSV Import <%= @csv_import.id %> <small class='ingest-small'>| <%= File.basename(@csv_import.manifest.to_s) %> | <%= @csv_import.record_count %> queued records | <a href="/csv_imports/<%= @csv_import.id %>/log"> Ingest Log</a> | <a href="/csv_imports/<%= @csv_import.id %>.csv">CSV</a></small></h2>
 <h3>Current row count: <%= @csv_rows.count %> | Total record count: <%= @csv_import.record_count %></h3>
 <h4 class='ingest-gray'>(Refresh page to view updated ingest)</h4>
 <p>
