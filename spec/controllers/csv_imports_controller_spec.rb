@@ -149,6 +149,17 @@ RSpec.describe CsvImportsController, type: :controller do
       end
     end
 
+    describe "GET #show.csv" do
+      before do
+        allow(controller.service).to receive(:csv).and_return('')
+        get :show, params: { id: csv_import.to_param, format: :csv }
+      end
+
+      it 'is successful' do
+        expect(response).to be_successful
+      end
+    end
+
     describe "GET #new" do
       before { get :new }
 
