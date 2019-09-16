@@ -79,6 +79,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'simplecov', '~> 0.16.1'
   gem 'solr_wrapper', '>= 0.3'
+  gem 'spring-commands-rspec'
   gem 'webmock'
   gem 'xray-rails'
 end
