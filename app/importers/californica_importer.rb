@@ -27,9 +27,9 @@ class CalifornicaImporter
     record_importer = ::RecordImporter.new(error_stream: @error_stream, info_stream: @info_stream, attributes: attrs)
     raise "CSV file #{@csv_file} did not validate" unless parser.validate
     Darlingtonia::Importer.new(parser: parser, record_importer: record_importer, info_stream: @info_stream, error_stream: @error_stream).import
-    parser.order_child_works
-    parser.build_iiif_manifests
-    parser.reindex_collections
+
+    finalize_import
+
     end_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
     elapsed_time = end_time - start_time
     elapsed_time_per_record = elapsed_time / parser.records.count
@@ -40,6 +40,15 @@ class CalifornicaImporter
 
   rescue => e
     @error_stream << "CsvImportJob failed: #{e.message}"
+  end
+
+  def finalize_import
+    parser.order_child_works
+    parser.records.each do |row|
+      csv_row = CsvRow.where(ark: row.ark, csv_import: csv_import)
+      CreateManifestJob.perform_now(row.ark, row_id: csv_row.id) if ["Work", "Manuscript"].include? row.mapper.metadata["Object Type"]
+    end
+    parser.reindex_collections
   end
 
   def parser
