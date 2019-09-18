@@ -7,7 +7,7 @@ RSpec.describe CreateManifestJob, :clean do
 
   before do
     allow(Californica::ManifestBuilderService).to receive(:new).with(curation_concern: work).and_return(service)
-    allow(ActiveFedora::Base).to receive(:where).with(ark: work.ark).and_return(work)
+    allow(Work).to receive(:find_by_ark).with(work.ark).and_return(work)
   end
 
   it 'calls the ManifestBuilderService' do
