@@ -20,7 +20,8 @@ class RecordImporter < Darlingtonia::HyraxRecordImporter
     csv_row = CsvRow.create(
       metadata: record.mapper.metadata.to_json,
       row_number: record.mapper.row_number,
-      csv_import_id: batch_id
+      csv_import_id: batch_id,
+      status: 'queued'
     )
     CsvRowImportJob.perform_now(row_id: csv_row.id)
   end

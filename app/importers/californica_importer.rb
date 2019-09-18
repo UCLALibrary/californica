@@ -46,9 +46,10 @@ class CalifornicaImporter
     parser.order_child_works
     parser.records.each do |row|
       csv_row = CsvRow.where(ark: row.ark, csv_import: csv_import)
-      CreateManifestJob.perform_now(row.ark, row_id: csv_row.id) if ["Work", "Manuscript"].include? row.mapper.metadata["Object Type"]
+      CreateManifestJob.perform_now(row.ark, row_id: csv_row.id) if ['Work', 'Manuscript'].include? row.mapper.metadata['Object Type']
     end
     parser.reindex_collections
+    @csv_import.csv_rows.where(status: 'pending finalization').update_all(status: 'complete')
   end
 
   def parser

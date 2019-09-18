@@ -148,6 +148,10 @@ Layout/BlockEndNewline:
   Exclude:
     - 'spec/system/search_catalog_spec.rb'
 
+Rails/SkipsModelValidations:
+  Exclude:
+    - 'app/importers/californica_importer.rb'
+
 RSpec/DescribeClass:
   Exclude:
     - 'spec/tasks/**/*'
