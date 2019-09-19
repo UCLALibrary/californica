@@ -5,7 +5,7 @@ class CreateManifestJob < ApplicationJob
 
   def perform(work_ark)
     work = Work.find_by_ark(work_ark) || ChildWork.find_by_ark(work_ark)
-    raise ArgumentError.new("No such Work or ChildWork: #{work_ark}.") unless work
+    raise(ArgumentError, "No such Work or ChildWork: #{work_ark}.") unless work
     Californica::ManifestBuilderService.new(curation_concern: work).persist
   end
 end
