@@ -22,7 +22,7 @@ RUN apt-get update -qq && apt-get install -y mysql-client build-essential libpq-
 # USER docker
 
 # Install Ruby Gems
-RUN gem install bundler
+RUN gem install bundler -v '1.17.3'
 ENV BUNDLE_PATH /usr/local/bundle
 WORKDIR /californica
 COPY Gemfile /californica/Gemfile
