@@ -42,5 +42,6 @@ FactoryBot.define do
         "Description.abstract" => nil
       }.to_json
     end
+    status { 'complete' }
   end
 end
