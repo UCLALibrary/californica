@@ -23,8 +23,8 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
     self.info_stream  = info_stream
     @import_file_path = import_file_path
     @collections_needing_reindex = Set.new
-    # An array of work ids with attached ChildWorks, which might need a reordering of the attached ChildWorks
     @works_needing_ordering = Set.new
+    @manifests_needing_build = Set.new
 
     self.validators = []
 
@@ -50,15 +50,10 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
 
   # Creates IIIF Manifests for each Work in a CSV. Does not create documents
   # for Collection or ChildWork objects.
-  #
-  # @return nil
   def build_iiif_manifests
-    records.each do |row|
-      next if ["Collection", "ChildWork", "Page"].include? row.mapper.metadata["Object Type"]
-      work = Work.find_by_ark(row.ark)
-      Californica::ManifestBuilderService.new(curation_concern: work).persist
+    @manifests_needing_build.reject(&:blank?).each do |ark|
+      CreateManifestJob.perform_now(Ark.ensure_prefix(ark))
     end
-    nil
   end
 
   # Given an array of Work arks that have had ChildWorks added to them during this import,
@@ -74,9 +69,26 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
         work = Work.find_by_ark(Ark.ensure_prefix(work_ark))
         work.ordered_members = ordered_arks.map { |b| ChildWork.find_by_ark(b.child) }
         work.save
-      rescue e
+      rescue => e
         error_stream << "#{work_ark}: #{e.message}"
       end
+    end
+  end
+
+  def add_finalization_tasks(row)
+    case row['Object Type']
+    when 'Collection'
+      @collections_needing_reindex << row['Item ARK']
+    when 'Work', 'Manuscript'
+      @collections_needing_reindex << row['Parent ARK']
+      @works_needing_ordering << row['Parent ARK']
+      @manifests_needing_build << row['Item ARK']
+    when 'ChildWork', 'Page'
+      @works_needing_ordering << row['Parent ARK']
+      @manifests_needing_build << row['Item ARK']
+      @manifests_needing_build << row['Parent ARK']
+    else
+      raise ArgumentError, "Unknown Object Type #{row['Object Type']}"
     end
   end
 
@@ -106,13 +118,14 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
     CSV.parse(file.read, headers: true).each_with_index do |row, index|
       next unless index >= skip
       next if row.to_h.values.all?(&:nil?)
+
       # use the CalifornicaMapper
       mapper = CalifornicaMapper.new(import_file_path: @import_file_path, row_number: index + 1)
-      yield Darlingtonia::InputRecord.from(metadata: row, mapper: mapper)
+
       # Gather all collection objects that have been touched during this import so we can reindex them all at the end
-      @collections_needing_reindex << row["Item ARK"] if row["Object Type"] == "Collection"
-      @collections_needing_reindex << row["Parent ARK"] if row["Object Type"] == "Work"
-      @works_needing_ordering << row["Parent ARK"] if ['ChildWork', 'Page'].include?(row["Object Type"])
+      add_finalization_tasks(row)
+
+      yield Darlingtonia::InputRecord.from(metadata: row, mapper: mapper)
     end
   rescue CSV::MalformedCSVError
     # error reporting for this case is handled by validation

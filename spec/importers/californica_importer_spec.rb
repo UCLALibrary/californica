@@ -9,6 +9,29 @@ RSpec.describe CalifornicaImporter, :clean, inline_jobs: true do
   let(:user) { FactoryBot.create(:admin) }
   let(:csv_path) { 'spec/fixtures/example.csv' }
 
+  describe '#finalize_import' do
+    before do
+      allow(importer.parser).to receive(:order_child_works)
+      allow(importer.parser).to receive(:reindex_collections)
+      allow(importer.parser).to receive(:build_iiif_manifests)
+    end
+
+    it 'orders child works' do
+      importer.finalize_import
+      expect(importer.parser).to have_received(:order_child_works)
+    end
+
+    it 'reindexes collections' do
+      importer.finalize_import
+      expect(importer.parser).to have_received(:reindex_collections)
+    end
+
+    it 'builds IIIF manifests' do
+      importer.finalize_import
+      expect(importer.parser).to have_received(:build_iiif_manifests)
+    end
+  end
+
   describe 'CSV import' do
     it 'has an import_file_path' do
       expect(importer.import_file_path).to eq csv_import.import_file_path

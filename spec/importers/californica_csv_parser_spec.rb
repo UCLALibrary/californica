@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe CalifornicaCsvParser do
-  subject(:parser)    { described_class.new(file: file, import_file_path: import_file_path) }
+  subject(:parser)    { described_class.new(file: file, import_file_path: import_file_path, error_stream: error_stream, info_stream: info_stream) }
   let(:file)          { File.open(csv_path) }
   let(:csv_path)      { 'spec/fixtures/example.csv' }
   let(:import_file_path) { fixture_path }
@@ -12,6 +12,17 @@ RSpec.describe CalifornicaCsvParser do
 
   after do
     ENV['SKIP'] = '0'
+  end
+
+  describe '#build_iiif_manifests' do
+    before { ActiveJob::Base.queue_adapter = :test }
+
+    it 'enqueues a CreateManifestJob for each Work and ChildWork' do
+      allow(CreateManifestJob).to receive(:perform_now).with('ark:/21198/zz0002nq4w')
+      parser.records.each { |r| r } # just cycle through the iterator to populate @manifests_needing_build
+      parser.build_iiif_manifests
+      expect(CreateManifestJob).to have_received(:perform_now).with('ark:/21198/zz0002nq4w')
+    end
   end
 
   describe 'use in an importer', :clean do
