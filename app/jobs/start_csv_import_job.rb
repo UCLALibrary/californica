@@ -11,7 +11,7 @@ class StartCsvImportJob < ApplicationJob
     @csv_import.elapsed_time = importer.import
 
   rescue => e
-    @error_stream << "StartCsvImportJob failed: #{e.message}"
+    @error_stream << "StartCsvImportJob failed: #{e.message}\n#{e.backtrace.inspect}"
   end
 
   def ingest_log_filename

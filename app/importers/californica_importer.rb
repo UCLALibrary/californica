@@ -37,18 +37,12 @@ class CalifornicaImporter
     @csv_import.elapsed_time_per_record = elapsed_time_per_record
     @csv_import.save
     @info_stream << @csv_import
-
-  rescue => e
-    @error_stream << "CsvImportJob failed: #{e.message}"
   end
 
   def finalize_import
     parser.order_child_works
-    parser.records.each do |row|
-      csv_row = CsvRow.where(ark: row.ark, csv_import: csv_import)
-      CreateManifestJob.perform_now(row.ark, row_id: csv_row.id) if ['Work', 'Manuscript'].include? row.mapper.metadata['Object Type']
-    end
     parser.reindex_collections
+    parser.build_iiif_manifests
     @csv_import.csv_rows.where(status: 'pending finalization').update_all(status: 'complete')
   end
 
