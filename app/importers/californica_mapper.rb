@@ -46,7 +46,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
                    "Personal or Corporate Name.photographer"],
     place_of_origin: "Place of origin",
     preservation_copy: "File Name",
-    provenance: "Provenance; Description.history",
+    provenance: ["Provenance", "Description.history"],
     publisher: "Publisher.publisherName",
     repository: ["Name.repository",
                  "Personal or Corporate Name.repository"],
@@ -58,11 +58,11 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     services_contact: "Rights.servicesContact",
     subject: "Subject",
     subject_topic: ["Subject topic", "Subject.conceptTopic", "Subject.descriptiveTopic"],
-    summary: "Summary",
+    summary: ["Summary", "Description.abstract", "Description.contents"],
     support: "Support",
     iiif_text_direction: "Text direction",
     title: "Title",
-    toc: "Table of Contents; Description.tableOfContents",
+    toc: ["Table of Contents", "Description.tableOfContents"],
     uniform_title: "AltTitle.uniform"
   }.freeze
 
