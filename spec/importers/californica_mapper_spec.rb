@@ -429,8 +429,58 @@ RSpec.describe CalifornicaMapper do
     let(:auth_vis) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_AUTHENTICATED }
     let(:public_vis) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
 
-    context 'when visibility field is blank' do
-      let(:metadata) { {} }
+    context 'when visibility field is not included in the csv' do
+      context 'and \'Item Status\' is \'Completed\'' do
+        let(:metadata) { { 'Item Status' => 'Completed' } }
+
+        it 'sets visibility to public' do
+          expect(mapper.visibility).to eq public_vis
+        end
+      end
+
+      context 'and \'Item Status\' is \'Completed with minimal metadata\'' do
+        let(:metadata) { { 'Item Status' => 'Completed with minimal metadata' } }
+
+        it 'sets visibility to public' do
+          expect(mapper.visibility).to eq public_vis
+        end
+      end
+
+      context 'and \'Item Status\' is \'In progress\'' do
+        let(:metadata) { { 'Item Status' => 'In progress' } }
+
+        it 'sets visibility to private' do
+          expect(mapper.visibility).to eq private_vis
+        end
+      end
+
+      context 'and \'Item Status\' is \'Needs QA\'' do
+        let(:metadata) { { 'Item Status' => 'Needs QA' } }
+
+        it 'sets visibility to private' do
+          expect(mapper.visibility).to eq private_vis
+        end
+      end
+
+      context 'and \'Item Status\' is \'Needs Review\'' do
+        let(:metadata) { { 'Item Status' => 'Needs Review' } }
+
+        it 'sets visibility to private' do
+          expect(mapper.visibility).to eq private_vis
+        end
+      end
+
+      context 'and \'Item Status\' is Empty' do
+        let(:metadata) { { 'Item Status' => nil } }
+
+        it 'sets visibility to public' do
+          expect(mapper.visibility).to eq public_vis
+        end
+      end
+    end
+
+    context 'when visibility field is included but blank' do
+      let(:metadata) { { 'Item Status' => 'In progress', 'Visibility' => nil } }
 
       it 'defaults to public visibility' do
         expect(mapper.visibility).to eq public_vis
