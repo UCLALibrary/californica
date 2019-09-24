@@ -139,13 +139,15 @@ Examples:
 
 ### AltTitle.other
 
-accepts AltTitle.translated
+accepts AltTitle.translated , AltTitle.descriptive
 
 ### AltTitle.uniform
 
 ### Author
 
 ### Binding note
+
+accepts Description.binding
 
 ### Coverage.geographic
 
@@ -176,6 +178,8 @@ The URL of a IIIF resource that can be used to view the image. Should be automat
 ### IIIF Range
 
 ### Illustrations note
+
+accepts Description.illustrations
 
 ### Item Sequence
 
@@ -234,7 +238,7 @@ Accepts "Table of Contents" and "Description.tableOfContents" as valid synonyms.
 
 A single-value field that must contain one of the allowed values.
 
-This field is not required. If you omit this column or leave the value blank, it will default to `private` visibility (to avoid accidentally exposing records that should be restricted).
+This field is not required. If leave the value blank, it will default to `public` visibility. If you omit the column, this will trigger a more complicated procedure to determine the visibility of DLCS imports (see below).
 
 Examples:
 
@@ -242,3 +246,8 @@ Examples:
 - `authenticated` - Logged in users can view the record
 - `discovery` - All users can view the metadata, but not the files
 - `private` - Only admin users or users who have been granted special permission may view the record
+
+If there is no column with the header "Visibility", then the importer will look for the field "Item Status". Visibility will be made `public` if the status is "Completed" or 
+"Completed with minimal metadata", or (by default) if the column cannot be found or is blank for a row.
+
+"Item Status" is *only* used if "Visiblity" is completely omitted from the csv. If the column is included but left blank, then a default of `public` will be applied to a row regardless of any "Item Status" value.

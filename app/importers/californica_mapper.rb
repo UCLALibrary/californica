@@ -11,10 +11,11 @@ class CalifornicaMapper < Darlingtonia::HashMapper
                         "Alternate Title.creator",
                         "Alternate Title.descriptive",
                         "Alternate Title.inscribed",
+                        "AltTitle.descriptive",
                         "Alternate Title.other"],
     architect: "Name.architect",
     ark: "Item ARK",
-    binding_note: "Binding note",
+    binding_note: ["Binding note", "Description.binding"],
     author: "Author",
     caption: "Description.caption",
     date_created: "Date.creation",
@@ -26,7 +27,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     genre: "Type.genre",
     iiif_range: "IIIF Range",
     iiif_viewing_hint: "viewingHint",
-    illustrations_note: "Illustrations note",
+    illustrations_note: ["Illustrations note", "Description.illustrations"],
     language: "Language",
     latitude: "Description.latitude",
     local_identifier: ["Alternate Identifier.local",
@@ -101,8 +102,17 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   end
 
   def visibility
-    value_from_csv = metadata['Visibility']&.squish&.downcase
-    visibility_mapping.fetch(value_from_csv, Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC)
+    if metadata.include? 'Visibility'
+      value_from_csv = metadata['Visibility']&.squish&.downcase
+      visibility_mapping.fetch(value_from_csv, Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC)
+    else
+      case metadata['Item Status']
+      when 'Completed', 'Completed with minimal metadata', nil
+        Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC
+      else
+        Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE
+      end
+    end
   end
 
   # The visibility values have different values when
