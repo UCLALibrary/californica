@@ -26,6 +26,7 @@
 - [Format.extent](#format.extent)
 - [Format.medium](#format.medium)
 - [viewingHint](#viewingHint)
+- [IIIF Access URL](#iiif-access-url)
 - [IIIF Range](#iiif-range)
 - [Illustrations note](#illustrations-note)
 - [Item Sequence](#item-sequence)
@@ -167,6 +168,10 @@ accepts AltTitle.translated
 ### Format.extent
 
 ### Format.medium
+
+### IIIF Access URL
+
+The URL of a IIIF resource that can be used to view the image. Should be automatically populated by uploading to [bucketeer](https://bucketeer.library.ucla.edu/upload/csv)
 
 ### IIIF Range
 
