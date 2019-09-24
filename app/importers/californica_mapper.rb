@@ -4,7 +4,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   attr_reader :row_number
 
   CALIFORNICA_TERMS_MAP = {
-    access_copy: "access_copy",
+    access_copy: ["IIIF Access URL", "access_copy"],
     alternative_title: ["AltTitle.other",
                         "AltTitle.parallel",
                         "AltTitle.translated",
