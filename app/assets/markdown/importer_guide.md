@@ -37,7 +37,7 @@
 - [Page layout](#page-layout)
 - [Project Name](#project-name)
 - [Place of origin](#place-of-origin)
-- [Provenance; Description.history](#provenance-description.history)
+- [Provenance](#provenance)
 - [Publisher.publisherName](#publisher.publishername)
 - [Relation.isPartOf](#relation.ispartof)
 - [Rights.countryCreation](#rights.countrycreation)
@@ -48,7 +48,7 @@
 - [Summary](#summary)
 - [Support](#support)
 - [IIIF Text direction](#iiif_text_direction)
-- [Table of Contents; Description.tableOfContents](#table-of-contents-description.tableOfContents)
+- [Table of Contents](#table-of-contents)
 - [Type.genre](#type.genre)
 - [Type.typeOfResource](#type.typeofresource)
 - [Visibility](#visibility)
@@ -192,8 +192,8 @@ accepts AltTitle.translated
 
 ### Project Name
 
-### Provenance; Description.history
-
+### Provenance
+Accepts "Provenance", "Description.history"
 ### Publisher.publisherName
 
 ### Relation.isPartOf
@@ -218,7 +218,8 @@ Accepts "Summary", "Description.abstract", "Description.contents"
 
 ### IIIF Text direction
 
-### Table of Contents; Description.tableOfContents'
+### Table of Contents
+Accepts "Table of Contents" and "Description.tableOfContents" as valid synonyms.
 
 ### Type.genre
 

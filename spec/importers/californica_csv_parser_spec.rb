@@ -107,8 +107,8 @@ RSpec.describe CalifornicaCsvParser do
        'viewingHint',
        'IIIF Range',
        'Illustrations note',
-       'Provenance; Description.history',
-       'Table of Contents; Description.tableOfContents',
+       'Provenance',
+       'Table of Contents',
        'Subject.conceptTopic',
        'Subject.descriptiveTopic']
     end
