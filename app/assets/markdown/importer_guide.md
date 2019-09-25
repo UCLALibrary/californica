@@ -139,13 +139,15 @@ Examples:
 
 ### AltTitle.other
 
-accepts AltTitle.translated
+accepts AltTitle.translated , AltTitle.descriptive
 
 ### AltTitle.uniform
 
 ### Author
 
 ### Binding note
+
+accepts Description.binding
 
 ### Coverage.geographic
 
@@ -176,6 +178,8 @@ The URL of a IIIF resource that can be used to view the image. Should be automat
 ### IIIF Range
 
 ### Illustrations note
+
+accepts Description.illustrations
 
 ### Item Sequence
 

@@ -15,8 +15,10 @@ RSpec.describe CalifornicaMapper do
       "Alternate Title.descriptive" => "descriptive alternative title", # alternative_title
       "Alternate Title.inscribed" => "alternative title inscribed", # alternative_title
       "Alternate Title.other" => "alternative title other", # alternative_title
+      "AltTitle.descriptive" => "alternative titles descriptive", # alternative_title
       "Author" => "author", # author
       "Binding note" => "binding note", # binding_note
+      "Description.binding" => "description binding", # binding_note
       "Name.architect" => "Imhotep", # architect
       "Item ARK" => "ark:/21198/zz0002nq4w", # ark
       "Description.caption" => "This example does not have a caption.", # caption
@@ -71,6 +73,7 @@ RSpec.describe CalifornicaMapper do
       "viewingHint" => "paged", # iiif_viewing_hint
       "IIIF Range" => "iiif-range", # iiif_range
       "Illustrations note" => "illustration-note", # illustrations_note
+      "Description.illustrations" => "description illustrations", # illustrations_note
       "Provenance" => "history-description", # provenance
       "Table of Contents" => "table of contents", # toc
       "Description.tableOfContents" => "description table of contents" # toc
