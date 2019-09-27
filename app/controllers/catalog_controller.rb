@@ -105,17 +105,22 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('architect', :stored_searchable)
     config.add_show_field 'author_tesim'
     config.add_show_field solr_name('caption', :stored_searchable)
+    config.add_show_field 'collation_ssi'
+    config.add_show_field 'composer_tesim'
     config.add_show_field solr_name('binding_note', :stored_sortable)
     config.add_show_field solr_name('dimensions', :stored_searchable)
     config.add_show_field solr_name('extent', :stored_searchable)
+    config.add_show_field 'foliation_ssi', label: 'Foliation note'
     config.add_show_field solr_name('funding_note', :stored_searchable)
     config.add_show_field solr_name('genre', :stored_searchable)
     config.add_show_field 'iiif_manifest_url_ssi'
     config.add_show_field 'iiif_range_ssi'
     config.add_show_field 'iiif_viewing_hint_ssi'
+    config.add_show_field 'illuminator_tesim'
     config.add_show_field solr_name('illustrations_note', :stored_searchable)
     config.add_show_field solr_name('location', :stored_searchable)
     config.add_show_field 'local_identifier_ssm'
+    config.add_show_field 'lyricist_tesim'
     config.add_show_field solr_name('medium', :stored_searchable)
     config.add_show_field solr_name('named_subject', :stored_searchable)
     config.add_show_field solr_name('normalized_date', :stored_searchable)
@@ -127,6 +132,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('repository', :stored_searchable)
     config.add_show_field solr_name('rights_country', :stored_searchable)
     config.add_show_field solr_name('rights_holder', :stored_searchable)
+    config.add_show_field 'scribe_tesim'
     config.add_show_field solr_name('subject_topic', :stored_searchable)
     config.add_show_field solr_name('support', :stored_searchable)
     config.add_show_field solr_name('summary', :stored_searchable)
@@ -187,8 +193,33 @@ class CatalogController < ApplicationController
       }
     end
 
+    config.add_search_field('based_near') do |field|
+      field.label = 'Location'
+      solr_name = solr_name('based_near_label', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
     config.add_search_field('binding_note') do |field|
       solr_name = solr_name('binding_note', :stored_sortable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('collation') do |field|
+      solr_name = solr_name('collation', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('composer') do |field|
+      solr_name = solr_name('composer', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
@@ -211,9 +242,49 @@ class CatalogController < ApplicationController
       }
     end
 
+    config.add_search_field('date_created') do |field|
+      solr_name = solr_name('created', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('depositor') do |field|
+      solr_name = solr_name('depositor', :symbol)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
     config.add_search_field('description') do |field|
       field.label = 'Abstract or Summary'
       solr_name = solr_name('description', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('foliation') do |field|
+      solr_name = solr_name('foliation', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('illuminator') do |field|
+      solr_name = solr_name('illuminator', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('lyricist') do |field|
+      solr_name = solr_name('lyricist', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
@@ -228,8 +299,8 @@ class CatalogController < ApplicationController
       }
     end
 
-    config.add_search_field('date_created') do |field|
-      solr_name = solr_name('created', :stored_searchable)
+    config.add_search_field('scribe') do |field|
+      solr_name = solr_name('scribe', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
@@ -292,25 +363,8 @@ class CatalogController < ApplicationController
       }
     end
 
-    config.add_search_field('based_near') do |field|
-      field.label = 'Location'
-      solr_name = solr_name('based_near_label', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
     config.add_search_field('keyword') do |field|
       solr_name = solr_name('keyword', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('depositor') do |field|
-      solr_name = solr_name('depositor', :symbol)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
@@ -327,14 +381,6 @@ class CatalogController < ApplicationController
 
     config.add_search_field('license') do |field|
       solr_name = solr_name('license', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('uniform_title') do |field|
-      solr_name = solr_name('uniform_title', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
@@ -359,6 +405,14 @@ class CatalogController < ApplicationController
 
     config.add_search_field('support') do |field|
       solr_name = solr_name('support', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('uniform_title') do |field|
+      solr_name = solr_name('uniform_title', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name

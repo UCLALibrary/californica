@@ -31,6 +31,14 @@ module UclaMetadata
       index.as :stored_searchable
     end
 
+    property :collation, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3077'), multiple: false do |index|
+      index.as :stored_sortable
+    end
+
+    property :composer, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/cmp') do |index|
+      index.as :stored_searchable, :facetable
+    end
+
     property :dimensions, predicate: ::RDF::Vocab::MODS.physicalExtent do |index|
       index.as :stored_searchable, :facetable
     end
@@ -41,6 +49,10 @@ module UclaMetadata
 
     property :extent, predicate: ::RDF::Vocab::DC11.format do |index|
       index.as :stored_searchable, :facetable
+    end
+
+    property :foliation, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3076'), multiple: false do |index|
+      index.as :stored_sortable
     end
 
     property :funding_note, predicate: ::RDF::URI.intern('http://bibfra.me/vocab/marc/fundingInformation') do |index|
@@ -57,6 +69,10 @@ module UclaMetadata
 
     property :iiif_range, predicate: ::RDF::URI.intern('http://iiif.io/api/presentation/2#Range'), multiple: false do |index|
       index.as :stored_sortable
+    end
+
+    property :illuminator, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/ilu') do |index|
+      index.as :stored_searchable, :facetable
     end
 
     property :illustrations_note, predicate: ::RDF::URI.intern('http://bibfra.me/vocab/marc/illustrations') do |index|
@@ -77,6 +93,10 @@ module UclaMetadata
 
     property :longitude, predicate: ::RDF::Vocab::EXIF.gpsLongitude do |index|
       index.as :stored_searchable
+    end
+
+    property :lyricist, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/lyr') do |index|
+      index.as :stored_searchable, :facetable
     end
 
     property :medium, predicate: ::RDF::Vocab::DC.medium do |index|
@@ -125,6 +145,10 @@ module UclaMetadata
 
     property :services_contact, predicate: ::RDF::Vocab::EBUCore.hasRightsContact do |index|
       index.as :displayable
+    end
+
+    property :scribe, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/scr') do |index|
+      index.as :stored_searchable, :facetable
     end
 
     property :subject_topic, predicate: ::RDF::URI.intern('http://www.loc.gov/mods/rdf/v1#subjectTopic') do |index|

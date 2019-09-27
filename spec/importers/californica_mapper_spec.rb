@@ -76,7 +76,16 @@ RSpec.describe CalifornicaMapper do
       "Description.illustrations" => "description illustrations", # illustrations_note
       "Provenance" => "history-description", # provenance
       "Table of Contents" => "table of contents", # toc
-      "Description.tableOfContents" => "description table of contents" # toc
+      "Description.tableOfContents" => "description table of contents", # toc
+      "Collation" => "Collation", # collation
+      "Foliation note" => "Foliation note", # foliation
+      "Foliation" => "Foliation", # folition
+      "Illuminator" => "Illuminator", # illuminator
+      "Name.illuminator" => "Illuminator name", # illuminator
+      "Name.lyricist" => "Lyricist", # lyricist
+      "Name.composer" => "Composer", # composer
+      "Scribe" => "Scribe", # scribe
+      "Name.scribe" => "Scribe" # scribe
     }
   end
 
@@ -110,19 +119,24 @@ RSpec.describe CalifornicaMapper do
         :ark,
         :binding_note,
         :caption,
+        :collation,
+        :composer,
         :date_created,
         :description,
         :dimensions,
         :dlcs_collection_name,
         :extent,
+        :foliation,
         :funding_note,
         :genre,
         :iiif_viewing_hint,
+        :illuminator,
         :language,
         :latitude,
         :local_identifier,
         :location,
         :longitude,
+        :lyricist,
         :medium,
         :named_subject,
         :normalized_date,
@@ -137,6 +151,7 @@ RSpec.describe CalifornicaMapper do
         :rights_country,
         :rights_holder,
         :rights_statement,
+        :scribe,
         :services_contact,
         :subject,
         :summary,

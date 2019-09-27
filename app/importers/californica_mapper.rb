@@ -18,16 +18,20 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     binding_note: ["Binding note", "Description.binding"],
     author: "Author",
     caption: "Description.caption",
+    collation: "Collation",
+    composer: "Name.composer",
     date_created: "Date.creation",
     description: "Description.note",
     dimensions: "Format.dimensions",
     dlcs_collection_name: "Relation.isPartOf",
     extent: "Format.extent",
+    foliation: ["Foliation note", "Foliation"],
     funding_note: "Description.fundingNote",
     genre: "Type.genre",
     iiif_range: "IIIF Range",
     iiif_viewing_hint: "viewingHint",
     illustrations_note: ["Illustrations note", "Description.illustrations"],
+    illuminator: ["Illuminator", "Name.illuminator"],
     language: "Language",
     latitude: "Description.latitude",
     local_identifier: ["Alternate Identifier.local",
@@ -36,6 +40,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
                        "Alt ID.local"],
     location: "Coverage.geographic",
     longitude: "Description.longitude",
+    lyricist: "Name.lyricist",
     medium: "Format.medium",
     named_subject: ["Name.subject",
                     "Personal or Corporate Name.subject",
@@ -56,6 +61,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     rights_holder: ["Personal or Corporate Name.copyrightHolder",
                     "Rights.rightsHolderContact"],
     rights_statement: "Rights.copyrightStatus",
+    scribe: "Name.scribe",
     services_contact: "Rights.servicesContact",
     subject: "Subject",
     subject_topic: ["Subject topic", "Subject.conceptTopic", "Subject.descriptiveTopic"],
@@ -142,6 +148,14 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
   def binding_note
     map_field(:binding_note).to_a.first
+  end
+
+  def collation
+    map_field(:collation).to_a.first
+  end
+
+  def foliation
+    map_field(:foliation).to_a.first
   end
 
   # Replace marc codes with double dashes with no surrounding spaces

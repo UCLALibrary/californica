@@ -110,7 +110,16 @@ RSpec.describe CalifornicaCsvParser do
        'Provenance',
        'Table of Contents',
        'Subject.conceptTopic',
-       'Subject.descriptiveTopic']
+       'Subject.descriptiveTopic',
+       'Collation',
+       'Foliation note',
+       'Foliation',
+       'Illuminator',
+       'Name.illuminator',
+       'Name.lyricist',
+       'Name.composer',
+       'Scribe',
+       'Name.scribe']
     end
 
     it 'knows the headers for this CSV file' do

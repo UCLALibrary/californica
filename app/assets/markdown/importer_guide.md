@@ -14,6 +14,7 @@
 - [AltTitle.uniform](#alttitle.uniform)
 - [Author](#author)
 - [Binding note](#binding_note)
+- [Collation](#collation)
 - [Coverage.geographic](#coverage.geographic)
 - [Date.creation](#date.creation)
 - [Date.normalized](#date.normalized)
@@ -22,6 +23,7 @@
 - [Description.latitude](#description.latitude)
 - [Description.longitude](#description.longitude)
 - [Description.note](#description.note)
+- [Foliation](#foliation)
 - [Format.dimensions](#format.dimensions)
 - [Format.extent](#format.extent)
 - [Format.medium](#format.medium)
@@ -32,8 +34,12 @@
 - [Item Sequence](#item-sequence)
 - [Language](#language)
 - [Name.architect](#name.architect)
+- [Name.composer](#name.composer)
+- [Name.illuminator](#name.illuminator)
+- [Name.lyricist](#lyricist)
 - [Name.photographer](#name.photographer)
 - [Name.repository](#name.repository)
+- [Name.scribe](#name.scribe)
 - [Name.subject](#name.subject)
 - [Page layout](#page-layout)
 - [Project Name](#project-name)
@@ -146,8 +152,9 @@ accepts AltTitle.translated , AltTitle.descriptive
 ### Author
 
 ### Binding note
-
 accepts Description.binding
+
+### Collation
 
 ### Coverage.geographic
 
@@ -165,6 +172,9 @@ accepts Description.binding
 
 ### Description.note
 
+### Foliation
+accepts "Foliation", "Foliation note"
+
 ### Format.dimensions
 
 ### Format.extent
@@ -177,8 +187,10 @@ The URL of a IIIF resource that can be used to view the image. Should be automat
 
 ### IIIF Range
 
-### Illustrations note
+### Name.illuminator
+accepts "Illuminator", "Name.illuminator"
 
+### Illustrations note
 accepts Description.illustrations
 
 ### Item Sequence
@@ -189,9 +201,15 @@ accepts Description.illustrations
 
 ### Name.architect
 
+### Name.composer
+
+### Name.lyricist
+
 ### Name.photographer
 
 ### Name.repository
+
+### Name.scribe
 
 ### Name.subject
 
@@ -203,6 +221,7 @@ accepts Description.illustrations
 
 ### Provenance
 Accepts "Provenance", "Description.history"
+
 ### Publisher.publisherName
 
 ### Relation.isPartOf
@@ -214,13 +233,11 @@ Accepts "Provenance", "Description.history"
 ### Subject
 
 ### Subject topic
-
 Accepts "Subject.conceptTopic" and "Subject.descriptiveTopic" as valid synonyms.
 
 ### Subject.descriptiveTopic
 
 ### Summary
-
 Accepts "Summary", "Description.abstract", "Description.contents"
 
 ### Support

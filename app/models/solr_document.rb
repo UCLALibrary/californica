@@ -50,12 +50,16 @@ class SolrDocument
     self[:binding_note_ssi]
   end
 
-  def extent
-    self[:extent_tesim]
-  end
-
   def caption
     self[:caption_tesim]
+  end
+
+  def collation
+    self[:collation_ssi]
+  end
+
+  def composer
+    self[:composer_tesim]
   end
 
   def geographic_coordinates
@@ -68,6 +72,14 @@ class SolrDocument
 
   def dlcs_collection_name
     self[:dlcs_collection_name_ssm]
+  end
+
+  def extent
+    self[:extent_tesim]
+  end
+
+  def foliation
+    self[:foliation_ssi]
   end
 
   def funding_note
@@ -90,6 +102,10 @@ class SolrDocument
     self[:iiif_range_ssi]
   end
 
+  def illuminator
+    self[:illuminator_tesim]
+  end
+
   def illustrations_note
     self[:illustrations_note_tesim]
   end
@@ -108,6 +124,10 @@ class SolrDocument
 
   def longitude
     self[Solrizer.solr_name('longitude')]
+  end
+
+  def lyricist
+    self[:lyricist_tesim]
   end
 
   def medium
@@ -152,6 +172,10 @@ class SolrDocument
 
   def rights_holder
     self[:rights_holder_tesim]
+  end
+
+  def scribe
+    self[:scribe_tesim]
   end
 
   def services_contact

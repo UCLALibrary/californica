@@ -15,25 +15,29 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       alternative_title: ['alternative title'],
       ark: 'ark:/abc/1234',
       author: ['Old Author'],
+      caption: ['Old Cap'],
+      collation: 'Old Collation',
+      composer: ['Old Composer'],
       rights_statement: ['http://vocabs.library.ucla.edu/rights/copyrighted'], # "copyrighted"
       publisher: ['Old Pub'],
       date_created: ['Old Creation Date'],
-      subject: ['Old Subj'],
-      language: ['ang'],
       description: ['Old Desc'],
+      dimensions: ['Old Dim'],
       resource_type: ['http://id.loc.gov/vocabulary/resourceTypes/col'], # "collection"
       extent: ['Old Extent'],
-      caption: ['Old Cap'],
-      dimensions: ['Old Dim'],
+      foliation: 'Old Foliation note',
       funding_note: ['Old Fund Note'],
       genre: ['Old Genre'],
       iiif_manifest_url: 'https://www.w3.org/TR/2019/WD-appmanifest-20190821/',
       iiif_viewing_hint: 'Old Iiif viewing hint',
       iiif_range: 'Old IIIF Range',
+      illuminator: ['Old Illuminator'],
       illustrations_note: ['Old Illustrations note'],
+      language: ['ang'],
       latitude: ['Old Lat'],
       longitude: ['Old Long'],
       local_identifier: ['Old Local ID'],
+      lyricist: ['Old Lyricist'],
       medium: ['Old Medium'],
       named_subject: ['Old Name/Subj'],
       normalized_date: ['Old Normalized Date'],
@@ -47,6 +51,8 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       photographer: ['Old Photographer'],
       services_contact: ['Old Services Contact'],
       binding_note: 'Old Binding note',
+      scribe: ['Old Scribe'],
+      subject: ['Old Subj'],
       subject_topic: ['Old Subject Topic'],
       summary: ['Old Summary'],
       support: ['Old Supprt'],
@@ -112,7 +118,12 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Binding note').value).to eq 'Old Binding note'
       expect(page).to have_select('Iiif text direction', selected: 'left-to-right', multiple: false)
       expect(find_field('Uniform title').value).to eq 'Old Uniform title'
-
+      expect(find_field('Collation').value).to eq 'Old Collation'
+      expect(find_field('Composer').value).to eq 'Old Composer'
+      expect(find_field('Foliation').value).to eq 'Old Foliation note'
+      expect(find_field('Lyricist').value).to eq 'Old Lyricist'
+      expect(find_field('Illuminator').value).to eq 'Old Illuminator'
+      expect(find_field('Scribe').value).to eq 'Old Scribe'
       #
       # # Edit some fields in the form
       fill_in 'Title', with: 'New Title'
