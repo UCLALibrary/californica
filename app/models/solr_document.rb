@@ -55,11 +55,11 @@ class SolrDocument
   end
 
   def collation
-    self[:collation]
+    self[:collation_ssi]
   end
 
   def composer
-    self[:composer]
+    self[:composer_tesim]
   end
 
   def geographic_coordinates
@@ -79,7 +79,7 @@ class SolrDocument
   end
 
   def foliation
-    self[:foliation]
+    self[:foliation_ssi]
   end
 
   def funding_note
@@ -103,7 +103,7 @@ class SolrDocument
   end
 
   def illuminator
-    self[:illuminator]
+    self[:illuminator_tesim]
   end
 
   def illustrations_note
@@ -127,7 +127,7 @@ class SolrDocument
   end
 
   def lyricist
-    self[:lyricist]
+    self[:lyricist_tesim]
   end
 
   def medium
@@ -175,7 +175,7 @@ class SolrDocument
   end
 
   def scribe
-    self[:scribe]
+    self[:scribe_tesim]
   end
 
   def services_contact

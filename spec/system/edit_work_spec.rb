@@ -53,7 +53,13 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       iiif_text_direction: 'http://iiif.io/api/presentation/2#leftToRightDirection', # "left-to-right"
       title: ['Old Title'],
       toc: ['Old Table of contents'],
-      uniform_title: ['Old Uniform title']
+      uniform_title: ['Old Uniform title'],
+      collation: 'Old Collation',
+      composer: ['Old Composer'],
+      foliation: 'Old Foliation note',
+      illuminator: ['Old Illuminator'],
+      lyricist: ['Old Lyricist'],
+      scribe: ['Old Scribe']
     }
   end
 
@@ -108,6 +114,12 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(page).to have_select('Iiif text direction', selected: 'left-to-right', multiple: false)
       expect(find_field('Uniform title').value).to eq 'Old Uniform title'
       expect(first(:css, '#work_description').value).to eq 'Old Desc'
+      expect(find_field('Collation').value).to eq 'Old Collation'
+      expect(find_field('Composer').value).to eq 'Old Composer'
+      expect(find_field('Foliation').value).to eq 'Old Foliation note'
+      expect(find_field('Lyricist').value).to eq 'Old Lyricist'
+      expect(find_field('Illuminator').value).to eq 'Old Illuminator'
+      expect(find_field('Scribe').value).to eq 'Old Scribe'
 
       # Edit some fields in the form
       fill_in 'Title', with: 'New Title'

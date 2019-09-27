@@ -72,6 +72,14 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "table of contents" # toc
     expect(page).to have_content "concept-topic" # subject_topic
     expect(page).to have_content "descriptive-topic" # subject_topic
+    expect(page).to have_content "collated" # collated
+    expect(page).to have_content "follated" # follated
+    expect(page).to have_content "illuminated" # illuminated
+    expect(page).to have_content "also illuminated" # illuminated
+    expect(page).to have_content "la la la" # composer
+    expect(page).to have_content "Schubert" # composer
+    # expect(page).to have_content "Amat-Mamu" # scribe
+    expect(page).to have_content "Sin-liqe-unninni" # scribe
 
     # displays expected fields on search results page
     visit("catalog?search_field=all_fields&q=")

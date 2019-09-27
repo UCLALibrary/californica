@@ -25,7 +25,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     dimensions: "Format.dimensions",
     dlcs_collection_name: "Relation.isPartOf",
     extent: "Format.extent",
-    foliation: "Foliation note", "Foliation]",
+    foliation: ["Foliation note", "Foliation"],
     funding_note: "Description.fundingNote",
     genre: "Type.genre",
     iiif_range: "IIIF Range",
@@ -148,6 +148,14 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
   def binding_note
     map_field(:binding_note).to_a.first
+  end
+
+  def collation
+    map_field(:collation).to_a.first
+  end
+
+  def foliation
+    map_field(:foliation).to_a.first
   end
 
   # Replace marc codes with double dashes with no surrounding spaces

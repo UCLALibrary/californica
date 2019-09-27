@@ -173,6 +173,7 @@ accepts Description.binding
 ### Description.note
 
 ### Foliation
+accepts "Foliation", "Foliation note"
 
 ### Format.dimensions
 
@@ -187,6 +188,7 @@ The URL of a IIIF resource that can be used to view the image. Should be automat
 ### IIIF Range
 
 ### Name.illuminator
+accepts "Illuminator", "Name.illuminator"
 
 ### Illustrations note
 accepts Description.illustrations

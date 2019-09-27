@@ -105,7 +105,13 @@ module Hyrax
         :summary,
         :toc,
         :iiif_text_direction,
-        :uniform_title
+        :uniform_title,
+        :collation,
+        :composer,
+        :foliation,
+        :illuminator,
+        :lyricist,
+        :scribe,
       ]
     end
   end
