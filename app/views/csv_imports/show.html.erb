@@ -108,6 +108,12 @@ v_logs ingest-metrics" role="grid" data-order="[[ 1, &quot;asc&quot; ]]">
         Item Ark
       </th>
       <th>
+        Object Type
+      </th>
+      <th>
+        Number of children
+      </th>
+      <th>
         Last Updated
       </th>
       <th>
@@ -126,6 +132,8 @@ v_logs ingest-metrics" role="grid" data-order="[[ 1, &quot;asc&quot; ]]">
       <tr>
         <td><%= csv_row.row_number || "Unknown" %></td>
         <td><%= JSON.parse(csv_row.metadata)["Item ARK"] || "Unknown" %></td>
+        <td><%= csv_row.object_type || "Unknown" %></td>
+        <td><%= csv_row.no_of_children || "Unknown" %></td>
         <td><%= csv_row.updated_at.strftime('%e %b %Y %l:%M %p') || "Unknown" %></td>
         <% if csv_row.ingest_duration == nil %>
           <td>Unknown</td>
