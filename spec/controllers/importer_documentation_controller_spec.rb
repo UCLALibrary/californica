@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe ImporterDocumentationController do
+  let(:admin_user) { FactoryBot.create(:admin) }
+  before { sign_in admin_user }
   describe "GET csv" do
     it "provides a csv download" do
       get :csv

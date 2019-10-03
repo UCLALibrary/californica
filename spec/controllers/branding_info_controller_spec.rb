@@ -2,7 +2,9 @@
 require 'rails_helper'
 
 RSpec.describe BrandingInfoController, type: :controller do
+  let(:admin_user) { FactoryBot.create(:admin) }
   let(:collection_branding_info) { CollectionBrandingInfo.new(filename: 'test.png', collection_id: '3039530', role: 'banner') }
+  before { sign_in admin_user }
   describe "GET #show" do
     it "returns http success" do
       collection_branding_info
