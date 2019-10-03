@@ -4,6 +4,7 @@ include Warden::Test::Helpers
 
 RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: true, js: true do
   subject(:importer) { CalifornicaImporter.new(csv_import, info_stream: [], error_stream: []) }
+  let(:admin_user) { FactoryBot.create(:admin) }
   let(:collection) { Collection.find_or_create_by_ark('ark:/111/222') }
   let(:csv_file)   { File.join(fixture_path, 'coordinates_example.csv') }
   let(:csv_import) { FactoryBot.create(:csv_import, user: user, manifest: manifest) }
@@ -12,6 +13,8 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
   let(:second_importer) { CalifornicaImporter.new(second_csv_import, info_stream: [], error_stream: []) }
   let(:second_manifest) { Rack::Test::UploadedFile.new(File.join(fixture_path, 'coordinates_example_update.csv'), 'text/csv') }
   let(:user) { FactoryBot.create(:admin) }
+
+  before { login_as admin_user }
 
   it "imports records from a csv" do
     allow(ENV).to receive(:[]).and_call_original

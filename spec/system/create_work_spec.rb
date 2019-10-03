@@ -5,6 +5,7 @@ include Warden::Test::Helpers
 
 # NOTE: If you generated more than one work, you have to set "js: true"
 RSpec.describe 'Create a Work', :clean, type: :system, js: true do
+  let(:admin_user) { FactoryBot.create(:admin) }
   context 'a logged in user' do
     let(:user_attributes) do
       { email: 'test@example.com' }
@@ -18,7 +19,7 @@ RSpec.describe 'Create a Work', :clean, type: :system, js: true do
 
     before do
       AdminSet.find_or_create_default_admin_set_id
-      login_as user
+      login_as admin_user
     end
 
     scenario do

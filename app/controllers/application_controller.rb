@@ -18,6 +18,8 @@ class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
 
+  before_action :authenticate_user!
+
   # What to do if read_only mode has been enabled, via FlipFlop
   # If read_only is enabled, redirect any requests that would allow
   # changes to the system. This is to enable easier migrations.
@@ -30,4 +32,15 @@ class ApplicationController < ActionController::Base
       alert: "This system is in read-only mode for maintenance. No submissions or edits can be made at this time."
     )
   end
+
+  private
+
+    def authenticate_user!
+      return if ['/users/sign_in', '/users/sign_up', '/users/sign_out'].include?(request.path)
+      if !user_signed_in?
+        redirect_to('/users/sign_in', alert: 'Administrator accounts are required to access Californica. Please sign in or create a new account (then ask us to grant it admin privileges)') unless user_signed_in? && user.admin?
+      elsif !current_user.admin?
+        redirect_to('/users/sign_out', alert: "#{current_user.email} is not an administrator. Please request admin priviliges or use a different account.")
+      end
+    end
 end

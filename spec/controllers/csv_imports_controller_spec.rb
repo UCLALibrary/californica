@@ -4,7 +4,7 @@ require 'rails_helper'
 RSpec.describe CsvImportsController, type: :controller do
   let(:admin_user) { FactoryBot.create(:admin) }
   let(:user) { FactoryBot.create(:user) }
-  let(:access_denied_message) { 'You are not authorized to access this page.' }
+  let(:access_denied_message) { 'Administrator accounts are required to access Californica. Please sign in or create a new account (then ask us to grant it admin privileges)' }
 
   let(:csv_import) { CsvImport.create!(user: admin_user) }
   let(:valid_attributes) { {} }
@@ -15,7 +15,7 @@ RSpec.describe CsvImportsController, type: :controller do
 
       it 'denies access' do
         expect(flash[:alert]).to eq access_denied_message
-        expect(response).to redirect_to(new_user_session_path)
+        expect(response).to redirect_to('/users/sign_in')
       end
     end
 
@@ -24,7 +24,7 @@ RSpec.describe CsvImportsController, type: :controller do
 
       it 'denies access' do
         expect(flash[:alert]).to eq access_denied_message
-        expect(response).to redirect_to(new_user_session_path)
+        expect(response).to redirect_to('/users/sign_in')
       end
     end
 
@@ -33,7 +33,7 @@ RSpec.describe CsvImportsController, type: :controller do
 
       it 'denies access' do
         expect(flash[:alert]).to eq access_denied_message
-        expect(response).to redirect_to(new_user_session_path)
+        expect(response).to redirect_to('/users/sign_in')
       end
     end
 
@@ -42,7 +42,7 @@ RSpec.describe CsvImportsController, type: :controller do
 
       it 'denies access' do
         expect(flash[:alert]).to eq access_denied_message
-        expect(response).to redirect_to(new_user_session_path)
+        expect(response).to redirect_to('/users/sign_in')
       end
     end
 
@@ -51,7 +51,7 @@ RSpec.describe CsvImportsController, type: :controller do
 
       it 'denies access' do
         expect(flash[:alert]).to eq access_denied_message
-        expect(response).to redirect_to(new_user_session_path)
+        expect(response).to redirect_to('/users/sign_in')
       end
     end
 
@@ -59,7 +59,7 @@ RSpec.describe CsvImportsController, type: :controller do
       it 'denies access' do
         post :create, params: { csv_import: valid_attributes }
         expect(flash[:alert]).to eq access_denied_message
-        expect(response).to redirect_to(new_user_session_path)
+        expect(response).to redirect_to('/users/sign_in')
       end
 
       it 'doesn\'t create a record' do
@@ -77,8 +77,8 @@ RSpec.describe CsvImportsController, type: :controller do
       before { get :index }
 
       it 'denies access' do
-        expect(flash[:alert]).to eq access_denied_message
-        expect(response).to redirect_to(root_path)
+        expect(flash[:alert]).to have_content 'Please request admin priviliges or use a different account'
+        expect(response).to redirect_to('/users/sign_out')
       end
     end
 
@@ -86,7 +86,7 @@ RSpec.describe CsvImportsController, type: :controller do
       before { get :show, params: { id: csv_import.to_param } }
 
       it 'denies access' do
-        expect(response).to have_http_status(:unauthorized)
+        expect(response).to have_http_status(:found)
       end
     end
 
@@ -94,8 +94,8 @@ RSpec.describe CsvImportsController, type: :controller do
       before { get :log, params: { id: csv_import.to_param } }
 
       it 'denies access' do
-        expect(flash[:alert]).to eq access_denied_message
-        expect(response).to redirect_to(root_path)
+        expect(flash[:alert]).to have_content 'Please request admin priviliges or use a different account'
+        expect(response).to redirect_to('/users/sign_out')
       end
     end
 
@@ -103,23 +103,23 @@ RSpec.describe CsvImportsController, type: :controller do
       before { get :new }
 
       it 'denies access' do
-        expect(flash[:alert]).to eq access_denied_message
-        expect(response).to redirect_to(root_path)
+        expect(flash[:alert]).to have_content 'Please request admin priviliges or use a different account'
+        expect(response).to redirect_to('/users/sign_out')
       end
     end
 
     describe "POST #preview" do
       it 'denies access' do
         post :preview, params: { csv_import: valid_attributes }
-        expect(flash[:alert]).to eq access_denied_message
-        expect(response).to redirect_to(root_path)
+        expect(flash[:alert]).to have_content 'Please request admin priviliges or use a different account'
+        expect(response).to redirect_to('/users/sign_out')
       end
     end
 
     describe "POST #create" do
       it 'denies access' do
         post :create, params: { csv_import: valid_attributes }
-        expect(response).to have_http_status(:unauthorized)
+        expect(response).to have_http_status(:found)
       end
 
       it 'doesn\'t create a record' do

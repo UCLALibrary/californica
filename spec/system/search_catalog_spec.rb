@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 require 'rails_helper'
+include Warden::Test::Helpers
 
 RSpec.describe 'Search the catalog', :clean, type: :system, js: true do
+  let(:admin_user) { FactoryBot.create(:admin) }
   # Create works with unique values for each field.
   # This metadata is contrived so we can test different types of searches.
 
@@ -47,6 +49,8 @@ RSpec.describe 'Search the catalog', :clean, type: :system, js: true do
   end
 
   let(:visible) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
+
+  before { login_as admin_user }
 
   scenario 'get correct search results' do
     expect(Work.count).to eq 2
