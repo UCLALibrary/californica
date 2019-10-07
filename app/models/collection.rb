@@ -18,7 +18,9 @@ class Collection < ActiveFedora::Base
   # @param ark [String] The ARK
   # @return [Collection] The Collection with that ARK
   def self.find_by_ark(ark)
-    where(ark_ssi: ark).limit(1).first
+    find(Californica::IdGenerator.id_from_ark(ark))
+  rescue ActiveFedora::ObjectNotFoundError
+    nil
   end
 
   # Do not recalculate size unless recalculate_size == true

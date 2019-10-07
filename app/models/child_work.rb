@@ -13,7 +13,9 @@ class ChildWork < ActiveFedora::Base
   # @param ark [String] The ARK
   # @return [Work] The Work with that ARK
   def self.find_by_ark(ark)
-    where(ark_ssi: ark).limit(1).first
+    find(Californica::IdGenerator.id_from_ark(ark))
+  rescue ActiveFedora::ObjectNotFoundError
+    nil
   end
 
   # This must be included at the end, because it finalizes the metadata
