@@ -20,11 +20,12 @@ services:
     volumes:
       - .:/californica
       - ./data:/opt/data
-      - derivatives:/opt/derivatives
-      - uploads:/opt/uploads
       - bundle_dir:/usr/local/bundle
       - californica_tmp:/californica/tmp
+      - derivatives:/opt/derivatives
+      - californica_log:/californica/log
       - tmp:/tmp
+      - uploads:/opt/uploads
     working_dir: /californica
 
   sidekiq:
@@ -43,11 +44,12 @@ services:
     volumes:
       - .:/californica
       - ./data:/opt/data
-      - derivatives:/opt/derivatives
-      - uploads:/opt/uploads
       - bundle_dir:/usr/local/bundle
+      - californica_log:/californica/log
       - californica_tmp:/californica/tmp
+      - derivatives:/opt/derivatives
       - tmp:/tmp
+      - uploads:/opt/uploads
     working_dir: /californica
 
   fedora:
@@ -114,11 +116,12 @@ services:
 
 volumes:
   bundle_dir:
+  californica_log:
+  californica_tmp:
   derivatives:
   fcrepo_data:
   mysql_data:
   redis_data:
   solr_data:
   tmp:
-  californica_tmp:
   uploads:
