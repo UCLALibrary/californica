@@ -26,6 +26,8 @@ class CalifornicaImporter
 
     record_importer = ::RecordImporter.new(error_stream: @error_stream, info_stream: @info_stream, attributes: attrs)
     raise "CSV file #{@csv_file} did not validate" unless parser.validate
+    csv_table = CSV.parse(File.read(@csv_file), headers: true)
+    record_importer.csv_table = csv_table
     Darlingtonia::Importer.new(parser: parser, record_importer: record_importer, info_stream: @info_stream, error_stream: @error_stream).import
 
     finalize_import
