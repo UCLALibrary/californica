@@ -36,11 +36,24 @@ class ApplicationController < ActionController::Base
   private
 
     def authenticate_user!
-      return if ['/users/sign_in', '/users/sign_up', '/users/sign_out'].include?(request.path)
+      return if whitelisted_path?
       if !user_signed_in?
         redirect_to('/users/sign_in', alert: 'Administrator accounts are required to access Californica. Please sign in or create a new account (then ask us to grant it admin privileges)') unless user_signed_in? && user.admin?
       elsif !current_user.admin?
         redirect_to('/users/sign_out', alert: "#{current_user.email} is not an administrator. Please request admin priviliges or use a different account.")
       end
+    end
+
+    def whitelisted_path?
+      # allow a few whitelisted paths
+      return true if ['/users/sign_in', '/users/sign_up', '/users/sign_out'].include?(request.path)
+
+      # allow IIIF manifests to be served
+      route = Rails.application.routes.recognize_path(request.path)
+      return true if ['hyrax/works', 'hyrax/child_works'].include?(route[:controller]) && route[:action] == 'manifest'
+
+      false
+    rescue ActionController::RoutingError
+      return false
     end
 end
