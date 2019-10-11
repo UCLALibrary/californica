@@ -53,11 +53,12 @@ Metrics/ModuleLength:
 Metrics/CyclomaticComplexity:
   Enabled: true
   Exclude:
-    - app/uploaders/csv_manifest_validator.rb
     - app/importers/actor_record_importer.rb
     - app/importers/californica_csv_parser.rb
-    - app/models/concerns/discoverable.rb
     - app/indexers/collection_indexer.rb
+    - app/jobs/reindex_item_job.rb
+    - app/models/concerns/discoverable.rb
+    - app/uploaders/csv_manifest_validator.rb
 
 Metrics/LineLength:
   Exclude:

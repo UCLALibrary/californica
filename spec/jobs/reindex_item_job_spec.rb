@@ -22,7 +22,6 @@ RSpec.describe ReindexItemJob, type: :job do
 
   it 'gets deduplicated' do
     allow(Collection).to receive(:find_by_ark).with(item.ark).and_return(item)
-    described_class.perform_now(item.ark)
     expect do
       described_class.perform_later(item.ark)
       described_class.perform_later(item.ark)
