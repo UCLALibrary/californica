@@ -14,7 +14,10 @@ RSpec.describe Californica::ManifestActor do
   let(:next_actor) { instance_double('Hyrax::Actors::BaseActor', create: true, update: true, destroy: true) }
   let(:work) { FactoryBot.build(:work, attrs) }
 
-  before { ActiveJob::Base.queue_adapter = :test }
+  before do
+    Redis.current.flushall
+    ActiveJob::Base.queue_adapter = :test
+  end
 
   describe '#create' do
     before { actor.create(env) }

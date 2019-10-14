@@ -23,6 +23,7 @@ RSpec.describe ReindexItemJob, type: :job do
   it 'gets deduplicated' do
     allow(Collection).to receive(:find_by_ark).with(item.ark).and_return(item)
     expect do
+      described_class.perform_now(item.ark) # to reset Redis 'in_queue' lock
       described_class.perform_later(item.ark)
       described_class.perform_later(item.ark)
     end.to have_enqueued_job(described_class).exactly(:once)

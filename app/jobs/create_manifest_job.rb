@@ -14,6 +14,10 @@ class CreateManifestJob < ApplicationJob
     log_end(csv_import_task_id)
   end
 
+  def deduplication_key
+    "CreateManifestJob-#{arguments[0]}"
+  end
+
   private
 
     def log_start(csv_import_task_id)
