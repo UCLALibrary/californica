@@ -37,6 +37,7 @@ class CalifornicaImporter
     elapsed_time_per_record = elapsed_time / parser.records.count
     @csv_import.elapsed_time = elapsed_time
     @csv_import.elapsed_time_per_record = elapsed_time_per_record
+    @csv_import.status = 'complete'
     @csv_import.save
     @info_stream << @csv_import
   end
