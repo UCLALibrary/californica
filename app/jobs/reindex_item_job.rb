@@ -1,21 +1,31 @@
 # frozen_string_literal: true
 
-class CreateManifestJob < ApplicationJob
+class ReindexItemJob < ApplicationJob
   queue_as :default
 
-  def perform(work_ark, csv_import_task_id: nil)
+  def perform(item_ark, csv_import_task_id: nil)
     log_start(csv_import_task_id)
 
-    work = Work.find_by_ark(work_ark) || ChildWork.find_by_ark(work_ark)
-    raise(ArgumentError, "No such Work or ChildWork: #{work_ark}.") unless work
+    item = Collection.find_by_ark(item_ark) || Work.find_by_ark(item_ark) || ChildWork.find_by_ark(item_ark)
+    raise(ArgumentError, "No such item: #{item_ark}.") unless item
 
-    Californica::ManifestBuilderService.new(curation_concern: work).persist
+    # Apply page orderings if importing Works from a CSV
+    if csv_import_task_id && item.is_a?(Work)
+      page_orderings = PageOrder.where(parent: Ark.ensure_prefix(item_ark))
+      ordered_arks = page_orderings.sort_by(&:sequence)
+      item.ordered_members = ordered_arks.map { |b| ChildWork.find_by_ark(b.child) }
+    end
+
+    enable_recalculate_size(item)
+    item.save
+
+    CreateManifestJob.perform_later(item_ark) unless item.is_a? Collection
 
     log_end(csv_import_task_id)
   end
 
   def deduplication_key
-    "CreateManifestJob-#{arguments[0]}"
+    "ReindexItemJob-#{arguments[0]}"
   end
 
   private
@@ -42,5 +52,11 @@ class CreateManifestJob < ApplicationJob
       csv_import_task.job_duration = @end_time - @start_time
       csv_import_task.job_status = 'Complete'
       csv_import_task.save
+    end
+
+    def enable_recalculate_size(item)
+      item.recalculate_size = true
+    rescue NoMethodError
+      nil
     end
 end

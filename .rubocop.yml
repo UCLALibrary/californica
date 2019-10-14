@@ -53,11 +53,12 @@ Metrics/ModuleLength:
 Metrics/CyclomaticComplexity:
   Enabled: true
   Exclude:
-    - app/uploaders/csv_manifest_validator.rb
     - app/importers/actor_record_importer.rb
     - app/importers/californica_csv_parser.rb
-    - app/models/concerns/discoverable.rb
     - app/indexers/collection_indexer.rb
+    - app/jobs/reindex_item_job.rb
+    - app/models/concerns/discoverable.rb
+    - app/uploaders/csv_manifest_validator.rb
 
 Metrics/LineLength:
   Exclude:
@@ -106,22 +107,23 @@ RSpec/AnyInstance:
 RSpec/ExampleLength:
   Enabled: true
   Exclude:
-    - 'spec/forms/hyrax/child_work_form_spec.rb'
-    - 'spec/forms/hyrax/work_form_spec.rb'
-    - 'spec/importers/californica_importer_spec.rb'
-    - 'spec/importers/californica_mapper_spec.rb'
-    - 'spec/importers/collection_record_importer_spec.rb'
-    - 'spec/jobs/inherit_permissions_job_spec.rb'
-    - 'spec/jobs/mss_csv_import_job_spec.rb'
-    - 'spec/jobs/mss_csv_import_job_spec.rb'
-    - 'spec/jobs/start_csv_import_job_spec.rb'
-    - 'spec/jobs/start_csv_import_job_spec.rb'
-    - 'spec/models/concerns/discoverable_spec.rb'
-    - 'spec/system**/*'
-    - 'spec/tasks/ingest_spec.rb'
-    - 'spec/uploaders/csv_manifest_validator_spec.rb'
-    - 'spec/views**/*'
-    - 'spec/views/manifest.json.jbuilder_spec.rb'
+    - spec/forms/hyrax/child_work_form_spec.rb
+    - spec/forms/hyrax/work_form_spec.rb
+    - spec/importers/californica_importer_spec.rb
+    - spec/importers/californica_mapper_spec.rb
+    - spec/importers/collection_record_importer_spec.rb
+    - spec/jobs/inherit_permissions_job_spec.rb
+    - spec/jobs/mss_csv_import_job_spec.rb
+    - spec/jobs/mss_csv_import_job_spec.rb
+    - spec/jobs/reindex_item_job_spec.rb
+    - spec/jobs/start_csv_import_job_spec.rb
+    - spec/jobs/start_csv_import_job_spec.rb
+    - spec/models/concerns/discoverable_spec.rb
+    - spec/system**/*
+    - spec/tasks/ingest_spec.rb
+    - spec/uploaders/csv_manifest_validator_spec.rb
+    - spec/views**/*
+    - spec/views/manifest.json.jbuilder_spec.rb
 
 RSpec/LetSetup:
   Enabled: false
