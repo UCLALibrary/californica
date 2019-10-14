@@ -85,7 +85,9 @@ RSpec.describe CalifornicaMapper do
       "Name.lyricist" => "Lyricist", # lyricist
       "Name.composer" => "Composer", # composer
       "Scribe" => "Scribe", # scribe
-      "Name.scribe" => "Scribe" # scribe
+      "Name.scribe" => "Scribe", # scribe
+      "Condtion note" => "condition_note" # condtion_note
+      # "Rights.statementLocal" => "local_statement" # local_rights_statement
     }
   end
 
@@ -121,6 +123,7 @@ RSpec.describe CalifornicaMapper do
         :caption,
         :collation,
         :composer,
+        :condition_note,
         :date_created,
         :description,
         :dimensions,
@@ -151,6 +154,7 @@ RSpec.describe CalifornicaMapper do
         :rights_country,
         :rights_holder,
         :rights_statement,
+        # :local_rights_statement,
         :scribe,
         :services_contact,
         :subject,

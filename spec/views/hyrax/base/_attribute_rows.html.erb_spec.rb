@@ -11,6 +11,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   let(:presenter)     { Hyrax::WorkPresenter.new(solr_document, ability) }
   let(:solr_document) { SolrDocument.new(work.to_solr) }
   let(:work)          do
+    # local_rights_statement: ['local_statement'])
     Work.new(title: ['title'],
              ark: 'ark:/abcde/1234567',
              author: ['author'],
@@ -39,7 +40,8 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
              summary: ['summary'],
              support: ['support'],
              iiif_text_direction: 'iiif_text_direction',
-             uniform_title: ['Old Uniform title'])
+             uniform_title: ['Old Uniform title'],
+             condition_note: 'condition_note')
   end
 
   before do
@@ -124,4 +126,10 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   it 'has uniform_title' do
     expect(page).to match(/uniform_title/)
   end
+  it 'has condition_note' do
+    expect(page).to match(/condition_note/)
+  end
+  #  it 'has local_rights_statement' do
+  #    expect(page).to match(/local_rights_statement/)
+  #  end
 end

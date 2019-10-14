@@ -35,6 +35,10 @@ module UclaMetadata
       index.as :stored_sortable
     end
 
+    property :condition_note, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3035'), multiple: false do |index|
+      index.as :stored_sortable
+    end
+
     property :composer, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/cmp') do |index|
       index.as :stored_searchable, :facetable
     end
@@ -142,6 +146,10 @@ module UclaMetadata
     property :rights_holder, predicate: ::RDF::Vocab::EBUCore.hasRightsHolder do |index|
       index.as :stored_searchable
     end
+
+    # property :local_rights_statement, predicate: ::RDF::URI.intern('http://purl.org/dc/terms/rights') do |index|
+    #  index.as :symbol
+    # end
 
     property :services_contact, predicate: ::RDF::Vocab::EBUCore.hasRightsContact do |index|
       index.as :displayable

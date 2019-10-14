@@ -62,6 +62,10 @@ class SolrDocument
     self[:composer_tesim]
   end
 
+  def condition_note
+    self[:condition_note_ssi]
+  end
+
   def geographic_coordinates
     self[:geographic_coordinates_ssim]
   end
@@ -173,6 +177,10 @@ class SolrDocument
   def rights_holder
     self[:rights_holder_tesim]
   end
+
+  # def local_rights_statement
+  #   self[:local_rights_statement_ssim]
+  # end
 
   def scribe
     self[:scribe_tesim]

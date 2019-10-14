@@ -58,7 +58,9 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       support: ['Old Supprt'],
       toc: ['Old Table of Contents'],
       iiif_text_direction: 'http://iiif.io/api/presentation/2#leftToRightDirection', # "left-to-right"
-      uniform_title: ['Old Uniform title']
+      uniform_title: ['Old Uniform title'],
+      condition_note: 'Old Condition note'
+      # local_rights_statement: ['Old Rights statement local']
     }
   end
 
@@ -124,6 +126,8 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Lyricist').value).to eq 'Old Lyricist'
       expect(find_field('Illuminator').value).to eq 'Old Illuminator'
       expect(find_field('Scribe').value).to eq 'Old Scribe'
+      expect(find_field('Condition note').value).to eq 'Old Condition note'
+      # expect(find_field('Local rights statement').value).to eq 'Old Rights statement local'
       #
       # # Edit some fields in the form
       fill_in 'Title', with: 'New Title'

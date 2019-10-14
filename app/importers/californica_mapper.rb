@@ -19,6 +19,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     author: "Author",
     caption: "Description.caption",
     collation: "Collation",
+    condition_note: ["Condition note", "Description.condition"],
     composer: "Name.composer",
     date_created: "Date.creation",
     description: "Description.note",
@@ -61,6 +62,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     rights_holder: ["Personal or Corporate Name.copyrightHolder",
                     "Rights.rightsHolderContact"],
     rights_statement: "Rights.copyrightStatus",
+    # local_rights_statement: "Rights.statementLocal",
     scribe: "Name.scribe",
     services_contact: "Rights.servicesContact",
     subject: "Subject",
@@ -152,6 +154,10 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
   def collation
     map_field(:collation).to_a.first
+  end
+
+  def condition_note
+    map_field(:condition_note).to_a.first
   end
 
   def foliation
