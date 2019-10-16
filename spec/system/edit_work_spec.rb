@@ -59,7 +59,9 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       foliation: 'Old Foliation note',
       illuminator: ['Old Illuminator'],
       lyricist: ['Old Lyricist'],
-      scribe: ['Old Scribe']
+      scribe: ['Old Scribe'],
+      condition_note: 'Old Condition note'
+      # local_rights_statement: ['Old Rights statement local']
     }
   end
 
@@ -120,6 +122,8 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Lyricist').value).to eq 'Old Lyricist'
       expect(find_field('Illuminator').value).to eq 'Old Illuminator'
       expect(find_field('Scribe').value).to eq 'Old Scribe'
+      expect(find_field('Condition note').value).to eq 'Old Condition note'
+      # expect(find_field('Local rights statement').value).to eq 'Old Rights statement local'
 
       # Edit some fields in the form
       fill_in 'Title', with: 'New Title'

@@ -15,6 +15,7 @@
 - [Author](#author)
 - [Binding note](#binding_note)
 - [Collation](#collation)
+- [Condition note](#condition_note)
 - [Coverage.geographic](#coverage.geographic)
 - [Date.creation](#date.creation)
 - [Date.normalized](#date.normalized)
@@ -49,6 +50,7 @@
 - [Relation.isPartOf](#relation.ispartof)
 - [Rights.countryCreation](#rights.countrycreation)
 - [Rights.rightsHolderContact](#rights.rightsholdercontact)
+- [Rights.statementLocal](#rights.statementLocal)
 - [Subject](#subject)
 - [Subject.conceptTopic](#subject.concept_topic)
 - [Subject.descriptiveTopic](#subject.descriptive_topic)
@@ -156,6 +158,9 @@ accepts Description.binding
 
 ### Collation
 
+### Contidion note
+accepts Contidion note, Description.condition
+
 ### Coverage.geographic
 
 ### Date.creation
@@ -229,6 +234,8 @@ Accepts "Provenance", "Description.history"
 ### Rights.countryCreation
 
 ### Rights.rightsHolderContact
+
+### Rights.statementLocal
 
 ### Subject
 
