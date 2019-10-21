@@ -123,7 +123,7 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
       mapper = CalifornicaMapper.new(import_file_path: @import_file_path, row_number: index + 1)
 
       # Gather all collection objects that have been touched during this import so we can reindex them all at the end
-      add_finalization_tasks(row)
+      # add_finalization_tasks(row)
 
       yield Darlingtonia::InputRecord.from(metadata: row, mapper: mapper)
     end
