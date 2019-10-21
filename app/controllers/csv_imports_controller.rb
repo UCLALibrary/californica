@@ -12,6 +12,7 @@ class CsvImportsController < ApplicationController
     respond_to do |format|
       format.html do
         @csv_rows = CsvRow.where(csv_import_id: @csv_import.id)
+        @csv_import_tasks = CsvImportTask.where(csv_import_id: @csv_import.id)
         @min_ingest_duration = min
         @max_ingest_duration = max
         @mean_ingest_duration = mean
@@ -115,10 +116,9 @@ class CsvImportsController < ApplicationController
 
     def std_deviation
       if @csv_rows.count == @csv_import.record_count
-        @get_ingest_duration_rows = row_times
-        durations = @get_ingest_duration_rows.map(&:ingest_duration)
-        @avg = CsvRow.where(csv_import_id: @csv_import.id).average(:ingest_duration)
-        sd = Math.sqrt(durations.sum { |x| (x - @avg)**2 } / @get_ingest_duration_rows.size)
+        durations = row_times.map(&:ingest_duration).compact
+        avg = durations.compact.inject { |sum, el| sum + el }.to_f / durations.compact.size
+        sd = Math.sqrt(durations.sum { |x| (x - avg)**2 } / @get_ingest_duration_rows.size)
         sd.round(2)
       end
     end

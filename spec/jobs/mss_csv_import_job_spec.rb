@@ -7,6 +7,8 @@ RSpec.describe StartCsvImportJob, :clean, :inline_jobs do
   let(:manifest) { Rack::Test::UploadedFile.new(Rails.root.join(csv_file), 'text/csv') }
   let(:user) { FactoryBot.create(:admin) }
 
+  before { Redis.current.flushall }
+
   context 'happy path for mss objects', :clean do
     let(:csv_file) { File.join(fixture_path, 'csv_import', 'multipage_mss', 'mss_sample.csv') }
     it 'imports expected objects' do

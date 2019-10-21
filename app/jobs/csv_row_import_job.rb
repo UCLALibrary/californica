@@ -17,11 +17,8 @@ class CsvRowImportJob < ActiveJob::Base
                           actor_record_importer
                         end
     selected_importer.import(record: record)
-    @row.status = if ['Page', 'ChildWork'].include?(record.mapper.object_type)
-                    "complete"
-                  else
-                    "pending finalization"
-                  end
+    ReindexItemJob.perform_later(record.ark, csv_import_id: @csv_import.id)
+    @row.status = "complete"
     end_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
     ingest_duration = end_time - start_time
     @row.ingest_duration = ingest_duration
