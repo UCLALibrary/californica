@@ -8,14 +8,13 @@ class ReindexItemJob < ApplicationJob
     @csv_import_id = csv_import_id
     log_start
 
-    item = Collection.find_by_ark(item_ark) || Work.find_by_ark(item_ark) || ChildWork.find_by_ark(item_ark)
     raise(ArgumentError, "No such item: #{item_ark}.") unless item
 
     # Apply page orderings if importing Works from a CSV
     if csv_import_id && item.is_a?(Work)
       page_orderings = PageOrder.where(parent: Ark.ensure_prefix(item_ark))
       ordered_arks = page_orderings.sort_by(&:sequence)
-      item.ordered_members = ordered_arks.map { |b| ChildWork.find_by_ark(b.child) }
+      item.ordered_members = ordered_arks.map { |b| ChildWork.find_by_ark(b.child) }.compact
     end
 
     enable_recalculate_size(item)
@@ -41,8 +40,13 @@ class ReindexItemJob < ApplicationJob
                                                            item_ark: @item_ark)
     end
 
+    def item
+      @item ||= (Collection.find_by_ark(@item_ark) || Work.find_by_ark(@item_ark) || ChildWork.find_by_ark(@item_ark))
+    end
+
     def log_start
       @start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+      csv_import_task.object_type = item.class
       csv_import_task.job_status = 'In Progress'
       begin
         csv_import_task.times_started += 1

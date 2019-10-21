@@ -8,10 +8,9 @@ class CreateManifestJob < ApplicationJob
     @csv_import_id = csv_import_id
     log_start
 
-    work = Work.find_by_ark(item_ark) || ChildWork.find_by_ark(item_ark)
-    raise(ArgumentError, "No such Work or ChildWork: #{item_ark}.") unless work
+    raise(ArgumentError, "No such Work or ChildWork: #{item_ark}.") unless item
 
-    Californica::ManifestBuilderService.new(curation_concern: work).persist
+    Californica::ManifestBuilderService.new(curation_concern: item).persist
 
     log_end
   end
@@ -23,13 +22,18 @@ class CreateManifestJob < ApplicationJob
   private
 
     def csv_import_task
-      @csv_import_task ||= CsvImportTask.find_or_create_by(csv_import: @csv_import,
+      @csv_import_task ||= CsvImportTask.find_or_create_by(csv_import_id: @csv_import_id,
                                                            job_type: 'CreateManifestJob',
                                                            item_ark: @item_ark)
     end
 
+    def item
+      @item ||= (Work.find_by_ark(@item_ark) || ChildWork.find_by_ark(@item_ark))
+    end
+
     def log_start
       @start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+      csv_import_task.object_type = item.class
       csv_import_task.job_status = 'In Progress'
       begin
         csv_import_task.times_started += 1
