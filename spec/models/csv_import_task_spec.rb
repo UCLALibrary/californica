@@ -12,11 +12,11 @@ RSpec.describe CsvImportTask, type: :model do
                      object_type: 'Work',
                      job_duration: 1.5,
                      times_started: 1,
-                     start_timestamp: '2019-10-11 10:38:15',
-                     end_timestamp: '2019-10-11 10:38:17')
+                     start_timestamp: '2019-10-11 10:38:15:000 PM',
+                     end_timestamp: '2019-10-11 10:38:17:000 PM')
   end
 
-  it 'has a parent csv_ipmort record' do
+  it 'has a parent csv_import record' do
     expect(csv_import_task.csv_import_id).to eq 3
   end
 
@@ -45,10 +45,10 @@ RSpec.describe CsvImportTask, type: :model do
   end
 
   it 'has start_timestamp' do
-    expect(csv_import_task.start_timestamp).to eq '2019-10-11 10:38:15'
+    expect(csv_import_task.start_timestamp).to eq '2019-10-11 10:38:15.000000000 -0700'
   end
 
   it 'has end_timestamp' do
-    expect(csv_import_task.end_timestamp).to eq '2019-10-11 10:38:17'
+    expect(csv_import_task.end_timestamp).to eq '2019-10-11 10:38:17.000000000 -0700'
   end
 end
