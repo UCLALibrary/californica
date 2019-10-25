@@ -45,7 +45,7 @@ class ReindexItemJob < ApplicationJob
     end
 
     def log_start
-      @start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+      @reindex_log_start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
       csv_import_task.object_type = item.class
       csv_import_task.job_status = 'In Progress'
       begin
@@ -53,14 +53,14 @@ class ReindexItemJob < ApplicationJob
       rescue NoMethodError
         csv_import_task.times_started = 1
       end
-      csv_import_task.start_timestamp = @start_time
+      csv_import_task.start_timestamp = @reindex_log_start_time
       csv_import_task.save
     end
 
     def log_end
-      @end_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
-      csv_import_task.end_timestamp = @end_time
-      csv_import_task.job_duration = @end_time - @start_time
+      @reindex_log_end_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+      csv_import_task.end_timestamp = @reindex_log_end_time
+      csv_import_task.job_duration = @reindex_log_end_time - @reindex_log_start_time
       csv_import_task.job_status = 'Complete'
       csv_import_task.save
     end

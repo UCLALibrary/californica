@@ -16,7 +16,6 @@ RSpec.describe 'Status of all CSV Imports', :clean, type: :system, js: true do
       visit '/csv_imports'
       expect(page).to have_content csv_import.id
       expect(page).to have_content csv_import.manifest.filename
-      expect(page).to have_content csv_import.created_at.strftime('%e %b %Y %l:%M %p')
       expect(page).to have_content "complete"
       expect(page).to have_content "52"
     end
