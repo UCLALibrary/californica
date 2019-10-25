@@ -28,7 +28,7 @@ RSpec.describe 'Status of all CSV Imports', :clean, type: :system, js: true do
       expect(page).to have_content '3'
       expect(page).to have_content 'here is your error'
       expect(page).to have_content 'Current row count'
-      expect(page).to have_content '(Refresh page to view updated ingest)'
+      expect(page).to have_content 'Refresh page to view updated ingest'
       expect(page).to_not have_content 'Puppy'
       expect(page).to have_content 'Minimum'
       expect(page).to have_content 'Maximum'
