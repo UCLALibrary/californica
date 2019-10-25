@@ -44,8 +44,8 @@ RSpec.describe 'Status of all CSV Imports', :clean, type: :system, js: true do
       expect(page).to have_content 0.58 # std_deviation
       expect(page).to have_content 'Work'
       expect(page).to have_content '0'
-      expect(page).to have_content 'Start Time'
-      expect(page).to have_content 'End Time'
+      expect(page).to have_content 'Ingest Start'
+      expect(page).to have_content 'Ingest End'
     end
   end
 end
