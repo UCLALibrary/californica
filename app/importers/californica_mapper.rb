@@ -28,7 +28,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     extent: "Format.extent",
     foliation: ["Foliation note", "Foliation"],
     funding_note: "Description.fundingNote",
-    genre: "Type.genre",
+    genre: ['Type.genre', 'Genre'],
     iiif_range: "IIIF Range",
     iiif_viewing_hint: "viewingHint",
     illustrations_note: ["Illustrations note", "Description.illustrations"],
@@ -38,7 +38,8 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     local_identifier: ["Alternate Identifier.local",
                        "AltIdentifier.callNo",
                        "AltIdentifier.local",
-                       "Alt ID.local"],
+                       "Alt ID.local",
+                       "Local ID"],
     location: "Coverage.geographic",
     longitude: "Description.longitude",
     lyricist: "Name.lyricist",
@@ -46,6 +47,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     named_subject: ["Name.subject",
                     "Personal or Corporate Name.subject",
                     "Subject.corporateName",
+                    "Subject name",
                     "Subject.personalName"],
     normalized_date: "Date.normalized",
     page_layout: "Page layout",
@@ -55,7 +57,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     preservation_copy: "File Name",
     provenance: ["Provenance", "Description.history"],
     publisher: "Publisher.publisherName",
-    repository: ["Name.repository",
+    repository: ["Name.repository", "Repository",
                  "Personal or Corporate Name.repository"],
     resource_type: "Type.typeOfResource",
     rights_country: "Rights.countryCreation",
@@ -259,7 +261,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     map_field(:iiif_range).to_a.first
   end
 
-  # The CSV file contains the label, so we'll find the
+  # The CSV file contains the label, so we will find the
   # corresponding ID to store on the work record.
   # If the term isn't found in
   # config/authorities/rights_statements.yml

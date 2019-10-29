@@ -121,7 +121,11 @@ RSpec.describe CalifornicaCsvParser do
        'Scribe',
        'Name.scribe',
        'Condition note',
-       'Rights.statementLocal']
+       'Rights.statementLocal',
+       'Genre',
+       'Local ID',
+       'Subject name',
+       'Repository']
     end
 
     it 'knows the headers for this CSV file' do

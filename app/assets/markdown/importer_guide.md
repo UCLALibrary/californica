@@ -28,12 +28,14 @@
 - [Format.dimensions](#format.dimensions)
 - [Format.extent](#format.extent)
 - [Format.medium](#format.medium)
+- [Genre](#genre)
 - [viewingHint](#viewingHint)
 - [IIIF Access URL](#iiif-access-url)
 - [IIIF Range](#iiif-range)
 - [Illustrations note](#illustrations-note)
 - [Item Sequence](#item-sequence)
 - [Language](#language)
+- [Local ID](#local_identifier)
 - [Name.architect](#name.architect)
 - [Name.composer](#name.composer)
 - [Name.illuminator](#name.illuminator)
@@ -48,17 +50,19 @@
 - [Provenance](#provenance)
 - [Publisher.publisherName](#publisher.publishername)
 - [Relation.isPartOf](#relation.ispartof)
+- [Repository](#repository)
 - [Rights.countryCreation](#rights.countrycreation)
 - [Rights.rightsHolderContact](#rights.rightsholdercontact)
 - [Rights.statementLocal](#rights.statementLocal)
 - [Subject](#subject)
 - [Subject.conceptTopic](#subject.concept_topic)
 - [Subject.descriptiveTopic](#subject.descriptive_topic)
+- [Subject name](#named_subject)
 - [Summary](#summary)
 - [Support](#support)
 - [IIIF Text direction](#iiif_text_direction)
 - [Table of Contents](#table-of-contents)
-- [Type.genre](#type.genre)
+- [Type.genre](#genre)
 - [Type.typeOfResource](#type.typeofresource)
 - [Visibility](#visibility)
 
@@ -146,20 +150,19 @@ Examples:
 - `uclamss_686_b6_f24_18|~|uclamss_abc1234` (multivalued)
 
 ### AltTitle.other
-
-accepts AltTitle.translated , AltTitle.descriptive
+Accepts AltTitle.translated , AltTitle.descriptive
 
 ### AltTitle.uniform
 
 ### Author
 
 ### Binding note
-accepts Description.binding
+Accepts Description.binding
 
 ### Collation
 
 ### Contidion note
-accepts Contidion note, Description.condition
+Accepts Contidion note, Description.condition
 
 ### Coverage.geographic
 
@@ -178,7 +181,7 @@ accepts Contidion note, Description.condition
 ### Description.note
 
 ### Foliation
-accepts "Foliation", "Foliation note"
+Accepts "Foliation", "Foliation note"
 
 ### Format.dimensions
 
@@ -187,22 +190,30 @@ accepts "Foliation", "Foliation note"
 ### Format.medium
 
 ### IIIF Access URL
-
 The URL of a IIIF resource that can be used to view the image. Should be automatically populated by uploading to [bucketeer](https://bucketeer.library.ucla.edu/upload/csv)
 
 ### IIIF Range
 
 ### Name.illuminator
-accepts "Illuminator", "Name.illuminator"
+Accepts "Illuminator", "Name.illuminator"
 
 ### Illustrations note
-accepts Description.illustrations
+Accepts Description.illustrations
 
 ### Item Sequence
 
 ### viewingHint
 
 ### Language
+
+### local_identifier
+Accepts "Alternate Identifier.local", "AltIdentifier.callNo", "AltIdentifier.local", "Alt ID.local", "Local ID"
+
+A local identifier. Can be multivalued.
+
+Examples:  
+- `uclamss_686_b6_f24_18` (single value)
+- `uclamss_686_b6_f24_18|~|uclamss_abc1234` (multivalued)
 
 ### Name.architect
 
@@ -212,11 +223,15 @@ accepts Description.illustrations
 
 ### Name.photographer
 
-### Name.repository
+### repository
+Accepts 'Name.repository', 'Repository'
 
 ### Name.scribe
 
 ### Name.subject
+
+### named_subject
+Accepts "Name.subject", "Personal or Corporate Name.subject", "Subject.corporateName", "Subject name", "Subject.personalName",
 
 ### Page layout
 
@@ -254,7 +269,8 @@ Accepts "Summary", "Description.abstract", "Description.contents"
 ### Table of Contents
 Accepts "Table of Contents" and "Description.tableOfContents" as valid synonyms.
 
-### Type.genre
+### Genre
+Accepts 'Type.genre' and 'Genre'
 
 ### Type.typeOfResource
 
