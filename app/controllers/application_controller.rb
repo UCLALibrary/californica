@@ -45,6 +45,9 @@ class ApplicationController < ActionController::Base
     end
 
     def whitelisted_path?
+      # allow creation of new accounts
+      return true if request.path == '/users' && request.method == 'POST'
+
       # allow a few whitelisted paths
       return true if ['/users/sign_in', '/users/sign_up', '/users/sign_out'].include?(request.path)
 

@@ -53,6 +53,7 @@ Metrics/ModuleLength:
 Metrics/CyclomaticComplexity:
   Enabled: true
   Exclude:
+    - app/controllers/application_controller.rb
     - app/importers/actor_record_importer.rb
     - app/importers/californica_csv_parser.rb
     - app/indexers/collection_indexer.rb
