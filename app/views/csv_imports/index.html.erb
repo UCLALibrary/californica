@@ -1,35 +1,19 @@
 <p id="notice"><%= notice %></p>
 <div class="col-xs-12 main-header">
-  <h2>CSV Imports</h2>
+  <h2>CSV Imports | <small>Time displayed in seconds</small</h2>
 </div>
 <div class="panel-body">
   <table class="table-condensed table-striped datatable dataTable no-footer" role="grid" data-order="[[ 1, &quot;desc&quot; ]]">
     <thead>
       <tr role="row">
-        <th class="sorting_desc">
-          CSV Import ID
-        </th>
-        <th>
-          Created at
-        </th>
-        <th>
-          Created by
-        </th>
-        <th>
-          Filename
-        </th>
-        <th>
-          Record Count
-        </th>
-        <th>
-          Status
-        </th>
-        <th>
-          Total Time <small>(seconds)</small>
-        </th>
-        <th>
-          Time per Record <small>(seconds)</small>
-        </th>
+        <th class="sorting_desc">ID</th>
+        <th>Created at </th>
+        <th>Created by </th>
+        <th>Filename </th>
+        <th>Record Count </th>
+        <th>Status </th>
+        <th>Total Time </th>
+        <th>Time per Record </th>
       </tr>
     </thead>
 
@@ -37,13 +21,13 @@
       <% @csv_imports.each do |csv_import| %>
         <tr>
           <td><%= link_to csv_import.id, csv_import %></td>
-          <td><%= csv_import.created_at.strftime('%e %b %Y %l:%M %p') %></td>
+          <td><%= csv_import.created_at.in_time_zone("America/Los_Angeles").strftime('%e %b %Y') %><br><%=csv_import.created_at.strftime(' %l:%M %p') %></td>
           <td><%= ::User.find(csv_import.user_id).display_name || "Unknown" %></td>
           <td><%= link_to csv_import.manifest.file.file, csv_import %></td>
           <td><%= csv_import.record_count || "Unknown" %></td>
           <td><%= csv_import.status || "Unknown" %></td>
-          <td><% if csv_import.elapsed_time %><%= csv_import.elapsed_time.round || "Unknown" %><% end %></td>
-          <td><% if csv_import.elapsed_time_per_record %><%= csv_import.elapsed_time_per_record.round || "Unknown" %><% end %></td>
+          <td><% if csv_import.elapsed_time %><%= csv_import.elapsed_time.round(3) || "Unknown" %><% end %></td>
+          <td><% if csv_import.elapsed_time_per_record %><%= csv_import.elapsed_time_per_record.round(3) || "Unknown" %><% end %></td>
         </tr>
       <% end %>
     </tbody>
