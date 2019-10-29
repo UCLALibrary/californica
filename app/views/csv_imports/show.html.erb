@@ -23,7 +23,7 @@
         </thead>
         <tbody>
           <tr>
-            <td><%= @csv_import.created_at.strftime('%e %b %Y %l:%M %p') %></td>
+            <td><%= @csv_import.created_at.in_time_zone("America/Los_Angeles").strftime('%e %b %Y %l:%M %p') %></td>
             <td>
               <% if @csv_import.elapsed_time == nil %>
                 <span class='ingest-md-gray'>waiting for ingest to finish</span>
