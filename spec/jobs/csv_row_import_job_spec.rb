@@ -85,4 +85,75 @@ RSpec.describe CsvRowImportJob, :clean do
       end
     end
   end
+
+  describe '#log_start' do
+    let(:csv_row) do
+      FactoryBot.create(:csv_row,
+                        csv_import_id: csv_import.id,
+                        status: nil,
+                        ingest_record_start_time: nil)
+    end
+
+    let(:job) do
+      job = described_class.new
+      allow(job).to receive(:csv_row).and_return(csv_row)
+      job
+    end
+
+    it 'sets status' do
+      job.send :log_start
+      expect(csv_row.status).to eq 'in progress'
+    end
+
+    it 'sets ingest_record_start_time' do
+      expect(csv_row.ingest_record_start_time).to be_nil
+      job.send :log_start
+      expect(csv_row.ingest_record_start_time).not_to be_nil
+    end
+  end
+
+  describe '#log_end' do
+    let(:csv_row) do
+      FactoryBot.create(:csv_row,
+                        csv_import_id: csv_import.id,
+                        status: nil,
+                        ingest_record_start_time: Time.current,
+                        ingest_record_end_time: nil)
+    end
+
+    let(:job) do
+      job = described_class.new
+      allow(job).to receive(:csv_row).and_return(csv_row)
+      job
+    end
+
+    let(:service) { Californica::CsvImportService.new(csv_import) }
+
+    before do
+      allow(Californica::CsvImportService).to receive(:new).with(csv_import).and_return(service)
+      allow(service).to receive(:update_status)
+    end
+
+    it 'calls Californica::CsvImportService#update_status' do
+      job.send :log_end
+      expect(service).to have_received(:update_status)
+    end
+
+    it 'sets status' do
+      job.send :log_end
+      expect(csv_row.status).to eq 'complete'
+    end
+
+    it 'sets ingest_record_start_time' do
+      expect(csv_row.ingest_record_end_time).to be_nil
+      job.send :log_end
+      expect(csv_row.ingest_record_end_time).not_to be_nil
+    end
+
+    it 'sets ingest_duration' do
+      expect(csv_row.ingest_duration).to be_nil
+      job.send :log_end
+      expect(csv_row.ingest_duration).not_to be_nil
+    end
+  end
 end

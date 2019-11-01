@@ -6,6 +6,7 @@ class CsvImport < ApplicationRecord
   delegate :errors, to: :manifest, prefix: true
   delegate :records, to: :manifest, prefix: true
   has_many :csv_rows
+  has_many :csv_import_tasks
 
   def queue_start_job
     StartCsvImportJob.perform_later(id)

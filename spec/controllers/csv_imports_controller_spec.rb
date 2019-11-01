@@ -192,6 +192,11 @@ RSpec.describe CsvImportsController, type: :controller do
           end.to change(CsvImport, :count).by(1)
         end
 
+        it 'sets the new CsvImport status to \'queued\'' do
+          post :create, params: { csv_import: valid_attributes }
+          expect(CsvImport.last.status).to eq 'queued'
+        end
+
         it 'redirects to the show page for the newly created record' do
           post :create, params: { csv_import: valid_attributes }
           expect(response).to redirect_to(CsvImport.last)

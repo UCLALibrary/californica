@@ -32,6 +32,19 @@ RSpec.describe CalifornicaImporter, :clean, inline_jobs: true do
     end
   end
 
+  describe '#log_start' do
+    it 'sets \'start_time\'' do
+      expect(csv_import.start_time).to be_nil
+      importer.log_start
+      expect(csv_import.start_time).not_to be_nil
+    end
+
+    it 'sets \'status\' to \'in progress\'' do
+      importer.log_start
+      expect(csv_import.status).to eq 'in progress'
+    end
+  end
+
   describe 'CSV import' do
     it 'has an import_file_path' do
       expect(importer.import_file_path).to eq csv_import.import_file_path

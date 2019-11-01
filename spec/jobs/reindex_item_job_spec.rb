@@ -5,6 +5,7 @@ RSpec.describe ReindexItemJob, type: :job do
   let(:item) { FactoryBot.build_stubbed(:collection) }
 
   before do
+    Redis.current.flushall
     allow(item).to receive(:save)
   end
 
@@ -69,6 +70,7 @@ RSpec.describe ReindexItemJob, type: :job do
       let(:child1) { FactoryBot.build(:child_work) }
       let(:child2) { FactoryBot.build(:child_work) }
       let(:child3) { FactoryBot.build(:child_work) }
+      let(:csv_import) { FactoryBot.build(:csv_import, id: csv_import_id) }
       let(:csv_import_id) { 3789 }
       let(:page_order_objects) do
         [PageOrder.new(parent: item.ark, child: child2.ark, sequence: 2),
@@ -81,7 +83,7 @@ RSpec.describe ReindexItemJob, type: :job do
         allow(ChildWork).to receive(:find_by_ark).with(child1.ark).and_return(child1)
         allow(ChildWork).to receive(:find_by_ark).with(child2.ark).and_return(child2)
         allow(ChildWork).to receive(:find_by_ark).with(child3.ark).and_return(child3)
-        # allow(CsvImportTask).to receive(:find).with(csv_import_task.id).and_return(csv_import_task)
+        allow(CsvImport).to receive(:find).with(csv_import_id).and_return(csv_import)
       end
 
       it 'applies the page order' do
@@ -120,22 +122,46 @@ RSpec.describe ReindexItemJob, type: :job do
 
   context 'when it gets a CsvImportTask object' do
     let(:csv_import_id) { 9856 }
-    let(:csv_import_task) do
-      csv_import_task = FactoryBot.build(:csv_import_task, job_duration: nil)
-      allow_any_instance_of(described_class).to receive(:csv_import_task).and_return(csv_import_task)
-      csv_import_task
-    end
+    let(:csv_import_task) { FactoryBot.build(:csv_import_task, job_duration: nil) }
+    let(:csv_import) { FactoryBot.build(:csv_import, id: csv_import_id) }
+    let(:item) { FactoryBot.build(:work) }
 
-    let(:item) do
-      item = FactoryBot.build(:work)
+    before do
+      allow(CsvImport).to receive(:find).with(csv_import_id).and_return(csv_import)
+      allow_any_instance_of(described_class).to receive(:csv_import_task).and_return(csv_import_task)
       allow(Work).to receive(:find_by_ark).with(item.ark).and_return(item)
-      item
     end
 
     it 'logs the duration to that object' do
       csv_import_task
       described_class.perform_now(item.ark, csv_import_id: csv_import_id)
       expect(csv_import_task.job_duration).not_to be_nil
+    end
+  end
+
+  describe '#log_end' do
+    let(:csv_import) { FactoryBot.build(:csv_import, id: 3962) }
+    let(:service) { Californica::CsvImportService.new(csv_import) }
+
+    before do
+      allow(Collection).to receive(:find_by_ark).with(item.ark).and_return(item)
+      allow(CsvImport).to receive(:find).with(csv_import.id).and_return(csv_import)
+      allow(Californica::CsvImportService).to receive(:new).and_return(service)
+      allow(service).to receive(:update_status)
+    end
+
+    context 'when there is no csv_import_id argument' do
+      it 'does not call Californica::CsvImportService#update_status' do
+        described_class.perform_now(item.ark)
+        expect(service).not_to have_received(:update_status)
+      end
+    end
+
+    context 'when there is a csv_import_id argument' do
+      it 'calls Californica::CsvImportService#update_status' do
+        described_class.perform_now(item.ark, csv_import_id: csv_import.id)
+        expect(service).to have_received(:update_status)
+      end
     end
   end
 end

@@ -8,11 +8,11 @@ RSpec.describe CreateManifestJob, :clean do
   before do
     Redis.current.flushall
     allow(Californica::ManifestBuilderService).to receive(:new).with(curation_concern: work).and_return(service)
+    allow_any_instance_of(Californica::ManifestBuilderService).to receive(:persist)
     allow(Work).to receive(:find_by_ark).with(work.ark).and_return(work)
   end
 
   it 'calls the ManifestBuilderService' do
-    allow(service).to receive(:persist)
     CreateManifestJob.perform_now(work.ark)
     expect(service).to have_received(:persist)
   end
@@ -25,6 +25,8 @@ RSpec.describe CreateManifestJob, :clean do
   end
 
   context 'when it gets a CsvImportTask object' do
+    let(:csv_import) { FactoryBot.build(:csv_import, id: csv_import_id) }
+    let(:csv_import_service) { Californica::CsvImportService.new(csv_import) }
     let(:csv_import_id) { 9856 }
     let(:csv_import_task) do
       csv_import_task = FactoryBot.build(:csv_import_task, job_duration: nil)
@@ -32,12 +34,39 @@ RSpec.describe CreateManifestJob, :clean do
       csv_import_task
     end
 
-    before { allow_any_instance_of(Californica::ManifestBuilderService).to receive(:persist) }
+    before do
+      allow(CsvImport).to receive(:find).with(csv_import_id).and_return(csv_import)
+    end
 
     it 'logs the duration to that object' do
       csv_import_task
       described_class.perform_now(work.ark, csv_import_id: csv_import_id)
       expect(csv_import_task.job_duration).not_to be_nil
+    end
+  end
+
+  describe '#log_end' do
+    let(:csv_import) { FactoryBot.build(:csv_import, id: 3642) }
+    let(:csv_import_service) { Californica::CsvImportService.new(csv_import) }
+
+    before do
+      allow(CsvImport).to receive(:find).with(csv_import.id).and_return(csv_import)
+      allow(Californica::CsvImportService).to receive(:new).and_return(csv_import_service)
+      allow(csv_import_service).to receive(:update_status)
+    end
+
+    context 'when there is no csv_import_id argument' do
+      it 'does not call Californica::CsvImportService#update_status' do
+        described_class.perform_now(work.ark)
+        expect(csv_import_service).not_to have_received(:update_status)
+      end
+    end
+
+    context 'when there is a csv_import_id argument' do
+      it 'calls Californica::CsvImportService#update_status' do
+        described_class.perform_now(work.ark, csv_import_id: csv_import.id)
+        expect(csv_import_service).to have_received(:update_status)
+      end
     end
   end
 end

@@ -34,7 +34,13 @@ class ReindexItemJob < ApplicationJob
 
   private
 
+    def csv_import
+      return nil unless @csv_import_id
+      @csv_import ||= CsvImport.find(@csv_import_id)
+    end
+
     def csv_import_task
+      return nil unless @csv_import_id
       @csv_import_task ||= CsvImportTask.find_or_create_by(csv_import_id: @csv_import_id,
                                                            job_type: 'ReindexItemJob',
                                                            item_ark: @item_ark)
@@ -45,9 +51,10 @@ class ReindexItemJob < ApplicationJob
     end
 
     def log_start
+      return unless csv_import_task
       @reindex_log_start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
       csv_import_task.object_type = item.class
-      csv_import_task.job_status = 'In Progress'
+      csv_import_task.job_status = 'in progress'
       begin
         csv_import_task.times_started += 1
       rescue NoMethodError
@@ -58,11 +65,13 @@ class ReindexItemJob < ApplicationJob
     end
 
     def log_end
+      return unless csv_import_task
       @reindex_log_end_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
       csv_import_task.end_timestamp = @reindex_log_end_time
       csv_import_task.job_duration = @reindex_log_end_time - @reindex_log_start_time
-      csv_import_task.job_status = 'Complete'
+      csv_import_task.job_status = 'complete'
       csv_import_task.save
+      Californica::CsvImportService.new(csv_import).update_status
     end
 
     def enable_recalculate_size(item)
