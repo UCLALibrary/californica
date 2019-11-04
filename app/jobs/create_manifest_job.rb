@@ -8,9 +8,10 @@ class CreateManifestJob < ApplicationJob
     @csv_import_id = csv_import_id
     log_start
 
-    raise(ArgumentError, "No such Work or ChildWork: #{item_ark}.") unless item
+    work = Work.find_by_ark(item_ark) || ChildWork.find_by_ark(item_ark)
+    raise(ArgumentError, "No such Work or ChildWork: #{item_ark}.") unless work
 
-    Californica::ManifestBuilderService.new(curation_concern: item).persist
+    Californica::ManifestBuilderService.new(curation_concern: work).persist
 
     log_end
   end
@@ -22,13 +23,9 @@ class CreateManifestJob < ApplicationJob
   private
 
     def csv_import_task
-      @csv_import_task ||= CsvImportTask.find_or_create_by(csv_import_id: @csv_import_id,
+      @csv_import_task ||= CsvImportTask.find_or_create_by(csv_import: @csv_import,
                                                            job_type: 'CreateManifestJob',
                                                            item_ark: @item_ark)
-    end
-
-    def item
-      @item ||= (Work.find_by_ark(@item_ark) || ChildWork.find_by_ark(@item_ark))
     end
 
     def log_start

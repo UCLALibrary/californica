@@ -12,7 +12,6 @@ class CsvImportsController < ApplicationController
     respond_to do |format|
       format.html do
         @csv_rows = CsvRow.where(csv_import_id: @csv_import.id)
-        @csv_import_tasks = CsvImportTask.where(csv_import_id: @csv_import.id)
         @min_ingest_duration = min
         @max_ingest_duration = max
         @mean_ingest_duration = mean

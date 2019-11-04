@@ -8,13 +8,14 @@ class ReindexItemJob < ApplicationJob
     @csv_import_id = csv_import_id
     log_start
 
+    item = Collection.find_by_ark(item_ark) || Work.find_by_ark(item_ark) || ChildWork.find_by_ark(item_ark)
     raise(ArgumentError, "No such item: #{item_ark}.") unless item
 
     # Apply page orderings if importing Works from a CSV
     if csv_import_id && item.is_a?(Work)
       page_orderings = PageOrder.where(parent: Ark.ensure_prefix(item_ark))
       ordered_arks = page_orderings.sort_by(&:sequence)
-      item.ordered_members = ordered_arks.map { |b| ChildWork.find_by_ark(b.child) }.compact
+      item.ordered_members = ordered_arks.map { |b| ChildWork.find_by_ark(b.child) }
     end
 
     enable_recalculate_size(item)
@@ -38,10 +39,6 @@ class ReindexItemJob < ApplicationJob
       @csv_import_task ||= CsvImportTask.find_or_create_by(csv_import_id: @csv_import_id,
                                                            job_type: 'ReindexItemJob',
                                                            item_ark: @item_ark)
-    end
-
-    def item
-      @item ||= (Collection.find_by_ark(@item_ark) || Work.find_by_ark(@item_ark) || ChildWork.find_by_ark(@item_ark))
     end
 
     def log_start
