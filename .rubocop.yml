@@ -98,10 +98,11 @@ Metrics/PerceivedComplexity:
   Enabled: true
   Exclude:
     - app/importers/actor_record_importer.rb
-    - app/uploaders/csv_manifest_validator.rb
     - app/importers/californica_csv_parser.rb
-    - app/models/concerns/discoverable.rb
     - app/indexers/collection_indexer.rb
+    - app/models/concerns/discoverable.rb
+    - app/uploaders/csv_manifest_validator.rb
+    - app/controllers/application_controller.rb
 
 RSpec/AnyInstance:
   Enabled: false
@@ -126,6 +127,10 @@ RSpec/ExampleLength:
     - spec/uploaders/csv_manifest_validator_spec.rb
     - spec/views**/*
     - spec/views/manifest.json.jbuilder_spec.rb
+
+RSpec/InstanceVariable:
+  Exclude:
+    - spec/controllers/application_controller_spec.rb
 
 RSpec/LetSetup:
   Enabled: false

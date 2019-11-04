@@ -78,7 +78,7 @@ RSpec.describe CsvImportsController, type: :controller do
 
       it 'denies access' do
         expect(flash[:alert]).to have_content 'Please request admin priviliges or use a different account'
-        expect(response).to redirect_to('/users/sign_out')
+        expect(response).to redirect_to('/about')
       end
     end
 
@@ -95,7 +95,7 @@ RSpec.describe CsvImportsController, type: :controller do
 
       it 'denies access' do
         expect(flash[:alert]).to have_content 'Please request admin priviliges or use a different account'
-        expect(response).to redirect_to('/users/sign_out')
+        expect(response).to redirect_to('/about')
       end
     end
 
@@ -104,7 +104,7 @@ RSpec.describe CsvImportsController, type: :controller do
 
       it 'denies access' do
         expect(flash[:alert]).to have_content 'Please request admin priviliges or use a different account'
-        expect(response).to redirect_to('/users/sign_out')
+        expect(response).to redirect_to('/about')
       end
     end
 
@@ -112,7 +112,7 @@ RSpec.describe CsvImportsController, type: :controller do
       it 'denies access' do
         post :preview, params: { csv_import: valid_attributes }
         expect(flash[:alert]).to have_content 'Please request admin priviliges or use a different account'
-        expect(response).to redirect_to('/users/sign_out')
+        expect(response).to redirect_to('/about')
       end
     end
 
