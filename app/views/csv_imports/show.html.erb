@@ -131,39 +131,4 @@
       </table>
     </div>
   </div>
-
-  <hr class='ingest-hr'>
-
-  <div class="ingest-metrics-table">
-    <h4>CSV import tasks</h4>
-    <div class="i-m-table">
-      <table class="table-condensed table-striped datatable dataTable no-footer 
-      v_logs ingest-metrics" role="grid" data-order="[[ 1, &quot;asc&quot; ]]">
-        <thead>
-          <tr role="row">
-            <th class="sorting_desc"> Job Type </th>
-            <th> Item Ark </th>
-            <th> Object Type </th>
-            <th> Job Duration (s) </th>
-            <th> Status </th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @csv_import_tasks.each do |csv_import_task| %>
-            <tr>
-              <td><%= csv_import_task.job_type || "Unknown" %></td>
-              <td><%= csv_import_task.item_ark || "Unknown" %></td>
-              <td><%= csv_import_task.object_type || "Unknown" %></td>
-              <% if csv_import_task.job_duration == nil %>
-                <td>Unknown</td>
-              <% else %>
-                <td style='text-align: center'><%= csv_import_task.job_duration.round(3) || "Unknown" %></td>
-              <% end %>
-              <td><%= csv_import_task.job_status || "Unknown" %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
-  </div>
 </div>
