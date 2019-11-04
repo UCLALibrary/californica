@@ -219,17 +219,17 @@ class SolrDocument
   end
 
   # Override this method from hyrax gem to allow
-  # Californica to use "discovery" visibility.
+  # Californica to use "sinai" visibility.
   # app/models/concerns/hyrax/solr_document_behavior.rb
   def visibility
     return @visibility if @visibility
 
-    discovery = self[:visibility_ssi] == Work::VISIBILITY_TEXT_VALUE_DISCOVERY &&
-                lease_expiration_date.blank? &&
-                embargo_release_date.blank?
+    sinai = self[:visibility_ssi] == Work::VISIBILITY_TEXT_VALUE_SINAI &&
+            lease_expiration_date.blank? &&
+            embargo_release_date.blank?
 
-    @visibility = if discovery
-                    Work::VISIBILITY_TEXT_VALUE_DISCOVERY
+    @visibility = if sinai
+                    Work::VISIBILITY_TEXT_VALUE_SINAI
                   else
                     super
                   end

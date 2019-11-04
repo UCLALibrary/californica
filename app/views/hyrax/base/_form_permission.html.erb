@@ -28,8 +28,8 @@
         <%= render "form_permission_lease", f: f %>
       </label>
       <label class="radio">
-        <%= f.radio_button :visibility, Work::VISIBILITY_TEXT_VALUE_DISCOVERY %>
-        <%= visibility_badge(Work::VISIBILITY_TEXT_VALUE_DISCOVERY) %>
+        <%= f.radio_button :visibility, Work::VISIBILITY_TEXT_VALUE_SINAI %>
+        <%= visibility_badge(Work::VISIBILITY_TEXT_VALUE_SINAI) %>
       </label>
       <label class="radio">
         <%= f.radio_button :visibility, Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE %>

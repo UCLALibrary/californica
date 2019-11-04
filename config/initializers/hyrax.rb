@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Override this constant from the hyrax gem so that we
-# can add the "discovery" visibility to Californica.
+# can add the "sinai" visibility to Californica.
 Rails.application.config.to_prepare do
   Hyrax::PermissionBadge.send(:remove_const, :VISIBILITY_LABEL_CLASS)
   Hyrax::PermissionBadge::VISIBILITY_LABEL_CLASS = {
@@ -10,7 +10,7 @@ Rails.application.config.to_prepare do
     lease: "label-warning",
     open: "label-success",
     restricted: "label-danger",
-    discovery: "label-info"
+    sinai: "label-info"
   }.freeze
 end
 

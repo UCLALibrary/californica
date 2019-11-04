@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 # This module adds a new value for visibility called
-# "discovery", which is meant to allow users to view
-# the metadata for a Work, but not see attached files.
+# "sinai", which is meant to trigger special behavior for
+# Sinai library items, for which a login with the Early
+# Manuscripts Electronic Library (EMEL) will be required to
+# view images.
 #
 # This module overrides some methods and behavior from
 # the hydra-access-controls gem.
@@ -10,10 +12,10 @@
 module Discoverable
   extend ActiveSupport::Concern
 
-  VISIBILITY_TEXT_VALUE_DISCOVERY = 'discovery'
+  VISIBILITY_TEXT_VALUE_SINAI = 'sinai'
 
   def visibility=(value)
-    if value == VISIBILITY_TEXT_VALUE_DISCOVERY
+    if value == VISIBILITY_TEXT_VALUE_SINAI
       discovery_visibility!
     else
       super
@@ -27,14 +29,14 @@ module Discoverable
     elsif read_groups.include? ::Hydra::AccessControls::AccessRight::PERMISSION_TEXT_VALUE_AUTHENTICATED
       ::Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_AUTHENTICATED
     elsif discover_groups.include? ::Hydra::AccessControls::AccessRight::PERMISSION_TEXT_VALUE_PUBLIC
-      VISIBILITY_TEXT_VALUE_DISCOVERY
+      VISIBILITY_TEXT_VALUE_SINAI
     else
       ::Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE
     end
   end
 
   def discovery_visibility!
-    visibility_will_change! unless visibility == VISIBILITY_TEXT_VALUE_DISCOVERY
+    visibility_will_change! unless visibility == VISIBILITY_TEXT_VALUE_SINAI
     set_read_groups([], represented_visibility)
     set_discover_groups([Hydra::AccessControls::AccessRight::PERMISSION_TEXT_VALUE_PUBLIC], [])
   end

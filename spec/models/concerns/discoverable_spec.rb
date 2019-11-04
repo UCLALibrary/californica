@@ -15,7 +15,7 @@ RSpec.describe Discoverable do
 
   let(:test_work) { SomeKindOfWork.create!(visibility: starting_visibility) }
 
-  context 'change visibility from "open" to "discovery"' do
+  context 'change visibility from "open" to "sinai"' do
     let(:starting_visibility) { 'open' }
 
     it 'sets the correct state' do
@@ -26,19 +26,19 @@ RSpec.describe Discoverable do
       expect(test_work.discover_groups).to eq []
 
       # Set the visibility to the new value
-      test_work.visibility = 'discovery'
+      test_work.visibility = 'sinai'
       test_work.save!
       test_work.reload
 
       # Check that the new values are correct
-      expect(test_work.visibility).to eq 'discovery'
+      expect(test_work.visibility).to eq 'sinai'
       expect(test_work.edit_groups).to eq []
       expect(test_work.read_groups).to eq []
       expect(test_work.discover_groups).to eq ['public']
     end
   end
 
-  context 'change visibility from "authenticated" to "discovery"' do
+  context 'change visibility from "authenticated" to "sinai"' do
     let(:starting_visibility) { 'authenticated' }
 
     it 'sets the correct state' do
@@ -49,19 +49,19 @@ RSpec.describe Discoverable do
       expect(test_work.discover_groups).to eq []
 
       # Set the visibility to the new value
-      test_work.visibility = 'discovery'
+      test_work.visibility = 'sinai'
       test_work.save!
       test_work.reload
 
       # Check that the new values are correct
-      expect(test_work.visibility).to eq 'discovery'
+      expect(test_work.visibility).to eq 'sinai'
       expect(test_work.edit_groups).to eq []
       expect(test_work.read_groups).to eq []
       expect(test_work.discover_groups).to eq ['public']
     end
   end
 
-  context 'change visibility from "restricted" to "discovery"' do
+  context 'change visibility from "restricted" to "sinai"' do
     let(:starting_visibility) { 'restricted' }
 
     it 'sets the correct state' do
@@ -72,24 +72,24 @@ RSpec.describe Discoverable do
       expect(test_work.discover_groups).to eq []
 
       # Set the visibility to the new value
-      test_work.visibility = 'discovery'
+      test_work.visibility = 'sinai'
       test_work.save!
       test_work.reload
 
       # Check that the new values are correct
-      expect(test_work.visibility).to eq 'discovery'
+      expect(test_work.visibility).to eq 'sinai'
       expect(test_work.edit_groups).to eq []
       expect(test_work.read_groups).to eq []
       expect(test_work.discover_groups).to eq ['public']
     end
   end
 
-  context 'change visibility from "discovery" to "authenticated"' do
-    let(:starting_visibility) { 'discovery' }
+  context 'change visibility from "sinai" to "authenticated"' do
+    let(:starting_visibility) { 'sinai' }
 
     it 'sets the correct state' do
       # Starting values
-      expect(test_work.visibility).to eq 'discovery'
+      expect(test_work.visibility).to eq 'sinai'
       expect(test_work.edit_groups).to eq []
       expect(test_work.read_groups).to eq []
       expect(test_work.discover_groups).to eq ['public']
@@ -107,12 +107,12 @@ RSpec.describe Discoverable do
     end
   end
 
-  context 'change visibility from "discovery" to "open"' do
-    let(:starting_visibility) { 'discovery' }
+  context 'change visibility from "sinai" to "open"' do
+    let(:starting_visibility) { 'sinai' }
 
     it 'sets the correct state' do
       # Starting values
-      expect(test_work.visibility).to eq 'discovery'
+      expect(test_work.visibility).to eq 'sinai'
       expect(test_work.edit_groups).to eq []
       expect(test_work.read_groups).to eq []
       expect(test_work.discover_groups).to eq ['public']
@@ -130,12 +130,12 @@ RSpec.describe Discoverable do
     end
   end
 
-  context 'change visibility from "discovery" to "restricted"' do
-    let(:starting_visibility) { 'discovery' }
+  context 'change visibility from "sinai" to "restricted"' do
+    let(:starting_visibility) { 'sinai' }
 
     it 'sets the correct state' do
       # Starting values
-      expect(test_work.visibility).to eq 'discovery'
+      expect(test_work.visibility).to eq 'sinai'
       expect(test_work.edit_groups).to eq []
       expect(test_work.read_groups).to eq []
       expect(test_work.discover_groups).to eq ['public']
@@ -145,7 +145,7 @@ RSpec.describe Discoverable do
       test_work.save!
       test_work.reload
 
-      # Check that the discovery access has been removed
+      # Check that the sinai access has been removed
       expect(test_work.visibility).to eq 'restricted'
       expect(test_work.edit_groups).to eq []
       expect(test_work.read_groups).to eq []
@@ -194,7 +194,7 @@ RSpec.describe Discoverable do
         expect(test_work.edit_groups).to eq ['admin']
         expect(test_work.read_groups).to eq []
         expect(test_work.discover_groups).to eq ['public']
-        expect(test_work.visibility).to eq 'discovery'
+        expect(test_work.visibility).to eq 'sinai'
       end
     end
   end

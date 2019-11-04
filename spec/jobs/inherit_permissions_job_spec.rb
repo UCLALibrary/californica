@@ -11,12 +11,12 @@ RSpec.describe InheritPermissionsJob, :clean do
 
   let(:fs) { FileSet.create(visibility: fs_vis) }
   let(:work_vis) { 'open' }
-  let(:fs_vis) { 'discovery' }
+  let(:fs_vis) { 'sinai' }
 
   # This spec is meant to test the override of the
   # "permissions_attributes=" method from the
   # hydra-access-controls gem.
-  describe 'when work has "open" and fileset has "discovery"' do
+  describe 'when work has "open" and fileset has "sinai"' do
     it 'copies the permissions from the parent work' do
       # Expected starting state: fileset doesn't match parent work.
       expect(work.edit_groups).to eq []
@@ -29,7 +29,7 @@ RSpec.describe InheritPermissionsJob, :clean do
       expect(fs.discover_groups).to eq ['public']
 
       expect(work.visibility).to eq 'open'
-      expect(fs.visibility).to eq 'discovery'
+      expect(fs.visibility).to eq 'sinai'
 
       # Run the job
       InheritPermissionsJob.perform_now(work)

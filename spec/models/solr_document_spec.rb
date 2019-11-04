@@ -105,12 +105,12 @@ RSpec.describe SolrDocument do
     subject(:visibility) { solr_document.visibility }
     let(:solr_document) { described_class.new(work.to_solr) }
 
-    let(:discovery_access) { Work::VISIBILITY_TEXT_VALUE_DISCOVERY }
+    let(:discovery_access) { Work::VISIBILITY_TEXT_VALUE_SINAI }
     let(:public_access) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
     let(:embargo_access) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_EMBARGO }
     let(:lease_access) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_LEASE }
 
-    context 'a work with an embargo that has current visibility set to "discovery"' do
+    context 'a work with an embargo that has current visibility set to "sinai"' do
       let(:work) do
         w = Work.new(ark: 'ark:/abc/1234')
         w.apply_embargo(Date.tomorrow.to_s, discovery_access, public_access)
@@ -122,7 +122,7 @@ RSpec.describe SolrDocument do
       end
     end
 
-    context 'a work with a lease that has current visibility set to "discovery"' do
+    context 'a work with a lease that has current visibility set to "sinai"' do
       let(:work) do
         w = Work.new(ark: 'ark:/abc/1234')
         w.apply_lease(Date.tomorrow.to_s, discovery_access, public_access)
