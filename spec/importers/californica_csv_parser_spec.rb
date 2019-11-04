@@ -14,16 +14,16 @@ RSpec.describe CalifornicaCsvParser do
     ENV['SKIP'] = '0'
   end
 
-  # describe '#build_iiif_manifests' do
-  #   before { ActiveJob::Base.queue_adapter = :test }
+  describe '#build_iiif_manifests' do
+    before { ActiveJob::Base.queue_adapter = :test }
 
-  #   it 'enqueues a CreateManifestJob for each Work and ChildWork' do
-  #     allow(CreateManifestJob).to receive(:perform_now).with('ark:/21198/zz0002nq4w')
-  #     parser.records.each { |r| r } # just cycle through the iterator to populate @manifests_needing_build
-  #     parser.build_iiif_manifests
-  #     expect(CreateManifestJob).to have_received(:perform_now).with('ark:/21198/zz0002nq4w')
-  #   end
-  # end
+    it 'enqueues a CreateManifestJob for each Work and ChildWork' do
+      allow(CreateManifestJob).to receive(:perform_now).with('ark:/21198/zz0002nq4w')
+      parser.records.each { |r| r } # just cycle through the iterator to populate @manifests_needing_build
+      parser.build_iiif_manifests
+      expect(CreateManifestJob).to have_received(:perform_now).with('ark:/21198/zz0002nq4w')
+    end
+  end
 
   describe 'use in an importer', :clean do
     include_context 'with workflow'
