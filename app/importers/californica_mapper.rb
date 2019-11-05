@@ -131,7 +131,8 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     {
       'private' => Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE,
       'restricted' => Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE,
-      'discovery' => ::Work::VISIBILITY_TEXT_VALUE_DISCOVERY,
+      'discovery' => ::Work::VISIBILITY_TEXT_VALUE_SINAI,
+      'sinai' => ::Work::VISIBILITY_TEXT_VALUE_SINAI,
       'authenticated' => Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_AUTHENTICATED,
       'registered' => Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_AUTHENTICATED,
       'ucla' => Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_AUTHENTICATED,

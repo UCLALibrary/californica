@@ -27,17 +27,17 @@ RSpec.describe 'Edit the visibility for a work', :clean, type: :system, js: true
 
       # We added a new value for visibility that
       # doesn't exist in Hyrax.  Make sure the form
-      # has our new value "discovery" as an option
+      # has our new value "sinai" as an option
       # for the visibility field.
-      # Select "discovery" for the new visibility.
+      # Select "sinai" for the new visibility.
       within('.visibility') do
-        choose "Discovery"
+        choose "Sinai"
       end
       click_on 'Save changes'
 
       # When the show page loads, it should have the new visibility
       expect(page).to have_current_path(hyrax_work_path(work), ignore_query: true)
-      expect(page).to have_content 'Discovery'
+      expect(page).to have_content 'Sinai'
     end
   end
 end

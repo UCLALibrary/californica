@@ -268,7 +268,8 @@ Examples:
 
 - `public` - All users can view the record
 - `authenticated` - Logged in users can view the record
-- `discovery` - All users can view the metadata, but not the files
+- `sinai` - For Sinai Library items. All californica users can vsiew the metadata, but not the files. Hidden from the public-facing site as of Nov 2019.
+- `discovery` - A synonym `sinai`. Not recommended for new data.
 - `private` - Only admin users or users who have been granted special permission may view the record
 
 If there is no column with the header "Visibility", then the importer will look for the field "Item Status". Visibility will be made `public` if the status is "Completed" or 

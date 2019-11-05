@@ -75,11 +75,11 @@ en:
     footer:
       copyright_html: "<strong>Copyright &copy; 2018 Data Curation Experts, LLC</strong> Licensed under the Apache License, Version 2.0"
       service_html: Powered by <a href="http://samvera.org/" class="navbar-link" target="_blank">Samvera</a>.
-    institution_name: DCE
-    institution_name_full: Data Curation Experts, LLC
+    institution_name: UCLA
+    institution_name_full: UCLA Library Digital Collections
     product_name: Hyrax
     product_twitter_handle: "@SamveraRepo"
     visibility:
-      discovery:
-        text: Discovery
-        note_html: Make metadata available to all users, but restrict access to files.
+      sinai:
+        text: Sinai
+        note_html: Special behavior for Sinai Library items.

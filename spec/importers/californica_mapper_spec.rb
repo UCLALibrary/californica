@@ -447,7 +447,7 @@ RSpec.describe CalifornicaMapper do
     subject { mapper.visibility }
 
     let(:private_vis) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PRIVATE }
-    let(:disc_vis) { ::Work::VISIBILITY_TEXT_VALUE_DISCOVERY }
+    let(:sinai_vis) { ::Work::VISIBILITY_TEXT_VALUE_SINAI }
     let(:auth_vis) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_AUTHENTICATED }
     let(:public_vis) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
 
@@ -519,9 +519,14 @@ RSpec.describe CalifornicaMapper do
       it { is_expected.to eq private_vis }
     end
 
+    context 'visibility: sinai' do
+      let(:metadata) { { 'Visibility' => 'sinai' } }
+      it { is_expected.to eq sinai_vis }
+    end
+
     context 'visibility: discovery' do
       let(:metadata) { { 'Visibility' => 'discovery' } }
-      it { is_expected.to eq disc_vis }
+      it { is_expected.to eq sinai_vis }
     end
 
     context 'visibility: authenticated' do
