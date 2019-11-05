@@ -25,8 +25,13 @@ class ApplicationController < ActionController::Base
   # changes to the system. This is to enable easier migrations.
   def check_read_only
     return unless Flipflop.read_only?
+
     # Exempt the FlipFlop controller itself from read_only mode, so it can be turned off
     return if self.class.to_s == Hyrax::Admin::StrategiesController.to_s
+
+    # Allow the sign-in page to render, to avoid an infinite loop
+    return if whitelisted_path?(allow_create_user: false)
+
     redirect_back(
       fallback_location: root_path,
       alert: "This system is in read-only mode for maintenance. No submissions or edits can be made at this time."
@@ -40,16 +45,16 @@ class ApplicationController < ActionController::Base
       if !user_signed_in?
         redirect_to('/users/sign_in', alert: 'Administrator accounts are required to access Californica. Please sign in or create a new account (then ask us to grant it admin privileges)') unless user_signed_in? && user.admin?
       elsif !current_user.admin?
-        redirect_to('/users/sign_out', alert: "#{current_user.email} is not an administrator. Please request admin priviliges or use a different account.")
+        redirect_to('/about', alert: "#{current_user.email} is not an administrator. Please request admin priviliges or use a different account.")
       end
     end
 
-    def whitelisted_path?
+    def whitelisted_path?(allow_create_user: true)
       # allow creation of new accounts
-      return true if request.path == '/users' && request.method == 'POST'
+      return true if allow_create_user && request.path == '/users' && request.method == 'POST'
 
       # allow a few whitelisted paths
-      return true if ['/users/sign_in', '/users/sign_up', '/users/sign_out'].include?(request.path)
+      return true if ['/users/sign_in', '/users/sign_up', '/users/sign_out', '/about'].include?(request.path)
 
       # allow IIIF manifests to be served
       route = Rails.application.routes.recognize_path(request.path)
