@@ -25,7 +25,7 @@ class RecordImporter < Darlingtonia::HyraxRecordImporter
       no_of_children: count_children(record),
       status: 'queued'
     )
-    CsvRowImportJob.perform_later(row_id: csv_row.id)
+    CsvRowImportJob.perform_now(row_id: csv_row.id)
   end
 
   def count_children(record)
