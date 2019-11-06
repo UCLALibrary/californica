@@ -6,7 +6,7 @@ RSpec.describe CsvImportTask, type: :model do
   subject(:csv_import_task) do
     FactoryBot.build(:csv_import_task,
                      csv_import_id: 3,
-                     job_status: 'Complete',
+                     job_status: 'complete',
                      job_type: 'ReindexItemJob',
                      item_ark: 'ark:/123/abc',
                      object_type: 'Work',
@@ -21,7 +21,7 @@ RSpec.describe CsvImportTask, type: :model do
   end
 
   it 'has job_status' do
-    expect(csv_import_task.job_status).to eq 'Complete'
+    expect(csv_import_task.job_status).to eq 'complete'
   end
 
   it 'has job_type' do

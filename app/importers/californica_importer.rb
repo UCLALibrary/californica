@@ -28,7 +28,13 @@ class CalifornicaImporter
     raise "CSV file #{@csv_file} did not validate" unless parser.validate
     csv_table = CSV.parse(File.read(@csv_file), headers: true)
     record_importer.csv_table = csv_table
+
+    # Running darlingtonia w/ our RecordImporter just creates CsvRow objects
     Darlingtonia::Importer.new(parser: parser, record_importer: record_importer, info_stream: @info_stream, error_stream: @error_stream).import
+
+    @csv_import.csv_rows.where(status: ['queued', 'in progress']).each do |csv_row|
+      CsvRowImportJob.perform_now(row_id: csv_row.id)
+    end
 
     finalize_import
 

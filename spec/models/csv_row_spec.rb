@@ -4,6 +4,8 @@ require 'rails_helper'
 RSpec.describe CsvRow, type: :model do
   subject(:csv_row) { FactoryBot.build(:csv_row) }
   let(:job_id) { "4344db9d-eef0-46c2-a3f6-5ebc19043b76" }
+  let(:csv_import_1) { FactoryBot.create(:csv_import) }
+  let(:csv_import_2) { FactoryBot.create(:csv_import) }
 
   it 'has a row number' do
     expect(csv_row.row_number).to be_instance_of(Integer)
@@ -29,6 +31,20 @@ RSpec.describe CsvRow, type: :model do
   it 'has metadata that is parsable as json' do
     metadata_hash = JSON.parse(csv_row.metadata)
     expect(metadata_hash['Item ARK']).to eq('21198/zz001pz6jq')
+  end
+
+  it 'validates uniqueness of row_number and csv_import' do
+    expect do
+      FactoryBot.create(:csv_row, csv_import_id: csv_import_1.id, row_number: 1234)
+      FactoryBot.create(:csv_row, csv_import_id: csv_import_1.id, row_number: 1234)
+    end.to raise_error(ActiveRecord::RecordInvalid, 'Validation failed: Row number row_number and csv_import must be unique together')
+  end
+
+  it 'allows the same row_number in different csv_imports' do
+    expect do
+      FactoryBot.create(:csv_row, csv_import_id: csv_import_1.id, row_number: 1234)
+      FactoryBot.create(:csv_row, csv_import_id: csv_import_2.id, row_number: 1234)
+    end.not_to raise_error
   end
 
   context 'tracking background jobs' do

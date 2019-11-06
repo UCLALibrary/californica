@@ -24,7 +24,7 @@ class CreateManifestJob < ApplicationJob
       return unless csv_import_task_id
       @create_manifest_start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
       csv_import_task = CsvImportTask.find(csv_import_task_id)
-      csv_import_task.job_status = 'In Progress'
+      csv_import_task.job_status = 'in progress'
       begin
         csv_import_task.times_started += 1
       rescue NoMethodError
@@ -40,7 +40,7 @@ class CreateManifestJob < ApplicationJob
       @create_manifest_end_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
       csv_import_task.end_timestamp = @create_manifest_end_time
       csv_import_task.job_duration = @create_manifest_end_time - @create_manifest_start_time
-      csv_import_task.job_status = 'Complete'
+      csv_import_task.job_status = 'complete'
       csv_import_task.save
     end
 end
