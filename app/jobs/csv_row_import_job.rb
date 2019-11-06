@@ -10,7 +10,7 @@ class CsvRowImportJob < ActiveJob::Base
     @row = CsvRow.find(@row_id)
     @row.ingest_record_start_time = Time.current
 
-    @row.status = 'In Progress'
+    @row.status = 'in progress'
     @metadata = JSON.parse(@row.metadata)
     @metadata = @metadata.merge(row_id: @row_id)
     @csv_import = CsvImport.find(@row.csv_import_id)
