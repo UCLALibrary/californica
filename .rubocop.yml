@@ -138,6 +138,11 @@ RSpec/LetSetup:
 RSpec/NotToNot:
   Enabled: false
 
+RSpec/SubjectStub:
+  Enabled: true
+  Exclude:
+    - spec/importers/record_importer_spec.rb
+
 Style/BlockDelimiters:
   Exclude:
     - 'spec/system/search_catalog_spec.rb'

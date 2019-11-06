@@ -134,5 +134,20 @@ RSpec.describe CalifornicaImporter, :clean, inline_jobs: true do
         end
       end
     end
+
+    context 'when the job is re-run after a failure' do
+      let(:csv_row) { FactoryBot.create(:csv_row, csv_import_id: csv_import.id, row_number: 1, status: 'complete') }
+
+      before do
+        csv_row
+        allow(CreateManifestJob).to receive(:perform_now)
+      end
+
+      it 'skips already-imported CsvRows' do
+        allow(CsvRowImportJob).to receive(:perform_now)
+        importer.import
+        expect(CsvRowImportJob).not_to have_received(:perform_now)
+      end
+    end
   end
 end
