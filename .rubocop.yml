@@ -141,6 +141,7 @@ RSpec/NotToNot:
 RSpec/SubjectStub:
   Enabled: true
   Exclude:
+    - spec/importers/californica_importer_spec.rb
     - spec/importers/record_importer_spec.rb
 
 Style/BlockDelimiters:

@@ -8,7 +8,7 @@ class StartCsvImportJob < ApplicationJob
     setup_logging
     @info_stream << "StartCsvImportJob ~ Starting import with batch ID: #{csv_import_id}"
     importer = CalifornicaImporter.new(@csv_import, info_stream: @info_stream, error_stream: @error_stream)
-    @csv_import.elapsed_time = importer.import
+    importer.import
 
   rescue => e
     @error_stream << "StartCsvImportJob failed: #{e.message}\n#{e.backtrace.inspect}"
