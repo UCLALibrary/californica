@@ -16,7 +16,7 @@ services:
     stdin_open: true
     tty: true
     ports:
-      - "3000:3000"
+      - "127.0.0.1:3000:3000"
     volumes:
       - .:/californica
       - ./data:/opt/data
@@ -55,7 +55,7 @@ services:
   fedora:
     image: nulib/fcrepo4:4.7.5
     ports:
-      - "8984:8080"
+      - "127.0.0.1:8984:8080"
     volumes:
       - fcrepo_data:/data
     environment:
@@ -64,7 +64,7 @@ services:
   fedora_test:
     image: nulib/fcrepo4:4.7.5
     ports:
-      - "8986:8080"
+      - "127.0.0.1:8986:8080"
     environment:
       JAVA_OPTIONS: "-Xmx512m"
 
@@ -75,7 +75,7 @@ services:
       - ./docker/conf.d:/etc/mysql/conf.d
       - mysql_data:/var/lib/mysql
     ports:
-      - "3306:3306"
+      - "127.0.0.1:3306:3306"
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
 
@@ -84,7 +84,7 @@ services:
     volumes:
       - redis_data:/data
     ports:
-      - "6379:6379"
+      - "127.0.0.1:6379:6379"
 
   solr:
     build:
@@ -93,14 +93,14 @@ services:
     volumes:
       - solr_data:/opt/solr/server/solr/mycores/californica/data
     ports:
-      - "8983:8983"
+      - "127.0.0.1:8983:8983"
 
   solr_test:
     build:
       context: .
       dockerfile: docker/Dockerfile.solr
     ports:
-      - "8985:8983"
+      - "127.0.0.1:8985:8983"
 
   # iiif:
   #   image: uclalibrary/cantaloupe
