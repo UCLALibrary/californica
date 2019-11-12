@@ -23,19 +23,4 @@ RSpec.describe CreateManifestJob, :clean do
       described_class.perform_later(work.ark)
     end.to have_enqueued_job(described_class).exactly(:once)
   end
-
-  context 'when it gets a CsvImportTask object' do
-    let(:csv_import_task) do
-      csv_import_task = FactoryBot.build(:csv_import_task, id: 123, job_duration: nil)
-      allow(CsvImportTask).to receive(:find).with(csv_import_task.id).and_return(csv_import_task)
-      csv_import_task
-    end
-
-    before { allow_any_instance_of(Californica::ManifestBuilderService).to receive(:persist) }
-
-    it 'logs the duration to that object' do
-      described_class.perform_now(work.ark, csv_import_task_id: csv_import_task.id)
-      expect(csv_import_task.job_duration).not_to be_nil
-    end
-  end
 end
