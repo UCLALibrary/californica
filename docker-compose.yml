@@ -30,7 +30,7 @@ services:
 
   sidekiq:
     image: uclalibrary/californica:latest
-    command: ['bundle', 'exec', 'sidekiq']
+    command: ['bundle', 'exec', 'sidekiq', '-c', '2']
     depends_on:
       - db
       - fedora

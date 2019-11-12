@@ -32,6 +32,56 @@ RSpec.describe CalifornicaImporter, :clean, inline_jobs: true do
     end
   end
 
+  describe '#log_start' do
+    let(:csv_import) { FactoryBot.build(:csv_import, status: 'queued', start_time: nil) }
+    let(:importer) { described_class.new(csv_import, error_stream: [], info_stream: []) }
+    let(:start_time) { Time.zone.now }
+
+    before do
+      allow(Time.zone).to receive(:now).and_return(start_time)
+      importer.log_start
+    end
+
+    it 'sets the status to "in progress"' do
+      expect(csv_import.status).to eq 'in progress'
+    end
+
+    it 'records the start_time' do
+      expect(csv_import.start_time).to eq start_time.round
+    end
+  end
+
+  describe '#log_end' do
+    let(:csv_import) { FactoryBot.build(:csv_import, status: 'in_progress', start_time: start_time, end_time: nil, elapsed_time: nil, elapsed_time_per_record: nil) }
+    let(:importer) { described_class.new(csv_import, error_stream: [], info_stream: []) }
+    let(:end_time) { Time.zone.now }
+    let(:n_records) { 7 }
+    let(:parser) { instance_double('CalifornicaCsvParser', records: instance_double('Array', count: n_records)) }
+    let(:start_time) { end_time.round - 21 }
+
+    before do
+      allow(Time.zone).to receive(:now).and_return(end_time)
+      allow(importer).to receive(:parser).and_return(parser)
+      importer.log_end
+    end
+
+    it 'sets the status to "complete"' do
+      expect(csv_import.status).to eq 'complete'
+    end
+
+    it 'records the end_time' do
+      expect(csv_import.end_time).to eq end_time.round
+    end
+
+    it 'records the elapsed time' do
+      expect(csv_import.elapsed_time).to eq 21
+    end
+
+    it 'records the elapsed time per record' do
+      expect(csv_import.elapsed_time_per_record).to eq 3
+    end
+  end
+
   describe 'CSV import' do
     it 'has an import_file_path' do
       expect(importer.import_file_path).to eq csv_import.import_file_path

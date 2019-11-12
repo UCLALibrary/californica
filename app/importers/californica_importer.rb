@@ -17,12 +17,12 @@ class CalifornicaImporter
 
   def import
     raise "Cannot find expected input file #{@csv_file}" unless File.exist?(@csv_file)
+    log_start
 
     attrs = {
       depositor_id: @depositor_id,
       batch_id: @csv_import.id
     }
-    start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 
     record_importer = ::RecordImporter.new(error_stream: @error_stream, info_stream: @info_stream, attributes: attrs)
     raise "CSV file #{@csv_file} did not validate" unless parser.validate
@@ -37,14 +37,7 @@ class CalifornicaImporter
     end
 
     finalize_import
-
-    end_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
-    elapsed_time = end_time - start_time
-    elapsed_time_per_record = elapsed_time / parser.records.count
-    @csv_import.elapsed_time = elapsed_time
-    @csv_import.elapsed_time_per_record = elapsed_time_per_record
-    @csv_import.status = 'complete'
-    @csv_import.save
+    log_end
     @info_stream << @csv_import
   end
 
@@ -53,6 +46,21 @@ class CalifornicaImporter
     parser.reindex_collections
     parser.build_iiif_manifests
     @csv_import.csv_rows.where(status: 'pending finalization').update_all(status: 'complete')
+  end
+
+  def log_end
+    @csv_import.status = 'complete'
+    @csv_import.end_time = Time.zone.now.round
+    @csv_import.elapsed_time = @csv_import.end_time - @csv_import.start_time
+    @csv_import.elapsed_time_per_record = @csv_import.elapsed_time / parser.records.count
+    @csv_import.save
+  end
+
+  def log_start
+    @csv_import.status = 'in progress'
+    # if the job fails and restarts, there will already be a start_time that we want to keep
+    @csv_import.start_time = @csv_import.start_time || Time.zone.now.round
+    @csv_import.save
   end
 
   def parser
