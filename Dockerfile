@@ -12,7 +12,7 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources
 RUN apt-get update -qq
 
 # Install system dependencies
-RUN apt-get update -qq && apt-get install -y mariadb-client build-essential libpq-dev nodejs yarn imagemagick libreoffice ffmpeg unzip chromium-driver
+RUN apt-get update -qq && apt-get install -y default-libmysqlclient-dev build-essential libpq-dev nodejs yarn imagemagick libreoffice ffmpeg unzip chromium-driver
 
 # Set up user
 # RUN groupadd -r --gid 3000 docker && \
