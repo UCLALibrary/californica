@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe CalifornicaCsvParser do
-  subject(:parser)    { described_class.new(file: file, import_file_path: import_file_path, error_stream: error_stream, info_stream: info_stream) }
+  subject(:parser)    { described_class.new(file: file, csv_import_id: 0, import_file_path: import_file_path, error_stream: error_stream, info_stream: info_stream) }
   let(:file)          { File.open(csv_path) }
   let(:csv_path)      { 'spec/fixtures/example.csv' }
   let(:import_file_path) { fixture_path }
@@ -43,12 +43,6 @@ RSpec.describe CalifornicaCsvParser do
     it 'skips records if ENV[\'SKIP\'] is set' do
       ENV['SKIP'] = '1'
       expect { importer.import }.to change { Work.count }.by 0
-    end
-  end
-
-  describe '.for' do
-    it 'builds an instance' do
-      expect(described_class.for(file: file)).to be_a described_class
     end
   end
 
@@ -135,6 +129,41 @@ RSpec.describe CalifornicaCsvParser do
       it 'knows the headers for this CSV file' do
         expect(parser.headers).to eq expected_headers
       end
+    end
+  end
+
+  describe '#reindex_collections' do
+    let(:queued_collection) { FactoryBot.create(:csv_collection_reindex, csv_import_id: 0, status: 'queued') }
+    let(:in_progress_collection) { FactoryBot.create(:csv_collection_reindex, csv_import_id: 0, status: 'in progress') }
+    let(:complete_collection) { FactoryBot.create(:csv_collection_reindex, csv_import_id: 0, status: 'complete') }
+    let(:error_collection) { FactoryBot.create(:csv_collection_reindex, csv_import_id: 0, status: 'error') }
+
+    before do
+      allow(ReindexCollectionJob).to receive(:perform_now)
+    end
+
+    it 'reindexes collections with status "queued"' do
+      queued_collection
+      parser.reindex_collections
+      expect(ReindexCollectionJob).to have_received(:perform_now).with(queued_collection.id)
+    end
+
+    it 'reindexes collections with status "in progress"' do
+      in_progress_collection
+      parser.reindex_collections
+      expect(ReindexCollectionJob).to have_received(:perform_now).with(in_progress_collection.id)
+    end
+
+    it 'does not reindex collections with status "complete"' do
+      complete_collection
+      parser.reindex_collections
+      expect(ReindexCollectionJob).not_to have_received(:perform_now).with(complete_collection.id)
+    end
+
+    it 'does not reindex collections with status "error"' do
+      error_collection
+      parser.reindex_collections
+      expect(ReindexCollectionJob).not_to have_received(:perform_now).with(error_collection.id)
     end
   end
 end

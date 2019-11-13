@@ -15,12 +15,14 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
   # @param [#<<] error_stream
   # @param [#<<] info_stream
   def initialize(file:,
+                 csv_import_id:,
                  import_file_path: ENV['IMPORT_FILE_PATH'] || '/opt/data',
                  error_stream: Darlingtonia.config.default_error_stream,
                  info_stream:  Darlingtonia.config.default_info_stream,
                  **opts)
     self.error_stream = error_stream
     self.info_stream  = info_stream
+    @csv_import_id = csv_import_id
     @import_file_path = import_file_path
     @collections_needing_reindex = Set.new
     @works_needing_ordering = Set.new
@@ -78,9 +80,9 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
   def add_finalization_tasks(row)
     case row['Object Type']
     when 'Collection'
-      @collections_needing_reindex << row['Item ARK']
+      CsvCollectionReindex.create(csv_import_id: @csv_import_id, ark: row['Item ARK'], status: 'queued')
     when 'Work', 'Manuscript'
-      @collections_needing_reindex << row['Parent ARK']
+      CsvCollectionReindex.create(csv_import_id: @csv_import_id, ark: row['Parent ARK'], status: 'queued')
       @works_needing_ordering << row['Parent ARK']
       @manifests_needing_build << row['Item ARK']
     when 'ChildWork', 'Page'
@@ -100,15 +102,8 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
   # This is so we can remove expensive collection reindexing behavior during
   # ingest and only add it back after the ingest is complete.
   def reindex_collections
-    list = @collections_needing_reindex.reject(&:blank?)
-    list.each do |ark|
-      collection = Collection.find_by_ark(Ark.ensure_prefix(ark))
-      unless collection
-        Rails.logger.error "Tried to reindex collection with ark #{ark} but could not find one."
-        next
-      end
-      collection.recalculate_size = true
-      collection.save # The save should kick off a reindex
+    CsvCollectionReindex.where(csv_import_id: @csv_import_id, status: ['queued', 'in progress']).each do |collection_reindex|
+      ReindexCollectionJob.perform_now(collection_reindex.id)
     end
   end
 
