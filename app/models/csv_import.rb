@@ -7,6 +7,8 @@ class CsvImport < ApplicationRecord
   delegate :records, to: :manifest, prefix: true
   has_many :csv_rows
   has_many :csv_collection_reindices
+  has_many :csv_import_order_children
+  has_many :csv_import_create_manifests
 
   def queue_start_job
     StartCsvImportJob.perform_later(id)
