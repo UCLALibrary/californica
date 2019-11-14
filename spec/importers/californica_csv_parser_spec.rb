@@ -15,13 +15,11 @@ RSpec.describe CalifornicaCsvParser do
   end
 
   describe '#build_iiif_manifests' do
-    before { ActiveJob::Base.queue_adapter = :test }
-
     it 'enqueues a CreateManifestJob for each Work and ChildWork' do
-      allow(CreateManifestJob).to receive(:perform_now).with('ark:/21198/zz0002nq4w')
+      allow(CreateManifestJob).to receive(:perform_now)
       parser.records.each { |r| r } # just cycle through the iterator to populate @manifests_needing_build
       parser.build_iiif_manifests
-      expect(CreateManifestJob).to have_received(:perform_now).with('ark:/21198/zz0002nq4w')
+      expect(CreateManifestJob).to have_received(:perform_now).with('ark:/21198/zz0002nq4w', create_manifest_object_id: CsvImportCreateManifest.last.id)
     end
   end
 
@@ -164,6 +162,78 @@ RSpec.describe CalifornicaCsvParser do
       error_collection
       parser.reindex_collections
       expect(ReindexCollectionJob).not_to have_received(:perform_now).with(error_collection.id)
+    end
+  end
+
+  describe '#build_iiif_manifests' do
+    let(:queued_work) { FactoryBot.create(:csv_import_create_manifest, csv_import_id: 0, status: 'queued') }
+    let(:in_progress_work) { FactoryBot.create(:csv_import_create_manifest, csv_import_id: 0, status: 'in progress') }
+    let(:complete_work) { FactoryBot.create(:csv_import_create_manifest, csv_import_id: 0, status: 'complete') }
+    let(:error_work) { FactoryBot.create(:csv_import_create_manifest, csv_import_id: 0, status: 'error') }
+
+    before do
+      allow(CreateManifestJob).to receive(:perform_now)
+    end
+
+    it 'reindexes works with status "queued"' do
+      queued_work
+      parser.build_iiif_manifests
+      expect(CreateManifestJob).to have_received(:perform_now).with(Ark.ensure_prefix(queued_work.ark), create_manifest_object_id: queued_work.id)
+    end
+
+    it 'reindexes works with status "in progress"' do
+      in_progress_work
+      parser.build_iiif_manifests
+      expect(CreateManifestJob).to have_received(:perform_now).with(Ark.ensure_prefix(in_progress_work.ark), create_manifest_object_id: in_progress_work.id)
+    end
+
+    it 'does not reindex works with status "complete"' do
+      complete_work
+      parser.build_iiif_manifests
+      expect(CreateManifestJob).not_to have_received(:perform_now).with(Ark.ensure_prefix(complete_work.ark), complete_work.id)
+    end
+
+    it 'does not reindex works with status "error"' do
+      error_work
+      parser.build_iiif_manifests
+      expect(CreateManifestJob).not_to have_received(:perform_now).with(Ark.ensure_prefix(error_work.ark), error_work.id)
+    end
+  end
+
+  describe '#order_child_works' do
+    let(:queued_work) { FactoryBot.create(:csv_import_order_child, csv_import_id: 0, status: 'queued') }
+    let(:in_progress_work) { FactoryBot.create(:csv_import_order_child, csv_import_id: 0, status: 'in progress') }
+    let(:complete_work) { FactoryBot.create(:csv_import_order_child, csv_import_id: 0, status: 'complete') }
+    let(:error_work) { FactoryBot.create(:csv_import_order_child, csv_import_id: 0, status: 'error') }
+    let(:service) { instance_double('Californica::OrderChildWorksService') }
+
+    before do
+      allow(Californica::OrderChildWorksService).to receive(:new).and_return(service)
+      allow(service).to receive(:order)
+    end
+
+    it 'reindexes works with status "queued"' do
+      queued_work
+      parser.order_child_works
+      expect(service).to have_received(:order)
+    end
+
+    it 'reindexes works with status "in progress"' do
+      in_progress_work
+      parser.order_child_works
+      expect(service).to have_received(:order)
+    end
+
+    it 'does not reindex works with status "complete"' do
+      complete_work
+      parser.order_child_works
+      expect(service).not_to have_received(:order)
+    end
+
+    it 'does not reindex works with status "error"' do
+      error_work
+      parser.order_child_works
+      expect(service).not_to have_received(:order)
     end
   end
 end
