@@ -7,7 +7,7 @@ RSpec.describe CsvValidator do
   let(:open_file) { File.open(csv_file) }
   after { open_file.close }
 
-  let(:parser) { CalifornicaCsvParser.new(file: open_file, error_stream: [], info_stream: []) }
+  let(:parser) { CalifornicaCsvParser.new(file: open_file, csv_import_id: 0, error_stream: [], info_stream: []) }
 
   context 'a CSV with no known problems' do
     let(:csv_file) { File.join(fixture_path, 'example.csv') }

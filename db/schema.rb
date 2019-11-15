@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191107174929) do
+ActiveRecord::Schema.define(version: 20191113203150) do
 
   create_table "bookmarks", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "user_id", null: false
@@ -67,19 +67,43 @@ ActiveRecord::Schema.define(version: 20191107174929) do
     t.string "external_key"
   end
 
-  create_table "csv_import_tasks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "csv_import_id"
-    t.string "job_status"
-    t.string "job_type"
-    t.string "item_ark"
-    t.string "object_type"
-    t.float "job_duration", limit: 24
-    t.integer "times_started"
-    t.timestamp "start_timestamp"
-    t.timestamp "end_timestamp"
+  create_table "csv_collection_reindices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "ark"
+    t.string "csv_import_id"
+    t.string "status"
+    t.string "error_messages"
+    t.timestamp "start_time"
+    t.timestamp "end_time"
+    t.float "elapsed_time", limit: 24
+    t.integer "no_of_children"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["csv_import_id"], name: "index_csv_import_tasks_on_csv_import_id"
+  end
+
+  create_table "csv_import_create_manifests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "ark"
+    t.integer "csv_import_id"
+    t.string "status"
+    t.string "error_messages"
+    t.timestamp "start_time"
+    t.timestamp "end_time"
+    t.float "elapsed_time", limit: 24
+    t.integer "no_of_children"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "csv_import_order_children", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "ark"
+    t.integer "csv_import_id"
+    t.string "status"
+    t.string "error_messages"
+    t.timestamp "start_time"
+    t.timestamp "end_time"
+    t.float "elapsed_time", limit: 24
+    t.integer "no_of_children"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "csv_imports", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -624,7 +648,6 @@ ActiveRecord::Schema.define(version: 20191107174929) do
     t.index ["work_id"], name: "index_work_view_stats_on_work_id"
   end
 
-  add_foreign_key "csv_import_tasks", "csv_imports"
   add_foreign_key "mailboxer_notifications", "mailboxer_conversations", column: "conversation_id", name: "notifications_on_conversation_id"
   add_foreign_key "mailboxer_receipts", "mailboxer_notifications", column: "notification_id", name: "receipts_on_notification_id"
   add_foreign_key "permission_template_accesses", "permission_templates"

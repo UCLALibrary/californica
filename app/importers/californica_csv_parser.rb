@@ -15,12 +15,14 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
   # @param [#<<] error_stream
   # @param [#<<] info_stream
   def initialize(file:,
+                 csv_import_id:,
                  import_file_path: ENV['IMPORT_FILE_PATH'] || '/opt/data',
                  error_stream: Darlingtonia.config.default_error_stream,
                  info_stream:  Darlingtonia.config.default_info_stream,
                  **opts)
     self.error_stream = error_stream
     self.info_stream  = info_stream
+    @csv_import_id = csv_import_id
     @import_file_path = import_file_path
     @collections_needing_reindex = Set.new
     @works_needing_ordering = Set.new
@@ -51,8 +53,8 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
   # Creates IIIF Manifests for each Work in a CSV. Does not create documents
   # for Collection or ChildWork objects.
   def build_iiif_manifests
-    @manifests_needing_build.reject(&:blank?).each do |ark|
-      CreateManifestJob.perform_now(Ark.ensure_prefix(ark))
+    CsvImportCreateManifest.where(csv_import_id: @csv_import_id, status: ['queued', 'in progress']).each do |create_manifest_object|
+      CreateManifestJob.perform_now(Ark.ensure_prefix(create_manifest_object.ark), create_manifest_object_id: create_manifest_object.id)
     end
   end
 
@@ -61,32 +63,23 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
   # in the right order. In other works, ensure a manuscript's pages are ordered by the
   # values in `Item Sequence`
   def order_child_works
-    works_arks = @works_needing_ordering.reject(&:blank?)
-    works_arks.each do |work_ark|
-      begin
-        page_orderings = PageOrder.where(parent: Ark.ensure_prefix(work_ark))
-        ordered_arks = page_orderings.sort_by(&:sequence)
-        work = Work.find_by_ark(Ark.ensure_prefix(work_ark))
-        work.ordered_members = ordered_arks.map { |b| ChildWork.find_by_ark(b.child) }
-        work.save
-      rescue => e
-        error_stream << "#{work_ark}: #{e.message}"
-      end
+    CsvImportOrderChild.where(csv_import_id: @csv_import_id, status: ['queued', 'in progress']).each do |order_children|
+      Californica::OrderChildWorksService.new(order_children).order
     end
   end
 
   def add_finalization_tasks(row)
     case row['Object Type']
     when 'Collection'
-      @collections_needing_reindex << row['Item ARK']
+      CsvCollectionReindex.create(csv_import_id: @csv_import_id, ark: row['Item ARK'], status: 'queued')
     when 'Work', 'Manuscript'
-      @collections_needing_reindex << row['Parent ARK']
-      @works_needing_ordering << row['Parent ARK']
-      @manifests_needing_build << row['Item ARK']
+      CsvCollectionReindex.create(csv_import_id: @csv_import_id, ark: row['Parent ARK'], status: 'queued')
+      CsvImportOrderChild.create(csv_import_id: @csv_import_id, ark: row['Item ARK'], status: 'queued')
+      CsvImportCreateManifest.create(csv_import_id: @csv_import_id, ark: row['Item ARK'], status: 'queued')
     when 'ChildWork', 'Page'
-      @works_needing_ordering << row['Parent ARK']
-      @manifests_needing_build << row['Item ARK']
-      @manifests_needing_build << row['Parent ARK']
+      CsvImportOrderChild.create(csv_import_id: @csv_import_id, ark: row['Parent ARK'], status: 'queued')
+      CsvImportCreateManifest.create(csv_import_id: @csv_import_id, ark: row['Item ARK'], status: 'queued')
+      CsvImportCreateManifest.create(csv_import_id: @csv_import_id, ark: row['Parent ARK'], status: 'queued')
     else
       raise ArgumentError, "Unknown Object Type #{row['Object Type']}"
     end
@@ -100,15 +93,8 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
   # This is so we can remove expensive collection reindexing behavior during
   # ingest and only add it back after the ingest is complete.
   def reindex_collections
-    list = @collections_needing_reindex.reject(&:blank?)
-    list.each do |ark|
-      collection = Collection.find_by_ark(Ark.ensure_prefix(ark))
-      unless collection
-        Rails.logger.error "Tried to reindex collection with ark #{ark} but could not find one."
-        next
-      end
-      collection.recalculate_size = true
-      collection.save # The save should kick off a reindex
+    CsvCollectionReindex.where(csv_import_id: @csv_import_id, status: ['queued', 'in progress']).each do |collection_reindex|
+      ReindexCollectionJob.perform_now(collection_reindex.id)
     end
   end
 

@@ -65,10 +65,11 @@ class CalifornicaImporter
 
   def parser
     @parser ||=
-      CalifornicaCsvParser.new(file:         File.open(@csv_file),
+      CalifornicaCsvParser.new(file: File.open(@csv_file),
+                               csv_import_id: @csv_import.id,
                                import_file_path: @import_file_path,
                                error_stream: @error_stream,
-                               info_stream:  @info_stream)
+                               info_stream: @info_stream)
   end
 
   def timestamp
