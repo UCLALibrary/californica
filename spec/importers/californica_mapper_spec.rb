@@ -274,6 +274,20 @@ RSpec.describe CalifornicaMapper do
     end
   end
 
+  describe '#member_of_collections_attributes' do
+    let(:metadata) do
+      { "Parent ARK" => "ark:/123/abc" }
+    end
+
+    let(:collection) { FactoryBot.build(:collection, recalculate_size: true) }
+    before { allow(Collection).to receive(:find_or_create_by_ark).and_return(collection) }
+
+    it 'disables collection reindexing' do
+      mapper.member_of_collections_attributes
+      expect(collection.recalculate_size).to eq false
+    end
+  end
+
   describe '#preservation_copy' do
     context 'when the path starts with a \'/\'' do
       let(:metadata) { { 'File Name' => '/Masters/dlmasters/abc/xyz.tif' } }
