@@ -292,9 +292,16 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   def member_of_collections_attributes
     # A ChildWork will never be a direct member of a Collection
     return if ['ChildWork', 'Page'].include?(metadata["Object Type"])
+
     ark = Ark.ensure_prefix(metadata['Parent ARK'])
     return unless ark
     collection = Collection.find_or_create_by_ark(ark)
+
+    unless collection.recalculate_size == false
+      collection.recalculate_size = false
+      collection.save
+    end
+
     { '0' => { id: collection.id } }
   end
 
