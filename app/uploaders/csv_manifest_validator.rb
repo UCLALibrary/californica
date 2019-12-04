@@ -70,6 +70,7 @@ OPTIONAL_HEADERS = [
   'Description.illustrations',
   'Item Sequence',
   'Language',
+  'Masthead Image',
   'Name.architect',
   'Name.composer',
   'Name.illuminator',

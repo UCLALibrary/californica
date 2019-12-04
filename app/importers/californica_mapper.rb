@@ -42,6 +42,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     location: "Coverage.geographic",
     longitude: "Description.longitude",
     lyricist: "Name.lyricist",
+    masthead_image: ["Masthead Image"],
     medium: "Format.medium",
     named_subject: ["Name.subject",
                     "Personal or Corporate Name.subject",
@@ -163,6 +164,10 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
   def foliation
     map_field(:foliation).to_a.first
+  end
+
+  def masthead_image
+    map_field(:masthead_image).to_a.first
   end
 
   # Replace marc codes with double dashes with no surrounding spaces

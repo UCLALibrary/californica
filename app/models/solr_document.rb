@@ -134,6 +134,10 @@ class SolrDocument
     self[:lyricist_tesim]
   end
 
+  def masthead_image
+    self[:masthead_image_ssi]
+  end
+
   def medium
     self[:medium_tesim]
   end

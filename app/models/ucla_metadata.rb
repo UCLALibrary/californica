@@ -103,6 +103,10 @@ module UclaMetadata
       index.as :stored_searchable, :facetable
     end
 
+    property :masthead_image, predicate: ::RDF::Vocab::DC.medium do |index|
+      index.as :stored_searchable, :facetable
+    end
+
     property :medium, predicate: ::RDF::Vocab::DC.medium do |index|
       index.as :stored_searchable, :facetable
     end

@@ -26,6 +26,7 @@ module Hyrax
       :local_identifier,
       :location,
       :lyricist,
+      :masthead_image,
       :medium,
       :named_subject,
       :normalized_date,
@@ -115,6 +116,7 @@ module Hyrax
         :foliation,
         :illuminator,
         :lyricist,
+        :masthead_image,
         :scribe,
       ]
     end

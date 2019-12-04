@@ -34,6 +34,7 @@
 - [Illustrations note](#illustrations-note)
 - [Item Sequence](#item-sequence)
 - [Language](#language)
+- [Masthead Image](#masthead_image)
 - [Name.architect](#name.architect)
 - [Name.composer](#name.composer)
 - [Name.illuminator](#name.illuminator)
@@ -203,6 +204,8 @@ accepts Description.illustrations
 ### viewingHint
 
 ### Language
+
+### Masthead Image
 
 ### Name.architect
 

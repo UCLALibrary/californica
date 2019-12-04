@@ -29,6 +29,7 @@ module Hyrax
       :local_identifier,
       :location,
       :lyricist,
+      :masthead_image,
       :medium,
       :named_subject,
       :normalized_date,

@@ -32,6 +32,7 @@ module Hyrax
       :longitude,
       :lyricist,
       :medium,
+      :masthead_image,
       :named_subject,
       :normalized_date,
       :page_layout,
