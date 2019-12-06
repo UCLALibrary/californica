@@ -112,7 +112,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('dimensions', :stored_searchable)
     config.add_show_field solr_name('extent', :stored_searchable)
     config.add_show_field 'foliation_ssi', label: 'Foliation note'
-    config.add_show_field 'masthead_image', label: 'Masthead Image'
+    config.add_show_field 'masthead_image_ssi'
     config.add_show_field solr_name('funding_note', :stored_searchable)
     config.add_show_field solr_name('genre', :stored_searchable)
     config.add_show_field 'iiif_manifest_url_ssi'
@@ -398,7 +398,7 @@ class CatalogController < ApplicationController
       }
     end
 
-config.add_search_field('subject_topic') do |field|
+    config.add_search_field('subject_topic') do |field|
       solr_name = solr_name('subject_topic', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,

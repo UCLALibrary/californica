@@ -79,8 +79,9 @@ RSpec.describe CalifornicaMapper do
       "Description.tableOfContents" => "description table of contents", # toc
       "Collation" => "Collation", # collation
       "Foliation note" => "Foliation note", # foliation
-      "Foliation" => "Foliation", # folition
+      "Foliation" => "Foliation", # foliation
       "Illuminator" => "Illuminator", # illuminator
+      "Masthead Image" => "Masthead Image", # masthead_image
       "Name.illuminator" => "Illuminator name", # illuminator
       "Name.lyricist" => "Lyricist", # lyricist
       "Name.composer" => "Composer", # composer
@@ -140,6 +141,7 @@ RSpec.describe CalifornicaMapper do
         :location,
         :longitude,
         :lyricist,
+        :masthead_image,
         :medium,
         :named_subject,
         :normalized_date,

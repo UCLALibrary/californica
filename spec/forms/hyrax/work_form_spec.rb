@@ -30,6 +30,7 @@ RSpec.describe Hyrax::WorkForm do
       :local_identifier,
       :longitude,
       :lyricist,
+      :masthead_image,
       :medium,
       :named_subject,
       :normalized_date,

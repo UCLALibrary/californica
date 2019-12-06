@@ -103,8 +103,8 @@ module UclaMetadata
       index.as :stored_searchable, :facetable
     end
 
-    property :masthead_image, predicate: ::RDF::Vocab::DC.medium do |index|
-      index.as :stored_searchable, :facetable
+    property :masthead_image, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3078'), multiple: false do |index|
+      index.as :stored_sortable
     end
 
     property :medium, predicate: ::RDF::Vocab::DC.medium do |index|

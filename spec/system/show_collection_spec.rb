@@ -56,6 +56,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       foliation: 'Old Foliation note',
       illuminator: ['Old Illuminator'],
       lyricist: ['Old Lyricist'],
+      masthead_image: 'Old Masthead Image3',
       scribe: ['Old Scribe'],
       condition_note: 'Old Condition note'
       # local_rights_statement: ['Old Rights local statement']
