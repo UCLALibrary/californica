@@ -16,6 +16,7 @@
 <%= presenter.attribute_to_html(:dimensions, html_dl: true) %>
 <%= presenter.attribute_to_html(:dlcs_collection_name, render_as: :faceted, html_dl: true, label: "DLCS Collection Name") %>
 <%= presenter.attribute_to_html(:extent, html_dl: true) %>
+<%= presenter.attribute_to_html(:featured_image, html_dl: true) %>
 <%= presenter.attribute_to_html(:foliation, html_dl: true, label: "Foliation note") %>
 <%= presenter.attribute_to_html(:funding_note, html_dl: true) %>
 <%= presenter.attribute_to_html(:genre, html_dl: true) %>
@@ -32,7 +33,7 @@
 <%= presenter.attribute_to_html(:local_identifier, html_dl: true) %>
 <%= presenter.attribute_to_html(:location, html_dl: true) %>
 <%= presenter.attribute_to_html(:lyricist, html_dl: true) %>
-<%= presenter.attribute_to_html(:masthead_image, html_dl: true) %>
+<%= presenter.attribute_to_html(:masthead_parameters, html_dl: true) %>
 <%= presenter.attribute_to_html(:medium, html_dl: true) %>
 <%= presenter.attribute_to_html(:named_subject, html_dl: true) %>
 <%= presenter.attribute_to_html(:normalized_date, html_dl: true) %>
@@ -44,6 +45,7 @@
 <%= presenter.attribute_to_html(:publisher, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:related_url, render_as: :external_link, html_dl: true) %>
 <%= presenter.attribute_to_html(:repository, html_dl: true) %>
+<%= presenter.attribute_to_html(:representative_image, html_dl: true) %>
 <%= presenter.attribute_to_html(:resource_type, render_as: :resource_type, html_dl: true) %>
 <%= presenter.attribute_to_html(:rights_country, html_dl: true) %>
 <%= presenter.attribute_to_html(:rights_holder, html_dl: true) %>
@@ -55,5 +57,6 @@
 <%= presenter.attribute_to_html(:subject_topic, html_dl: true) %>
 <%= presenter.attribute_to_html(:summary, html_dl: true) %>
 <%= presenter.attribute_to_html(:support, html_dl: true) %>
+<%= presenter.attribute_to_html(:tagline, html_dl: true) %>
 <%= presenter.attribute_to_html(:toc, html_dl: true) %>
 <%= presenter.attribute_to_html(:uniform_title, html_dl: true) %>

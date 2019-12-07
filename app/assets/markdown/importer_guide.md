@@ -25,6 +25,7 @@
 - [Description.longitude](#description.longitude)
 - [Description.note](#description.note)
 - [Foliation](#foliation)
+- [Featured image](#featured_image)
 - [Format.dimensions](#format.dimensions)
 - [Format.extent](#format.extent)
 - [Format.medium](#format.medium)
@@ -34,7 +35,7 @@
 - [Illustrations note](#illustrations-note)
 - [Item Sequence](#item-sequence)
 - [Language](#language)
-- [Masthead Image](#masthead_image)
+- [Masthead](#masthead_parameters)
 - [Name.architect](#name.architect)
 - [Name.composer](#name.composer)
 - [Name.illuminator](#name.illuminator)
@@ -49,6 +50,7 @@
 - [Provenance](#provenance)
 - [Publisher.publisherName](#publisher.publishername)
 - [Relation.isPartOf](#relation.ispartof)
+- [Representative image](#representative_image)
 - [Rights.countryCreation](#rights.countrycreation)
 - [Rights.rightsHolderContact](#rights.rightsholdercontact)
 - [Rights.statementLocal](#rights.statementLocal)
@@ -57,6 +59,7 @@
 - [Subject.descriptiveTopic](#subject.descriptive_topic)
 - [Summary](#summary)
 - [Support](#support)
+- [Tagline](#tagline)
 - [IIIF Text direction](#iiif_text_direction)
 - [Table of Contents](#table-of-contents)
 - [Type.genre](#type.genre)
@@ -178,6 +181,8 @@ accepts Contidion note, Description.condition
 
 ### Description.note
 
+### Featured image
+
 ### Foliation
 accepts "Foliation", "Foliation note"
 
@@ -205,7 +210,7 @@ accepts Description.illustrations
 
 ### Language
 
-### Masthead Image
+### Masthead
 
 ### Name.architect
 
@@ -234,6 +239,8 @@ Accepts "Provenance", "Description.history"
 
 ### Relation.isPartOf
 
+### Representative image
+
 ### Rights.countryCreation
 
 ### Rights.rightsHolderContact
@@ -256,6 +263,8 @@ Accepts "Summary", "Description.abstract", "Description.contents"
 
 ### Table of Contents
 Accepts "Table of Contents" and "Description.tableOfContents" as valid synonyms.
+
+### Tagline
 
 ### Type.genre
 

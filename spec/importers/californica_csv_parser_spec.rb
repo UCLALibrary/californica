@@ -107,14 +107,17 @@ RSpec.describe CalifornicaCsvParser do
        'Foliation note',
        'Foliation',
        'Illuminator',
-       'Masthead Image',
        'Name.illuminator',
        'Name.lyricist',
        'Name.composer',
        'Scribe',
        'Name.scribe',
        'Condition note',
-       'Rights.statementLocal']
+       'Rights.statementLocal',
+       'Masthead',
+       'Representative image',
+       'Featured image',
+       'Tagline']
     end
 
     it 'knows the headers for this CSV file' do

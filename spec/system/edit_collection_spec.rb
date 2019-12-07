@@ -38,7 +38,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       longitude: ['Old Long'],
       local_identifier: ['Old Local ID'],
       lyricist: ['Old Lyricist'],
-      masthead_image: 'Old Masthead Image1',
+      masthead_parameters: 'Old Masthead Parameters',
       medium: ['Old Medium'],
       named_subject: ['Old Name/Subj'],
       normalized_date: ['Old Normalized Date'],
@@ -60,7 +60,10 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       toc: ['Old Table of Contents'],
       iiif_text_direction: 'http://iiif.io/api/presentation/2#leftToRightDirection', # "left-to-right"
       uniform_title: ['Old Uniform title'],
-      condition_note: 'Old Condition note'
+      condition_note: 'Old Condition note',
+      representative_image: 'Old Representative image',
+      featured_image: 'Old Featured image',
+      tagline: 'Old Tagline'
       # local_rights_statement: ['Old Rights statement local']
     }
   end
@@ -126,9 +129,12 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Foliation').value).to eq 'Old Foliation note'
       expect(find_field('Lyricist').value).to eq 'Old Lyricist'
       expect(find_field('Illuminator').value).to eq 'Old Illuminator'
-      expect(find_field('Masthead image').value).to eq 'Old Masthead Image1'
+      expect(find_field('Masthead').value).to eq 'Old Masthead Parameters'
       expect(find_field('Scribe').value).to eq 'Old Scribe'
       expect(find_field('Condition note').value).to eq 'Old Condition note'
+      expect(find_field('Representative image').value).to eq 'Old Representative image'
+      expect(find_field('Featured image').value).to eq 'Old Featured image'
+      expect(find_field('Tagline').value).to eq 'Old Tagline'
       # expect(find_field('Local rights statement').value).to eq 'Old Rights statement local'
       #
       # # Edit some fields in the form

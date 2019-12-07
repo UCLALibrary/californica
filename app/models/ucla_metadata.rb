@@ -103,7 +103,19 @@ module UclaMetadata
       index.as :stored_searchable, :facetable
     end
 
-    property :masthead_image, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3078'), multiple: false do |index|
+    property :masthead_parameters, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3078'), multiple: false do |index|
+      index.as :stored_sortable
+    end
+
+    property :representative_image, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3079'), multiple: false do |index|
+      index.as :stored_sortable
+    end
+
+    property :featured_image, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3080'), multiple: false do |index|
+      index.as :stored_sortable
+    end
+
+    property :tagline, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3081'), multiple: false do |index|
       index.as :stored_sortable
     end
 
