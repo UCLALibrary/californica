@@ -112,6 +112,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('dimensions', :stored_searchable)
     config.add_show_field solr_name('extent', :stored_searchable)
     config.add_show_field 'foliation_ssi', label: 'Foliation note'
+    config.add_show_field 'masthead_parameters_ssi'
     config.add_show_field solr_name('funding_note', :stored_searchable)
     config.add_show_field solr_name('genre', :stored_searchable)
     config.add_show_field 'iiif_manifest_url_ssi'
@@ -141,6 +142,9 @@ class CatalogController < ApplicationController
     config.add_show_field 'iiif_text_direction_ssi'
     config.add_show_field solr_name('toc', :stored_searchable)
     config.add_show_field solr_name('uniform_title', :stored_searchable)
+    config.add_show_field 'representative_image_ssi'
+    config.add_show_field 'featured_image_ssi'
+    config.add_show_field 'tagline_ssi'
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields

@@ -79,14 +79,18 @@ RSpec.describe CalifornicaMapper do
       "Description.tableOfContents" => "description table of contents", # toc
       "Collation" => "Collation", # collation
       "Foliation note" => "Foliation note", # foliation
-      "Foliation" => "Foliation", # folition
+      "Foliation" => "Foliation", # foliation
       "Illuminator" => "Illuminator", # illuminator
+      "Masthead" => "Masthead", # masthead_parameters
       "Name.illuminator" => "Illuminator name", # illuminator
       "Name.lyricist" => "Lyricist", # lyricist
       "Name.composer" => "Composer", # composer
       "Scribe" => "Scribe", # scribe
       "Name.scribe" => "Scribe", # scribe
-      "Condtion note" => "condition_note" # condtion_note
+      "Condtion note" => "condition_note", # condtion_note
+      "Representative image" => "Representative image", # Representative image
+      "Featured image" => "Featured image", # Featured image
+      "Tagline" => "Tagline" # Tagline
       # "Rights.statementLocal" => "local_statement" # local_rights_statement
     }
   end
@@ -140,6 +144,7 @@ RSpec.describe CalifornicaMapper do
         :location,
         :longitude,
         :lyricist,
+        :masthead_parameters,
         :medium,
         :named_subject,
         :normalized_date,
@@ -164,7 +169,10 @@ RSpec.describe CalifornicaMapper do
         :iiif_text_direction,
         :title,
         :uniform_title,
-        :visibility
+        :visibility,
+        :representative_image,
+        :featured_image,
+        :tagline
       )
     end
   end
