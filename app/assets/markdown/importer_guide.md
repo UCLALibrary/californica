@@ -255,7 +255,7 @@ Accepts "Subject.conceptTopic" and "Subject.descriptiveTopic" as valid synonyms.
 ### Subject.descriptiveTopic
 
 ### Summary
-Accepts "Summary", "Description.abstract", "Description.contents"
+Accepts "Summary", "Description.abstract"
 
 ### Support
 
