@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 # Set up a default admin user, if we are in a Development environment, otherwise, skip
-if Rails.env.development? 
+if Rails.env.development? || Rails.env.test? 
     u = User.find_or_create_by(email: ENV['ADMIN_EMAIL'] || 'admin@example.com')
     u.display_name = "Default Admin"
     u.password = ENV['ADMIN_PASSWORD'] || 'password'
