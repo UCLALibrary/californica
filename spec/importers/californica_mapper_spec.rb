@@ -35,6 +35,7 @@ RSpec.describe CalifornicaMapper do
       "Alternate Identifier.local" => "UCLA-1234b", # local_identifier
       "AltIdentifier.callNo" => "UCLA-1234c", # local_identifier
       "Alt ID.local" => "UCLA-1234d", # local_identifier
+      "Local identifier" => "UCLA-1234e", # local_identifier
       "Coverage.geographic" => "Los Angeles (Calif.)", # location
       "Description.longitude" => "-118.243683", # longitude
       "Format.medium" => "photograph", # medium
@@ -461,6 +462,18 @@ RSpec.describe CalifornicaMapper do
       end
       it 'does not assign a license' do
         expect(mapper.license).to be_nil
+      end
+    end
+  end
+
+  describe '#local_identifier' do
+    context 'when the header is "Local identifier"' do
+      let(:metadata) do
+        { 'Local identifier' => 'UCLA-1234e' }
+      end
+
+      it 'returns the same value' do
+        expect(mapper.local_identifier).to eq ['UCLA-1234e']
       end
     end
   end
