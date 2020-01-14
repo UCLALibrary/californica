@@ -345,6 +345,17 @@ RSpec.describe CalifornicaMapper do
       end
     end
 
+    context 'when the repository column isn\'t name.repository' do
+      let(:metadata) do
+        { "Project Name" => "Another collection",
+          "repository" => "Repo 1|~|Repo 2" }
+      end
+
+      it 'reads the value from the metadata' do
+        expect(mapper.repository).to contain_exactly("Repo 1", "Repo 2")
+      end
+    end
+
     context 'when it contains MaRC relators' do
       let(:metadata) do
         { "Project Name" => "Another Collection",

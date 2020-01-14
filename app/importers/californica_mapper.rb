@@ -59,7 +59,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     preservation_copy: "File Name",
     provenance: ["Provenance", "Description.history"],
     publisher: "Publisher.publisherName",
-    repository: ["Name.repository",
+    repository: ["Repository","repository", "Name.repository",
                  "Personal or Corporate Name.repository"],
     resource_type: "Type.typeOfResource",
     rights_country: "Rights.countryCreation",
