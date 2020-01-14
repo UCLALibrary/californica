@@ -144,6 +144,8 @@ If the title begins with 'DUPLICATE' (case sensitive), then no new record will b
 
 A local identifier. Can be multivalued.
 
+accepts Alternate Identifier.local, AltIdentifier.callNo, AltIdentifier.local, Alt ID.local, Local identifier
+
 Examples:
 
 - `uclamss_686_b6_f24_18` (single value)
@@ -163,7 +165,7 @@ accepts Description.binding
 ### Collation
 
 ### Contidion note
-accepts Contidion note, Description.condition
+accepts Condition note, Description.condition
 
 ### Coverage.geographic
 
