@@ -28,7 +28,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     extent: "Format.extent",
     foliation: ["Foliation note", "Foliation"],
     funding_note: "Description.fundingNote",
-    genre: "Type.genre",
+    genre: ["Type.genre", "Genre"],
     iiif_range: "IIIF Range",
     iiif_viewing_hint: "viewingHint",
     illustrations_note: ["Illustrations note", "Description.illustrations"],

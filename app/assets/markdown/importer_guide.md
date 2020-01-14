@@ -268,6 +268,7 @@ Accepts "Table of Contents" and "Description.tableOfContents" as valid synonyms.
 ### Tagline
 
 ### Type.genre
+Accepts "Type.genre", "Genre"
 
 ### Type.typeOfResource
 

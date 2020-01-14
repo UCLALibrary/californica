@@ -195,6 +195,15 @@ RSpec.describe CalifornicaMapper do
     end
   end
 
+  describe '#genre' do
+    let(:metadata) do
+      { "Genre" => "Journalism" }
+    end
+    it 'maps from the heading "Genre"' do
+      expect(mapper.map_field(:genre)).to eq(['Journalism'])
+    end
+  end
+
   describe '#access_copy' do
     context 'when the column is filled' do
       let(:metadata) { { 'access_copy' => 'https://my.cantaloupe/iiif/2/abcxyz' } }
