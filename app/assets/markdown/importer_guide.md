@@ -223,6 +223,7 @@ accepts Description.illustrations
 ### Name.photographer
 
 ### Name.repository
+accepts "Repository", "Name.repository"
 
 ### Name.scribe
 
