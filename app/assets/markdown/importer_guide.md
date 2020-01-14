@@ -225,6 +225,7 @@ accepts Description.illustrations
 ### Name.scribe
 
 ### Name.subject
+Accepts "Name.subject", "Personal or Corporate Name.subject", "Subject.corporateName", "Subject.personalName", "Subject name",
 
 ### Page layout
 

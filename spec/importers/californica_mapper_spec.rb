@@ -379,6 +379,14 @@ RSpec.describe CalifornicaMapper do
         expect(mapper.named_subject).to contain_exactly("Nagurski, Bronko, 1908-1990", "Olympic Games (8th : 1924 : Paris, France)")
       end
     end
+    context 'when it has a header of "Subject name"' do
+      let(:metadata) do
+        { "Subject name" => "Nagurski, Bronko, $d 1908-1990|~|Olympic Games $n (8th : $d 1924 : $c Paris, France)" }
+      end
+      it 'works the same as other named_subect fields' do
+        expect(mapper.named_subject).to contain_exactly("Nagurski, Bronko, 1908-1990", "Olympic Games (8th : 1924 : Paris, France)")
+      end
+    end
   end
 
   context "UCLA has not agreed to use rightsstatement.org" do
