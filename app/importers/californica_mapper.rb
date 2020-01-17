@@ -68,7 +68,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     rights_holder: ["Personal or Corporate Name.copyrightHolder",
                     "Rights.rightsHolderContact"],
     rights_statement: "Rights.copyrightStatus",
-    # local_rights_statement: "Rights.statementLocal",
+    local_rights_statement: "Rights.statementLocal",
     scribe: "Name.scribe",
     services_contact: "Rights.servicesContact",
     subject: "Subject",

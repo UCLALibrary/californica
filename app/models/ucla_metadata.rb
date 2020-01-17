@@ -163,9 +163,9 @@ module UclaMetadata
       index.as :stored_searchable
     end
 
-    # property :local_rights_statement, predicate: ::RDF::URI.intern('http://purl.org/dc/terms/rights') do |index|
-    #  index.as :symbol
-    # end
+    property :local_rights_statement, predicate: ::RDF::URI.intern('http://purl.org/dc/terms/rights') do |index|
+      index.as :symbol
+    end
 
     property :services_contact, predicate: ::RDF::Vocab::EBUCore.hasRightsContact do |index|
       index.as :displayable

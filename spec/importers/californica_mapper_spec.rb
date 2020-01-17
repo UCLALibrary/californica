@@ -91,8 +91,8 @@ RSpec.describe CalifornicaMapper do
       "Condtion note" => "condition_note", # condtion_note
       "Representative image" => "Representative image", # Representative image
       "Featured image" => "Featured image", # Featured image
-      "Tagline" => "Tagline" # Tagline
-      # "Rights.statementLocal" => "local_statement" # local_rights_statement
+      "Tagline" => "Tagline", # Tagline
+      "Rights.statementLocal" => "local_rights_statement" # local_rights_statement
     }
   end
 
@@ -160,7 +160,7 @@ RSpec.describe CalifornicaMapper do
         :rights_country,
         :rights_holder,
         :rights_statement,
-        # :local_rights_statement,
+        :local_rights_statement,
         :scribe,
         :services_contact,
         :subject,
@@ -193,6 +193,15 @@ RSpec.describe CalifornicaMapper do
     it 'maps from a list of source fields' do
       stub_const('CalifornicaMapper::CALIFORNICA_TERMS_MAP', { 'multi_source' => ['Source.one', 'Source.two'] })
       expect(mapper.map_field('multi_source')).to eq(['ecolog', 'next', 'nihilism'])
+    end
+  end
+
+  describe '#local_rights_statement' do
+    let(:metadata) do
+      { "Rights.statementLocal" => "This is a local rights statemment" }
+    end
+    it 'maps from the heading "Rights.statementLocal"' do
+      expect(mapper.map_field(:local_rights_statement)).to eq(['This is a local rights statemment'])
     end
   end
 
