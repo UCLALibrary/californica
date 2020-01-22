@@ -11,6 +11,7 @@ RSpec.describe Hyrax::ChildWorkForm do
       :access_copy,
       :architect,
       :caption,
+      :commentator,
       :dimensions,
       :extent,
       :funding_note,
@@ -25,7 +26,9 @@ RSpec.describe Hyrax::ChildWorkForm do
       :preservation_copy,
       :repository,
       :rights_country,
-      :rights_holder
+      :rights_holder,
+      :subject_temporal,
+      :translator
     )
   end
 

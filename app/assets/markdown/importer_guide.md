@@ -15,6 +15,7 @@
 - [Author](#author)
 - [Binding note](#binding_note)
 - [Collation](#collation)
+- [Commentator](#commentator)
 - [Condition note](#condition_note)
 - [Coverage.geographic](#coverage.geographic)
 - [Date.creation](#date.creation)
@@ -57,11 +58,13 @@
 - [Subject](#subject)
 - [Subject.conceptTopic](#subject.concept_topic)
 - [Subject.descriptiveTopic](#subject.descriptive_topic)
+- [Subject temporal](#subject_temporal)
 - [Summary](#summary)
 - [Support](#support)
 - [Tagline](#tagline)
 - [IIIF Text direction](#iiif_text_direction)
 - [Table of Contents](#table-of-contents)
+- [Translator](#translator)
 - [Type.genre](#type.genre)
 - [Type.typeOfResource](#type.typeofresource)
 - [Visibility](#visibility)
@@ -164,6 +167,9 @@ accepts Description.binding
 
 ### Collation
 
+### Commentator
+accepts Name.commentator
+
 ### Contidion note
 accepts Condition note, Description.condition
 
@@ -253,6 +259,8 @@ Accepts "Provenance", "Description.history"
 
 ### Subject
 
+### Subject temporal
+
 ### Subject topic
 Accepts "Subject.conceptTopic" and "Subject.descriptiveTopic" as valid synonyms.
 
@@ -269,6 +277,9 @@ Accepts "Summary", "Description.abstract"
 Accepts "Table of Contents" and "Description.tableOfContents" as valid synonyms.
 
 ### Tagline
+
+### Translator
+Accepts Name.translator as valid synonyms.
 
 ### Type.genre
 Accepts "Type.genre", "Genre"

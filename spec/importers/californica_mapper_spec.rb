@@ -92,7 +92,12 @@ RSpec.describe CalifornicaMapper do
       "Representative image" => "Representative image", # Representative image
       "Featured image" => "Featured image", # Featured image
       "Tagline" => "Tagline", # Tagline
-      "Rights.statementLocal" => "local_rights_statement" # local_rights_statement
+      "Rights.statementLocal" => "local_rights_statement", # local_rights_statement
+      "Commentator" => "commentator old", # commentator
+      "Name.commentator" => "name commentator old", # commentator
+      "Subject temporal" => "temporal old", # subject_temporal
+      "Translator" => "translator old", # translator
+      "Name.translator" => "name translator old" # translator
     }
   end
 
@@ -127,6 +132,7 @@ RSpec.describe CalifornicaMapper do
         :binding_note,
         :caption,
         :collation,
+        :commentator,
         :composer,
         :condition_note,
         :date_created,
@@ -164,9 +170,11 @@ RSpec.describe CalifornicaMapper do
         :scribe,
         :services_contact,
         :subject,
+        :subject_temporal,
         :summary,
         :support,
         :toc,
+        :translator,
         :iiif_text_direction,
         :title,
         :uniform_title,

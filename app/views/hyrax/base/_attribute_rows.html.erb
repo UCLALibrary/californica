@@ -7,6 +7,7 @@
 <%= presenter.attribute_to_html(:based_near_label, html_dl: true) %>
 <%= presenter.attribute_to_html(:caption, html_dl: true) %>
 <%= presenter.attribute_to_html(:collation, html_dl: true) %>
+<%= presenter.attribute_to_html(:commentator, html_dl: true) %>
 <%= presenter.attribute_to_html(:condition_note, html_dl: true) %>
 <%= presenter.attribute_to_html(:composer, html_dl: true) %>
 <%= presenter.attribute_to_html(:contributor, render_as: :faceted, html_dl: true) %>
@@ -54,9 +55,11 @@
 <%= presenter.attribute_to_html(:scribe, html_dl: true) %>
 <%= presenter.attribute_to_html(:source, html_dl: true) %>
 <%= presenter.attribute_to_html(:subject, render_as: :faceted, html_dl: true) %>
+<%= presenter.attribute_to_html(:subject_temporal, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:subject_topic, html_dl: true) %>
 <%= presenter.attribute_to_html(:summary, html_dl: true) %>
 <%= presenter.attribute_to_html(:support, html_dl: true) %>
 <%= presenter.attribute_to_html(:tagline, html_dl: true) %>
+<%= presenter.attribute_to_html(:translator, html_dl: true) %>
 <%= presenter.attribute_to_html(:toc, html_dl: true) %>
 <%= presenter.attribute_to_html(:uniform_title, html_dl: true) %>

@@ -58,6 +58,10 @@ class SolrDocument
     self[:collation_ssi]
   end
 
+  def commentator
+    self[:commentator_tesim]
+  end
+
   def composer
     self[:composer_tesim]
   end
@@ -206,6 +210,10 @@ class SolrDocument
     self[:services_contact_ssm]
   end
 
+  def subject_temporal
+    self[:subject_temporal_tesim]
+  end
+
   def subject_topic
     self[:subject_topic_tesim]
   end
@@ -224,6 +232,10 @@ class SolrDocument
 
   def iiif_viewing_hint
     self[:iiif_viewing_hint_ssi]
+  end
+
+  def translator
+    self[:translator_tesim]
   end
 
   def toc

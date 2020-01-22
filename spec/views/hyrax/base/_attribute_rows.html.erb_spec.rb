@@ -41,7 +41,10 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
              support: ['support'],
              iiif_text_direction: 'iiif_text_direction',
              uniform_title: ['Old Uniform title'],
-             condition_note: 'condition_note')
+             condition_note: 'condition_note',
+             commentator: ['Old Commentator'],
+             subject_temporal: ['Old Subject temporal'],
+             translator: ['Old Translator'])
   end
 
   before do
@@ -128,6 +131,15 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   end
   it 'has condition_note' do
     expect(page).to match(/condition_note/)
+  end
+  it 'has commentator' do
+    expect(page).to match(/commentator/)
+  end
+  it 'has subject_temporal' do
+    expect(page).to match(/subject_temporal/)
+  end
+  it 'has translator' do
+    expect(page).to match(/translator/)
   end
   #  it 'has local_rights_statement' do
   #    expect(page).to match(/local_rights_statement/)

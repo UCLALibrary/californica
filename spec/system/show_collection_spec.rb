@@ -61,7 +61,10 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       condition_note: 'Old Condition note',
       representative_image: 'Old Representative image',
       featured_image: 'Old Featured image',
-      tagline: 'Old Tagline'
+      tagline: 'Old Tagline',
+      commentator: ['Old Commentator'],
+      subject_temporal: ['Old Subject temporal'],
+      translator: ['Old Translator']
       # local_rights_statement: ['Old Rights local statement']
     }
   end

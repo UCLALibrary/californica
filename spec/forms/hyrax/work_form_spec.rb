@@ -13,6 +13,7 @@ RSpec.describe Hyrax::WorkForm do
       :author,
       :binding_note,
       :caption,
+      :commentator,
       :collation,
       :composer,
       :condition_note,
@@ -47,10 +48,12 @@ RSpec.describe Hyrax::WorkForm do
       # :local_rights_statement,
       :scribe,
       :subject_topic,
+      :subject_temporal,
       :summary,
       :support,
       :tagline,
       :toc,
+      :translator,
       :iiif_text_direction,
       :uniform_title
     )

@@ -15,6 +15,7 @@ module Hyrax
       :caption,
       :collation,
       :composer,
+      :commentator,
       :condition_note,
       :dimensions,
       :extent,
@@ -49,10 +50,12 @@ module Hyrax
       # :local_rights_statement,
       :scribe,
       :subject_topic,
+      :subject_temporal,
       :summary,
       :support,
       :tagline,
       :toc,
+      :translator,
       :iiif_text_direction,
       :uniform_title
     ]

@@ -48,6 +48,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('contributor', :facetable), label: 'Contributor', limit: 5
     config.add_facet_field solr_name('keyword', :facetable), limit: 5
     config.add_facet_field solr_name('subject', :facetable), limit: 5
+    config.add_facet_field solr_name('subject_temporal', :facetable), label: 'Subject temporal', limit: 5
     config.add_facet_field solr_name('human_readable_language', :facetable), label: 'Language', limit: 5
     config.add_facet_field solr_name('file_format', :facetable), limit: 5
     config.add_facet_field solr_name('member_of_collections', :symbol), limit: 5, label: 'Collection'
@@ -107,6 +108,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('caption', :stored_searchable)
     config.add_show_field 'collation_ssi'
     config.add_show_field 'composer_tesim'
+    config.add_show_field 'commentator_tesim'
     config.add_show_field 'condition_note_ssi'
     config.add_show_field solr_name('binding_note', :stored_sortable)
     config.add_show_field solr_name('dimensions', :stored_searchable)
@@ -136,11 +138,13 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('rights_holder', :stored_searchable)
     # config.add_show_field 'local_rights_statement_ssim'
     config.add_show_field 'scribe_tesim'
+    config.add_show_field 'subject_temporal_tesim'
     config.add_show_field solr_name('subject_topic', :stored_searchable)
     config.add_show_field solr_name('support', :stored_searchable)
     config.add_show_field solr_name('summary', :stored_searchable)
     config.add_show_field 'iiif_text_direction_ssi'
     config.add_show_field solr_name('toc', :stored_searchable)
+    config.add_show_field 'translator_tesim'
     config.add_show_field solr_name('uniform_title', :stored_searchable)
     config.add_show_field 'representative_image_ssi'
     config.add_show_field 'featured_image_ssi'
@@ -218,6 +222,14 @@ class CatalogController < ApplicationController
 
     config.add_search_field('collation') do |field|
       solr_name = solr_name('collation', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('commentator') do |field|
+      solr_name = solr_name('commentator', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
@@ -315,6 +327,14 @@ class CatalogController < ApplicationController
 
     config.add_search_field('subject') do |field|
       solr_name = solr_name('subject', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('subject_temporal') do |field|
+      solr_name = solr_name('subject_temporal', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
@@ -419,6 +439,14 @@ class CatalogController < ApplicationController
 
     config.add_search_field('uniform_title') do |field|
       solr_name = solr_name('uniform_title', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('translator') do |field|
+      solr_name = solr_name('translator', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
