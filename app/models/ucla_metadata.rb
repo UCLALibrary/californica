@@ -43,6 +43,10 @@ module UclaMetadata
       index.as :stored_searchable, :facetable
     end
 
+    property :creator, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/cre') do |index|
+      index.as :stored_searchable
+    end
+
     property :dimensions, predicate: ::RDF::Vocab::MODS.physicalExtent do |index|
       index.as :stored_searchable, :facetable
     end

@@ -86,6 +86,7 @@ RSpec.describe CalifornicaMapper do
       "Name.illuminator" => "Illuminator name", # illuminator
       "Name.lyricist" => "Lyricist", # lyricist
       "Name.composer" => "Composer", # composer
+      "Name.creator" => "Creator", # creator
       "Scribe" => "Scribe", # scribe
       "Name.scribe" => "Scribe", # scribe
       "Condtion note" => "condition_note", # condtion_note
@@ -128,6 +129,7 @@ RSpec.describe CalifornicaMapper do
         :caption,
         :collation,
         :composer,
+        :creator,
         :condition_note,
         :date_created,
         :description,
