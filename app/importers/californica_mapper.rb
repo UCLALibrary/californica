@@ -21,6 +21,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     collation: "Collation",
     condition_note: ["Condition note", "Description.condition"],
     composer: "Name.composer",
+    creator: ["Name.creator"],
     date_created: "Date.creation",
     description: "Description.note",
     dimensions: "Format.dimensions",
