@@ -84,6 +84,11 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     # expect(page).to have_content "Amat-Mamu" # scribe
     expect(page).to have_content "Sin-liqe-unninni" # scribe
     expect(page).to have_content "condition_note" # condtion_note
+    expect(page).to have_content "commentator_1" # commentator
+    expect(page).to have_content "commentator_2" # commentator
+    expect(page).to have_content "translator_1" # translator
+    expect(page).to have_content "translator_2" # translator
+    expect(page).to have_content "subject_temporal_1" # subject_temporal
     # expect(page).to have_content "local_statement" # local_rights_statement
 
     # displays expected fields on search results page

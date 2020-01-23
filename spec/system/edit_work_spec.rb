@@ -64,7 +64,10 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       masthead_parameters: 'Old Masthead Parameters',
       representative_image: 'Old Representative image',
       featured_image: 'Old Featured image',
-      tagline: 'Old Tagline'
+      tagline: 'Old Tagline',
+      commentator: ['Old Commentator'],
+      subject_temporal: ['Old Subject temporal'],
+      translator: ['Old Translator']
       # local_rights_statement: ['Old Rights statement local']
     }
   end
@@ -131,6 +134,9 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Representative image').value).to eq 'Old Representative image'
       expect(find_field('Featured image').value).to eq 'Old Featured image'
       expect(find_field('Tagline').value).to eq 'Old Tagline'
+      expect(find_field('Commentator').value).to eq 'Old Commentator'
+      expect(find_field('Subject temporal').value).to eq 'Old Subject temporal'
+      expect(find_field('Translator').value).to eq 'Old Translator'
       # expect(find_field('Local rights statement').value).to eq 'Old Rights statement local'
 
       # Edit some fields in the form

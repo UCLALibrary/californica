@@ -146,14 +146,6 @@ RSpec.describe 'Search the catalog', :clean, type: :system, js: true do
       expect(page).to     have_link('Orange Carrot')
     end
 
-    # Search by photographer
-    fill_in 'search-field-header', with: 'Sherlock'
-    click_on 'search-submit-header'
-    within '#search-results' do
-      expect(page).to     have_link('Yellow Banana')
-      expect(page).to_not have_link('Orange Carrot')
-    end
-
     # Search by ark
     fill_in 'search-field-header', with: 'ark:/abc/123456'
     click_on 'search-submit-header'

@@ -39,6 +39,10 @@ module UclaMetadata
       index.as :stored_sortable
     end
 
+    property :commentator, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/cmm') do |index|
+      index.as :stored_searchable, :facetable
+    end
+
     property :composer, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/cmp') do |index|
       index.as :stored_searchable, :facetable
     end
@@ -179,6 +183,10 @@ module UclaMetadata
       index.as :stored_searchable
     end
 
+    property :subject_temporal, predicate: ::RDF::URI.intern('http://www.loc.gov/mods/rdf/v1#subjectTemporal') do |index|
+      index.as :stored_searchable
+    end
+
     property :summary, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/Summary') do |index|
       index.as :stored_searchable
     end
@@ -196,6 +204,10 @@ module UclaMetadata
     end
 
     property :toc, predicate: ::RDF::URI.intern('http://purl.org/dc/terms/tableOfContents') do |index|
+      index.as :stored_searchable
+    end
+
+    property :translator, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/trl') do |index|
       index.as :stored_searchable
     end
 

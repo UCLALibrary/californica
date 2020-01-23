@@ -21,6 +21,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     collation: "Collation",
     condition_note: ["Condition note", "Description.condition"],
     composer: "Name.composer",
+    commentator: ["Commentator", "Name.commentator"],
     date_created: "Date.creation",
     description: "Description.note",
     dimensions: "Format.dimensions",
@@ -77,7 +78,9 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     subject_topic: ["Subject topic", "Subject.conceptTopic", "Subject.descriptiveTopic"],
     summary: ["Summary", "Description.abstract"], # Removed Description.contents - Map this CSV colum name to "Contents note" https://jira.library.ucla.edu/browse/CAL-781
     support: "Support",
+    subject_temporal: "Subject temporal",
     iiif_text_direction: "Text direction",
+    translator: ["Translator", "Name.translator"],
     title: "Title",
     toc: ["Table of Contents", "Description.tableOfContents"],
     uniform_title: "AltTitle.uniform"

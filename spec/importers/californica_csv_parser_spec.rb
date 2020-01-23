@@ -117,7 +117,12 @@ RSpec.describe CalifornicaCsvParser do
        'Masthead',
        'Representative image',
        'Featured image',
-       'Tagline']
+       'Tagline',
+       'Commentator',
+       'Name.commentator',
+       'Translator',
+       'Name.translator',
+       'Subject temporal']
     end
 
     it 'knows the headers for this CSV file' do
