@@ -140,7 +140,7 @@ module UclaMetadata
     end
 
     property :place_of_origin, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/prp.html') do |index|
-      index.as :stored_searchable
+      index.as :stored_searchable, :facetable
     end
 
     property :preservation_copy, predicate: ::RDF::URI.intern('https://pcdm.org/models#hasFile'), multiple: false do |index|
@@ -184,7 +184,7 @@ module UclaMetadata
     end
 
     property :support, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/BaseMaterial') do |index|
-      index.as :stored_searchable
+      index.as :stored_searchable, :facetable
     end
 
     property :iiif_text_direction, predicate: ::RDF::URI.intern('http://iiif.io/api/presentation/2#viewingDirection'), multiple: false do |index|
