@@ -30,6 +30,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     foliation: ["Foliation note", "Foliation"],
     funding_note: "Description.fundingNote",
     genre: ["Type.genre", "Genre"],
+    iiif_manifest_url: "IIIF Manifest URL",
     iiif_range: "IIIF Range",
     iiif_viewing_hint: "viewingHint",
     illustrations_note: ["Illustrations note", "Description.illustrations"],
@@ -174,6 +175,10 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
   def foliation
     map_field(:foliation).to_a.first
+  end
+
+  def iiif_manifest_url
+    map_field(:iiif_manifest_url).to_a.first
   end
 
   def masthead_parameters
