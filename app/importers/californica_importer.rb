@@ -44,7 +44,7 @@ class CalifornicaImporter
   def finalize_import
     parser.order_child_works
     parser.reindex_collections
-    parser.build_iiif_manifests
+    # parser.build_iiif_manifests
     @csv_import.csv_rows.where(status: 'pending finalization').update_all(status: 'complete')
   end
 

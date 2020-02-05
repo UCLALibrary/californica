@@ -26,10 +26,10 @@ RSpec.describe CalifornicaImporter, :clean, inline_jobs: true do
       expect(importer.parser).to have_received(:reindex_collections)
     end
 
-    it 'builds IIIF manifests' do
-      importer.finalize_import
-      expect(importer.parser).to have_received(:build_iiif_manifests)
-    end
+    # it 'builds IIIF manifests' do
+    #   importer.finalize_import
+    #   expect(importer.parser).to have_received(:build_iiif_manifests)
+    # end
   end
 
   describe '#log_start' do
