@@ -20,6 +20,7 @@ RSpec.describe CalifornicaMapper do
       "Binding note" => "binding note", # binding_note
       "Description.binding" => "description binding", # binding_note
       "Name.architect" => "Imhotep", # architect
+      "IIIF Manifest URL" => "http://test.url/iiif/manifest",
       "Item ARK" => "ark:/21198/zz0002nq4w", # ark
       "Description.caption" => "This example does not have a caption.", # caption
       "Date.creation" => "July 4th 1947", # date_created
@@ -143,6 +144,7 @@ RSpec.describe CalifornicaMapper do
         :foliation,
         :funding_note,
         :genre,
+        :iiif_manifest_url,
         :iiif_viewing_hint,
         :illuminator,
         :language,
@@ -240,6 +242,12 @@ RSpec.describe CalifornicaMapper do
       it 'uses preservation_copy' do
         expect(mapper.access_copy).to eq 'Masters/dlmasters/abc/xyz.tif'
       end
+    end
+  end
+
+  describe '#iiif_manifest_url' do
+    it "maps to a single-valued field" do
+      expect(mapper.iiif_manifest_url).to eq('http://test.url/iiif/manifest')
     end
   end
 
