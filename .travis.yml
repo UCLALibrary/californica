@@ -21,6 +21,9 @@ env:
   global:
     - DATABASE_USERNAME=travis
     - IIIF_SERVER_URL='http://test.url/'
+    - JENKINS_HOST=jenkins-devsupport.library.ucla.edu
+    - JENKINS_USER="${TRAVIS_JENKINS_USER}"
+    - JENKINS_API_CALIFORNICA="${TRAVIS_JENKINS_API_CALIFORNICA}"
 before_install:
   - gem update --system
   - gem install bundler:1.17.3
@@ -35,9 +38,20 @@ services:
   - mysql
 after_success:
 - |
+  # A canary to allow verification that our firewall allows Travis in
+  curl https://api.ipify.org; echo
+
+  BASE_URL="https://$JENKINS_USER@$JENKINS_HOST"
+  JOB=job/DeployCalifornica
+  API="$JENKINS_API_CALIFORNICA"
+
   if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_PULL_REQUEST == 'false' ]]; then
-    curl "$JENKINS_DEPLOY_URL"
+    BASE_QUERY="buildWithParameters?token=$API&GIT_BRANCH=$TRAVIS_BRANCH&cause=Travis+Build"
+    HOST=t-w-californica01.library.ucla.edu
+    curl "$BASE_URL/$JOB/$BASE_QUERY&DEPLOY_HOST=$HOST"
   fi
   if [[ $TRAVIS_TAG != "" ]]; then
-    curl "$JENKINS_TAG_DEPLOY_URL"
+    BASE_QUERY="buildWithParameters?token=$API&GIT_BRANCH=$TRAVIS_TAG&cause=Travis+Build+With+Tag"
+    HOST=s-w-californica01.library.ucla.edu
+    curl "$BASE_URL/$JOB/$BASE_QUERY&DEPLOY_HOST=$HOST"
   fi
