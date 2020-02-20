@@ -11,7 +11,6 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   let(:presenter)     { Hyrax::WorkPresenter.new(solr_document, ability) }
   let(:solr_document) { SolrDocument.new(work.to_solr) }
   let(:work)          do
-    # local_rights_statement: ['local_statement'])
     Work.new(title: ['title'],
              ark: 'ark:/abcde/1234567',
              author: ['author'],
@@ -45,6 +44,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
              commentator: ['Old Commentator'],
              subject_temporal: ['Old Subject temporal'],
              translator: ['Old Translator'])
+    # local_rights_statement: ['local_statement'])
   end
 
   before do
@@ -141,7 +141,8 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   it 'has translator' do
     expect(page).to match(/translator/)
   end
-  #  it 'has local_rights_statement' do
-  #    expect(page).to match(/local_rights_statement/)
-  #  end
+  # This invokes License renderer from hyrax gem
+  # it 'has local_rights_statement' do
+  # expect(page).to match(/local_rights_statement/)
+  # end
 end

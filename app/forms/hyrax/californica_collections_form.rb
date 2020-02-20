@@ -41,7 +41,7 @@ module Hyrax
       :resource_type,
       :rights_country,
       :rights_holder,
-      # :local_rights_statement,
+      # :local_rights_statement, # This invokes License renderer from hyrax gem
       :services_contact,
       :scribe,
       :subject_temporal,
@@ -111,7 +111,7 @@ module Hyrax
         :rights_country,
         :rights_holder,
         :services_contact,
-        # :local_rights_statement,
+        # :local_rights_statement, # This invokes License renderer from hyrax gem
         :subject,
         :subject_temporal,
         :subject_topic,

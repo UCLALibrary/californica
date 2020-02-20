@@ -198,8 +198,9 @@ class SolrDocument
     self[:rights_holder_tesim]
   end
 
+  # This invokes License renderer from hyrax gem
   # def local_rights_statement
-  #   self[:local_rights_statement_ssim]
+  # self[:local_rights_statement_ssim]
   # end
 
   def scribe

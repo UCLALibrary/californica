@@ -45,7 +45,7 @@ RSpec.describe Hyrax::WorkForm do
       :representative_image,
       :rights_country,
       :rights_holder,
-      # :local_rights_statement,
+      # :local_rights_statement, # This invokes License renderer from hyrax gem
       :scribe,
       :subject_topic,
       :subject_temporal,
