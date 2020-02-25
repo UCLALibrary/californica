@@ -67,8 +67,8 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       tagline: 'Old Tagline',
       commentator: ['Old Commentator'],
       subject_temporal: ['Old Subject temporal'],
-      translator: ['Old Translator']
-      # local_rights_statement: ['Old Rights statement local']
+      translator: ['Old Translator'],
+      # local_rights_statement: ['Old Rights statement local'] # This invokes License renderer from hyrax gem
     }
   end
 

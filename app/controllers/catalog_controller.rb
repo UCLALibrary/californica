@@ -136,7 +136,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('repository', :stored_searchable)
     config.add_show_field solr_name('rights_country', :stored_searchable)
     config.add_show_field solr_name('rights_holder', :stored_searchable)
-    # config.add_show_field 'local_rights_statement_ssim'
+    # config.add_show_field 'local_rights_statement_ssim' # This invokes License renderer from hyrax gem
     config.add_show_field 'scribe_tesim'
     config.add_show_field 'subject_temporal_tesim'
     config.add_show_field solr_name('subject_topic', :stored_searchable)

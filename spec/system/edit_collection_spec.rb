@@ -67,7 +67,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       commentator: ['Old Commentator'],
       subject_temporal: ['Old Subject temporal'],
       translator: ['Old Translator']
-      # local_rights_statement: ['Old Rights statement local']
+      # local_rights_statement: ['Old Rights statement local'] # This invokes License renderer from hyrax gem
     }
   end
 

@@ -72,7 +72,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
                     "Rights.rightsHolderContact",
                     "Rights.rightsHolderName"],
     rights_statement: "Rights.copyrightStatus",
-    local_rights_statement: "Rights.statementLocal",
+    # local_rights_statement: "Rights.statementLocal", # This invokes License renderer from hyrax gem
     scribe: "Name.scribe",
     services_contact: "Rights.servicesContact",
     subject: "Subject",
