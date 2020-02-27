@@ -120,6 +120,32 @@
         <filter class="solr.TrimFilterFactory"/>
       </analyzer>
     </fieldType>
+
+
+    <fieldType name="alphaNumericSort" class="solr.TextField" sortMissingLast="false" omitNorms="true">
+      <analyzer>
+        <!-- KeywordTokenizer does no actual tokenizing, so the entire
+            input string is preserved as a single token -->
+        <tokenizer class="solr.KeywordTokenizerFactory"/>
+        <!-- The LowerCase TokenFilter does what you expect, which can be
+            when you want your sorting to be case insensitive -->
+        <filter class="solr.LowerCaseFilterFactory" />
+        <!-- The TrimFilter removes any leading or trailing whitespace -->
+        <filter class="solr.TrimFilterFactory" />
+        <!-- Left-pad numbers with zeroes -->
+        <filter class="solr.PatternReplaceFilterFactory"
+                pattern="(\d+)" replacement="00000$1" replace="all"
+        />
+        <!-- Left-trim zeroes to produce 6 digit numbers -->
+        <filter class="solr.PatternReplaceFilterFactory"
+                pattern="0*([0-9]{6,})" replacement="$1" replace="all"
+        />
+        <!-- Remove all but alphanumeric characters -->
+        <filter class="solr.PatternReplaceFilterFactory"
+                pattern="([^a-z0-9])" replacement="" replace="all"
+        />
+      </analyzer>
+    </fieldType>
         
     <!-- single token analyzed text, for sorting.  Punctuation is significant. -->
     <fieldtype name="alphaSort" class="solr.TextField" sortMissingLast="true" omitNorms="true">
@@ -187,7 +213,7 @@
     
     <field name="lat" type="tdouble" stored="true" indexed="true" multiValued="false"/>
     <field name="lng" type="tdouble" stored="true" indexed="true" multiValued="false"/>
-
+    <field name="title_alpha_numeric_ssort" type="alphaNumericSort" indexed="true" stored="false" multiValued="false"/>
     <!-- NOTE:  not all possible Solr field types are represented in the dynamic fields -->
 
     <!-- text (_t...) -->
@@ -338,7 +364,7 @@
         is added to the index.  It's used either to index the same field differently,
         or to add multiple fields to the same field for easier/faster searching.  -->
    <!-- Copy Fields -->
-
+   <copyField source="sort_title_ssort" dest="title_alpha_numeric_ssort" />
    <!-- Above, multiple source fields are copied to the [text] field.
     Another way to map multiple source fields to the same
     destination field is to use the dynamic field syntax.
