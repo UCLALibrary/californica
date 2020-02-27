@@ -4,7 +4,7 @@
 
 ---
 
-#### Californica is designed as a management interface for UCLA's digital library content.
+#### Californica is designed as a management interface for UCLA's digital library content
 
 [Eschscholzia californica, Copa De Oro](https://en.wikipedia.org/wiki/Eschscholzia_californica) The [state flower of California](http://www.parks.ca.gov/?page_id=627), the California poppy is a showy perennial wildflower.
 
