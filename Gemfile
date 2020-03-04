@@ -27,7 +27,7 @@ gem 'loofah', '>= 2.2.3'
 gem 'mysql2', '~> 0.5'
 gem 'pkg-config', '~> 1.1'
 # Use Puma as the app server
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 3.12'
 gem 'rack', '>= 2.0.6'
 gem 'rails', '~> 5.1.6'
 gem 'redcarpet'
