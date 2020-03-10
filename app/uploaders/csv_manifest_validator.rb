@@ -199,10 +199,12 @@ private
     controlled_column_numbers = CONTROLLED_VOCABULARIES.keys.map { |header| @headers.find_index(header) }.compact
     object_type_column = @headers.find_index('Object Type')
     row_warnings = Hash.new { |hash, key| hash[key] = [] }
+    row_errors = Hash.new { |hash, key| hash[key] = [] }
 
     @rows.each_with_index do |row, i|
       @mapper.metadata = row
       this_row_warnings = []
+      this_row_errors = []
 
       # If there's no "Object Type" header, assume everything's a Work
       # so we so we can validate other required fields
@@ -223,13 +225,15 @@ private
       # Row missing reqired field values
       required_column_numbers.each_with_index do |column_number, j|
         field_label, types_that_require = REQUIRED_VALUES[j]
+        next this_row_errors << "Rows missing required value for \"#{REQUIRED_VALUES[j][0]}\".  Your spreadsheet must have this value." if field_label == 'Title' && row[column_number].blank?
+        next this_row_errors << "Rows missing required value for \"#{REQUIRED_VALUES[j][0]}\".  Your spreadsheet must have this value." if field_label == 'Item ARK' && row[column_number].blank?
         next unless types_that_require.include?(object_type)
         next unless row[column_number].blank?
         this_row_warnings << if field_label == 'Rights.copyrightStatus'
                                'Rows missing "Rights.copyrightStatus" will have the value set to "unknown".'
                              elsif field_label == 'File Name'
                                'Rows missing "File Name" will import metadata-only.'
-                             else
+                             elsif field_label != 'Title' || field_label != 'Item ARK'
                                "Rows missing \"#{REQUIRED_VALUES[j][0]}\" cannot be imported."
                              end
       end
@@ -253,11 +257,21 @@ private
         # +1 for 0-based indexing, +1 for skipped headers
         row_warnings[warning] << i + 2
       end
+
+      this_row_errors.each do |row_error|
+        # +1 for 0-based indexing, +1 for skipped headers
+        row_errors[row_error] << i + 2
+      end
     end
 
     row_warnings.each do |warning, rows|
       rows = rows[0, N_ROWS_TO_WARN] + ['...'] if rows.length > N_ROWS_TO_WARN
       @warnings << "Row #{rows.join(', ')}: #{warning}"
+    end
+
+    row_errors.each do |row_error, rows|
+      rows = rows[0, N_ROWS_TO_WARN] + ['...'] if rows.length > N_ROWS_TO_WARN
+      @errors << "Row #{rows.join(', ')}: #{row_error}"
     end
   end
 end
