@@ -182,6 +182,10 @@ private
   # Warn the user if we find any unexpected headers.
   def unrecognized_headers
     extra_headers = @headers - valid_headers
+    skip_headers = ['Item Status ID', 'Item Status', 'Duplicate', 'Delete in Title']
+    extra_headers = extra_headers.reject do |header|
+      skip_headers.include?(header)
+    end
     extra_headers.each do |header|
       @warnings << "The field name \"#{header}\" is not supported.  This field will be ignored, and the metadata for this field will not be imported."
     end
