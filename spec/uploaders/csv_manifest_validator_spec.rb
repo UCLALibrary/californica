@@ -75,12 +75,20 @@ RSpec.describe CsvManifestValidator, type: :model do
     it 'has warnings' do
       validator.validate
       expect(validator.warnings).to contain_exactly(
-        'Row 3: Rows missing "Item ARK" cannot be imported.',
-        'Row 4: Rows missing "Title" cannot be imported.',
+        # 'Row 3: Rows missing "Item ARK" cannot be imported.',
+        # 'Row 4: Rows missing "Title" cannot be imported.',
         'Row 5: Rows missing "Object Type" cannot be imported.',
         'Row 6: Rows missing "Parent ARK" cannot be imported.',
         'Row 7: Rows missing "Rights.copyrightStatus" will have the value set to "unknown".',
         'Row 8: Rows missing "File Name" will import metadata-only.'
+      )
+    end
+
+    it 'has errors' do
+      validator.validate
+      expect(validator.errors).to contain_exactly(
+        'Row 3: Rows missing required value for "Item ARK".  Your spreadsheet must have this value.',
+        'Row 4: Rows missing required value for "Title".  Your spreadsheet must have this value.'
       )
     end
   end

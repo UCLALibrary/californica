@@ -6,18 +6,27 @@
     <%= File.basename(@csv_import.manifest.to_s) %>
   <% end %>
 </div>
-
+<% if @csv_import.manifest_errors.empty? %>
 <%= render 'record_count', locals: { csv_import: @csv_import } %>
-
-<% unless @csv_import.manifest_errors.empty? %>
-  <div id='csv_errors'>
-    The CSV file has the following errors:
-    <ul>
-      <% @csv_import.manifest_errors.each do |error| %>
-        <li> <%= error %> </li>
-      <% end %>
-    </ul>
+<% else %>
+<div class="row">
+  <div class="col-md-8">
+    <div class="alert alert-danger">
+      <p> This import cannot proceed. </p>
+      <div id='csv_errors'>
+        The CSV file has the following errors:
+        <ul>
+          <% @csv_import.manifest_errors.each do |error| %>
+            <li> <%= error %> </li>
+          <% end %>
+        </ul>
+      </div>
+      <p> You will need to correct the errors with the CSV file before you can continue. </p>
+      <%= link_to 'Try Again', new_csv_import_path %>
+    </div>
   </div>
+</div>
+
 <% end %>
 
 <% unless @csv_import.manifest_warnings.empty? %>
@@ -35,7 +44,4 @@
   <%= link_to 'Cancel', new_csv_import_path %>
   <br />
   <%= render 'start_import_form', csv_import: @csv_import %>
-<% else %>
-  <p> You will need to correct the errors with the CSV file before you can continue. </p>
-  <%= link_to 'Try Again', new_csv_import_path %>
 <% end %>
