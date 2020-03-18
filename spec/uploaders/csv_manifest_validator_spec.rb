@@ -88,7 +88,8 @@ RSpec.describe CsvManifestValidator, type: :model do
       validator.validate
       expect(validator.errors).to contain_exactly(
         'Row 3: Rows missing required value for "Item ARK".  Your spreadsheet must have this value.',
-        'Row 4: Rows missing required value for "Title".  Your spreadsheet must have this value.'
+        'Row 4: Rows missing required value for "Title".  Your spreadsheet must have this value.',
+        'Row 4, 5, 6, 7, 8: Rows missing required value for "IIIF Manifest URL".  Your spreadsheet must have this value.'
       )
     end
   end
