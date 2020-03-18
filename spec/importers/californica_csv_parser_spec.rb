@@ -122,7 +122,9 @@ RSpec.describe CalifornicaCsvParser do
        'Name.commentator',
        'Translator',
        'Name.translator',
-       'Subject temporal']
+       'Subject temporal',
+       'Opac url',
+       'Subject geographic']
     end
 
     it 'knows the headers for this CSV file' do
