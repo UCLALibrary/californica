@@ -65,6 +65,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "Place of origin" # place_of_origin
     expect(page).to have_content "Support" # support
     expect(page).to have_content "Summary" # summary
+    expect(page).to have_content "https://www.library.ucla.edu" # opac_url
     expect(page).to have_content "Binding note" # binding_note
     expect(page).to have_content "left-to-right" # iiif_text_direction
     expect(page).to have_content "Uniform title" # uniform_title
@@ -88,6 +89,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "commentator_2" # commentator
     expect(page).to have_content "translator_1" # translator
     expect(page).to have_content "translator_2" # translator
+    expect(page).to have_content "subject_geographic_1" # subject_geographic
     expect(page).to have_content "subject_temporal_1" # subject_temporal
     # expect(page).to have_content "local_statement" # local_rights_statement # This invokes License renderer from hyrax gem
 
