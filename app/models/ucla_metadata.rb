@@ -135,6 +135,10 @@ module UclaMetadata
       index.as :stored_searchable, :facetable
     end
 
+    property :opac_url, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/unimarc/terms/ter%23e'), multiple: false do |index|
+      index.as :stored_sortable
+    end
+
     property :page_layout, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe.html#p_layout') do |index|
       index.as :symbol
     end
@@ -180,6 +184,10 @@ module UclaMetadata
     end
 
     property :subject_topic, predicate: ::RDF::URI.intern('http://www.loc.gov/mods/rdf/v1#subjectTopic') do |index|
+      index.as :stored_searchable
+    end
+
+    property :subject_geographic, predicate: ::RDF::URI.intern('http://www.loc.gov/mods/rdf/v1#subjectGeographic') do |index|
       index.as :stored_searchable
     end
 

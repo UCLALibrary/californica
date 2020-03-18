@@ -17,6 +17,8 @@ RSpec.describe CalifornicaMapper do
       "Alternate Title.other" => "alternative title other", # alternative_title
       "AltTitle.descriptive" => "alternative titles descriptive", # alternative_title
       "Author" => "author", # author
+      "Opac url" => "https://www.library.ucla.edu", # opac_url
+      "Description.opac" => "description opac", # opac_url
       "Binding note" => "binding note", # binding_note
       "Description.binding" => "description binding", # binding_note
       "Name.architect" => "Imhotep", # architect
@@ -96,6 +98,7 @@ RSpec.describe CalifornicaMapper do
       # "Rights.statementLocal" => "local_rights_statement", # local_rights_statement # This invokes License renderer from hyrax gem
       "Commentator" => "commentator old", # commentator
       "Name.commentator" => "name commentator old", # commentator
+      "Subject geographic" => "geographic old", # subject_geogaphic
       "Subject temporal" => "temporal old", # subject_temporal
       "Translator" => "translator old", # translator
       "Name.translator" => "name translator old" # translator
@@ -157,6 +160,7 @@ RSpec.describe CalifornicaMapper do
         :medium,
         :named_subject,
         :normalized_date,
+        :opac_url,
         :publisher,
         :photographer,
         :page_layout,
@@ -172,6 +176,7 @@ RSpec.describe CalifornicaMapper do
         :scribe,
         :services_contact,
         :subject,
+        :subject_geographic,
         :subject_temporal,
         :summary,
         :support,

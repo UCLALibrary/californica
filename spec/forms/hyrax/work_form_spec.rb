@@ -36,6 +36,7 @@ RSpec.describe Hyrax::WorkForm do
       :medium,
       :named_subject,
       :normalized_date,
+      :opac_url,
       :page_layout,
       :photographer,
       :place_of_origin,
@@ -48,6 +49,7 @@ RSpec.describe Hyrax::WorkForm do
       # :local_rights_statement, # This invokes License renderer from hyrax gem
       :scribe,
       :subject_topic,
+      :subject_geographic,
       :subject_temporal,
       :summary,
       :support,

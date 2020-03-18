@@ -56,6 +56,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
                     "Subject.personalName",
                     "Subject name"],
     normalized_date: "Date.normalized",
+    opac_url: ["Opac url", "Description.opac"],
     page_layout: "Page layout",
     photographer: ["Name.photographer",
                    "Personal or Corporate Name.photographer"],
@@ -79,6 +80,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     subject_topic: ["Subject topic", "Subject.conceptTopic", "Subject.descriptiveTopic"],
     summary: ["Summary", "Description.abstract"], # Removed Description.contents - Map this CSV colum name to "Contents note" https://jira.library.ucla.edu/browse/CAL-781
     support: "Support",
+    subject_geographic: "Subject geographic",
     subject_temporal: "Subject temporal",
     iiif_text_direction: "Text direction",
     translator: ["Translator", "Name.translator"],
@@ -179,6 +181,10 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
   def iiif_manifest_url
     map_field(:iiif_manifest_url).to_a.first
+  end
+
+  def opac_url
+    map_field(:opac_url).to_a.first
   end
 
   def masthead_parameters
