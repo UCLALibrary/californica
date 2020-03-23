@@ -24,9 +24,9 @@ RSpec.describe 'Create a new collection', :clean, type: :system, js: true do
       choose('User Collection')
       click_on 'Create collection'
       fill_in('Title', with: 'My Test Collection')
-      ###fill_in('Title', with: title)
+      ### fill_in('Title', with: title)
       fill_in('Ark', with: 'ark:/abc/1234')
-      ###fill_in('Ark', with: ark)
+      ### fill_in('Ark', with: ark)
       click_on 'Save'
       expect(page).to have_content title
       expect(find_field('Ark').value).to eq ark
@@ -46,9 +46,9 @@ RSpec.describe 'Create a new collection', :clean, type: :system, js: true do
       choose('User Collection')
       click_on 'Create collection'
       fill_in('Title', with: 'My Test Collection')
-      ###fill_in('Title', with: title)
+      ### fill_in('Title', with: title)
       fill_in('Ark', with: 'ark:/abc/1234')
-      ###fill_in('Ark', with: ark)
+      ### fill_in('Ark', with: ark)
       click_on 'Save'
       expect(page).to have_content title
       expect(find_field('Ark').value).to eq ark
