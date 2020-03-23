@@ -72,6 +72,7 @@ Metrics/LineLength:
     - spec/renderers/iiif_viewing_hint_attribute_renderer_spec.rb
     - app/controllers/application_controller.rb
     - spec/system/csv_import_status_show_spec.rb
+    - app/uploaders/csv_manifest_validator.rb
 
 Metrics/MethodLength:
   Enabled: true

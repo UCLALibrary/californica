@@ -24,6 +24,7 @@ REQUIRED_HEADERS = [
 REQUIRED_VALUES = [
   ['Item ARK', ['Collection', 'Work', 'ChildWork', 'Manuscript', 'Page']],
   ['Title', ['Collection', 'Work', 'Manuscript']],
+  ['IIIF Manifest URL', ['Collection', 'Work']],
   # ['Object Type', ['Collection', 'Work']],  # hard-coded
   ['Parent ARK', ['Work', 'ChildWork', 'Manuscript', 'Page']],
   ['Rights.copyrightStatus', ['Work', 'ChildWork', 'Manuscript', 'Page']],
@@ -67,6 +68,7 @@ OPTIONAL_HEADERS = [
   'Format.extent',
   'Format.medium',
   'viewingHint',
+  'IIIF Manifest URL',
   'IIIF Range',
   'Illuminator',
   'Illustrations note',
@@ -231,13 +233,14 @@ private
         field_label, types_that_require = REQUIRED_VALUES[j]
         next this_row_errors << "Rows missing required value for \"#{REQUIRED_VALUES[j][0]}\".  Your spreadsheet must have this value." if field_label == 'Title' && row[column_number].blank?
         next this_row_errors << "Rows missing required value for \"#{REQUIRED_VALUES[j][0]}\".  Your spreadsheet must have this value." if field_label == 'Item ARK' && row[column_number].blank?
+        next this_row_errors << "Rows missing required value for \"#{REQUIRED_VALUES[j][0]}\".  Your spreadsheet must have this value." if field_label == 'IIIF Manifest URL' && row[column_number].blank?
         next unless types_that_require.include?(object_type)
         next unless row[column_number].blank?
         this_row_warnings << if field_label == 'Rights.copyrightStatus'
                                'Rows missing "Rights.copyrightStatus" will have the value set to "unknown".'
                              elsif field_label == 'File Name'
                                'Rows missing "File Name" will import metadata-only.'
-                             elsif field_label != 'Title' || field_label != 'Item ARK'
+                             elsif field_label != 'Title' || field_label != 'Item ARK' || field_label != 'IIIF Manifest URL'
                                "Rows missing \"#{REQUIRED_VALUES[j][0]}\" cannot be imported."
                              end
       end

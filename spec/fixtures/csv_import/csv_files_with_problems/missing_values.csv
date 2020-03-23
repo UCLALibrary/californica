@@ -1,7 +1,7 @@
-Object Type,Title,Item ARK,Parent ARK,Rights.copyrightStatus,File Name
-Collection,Apple,ark:/123/abc,,copyrighted,clusc_1_1_00010432a.tif
-Work,Missing Item ARK,,ark:/123/abc,copyrighted,clusc_1_1_00010432a.tif
-Work,,ark:/123/def,ark:/123/abc,copyrighted,clusc_1_1_00010432a.tif
+Object Type,Title,Item ARK,Parent ARK,Rights.copyrightStatus,File Name,IIIF Manifest URL
+Collection,Apple,ark:/123/abc,,copyrighted,clusc_1_1_00010432a.tif,manifest_url
+Work,Missing Item ARK,,ark:/123/abc,copyrighted,clusc_1_1_00010432a.tif,http://iiif.library.ucla.edu/ark%3A%2F21198%2Fz1sr03rq/manifest
+Work,,ark:/123/def,ark:/123/abc,copyrighted,clusc_1_1_00010432a.tif,
 ,Missing Object Type,ark:/123/def,ark:/123/abc,copyrighted,clusc_1_1_00010432a.tif
 Work,Missing Parent ARK,ark:/123/def,,copyrighted,clusc_1_1_00010432a.tif
 Work,Missing Rights.copyrightStatus,ark:/123/def,ark:/123/abc,,clusc_1_1_00010432a.tif
