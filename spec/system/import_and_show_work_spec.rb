@@ -89,6 +89,14 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "translator_1" # translator
     expect(page).to have_content "translator_2" # translator
     expect(page).to have_content "subject_temporal_1" # subject_temporal
+    expect(page).to have_content "colophon_text" # colophon
+    expect(page).to have_content "colophon_text_2" # colophon
+    expect(page).to have_content "finding_aid_url_1" # finding_aid_url
+    expect(page).to have_content "finding_aid_url_2" # finding_aid_url
+    expect(page).to have_content "rubricator_1" # rubricator
+    expect(page).to have_content "rubricator_1" # rubricator
+    expect(page).to have_content "name_creator" # creator
+
     # expect(page).to have_content "local_statement" # local_rights_statement # This invokes License renderer from hyrax gem
 
     # displays expected fields on search results page

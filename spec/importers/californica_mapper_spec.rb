@@ -98,7 +98,14 @@ RSpec.describe CalifornicaMapper do
       "Name.commentator" => "name commentator old", # commentator
       "Subject temporal" => "temporal old", # subject_temporal
       "Translator" => "translator old", # translator
-      "Name.translator" => "name translator old" # translator
+      "Name.translator" => "name translator old", # translator
+      "Colophon" => "colophon text", # colophon
+      "Description.colophon" => "colophon text 2", # colophon
+      "Finding Aid URL" => "finding_aid_url_1", # finding_aid_url
+      "Alt ID.url" => "finding_aid_url_2", # finding_aid_url
+      "Rubricator" => "rubricator_1", # rubricator
+      "Name.rubricator" => "rubricator_2", # rubricator
+      "Name.creator" => "name_creator" # creator
     }
   end
 
@@ -133,14 +140,17 @@ RSpec.describe CalifornicaMapper do
         :binding_note,
         :caption,
         :collation,
+        :colophon,
         :commentator,
         :composer,
         :condition_note,
+        :creator,
         :date_created,
         :description,
         :dimensions,
         :dlcs_collection_name,
         :extent,
+        :finding_aid_url,
         :foliation,
         :funding_note,
         :genre,
@@ -168,6 +178,7 @@ RSpec.describe CalifornicaMapper do
         :rights_country,
         :rights_holder,
         :rights_statement,
+        :rubricator,
         # :local_rights_statement,
         :scribe,
         :services_contact,
