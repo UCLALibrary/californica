@@ -142,6 +142,10 @@ class SolrDocument
     self[:masthead_parameters_ssi]
   end
 
+  def opac_url
+    self[:opac_url_ssi]
+  end
+
   def representative_image
     self[:representative_image_ssi]
   end
@@ -209,6 +213,10 @@ class SolrDocument
 
   def services_contact
     self[:services_contact_ssm]
+  end
+
+  def subject_geographic
+    self[:subject_geographic_tesim]
   end
 
   def subject_temporal

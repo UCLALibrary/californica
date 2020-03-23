@@ -48,6 +48,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('contributor', :facetable), label: 'Contributor', limit: 5
     config.add_facet_field solr_name('keyword', :facetable), limit: 5
     config.add_facet_field solr_name('subject', :facetable), limit: 5
+    config.add_facet_field solr_name('subject_geographic', :facetable), label: 'Subject geographic', limit: 5
     config.add_facet_field solr_name('subject_temporal', :facetable), label: 'Subject temporal', limit: 5
     config.add_facet_field solr_name('human_readable_language', :facetable), label: 'Language', limit: 5
     config.add_facet_field solr_name('file_format', :facetable), limit: 5
@@ -128,6 +129,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('medium', :stored_searchable)
     config.add_show_field solr_name('named_subject', :stored_searchable)
     config.add_show_field solr_name('normalized_date', :stored_searchable)
+    config.add_show_field solr_name('opac_url_ssi', :stored_sortable)
     config.add_show_field 'page_layout_ssim'
     config.add_show_field solr_name('photographer', :stored_searchable)
     config.add_show_field 'place_of_origin_tesim'
@@ -138,6 +140,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('rights_holder', :stored_searchable)
     # config.add_show_field 'local_rights_statement_ssim' # This invokes License renderer from hyrax gem
     config.add_show_field 'scribe_tesim'
+    config.add_show_field 'subject_geographic_tesim'
     config.add_show_field 'subject_temporal_tesim'
     config.add_show_field solr_name('subject_topic', :stored_searchable)
     config.add_show_field solr_name('support', :stored_searchable)
@@ -309,6 +312,14 @@ class CatalogController < ApplicationController
       }
     end
 
+    config.add_search_field('opac_url') do |field|
+      solr_name = solr_name('opac_url', :stored_sortable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
     config.add_search_field('publisher') do |field|
       solr_name = solr_name('publisher', :stored_searchable)
       field.solr_local_parameters = {
@@ -327,6 +338,14 @@ class CatalogController < ApplicationController
 
     config.add_search_field('subject') do |field|
       solr_name = solr_name('subject', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('subject_geographic') do |field|
+      solr_name = solr_name('subject_geographic', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
