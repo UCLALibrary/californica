@@ -75,8 +75,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
                     "Rights.rightsHolderContact",
                     "Rights.rightsHolderName"],
     rights_statement: "Rights.copyrightStatus",
-    rubricator: ["Rubricator",
-      "Name.rubricator"],
+    rubricator: ["Rubricator", "Name.rubricator"],
     # local_rights_statement: "Rights.statementLocal", # This invokes License renderer from hyrax gem
     scribe: "Name.scribe",
     services_contact: "Rights.servicesContact",
@@ -186,8 +185,8 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     map_field(:c).to_a.first
   end
 
-  def finding_url_aid
-    map_field(:finding_url_aid).to_a.first
+  def finding_aid_url
+    map_field(:finding_aid_url).to_a.first
   end
 
   def foliation

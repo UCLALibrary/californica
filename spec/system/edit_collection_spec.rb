@@ -66,7 +66,11 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       tagline: 'Old Tagline',
       commentator: ['Old Commentator'],
       subject_temporal: ['Old Subject temporal'],
-      translator: ['Old Translator']
+      translator: ['Old Translator'],
+      colophon: ['Old Colophon'],
+      finding_aid_url: ['Old Finding aid url'],
+      rubricator: ['Old rubricator'],
+      creator: ['Old name creator']
       # local_rights_statement: ['Old Rights statement local'] # This invokes License renderer from hyrax gem
     }
   end
@@ -141,6 +145,10 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Commentator').value).to eq 'Old Commentator'
       expect(find_field('Subject temporal').value).to eq 'Old Subject temporal'
       expect(find_field('Translator').value).to eq 'Old Translator'
+      expect(find_field('Colophon').value).to eq 'Old Colophon'
+      expect(find_field('Finding aid url').value).to eq 'Old Finding aid url'
+      expect(find_field('Rubricator').value).to eq 'Old rubricator'
+      expect(find_field('Creator').value).to eq 'Old name creator'
       # expect(find_field('Local rights statement').value).to eq 'Old Rights statement local'
       #
       # # Edit some fields in the form
