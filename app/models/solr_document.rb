@@ -103,7 +103,7 @@ class SolrDocument
   end
 
   def finding_url_aid
-    self[:finding_url_aid_sim]
+    self[:finding_aid_url_ssm]
   end
 
   def genre
