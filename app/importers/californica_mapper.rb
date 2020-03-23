@@ -19,14 +19,17 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     author: "Author",
     caption: "Description.caption",
     collation: "Collation",
+    colophon: ["Colophon", 'Description.colophon'],
     condition_note: ["Condition note", "Description.condition"],
     composer: "Name.composer",
     commentator: ["Commentator", "Name.commentator"],
+    creator: "Name.creator",
     date_created: "Date.creation",
     description: "Description.note",
     dimensions: "Format.dimensions",
     dlcs_collection_name: "Relation.isPartOf",
     extent: "Format.extent",
+    finding_aid_url: ["Finding Aid URL", "Alt ID.url"],
     foliation: ["Foliation note", "Foliation"],
     funding_note: "Description.fundingNote",
     genre: ["Type.genre", "Genre"],
@@ -72,6 +75,8 @@ class CalifornicaMapper < Darlingtonia::HashMapper
                     "Rights.rightsHolderContact",
                     "Rights.rightsHolderName"],
     rights_statement: "Rights.copyrightStatus",
+    rubricator: ["Rubricator",
+      "Name.rubricator"],
     # local_rights_statement: "Rights.statementLocal", # This invokes License renderer from hyrax gem
     scribe: "Name.scribe",
     services_contact: "Rights.servicesContact",
@@ -169,8 +174,20 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     map_field(:collation).to_a.first
   end
 
+  def colophon
+    map_field(:colophon).to_a.first
+  end
+
   def condition_note
     map_field(:condition_note).to_a.first
+  end
+
+  def creator
+    map_field(:c).to_a.first
+  end
+
+  def finding_url_aid
+    map_field(:finding_url_aid).to_a.first
   end
 
   def foliation
@@ -231,6 +248,10 @@ class CalifornicaMapper < Darlingtonia::HashMapper
       # Replace marc codes with double dashes and no surrounding spaces
       map_field(:repository)&.map { |a| a.gsub(/ \$[a-z] /, ' ') }
     end
+  end
+
+  def rubricator
+    map_field(:rubricator).to_a.first
   end
 
   # Normalize subject to remove MaRC codes (e.g., $z separators)

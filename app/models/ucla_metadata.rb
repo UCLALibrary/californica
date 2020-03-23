@@ -35,6 +35,10 @@ module UclaMetadata
       index.as :stored_sortable
     end
 
+    property :colophon, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/Production') do |index|
+      index.as :stored_searchable
+    end
+
     property :condition_note, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3035'), multiple: false do |index|
       index.as :stored_sortable
     end
@@ -45,6 +49,10 @@ module UclaMetadata
 
     property :composer, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/cmp') do |index|
       index.as :stored_searchable, :facetable
+    end
+
+    property :creator, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/cre') do |index|
+      index.as :stored_searchable
     end
 
     property :dimensions, predicate: ::RDF::Vocab::MODS.physicalExtent do |index|
@@ -61,6 +69,10 @@ module UclaMetadata
 
     property :foliation, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3076'), multiple: false do |index|
       index.as :stored_sortable
+    end
+
+    property :finding_aid_url, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/findingAid') do |index|
+      index.as :displayable
     end
 
     property :funding_note, predicate: ::RDF::URI.intern('http://bibfra.me/vocab/marc/fundingInformation') do |index|
@@ -167,6 +179,10 @@ module UclaMetadata
       index.as :stored_searchable
     end
 
+    property :rubricator, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/rbr') do |index|
+      index.as :stored_searchable
+    end
+
     # property :local_rights_statement, predicate: ::RDF::URI.intern('http://purl.org/dc/terms/rights') do |index|
     # index.as :symbol
     # end # This invokes License renderer from hyrax gem
@@ -216,3 +232,8 @@ module UclaMetadata
     end
   end
 end
+
+# https://www.rubydoc.info/gems/solrizer/3.4.0/Solrizer/DefaultDescriptors#simple-class_method
+# displayable: https://www.rubydoc.info/gems/solrizer/3.4.0/Solrizer%2FDefaultDescriptors.displayable
+# stored_searchable https://www.rubydoc.info/gems/solrizer/3.4.0/Solrizer%2FDefaultDescriptors.stored_searchable
+# stored_sortable https://www.rubydoc.info/gems/solrizer/3.4.0/Solrizer%2FDefaultDescriptors.stored_sortable

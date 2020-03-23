@@ -107,12 +107,15 @@ class CatalogController < ApplicationController
     config.add_show_field 'author_tesim'
     config.add_show_field solr_name('caption', :stored_searchable)
     config.add_show_field 'collation_ssi'
+    config.add_show_field 'colophon_tesim', :stored_searchable
     config.add_show_field 'composer_tesim'
     config.add_show_field 'commentator_tesim'
     config.add_show_field 'condition_note_ssi'
+    config.add_show_field 'creator_tesim', :stored_searchable
     config.add_show_field solr_name('binding_note', :stored_sortable)
     config.add_show_field solr_name('dimensions', :stored_searchable)
     config.add_show_field solr_name('extent', :stored_searchable)
+    config.add_show_field 'finding_aid_url_ssm'
     config.add_show_field 'foliation_ssi', label: 'Foliation note'
     config.add_show_field 'masthead_parameters_ssi'
     config.add_show_field solr_name('funding_note', :stored_searchable)
@@ -136,6 +139,7 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('repository', :stored_searchable)
     config.add_show_field solr_name('rights_country', :stored_searchable)
     config.add_show_field solr_name('rights_holder', :stored_searchable)
+    config.add_show_field 'rubricator_tesim', :stored_searchable
     # config.add_show_field 'local_rights_statement_ssim' # This invokes License renderer from hyrax gem
     config.add_show_field 'scribe_tesim'
     config.add_show_field 'subject_temporal_tesim'
@@ -222,6 +226,14 @@ class CatalogController < ApplicationController
 
     config.add_search_field('collation') do |field|
       solr_name = solr_name('collation', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('colophon') do |field|
+      solr_name = solr_name('colophon', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
@@ -405,6 +417,14 @@ class CatalogController < ApplicationController
       }
     end
 
+    config.add_search_field('rubricator') do |field|
+      solr_name = solr_name('rubricator', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
     config.add_search_field('license') do |field|
       solr_name = solr_name('license', :stored_searchable)
       field.solr_local_parameters = {
@@ -478,3 +498,5 @@ class CatalogController < ApplicationController
     false
   end
 end
+
+# https://www.rubydoc.info/gems/solrizer/3.4.0/Solrizer/DefaultDescriptors#simple-class_method
