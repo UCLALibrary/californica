@@ -85,6 +85,7 @@ module Hyrax
         :commentator,
         :contributor,
         :condition_note,
+        :creator,
         :date_created,
         :dimensions,
         :extent,

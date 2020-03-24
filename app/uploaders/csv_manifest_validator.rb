@@ -38,6 +38,7 @@ OPTIONAL_HEADERS = [
   'AltTitle.parallel',
   'AltTitle.uniform',
   'AltTitle.translated',
+  'Alternate Title.creator',
   'Alternate Title.descriptive',
   'Alternate Title.inscribed',
   'Alternate Title.other',

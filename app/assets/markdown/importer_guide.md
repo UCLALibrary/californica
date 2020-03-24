@@ -28,7 +28,7 @@
 - [Description.note](#description.note)
 - [Foliation](#foliation)
 - [Featured image](#featured_image)
-- [Finding Aid Url](#finding-aid-url)s
+- [Finding Aid Url](#finding-aid-url)creator
 - [Format.dimensions](#format.dimensions)
 - [Format.extent](#format.extent)
 - [Format.medium](#format.medium)
@@ -41,6 +41,7 @@
 - [Masthead](#masthead_parameters)
 - [Name.architect](#name.architect)
 - [Name.composer](#name.composer)
+- [Name.creator](#name.creator)
 - [Name.illuminator](#name.illuminator)
 - [Name.lyricist](#lyricist)
 - [Name.photographer](#name.photographer)
@@ -234,6 +235,8 @@ accepts Description.illustrations
 ### Name.architect
 
 ### Name.composer
+
+### Name.creator
 
 ### Name.lyricist
 

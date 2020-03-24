@@ -19,7 +19,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     author: "Author",
     caption: "Description.caption",
     collation: "Collation",
-    colophon: ["Colophon", 'Description.colophon'],
+    colophon: ['Colophon', 'Description.colophon'],
     condition_note: ["Condition note", "Description.condition"],
     composer: "Name.composer",
     commentator: ["Commentator", "Name.commentator"],
@@ -175,20 +175,8 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     map_field(:collation).to_a.first
   end
 
-  def colophon
-    map_field(:colophon).to_a.first
-  end
-
   def condition_note
     map_field(:condition_note).to_a.first
-  end
-
-  def creator
-    map_field(:c).to_a.first
-  end
-
-  def finding_aid_url
-    map_field(:finding_aid_url).to_a.first
   end
 
   def foliation
@@ -253,10 +241,6 @@ class CalifornicaMapper < Darlingtonia::HashMapper
       # Replace marc codes with double dashes and no surrounding spaces
       map_field(:repository)&.map { |a| a.gsub(/ \$[a-z] /, ' ') }
     end
-  end
-
-  def rubricator
-    map_field(:rubricator).to_a.first
   end
 
   # Normalize subject to remove MaRC codes (e.g., $z separators)

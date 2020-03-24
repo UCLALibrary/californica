@@ -11,6 +11,7 @@ module Hyrax
         :author,
         :binding_note,
         :based_near,
+        :creator,
         :commentator,
         :contributor,
         :caption,
