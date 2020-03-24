@@ -51,6 +51,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       rights_holder: ['Old Rights Holder'],
       photographer: ['Old Photographer'],
       services_contact: ['Old Services Contact'],
+      opac_url: 'https://www.library.ucla.edu',
       binding_note: 'Old Binding note',
       scribe: ['Old Scribe'],
       subject: ['Old Subj'],
@@ -65,6 +66,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       featured_image: 'Old Featured image',
       tagline: 'Old Tagline',
       commentator: ['Old Commentator'],
+      subject_geographic: ['Old Subject geographic'],
       subject_temporal: ['Old Subject temporal'],
       translator: ['Old Translator']
       # local_rights_statement: ['Old Rights statement local'] # This invokes License renderer from hyrax gem
@@ -124,6 +126,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Rights services contact').value).to eq 'Old Services Contact'
       expect(find_field('Toc').value).to eq 'Old Table of Contents'
       expect(find_field('Subject topic').value).to eq 'Old Subject Topic'
+      expect(find_field('Opac url').value).to eq 'https://www.library.ucla.edu'
       expect(find_field('Binding note').value).to eq 'Old Binding note'
       expect(page).to have_select('Iiif text direction', selected: 'left-to-right', multiple: false)
       expect(find_field('Uniform title').value).to eq 'Old Uniform title'
@@ -140,6 +143,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Tagline').value).to eq 'Old Tagline'
       expect(find_field('Commentator').value).to eq 'Old Commentator'
       expect(find_field('Subject temporal').value).to eq 'Old Subject temporal'
+      expect(find_field('Subject geographic').value).to eq 'Old Subject geographic'
       expect(find_field('Translator').value).to eq 'Old Translator'
       # expect(find_field('Local rights statement').value).to eq 'Old Rights statement local'
       #

@@ -48,6 +48,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       subject: ['Old Subj'],
       summary: ['Old Summary'],
       subject_topic: ['Old Subject topic'],
+      opac_url: 'https://www.library.ucla.edu',
       binding_note: 'Old Binding note',
       support: ['Old Support'],
       iiif_text_direction: 'http://iiif.io/api/presentation/2#leftToRightDirection', # "left-to-right"
@@ -66,6 +67,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       featured_image: 'Old Featured image',
       tagline: 'Old Tagline',
       commentator: ['Old Commentator'],
+      subject_geographic: ['Old Subject geographic'],
       subject_temporal: ['Old Subject temporal'],
       translator: ['Old Translator'],
       # local_rights_statement: ['Old Rights statement local'] # This invokes License renderer from hyrax gem
@@ -119,6 +121,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Subject').value).to eq 'Old Subj'
       expect(find_field('Subject topic').value).to eq 'Old Subject topic'
       expect(find_field('Summary').value).to eq 'Old Summary'
+      expect(find_field('Opac url').value).to eq 'https://www.library.ucla.edu'
       expect(find_field('Binding note').value).to eq 'Old Binding note'
       expect(page).to have_select('Iiif text direction', selected: 'left-to-right', multiple: false)
       expect(find_field('Uniform title').value).to eq 'Old Uniform title'
@@ -135,6 +138,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Featured image').value).to eq 'Old Featured image'
       expect(find_field('Tagline').value).to eq 'Old Tagline'
       expect(find_field('Commentator').value).to eq 'Old Commentator'
+      expect(find_field('Subject geographic').value).to eq 'Old Subject geographic'
       expect(find_field('Subject temporal').value).to eq 'Old Subject temporal'
       expect(find_field('Translator').value).to eq 'Old Translator'
       # expect(find_field('Local rights statement').value).to eq 'Old Rights statement local'

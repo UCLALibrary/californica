@@ -32,6 +32,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       medium: ['Old Medium'],
       named_subject: ['Old Name/Subj'],
       normalized_date: ['Old Normalized Date'],
+      opac_url: 'https://www.library.ucla.edu',
       page_layout: ['Old Page layout'],
       photographer: ['Old Photographer'],
       place_of_origin: ['Old Place of origin'],
@@ -63,6 +64,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       featured_image: 'Old Featured image',
       tagline: 'Old Tagline',
       commentator: ['Old Commentator'],
+      subject_geographic: ['Old Subject geographic'],
       subject_temporal: ['Old Subject temporal'],
       translator: ['Old Translator']
       # local_rights_statement: ['Old Rights local statement'] # This invokes License renderer from hyrax gem

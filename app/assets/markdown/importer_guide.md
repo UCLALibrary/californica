@@ -45,6 +45,7 @@
 - [Name.repository](#name.repository)
 - [Name.scribe](#name.scribe)
 - [Name.subject](#name.subject)
+- [Opac url](#opac_url)
 - [Page layout](#page-layout)
 - [Project Name](#project-name)
 - [Place of origin](#place-of-origin)
@@ -58,6 +59,7 @@
 - [Subject](#subject)
 - [Subject.conceptTopic](#subject.concept_topic)
 - [Subject.descriptiveTopic](#subject.descriptive_topic)
+- [Subject geographic](#subject_geographic)
 - [Subject temporal](#subject_temporal)
 - [Summary](#summary)
 - [Support](#support)
@@ -236,6 +238,9 @@ accepts "Repository", "Name.repository"
 ### Name.subject
 Accepts "Name.subject", "Personal or Corporate Name.subject", "Subject.corporateName", "Subject.personalName", "Subject name",
 
+### Opac url
+accepts Description.opac
+
 ### Page layout
 
 ### Place of origin
@@ -258,6 +263,8 @@ Accepts "Provenance", "Description.history"
 ### Rights.statementLocal
 
 ### Subject
+
+### Subject geographic
 
 ### Subject temporal
 

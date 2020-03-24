@@ -32,6 +32,7 @@ module Hyrax
       :medium,
       :named_subject,
       :normalized_date,
+      :opac_url,
       :page_layout,
       :photographer,
       :place_of_origin,
@@ -44,6 +45,7 @@ module Hyrax
       # :local_rights_statement, # This invokes License renderer from hyrax gem
       :services_contact,
       :scribe,
+      :subject_geographic,
       :subject_temporal,
       :subject_topic,
       :tagline,
@@ -99,6 +101,7 @@ module Hyrax
         :medium,
         :named_subject,
         :normalized_date,
+        :opac_url,
         :page_layout,
         :photographer,
         :place_of_origin,
@@ -113,6 +116,7 @@ module Hyrax
         :services_contact,
         # :local_rights_statement, # This invokes License renderer from hyrax gem
         :subject,
+        :subject_geographic,
         :subject_temporal,
         :subject_topic,
         :summary,

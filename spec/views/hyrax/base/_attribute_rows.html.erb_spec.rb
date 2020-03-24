@@ -14,6 +14,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
     Work.new(title: ['title'],
              ark: 'ark:/abcde/1234567',
              author: ['author'],
+             opac_url: 'opac_url',
              binding_note: 'binding_note',
              description: ['description'],
              extent: ['extent'],
@@ -42,6 +43,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
              uniform_title: ['Old Uniform title'],
              condition_note: 'condition_note',
              commentator: ['Old Commentator'],
+             subject_geographic: ['Old Subject geographic'],
              subject_temporal: ['Old Subject temporal'],
              translator: ['Old Translator'])
     # local_rights_statement: ['local_statement'])
@@ -53,6 +55,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
 
   it 'has author' do
     expect(page).to match(/author/)
+  end
+  it 'has opac_url' do
+    expect(page).to match(/opac_url/)
   end
   it 'has binding_note' do
     expect(page).to match(/binding_note/)
@@ -134,6 +139,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   end
   it 'has commentator' do
     expect(page).to match(/commentator/)
+  end
+  it 'has subject_geographic' do
+    expect(page).to match(/subject_geographic/)
   end
   it 'has subject_temporal' do
     expect(page).to match(/subject_temporal/)
