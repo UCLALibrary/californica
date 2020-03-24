@@ -41,6 +41,7 @@
 - [Masthead](#masthead_parameters)
 - [Name.architect](#name.architect)
 - [Name.composer](#name.composer)
+- [Name.creator](#name.creator)
 - [Name.illuminator](#name.illuminator)
 - [Name.lyricist](#lyricist)
 - [Name.photographer](#name.photographer)
@@ -234,6 +235,8 @@ accepts Description.illustrations
 ### Name.architect
 
 ### Name.composer
+
+### Name.creator
 
 ### Name.lyricist
 
