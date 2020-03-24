@@ -12,6 +12,7 @@ module Hyrax
       :binding_note,
       :caption,
       :collation,
+      :colophon,
       :commentator,
       :composer,
       :condition_note,
@@ -19,6 +20,7 @@ module Hyrax
       :dlcs_collection_name,
       :extent,
       :featured_image,
+      :finding_aid_url,
       :foliation,
       :funding_note,
       :genre,
@@ -46,6 +48,7 @@ module Hyrax
       :resource_type,
       :rights_country,
       :rights_holder,
+      :rubricator,
       # :local_rights_statement, # This invokes License renderer from hyrax gem
       :scribe,
       :subject_topic,
