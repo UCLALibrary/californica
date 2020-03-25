@@ -19,7 +19,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     author: "Author",
     caption: "Description.caption",
     collation: "Collation",
-    colophon: ['Colophon', 'Description.colophon'],
+    colophon: ["Colophon", "Description.colophon"],
     condition_note: ["Condition note", "Description.condition"],
     composer: "Name.composer",
     commentator: ["Commentator", "Name.commentator"],
