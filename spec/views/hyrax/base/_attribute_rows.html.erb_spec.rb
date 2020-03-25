@@ -45,7 +45,11 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
              commentator: ['Old Commentator'],
              subject_geographic: ['Old Subject geographic'],
              subject_temporal: ['Old Subject temporal'],
-             translator: ['Old Translator'])
+             translator: ['Old Translator'],
+             colophon: ['Old Colophon'],
+             finding_aid_url: ['Old Finding aid url'],
+             rubricator: ['Old rubricator'],
+             creator: ['Old name creator'])
     # local_rights_statement: ['local_statement'])
   end
 
@@ -148,6 +152,18 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   end
   it 'has translator' do
     expect(page).to match(/translator/)
+  end
+  it 'has colophon' do
+    expect(page).to match(/colophon/)
+  end
+  it 'has finding_aid_url' do
+    expect(page).to match(/finding_aid_url/)
+  end
+  it 'has rubricator' do
+    expect(page).to match(/rubricator/)
+  end
+  it 'has creator' do
+    expect(page).to match(/creator/)
   end
   # This invokes License renderer from hyrax gem
   # it 'has local_rights_statement' do

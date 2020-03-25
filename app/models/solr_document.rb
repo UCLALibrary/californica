@@ -58,6 +58,10 @@ class SolrDocument
     self[:collation_ssi]
   end
 
+  def colophon
+    self[:colophon_tesim]
+  end
+
   def commentator
     self[:commentator_tesim]
   end
@@ -92,6 +96,10 @@ class SolrDocument
 
   def funding_note
     self[:funding_note_tesim]
+  end
+
+  def finding_aid_url
+    self[:finding_aid_url_ssm]
   end
 
   def genre
@@ -200,6 +208,10 @@ class SolrDocument
 
   def rights_holder
     self[:rights_holder_tesim]
+  end
+
+  def rubricator
+    self[:rubricator_tesim]
   end
 
   # This invokes License renderer from hyrax gem
