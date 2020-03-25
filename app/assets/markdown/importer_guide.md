@@ -15,6 +15,7 @@
 - [Author](#author)
 - [Binding note](#binding_note)
 - [Collation](#collation)
+- [Colophon](#colophon)
 - [Commentator](#commentator)
 - [Condition note](#condition_note)
 - [Coverage.geographic](#coverage.geographic)
@@ -27,6 +28,7 @@
 - [Description.note](#description.note)
 - [Foliation](#foliation)
 - [Featured image](#featured_image)
+- [Finding Aid Url](#finding-aid-url)creator
 - [Format.dimensions](#format.dimensions)
 - [Format.extent](#format.extent)
 - [Format.medium](#format.medium)
@@ -39,6 +41,7 @@
 - [Masthead](#masthead_parameters)
 - [Name.architect](#name.architect)
 - [Name.composer](#name.composer)
+- [Name.creator](#name.creator)
 - [Name.illuminator](#name.illuminator)
 - [Name.lyricist](#lyricist)
 - [Name.photographer](#name.photographer)
@@ -55,6 +58,7 @@
 - [Representative image](#representative_image)
 - [Rights.countryCreation](#rights.countrycreation)
 - [Rights.rightsHolderContact](#rights.rightsholdercontact)
+- [Rubricator](#rubricator)
 - [Rights.statementLocal](#rights.statementLocal)
 - [Subject](#subject)
 - [Subject.conceptTopic](#subject.concept_topic)
@@ -169,6 +173,9 @@ accepts Description.binding
 
 ### Collation
 
+### Colophon
+accepts Description.colophon
+
 ### Commentator
 accepts Name.commentator
 
@@ -192,6 +199,9 @@ accepts Condition note, Description.condition
 ### Description.note
 
 ### Featured image
+
+### Finding Aid URL
+accepts Alt ID.url
 
 ### Foliation
 accepts "Foliation", "Foliation note"
@@ -225,6 +235,8 @@ accepts Description.illustrations
 ### Name.architect
 
 ### Name.composer
+
+### Name.creator
 
 ### Name.lyricist
 
@@ -261,6 +273,9 @@ Accepts "Provenance", "Description.history"
 ### Rights.rightsHolderContact
 
 ### Rights.statementLocal
+
+### Rubricator
+accepts Name.rubricator
 
 ### Subject
 
