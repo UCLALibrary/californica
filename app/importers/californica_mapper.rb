@@ -354,12 +354,14 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     end
 
     ### this should return an array of hashes with { id: collection.id } ???
-    { '0' => { id: collection.id } } ===> { 0: ark:/123 }
-    { '1' => { id: collection.id } } ===> { 1: ark:/124 }
 
-    { 0: ark:/123, 1: ark:/124 }
+    { '0' => { id: collection.id } }
+    ###{ '0' => { id: collection.id } } ===> { 0: ark:/123 }
+    ###{ '1' => { id: collection.id } } ===> { 1: ark:/124 }
 
-    [ { 0: ark:/123 }, { 1: ark:/124 } ]
+    ###{ 0: ark:/123, 1: ark:/124 }
+
+    ###[ { 0: ark:/123 }, { 1: ark:/124 } ]
 
   end
 
