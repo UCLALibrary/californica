@@ -335,16 +335,32 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     # A ChildWork will never be a direct member of a Collection
     return if ['ChildWork', 'Page'].include?(metadata["Object Type"])
 
-    ark = Ark.ensure_prefix(metadata['Parent ARK'])
-    return unless ark
-    collection = Collection.find_or_create_by_ark(ark)
+    ark_string = Ark.ensure_prefix(metadata['Parent ARK'])
+    if( ark_string =~ '|~|') 
+      arks_array = ark_string.split('|~|')
+    else
+      arks_array[0] = ark_string
+    end
+
+    arks_array.each
+      ark = Ark.ensure_prefix(metadata['Parent ARK'])
+      return unless ark
+      collection = Collection.find_or_create_by_ark(ark)
+    end
 
     unless collection.recalculate_size == false
       collection.recalculate_size = false
       collection.save
     end
 
-    { '0' => { id: collection.id } }
+    ### this should return an array of hashes with { id: collection.id } ???
+    { '0' => { id: collection.id } } ===> { 0: ark:/123 }
+    { '1' => { id: collection.id } } ===> { 1: ark:/124 }
+
+    { 0: ark:/123, 1: ark:/124 }
+
+    [ { 0: ark:/123 }, { 1: ark:/124 } ]
+
   end
 
   def sequence
