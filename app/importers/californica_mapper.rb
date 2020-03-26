@@ -335,34 +335,35 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     # A ChildWork will never be a direct member of a Collection
     return if ['ChildWork', 'Page'].include?(metadata["Object Type"])
 
-    ark_string = Ark.ensure_prefix(metadata['Parent ARK'])
-    if( ark_string =~ '|~|') 
-      arks_array = ark_string.split('|~|')
-    else
-      arks_array[0] = ark_string
+    arks_array = metadata['Parent ARK'].split('|~|')
+
+    collection = []
+    arks_array.each_with_index do |current_ark, index| 
+      ark_string = Ark.ensure_prefix(current_ark)
+      return unless ark_string
+      collection[index] = Collection.find_or_create_by_ark(ark_string)
+
+      unless collection[index].recalculate_size == false
+        collection[index].recalculate_size = false
+        collection[index].save
+      end
     end
 
-    arks_array.each
-      ark = Ark.ensure_prefix(metadata['Parent ARK'])
-      return unless ark
-      collection = Collection.find_or_create_by_ark(ark)
+    collection_return = {}
+    collection.each_with_index do |current_collection, index|
+      collection_return[index] = { id: current_collection.id }
     end
 
-    unless collection.recalculate_size == false
-      collection.recalculate_size = false
-      collection.save
-    end
+    collection_return
 
     ### this should return an array of hashes with { id: collection.id } ???
 
-    { '0' => { id: collection.id } }
-    ###{ '0' => { id: collection.id } } ===> { 0: ark:/123 }
-    ###{ '1' => { id: collection.id } } ===> { 1: ark:/124 }
+    ###oem { '0' => { id: collection.id } }
+    ###new { '0' => { id: collection1.id }, '1' => { id: collection2.id } }
 
-    ###{ 0: ark:/123, 1: ark:/124 }
+  end
 
-    ###[ { 0: ark:/123 }, { 1: ark:/124 } ]
-
+  def collection_builder
   end
 
   def sequence
