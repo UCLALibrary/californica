@@ -324,7 +324,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     return unless CALIFORNICA_TERMS_MAP.keys.include?(name)
 
     Array.wrap(CALIFORNICA_TERMS_MAP[name]).map do |source_field|
-      metadata[source_field]&.split(DELIMITER)
+      metadata[source_field]&.split(DELIMITER) unless metadata[source_field].nil
     end.flatten.compact
   end
 
@@ -334,13 +334,11 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   def member_of_collections_attributes
     # A ChildWork will never be a direct member of a Collection
     return if ['ChildWork', 'Page'].include?(metadata["Object Type"])
-
     arks_array = metadata['Parent ARK'].split('|~|')
-
     collection = []
-    arks_array.each_with_index do |current_ark, index| 
+    arks_array.each_with_index do |current_ark, index|
       ark_string = Ark.ensure_prefix(current_ark)
-      return unless ark_string
+      return 0 unless ark_string
       collection[index] = Collection.find_or_create_by_ark(ark_string)
 
       unless collection[index].recalculate_size == false
@@ -355,16 +353,9 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     end
 
     collection_return
-
-    ### this should return an array of hashes with { id: collection.id } ???
-
-    ###oem { '0' => { id: collection.id } }
-    ###new { '0' => { id: collection1.id }, '1' => { id: collection2.id } }
-
   end
 
-  def collection_builder
-  end
+  def collection_builder; end
 
   def sequence
     metadata['Item Sequence']
