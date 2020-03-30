@@ -333,19 +333,29 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   # Assume the parent of this object is a collection unless the Object Type is ChildWork
   def member_of_collections_attributes
     # A ChildWork will never be a direct member of a Collection
-    return if ['ChildWork', 'Page'].include?(metadata["Object Type"])
+    return if ['ChildWork', 'Page'].include?(metadata["Object Type"]) || !metadata['Parent ARK']
+    arks_array = metadata['Parent ARK'].split('|~|')
+    collection = []
 
-    ark = Ark.ensure_prefix(metadata['Parent ARK'])
-    return unless ark
-    collection = Collection.find_or_create_by_ark(ark)
+    arks_array.each_with_index do |current_ark, index|
+      ark_string = Ark.ensure_prefix(current_ark)
+      collection[index] = Collection.find_or_create_by_ark(ark_string)
 
-    unless collection.recalculate_size == false
-      collection.recalculate_size = false
-      collection.save
+      unless collection[index].recalculate_size == false
+        collection[index].recalculate_size = false
+        collection[index].save
+      end
     end
 
-    { '0' => { id: collection.id } }
+    collection_return = {}
+    collection.each_with_index do |current_collection, index|
+      collection_return[index] = { id: current_collection.id }
+    end
+
+    collection_return
   end
+
+  def collection_builder; end
 
   def sequence
     metadata['Item Sequence']
