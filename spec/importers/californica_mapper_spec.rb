@@ -335,7 +335,7 @@ RSpec.describe CalifornicaMapper do
 
   describe '#member_of_collections_attributes' do
     let(:metadata) do
-      { "Parent ARK" => "ark:/21198/n1t31k|~|ark:/21198/zz0008hs73" }
+      { "Parent ARK" => "ark:/123/abc" }
     end
 
     let(:collection) { FactoryBot.build(:collection, recalculate_size: true) }
