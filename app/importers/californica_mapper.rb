@@ -324,7 +324,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     return unless CALIFORNICA_TERMS_MAP.keys.include?(name)
 
     Array.wrap(CALIFORNICA_TERMS_MAP[name]).map do |source_field|
-      metadata[source_field]&.split(DELIMITER) unless metadata[source_field].nil
+      metadata[source_field]&.split(DELIMITER)
     end.flatten.compact
   end
 
@@ -333,12 +333,12 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   # Assume the parent of this object is a collection unless the Object Type is ChildWork
   def member_of_collections_attributes
     # A ChildWork will never be a direct member of a Collection
-    return if ['ChildWork', 'Page'].include?(metadata["Object Type"])
+    return if ['ChildWork', 'Page'].include?(metadata["Object Type"]) || !metadata['Parent ARK']
     arks_array = metadata['Parent ARK'].split('|~|')
     collection = []
+
     arks_array.each_with_index do |current_ark, index|
       ark_string = Ark.ensure_prefix(current_ark)
-      return 0 unless ark_string
       collection[index] = Collection.find_or_create_by_ark(ark_string)
 
       unless collection[index].recalculate_size == false
