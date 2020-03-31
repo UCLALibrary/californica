@@ -355,8 +355,6 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     collection_return
   end
 
-  def collection_builder; end
-
   def sequence
     metadata['Item Sequence']
   end
