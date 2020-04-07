@@ -15,8 +15,8 @@ class CollectionIndexer < Hyrax::CollectionWithBasicMetadataIndexer
     {
       "has_model_ssim" => ["Collection"],
       :id => object.id,
-      "title_tesim" => ["#{object.title.first}"],
-      "title_sim" => ["#{object.title.first}"],
+      "title_tesim" => [object.title.first.to_s],
+      "title_sim" => [object.title.first.to_s],
       "collection_type_gid_ssim" => [object.collection_type_gid],
       "ark_ssi" => object.ark,
       "ursus_id_ssi" => Californica::IdGenerator.blacklight_id_from_ark(object.ark),
