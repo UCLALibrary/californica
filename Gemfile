@@ -11,36 +11,36 @@ ruby '>= 2.4.0', '<= 2.5.99'
 gem 'bootstrap-sass', ">= 3.4.1"
 gem 'bundler', "~> 1"
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
+gem 'coffee-rails', '~> 4.2', '>= 4.2.2'
 gem 'coveralls', require: false
 gem 'darlingtonia', '>= 3.2.2'
-gem 'devise'
-gem 'devise-guests', '~> 0.6'
-gem 'dotenv-rails', '~> 2.2.1'
+gem 'devise', '>= 4.7.1'
+gem 'devise-guests', '~> 0.7', '>= 0.7.0'
+gem 'dotenv-rails', '~> 2.2.2'
 gem 'hydra-file_characterization', '~> 1.1'
-gem 'hydra-role-management', '~> 1.0.0'
+gem 'hydra-role-management', '~> 1.0.2'
 gem 'hyrax', '2.5.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
-gem 'jquery-rails'
+gem 'jquery-rails', '>= 4.4.0'
 gem 'loofah', '>= 2.2.3'
 gem 'mysql2', '~> 0.5'
 gem 'pkg-config', '~> 1.1'
 # Use Puma as the app server
 gem 'puma', '~> 3.12'
-gem 'rack', '>= 2.0.6'
-gem 'rails', '~> 5.1.6'
+gem 'rack', '>= 2.2.3'
+gem 'rails', '~> 5.1.7'
 gem 'redcarpet'
 gem 'retries'
-gem 'riiif', '~> 1.1'
+gem 'riiif', '~> 1.7', '>= 1.7.1'
 # Error reporting tool
 gem 'rollbar'
 gem 'rsolr', '>= 1.0'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 5.0', '>= 5.0.7'
 gem 'sidekiq', '~> 5.1.3'
-gem 'sidekiq-failures'
-gem 'sidekiq-status'
+gem 'sidekiq-failures', '>= 1.0.0'
+gem 'sidekiq-status', '>= 1.1.4'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
@@ -58,7 +58,7 @@ group :development do
   gem 'capistrano-sidekiq', '~> 0.20.0'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'listen', '>= 3.0.5', '< 3.2'
-  gem 'web-console', '>= 3.3.0'
+  gem 'web-console', '>= 3.7.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
@@ -70,16 +70,16 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'rb-readline' # For byebug
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '~> 2.13'
-  gem 'factory_bot_rails'
+  gem 'capybara', '~> 2.18', '>= 2.18.0'
+  gem 'factory_bot_rails', '>= 5.1.1'
   gem 'fcrepo_wrapper'
   gem 'ffaker'
-  gem 'rspec-rails', '~> 3.8'
+  gem 'rspec-rails', '~> 3.9', '>= 3.9.0'
   gem 'rubocop-rspec'
   gem 'selenium-webdriver'
   gem 'simplecov', '~> 0.16.1'
   gem 'solr_wrapper'
   gem 'spring-commands-rspec'
   gem 'webmock'
-  gem 'xray-rails'
+  gem 'xray-rails', '>= 0.3.2'
 end
