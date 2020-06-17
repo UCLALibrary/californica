@@ -73,13 +73,17 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
     when 'Collection'
       CsvCollectionReindex.create(csv_import_id: @csv_import_id, ark: row['Item ARK'], status: 'queued')
     when 'Work', 'Manuscript'
-      CsvCollectionReindex.create(csv_import_id: @csv_import_id, ark: row['Parent ARK'], status: 'queued')
+      row['Parent ARK'].to_s.split('|~|').each do |parent_ark|
+        CsvCollectionReindex.create(csv_import_id: @csv_import_id, ark: parent_ark, status: 'queued')
+      end
       CsvImportOrderChild.create(csv_import_id: @csv_import_id, ark: row['Item ARK'], status: 'queued')
       CsvImportCreateManifest.create(csv_import_id: @csv_import_id, ark: row['Item ARK'], status: 'queued')
     when 'ChildWork', 'Page'
-      CsvImportOrderChild.create(csv_import_id: @csv_import_id, ark: row['Parent ARK'], status: 'queued')
       CsvImportCreateManifest.create(csv_import_id: @csv_import_id, ark: row['Item ARK'], status: 'queued')
-      CsvImportCreateManifest.create(csv_import_id: @csv_import_id, ark: row['Parent ARK'], status: 'queued')
+      row['Parent ARK'].split('|~|').each do |parent_ark|
+        CsvImportOrderChild.create(csv_import_id: @csv_import_id, ark: parent_ark, status: 'queued')
+        CsvImportCreateManifest.create(csv_import_id: @csv_import_id, ark: parent_ark, status: 'queued')
+      end
     else
       raise ArgumentError, "Unknown Object Type #{row['Object Type']}"
     end

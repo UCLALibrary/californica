@@ -148,6 +148,90 @@ RSpec.describe CalifornicaCsvParser do
     end
   end
 
+  describe '#add_finalization_tasks' do
+    let(:row) do
+      {
+        'Object Type' => object_type,
+        'Item ARK' => item_ark,
+        'Parent ARK' => parent_ark
+      }
+    end
+    let(:object_type) { nil }
+    let(:item_ark) { 'ark:/123/item' }
+    let(:parent_ark) { 'ark:/123/parent' }
+
+    before do
+      allow(CsvCollectionReindex).to receive(:create)
+      allow(CsvImportOrderChild).to receive(:create)
+      allow(CsvImportCreateManifest).to receive(:create)
+      parser.add_finalization_tasks(row)
+    end
+
+    context 'when the row is a collection' do
+      let(:object_type) { 'Collection' }
+
+      it 'enqueues a CsvCollectionReindex for the item' do
+        expect(CsvCollectionReindex).to have_received(:create).with(csv_import_id: 0, ark: item_ark, status: 'queued')
+      end
+    end
+
+    context 'when the row is a work' do
+      let(:object_type) { 'Work' }
+
+      it 'enqueues a CsvCollectionReindex for the parent' do
+        expect(CsvCollectionReindex).to have_received(:create).with(csv_import_id: 0, ark: parent_ark, status: 'queued')
+      end
+
+      it 'enqueues a CsvImportCreateManifest for the item' do
+        expect(CsvImportCreateManifest).to have_received(:create).with(csv_import_id: 0, ark: item_ark, status: 'queued')
+      end
+
+      it 'enqueues a CsvImportOrderChild for the item' do
+        expect(CsvImportOrderChild).to have_received(:create).with(csv_import_id: 0, ark: item_ark, status: 'queued')
+      end
+    end
+
+    context 'when the row is a work with multiple parent collections' do
+      let(:object_type) { 'Work' }
+      let(:parent_ark) { 'ark:/123/parent1|~|ark:/123/parent2|~|ark:/123/parent3' }
+
+      it 'enqueues a CsvCollectionReindex for each parent collection' do
+        expect(CsvCollectionReindex).to have_received(:create).with(csv_import_id: 0, ark: 'ark:/123/parent1', status: 'queued')
+        expect(CsvCollectionReindex).to have_received(:create).with(csv_import_id: 0, ark: 'ark:/123/parent2', status: 'queued')
+        expect(CsvCollectionReindex).to have_received(:create).with(csv_import_id: 0, ark: 'ark:/123/parent3', status: 'queued')
+      end
+    end
+
+    context 'when the row is a ChildWork' do
+      let(:object_type) { 'ChildWork' }
+
+      it 'enqueues a CsvImportCreateManifest for the item' do
+        expect(CsvImportCreateManifest).to have_received(:create).with(csv_import_id: 0, ark: item_ark, status: 'queued')
+      end
+
+      it 'enqueues a CsvImportCreateManifest for the parent' do
+        expect(CsvImportCreateManifest).to have_received(:create).with(csv_import_id: 0, ark: parent_ark, status: 'queued')
+      end
+
+      it 'enqueues a CsvImportOrderChild for the parent' do
+        expect(CsvImportOrderChild).to have_received(:create).with(csv_import_id: 0, ark: parent_ark, status: 'queued')
+      end
+    end
+
+    context 'when there is no "Parent ARK"' do
+      let(:row) do
+        {
+          'Object Type' => 'Work',
+          'Item ARK' => item_ark
+        }
+      end
+
+      it 'still works' do
+        expect(CsvImportCreateManifest).to have_received(:create).with(csv_import_id: 0, ark: item_ark, status: 'queued')
+      end
+    end
+  end
+
   describe '#reindex_collections' do
     let(:queued_collection) { FactoryBot.create(:csv_collection_reindex, csv_import_id: 0, status: 'queued') }
     let(:in_progress_collection) { FactoryBot.create(:csv_collection_reindex, csv_import_id: 0, status: 'in progress') }
