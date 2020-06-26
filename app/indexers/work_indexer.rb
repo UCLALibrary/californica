@@ -24,7 +24,7 @@ class WorkIndexer < Hyrax::WorkIndexer
       solr_doc['human_readable_iiif_text_direction_ssi'] = human_readable_iiif_text_direction
       solr_doc['human_readable_iiif_viewing_hint_ssi'] = human_readable_iiif_viewing_hint
       solr_doc['human_readable_rights_statement_tesim'] = human_readable_rights_statement
-      solr_doc['sort_title_ssort'] = object.title.first
+      solr_doc['title_alpha_numeric_ssort'] = object.title.first
       solr_doc['ursus_id_ssi'] = Californica::IdGenerator.blacklight_id_from_ark(object.ark)
       solr_doc['year_isim'] = years
       solr_doc['thumbnail_url_ss'] = thumbnail_url
