@@ -18,6 +18,20 @@ RSpec.describe ::CollectionIndexer do
     end
   end
 
+  describe 'sort_title' do
+    let(:attributes) do
+      {
+        ark: 'ark:/123/456',
+        recalculate_size: true,
+        title: ['Primary title']
+      }
+    end
+
+    it 'indexs the only value' do
+      expect(solr_document['title_alpha_numeric_ssort']).to eq 'Primary title'
+    end
+  end
+
   describe '#thumbnail_url' do
     let(:expected_url) { "#{ENV['IIIF_SERVER_URL']}master%2Ffile%2Fpath.jpg/full/!200,200/0/default.jpg" }
 
