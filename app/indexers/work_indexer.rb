@@ -27,6 +27,7 @@ class WorkIndexer < Hyrax::WorkIndexer
       solr_doc['title_alpha_numeric_ssort'] = object.title.first
       solr_doc['ursus_id_ssi'] = Californica::IdGenerator.blacklight_id_from_ark(object.ark)
       solr_doc['year_isim'] = years
+      solr_doc['date_dtsim'] = solr_dates
       solr_doc['thumbnail_url_ss'] = thumbnail_url
     end
   end
@@ -93,5 +94,14 @@ class WorkIndexer < Hyrax::WorkIndexer
     integer_years = YearParser.integer_years(object.normalized_date.to_a)
     return nil if integer_years.blank?
     integer_years
+  end
+
+  def solr_dates
+    dates = object.normalized_date.to_a
+    dates = Array.wrap(dates).flat_map do |date|
+      date.split('/').reverse.join("/")
+    end.compact.uniq.sort
+    return nil if dates.blank?
+    dates
   end
 end

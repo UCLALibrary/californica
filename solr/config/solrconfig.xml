@@ -201,7 +201,7 @@
 
   <updateRequestProcessorChain name="add_modify_fields" default="${update.autoCreateFields:true}">
     <processor class="solr.CloneFieldUpdateProcessorFactory">
-      <str name="source">normalized_date_tesim</str>
+      <str name="source">date_dtsim</str>
       <str name="dest">date_dtsort</str>
     </processor>
 
