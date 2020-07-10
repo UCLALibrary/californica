@@ -99,9 +99,25 @@ class WorkIndexer < Hyrax::WorkIndexer
   def solr_dates
     dates = object.normalized_date.to_a
     dates = Array.wrap(dates).flat_map do |date|
-      date.split('/').reverse.join("/")
+      validate_date = date.split('/')
+      validate_date.each do |item|
+        item_values = item.split('-')
+        if item_values.length == 2
+          Date.strptime(item,"%Y-%m")
+        elsif item_values.length == 3
+          Date.strptime(item,"%Y-%m-%d")
+        else
+          Date.strptime(item,"%Y")
+        end   
+      end
+      validate_date.reverse.join("/")
     end.compact.uniq.sort
     return nil if dates.blank?
     dates
+  rescue ArgumentError => e
+    # We might want to start reporting metadata errors to Rollbar if we come up with a way to make them searchable and allow them to provide a feedback loop.
+    # Rollbar.error(e, "Invalid date string encountered in normalized date field: #{date_string}")
+      Rails.logger.error "event: metadata_error : Invalid date string encountered in normalized date field: #{dates}: #{e}"
+      nil
   end
 end
