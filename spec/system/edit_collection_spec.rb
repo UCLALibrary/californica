@@ -41,7 +41,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       masthead_parameters: 'Old Masthead Parameters',
       medium: ['Old Medium'],
       named_subject: ['Old Name/Subj'],
-      normalized_date: ['Old Normalized Date'],
+      normalized_date: ['1900/1901'],
       page_layout: ['Old Page layout'],
       place_of_origin: ['Old Place of origin'],
       provenance: ['Old Provenance'],
@@ -117,7 +117,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Local Identifier').value).to eq 'Old Local ID'
       expect(find_field('Medium').value).to eq 'Old Medium'
       expect(find_field('Name (Subject)').value).to eq 'Old Name/Subj'
-      expect(find_field('Normalized Date').value).to eq 'Old Normalized Date'
+      expect(find_field('Normalized Date').value).to eq '1900/1901'
       expect(find_field('Page layout').value).to eq 'Old Page layout'
       expect(find_field('Provenance').value).to eq 'Old Provenance'
       expect(find_field('Repository').value).to eq 'Old Repository'
