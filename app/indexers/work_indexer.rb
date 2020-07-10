@@ -103,12 +103,12 @@ class WorkIndexer < Hyrax::WorkIndexer
       validate_date.each do |item|
         item_values = item.split('-')
         if item_values.length == 2
-          Date.strptime(item,"%Y-%m")
+          Date.strptime(item, "%Y-%m")
         elsif item_values.length == 3
-          Date.strptime(item,"%Y-%m-%d")
+          Date.strptime(item, "%Y-%m-%d")
         else
-          Date.strptime(item,"%Y")
-        end   
+          Date.strptime(item, "%Y")
+        end
       end
       validate_date.reverse.join("/")
     end.compact.uniq.sort
@@ -117,7 +117,7 @@ class WorkIndexer < Hyrax::WorkIndexer
   rescue ArgumentError => e
     # We might want to start reporting metadata errors to Rollbar if we come up with a way to make them searchable and allow them to provide a feedback loop.
     # Rollbar.error(e, "Invalid date string encountered in normalized date field: #{date_string}")
-      Rails.logger.error "event: metadata_error : Invalid date string encountered in normalized date field: #{dates}: #{e}"
-      nil
+    Rails.logger.error "event: metadata_error : Invalid date string encountered in normalized date field: #{dates}: #{e}"
+    nil
   end
 end
