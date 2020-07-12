@@ -298,7 +298,7 @@ RSpec.describe WorkIndexer do
     end
 
     it 'indexs the only value' do
-      expect(solr_document['sort_title_ssort']).to eq 'Primary title'
+      expect(solr_document['title_alpha_numeric_ssort']).to eq 'Primary title'
     end
   end
 

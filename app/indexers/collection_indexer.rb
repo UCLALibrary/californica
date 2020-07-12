@@ -5,8 +5,9 @@ class CollectionIndexer < Hyrax::CollectionWithBasicMetadataIndexer
   def generate_solr_document
     return solr_during_indexing unless object.recalculate_size
     super.tap do |solr_doc|
-      solr_doc['ursus_id_ssi'] = Californica::IdGenerator.blacklight_id_from_ark(object.ark)
       solr_doc['thumbnail_url_ss'] = thumbnail_url
+      solr_doc['title_alpha_numeric_ssort'] = object.title.first
+      solr_doc['ursus_id_ssi'] = Californica::IdGenerator.blacklight_id_from_ark(object.ark)
     end
   end
 
@@ -15,8 +16,8 @@ class CollectionIndexer < Hyrax::CollectionWithBasicMetadataIndexer
     {
       "has_model_ssim" => ["Collection"],
       :id => object.id,
-      "title_tesim" => ["Ingesting now: #{object.title.first}"],
-      "title_sim" => ["Ingesting now: #{object.title.first}"],
+      "title_tesim" => [object.title.first.to_s],
+      "title_sim" => [object.title.first.to_s],
       "collection_type_gid_ssim" => [object.collection_type_gid],
       "ark_ssi" => object.ark,
       "ursus_id_ssi" => Californica::IdGenerator.blacklight_id_from_ark(object.ark),
