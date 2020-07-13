@@ -4,7 +4,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   attr_reader :row_number
 
   CALIFORNICA_TERMS_MAP = {
-    access_copy: ["IIIF Access URL", "access_copy"],
+    access_copy: ["IIIF Access URL", "access_copy", "Thumbnail"],
     alternative_title: ["AltTitle.other",
                         "AltTitle.parallel",
                         "AltTitle.translated",
@@ -24,7 +24,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     composer: "Name.composer",
     commentator: ["Commentator", "Name.commentator"],
     creator: "Name.creator",
-    date_created: "Date.creation",
+    date_created: ["Date.creation", "Date.created"],
     description: "Description.note",
     dimensions: "Format.dimensions",
     dlcs_collection_name: "Relation.isPartOf",
