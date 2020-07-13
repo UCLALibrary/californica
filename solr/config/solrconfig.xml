@@ -29,8 +29,7 @@
   <lib dir="${solr.install.dir:../../../..}/contrib/extraction/lib" regex=".*\.jar" />
   <lib dir="${solr.install.dir:../../../..}/dist/" regex="solr-cell-\d.*\.jar" />
 
-  <directoryFactory name="DirectoryFactory"
-                    class="${solr.directoryFactory:solr.NRTCachingDirectoryFactory}">
+  <directoryFactory name="DirectoryFactory" class="${solr.directoryFactory:solr.NRTCachingDirectoryFactory}">
   </directoryFactory>
 
   <codecFactory class="solr.SchemaCodecFactory"/>
@@ -41,15 +40,16 @@
 
   <dataDir>${solr.blacklight-core.data.dir:}</dataDir>
 
-  <requestDispatcher handleSelect="true" >
+  <requestDispatcher handleSelect="true">
     <requestParsers enableRemoteStreaming="false" multipartUploadLimitInKB="2048000" />
   </requestDispatcher>
 
   <requestHandler name="/analysis/field" startup="lazy" class="solr.FieldAnalysisRequestHandler" />
 
-  <requestHandler name="/update" class="solr.UpdateRequestHandler" >
+  <requestHandler name="/update" class="solr.UpdateRequestHandler">
     <lst name="defaults">
-      <str name="update.chain">add_hash_id</str>
+      <str name="update.chain">add_modify_fields</str>
+
     </lst>
   </requestHandler>
 
@@ -86,74 +86,74 @@
     <!-- default values for query parameters can be specified, these
          will be overridden by parameters in the request
       -->
-     <lst name="defaults">
-       <str name="defType">edismax</str>
-       <str name="echoParams">explicit</str>
-       <str name="q.alt">*:*</str>
-       <str name="mm">2&lt;-1 5&lt;-2 6&lt;90%</str>
-       <int name="qs">1</int>
-       <int name="ps">2</int>
-       <float name="tie">0.01</float>
-       <!-- this qf and pf are used by default, if not otherwise specified by
+    <lst name="defaults">
+      <str name="defType">edismax</str>
+      <str name="echoParams">explicit</str>
+      <str name="q.alt">*:*</str>
+      <str name="mm">2&lt;-1 5&lt;-2 6&lt;90%</str>
+      <int name="qs">1</int>
+      <int name="ps">2</int>
+      <float name="tie">0.01</float>
+      <!-- this qf and pf are used by default, if not otherwise specified by
             client. The default blacklight_config will use these for the
             "keywords" search. See the author_qf/author_pf, title_qf, etc
             below, which the default blacklight_config will specify for
             those searches. You may also be interested in:
             http://wiki.apache.org/solr/LocalParams
        -->
-        <str name="qf">
+      <str name="qf">
           id
           title_tesim
           author_tesim
           subject_tesim
-        </str>
-        <str name="pf">
+      </str>
+      <str name="pf">
           all_text_timv^10
-        </str>
+      </str>
 
-       <str name="author_qf">
+      <str name="author_qf">
           author_tesim
-       </str>
-       <str name="author_pf">
-       </str>
-       <str name="title_qf">
+      </str>
+      <str name="author_pf">
+      </str>
+      <str name="title_qf">
           title_tesim
-       </str>
-       <str name="title_pf">
-       </str>
-       <str name="subject_qf">
+      </str>
+      <str name="title_pf">
+      </str>
+      <str name="subject_qf">
           subject_tesim
-       </str>
-       <str name="subject_pf">
-       </str>
+      </str>
+      <str name="subject_pf">
+      </str>
 
-       <str name="fl">
+      <str name="fl">
          *,
          score
-       </str>
+      </str>
 
-       <str name="facet">true</str>
-       <str name="facet.mincount">1</str>
+      <str name="facet">true</str>
+      <str name="facet.mincount">1</str>
 
-       <str name="spellcheck">true</str>
-       <str name="spellcheck.dictionary">default</str>
-       <str name="spellcheck.onlyMorePopular">true</str>
-       <str name="spellcheck.extendedResults">true</str>
-       <str name="spellcheck.collate">false</str>
-       <str name="spellcheck.count">5</str>
+      <str name="spellcheck">true</str>
+      <str name="spellcheck.dictionary">default</str>
+      <str name="spellcheck.onlyMorePopular">true</str>
+      <str name="spellcheck.extendedResults">true</str>
+      <str name="spellcheck.collate">false</str>
+      <str name="spellcheck.count">5</str>
 
-     </lst>
+    </lst>
     <arr name="last-components">
       <str>spellcheck</str>
     </arr>
   </requestHandler>
 
-  <requestHandler name="permissions" class="solr.SearchHandler" >
+  <requestHandler name="permissions" class="solr.SearchHandler">
     <lst name="defaults">
       <str name="facet">off</str>
       <str name="echoParams">all</str>
       <str name="rows">1</str>
-      <str name="q">{!raw f=id v=$id}</str> <!-- use id=666 instead of q=id:666 -->
+      <str name="q">{!raw f=id v=$id}</str>      <!-- use id=666 instead of q=id:666 -->
       <str name="fl">
         id,
         access_ssim,
@@ -172,19 +172,19 @@
   </requestHandler>
 
   <requestHandler name="standard" class="solr.SearchHandler">
-     <lst name="defaults">
-       <str name="echoParams">explicit</str>
-       <str name="defType">lucene</str>
-     </lst>
+    <lst name="defaults">
+      <str name="echoParams">explicit</str>
+      <str name="defType">lucene</str>
+    </lst>
   </requestHandler>
 
   <!-- for requests to get a single document; use id=666 instead of q=id:666 -->
-  <requestHandler name="document" class="solr.SearchHandler" >
+  <requestHandler name="document" class="solr.SearchHandler">
     <lst name="defaults">
       <str name="echoParams">all</str>
       <str name="fl">*</str>
       <str name="rows">1</str>
-      <str name="q">{!term f=id v=$id}</str> <!-- use id=666 instead of q=id:666 -->
+      <str name="q">{!term f=id v=$id}</str>      <!-- use id=666 instead of q=id:666 -->
     </lst>
   </requestHandler>
 
@@ -199,7 +199,43 @@
     </arr>
   </requestHandler>
 
-  <updateRequestProcessorChain name="add_hash_id">
+  <updateRequestProcessorChain name="add_modify_fields" default="${update.autoCreateFields:true}">
+    <processor class="solr.CloneFieldUpdateProcessorFactory">
+      <str name="source">date_dtsim</str>
+      <str name="dest">date_dtsort</str>
+    </processor>
+
+    <processor class="solr.processor.FirstFieldValueUpdateProcessorFactory">
+      <str name="fieldName">date_dtsort</str>
+    </processor>
+
+    <processor class="solr.ParseDateFieldUpdateProcessorFactory">
+      <arr name="format">
+        <str>yyyy-MM-dd'T'HH:mm:ss.SSSZ</str>
+        <str>yyyy-MM-dd'T'HH:mm:ss,SSSZ</str>
+        <str>yyyy-MM-dd'T'HH:mm:ss.SSS</str>
+        <str>yyyy-MM-dd'T'HH:mm:ss,SSS</str>
+        <str>yyyy-MM-dd'T'HH:mm:ssZ</str>
+        <str>yyyy-MM-dd'T'HH:mm:ss</str>
+        <str>yyyy-MM-dd'T'HH:mmZ</str>
+        <str>yyyy-MM-dd'T'HH:mm</str>
+        <str>yyyy-MM-dd HH:mm:ss.SSSZ</str>
+        <str>yyyy-MM-dd HH:mm:ss,SSSZ</str>
+        <str>yyyy-MM-dd HH:mm:ss.SSS</str>
+        <str>yyyy-MM-dd HH:mm:ss,SSS</str>
+        <str>yyyy-MM-dd HH:mm:ssZ</str>
+        <str>yyyy-MM-dd HH:mm:ss</str>
+        <str>yyyy-MM-dd HH:mmZ</str>
+        <str>yyyy-MM-dd HH:mm</str>
+        <str>yyyy-MM-dd</str>
+        <str>yyyy-MM</str>
+        <str>yyyy</str>
+        <str>yyyy/yyyy</str>
+        <str>yyyy-MM/yyyy-MM</str>
+        <str>yyyy-MM-dd/yyyy-MM-dd</str>
+      </arr>
+    </processor>
+
     <processor class="solr.processor.SignatureUpdateProcessorFactory">
       <bool name="enabled">true</bool>
       <str name="signatureField">hashed_id_ssi</str>
@@ -208,11 +244,18 @@
       <str name="signatureClass">solr.processor.Lookup3Signature</str>
       <str name="defType">lucene</str>
     </processor>
+
+    <processor class="solr.StatelessScriptUpdateProcessorFactory">
+      <str name="script">update-script.js</str>
+      <!--
+        <lst name="params">
+          <str name="config_param">example config parameter</str>
+        </lst>-->
+    </processor>
     <processor class="solr.LogUpdateProcessorFactory" />
     <processor class="solr.RunUpdateProcessorFactory" />
   </updateRequestProcessorChain>
-
-<!-- Spell Check
+  <!-- Spell Check
 
         The spell check component can return a list of alternative spelling
         suggestions.

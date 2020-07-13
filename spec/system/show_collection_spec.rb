@@ -31,7 +31,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       location: ['Old Loc'],
       medium: ['Old Medium'],
       named_subject: ['Old Name/Subj'],
-      normalized_date: ['Old Normalized Date'],
+      normalized_date: ['1900/1901'],
       opac_url: 'https://www.library.ucla.edu',
       page_layout: ['Old Page layout'],
       photographer: ['Old Photographer'],
