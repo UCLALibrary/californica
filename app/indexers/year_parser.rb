@@ -43,14 +43,15 @@ class YearParser
 
     starting_year = parse_year(range_start)
     ending_year = parse_year(range_end)
-
-    if starting_year.nil?
-      starting_year.to_a
-    elsif ending_year.nil?
-      ending_year.to_a
-    else
-      (starting_year..ending_year).to_a
+    years_array = []
+    if !starting_year.nil? && ending_year.nil?
+      years_array.push(starting_year)
+    elsif !ending_year.nil? && starting_year.nil?
+      years_array.push(ending_year)
+    elsif !starting_year.nil? && !ending_year.nil?
+      years_array = (starting_year..ending_year).to_a
     end
+    years_array
   end
 
   def self.parse_year(date_string)

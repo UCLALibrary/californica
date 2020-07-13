@@ -60,6 +60,7 @@ Metrics/CyclomaticComplexity:
     - app/jobs/reindex_item_job.rb
     - app/models/concerns/discoverable.rb
     - app/uploaders/csv_manifest_validator.rb
+    - app/indexers/year_parser.rb
 
 Metrics/LineLength:
   Exclude:
@@ -108,6 +109,7 @@ Metrics/PerceivedComplexity:
     - app/models/concerns/discoverable.rb
     - app/uploaders/csv_manifest_validator.rb
     - app/controllers/application_controller.rb
+    - app/indexers/year_parser.rb
 
 RSpec/AnyInstance:
   Enabled: false
