@@ -211,12 +211,13 @@ RSpec.describe WorkIndexer do
       let(:attributes) do
         {
           ark: 'ark:/123/456',
-          normalized_date: ['1940-10-15']
+          normalized_date: ['1940']
         }
       end
 
       it 'indexes the year' do
         expect(solr_document['year_isim']).to eq [1940]
+        expect(solr_document['date_dtsim']).to eq ['1940']
       end
     end
 
@@ -229,6 +230,7 @@ RSpec.describe WorkIndexer do
 
       it 'doesn\'t index the year' do
         expect(solr_document['year_isim']).to eq nil
+        expect(solr_document['date_dtsim']).to eq nil
       end
     end
   end
@@ -244,6 +246,7 @@ RSpec.describe WorkIndexer do
 
       it 'indexes the earliest year' do
         expect(solr_document['sort_year_isi']).to eq 1940
+        expect(solr_document['date_dtsim']).to eq ['1940-10-15']
       end
     end
 
@@ -256,6 +259,7 @@ RSpec.describe WorkIndexer do
 
       it 'doesn\'t index the earliest year' do
         expect(solr_document['sort_year_isi']).to eq nil
+        expect(solr_document['date_dtsim']).to eq nil
       end
     end
 
@@ -269,6 +273,46 @@ RSpec.describe WorkIndexer do
 
       it 'indexes the earliest year' do
         expect(solr_document['sort_year_isi']).to eq 1934
+        expect(solr_document['date_dtsim']).to eq ['1937-07/1934-06']
+      end
+    end
+
+    context 'when normalized_date field is a range of year-month/year-month and one value is invalid' do
+      let(:attributes) do
+        {
+          ark: 'ark:/123/456',
+          normalized_date: ['1934-199/1937-07']
+        }
+      end
+
+      it 'indexes the correct value' do
+        expect(solr_document['date_dtsim']).to eq nil
+      end
+    end
+
+    context 'when normalized_date field is a range of year/year and both values are invalid' do
+      let(:attributes) do
+        {
+          ark: 'ark:/123/456',
+          normalized_date: ['1944/ff55']
+        }
+      end
+
+      it 'doesn\'t index the value' do
+        expect(solr_document['date_dtsim']).to eq nil
+      end
+    end
+
+    context 'when normalized_date field is a not a range and value is invalid' do
+      let(:attributes) do
+        {
+          ark: 'ark:/123/456',
+          normalized_date: ['1934-199-07']
+        }
+      end
+
+      it 'doesn\'t index the date' do
+        expect(solr_document['date_dtsim']).to eq nil
       end
     end
   end
