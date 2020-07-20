@@ -72,7 +72,8 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       colophon: ['Old Colophon'],
       finding_aid_url: ['Old Finding aid url'],
       rubricator: ['Old rubricator'],
-      creator: ['Old name creator']
+      creator: ['Old name creator'],
+      license: ['http://creativecommons.org/publicdomain/zero/1.0/']
       # local_rights_statement: ['Old Rights statement local'] # This invokes License renderer from hyrax gem
     }
   end
@@ -153,6 +154,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Finding aid url').value).to eq 'Old Finding aid url'
       expect(find_field('Rubricator').value).to eq 'Old rubricator'
       expect(find_field('Creator').value).to eq 'Old name creator'
+      expect(page).to have_select('License', selected: 'Creative Commons CC0 1.0 Universal', multiple: false)
       # expect(find_field('Local rights statement').value).to eq 'Old Rights statement local'
       #
       # # Edit some fields in the form

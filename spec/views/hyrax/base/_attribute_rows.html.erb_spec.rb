@@ -49,7 +49,8 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
              colophon: ['Old Colophon'],
              finding_aid_url: ['Old Finding aid url'],
              rubricator: ['Old rubricator'],
-             creator: ['Old name creator'])
+             creator: ['Old name creator'],
+             license: ['Creative Commons CC0 1.0 Universal'] )
     # local_rights_statement: ['local_statement'])
   end
 
@@ -164,6 +165,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   end
   it 'has creator' do
     expect(page).to match(/creator/)
+  end
+  it 'has license' do
+    expect(page).to match(/license/)
   end
   # This invokes License renderer from hyrax gem
   # it 'has local_rights_statement' do

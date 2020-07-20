@@ -38,6 +38,7 @@
 - [Illustrations note](#illustrations-note)
 - [Item Sequence](#item-sequence)
 - [Language](#language)
+- [License](#license)
 - [Masthead](#masthead_parameters)
 - [Name.architect](#name.architect)
 - [Name.composer](#name.composer)
@@ -169,17 +170,21 @@ accepts AltTitle.translated , AltTitle.descriptive
 ### Author
 
 ### Binding note
+
 accepts Description.binding
 
 ### Collation
 
 ### Colophon
+
 accepts Description.colophon
 
 ### Commentator
+
 accepts Name.commentator
 
 ### Contidion note
+
 accepts Condition note, Description.condition
 
 ### Coverage.geographic
@@ -201,9 +206,11 @@ accepts Condition note, Description.condition
 ### Featured image
 
 ### Finding Aid URL
+
 accepts Alt ID.url
 
 ### Foliation
+
 accepts "Foliation", "Foliation note"
 
 ### Format.dimensions
@@ -219,9 +226,11 @@ The URL of a IIIF resource that can be used to view the image. Should be automat
 ### IIIF Range
 
 ### Name.illuminator
+
 accepts "Illuminator", "Name.illuminator"
 
 ### Illustrations note
+
 accepts Description.illustrations
 
 ### Item Sequence
@@ -229,6 +238,10 @@ accepts Description.illustrations
 ### viewingHint
 
 ### Language
+
+### License
+
+accepts License
 
 ### Masthead
 
@@ -243,14 +256,17 @@ accepts Description.illustrations
 ### Name.photographer
 
 ### Name.repository
+
 accepts "Repository", "Name.repository"
 
 ### Name.scribe
 
 ### Name.subject
+
 Accepts "Name.subject", "Personal or Corporate Name.subject", "Subject.corporateName", "Subject.personalName", "Subject name",
 
 ### Opac url
+
 accepts Description.opac
 
 ### Page layout
@@ -260,6 +276,7 @@ accepts Description.opac
 ### Project Name
 
 ### Provenance
+
 Accepts "Provenance", "Description.history"
 
 ### Publisher.publisherName
@@ -275,6 +292,7 @@ Accepts "Provenance", "Description.history"
 ### Rights.statementLocal
 
 ### Rubricator
+
 accepts Name.rubricator
 
 ### Subject
@@ -284,11 +302,13 @@ accepts Name.rubricator
 ### Subject temporal
 
 ### Subject topic
+
 Accepts "Subject.conceptTopic" and "Subject.descriptiveTopic" as valid synonyms.
 
 ### Subject.descriptiveTopic
 
 ### Summary
+
 Accepts "Summary", "Description.abstract"
 
 ### Support
@@ -296,14 +316,17 @@ Accepts "Summary", "Description.abstract"
 ### IIIF Text direction
 
 ### Table of Contents
+
 Accepts "Table of Contents" and "Description.tableOfContents" as valid synonyms.
 
 ### Tagline
 
 ### Translator
+
 Accepts Name.translator as valid synonyms.
 
 ### Type.genre
+
 Accepts "Type.genre", "Genre"
 
 ### Type.typeOfResource
@@ -322,7 +345,7 @@ Examples:
 - `discovery` - A synonym `sinai`. Not recommended for new data.
 - `private` - Only admin users or users who have been granted special permission may view the record
 
-If there is no column with the header "Visibility", then the importer will look for the field "Item Status". Visibility will be made `public` if the status is "Completed" or 
+If there is no column with the header "Visibility", then the importer will look for the field "Item Status". Visibility will be made `public` if the status is "Completed" or
 "Completed with minimal metadata", or (by default) if the column cannot be found or is blank for a row.
 
-"Item Status" is *only* used if "Visiblity" is completely omitted from the csv. If the column is included but left blank, then a default of `public` will be applied to a row regardless of any "Item Status" value.
+"Item Status" is _only_ used if "Visiblity" is completely omitted from the csv. If the column is included but left blank, then a default of `public` will be applied to a row regardless of any "Item Status" value.

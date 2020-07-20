@@ -40,6 +40,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     illuminator: ["Illuminator", "Name.illuminator"],
     language: "Language",
     latitude: "Description.latitude",
+    license: "License",
     local_identifier: ["Alternate Identifier.local",
                        "AltIdentifier.callNo",
                        "AltIdentifier.local",
@@ -229,8 +230,13 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
   # License is applied at import time, and only for specific collections
   def license
-    return nil unless ladnn?
-    ["https://creativecommons.org/licenses/by/4.0/"]
+    if ladnn?
+      ["https://creativecommons.org/licenses/by/4.0/"]
+    else
+      # If it's populated, DLCS uses MARC IDs, not labels, so we don't need to map like w/ resource_type
+      map_field(:license)
+    end
+    
   end
 
   # Replace marc codes with double dashes with no surrounding spaces
