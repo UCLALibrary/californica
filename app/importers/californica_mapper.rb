@@ -236,7 +236,6 @@ class CalifornicaMapper < Darlingtonia::HashMapper
       # If it's populated, DLCS uses MARC IDs, not labels, so we don't need to map like w/ resource_type
       map_field(:license)
     end
-    
   end
 
   # Replace marc codes with double dashes with no surrounding spaces

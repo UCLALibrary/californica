@@ -50,7 +50,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
              finding_aid_url: ['Old Finding aid url'],
              rubricator: ['Old rubricator'],
              creator: ['Old name creator'],
-             license: ['Creative Commons CC0 1.0 Universal'] )
+             license: ['Creative Commons CC0 1.0 Universal'])
     # local_rights_statement: ['local_statement'])
   end
 
