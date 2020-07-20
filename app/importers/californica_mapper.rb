@@ -101,6 +101,10 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     super()
   end
 
+  def self.californica_terms_map
+    CALIFORNICA_TERMS_MAP
+  end
+
   # What columns are allowed in the CSV
   def self.allowed_headers
     CALIFORNICA_TERMS_MAP.values.flatten +
