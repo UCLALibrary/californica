@@ -32,6 +32,7 @@ RSpec.describe Hyrax::WorkForm do
       :illuminator,
       :illustrations_note,
       :latitude,
+      :license,
       :local_identifier,
       :longitude,
       :lyricist,

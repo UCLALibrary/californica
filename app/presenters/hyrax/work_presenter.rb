@@ -30,6 +30,7 @@ module Hyrax
       :illustrations_note,
       :iiif_viewing_hint,
       :illuminator,
+      :license,
       :local_identifier,
       :location,
       :lyricist,

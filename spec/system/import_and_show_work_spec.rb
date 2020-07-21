@@ -12,6 +12,9 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
   let(:second_csv_import) { FactoryBot.create(:csv_import, user: user, manifest: second_manifest) }
   let(:second_importer) { CalifornicaImporter.new(second_csv_import, info_stream: [], error_stream: []) }
   let(:second_manifest) { Rack::Test::UploadedFile.new(File.join(fixture_path, 'coordinates_example_update.csv'), 'text/csv') }
+  let(:third_csv_import) { FactoryBot.create(:csv_import, user: user, manifest: third_manifest) }
+  let(:third_importer) { CalifornicaImporter.new(third_csv_import, info_stream: [], error_stream: []) }
+  let(:third_manifest) { Rack::Test::UploadedFile.new(File.join(fixture_path, 'test_example_license.csv'), 'text/csv') }
   let(:user) { FactoryBot.create(:admin) }
 
   before { login_as admin_user }
@@ -121,5 +124,23 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     work.reload
     expect(work.funding_note.first).to eq "Better Funding Note"
     expect(work.medium).to eq []
+  end
+
+  it "imports records from a csv with license" do
+    allow(ENV).to receive(:[]).and_call_original
+    allow(ENV).to receive(:[]).with('IIIF_SERVER_URL').and_return('https://cantaloupe.url/iiif/2/')
+
+    # adds works to the specified collection
+    expect(collection.ark).to eq 'ark:/111/222'
+    third_importer.import
+    work = Work.last
+    expect(work.member_of_collections).to eq [collection]
+
+    # displays expected fields on show work page
+    work = Work.last
+    expect(work.id).to eq "f62bn833bh-03031"
+    visit("/concern/works/#{work.id}")
+    expect(page).to have_content "Creative Commons CC0 1.0 Universal" # license
+    # expect(page).to have_content "local_statement" # local_rights_statement # This invokes License renderer from hyrax gem
   end
 end

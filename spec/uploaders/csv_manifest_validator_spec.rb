@@ -260,7 +260,8 @@ RSpec.describe CsvManifestValidator, type: :model do
         "Type.genre",
         "Type.typeOfResource",
         "viewingHint",
-        "Visibility"
+        "Visibility",
+        "License"
       )
     end
   end

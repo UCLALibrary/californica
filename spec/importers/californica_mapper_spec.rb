@@ -108,7 +108,8 @@ RSpec.describe CalifornicaMapper do
       "Alt ID.url" => "finding_aid_url_2", # finding_aid_url
       "Rubricator" => "rubricator_1", # rubricator
       "Name.rubricator" => "rubricator_2", # rubricator
-      "Name.creator" => "name_creator" # creator
+      "Name.creator" => "name_creator", # creator
+      "License" => "http://creativecommons.org/publicdomain/zero/1.0/" # license
     }
   end
 
@@ -117,6 +118,12 @@ RSpec.describe CalifornicaMapper do
   it "maps resource type to local authority values, if possible" do
     expect(mapper.resource_type).to contain_exactly(
       'http://id.loc.gov/vocabulary/resourceTypes/img'
+    )
+  end
+
+  it "maps license to local authority values, if possible" do
+    expect(mapper.license).to contain_exactly(
+      'http://creativecommons.org/publicdomain/zero/1.0/'
     )
   end
 
@@ -161,6 +168,7 @@ RSpec.describe CalifornicaMapper do
         :iiif_viewing_hint,
         :illuminator,
         :language,
+        :license,
         :latitude,
         :local_identifier,
         :location,
@@ -529,8 +537,8 @@ RSpec.describe CalifornicaMapper do
       let(:metadata) do
         { "Project Name" => 'Anything Else' }
       end
-      it 'does not assign a license' do
-        expect(mapper.license).to be_nil
+      it 'does assign a license if the csv has license' do
+        expect(mapper.license).not_to be_nil
       end
     end
   end
