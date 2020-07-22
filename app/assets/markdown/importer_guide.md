@@ -1,11 +1,11 @@
 # <a href="#required-fields">Required Fields</a>
 
 - [File Name](#file-name)
-- [Item ARK](#item-ark)
-- [Object Type](#object-type)
-- [Parent ARK](#parent-ark) (required for `Work` objects)
-- [Rights.copyrightStatus](#rights.copyrightstatus)
 - [Title](#title)
+- [Item ARK](#item-ark)
+- [Parent ARK](#parent-ark) (required for `Work` and `Page` objects)
+- [Object Type](#object-type)
+- [Rights.copyrightStatus](#rights.copyrightstatus)
 
 # <a href="#other-allowed-fields">Other Allowed Fields</a>
 
@@ -80,9 +80,9 @@
 
 ### File Name (required)
 
-A _full file path_ to the file in the "Masters" netapp volume. Currently this must be single-valued. If a Work has multiple files associated with it, then each file should be given its own line with object type of "ChildWork" and a "Parent ARK" value that refers to the original.
+A _full file path_ to the file in the "Masters" NetApp volume. Currently this must be single-valued. If a `Work` has multiple files associated with it, then each file should be given its own line with the object type `Page` and a `Parent ARK` value that refers to the parent `Work`.
 
-If the File Name starts with "Masters/", it will be used as is. Otherwise, it will be prepended with "Masters/dlmasters/", in order to match the content of DLCS exports.
+If the File Name starts with "Masters/", it will be used as is. Otherwise, it will be prepended with `Masters/dlmasters/`, in order to match the content of DLCS exports.
 
 This field is a string. **This field is required**.
 
@@ -92,6 +92,19 @@ Examples:
 - `postcards/masters/21198-zz00090nn2-1-master.tif`
   <br> (Imported as `Masters/dlmasters/postcards/masters/21198-zz00090nn2-1-master.tif`)
 - `Masters/DLTempSecure/ABC/xyz/file_123.tif`
+
+### Title (required)
+
+A name to aid in identifying a work.
+
+This field is a string. **This field is required**.
+
+Examples:
+
+- `[Fannie Lou Hamer, Mississippi Freedom Democratic Party delegate, at the Democratic National Convention, Atlantic City, New Jersey, August 1964] / [WKL].` (single value)
+<!-- - `[Fannie Lou Hamer, Mississippi Freedom Democratic Party delegate, at the Democratic National Convention, Atlantic City, New Jersey, August 1964] / [WKL].|~|Fannie Lou Hamer Portrait` (multivalued) -->
+
+If the title begins with 'DUPLICATE' (case sensitive), then no new record will be created. If a record already exists with the same ARK, then that record will be updated as usual. Such records can be found and manually deleted by searching for 'DUPLICATE'.
 
 ### Item ARK (required)
 
@@ -103,27 +116,28 @@ Examples:
 
 - `ark:/21198/zz002h2fpt` (single value)
 
-### Object Type (required)
-
-A controlled vocabulary term referring to the type of repository object that will be created for this CSV row. Current legal values are `Collection`, `Work`, and `ChildWork`. Only one value can be given per CSV row.
-
-Currently, `Manuscript` is also accepted as a synonym of `Work` and `Page` as a synonym of `ChildWork`, but this functionality may be removed at some point in the future.
-
-This field is a string. **This field is required**.
-
-Examples:
-
-- `Work` (single value)
-
 ### Parent ARK (required)
 
-The ark value of this object's hierarchical parent. For a single-image `Work` object, this will be the ark of a `Collection` object. When we start importing multi-page objects, this will become more complex.
+The ARK value of the object's hierarchical parent. For a single-image `Work` object, this will be the ARK of a `Collection` object. For `Page` objects, this will be the ARK of the parent `Work` object.
 
 This field is a string. **This field is required for Work objects**.
 
 Examples:
 
 - `ark:/21198/zz002h2fpt` (single value)
+
+### Object Type (required)
+
+A controlled vocabulary term referring to the type of repository object that will be created for this CSV row. Current legal values are `Collection`, `Work`, and `Page`. Only one value can be given per CSV row.
+
+Currently, `Manuscript` is also accepted as a synonym of `Work`, and `ChildWork` as accepted as a synonym of `Page`, but this functionality may be removed at some point in the future.
+
+This field is a string. **This field is required**.
+
+Examples:
+
+- `Work` (single value)
+- `Page` (single value)
 
 ### Rights.copyrightStatus (required)
 
@@ -134,19 +148,6 @@ This field is a string. **This field is required**.
 Examples:
 
 - `copyrighted` (single value)
-
-### Title (required)
-
-A name to aid in identifying a work.
-
-This field is a string. **This field is required**.
-
-Examples:
-
-- `[Fannie Lou Hamer, Mississippi Freedom Democratic Party delegate, at the Democratic National Convention, Atlantic City, New Jersey, August 1964] / [WKL].` (single value)
-- `[Fannie Lou Hamer, Mississippi Freedom Democratic Party delegate, at the Democratic National Convention, Atlantic City, New Jersey, August 1964] / [WKL].|~|Fannie Lou Hamer Portrait` (multivalued)
-
-If the title begins with 'DUPLICATE' (case sensitive), then no new record will be created. If a record already exists with the same ark, then that record will be updated as usual. Such records can be found and manually deleted by searching for 'DUPLICATE'
 
 ## Other Allowed Fields
 
