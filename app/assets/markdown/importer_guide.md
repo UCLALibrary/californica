@@ -222,13 +222,13 @@ Also accepts: `Foliation note`
 
 ### IIIF Access URL
 
-The URL of a IIIF resource that can be used to view the image. Should be automatically populated by uploading to [bucketeer](https://bucketeer.library.ucla.edu/upload/csv)
+The URL of a IIIF resource that can be used to view the image. This is populated by processing the CSV via [bucketeer](https://bucketeer.library.ucla.edu/upload/csv)
 
 ### IIIF Range
 
-### Name.illuminator
+### Illuminator
 
-Also aaccepts: `Illuminator`
+Also aaccepts: `Name.illuminator`
 
 ### Illustrations note
 
@@ -254,15 +254,11 @@ Also accepts: `Description.illustrations`
 
 ### Name.photographer
 
-### Name.repository
+### Repository
 
-Also accepts: `Repository`
+Also accepts: `Name.repository`
 
 ### Name.scribe
-
-### Name.subject
-
-Also accepts: `Personal or Corporate Name.subject`, `Subject.corporateName`, `Subject.personalName`, `Subject name`
 
 ### Opac url
 
@@ -294,7 +290,9 @@ Also accepts: `Description.history`
 
 Also accepts: `Name.rubricator`
 
-### Subject
+### Subject name
+
+Also accepts: `Personal or Corporate Name.subject`, `Subject.corporateName`, `Subject.personalName`, `Name.subject`
 
 ### Subject topic
 
