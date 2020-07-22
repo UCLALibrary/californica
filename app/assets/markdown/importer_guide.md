@@ -155,7 +155,7 @@ Examples:
 
 A local identifier. Can be multivalued.
 
-accepts Alternate Identifier.local, AltIdentifier.callNo, AltIdentifier.local, Alt ID.local, Local identifier
+Also accepts: `Alternate Identifier.local`, `AltIdentifier.callNo`, `Alt ID.local`, `Local identifier`
 
 Examples:
 
@@ -164,7 +164,7 @@ Examples:
 
 ### AltTitle.other
 
-accepts AltTitle.translated , AltTitle.descriptive
+Also accepts: `AltTitle.translated`, `AltTitle.descriptive`
 
 ### AltTitle.uniform
 
@@ -172,21 +172,21 @@ accepts AltTitle.translated , AltTitle.descriptive
 
 ### Binding note
 
-accepts Description.binding
+Also accepts: `Description.binding`
 
 ### Collation
 
 ### Colophon
 
-accepts Description.colophon
+Also accepts: `Description.colophon`
 
 ### Commentator
 
-accepts Name.commentator
+Also accepts: `Name.commentator`
 
-### Contidion note
+### Condition note
 
-accepts Condition note, Description.condition
+Also accepts: `Description.condition`
 
 ### Coverage.geographic
 
@@ -208,11 +208,11 @@ accepts Condition note, Description.condition
 
 ### Finding Aid URL
 
-accepts Alt ID.url
+Also accepts: `Alt ID.url`
 
 ### Foliation
 
-accepts "Foliation", "Foliation note"
+Also accepts: `Foliation note`
 
 ### Format.dimensions
 
@@ -228,11 +228,11 @@ The URL of a IIIF resource that can be used to view the image. Should be automat
 
 ### Name.illuminator
 
-accepts "Illuminator", "Name.illuminator"
+Also aaccepts: `Illuminator`
 
 ### Illustrations note
 
-accepts Description.illustrations
+Also accepts: `Description.illustrations`
 
 ### Item Sequence
 
@@ -241,8 +241,6 @@ accepts Description.illustrations
 ### Language
 
 ### License
-
-accepts License
 
 ### Masthead
 
@@ -258,17 +256,17 @@ accepts License
 
 ### Name.repository
 
-accepts "Repository", "Name.repository"
+Also accepts: `Repository`
 
 ### Name.scribe
 
 ### Name.subject
 
-Accepts "Name.subject", "Personal or Corporate Name.subject", "Subject.corporateName", "Subject.personalName", "Subject name",
+Also accepts: `Personal or Corporate Name.subject`, `Subject.corporateName`, `Subject.personalName`, `Subject name`
 
 ### Opac url
 
-accepts Description.opac
+Also accepts: `Description.opac`
 
 ### Page layout
 
@@ -278,7 +276,7 @@ accepts Description.opac
 
 ### Provenance
 
-Accepts "Provenance", "Description.history"
+Also accepts: `Description.history`
 
 ### Publisher.publisherName
 
@@ -294,23 +292,21 @@ Accepts "Provenance", "Description.history"
 
 ### Rubricator
 
-accepts Name.rubricator
+Also accepts: `Name.rubricator`
 
 ### Subject
+
+### Subject topic
+
+Also accepts: `Subject.conceptTopic` ; `Subject.descriptiveTopic`
 
 ### Subject geographic
 
 ### Subject temporal
 
-### Subject topic
-
-Accepts "Subject.conceptTopic" and "Subject.descriptiveTopic" as valid synonyms.
-
-### Subject.descriptiveTopic
-
 ### Summary
 
-Accepts "Summary", "Description.abstract"
+Also accepts: `Description.abstract`
 
 ### Support
 
@@ -318,17 +314,17 @@ Accepts "Summary", "Description.abstract"
 
 ### Table of Contents
 
-Accepts "Table of Contents" and "Description.tableOfContents" as valid synonyms.
+Also accepts: `Description.tableOfContents`
 
 ### Tagline
 
 ### Translator
 
-Accepts Name.translator as valid synonyms.
+Also accepts: `Name.translator`
 
 ### Type.genre
 
-Accepts "Type.genre", "Genre"
+Also accepts: `Genre`
 
 ### Type.typeOfResource
 
@@ -336,13 +332,13 @@ Accepts "Type.genre", "Genre"
 
 A single-value field that must contain one of the allowed values.
 
-This field is not required. If leave the value blank, it will default to `public` visibility. If you omit the column, this will trigger a more complicated procedure to determine the visibility of DLCS imports (see below).
+This field is not required. If the value is left blank, it will default to `public` visibility. If you omit the column, this will trigger a more complicated procedure to determine the visibility of DLCS imports (see below).
 
 Examples:
 
 - `public` - All users can view the record
 - `authenticated` - Logged in users can view the record
-- `sinai` - For Sinai Library items. All californica users can vsiew the metadata, but not the files. Hidden from the public-facing site as of Nov 2019.
+- `sinai` - For Sinai Library items. All californica users can view the metadata, but not the files. Hidden from the public-facing site as of Nov 2019.
 - `discovery` - A synonym `sinai`. Not recommended for new data.
 - `private` - Only admin users or users who have been granted special permission may view the record
 
