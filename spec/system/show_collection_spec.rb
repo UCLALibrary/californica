@@ -70,7 +70,8 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       colophon: ['Old Colophon'],
       finding_aid_url: ['Old Finding aid url'],
       rubricator: ['Old rubricator'],
-      creator: ['Old name creator']
+      creator: ['Old name creator'],
+      license: ['Creative Commons CC0 1.0 Universal']
       # local_rights_statement: ['Old Rights local statement'] # This invokes License renderer from hyrax gem
     }
   end

@@ -131,7 +131,8 @@ RSpec.describe CalifornicaCsvParser do
        'Alt ID.url',
        'Rubricator',
        'Name.rubricator',
-       'Name.creator']
+       'Name.creator',
+       'License']
     end
 
     it 'knows the headers for this CSV file' do

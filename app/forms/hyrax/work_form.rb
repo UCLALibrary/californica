@@ -31,6 +31,7 @@ module Hyrax
       :illuminator,
       :illustrations_note,
       :latitude,
+      :license,
       :local_identifier,
       :location,
       :longitude,
