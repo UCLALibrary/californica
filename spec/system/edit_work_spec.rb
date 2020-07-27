@@ -26,6 +26,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       iiif_viewing_hint: 'Old Iiif viewing hint',
       iiif_range: 'Old Iiif range',
       illustrations_note: ['Old Illustrations note'],
+      illustrator: ['Old Illustrator'],
       language: ['ang'],
       latitude: ['Old Lat'],
       local_identifier: ['Old Local ID'],

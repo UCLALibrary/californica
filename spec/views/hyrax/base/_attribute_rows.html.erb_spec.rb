@@ -23,6 +23,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
              funding_note: ['funding_note'],
              genre: ['genre'],
              iiif_viewing_hint: 'iiif_viewing_hint',
+             illustrator: ['illustrator'],
              location: ['location'],
              latitude: ['latitude'],
              local_identifier: ['local'],
@@ -84,6 +85,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   end
   it 'has iiif_viewing_hint' do
     expect(page).to match(/iiif_viewing_hint/)
+  end
+  it 'has illustrator' do
+    expect(page).to match(/illustrator/)
   end
   it 'has latitude' do
     expect(page).to match(/latitude/)

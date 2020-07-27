@@ -107,6 +107,8 @@ RSpec.describe CalifornicaCsvParser do
        'Foliation note',
        'Foliation',
        'Illuminator',
+       'Illustrator',
+       'Name.illustrator',
        'Name.illuminator',
        'Name.lyricist',
        'Name.composer',

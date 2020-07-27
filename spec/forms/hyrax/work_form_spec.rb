@@ -31,6 +31,7 @@ RSpec.describe Hyrax::WorkForm do
       :iiif_range,
       :illuminator,
       :illustrations_note,
+      :illustrator,
       :latitude,
       :license,
       :local_identifier,

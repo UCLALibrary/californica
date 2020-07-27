@@ -101,7 +101,6 @@ class CatalogController < ApplicationController
     config.add_show_field solr_name('format', :stored_searchable)
     config.add_show_field solr_name('identifier', :stored_searchable)
     config.add_show_field 'ark_ssi', label: 'ARK'
-
     config.add_show_field 'access_copy_ssi'
     config.add_show_field solr_name('alternative_title', :stored_searchable)
     config.add_show_field solr_name('architect', :stored_searchable)
@@ -124,6 +123,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'iiif_range_ssi'
     config.add_show_field 'iiif_viewing_hint_ssi'
     config.add_show_field 'illuminator_tesim'
+    config.add_show_field 'illustrator_tesim'
     config.add_show_field solr_name('illustrations_note', :stored_searchable)
     config.add_show_field solr_name('location', :stored_searchable)
     config.add_show_field 'local_identifier_ssm'
@@ -413,6 +413,14 @@ class CatalogController < ApplicationController
 
     config.add_search_field('iiif_viewing_hint') do |field|
       solr_name = solr_name('iiif_viewing_hint', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('illustrator') do |field|
+      solr_name = solr_name('illustrator', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name

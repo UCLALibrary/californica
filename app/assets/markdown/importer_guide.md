@@ -36,6 +36,7 @@
 - [IIIF Access URL](#iiif-access-url)
 - [IIIF Range](#iiif-range)
 - [Illustrations note](#illustrations-note)
+- [Illustrator](#illustrator)
 - [Item Sequence](#item-sequence)
 - [Language](#language)
 - [License](#license)
@@ -232,6 +233,10 @@ accepts "Illuminator", "Name.illuminator"
 ### Illustrations note
 
 accepts Description.illustrations
+
+### Illustrator
+
+accepts ""Illustrator", "Name.illustrator"
 
 ### Item Sequence
 
