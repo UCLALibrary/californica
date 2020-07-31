@@ -233,6 +233,12 @@
         <str>yyyy/yyyy</str>
         <str>yyyy-MM/yyyy-MM</str>
         <str>yyyy-MM-dd/yyyy-MM-dd</str>
+        <str>yyyy/yyyy-mm</str>
+        <str>yyyy-mm/yyyy</str>
+        <str>yyyy/yyyy-mm-dd</str>
+        <str>yyyy-mm-dd/yyyy</str>
+        <str>yyyy-mm/yyyy-mm-dd</str>
+        <str>yyyy-mm-dd/yyyy-mm</str>
       </arr>
     </processor>
 
