@@ -107,8 +107,6 @@ RSpec.describe CalifornicaCsvParser do
        'Foliation note',
        'Foliation',
        'Illuminator',
-       'Illustrator',
-       'Name.illustrator',
        'Name.illuminator',
        'Name.lyricist',
        'Name.composer',
@@ -134,7 +132,9 @@ RSpec.describe CalifornicaCsvParser do
        'Rubricator',
        'Name.rubricator',
        'Name.creator',
-       'License']
+       'License',
+       'Illustrator',
+       'Name.illustrator']
     end
 
     it 'knows the headers for this CSV file' do

@@ -174,6 +174,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     Ark.ensure_prefix(map_field(:ark).to_a.first)
   end
 
+  # Only single value field need to be defined
   def binding_note
     map_field(:binding_note).to_a.first
   end
