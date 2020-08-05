@@ -74,84 +74,84 @@ class CatalogController < ApplicationController
 
     # solr fields to be displayed in the index (search results) view
     #   The ordering of the field names is the order of the display
-    config.add_index_field solr_name('title', :stored_searchable), label: 'Title', itemprop: 'name', if: false
-    config.add_index_field solr_name('description', :stored_searchable), itemprop: 'Description', helper_method: :iconify_auto_link
-    config.add_index_field solr_name('normalized_date', :stored_searchable), label: 'Date', link_to_search: solr_name('normalized_date', :facetable)
+    config.add_index_field 'title_tesim', label: 'Title', itemprop: 'name', if: false
+    config.add_index_field 'description_tesim', itemprop: 'Description', helper_method: :iconify_auto_link
+    config.add_index_field 'normalized_date_tesim', label: 'Date', link_to_search: solr_name('normalized_date', :facetable)
 
     # Currently disabled resource_type in index view bc the implementation makes it hard to tap into our custom presenter
-    config.add_index_field solr_name('human_readable_resource_type', :stored_searchable), label: 'Resource Type', link_to_search: solr_name('human_readable_resource_type', :facetable)
+    config.add_index_field 'human_readable_resource_type_tesim', label: 'Resource Type', link_to_search: solr_name('human_readable_resource_type', :facetable)
 
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
-    config.add_show_field solr_name('title', :stored_searchable)
-    config.add_show_field solr_name('description', :stored_searchable)
-    config.add_show_field solr_name('keyword', :stored_searchable)
-    config.add_show_field solr_name('subject', :stored_searchable)
-    config.add_show_field solr_name('creator', :stored_searchable)
-    config.add_show_field solr_name('contributor', :stored_searchable)
-    config.add_show_field solr_name('publisher', :stored_searchable)
-    config.add_show_field solr_name('based_near_label', :stored_searchable)
-    config.add_show_field solr_name('language', :stored_searchable)
-    config.add_show_field solr_name('date_uploaded', :stored_searchable)
-    config.add_show_field solr_name('date_modified', :stored_searchable)
-    config.add_show_field solr_name('date_created', :stored_searchable)
-    config.add_show_field solr_name('rights_statement', :stored_searchable)
-    config.add_show_field solr_name('license', :stored_searchable)
-    config.add_show_field solr_name('resource_type', :stored_searchable), label: 'Resource Type'
-    config.add_show_field solr_name('format', :stored_searchable)
-    config.add_show_field solr_name('identifier', :stored_searchable)
+    config.add_show_field 'title_tesim'
+    config.add_show_field 'description_tesim'
+    config.add_show_field 'keyword_tesim'
+    config.add_show_field 'subject_tesim'
+    config.add_show_field 'creator_tesim'
+    config.add_show_field 'contributor_tesim'
+    config.add_show_field 'publisher_tesim'
+    config.add_show_field 'based_near_label_tesim'
+    config.add_show_field 'language_tesim'
+    config.add_show_field 'date_uploaded_tesim'
+    config.add_show_field 'date_modified_tesim'
+    config.add_show_field 'date_created_tesim'
+    config.add_show_field 'rights_statement_tesim'
+    config.add_show_field 'license_tesim'
+    config.add_show_field 'resource_type_tesim', label: 'Resource Type'
+    config.add_show_field 'format_tesim'
+    config.add_show_field 'identifier_tesim'
     config.add_show_field 'ark_ssi', label: 'ARK'
     config.add_show_field 'access_copy_ssi'
-    config.add_show_field solr_name('alternative_title', :stored_searchable)
-    config.add_show_field solr_name('architect', :stored_searchable)
+    config.add_show_field 'alternative_title_tesim'
+    config.add_show_field 'architect_tesim'
     config.add_show_field 'author_tesim'
-    config.add_show_field solr_name('caption', :stored_searchable)
+    config.add_show_field 'caption_tesim'
     config.add_show_field 'collation_ssi'
     config.add_show_field 'colophon_tesim'
     config.add_show_field 'composer_tesim'
     config.add_show_field 'commentator_tesim'
     config.add_show_field 'condition_note_ssi'
-    config.add_show_field solr_name('binding_note', :stored_sortable)
-    config.add_show_field solr_name('dimensions', :stored_searchable)
-    config.add_show_field solr_name('extent', :stored_searchable)
+    config.add_show_field 'binding_note_ssi'
+    config.add_show_field 'dimensions_tesim'
+    config.add_show_field 'extent_tesim'
     config.add_show_field 'finding_aid_url_ssm'
     config.add_show_field 'foliation_ssi', label: 'Foliation note'
     config.add_show_field 'masthead_parameters_ssi'
-    config.add_show_field solr_name('funding_note', :stored_searchable)
-    config.add_show_field solr_name('genre', :stored_searchable)
+    config.add_show_field 'funding_note_tesim'
+    config.add_show_field 'genre_tesim'
     config.add_show_field 'iiif_manifest_url_ssi'
     config.add_show_field 'iiif_range_ssi'
     config.add_show_field 'iiif_viewing_hint_ssi'
     config.add_show_field 'illuminator_tesim'
+    config.add_show_field 'illustrations_note_tesim'
     config.add_show_field 'illustrator_tesim'
-    config.add_show_field solr_name('illustrations_note', :stored_searchable)
-    config.add_show_field solr_name('location', :stored_searchable)
+    config.add_show_field 'location_tesim'
     config.add_show_field 'local_identifier_ssm'
     config.add_show_field 'lyricist_tesim'
-    config.add_show_field solr_name('medium', :stored_searchable)
-    config.add_show_field solr_name('named_subject', :stored_searchable)
-    config.add_show_field solr_name('normalized_date', :stored_searchable)
-    config.add_show_field solr_name('opac_url_ssi', :stored_sortable)
+    config.add_show_field 'medium_tesim'
+    config.add_show_field 'named_subject_tesim'
+    config.add_show_field 'normalized_date_tesim'
+    config.add_show_field 'opac_url_ssi'
     config.add_show_field 'page_layout_ssim'
-    config.add_show_field solr_name('photographer', :stored_searchable)
+    config.add_show_field 'photographer_tesim'
     config.add_show_field 'place_of_origin_tesim'
     config.add_show_field 'preservation_copy_ssi'
-    config.add_show_field solr_name('provenance', :stored_searchable)
-    config.add_show_field solr_name('repository', :stored_searchable)
-    config.add_show_field solr_name('rights_country', :stored_searchable)
-    config.add_show_field solr_name('rights_holder', :stored_searchable)
+    config.add_show_field 'provenance_tesim'
+    config.add_show_field 'repository_tesim'
+    config.add_show_field 'rights_country_tesim'
+    config.add_show_field 'rights_holder_tesim'
     config.add_show_field 'rubricator_tesim'
     # config.add_show_field 'local_rights_statement_ssim' # This invokes License renderer from hyrax gem
     config.add_show_field 'scribe_tesim'
     config.add_show_field 'subject_geographic_tesim'
     config.add_show_field 'subject_temporal_tesim'
-    config.add_show_field solr_name('subject_topic', :stored_searchable)
-    config.add_show_field solr_name('support', :stored_searchable)
-    config.add_show_field solr_name('summary', :stored_searchable)
+    config.add_show_field 'subject_topic_tesim'
+    config.add_show_field 'support_tesim'
+    config.add_show_field 'summary_tesim'
     config.add_show_field 'iiif_text_direction_ssi'
-    config.add_show_field solr_name('toc', :stored_searchable)
+    config.add_show_field 'toc_tesim'
     config.add_show_field 'translator_tesim'
-    config.add_show_field solr_name('uniform_title', :stored_searchable)
+    config.add_show_field 'uniform_title_tesim'
     config.add_show_field 'representative_image_ssi'
     config.add_show_field 'featured_image_ssi'
     config.add_show_field 'tagline_ssi'
