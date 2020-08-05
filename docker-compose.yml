@@ -93,7 +93,7 @@ services:
     volumes:
       - solr_data:/opt/solr/server/solr/mycores/californica/data
     ports:
-      - '127.0.0.1:8982:8983'
+      - '127.0.0.1:8983:8983'
 
   solr_test:
     build:
