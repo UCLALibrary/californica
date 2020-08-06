@@ -50,6 +50,10 @@ class SolrDocument
     self[:binding_note_ssi]
   end
 
+  def calligrapher
+    self[:calligrapher_tesim]
+  end
+
   def caption
     self[:caption_tesim]
   end
@@ -84,6 +88,14 @@ class SolrDocument
 
   def dlcs_collection_name
     self[:dlcs_collection_name_ssm]
+  end
+
+  def editor
+    self[:editor_tesim]
+  end
+
+  def engraver
+    self[:engraver_tesim]
   end
 
   def extent
@@ -154,6 +166,10 @@ class SolrDocument
     self[:masthead_parameters_ssi]
   end
 
+  def note
+    self[:note_tesim]
+  end
+
   def opac_url
     self[:opac_url_ssi]
   end
@@ -196,6 +212,10 @@ class SolrDocument
 
   def preservation_copy
     self['preservation_copy_ssi']
+  end
+
+  def printmaker
+    self[:printmaker_tesim]
   end
 
   def provenance

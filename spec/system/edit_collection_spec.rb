@@ -15,6 +15,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       alternative_title: ['alternative title'],
       ark: 'ark:/abc/1234',
       author: ['Old Author'],
+      calligrapher: ['Old Calligrapher'],
       caption: ['Old Cap'],
       collation: 'Old Collation',
       composer: ['Old Composer'],
@@ -23,6 +24,8 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       date_created: ['Old Creation Date'],
       description: ['Old Desc'],
       dimensions: ['Old Dim'],
+      editor: ['Old Editor'],
+      engraver: ['Engraver'],
       resource_type: ['http://id.loc.gov/vocabulary/resourceTypes/col'], # "collection"
       extent: ['Old Extent'],
       foliation: 'Old Foliation note',
@@ -43,8 +46,10 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       medium: ['Old Medium'],
       named_subject: ['Old Name/Subj'],
       normalized_date: ['1900/1901'],
+      note: ['Old Note'],
       page_layout: ['Old Page layout'],
       place_of_origin: ['Old Place of origin'],
+      printmaker: ['Old Printmaker'],
       provenance: ['Old Provenance'],
       repository: ['Old Repository'],
       location: ['Old Loc'],
@@ -108,7 +113,10 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Resource type').value).to eq ["http://id.loc.gov/vocabulary/resourceTypes/col"]
       expect(find_field('Extent').value).to eq 'Old Extent'
       expect(find_field('Caption').value).to eq 'Old Cap'
+      expect(find_field('Calligrapher').value).to eq 'Old Calligrapher'
       expect(find_field('Dimensions').value).to eq 'Old Dim'
+      expect(find_field('Editor').value).to eq 'Old Editor'
+      expect(find_field('Engraver').value).to eq 'Old Engraver'
       expect(find_field('Funding Note').value).to eq 'Old Fund Note'
       expect(find_field('Genre').value).to eq 'Old Genre'
       expect(find_field('Iiif manifest url').value).to eq 'https://www.w3.org/TR/2019/WD-appmanifest-20190821/'
@@ -120,7 +128,9 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Medium').value).to eq 'Old Medium'
       expect(find_field('Name (Subject)').value).to eq 'Old Name/Subj'
       expect(find_field('Normalized Date').value).to eq '1900/1901'
+      expect(find_field('Note').value).to eq 'Old Note'
       expect(find_field('Page layout').value).to eq 'Old Page layout'
+      expect(find_field('Printmaker').value).to eq 'Old Printmaker'
       expect(find_field('Provenance').value).to eq 'Old Provenance'
       expect(find_field('Repository').value).to eq 'Old Repository'
       expect(find_field('Place of origin').value).to eq 'Old Place of origin'

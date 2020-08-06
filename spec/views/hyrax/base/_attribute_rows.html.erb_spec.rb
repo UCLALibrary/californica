@@ -16,10 +16,13 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
              author: ['author'],
              opac_url: 'opac_url',
              binding_note: 'binding_note',
+             calligrapher: ['calligrapher'],
              description: ['description'],
              extent: ['extent'],
              caption: ['caption'],
              dimensions: ['dimensions'],
+             editor: ['editor'],
+             engraver: ['engraver'],
              funding_note: ['funding_note'],
              genre: ['genre'],
              iiif_viewing_hint: 'iiif_viewing_hint',
@@ -31,8 +34,10 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
              medium: ['medium'],
              named_subject: ['named_subject'],
              normalized_date: ['normalized_date'],
+             note: ['note'],
              page_layout: ['page_layout'],
              place_of_origin: ['place_of_origin'],
+             printmaker: ['printmaker'],
              repository: ['repostiory'],
              resource_type: ['resource_type'],
              rights_country: ['rights_country'],
@@ -68,11 +73,20 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   it 'has binding_note' do
     expect(page).to match(/binding_note/)
   end
+  it 'has calligrapher' do
+    expect(page).to match(/calligrapher/)
+  end
   it 'has caption' do
     expect(page).to match(/caption/)
   end
   it 'has dimesions' do
     expect(page).to match(/dimensions/)
+  end
+  it 'has editor' do
+    expect(page).to match(/editor/)
+  end
+  it 'has engraver' do
+    expect(page).to match(/engraver/)
   end
   it 'has extent' do
     expect(page).to match(/extent/)
@@ -110,11 +124,17 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   it 'has normalized_date' do
     expect(page).to match(/normalized_date/)
   end
+  it 'has note' do
+    expect(page).to match(/note/)
+  end
   it 'has page_layout' do
     expect(page).to match(/page_layout/)
   end
   it 'has place_of_origin' do
     expect(page).to match(/place_of_origin/)
+  end
+  it 'has printmaker' do
+    expect(page).to match(/printmaker/)
   end
   it 'has repo' do
     expect(page).to match(/repository/)

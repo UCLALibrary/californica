@@ -14,6 +14,7 @@
 - [AltTitle.uniform](#alttitle.uniform)
 - [Author](#author)
 - [Binding note](#binding_note)
+- [Calligrapher](# calligrapher)
 - [Collation](#collation)
 - [Colophon](#colophon)
 - [Commentator](#commentator)
@@ -26,6 +27,8 @@
 - [Description.latitude](#description.latitude)
 - [Description.longitude](#description.longitude)
 - [Description.note](#description.note)
+- [Editor](# editor)
+- [Engraver](# engraver)
 - [Foliation](#foliation)
 - [Featured image](#featured_image)
 - [Finding Aid Url](#finding-aid-url)creator
@@ -50,8 +53,10 @@
 - [Name.repository](#name.repository)
 - [Name.scribe](#name.scribe)
 - [Name.subject](#name.subject)
+- [Note](#note)
 - [Opac url](#opac_url)
 - [Page layout](#page-layout)
+- [Printmaker](# printmaker)
 - [Project Name](#project-name)
 - [Place of origin](#place-of-origin)
 - [Provenance](#provenance)
@@ -175,6 +180,10 @@ Also accepts: `AltTitle.translated`, `AltTitle.descriptive`
 
 Also accepts: `Description.binding`
 
+### Calligrapher
+
+Also accepts Name.calligrapher
+
 ### Collation
 
 ### Colophon
@@ -204,6 +213,14 @@ Also accepts: `Description.condition`
 ### Description.longitude
 
 ### Description.note
+
+### Editor
+
+Also accepts Name.editor
+
+### Engraver
+
+Also accepts Name.engraver
 
 ### Featured image
 
@@ -259,6 +276,8 @@ accepts ""Illustrator", "Name.illustrator"
 
 ### Name.photographer
 
+### Note
+
 ### Repository
 
 Also accepts: `Name.repository`
@@ -272,6 +291,10 @@ Also accepts: `Description.opac`
 ### Page layout
 
 ### Place of origin
+
+### Printmaker
+
+Also accepts Name.printmaker
 
 ### Project Name
 

@@ -31,6 +31,10 @@ module UclaMetadata
       index.as :stored_searchable
     end
 
+    property :calligrapher, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/cll') do |index|
+      index.as :stored_searchable
+    end
+
     property :collation, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3077'), multiple: false do |index|
       index.as :stored_sortable
     end
@@ -57,6 +61,14 @@ module UclaMetadata
 
     property :dlcs_collection_name, predicate: ::RDF::URI.intern('https://bib.schema.org/Collection') do |index|
       index.as :displayable, :facetable
+    end
+
+    property :editor, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/edt') do |index|
+      index.as :stored_searchable
+    end
+
+    property :engraver, predicate: ::RDF::URI.intern('hhttp://id.loc.gov/vocabulary/relators/egr') do |index|
+      index.as :stored_searchable
     end
 
     property :extent, predicate: ::RDF::Vocab::DC11.format do |index|
@@ -147,6 +159,10 @@ module UclaMetadata
       index.as :stored_searchable, :facetable
     end
 
+    property :note, predicate: ::RDF::URI.intern('http://bibfra.me/vocab/lite/note') do |index|
+      index.as :stored_searchable
+    end
+
     property :opac_url, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/unimarc/terms/ter%23e'), multiple: false do |index|
       index.as :stored_sortable
     end
@@ -165,6 +181,10 @@ module UclaMetadata
 
     property :preservation_copy, predicate: ::RDF::URI.intern('https://pcdm.org/models#hasFile'), multiple: false do |index|
       index.as :stored_sortable
+    end
+
+    property :place_of_origin, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/prm') do |index|
+      index.as :stored_searchable
     end
 
     property :provenance, predicate: ::RDF::URI.intern('http://purl.org/dc/terms/provenance') do |index|
