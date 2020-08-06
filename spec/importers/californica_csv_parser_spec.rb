@@ -141,7 +141,8 @@ RSpec.describe CalifornicaCsvParser do
        'Name.editor',
        'Engraver',
        'Name.engraver',
-       'Note,Printmaker',
+       'Note',
+       'Printmaker',
        'Name.printmaker'
       ]
     end

@@ -118,7 +118,7 @@ RSpec.describe CalifornicaMapper do
       "Name.editor "=> "Name-editor", # editor
       "Engraver" => "Engraver-1", # engraver
       "Name.engraver "=> "Name-engraver", # engraver
-      "Note" => "Note", # note
+      "Note" => "Note-1", # note
       "Printmaker" => "Printmaker-1", # printmaker
       "Name.printmaker" => "Name-printmaker" # printmaker
     }
