@@ -88,9 +88,6 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   it 'has creator' do
     expect(page).to match(/creator/)
   end
-  it 'has description' do
-    expect(page).to match(/description/)
-  end
   it 'has dimesions' do
     expect(page).to match(/dimensions/)
   end
