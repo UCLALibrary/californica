@@ -33,6 +33,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       iiif_range: 'Old IIIF Range',
       illuminator: ['Old Illuminator'],
       illustrations_note: ['Old Illustrations note'],
+      illustrator: ['Old Illustrator'],
       language: ['ang'],
       latitude: ['Old Lat'],
       longitude: ['Old Long'],

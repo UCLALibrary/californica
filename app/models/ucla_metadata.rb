@@ -127,6 +127,10 @@ module UclaMetadata
       index.as :stored_searchable
     end
 
+    property :latitude, predicate: ::RDF::Vocab::EXIF.gpsLatitude do |index|
+      index.as :stored_searchable
+    end
+
     property :local_identifier, predicate: ::RDF::Vocab::Identifiers.local do |index|
       index.as :displayable, :facetable
     end
