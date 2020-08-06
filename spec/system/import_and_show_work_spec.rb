@@ -75,6 +75,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "clusc_1_1_00010432a.tif" # preservation_copy
     expect(page).to have_content "iiif-range" # iiif_range
     expect(page).to have_content "illustration-note" # illustrations_note
+    expect(page).to have_content "Illustrator-Person1" # illustrator
     expect(page).to have_content "history-description" # provenance
     expect(page).to have_content "table of contents" # toc
     expect(page).to have_content "concept-topic" # subject_topic

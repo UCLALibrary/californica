@@ -167,6 +167,7 @@ RSpec.describe CalifornicaMapper do
         :iiif_manifest_url,
         :iiif_viewing_hint,
         :illuminator,
+        :illustrator,
         :language,
         :license,
         :latitude,

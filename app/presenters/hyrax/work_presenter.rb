@@ -28,6 +28,7 @@ module Hyrax
       :iiif_manifest_url,
       :iiif_range,
       :illustrations_note,
+      :illustrator,
       :iiif_viewing_hint,
       :illuminator,
       :license,

@@ -36,8 +36,9 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     iiif_manifest_url: "IIIF Manifest URL",
     iiif_range: "IIIF Range",
     iiif_viewing_hint: "viewingHint",
-    illustrations_note: ["Illustrations note", "Description.illustrations"],
     illuminator: ["Illuminator", "Name.illuminator"],
+    illustrations_note: ["Illustrations note", "Description.illustrations"],
+    illustrator: ["Illustrator", "Name.illustrator"],
     language: "Language",
     latitude: "Description.latitude",
     license: "License",
@@ -173,6 +174,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     Ark.ensure_prefix(map_field(:ark).to_a.first)
   end
 
+  # Only single value field need to be defined
   def binding_note
     map_field(:binding_note).to_a.first
   end

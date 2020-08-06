@@ -24,6 +24,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       iiif_range: 'Old Iiif range',
       iiif_viewing_hint: 'Old Iiif viewing hint',
       illustrations_note: ['Old Illustrations note'],
+      illustrator: ['Old Illustrator'],
       language: ['ang'],
       latitude: ['Old Lat'],
       longitude: ['Old Long'],

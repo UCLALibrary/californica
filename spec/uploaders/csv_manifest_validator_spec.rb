@@ -196,6 +196,8 @@ RSpec.describe CsvManifestValidator, type: :model do
         "IIIF Range",
         "Illuminator",
         "Illustrations note",
+        "Illustrator",
+        "Name.illustrator",
         "Item ARK",
         "Item Sequence",
         "Language",

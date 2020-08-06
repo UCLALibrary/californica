@@ -126,6 +126,10 @@ class SolrDocument
     self[:illustrations_note_tesim]
   end
 
+  def illustrator
+    self[:illustrator_tesim]
+  end
+
   def latitude
     self[Solrizer.solr_name('latitude')]
   end

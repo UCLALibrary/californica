@@ -24,6 +24,7 @@ module Hyrax
       :iiif_manifest_url,
       :iiif_viewing_hint,
       :illuminator,
+      :illustrator,
       :illustrations_note,
       :latitude,
       :longitude,

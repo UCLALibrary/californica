@@ -101,7 +101,6 @@ class CatalogController < ApplicationController
     config.add_show_field 'format_tesim'
     config.add_show_field 'identifier_tesim'
     config.add_show_field 'ark_ssi', label: 'ARK'
-
     config.add_show_field 'access_copy_ssi'
     config.add_show_field 'alternative_title_tesim'
     config.add_show_field 'architect_tesim'
@@ -125,6 +124,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'iiif_viewing_hint_ssi'
     config.add_show_field 'illuminator_tesim'
     config.add_show_field 'illustrations_note_tesim'
+    config.add_show_field 'illustrator_tesim'
     config.add_show_field 'location_tesim'
     config.add_show_field 'local_identifier_ssm'
     config.add_show_field 'lyricist_tesim'
@@ -413,6 +413,14 @@ class CatalogController < ApplicationController
 
     config.add_search_field('iiif_viewing_hint') do |field|
       solr_name = solr_name('iiif_viewing_hint', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('illustrator') do |field|
+      solr_name = solr_name('illustrator', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name

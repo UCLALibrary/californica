@@ -26,6 +26,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       iiif_viewing_hint: 'Old Iiif viewing hint',
       iiif_range: 'Old Iiif range',
       illustrations_note: ['Old Illustrations note'],
+      illustrator: ['Old Illustrator'],
       language: ['ang'],
       latitude: ['Old Lat'],
       local_identifier: ['Old Local ID'],
@@ -133,8 +134,8 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Collation').value).to eq 'Old Collation'
       expect(find_field('Composer').value).to eq 'Old Composer'
       expect(find_field('Foliation').value).to eq 'Old Foliation note'
-      expect(find_field('Lyricist').value).to eq 'Old Lyricist'
       expect(find_field('Illuminator').value).to eq 'Old Illuminator'
+      expect(find_field('Lyricist').value).to eq 'Old Lyricist'
       expect(find_field('Scribe').value).to eq 'Old Scribe'
       expect(find_field('Condition note').value).to eq 'Old Condition note'
       expect(find_field('Masthead parameters').value).to eq 'Old Masthead Parameters'

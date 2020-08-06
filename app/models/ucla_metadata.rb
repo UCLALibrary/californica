@@ -95,6 +95,10 @@ module UclaMetadata
       index.as :stored_searchable
     end
 
+    property :illustrator, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/ill.html') do |index|
+      index.as :stored_searchable
+    end
+
     property :latitude, predicate: ::RDF::Vocab::EXIF.gpsLatitude do |index|
       index.as :stored_searchable
     end
