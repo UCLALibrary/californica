@@ -115,9 +115,9 @@ RSpec.describe CalifornicaMapper do
       "Calligrapher" => "Calligrapher-1", # calligrapher
       "Name.calligrapher" => "Name-calligrapher", # calligrapher
       "Editor" => "Editor-1", # editor
-      "Name.editor "=> "Name-editor", # editor
+      "Name.editor" => "Name-editor", # editor
       "Engraver" => "Engraver-1", # engraver
-      "Name.engraver "=> "Name-engraver", # engraver
+      "Name.engraver" => "Name-engraver", # engraver
       "Note" => "Note-1", # note
       "Printmaker" => "Printmaker-1", # printmaker
       "Name.printmaker" => "Name-printmaker" # printmaker

@@ -202,7 +202,7 @@ module UclaMetadata
     property :representative_image, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3079'), multiple: false do |index|
       index.as :stored_sortable
     end
-  
+
     property :rights_country, predicate: ::RDF::Vocab::EBUCore.rightsType do |index|
       index.as :stored_searchable
     end
@@ -218,7 +218,7 @@ module UclaMetadata
     property :scribe, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/scr') do |index|
       index.as :stored_searchable, :facetable
     end
-  
+
     property :services_contact, predicate: ::RDF::Vocab::EBUCore.hasRightsContact do |index|
       index.as :displayable
     end

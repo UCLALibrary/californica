@@ -213,12 +213,10 @@ class SolrDocument
   def printmaker
     self[:printmaker_tesim]
   end
-  
+
   def preservation_copy
     self['preservation_copy_ssi']
   end
-
-
 
   def provenance
     self[:provenance_tesim]

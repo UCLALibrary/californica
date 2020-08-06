@@ -143,8 +143,7 @@ RSpec.describe CalifornicaCsvParser do
        'Name.engraver',
        'Note',
        'Printmaker',
-       'Name.printmaker'
-      ]
+       'Name.printmaker']
     end
 
     it 'knows the headers for this CSV file' do
