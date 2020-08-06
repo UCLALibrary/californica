@@ -102,6 +102,10 @@ class SolrDocument
     self[:extent_tesim]
   end
 
+  def featured_image
+    self[:featured_image_ssi]
+  end
+
   def foliation
     self[:foliation_ssi]
   end
@@ -128,6 +132,14 @@ class SolrDocument
 
   def iiif_range
     self[:iiif_range_ssi]
+  end
+
+  def iiif_text_direction
+    self[:iiif_text_direction_ssi]
+  end
+
+  def iiif_viewing_hint
+    self[:iiif_viewing_hint_ssi]
   end
 
   def illuminator
@@ -166,26 +178,6 @@ class SolrDocument
     self[:masthead_parameters_ssi]
   end
 
-  def note
-    self[:note_tesim]
-  end
-
-  def opac_url
-    self[:opac_url_ssi]
-  end
-
-  def representative_image
-    self[:representative_image_ssi]
-  end
-
-  def featured_image
-    self[:featured_image_ssi]
-  end
-
-  def tagline
-    self[:tagline_ssi]
-  end
-
   def medium
     self[:medium_tesim]
   end
@@ -196,6 +188,14 @@ class SolrDocument
 
   def normalized_date
     self[:normalized_date_tesim]
+  end
+
+  def note
+    self[:note_tesim]
+  end
+
+  def opac_url
+    self[:opac_url_ssi]
   end
 
   def page_layout
@@ -210,13 +210,15 @@ class SolrDocument
     self[:place_of_origin_tesim]
   end
 
+  def printmaker
+    self[:printmaker_tesim]
+  end
+  
   def preservation_copy
     self['preservation_copy_ssi']
   end
 
-  def printmaker
-    self[:printmaker_tesim]
-  end
+
 
   def provenance
     self[:provenance_tesim]
@@ -224,6 +226,10 @@ class SolrDocument
 
   def repository
     self[:repository_tesim]
+  end
+
+  def representative_image
+    self[:representative_image_ssi]
   end
 
   def rights_country
@@ -271,12 +277,8 @@ class SolrDocument
     self[:support_tesim]
   end
 
-  def iiif_text_direction
-    self[:iiif_text_direction_ssi]
-  end
-
-  def iiif_viewing_hint
-    self[:iiif_viewing_hint_ssi]
+  def tagline
+    self[:tagline_ssi]
   end
 
   def translator
