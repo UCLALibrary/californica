@@ -31,6 +31,10 @@ module UclaMetadata
       index.as :stored_searchable
     end
 
+    property :calligrapher, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/cll') do |index|
+      index.as :stored_searchable
+    end
+
     property :collation, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3077'), multiple: false do |index|
       index.as :stored_sortable
     end
@@ -59,16 +63,28 @@ module UclaMetadata
       index.as :displayable, :facetable
     end
 
+    property :editor, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/edt') do |index|
+      index.as :stored_searchable
+    end
+
+    property :engraver, predicate: ::RDF::URI.intern('hhttp://id.loc.gov/vocabulary/relators/egr') do |index|
+      index.as :stored_searchable
+    end
+
     property :extent, predicate: ::RDF::Vocab::DC11.format do |index|
       index.as :stored_searchable, :facetable
     end
 
-    property :foliation, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3076'), multiple: false do |index|
+    property :featured_image, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3080'), multiple: false do |index|
       index.as :stored_sortable
     end
 
     property :finding_aid_url, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/findingAid') do |index|
       index.as :displayable
+    end
+
+    property :foliation, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3076'), multiple: false do |index|
+      index.as :stored_sortable
     end
 
     property :funding_note, predicate: ::RDF::URI.intern('http://bibfra.me/vocab/marc/fundingInformation') do |index|
@@ -84,6 +100,14 @@ module UclaMetadata
     end
 
     property :iiif_range, predicate: ::RDF::URI.intern('http://iiif.io/api/presentation/2#Range'), multiple: false do |index|
+      index.as :stored_sortable
+    end
+
+    property :iiif_text_direction, predicate: ::RDF::URI.intern('http://iiif.io/api/presentation/2#viewingDirection'), multiple: false do |index|
+      index.as :stored_sortable
+    end
+
+    property :iiif_viewing_hint, predicate: ::RDF::URI.intern('http://iiif.io/api/presentation/2#ViewingHint'), multiple: false do |index|
       index.as :stored_sortable
     end
 
@@ -103,12 +127,20 @@ module UclaMetadata
       index.as :stored_searchable
     end
 
-    property :location, predicate: ::RDF::Vocab::DC.coverage do |index|
-      index.as :stored_searchable, :facetable
+    property :latitude, predicate: ::RDF::Vocab::EXIF.gpsLatitude do |index|
+      index.as :stored_searchable
     end
 
     property :local_identifier, predicate: ::RDF::Vocab::Identifiers.local do |index|
       index.as :displayable, :facetable
+    end
+
+    # property :local_rights_statement, predicate: ::RDF::URI.intern('http://purl.org/dc/terms/rights') do |index|
+    # index.as :symbol
+    # end # This invokes License renderer from hyrax gem
+
+    property :location, predicate: ::RDF::Vocab::DC.coverage do |index|
+      index.as :stored_searchable, :facetable
     end
 
     property :longitude, predicate: ::RDF::Vocab::EXIF.gpsLongitude do |index|
@@ -123,18 +155,6 @@ module UclaMetadata
       index.as :stored_sortable
     end
 
-    property :representative_image, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3079'), multiple: false do |index|
-      index.as :stored_sortable
-    end
-
-    property :featured_image, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3080'), multiple: false do |index|
-      index.as :stored_sortable
-    end
-
-    property :tagline, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3081'), multiple: false do |index|
-      index.as :stored_sortable
-    end
-
     property :medium, predicate: ::RDF::Vocab::DC.medium do |index|
       index.as :stored_searchable, :facetable
     end
@@ -145,6 +165,10 @@ module UclaMetadata
 
     property :normalized_date, predicate: ::RDF::Vocab::DC11.date do |index|
       index.as :stored_searchable, :facetable
+    end
+
+    property :note, predicate: ::RDF::URI.intern('http://bibfra.me/vocab/lite/note') do |index|
+      index.as :stored_searchable
     end
 
     property :opac_url, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/unimarc/terms/ter%23e'), multiple: false do |index|
@@ -167,12 +191,20 @@ module UclaMetadata
       index.as :stored_sortable
     end
 
+    property :printmaker, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/prm') do |index|
+      index.as :stored_searchable
+    end
+
     property :provenance, predicate: ::RDF::URI.intern('http://purl.org/dc/terms/provenance') do |index|
       index.as :stored_searchable
     end
 
     property :repository, predicate: ::RDF::Vocab::MODS.locationCopySublocation do |index|
       index.as :stored_searchable
+    end
+
+    property :representative_image, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3079'), multiple: false do |index|
+      index.as :stored_sortable
     end
 
     property :rights_country, predicate: ::RDF::Vocab::EBUCore.rightsType do |index|
@@ -187,16 +219,12 @@ module UclaMetadata
       index.as :stored_searchable
     end
 
-    # property :local_rights_statement, predicate: ::RDF::URI.intern('http://purl.org/dc/terms/rights') do |index|
-    # index.as :symbol
-    # end # This invokes License renderer from hyrax gem
+    property :scribe, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/scr') do |index|
+      index.as :stored_searchable, :facetable
+    end
 
     property :services_contact, predicate: ::RDF::Vocab::EBUCore.hasRightsContact do |index|
       index.as :displayable
-    end
-
-    property :scribe, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/scr') do |index|
-      index.as :stored_searchable, :facetable
     end
 
     property :subject_topic, predicate: ::RDF::URI.intern('http://www.loc.gov/mods/rdf/v1#subjectTopic') do |index|
@@ -219,11 +247,7 @@ module UclaMetadata
       index.as :stored_searchable, :facetable
     end
 
-    property :iiif_text_direction, predicate: ::RDF::URI.intern('http://iiif.io/api/presentation/2#viewingDirection'), multiple: false do |index|
-      index.as :stored_sortable
-    end
-
-    property :iiif_viewing_hint, predicate: ::RDF::URI.intern('http://iiif.io/api/presentation/2#ViewingHint'), multiple: false do |index|
+    property :tagline, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3081'), multiple: false do |index|
       index.as :stored_sortable
     end
 

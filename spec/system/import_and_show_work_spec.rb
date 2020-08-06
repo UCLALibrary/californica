@@ -30,6 +30,8 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(work.member_of_collections).to eq [collection]
 
     # displays expected fields on show work page
+    # these should match the value in the coordinates_example.csv
+
     work = Work.last
     expect(work.id).to eq "f62bn833bh-03031"
     visit("/concern/works/#{work.id}")
@@ -37,6 +39,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "ark:/13030/hb338nb26f" # ark
     expect(page).to have_content "Imhotep" # architect
     expect(page).to have_content "Alternative title" # alternative_title
+    expect(page).to have_content "Calligrapher-1"
     expect(page).to have_content "Guadalupe, Our Lady of" # subject
     expect(page).to have_content "Churches--California--Los Angeles" # subject
     expect(page).to have_content "Historic buildings--California--Los Angeles" # $subject: $z has been replaced with --
@@ -52,6 +55,8 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "1942/1952" # normalized_date
     expect(page).to have_content "uclamss_1387_b112_40911-1" # local_identifier
     expect(page).to have_content "[between 1942-1947]" # date_created
+    expect(page).to have_content "Editor-1"
+    expect(page).to have_content "Engraver-1"
     expect(page).to have_content "1 photograph" # extent
     expect(page).to have_content "Fake Medium" # medium
     expect(page).to have_content "200x200" # dimensions
@@ -71,11 +76,11 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "https://www.library.ucla.edu" # opac_url
     expect(page).to have_content "Binding note" # binding_note
     expect(page).to have_content "left-to-right" # iiif_text_direction
-    expect(page).to have_content "Uniform title" # uniform_title
+    expect(page).to have_content "Mexican American Catholics" # uniform_title
     expect(page).to have_content "clusc_1_1_00010432a.tif" # preservation_copy
     expect(page).to have_content "iiif-range" # iiif_range
     expect(page).to have_content "illustration-note" # illustrations_note
-    expect(page).to have_content "Illustrator-Person1" # illustrator
+    expect(page).to have_content "Illustrator-1" # illustrator
     expect(page).to have_content "history-description" # provenance
     expect(page).to have_content "table of contents" # toc
     expect(page).to have_content "concept-topic" # subject_topic
@@ -101,6 +106,12 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "finding_aid_url_2" # finding_aid_url
     expect(page).to have_content "rubricator_1" # rubricator
     expect(page).to have_content "name_creator" # creator
+    expect(page).to have_content "Calligrapher-1" # calligrapher
+    expect(page).to have_content "Editor-1" # editor
+    expect(page).to have_content "Engraver-1" # engraver
+    expect(page).to have_content "Note-1" # note
+    expect(page).to have_content "Printmaker-1" # print maker
+
     # expect(page).to have_content "local_statement" # local_rights_statement # This invokes License renderer from hyrax gem
 
     # displays expected fields on search results page

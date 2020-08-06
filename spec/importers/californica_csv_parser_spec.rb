@@ -134,7 +134,16 @@ RSpec.describe CalifornicaCsvParser do
        'Name.creator',
        'License',
        'Illustrator',
-       'Name.illustrator']
+       'Name.illustrator',
+       'Calligrapher',
+       'Name.calligrapher',
+       'Editor',
+       'Name.editor',
+       'Engraver',
+       'Name.engraver',
+       'Note',
+       'Printmaker',
+       'Name.printmaker']
     end
 
     it 'knows the headers for this CSV file' do
