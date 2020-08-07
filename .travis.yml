@@ -35,7 +35,8 @@ before_script:
   - ln --symbolic /usr/lib/chromium-browser/chromedriver "${HOME}/bin/chromedriver"
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 script:
-  - docker-compose run web bundle exec rails
+  - docker-compose run web bundle exec rubocop
+  - docker-compose run web bundle exec rspec
 services:
   - docker
 after_success:
