@@ -33,6 +33,7 @@ before_script:
   - ln --symbolic /usr/lib/chromium-browser/chromedriver "${HOME}/bin/chromedriver"
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 script:
+  - docker-compose --version
   - docker-compose up --detach db
   - docker-compose run web bundle exec rails db:setup
   - docker-compose run web bundle exec rails
