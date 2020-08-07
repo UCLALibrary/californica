@@ -109,7 +109,18 @@ RSpec.describe CalifornicaMapper do
       "Rubricator" => "rubricator_1", # rubricator
       "Name.rubricator" => "rubricator_2", # rubricator
       "Name.creator" => "name_creator", # creator
-      "License" => "http://creativecommons.org/publicdomain/zero/1.0/" # license
+      "License" => "http://creativecommons.org/publicdomain/zero/1.0/", # license
+      "llustrator" => "Illustrator-1", # illustrator
+      "Name.llustrator" => "Name-Illustrator", # illustrator
+      "Calligrapher" => "Calligrapher-1", # calligrapher
+      "Name.calligrapher" => "Name-calligrapher", # calligrapher
+      "Editor" => "Editor-1", # editor
+      "Name.editor" => "Name-editor", # editor
+      "Engraver" => "Engraver-1", # engraver
+      "Name.engraver" => "Name-engraver", # engraver
+      "Note" => "Note-1", # note
+      "Printmaker" => "Printmaker-1", # printmaker
+      "Name.printmaker" => "Name-printmaker" # printmaker
     }
   end
 
@@ -148,6 +159,7 @@ RSpec.describe CalifornicaMapper do
         :architect,
         :ark,
         :binding_note,
+        :calligrapher,
         :caption,
         :collation,
         :colophon,
@@ -159,6 +171,8 @@ RSpec.describe CalifornicaMapper do
         :description,
         :dimensions,
         :dlcs_collection_name,
+        :editor,
+        :engraver,
         :extent,
         :finding_aid_url,
         :foliation,
@@ -167,6 +181,7 @@ RSpec.describe CalifornicaMapper do
         :iiif_manifest_url,
         :iiif_viewing_hint,
         :illuminator,
+        :illustrator,
         :language,
         :license,
         :latitude,
@@ -178,11 +193,13 @@ RSpec.describe CalifornicaMapper do
         :medium,
         :named_subject,
         :normalized_date,
+        :note,
         :opac_url,
         :publisher,
         :photographer,
         :page_layout,
         :place_of_origin,
+        :printmaker,
         :publisher,
         :provenance,
         :repository,

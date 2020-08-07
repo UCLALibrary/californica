@@ -17,17 +17,20 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     ark: "Item ARK",
     binding_note: ["Binding note", "Description.binding"],
     author: "Author",
+    calligrapher: ["Calligrapher", "Name.calligrapher"],
     caption: "Description.caption",
     collation: "Collation",
     colophon: ["Colophon", "Description.colophon"],
     condition_note: ["Condition note", "Description.condition"],
     composer: "Name.composer",
     commentator: ["Commentator", "Name.commentator"],
-    creator: "Name.creator",
+    creator: ["Name.creator", "Creator"],
     date_created: ["Date.creation", "Date.created"],
     description: "Description.note",
     dimensions: "Format.dimensions",
     dlcs_collection_name: "Relation.isPartOf",
+    editor: ["Editor", "Name.editor"],
+    engraver: ["Engraver", "Name.engraver"],
     extent: "Format.extent",
     finding_aid_url: ["Finding Aid URL", "Alt ID.url"],
     foliation: ["Foliation note", "Foliation"],
@@ -36,8 +39,9 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     iiif_manifest_url: "IIIF Manifest URL",
     iiif_range: "IIIF Range",
     iiif_viewing_hint: "viewingHint",
-    illustrations_note: ["Illustrations note", "Description.illustrations"],
     illuminator: ["Illuminator", "Name.illuminator"],
+    illustrations_note: ["Illustrations note", "Description.illustrations"],
+    illustrator: ["Illustrator", "Name.illustrator"],
     language: "Language",
     latitude: "Description.latitude",
     license: "License",
@@ -60,6 +64,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
                     "Subject.personalName",
                     "Subject name"],
     normalized_date: "Date.normalized",
+    note: ["Note"],
     opac_url: ["Opac url", "Description.opac"],
     page_layout: "Page layout",
     photographer: ["Name.photographer",
@@ -67,6 +72,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     place_of_origin: ["Place of origin",
                       "Publisher.placeOfOrigin"],
     preservation_copy: "File Name",
+    printmaker: ["Printmaker", "Name.printmaker"],
     provenance: ["Provenance", "Description.history"],
     publisher: "Publisher.publisherName",
     repository: ["Repository", "repository", "Name.repository",
@@ -173,6 +179,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     Ark.ensure_prefix(map_field(:ark).to_a.first)
   end
 
+  # Only single value field need to be defined
   def binding_note
     map_field(:binding_note).to_a.first
   end
