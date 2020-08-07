@@ -19,6 +19,7 @@ rvm:
   - 2.5
 env:
   global:
+    - COMPOSE_FILE=docker-compose-ci.yml
     - DATABASE_USERNAME=travis
     - IIIF_SERVER_URL='http://test.url/'
     - JENKINS_HOST=jenkins-devsupport.library.ucla.edu
