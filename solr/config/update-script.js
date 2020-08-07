@@ -53,8 +53,9 @@ function processAdd(cmd) {
     var XMLResponseParser = Java.type(
       'org.apache.solr.client.solrj.impl.XMLResponseParser'
     );
-
-    urlString = 'http://localhost:8983/solr/ursus';
+    System = Java.type('java.lang.System');
+    urlString = System.getenv('SOLR_URSUS_URL'); //process.env.SOLR_URSUS_URL; //'http://localhost:8983/solr/ursus';
+    logger.info('update-script#processAdd: SOLR_URSUS_URL=' + urlString);
     logger.info('update-script#processAdd: SolrClient=' + SolrClient);
     solrclient = new HttpSolrClient.Builder(urlString).build();
     solrclient.setParser(new XMLResponseParser());
