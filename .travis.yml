@@ -30,8 +30,8 @@ before_install:
   - gem install bundler:1.17.3
 before_script:
   - docker-compose --version
-  - docker-compose up --detach db
-  - docker-compose run web bundle exec rails db:create
+  - docker-compose up -d db
+  - docker-compose run web bundle exec rails db:setup
   - ln --symbolic /usr/lib/chromium-browser/chromedriver "${HOME}/bin/chromedriver"
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 script:
