@@ -162,7 +162,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       fill_in 'Title', with: 'New Title'
       fill_in 'Dimensions', with: 'New Dim'
       fill_in 'Ark', with: 'ark:/not/myark' # This field is read-only and an attempt to change it should not result in a change
-
+      click_on 'Additional fields'
       # Submit the form.  When the page reloads, it should be on the show page.
       click_on 'Save changes'
       expect(page).to have_current_path(hyrax_work_path(work.id, locale: I18n.locale))
