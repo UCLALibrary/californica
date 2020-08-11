@@ -9,49 +9,54 @@ dist: trusty
 addons:
   apt:
     packages:
-    - libclamav-dev
-    - clamav
-    - chromium-browser
-    - chromium-chromedriver
+      - libclamav-dev
+      - clamav
+      - chromium-browser
+      - chromium-chromedriver
 jdk:
-- oraclejdk8
+  - oraclejdk8
 rvm:
-- 2.5
+  - 2.5
 env:
   global:
+    - COMPOSE_FILE=docker-compose-ci.yml
     - DATABASE_USERNAME=travis
     - IIIF_SERVER_URL='http://test.url/'
     - JENKINS_HOST=jenkins-devsupport.library.ucla.edu
     - JENKINS_USER="${TRAVIS_JENKINS_USER}"
     - JENKINS_API_CALIFORNICA="${TRAVIS_JENKINS_API_CALIFORNICA}"
+    - SOLR_URL=http://solr:8983/solr/californica
+    - SOLR_TEST_URL=http://solr_test:8983/solr/californica
 before_install:
   - gem update --system
   - gem install bundler:1.17.3
 before_script:
-  - bundle exec rake db:create
+  - docker-compose --version
+  - docker-compose up -d db
+  - docker-compose run web bundle exec rails db:setup
   - ln --symbolic /usr/lib/chromium-browser/chromedriver "${HOME}/bin/chromedriver"
   - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
 script:
-  - bundle exec rake
+  - docker-compose run web bundle exec rubocop
+  - docker-compose run web bundle exec rspec
 services:
-  - redis-server
-  - mysql
+  - docker
 after_success:
-- |
-  # A canary to allow verification that our firewall allows Travis in
-  curl https://api.ipify.org; echo
+  - |
+    # A canary to allow verification that our firewall allows Travis in
+    curl https://api.ipify.org; echo
 
-  BASE_URL="https://$JENKINS_USER@$JENKINS_HOST"
-  JOB=job/DeployCalifornica
-  API="$JENKINS_API_CALIFORNICA"
+    BASE_URL="https://$JENKINS_USER@$JENKINS_HOST"
+    JOB=job/DeployCalifornica
+    API="$JENKINS_API_CALIFORNICA"
 
-  if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_PULL_REQUEST == 'false' ]]; then
-    BASE_QUERY="buildWithParameters?token=$API&GIT_BRANCH=$TRAVIS_BRANCH&cause=Travis+Build"
-    HOST=t-w-californica01.library.ucla.edu
-    curl "$BASE_URL/$JOB/$BASE_QUERY&DEPLOY_HOST=$HOST"
-  fi
-  if [[ $TRAVIS_TAG != "" ]]; then
-    BASE_QUERY="buildWithParameters?token=$API&GIT_BRANCH=$TRAVIS_TAG&cause=Travis+Build+With+Tag"
-    HOST=s-w-californica01.library.ucla.edu
-    curl "$BASE_URL/$JOB/$BASE_QUERY&DEPLOY_HOST=$HOST"
-  fi
+    if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_PULL_REQUEST == 'false' ]]; then
+      BASE_QUERY="buildWithParameters?token=$API&GIT_BRANCH=$TRAVIS_BRANCH&cause=Travis+Build"
+      HOST=t-w-californica01.library.ucla.edu
+      curl "$BASE_URL/$JOB/$BASE_QUERY&DEPLOY_HOST=$HOST"
+    fi
+    if [[ $TRAVIS_TAG != "" ]]; then
+      BASE_QUERY="buildWithParameters?token=$API&GIT_BRANCH=$TRAVIS_TAG&cause=Travis+Build+With+Tag"
+      HOST=s-w-californica01.library.ucla.edu
+      curl "$BASE_URL/$JOB/$BASE_QUERY&DEPLOY_HOST=$HOST"
+    fi
