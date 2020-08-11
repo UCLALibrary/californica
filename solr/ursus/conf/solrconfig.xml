@@ -232,16 +232,6 @@
         <str>yyyy-mm-dd/yyyy-mm</str>
       </arr>
     </processor>
-
-    <processor class="solr.processor.SignatureUpdateProcessorFactory">
-      <bool name="enabled">true</bool>
-      <str name="signatureField">hashed_id_ssi</str>
-      <bool name="overwriteDupes">false</bool>
-      <str name="fields">id</str>
-      <str name="signatureClass">solr.processor.Lookup3Signature</str>
-      <str name="defType">lucene</str>
-    </processor>
-
     <processor class="solr.LogUpdateProcessorFactory" />
     <processor class="solr.RunUpdateProcessorFactory" />
   </updateRequestProcessorChain>
