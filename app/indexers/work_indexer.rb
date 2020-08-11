@@ -15,21 +15,26 @@ class WorkIndexer < Hyrax::WorkIndexer
 
   def generate_solr_document
     super.tap do |solr_doc|
-      solr_doc['sort_year_isi'] = years.to_a.min
+      solr_doc['combined_subject_ssim'] = combined_subject
+      solr_doc['date_dtsim'] = solr_dates
       solr_doc['geographic_coordinates_ssim'] = coordinates
+      solr_doc['human_readable_iiif_text_direction_ssi'] = human_readable_iiif_text_direction
+      solr_doc['human_readable_iiif_viewing_hint_ssi'] = human_readable_iiif_viewing_hint
       solr_doc['human_readable_language_sim'] = human_readable_language
       solr_doc['human_readable_language_tesim'] = human_readable_language
       solr_doc['human_readable_resource_type_sim'] = human_readable_resource_type
       solr_doc['human_readable_resource_type_tesim'] = human_readable_resource_type
-      solr_doc['human_readable_iiif_text_direction_ssi'] = human_readable_iiif_text_direction
-      solr_doc['human_readable_iiif_viewing_hint_ssi'] = human_readable_iiif_viewing_hint
       solr_doc['human_readable_rights_statement_tesim'] = human_readable_rights_statement
+      solr_doc['sort_year_isi'] = years.to_a.min
+      solr_doc['thumbnail_url_ss'] = thumbnail_url
       solr_doc['title_alpha_numeric_ssort'] = object.title.first
       solr_doc['ursus_id_ssi'] = Californica::IdGenerator.blacklight_id_from_ark(object.ark)
       solr_doc['year_isim'] = years
-      solr_doc['date_dtsim'] = solr_dates
-      solr_doc['thumbnail_url_ss'] = thumbnail_url
     end
+  end
+
+  def combined_subject
+    object.named_subject.to_a + object.subject.to_a + object.subject_topic.to_a + object.subject_geographic.to_a + object.subject_temporal.to_a
   end
 
   def coordinates

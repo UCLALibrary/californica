@@ -12,14 +12,61 @@ function processAdd(cmd) {
   id = doc.getFieldValue('id');
   logger.info('update-script#processAdd: id=' + id);
 
-  title = doc.getFieldValue('title');
+  title = doc.getFieldValue('title_tesim');
   logger.info('update-script#processAdd: title=' + title);
-  //xmlHttp = new XMLHttpRequest();
-  var URL = Java.type('java.net.URL');
-  url = new URL('http://example.com');
-  logger.info('update-script#processAdd: URL=' + url);
 
-  // copy "ursus_id_ssi":"21198-zz0026vwmn" to "id":"21198-zz0026vwmn" in ursus solr core
+  hash_id_ssi = doc.getFieldValue('hashed_id_ssi');
+  logger.info('update-script#processAdd: hashed_id_ssi=' + hash_id_ssi);
+  //xmlHttp = new XMLHttpRequest();
+  //var URL = Java.type('java.net.URL');
+  //url = new URL('http://example.com');
+  //logger.info('update-script#processAdd: URL=' + url);
+  logger.info('update-script#processAdd: doc=' + doc);
+  if (
+    doc.getFieldValue('has_model_ssim') == 'Work' ||
+    doc.getFieldValue('has_model_ssim') == 'Collection'
+  ) {
+    var SolrInputDocument = Java.type(
+      'org.apache.solr.common.SolrInputDocument'
+    );
+    solrDocUrsus = new SolrInputDocument();
+    solrDocUrsus.addField('id', doc.getFieldValue('ark_ssi'));
+    logger.info('update-script#processAdd: solrDocUrsus start=' + solrDocUrsus);
+    logger.info('update-script#processAdd: Set=' + doc.entrySet());
+    field_names = doc.getFieldNames().toArray();
+    for (i = 0; i < field_names.length; i++) {
+      field_name = field_names[i];
+      if (field_name != 'id') {
+        solrDocUrsus.addField(
+          field_names[i],
+          doc.getFieldValue(field_names[i])
+        );
+      }
+    }
+    logger.info(
+      'update-script#processAdd: solrDocUrsus finish=' + solrDocUrsus
+    );
+    var SolrClient = Java.type('org.apache.solr.client.solrj.SolrClient');
+    var HttpSolrClient = Java.type(
+      'org.apache.solr.client.solrj.impl.HttpSolrClient'
+    );
+    var XMLResponseParser = Java.type(
+      'org.apache.solr.client.solrj.impl.XMLResponseParser'
+    );
+    System = Java.type('java.lang.System');
+    urlString = System.getenv('SOLR_URSUS_URL'); //process.env.SOLR_URSUS_URL; //'http://localhost:8983/solr/ursus';
+    logger.info('update-script#processAdd: SOLR_URSUS_URL=' + urlString);
+    logger.info('update-script#processAdd: SolrClient=' + SolrClient);
+    solrclient = new HttpSolrClient.Builder(urlString).build();
+    solrclient.setParser(new XMLResponseParser());
+    logger.info('update-script#processAdd: solrclient=' + solrclient);
+    solrclient.add(solrDocUrsus);
+    solrclient.commit();
+  }
+
+  //var solrDocUrsus = doc.deepcopy();
+  //solrDocUrsus.setField('id', doc.getFieldValue('ursus_id_ssi'));
+  //logger.info('update-script#processAdd: solrDocUrsus=' + solrDocUrsus);
 
   // Set a field value:
   //  doc.setField("foo_s", "whatever");
