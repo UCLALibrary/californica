@@ -63,6 +63,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       iiif_text_direction: 'http://iiif.io/api/presentation/2#leftToRightDirection', # "left-to-right"
       uniform_title: ['Old Uniform title'],
       condition_note: 'Old Condition note',
+      contents_note: 'Old Contents note',
       representative_image: 'Old Representative image',
       featured_image: 'Old Featured image',
       tagline: 'Old Tagline',
@@ -149,6 +150,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Masthead').value).to eq 'Old Masthead Parameters'
       expect(find_field('Scribe').value).to eq 'Old Scribe'
       expect(find_field('Condition note').value).to eq 'Old Condition note'
+      expect(find_field('Contents note').value).to eq 'Old Contents note'
       expect(find_field('Representative image').value).to eq 'Old Representative image'
       expect(find_field('Featured image').value).to eq 'Old Featured image'
       expect(find_field('Tagline').value).to eq 'Old Tagline'

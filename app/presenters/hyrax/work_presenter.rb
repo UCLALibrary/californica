@@ -17,6 +17,7 @@ module Hyrax
       :commentator,
       :composer,
       :condition_note,
+      :contents_note,
       :dimensions,
       :dlcs_collection_name,
       :editor,
