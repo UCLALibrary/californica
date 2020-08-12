@@ -66,6 +66,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       masthead_parameters: 'Old Masthead Parameters',
       scribe: ['Old Scribe'],
       condition_note: 'Old Condition note',
+      contents_note: 'Old Contents note',
       representative_image: 'Old Representative image',
       featured_image: 'Old Featured image',
       tagline: 'Old Tagline',

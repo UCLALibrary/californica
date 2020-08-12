@@ -43,6 +43,10 @@ module UclaMetadata
       index.as :stored_sortable
     end
 
+    property :contents_note, predicate: ::RDF::URI.intern('http://bibfra.me/vocab/marc/contentsNote'), multiple: false do |index|
+      index.as :stored_sortable
+    end
+
     property :colophon, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/Production') do |index|
       index.as :stored_searchable
     end

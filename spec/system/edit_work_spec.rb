@@ -68,6 +68,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       lyricist: ['Old Lyricist'],
       scribe: ['Old Scribe'],
       condition_note: 'Old Condition note',
+      contents_note: 'Old Contents note',
       masthead_parameters: 'Old Masthead Parameters',
       representative_image: 'Old Representative image',
       featured_image: 'Old Featured image',
@@ -143,6 +144,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Lyricist').value).to eq 'Old Lyricist'
       expect(find_field('Scribe').value).to eq 'Old Scribe'
       expect(find_field('Condition note').value).to eq 'Old Condition note'
+      expect(find_field('Contents note').value).to eq 'Old Contents note'
       expect(find_field('Masthead parameters').value).to eq 'Old Masthead Parameters'
       expect(find_field('Representative image').value).to eq 'Old Representative image'
       expect(find_field('Featured image').value).to eq 'Old Featured image'

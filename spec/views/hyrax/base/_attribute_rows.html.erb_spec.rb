@@ -19,6 +19,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
              colophon: ['Old Colophon'],
              commentator: ['Old Commentator'],
              condition_note: 'condition_note',
+             contents_note: 'contents_note',
              creator: ['Old name creator'],
              description: ['description'],
              dimensions: ['dimensions'],
@@ -84,6 +85,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   end
   it 'has condition_note' do
     expect(page).to match(/condition_note/)
+  end
+  it 'has contents_note' do
+    expect(page).to match(/contents_note/)
   end
   it 'has creator' do
     expect(page).to match(/creator/)
