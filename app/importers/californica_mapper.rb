@@ -22,7 +22,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     collation: "Collation",
     colophon: ["Colophon", "Description.colophon"],
     condition_note: ["Condition note", "Description.condition"],
-    contents_note: ["Contents note", "Description.contents"],
+    contents_note: ["Contents note"],
     composer: "Name.composer",
     commentator: ["Commentator", "Name.commentator"],
     creator: ["Name.creator", "Creator"],
@@ -187,6 +187,10 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
   def collation
     map_field(:collation).to_a.first
+  end
+
+  def condition_note
+    map_field(:condition_note).to_a.first
   end
 
   def contents_note

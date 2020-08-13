@@ -91,7 +91,7 @@ RSpec.describe CalifornicaMapper do
       "Name.composer" => "Composer", # composer
       "Scribe" => "Scribe", # scribe
       "Name.scribe" => "Scribe", # scribe
-      "Condition note" => "condition_note", # condition_note
+      "Condtion note" => "condition_note", # condtion_note
       "Contents note" => "contents_note", # contents_note
       "Representative image" => "Representative image", # Representative image
       "Featured image" => "Featured image", # Featured image
