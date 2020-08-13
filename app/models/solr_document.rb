@@ -79,7 +79,11 @@ class SolrDocument
   end
 
   def contents_note
+<<<<<<< HEAD
     self[:contents_note_ssi]
+=======
+    self[:contents_note_tesim]
+>>>>>>> dc58d6180bda6c6786ad3309b634bf0592bf8535
   end
 
   def geographic_coordinates

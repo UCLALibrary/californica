@@ -189,8 +189,8 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     map_field(:collation).to_a.first
   end
 
-  def condition_note
-    map_field(:condition_note).to_a.first
+  def contents_note
+    map_field(:contents_note).to_a.first
   end
 
   def contents_note
