@@ -43,25 +43,37 @@ class CatalogController < ApplicationController
 
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
+    #   If ticket reads faceted: yes add field here
+    config.add_facet_field solr_name('architect', :facetable), label: 'Architect', limit: 5
+    config.add_facet_field solr_name('author', :facetable), label: 'Author', limit: 5
     config.add_facet_field solr_name('human_readable_resource_type', :facetable), label: 'Resource Type', limit: 5
-    config.add_facet_field solr_name('creator', :facetable), limit: 5
     config.add_facet_field solr_name('contributor', :facetable), label: 'Contributor', limit: 5
+    config.add_facet_field solr_name('composer', :facetable), label: 'Conmposer', limit: 5
+    config.add_facet_field solr_name('creator', :facetable), limit: 5
+    config.add_facet_field solr_name('dimensions', :facetable), label: 'Dimensions', limit: 5
+    config.add_facet_field solr_name('editor', :facetable), label: 'Editor', limit: 5
+    config.add_facet_field solr_name('engraver', :facetable), label: 'Engraver', limit: 5
+    config.add_facet_field solr_name('extent', :facetable), label: 'Extent', limit: 5
+    config.add_facet_field solr_name('file_format', :facetable), limit: 5
+    config.add_facet_field solr_name('genre', :facetable), label: 'Genre', limit: 5
+    config.add_facet_field solr_name('human_readable_language', :facetable), label: 'Language', limit: 5
+    config.add_facet_field solr_name('human_readable_resource_type', :facetable), label: 'Resource Type', limit: 5
+    config.add_facet_field solr_name('illustrator', :facetable), label: 'Illustrator', limit: 5
     config.add_facet_field solr_name('keyword', :facetable), limit: 5
+    config.add_facet_field solr_name('location', :facetable), label: 'Location', limit: 5
+    config.add_facet_field solr_name('lyricist', :facetable), label: 'Lyricist', limit: 5
+    config.add_facet_field solr_name('medium', :facetable), label: 'Medium', limit: 5
+    config.add_facet_field solr_name('member_of_collections', :symbol), limit: 5, label: 'Collection'
+    config.add_facet_field solr_name('normalized_date', :facetable), label: 'Normalized Date', limit: 5
+    config.add_facet_field solr_name('named_subject', :facetable), label: 'Names', limit: 5
+    config.add_facet_field solr_name('photographer', :facetable), label: 'Photographer', limit: 5
+    config.add_facet_field solr_name('printmaker', :facetable), label: 'Printmaker', limit: 5
+    config.add_facet_field solr_name('repository', :facetable), limit: 5
+    config.add_facet_field solr_name('rights_country', :facetable), limit: 5
+    config.add_facet_field solr_name('scribe', :facetable), label: 'Scribe', limit: 5
     config.add_facet_field solr_name('subject', :facetable), limit: 5
     config.add_facet_field solr_name('subject_geographic', :facetable), label: 'Subject geographic', limit: 5
     config.add_facet_field solr_name('subject_temporal', :facetable), label: 'Subject temporal', limit: 5
-    config.add_facet_field solr_name('human_readable_language', :facetable), label: 'Language', limit: 5
-    config.add_facet_field solr_name('file_format', :facetable), limit: 5
-    config.add_facet_field solr_name('member_of_collections', :symbol), limit: 5, label: 'Collection'
-    config.add_facet_field solr_name('repository', :facetable), limit: 5
-    config.add_facet_field solr_name('normalized_date', :facetable), label: 'Normalized Date', limit: 5
-    config.add_facet_field solr_name('named_subject', :facetable), label: 'Names', limit: 5
-    config.add_facet_field solr_name('rights_country', :facetable), limit: 5
-    config.add_facet_field solr_name('medium', :facetable), label: 'Medium', limit: 5
-    config.add_facet_field solr_name('dimensions', :facetable), label: 'Dimensions', limit: 5
-    config.add_facet_field solr_name('extent', :facetable), label: 'Extent', limit: 5
-    config.add_facet_field solr_name('genre', :facetable), label: 'Genre', limit: 5
-    config.add_facet_field solr_name('location', :facetable), label: 'Location', limit: 5
 
     # The generic_type isn't displayed on the facet list
     # It's used to give a label to the filter that comes from the user profile
