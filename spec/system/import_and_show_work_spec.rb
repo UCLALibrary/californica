@@ -94,6 +94,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     # expect(page).to have_content "Amat-Mamu" # scribe
     expect(page).to have_content "Sin-liqe-unninni" # scribe
     expect(page).to have_content "condition_note" # condtion_note
+    expect(page).to have_content "contents_note-1" # contents_note
     expect(page).to have_content "commentator_1" # commentator
     expect(page).to have_content "commentator_2" # commentator
     expect(page).to have_content "translator_1" # translator

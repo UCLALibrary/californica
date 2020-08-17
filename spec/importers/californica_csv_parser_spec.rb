@@ -113,6 +113,8 @@ RSpec.describe CalifornicaCsvParser do
        'Scribe',
        'Name.scribe',
        'Condition note',
+       'Contents note',
+       'Description.contents',
        'Rights.statementLocal',
        'Masthead',
        'Representative image',
