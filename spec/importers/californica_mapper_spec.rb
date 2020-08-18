@@ -92,7 +92,6 @@ RSpec.describe CalifornicaMapper do
       "Scribe" => "Scribe", # scribe
       "Name.scribe" => "Scribe", # scribe
       "Condtion note" => "condition_note", # condtion_note
-      "Contents note" => "contents_note-1", # contents_note
       "Representative image" => "Representative image", # Representative image
       "Featured image" => "Featured image", # Featured image
       "Tagline" => "Tagline", # Tagline
@@ -121,7 +120,9 @@ RSpec.describe CalifornicaMapper do
       "Name.engraver" => "Name-engraver", # engraver
       "Note" => "Note-1", # note
       "Printmaker" => "Printmaker-1", # printmaker
-      "Name.printmaker" => "Name-printmaker" # printmaker
+      "Name.printmaker" => "Name-printmaker", # printmaker
+      "Contents note" => "contents_note-1", # contents_note
+      "Description.contents" => "Description-contents" # contents_note
     }
   end
 

@@ -80,7 +80,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       editor: ['Old Editor'],
       note: ['Old Note'],
       printmaker: ['Old Printmaker'],
-      contents_note: 'Old Contents note'
+      contents_note: ['Old Contents note']
       # local_rights_statement: ['Old Rights statement local'] # This invokes License renderer from hyrax gem
     }
   end

@@ -19,7 +19,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
              colophon: ['Old Colophon'],
              commentator: ['Old Commentator'],
              condition_note: 'condition_note',
-             contents_note: 'contents_note',
+             contents_note: 'Old Contents note',
              creator: ['Old name creator'],
              description: ['description'],
              dimensions: ['dimensions'],

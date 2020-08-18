@@ -201,7 +201,7 @@ Also accepts: `Description.condition`
 
 ### Contents note
 
-Also accepts: `Description.contents`
+Also accepts: Description.contents
 
 ### Coverage.geographic
 

@@ -16,6 +16,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       caption: ['Old Caption'],
       calligrapher: ['Old Calligrapher'],
       contributor: ['Old Contributor'],
+      contents_note: ['Old Contents note'],
       creator: ['Old Creator'],
       date_created: ['Old Creation Date'],
       description: ['Old Desc'],
@@ -79,8 +80,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       colophon: ['Old Colophon'],
       finding_aid_url: ['Old Finding aid url'],
       rubricator: ['Old rubricator'],
-      license: ['http://creativecommons.org/publicdomain/zero/1.0/'],
-      contents_note: ['Old Contents note']
+      license: ['http://creativecommons.org/publicdomain/zero/1.0/']
       # local_rights_statement: ['Old Rights statement local'] # This invokes License renderer from hyrax gem
     }
   end

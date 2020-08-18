@@ -79,7 +79,7 @@ class SolrDocument
   end
 
   def contents_note
-    self[:contents_note_ssi]
+    self[:contents_note_tesim]
   end
 
   def geographic_coordinates
