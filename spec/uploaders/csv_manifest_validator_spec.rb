@@ -173,7 +173,6 @@ RSpec.describe CsvManifestValidator, type: :model do
         "Description.caption",
         "Description.colophon",
         "Description.condition",
-        "Description.contents",
         "Description.fundingNote",
         "Description.history",
         "Description.illustrations",

@@ -68,7 +68,6 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       lyricist: ['Old Lyricist'],
       scribe: ['Old Scribe'],
       condition_note: 'Old Condition note',
-      contents_note: 'Old Contents note',
       masthead_parameters: 'Old Masthead Parameters',
       representative_image: 'Old Representative image',
       featured_image: 'Old Featured image',
@@ -81,6 +80,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       finding_aid_url: ['Old Finding aid url'],
       rubricator: ['Old rubricator'],
       license: ['http://creativecommons.org/publicdomain/zero/1.0/']
+      contents_note: ['Old Contents note']
       # local_rights_statement: ['Old Rights statement local'] # This invokes License renderer from hyrax gem
     }
   end
@@ -144,7 +144,6 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Lyricist').value).to eq 'Old Lyricist'
       expect(find_field('Scribe').value).to eq 'Old Scribe'
       expect(find_field('Condition note').value).to eq 'Old Condition note'
-      expect(find_field('Contents note').value).to eq 'Old Contents note'
       expect(find_field('Masthead parameters').value).to eq 'Old Masthead Parameters'
       expect(find_field('Representative image').value).to eq 'Old Representative image'
       expect(find_field('Featured image').value).to eq 'Old Featured image'
@@ -158,6 +157,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Rubricator').value).to eq 'Old rubricator'
       expect(find_field('Creator').value).to eq 'Old Creator'
       expect(page).to have_select('License', selected: 'Creative Commons CC0 1.0 Universal', multiple: false)
+      expect(find_field('Contents note').value).to eq 'Old Contents note'
       # expect(find_field('Local rights statement').value).to eq 'Old Rights statement local'
 
       # Edit some fields in the form

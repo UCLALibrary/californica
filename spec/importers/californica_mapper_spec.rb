@@ -93,7 +93,6 @@ RSpec.describe CalifornicaMapper do
       "Name.scribe" => "Scribe", # scribe
       "Condtion note" => "condition_note", # condtion_note
       "Contents note" => "contents_note-1", # contents_note
-      "Description.contents" => "Description-contents", # contents_note
       "Representative image" => "Representative image", # Representative image
       "Featured image" => "Featured image", # Featured image
       "Tagline" => "Tagline", # Tagline

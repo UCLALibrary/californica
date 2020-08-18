@@ -63,7 +63,6 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       iiif_text_direction: 'http://iiif.io/api/presentation/2#leftToRightDirection', # "left-to-right"
       uniform_title: ['Old Uniform title'],
       condition_note: 'Old Condition note',
-      contents_note: 'Old Contents note',
       representative_image: 'Old Representative image',
       featured_image: 'Old Featured image',
       tagline: 'Old Tagline',
@@ -80,7 +79,8 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       engraver: ['Old Engraver'],
       editor: ['Old Editor'],
       note: ['Old Note'],
-      printmaker: ['Old Printmaker']
+      printmaker: ['Old Printmaker'],
+      contents_note: 'Old Contents note'
       # local_rights_statement: ['Old Rights statement local'] # This invokes License renderer from hyrax gem
     }
   end
