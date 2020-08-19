@@ -193,10 +193,6 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     map_field(:contents_note).to_a.first
   end
 
-  def contents_note
-    map_field(:contents_note).to_a.first
-  end
-
   def foliation
     map_field(:foliation).to_a.first
   end
