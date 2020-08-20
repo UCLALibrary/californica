@@ -182,3 +182,10 @@ This application is designed as a management interface for UCLA's digital librar
 ## License
 
 Californica is available under the [Apache License Version 2.0](./LICENSE).
+
+---
+
+### flaky tests
+##### `bundle exec rspec spec --seed 43408`  
++ rspec `./spec/system/import_from_csv_spec.rb:16` # Importing records from a CSV file logged in as an admin user starts the import
++ rspec `./spec/system/new_collection_spec.rb:21` # Create a new collection logged in as an admin user successfully creates a new collection with an ark based identifier
