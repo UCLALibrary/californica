@@ -182,3 +182,5 @@ This application is designed as a management interface for UCLA's digital librar
 ## License
 
 Californica is available under the [Apache License Version 2.0](./LICENSE).
+
+darrowco
