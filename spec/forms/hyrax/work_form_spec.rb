@@ -19,6 +19,7 @@ RSpec.describe Hyrax::WorkForm do
       :colophon,
       :composer,
       :condition_note,
+      :contents_note,
       :creator,
       :dimensions,
       :editor,

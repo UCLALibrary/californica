@@ -79,7 +79,8 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       engraver: ['Old Engraver'],
       editor: ['Old Editor'],
       note: ['Old Note'],
-      printmaker: ['Old Printmaker']
+      printmaker: ['Old Printmaker'],
+      contents_note: ['Old Contents note']
       # local_rights_statement: ['Old Rights statement local'] # This invokes License renderer from hyrax gem
     }
   end
@@ -149,6 +150,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Masthead').value).to eq 'Old Masthead Parameters'
       expect(find_field('Scribe').value).to eq 'Old Scribe'
       expect(find_field('Condition note').value).to eq 'Old Condition note'
+      expect(find_field('Contents note').value).to eq 'Old Contents note'
       expect(find_field('Representative image').value).to eq 'Old Representative image'
       expect(find_field('Featured image').value).to eq 'Old Featured image'
       expect(find_field('Tagline').value).to eq 'Old Tagline'

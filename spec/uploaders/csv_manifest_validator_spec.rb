@@ -162,6 +162,7 @@ RSpec.describe CsvManifestValidator, type: :model do
         "Colophon",
         "Commentator",
         "Condition note",
+        "Contents note",
         "Coverage.geographic",
         "Creator",
         "Date.created",
