@@ -281,9 +281,9 @@ accepts ""Illustrator", "Name.illustrator"
 
 ### Name.photographer
 
-### Note
-
 ### Repository
+
+Also accepts: `Name.repository`
 
 Also accepts: `Name.repository`
 
