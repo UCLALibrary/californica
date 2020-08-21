@@ -6,6 +6,36 @@ RSpec.describe WorkIndexer do
   let(:work) { Work.new(attributes) }
   let(:indexer) { described_class.new(work) }
 
+  describe 'combined_subject' do
+    let(:attributes) do
+      {
+        ark: 'ark:/123/456',
+        subject: ['Subject 1', 'Subject 2'],
+        named_subject: ['Named Subject'],
+        subject_topic: ['Subject Topic'],
+        subject_geographic: ['Subject Geographic']
+      }
+    end
+
+    it 'combines the relevant subject fields' do
+      expect(solr_document['combined_subject_ssim']).to contain_exactly('Subject 1', 'Subject 2', 'Named Subject', 'Subject Topic', 'Subject Geographic')
+    end
+
+    context 'When subject fields are missing' do
+      let(:attributes) do
+        {
+          ark: 'ark:/123/456',
+          named_subject: ['Named Subject'],
+          subject_topic: ['Subject Topic']
+        }
+      end
+
+      it 'combines the fields that are present' do
+        expect(solr_document['combined_subject_ssim']).to contain_exactly('Named Subject', 'Subject Topic')
+      end
+    end
+  end
+
   describe 'resource type' do
     context 'a work with a resource type' do
       let(:attributes) do

@@ -1,4 +1,4 @@
-version: '3.6'
+version: '2'
 
 services:
   web:
@@ -74,8 +74,6 @@ services:
       - ./docker/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
       - ./docker/conf.d:/etc/mysql/conf.d
       - mysql_data:/var/lib/mysql
-    ports:
-      - '127.0.0.1:3306:3306'
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
 
@@ -92,8 +90,6 @@ services:
       dockerfile: docker/Dockerfile.solr
     volumes:
       - solr_data:/opt/solr/server/solr/mycores/californica/data
-    ports:
-      - '127.0.0.1:8983:8983'
     environment:
       - SOLR_URSUS_URL=http://solr:8983/solr/ursus
 
@@ -101,8 +97,6 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile.solr
-    ports:
-      - '127.0.0.1:8985:8983'
     environment:
       - SOLR_URSUS_URL=http://solr_test:8983/solr/ursus
 

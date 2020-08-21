@@ -14,10 +14,12 @@
 - [AltTitle.uniform](#alttitle.uniform)
 - [Author](#author)
 - [Binding note](#binding_note)
+- [Calligrapher](# calligrapher)
 - [Collation](#collation)
 - [Colophon](#colophon)
 - [Commentator](#commentator)
 - [Condition note](#condition_note)
+- [Contents note](#contents_note)
 - [Coverage.geographic](#coverage.geographic)
 - [Date.creation](#date.creation)
 - [Date.normalized](#date.normalized)
@@ -26,6 +28,8 @@
 - [Description.latitude](#description.latitude)
 - [Description.longitude](#description.longitude)
 - [Description.note](#description.note)
+- [Editor](# editor)
+- [Engraver](# engraver)
 - [Foliation](#foliation)
 - [Featured image](#featured_image)
 - [Finding Aid Url](#finding-aid-url)creator
@@ -36,6 +40,7 @@
 - [IIIF Access URL](#iiif-access-url)
 - [IIIF Range](#iiif-range)
 - [Illustrations note](#illustrations-note)
+- [Illustrator](#illustrator)
 - [Item Sequence](#item-sequence)
 - [Language](#language)
 - [License](#license)
@@ -49,8 +54,10 @@
 - [Name.repository](#name.repository)
 - [Name.scribe](#name.scribe)
 - [Name.subject](#name.subject)
+- [Note](#note)
 - [Opac url](#opac_url)
 - [Page layout](#page-layout)
+- [Printmaker](# printmaker)
 - [Project Name](#project-name)
 - [Place of origin](#place-of-origin)
 - [Provenance](#provenance)
@@ -174,6 +181,10 @@ Also accepts: `AltTitle.translated`, `AltTitle.descriptive`
 
 Also accepts: `Description.binding`
 
+### Calligrapher
+
+Also accepts Name.calligrapher
+
 ### Collation
 
 ### Colophon
@@ -187,6 +198,10 @@ Also accepts: `Name.commentator`
 ### Condition note
 
 Also accepts: `Description.condition`
+
+### Contents note
+
+Also accepts: Description.contents
 
 ### Coverage.geographic
 
@@ -203,6 +218,14 @@ Also accepts: `Description.condition`
 ### Description.longitude
 
 ### Description.note
+
+### Editor
+
+Also accepts Name.editor
+
+### Engraver
+
+Also accepts Name.engraver
 
 ### Featured image
 
@@ -234,6 +257,10 @@ Also aaccepts: `Name.illuminator`
 
 Also accepts: `Description.illustrations`
 
+### Illustrator
+
+accepts ""Illustrator", "Name.illustrator"
+
 ### Item Sequence
 
 ### viewingHint
@@ -258,6 +285,8 @@ Also accepts: `Description.illustrations`
 
 Also accepts: `Name.repository`
 
+Also accepts: `Name.repository`
+
 ### Name.scribe
 
 ### Opac url
@@ -267,6 +296,10 @@ Also accepts: `Description.opac`
 ### Page layout
 
 ### Place of origin
+
+### Printmaker
+
+Also accepts Name.printmaker
 
 ### Project Name
 

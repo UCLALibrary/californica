@@ -14,11 +14,15 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       ark: 'ark:/abc/3456',
       author: ['Old Author'],
       caption: ['Old Caption'],
+      calligrapher: ['Old Calligrapher'],
       contributor: ['Old Contributor'],
+      contents_note: ['Old Contents note'],
       creator: ['Old Creator'],
       date_created: ['Old Creation Date'],
       description: ['Old Desc'],
       dimensions: ['Old Dim'],
+      editor: ['Old Editor'],
+      engraver: ['Engraver'],
       extent: ['Old Extent'],
       funding_note: ['Old Fund Note'],
       genre: ['Old Genre'],
@@ -26,6 +30,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       iiif_viewing_hint: 'Old Iiif viewing hint',
       iiif_range: 'Old Iiif range',
       illustrations_note: ['Old Illustrations note'],
+      illustrator: ['Old Illustrator'],
       language: ['ang'],
       latitude: ['Old Lat'],
       local_identifier: ['Old Local ID'],
@@ -34,10 +39,12 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       medium: ['Old Medium'],
       named_subject: ['Old Name/Subj'],
       normalized_date: ['1900/1901'],
+      note: ['Old Note'],
       page_layout: ['Old Page layout'],
       photographer: ['Old Photographer'],
       place_of_origin: ['Old Place of origin'],
       preservation_copy: 'dlmasters/ethiopian/masters/abc123.tif',
+      printmaker: ['Old printmaker'],
       provenance: ['Old Provenance'],
       publisher: ['Old Pub'],
       repository: ['Old Repository'],
@@ -133,8 +140,8 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Collation').value).to eq 'Old Collation'
       expect(find_field('Composer').value).to eq 'Old Composer'
       expect(find_field('Foliation').value).to eq 'Old Foliation note'
-      expect(find_field('Lyricist').value).to eq 'Old Lyricist'
       expect(find_field('Illuminator').value).to eq 'Old Illuminator'
+      expect(find_field('Lyricist').value).to eq 'Old Lyricist'
       expect(find_field('Scribe').value).to eq 'Old Scribe'
       expect(find_field('Condition note').value).to eq 'Old Condition note'
       expect(find_field('Masthead parameters').value).to eq 'Old Masthead Parameters'
@@ -150,13 +157,14 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Rubricator').value).to eq 'Old rubricator'
       expect(find_field('Creator').value).to eq 'Old Creator'
       expect(page).to have_select('License', selected: 'Creative Commons CC0 1.0 Universal', multiple: false)
+      expect(find_field('Contents note').value).to eq 'Old Contents note'
       # expect(find_field('Local rights statement').value).to eq 'Old Rights statement local'
 
       # Edit some fields in the form
       fill_in 'Title', with: 'New Title'
       fill_in 'Dimensions', with: 'New Dim'
       fill_in 'Ark', with: 'ark:/not/myark' # This field is read-only and an attempt to change it should not result in a change
-
+      click_on 'Additional fields'
       # Submit the form.  When the page reloads, it should be on the show page.
       click_on 'Save changes'
       expect(page).to have_current_path(hyrax_work_path(work.id, locale: I18n.locale))

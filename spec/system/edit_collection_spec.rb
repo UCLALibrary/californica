@@ -33,6 +33,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       iiif_range: 'Old IIIF Range',
       illuminator: ['Old Illuminator'],
       illustrations_note: ['Old Illustrations note'],
+      illustrator: ['Old Illustrator'],
       language: ['ang'],
       latitude: ['Old Lat'],
       longitude: ['Old Long'],
@@ -73,7 +74,13 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       finding_aid_url: ['Old Finding aid url'],
       rubricator: ['Old rubricator'],
       creator: ['Old name creator'],
-      license: ['http://creativecommons.org/publicdomain/zero/1.0/']
+      license: ['http://creativecommons.org/publicdomain/zero/1.0/'],
+      calligrapher: ['Old Calligrapher'],
+      engraver: ['Old Engraver'],
+      editor: ['Old Editor'],
+      note: ['Old Note'],
+      printmaker: ['Old Printmaker'],
+      contents_note: ['Old Contents note']
       # local_rights_statement: ['Old Rights statement local'] # This invokes License renderer from hyrax gem
     }
   end
@@ -143,6 +150,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Masthead').value).to eq 'Old Masthead Parameters'
       expect(find_field('Scribe').value).to eq 'Old Scribe'
       expect(find_field('Condition note').value).to eq 'Old Condition note'
+      expect(find_field('Contents note').value).to eq 'Old Contents note'
       expect(find_field('Representative image').value).to eq 'Old Representative image'
       expect(find_field('Featured image').value).to eq 'Old Featured image'
       expect(find_field('Tagline').value).to eq 'Old Tagline'
@@ -155,6 +163,12 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Rubricator').value).to eq 'Old rubricator'
       expect(find_field('Creator').value).to eq 'Old name creator'
       expect(page).to have_select('License', selected: 'Creative Commons CC0 1.0 Universal', multiple: false)
+      expect(find_field('Calligrapher').value).to eq 'Old Calligrapher'
+      expect(find_field('Engraver').value).to eq 'Old Engraver'
+      expect(find_field('Editor').value).to eq 'Old Editor'
+      expect(find_field('Note').value).to eq 'Old Note'
+      expect(find_field('Printmaker').value).to eq 'Old Printmaker'
+
       # expect(find_field('Local rights statement').value).to eq 'Old Rights statement local'
       #
       # # Edit some fields in the form
