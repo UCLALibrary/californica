@@ -124,6 +124,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'composer_tesim'
     config.add_show_field 'commentator_tesim'
     config.add_show_field 'condition_note_ssi'
+    config.add_show_field 'contents_note_tesim'
     config.add_show_field 'binding_note_ssi'
     config.add_show_field 'dimensions_tesim'
     config.add_show_field 'editor_tesim'
