@@ -14,6 +14,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       author: ['Old Author'],
       binding_note: 'Old Binding note',
       calligrapher: ['Old Calligrapher'],
+      contents_note: ['Old Contents note'],
       date_created: ['Old Creation Date'],
       description: ['Old Desc'],
       dimensions: ['Old Dim'],

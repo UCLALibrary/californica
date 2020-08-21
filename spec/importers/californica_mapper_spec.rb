@@ -120,7 +120,9 @@ RSpec.describe CalifornicaMapper do
       "Name.engraver" => "Name-engraver", # engraver
       "Note" => "Note-1", # note
       "Printmaker" => "Printmaker-1", # printmaker
-      "Name.printmaker" => "Name-printmaker" # printmaker
+      "Name.printmaker" => "Name-printmaker", # printmaker
+      "Contents note" => "contents_note-1", # contents_note
+      "Description.contents" => "Description-contents" # contents_note
     }
   end
 
@@ -166,6 +168,7 @@ RSpec.describe CalifornicaMapper do
         :commentator,
         :composer,
         :condition_note,
+        :contents_note,
         :creator,
         :date_created,
         :description,

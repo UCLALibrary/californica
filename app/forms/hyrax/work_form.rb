@@ -19,6 +19,7 @@ module Hyrax
       :composer,
       :commentator,
       :condition_note,
+      :contents_note,
       :dimensions,
       :editor,
       :engraver,

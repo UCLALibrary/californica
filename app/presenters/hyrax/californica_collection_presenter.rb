@@ -20,6 +20,7 @@ module Hyrax
         :colophon,
         :composer,
         :condition_note,
+        :contents_note,
         :date_created,
         :dimensions,
         :editor,
