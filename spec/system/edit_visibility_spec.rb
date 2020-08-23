@@ -36,8 +36,8 @@ RSpec.describe 'Edit the visibility for a work', :clean, type: :system, js: true
       click_on 'Save changes'
 
       # When the show page loads, it should have the new visibility
-      expect(page).to have_current_path(hyrax_work_path(work), ignore_query: true)
       expect(page).to have_content 'Sinai'
+      expect(page).to have_current_path(hyrax_work_path(work), ignore_query: true)
     end
   end
 end

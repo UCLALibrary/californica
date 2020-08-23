@@ -20,6 +20,8 @@ RSpec.describe 'Create a new collection', :clean, type: :system, js: true do
 
     scenario 'successfully creates a new collection with an ark based identifier' do
       visit "/dashboard/my/collections"
+      expect(page).to have_content("New Collection")
+      expect(page).to have_content("Title")
       click_on 'New Collection'
       choose('User Collection')
       click_on 'Create collection'
@@ -28,8 +30,10 @@ RSpec.describe 'Create a new collection', :clean, type: :system, js: true do
       fill_in('Ark', with: 'ark:/abc/1234')
       ### fill_in('Ark', with: ark)
       click_on 'Save'
-      expect(page).to have_content title
-      expect(find_field('Ark').value).to eq ark
+      expect(page).to have_content 'My Test Collection'
+      expect(find_field('Ark').value).to eq 'ark:/abc/1234'
+      # expect(page).to have_content title
+      # expect(find_field('Ark').value).to eq ark
       expect(page).to have_content 'Collection was successfully created.'
       collection = Collection.last
       expect(collection.id).to eq '4321-cba'
@@ -43,6 +47,7 @@ RSpec.describe 'Create a new collection', :clean, type: :system, js: true do
 
       visit "/dashboard/my/collections"
       click_on 'New Collection'
+      expect(page).to have_content("User Collection")
       choose('User Collection')
       click_on 'Create collection'
       fill_in('Title', with: 'My Test Collection')
