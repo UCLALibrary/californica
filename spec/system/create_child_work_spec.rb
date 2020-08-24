@@ -25,6 +25,7 @@ RSpec.describe 'Create a ChildWork', :clean, type: :system, js: true do
     scenario do
       visit '/dashboard'
       click_link "Works"
+      expect(page).to have_content "Add new work"
       click_link "Add new work"
 
       # If you generate more than one work uncomment these lines
