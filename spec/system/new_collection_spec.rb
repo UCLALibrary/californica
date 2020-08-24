@@ -50,12 +50,13 @@ RSpec.describe 'Create a new collection', :clean, type: :system, js: true do
       expect(page).to have_content("User Collection")
       choose('User Collection')
       click_on 'Create collection'
+      expect(page).to have_content("Title")
       fill_in('Title', with: 'My Test Collection')
       ### fill_in('Title', with: title)
       fill_in('Ark', with: 'ark:/abc/1234')
       ### fill_in('Ark', with: ark)
       click_on 'Save'
-      expect(page).to have_content title
+      expect(page).to have_content("Title")
       expect(find_field('Ark').value).to eq ark
       expect(page).to have_content 'Collection was successfully created.'
       expect(Collection.count).to eq 1
