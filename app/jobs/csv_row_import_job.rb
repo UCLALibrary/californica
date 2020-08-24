@@ -14,10 +14,10 @@ class CsvRowImportJob < ActiveJob::Base
     @metadata = JSON.parse(@row.metadata)
 
 
-    @row.status = "Ignored"
-    if !@metadata["Object Type"].include?("Page")
-      @row.status = "Ingested"
-    end
+    ###@row.status = "Ignored"
+    ###if !@metadata["Object Type"].include?("Page")
+    ###  @row.status = "Ingested"
+    ###end
 
 
 
