@@ -23,8 +23,8 @@ RSpec.describe 'Create a new collection', :clean, type: :system, js: true do
       expect(page).to have_content("New Collection")
       expect(page).to have_content("Title")
       click_on 'New Collection'
-
-# The modal is not popping up
+      expect(page).to have_content('New translation missing: en.hyrax.collection_type.default_title')
+      # The modal is not popping up
 
       choose('User Collection')
       click_on 'Create collection'
