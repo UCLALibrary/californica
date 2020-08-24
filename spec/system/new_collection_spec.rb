@@ -23,8 +23,12 @@ RSpec.describe 'Create a new collection', :clean, type: :system, js: true do
       expect(page).to have_content("New Collection")
       expect(page).to have_content("Title")
       click_on 'New Collection'
+
+# The modal is not popping up
+
       choose('User Collection')
       click_on 'Create collection'
+      expect(page).to have_content("New User Collection")
       fill_in('Title', with: 'My Test Collection')
       ### fill_in('Title', with: title)
       fill_in('Ark', with: 'ark:/abc/1234')
