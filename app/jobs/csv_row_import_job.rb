@@ -24,9 +24,7 @@ class CsvRowImportJob < ActiveJob::Base
                           actor_record_importer
                         end
 
-     if !@metadata["Object Type"].include?("Page")
-       selected_importer.import(record: record)
-     end
+    selected_importer.import(record: record) unless @metadata["Object Type"].include?("Page")
 
     end_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
     @row.ingest_record_end_time = Time.current
