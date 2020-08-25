@@ -273,4 +273,5 @@ end
 # displayable: https://www.rubydoc.info/gems/solrizer/3.4.0/Solrizer%2FDefaultDescriptors.displayable
 # stored_searchable https://www.rubydoc.info/gems/solrizer/3.4.0/Solrizer%2FDefaultDescriptors.stored_searchable
 # stored_sortable https://www.rubydoc.info/gems/solrizer/3.4.0/Solrizer%2FDefaultDescriptors.stored_sortable
-# :facetable - combined with adding field-name_sim to the config.add_show_field in app/controllers/catalog_controler.rb in Ursus this creates a link on the item/show page of Ursus that links to a search for all fields of this name
+# :facetable - combined with adding field-name_sim to the config.add_show_field in app/controllers/catalog_controler.rb
+# in Ursus this creates a link on the item/show page of Ursus that links to a search for all fields of this name
