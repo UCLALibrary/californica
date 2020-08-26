@@ -11,8 +11,7 @@ class CsvRowImportJob < ActiveJob::Base
     @row.ingest_record_start_time = Time.current
 
     @metadata = JSON.parse(@row.metadata)
-    @metadata["Object Type"].include?("Work") ? @row.status = 'in progress' : @row.status = 'not ingested'
-    
+    @row.status = @metadata["Object Type"].include?("Work") ? 'in progress' : 'not ingested'
     @metadata = @metadata.merge(row_id: @row_id)
     @csv_import = CsvImport.find(@row.csv_import_id)
     import_file_path = @csv_import.import_file_path
