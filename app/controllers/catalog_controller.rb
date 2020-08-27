@@ -41,6 +41,7 @@ class CatalogController < ApplicationController
     config.index.display_type_field = solr_name('has_model', :symbol)
     config.index.thumbnail_field = 'thumbnail_url_ss'
 
+    # FACETS
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
     config.add_facet_field solr_name('human_readable_resource_type', :facetable), label: 'Resource Type', limit: 5
@@ -72,8 +73,10 @@ class CatalogController < ApplicationController
     # handler defaults, or have no facets.
     config.add_facet_fields_to_solr_request!
 
+    # ------------------------------------------------------
+    # INDEX / SEARCH RESULTS
     # solr fields to be displayed in the index (search results) view
-    #   The ordering of the field names is the order of the display
+    # The ordering of the field names is the order of the display
     config.add_index_field 'title_tesim', label: 'Title', itemprop: 'name', if: false
     config.add_index_field 'description_tesim', itemprop: 'Description', helper_method: :iconify_auto_link
     config.add_index_field 'normalized_date_tesim', label: 'Date', link_to_search: solr_name('normalized_date', :facetable)
@@ -81,6 +84,8 @@ class CatalogController < ApplicationController
     # Currently disabled resource_type in index view bc the implementation makes it hard to tap into our custom presenter
     config.add_index_field 'human_readable_resource_type_tesim', label: 'Resource Type', link_to_search: solr_name('human_readable_resource_type', :facetable)
 
+    # ------------------------------------------------------
+    # SHOW PAGE / ITEM PAGE / Individual Work (Universal Viewer Page)
     # solr fields to be displayed in the show (single result) view
     #   The ordering of the field names is the order of the display
     config.add_show_field 'title_tesim'
@@ -102,9 +107,11 @@ class CatalogController < ApplicationController
     config.add_show_field 'identifier_tesim'
     config.add_show_field 'ark_ssi', label: 'ARK'
     config.add_show_field 'access_copy_ssi'
+
     config.add_show_field 'alternative_title_tesim'
     config.add_show_field 'architect_tesim'
     config.add_show_field 'author_tesim'
+    config.add_show_field 'binding_note_ssi'
     config.add_show_field 'calligrapher_tesim'
     config.add_show_field 'caption_tesim'
     config.add_show_field 'collation_ssi'
@@ -113,7 +120,6 @@ class CatalogController < ApplicationController
     config.add_show_field 'commentator_tesim'
     config.add_show_field 'condition_note_ssi'
     config.add_show_field 'contents_note_tesim'
-    config.add_show_field 'binding_note_ssi'
     config.add_show_field 'dimensions_tesim'
     config.add_show_field 'editor_tesim'
     config.add_show_field 'engraver_tesim'
@@ -147,7 +153,6 @@ class CatalogController < ApplicationController
     config.add_show_field 'rights_country_tesim'
     config.add_show_field 'rights_holder_tesim'
     config.add_show_field 'rubricator_tesim'
-    # config.add_show_field 'local_rights_statement_ssim' # This invokes License renderer from hyrax gem
     config.add_show_field 'scribe_tesim'
     config.add_show_field 'subject_geographic_tesim'
     config.add_show_field 'subject_temporal_tesim'
@@ -161,6 +166,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'representative_image_ssi'
     config.add_show_field 'featured_image_ssi'
     config.add_show_field 'tagline_ssi'
+    # config.add_show_field 'local_rights_statement_ssim' # This invokes License renderer from hyrax gem
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
