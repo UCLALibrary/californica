@@ -264,7 +264,7 @@ module UclaMetadata
     end
 
     property :uniform_title, predicate: ::RDF::URI.intern('http://purl.org/dc/elements/1.1/title') do |index|
-      index.as :stored_searchable
+      index.as :stored_searchable, :facetable
     end
   end
 end
