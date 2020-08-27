@@ -25,7 +25,7 @@ class CsvRowImportJob < ActiveJob::Base
 
     selected_importer.import(record: record) unless @metadata["Object Type"].include?("Page")
     @row.status = if ['Page', 'ChildWork'].include?(record.mapper.object_type)
-    selected_importer.import(record: record) unless @metadata["Object Type"].include?("Page")
+                    selected_importer.import(record: record) unless @metadata["Object Type"].include?("Page")
                     "complete"
 
                   else
