@@ -111,6 +111,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "Engraver-1" # engraver
     expect(page).to have_content "Note-1" # note
     expect(page).to have_content "Printmaker-1" # print maker
+    expect(page).to have_content "contents_note-1" # contents_note
 
     # expect(page).to have_content "local_statement" # local_rights_statement # This invokes License renderer from hyrax gem
 

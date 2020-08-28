@@ -16,6 +16,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       caption: ['Old Caption'],
       calligrapher: ['Old Calligrapher'],
       contributor: ['Old Contributor'],
+      contents_note: ['Old Contents note'],
       creator: ['Old Creator'],
       date_created: ['Old Creation Date'],
       description: ['Old Desc'],
@@ -156,6 +157,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Rubricator').value).to eq 'Old rubricator'
       expect(find_field('Creator').value).to eq 'Old Creator'
       expect(page).to have_select('License', selected: 'Creative Commons CC0 1.0 Universal', multiple: false)
+      expect(find_field('Contents note').value).to eq 'Old Contents note'
       # expect(find_field('Local rights statement').value).to eq 'Old Rights statement local'
 
       # Edit some fields in the form

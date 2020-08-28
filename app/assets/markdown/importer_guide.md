@@ -19,6 +19,7 @@
 - [Colophon](#colophon)
 - [Commentator](#commentator)
 - [Condition note](#condition_note)
+- [Contents note](#contents_note)
 - [Coverage.geographic](#coverage.geographic)
 - [Date.creation](#date.creation)
 - [Date.normalized](#date.normalized)
@@ -198,6 +199,10 @@ Also accepts: `Name.commentator`
 
 Also accepts: `Description.condition`
 
+### Contents note
+
+Also accepts: Description.contents
+
 ### Coverage.geographic
 
 ### Date.creation
@@ -276,9 +281,9 @@ accepts ""Illustrator", "Name.illustrator"
 
 ### Name.photographer
 
-### Note
-
 ### Repository
+
+Also accepts: `Name.repository`
 
 Also accepts: `Name.repository`
 
