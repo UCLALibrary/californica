@@ -16,11 +16,11 @@ module UclaMetadata
     end
 
     property :architect, predicate: ::RDF::Vocab::MARCRelators.arc do |index|
-      index.as :stored_searchable
+      index.as :stored_searchable, :facetable
     end
 
     property :author, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/aut') do |index|
-      index.as :stored_searchable
+      index.as :stored_searchable, :facetable
     end
 
     property :binding_note, predicate: ::RDF::URI.intern('http://marc21rdf.info/elements/5XX/M563__a'), multiple: false do |index|
@@ -32,7 +32,7 @@ module UclaMetadata
     end
 
     property :calligrapher, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/cll') do |index|
-      index.as :stored_searchable
+      index.as :stored_searchable, :facetable
     end
 
     property :collation, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3077'), multiple: false do |index|
@@ -68,11 +68,11 @@ module UclaMetadata
     end
 
     property :editor, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/edt') do |index|
-      index.as :stored_searchable
+      index.as :stored_searchable, :facetable
     end
 
-    property :engraver, predicate: ::RDF::URI.intern('hhttp://id.loc.gov/vocabulary/relators/egr') do |index|
-      index.as :stored_searchable
+    property :engraver, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/egr') do |index|
+      index.as :stored_searchable, :facetable
     end
 
     property :extent, predicate: ::RDF::Vocab::DC11.format do |index|
@@ -124,7 +124,7 @@ module UclaMetadata
     end
 
     property :illustrator, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/ill.html') do |index|
-      index.as :stored_searchable
+      index.as :stored_searchable, :facetable
     end
 
     property :latitude, predicate: ::RDF::Vocab::EXIF.gpsLatitude do |index|
@@ -196,7 +196,7 @@ module UclaMetadata
     end
 
     property :printmaker, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/prm') do |index|
-      index.as :stored_searchable
+      index.as :stored_searchable, :facetable
     end
 
     property :provenance, predicate: ::RDF::URI.intern('http://purl.org/dc/terms/provenance') do |index|
@@ -220,7 +220,7 @@ module UclaMetadata
     end
 
     property :rubricator, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/rbr') do |index|
-      index.as :stored_searchable
+      index.as :stored_searchable, :facetable
     end
 
     property :scribe, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/scr') do |index|
@@ -260,11 +260,11 @@ module UclaMetadata
     end
 
     property :translator, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/trl') do |index|
-      index.as :stored_searchable
+      index.as :stored_searchable, :facetable
     end
 
     property :uniform_title, predicate: ::RDF::URI.intern('http://purl.org/dc/elements/1.1/title') do |index|
-      index.as :stored_searchable
+      index.as :stored_searchable, :facetable
     end
   end
 end
@@ -273,3 +273,5 @@ end
 # displayable: https://www.rubydoc.info/gems/solrizer/3.4.0/Solrizer%2FDefaultDescriptors.displayable
 # stored_searchable https://www.rubydoc.info/gems/solrizer/3.4.0/Solrizer%2FDefaultDescriptors.stored_searchable
 # stored_sortable https://www.rubydoc.info/gems/solrizer/3.4.0/Solrizer%2FDefaultDescriptors.stored_sortable
+# :facetable - combined with adding field-name_sim to the config.add_show_field in app/controllers/catalog_controler.rb
+# in Ursus this creates a link on the item/show page of Ursus that links to a search for all fields of this name

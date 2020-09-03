@@ -10,8 +10,8 @@ class CsvRowImportJob < ActiveJob::Base
     @row = CsvRow.find(@row_id)
     @row.ingest_record_start_time = Time.current
 
-    @row.status = 'in progress'
     @metadata = JSON.parse(@row.metadata)
+    @row.status = @metadata["Object Type"].include?("Page") ? 'not ingested' : 'in progress'
     @metadata = @metadata.merge(row_id: @row_id)
     @csv_import = CsvImport.find(@row.csv_import_id)
     import_file_path = @csv_import.import_file_path
@@ -22,12 +22,18 @@ class CsvRowImportJob < ActiveJob::Base
                         else
                           actor_record_importer
                         end
-    selected_importer.import(record: record)
+
+    selected_importer.import(record: record) unless @metadata["Object Type"].include?("Page")
     @row.status = if ['Page', 'ChildWork'].include?(record.mapper.object_type)
-                    "complete"
+                    if @metadata["Object Type"].include?("Page")
+                      "not ingested"
+                    else
+                      "complete"
+                    end
                   else
                     "pending finalization"
                   end
+
     end_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
     @row.ingest_record_end_time = Time.current
 
