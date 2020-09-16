@@ -29,7 +29,7 @@ function processAdd(cmd) {
     var SolrInputDocument = Java.type(
       'org.apache.solr.common.SolrInputDocument'
     );
-    solrDocUrsus = new SolrInputDocument();
+    /*solrDocUrsus = new SolrInputDocument();
     solrDocUrsus.addField('id', doc.getFieldValue('ark_ssi'));
     logger.info('update-script#processAdd: solrDocUrsus start=' + solrDocUrsus);
     logger.info('update-script#processAdd: Set=' + doc.entrySet());
@@ -37,15 +37,17 @@ function processAdd(cmd) {
     for (i = 0; i < field_names.length; i++) {
       field_name = field_names[i];
       if (field_name != 'id') {
-        solrDocUrsus.addField(
-          field_names[i],
-          doc.getFieldValue(field_names[i])
-        );
+        Field1 = doc.getFieldValues(field_names[i]);
+        logger.info('Size : ' + Field1.size());
+        logger.info('field name: ' + field_names[i]);
+        for (j = 0; j < Field1.size(); j++) {
+          doc.addField(field_names[i], Field1.get(j));
+        }
       }
     }
     logger.info(
       'update-script#processAdd: solrDocUrsus finish=' + solrDocUrsus
-    );
+    );*/
     var SolrClient = Java.type('org.apache.solr.client.solrj.SolrClient');
     var HttpSolrClient = Java.type(
       'org.apache.solr.client.solrj.impl.HttpSolrClient'
@@ -60,7 +62,7 @@ function processAdd(cmd) {
     solrclient = new HttpSolrClient.Builder(urlString).build();
     solrclient.setParser(new XMLResponseParser());
     logger.info('update-script#processAdd: solrclient=' + solrclient);
-    solrclient.add(solrDocUrsus);
+    solrclient.add(doc);
     solrclient.commit();
   }
 
