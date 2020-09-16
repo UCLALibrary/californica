@@ -62,12 +62,12 @@
     <updateLog>
       <str name="dir">${solr.ulog.dir:}</str>
     </updateLog>
-
+    <!--
     <autoCommit>
       <maxTime>${solr.autoCommit.maxTime:15000}</maxTime>
       <openSearcher>false</openSearcher>
     </autoCommit>
-
+-->
     <autoSoftCommit>
       <maxTime>${solr.autoSoftCommit.maxTime:-1}</maxTime>
     </autoSoftCommit>
@@ -200,6 +200,13 @@
   </requestHandler>
 
   <updateRequestProcessorChain name="add_modify_fields" default="${update.autoCreateFields:true}">
+    <processor class="solr.CloneFieldUpdateProcessorFactory">
+      <str name="source">ark_ssi</str>
+      <str name="dest">id</str>
+    </processor>
+    <processor class="solr.LastFieldValueUpdateProcessorFactory">
+      <str name="fieldName">id</str>
+    </processor>
     <processor class="solr.ParseDateFieldUpdateProcessorFactory">
       <arr name="format">
         <str>yyyy-MM-dd'T'HH:mm:ss.SSSZ</str>
@@ -320,7 +327,7 @@
        </lst>
       -->
   </searchComponent>
-
+  <!--
   <searchComponent name="suggest" class="solr.SuggestComponent">
     <lst name="suggester">
       <str name="name">mySuggester</str>
@@ -341,7 +348,7 @@
       <str>suggest</str>
     </arr>
   </requestHandler>
-
+-->
   <requestHandler name="/update/extract" class="org.apache.solr.handler.extraction.ExtractingRequestHandler">
     <lst name="defaults">
       <str name="fmap.Last-Modified">last_modified</str>
@@ -357,7 +364,7 @@
   </requestHandler>
 
   <!-- For master replicaiton see https://lucene.apache.org/solr/guide/7_5/index-replication.html -->
-  <requestHandler name="/replication" class="solr.ReplicationHandler">
+  <!--<requestHandler name="/replication" class="solr.ReplicationHandler">
     <lst name="master">
       <str name="replicateAfter">commit</str>
       <str name="backupAfter">commit</str>
@@ -368,5 +375,5 @@
     <lst name="invariants">
       <str name="maxWriteMBPerSec">16</str>
     </lst>
-  </requestHandler>
+  </requestHandler> -->
 </config>
