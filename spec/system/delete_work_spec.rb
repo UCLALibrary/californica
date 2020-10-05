@@ -1,3 +1,5 @@
+
+=begin
 # frozen_string_literal: true
 require 'rails_helper'
 include Warden::Test::Helpers
@@ -30,3 +32,5 @@ RSpec.describe 'Delete a Work', :clean, type: :system, js: true do
     end
   end
 end
+=end
+
