@@ -11,7 +11,7 @@ module Hyrax
       def form_class
         Hyrax::CalifornicaCollectionsForm
       end
-
+=begin
       # Override #destroy method from Hyrax. Because we are using ark based identifiers, we need to both
       # destroy and eradicate the object, so that we can re-create a collection object with the same ark if needed
       def destroy
@@ -21,6 +21,7 @@ module Hyrax
           after_destroy_error(params[:id])
         end
       end
+=end
 
       # Override #create method from Hyrax to assign an ark based identifier to any newly created collection objects
       def create
