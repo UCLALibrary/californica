@@ -2,6 +2,7 @@
 <div class="col-xs-12 main-header">
   <h2>CSV Imports | <small>Time displayed in seconds</small</h2>
 </div>
+
 <div class="panel-body">
   <table class="table-condensed table-striped datatable dataTable no-footer" role="grid" data-order="[[ 0, &quot;desc&quot; ]]">
     <thead>
@@ -22,7 +23,7 @@
         <tr>
           <td><%= link_to csv_import.id, csv_import %></td>
           <td><%= csv_import.created_at.in_time_zone("America/Los_Angeles").strftime('%e %b %Y') %><br><%=csv_import.created_at.strftime(' %l:%M %p') %></td>
-          <td><%= ::User.find(csv_import.user_id).display_name || "Unknown" %></td>
+          <td><%= csv_import.user.name %></td>
           <td><%= link_to csv_import.manifest.file.file, csv_import %></td>
           <td><%= csv_import.record_count || "Unknown" %></td>
           <td><%= csv_import.status || "Unknown" %></td>
