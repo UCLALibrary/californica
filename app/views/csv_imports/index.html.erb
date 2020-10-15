@@ -23,7 +23,7 @@
         <tr>
           <td><%= link_to csv_import.id, csv_import %></td>
           <td><%= csv_import.created_at.in_time_zone("America/Los_Angeles").strftime('%e %b %Y') %><br><%=csv_import.created_at.strftime(' %l:%M %p') %></td>
-          <td><%= csv_import.user.name %></td>
+          <td><%= csv_import.user.name  || "Unknown" %></td>
           <td><%= link_to csv_import.manifest.file.file, csv_import %></td>
           <td><%= csv_import.record_count || "Unknown" %></td>
           <td><%= csv_import.status || "Unknown" %></td>
