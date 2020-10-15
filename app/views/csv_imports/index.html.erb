@@ -19,17 +19,19 @@
     </thead>
 
     <tbody>
-      <% @csv_imports.each do |csv_import| %>
-        <tr>
-          <td><%= link_to csv_import.id, csv_import %></td>
-          <td><%= csv_import.created_at.in_time_zone("America/Los_Angeles").strftime('%e %b %Y') %><br><%=csv_import.created_at.strftime(' %l:%M %p') %></td>
-          <td><%= csv_import.user.name %></td>
-          <td><%= link_to csv_import.manifest.file.file, csv_import %></td>
-          <td><%= csv_import.record_count || "Unknown" %></td>
-          <td><%= csv_import.status || "Unknown" %></td>
-          <td><% if csv_import.elapsed_time %><%= csv_import.elapsed_time.round(3) || "Unknown" %><% end %></td>
-          <td><% if csv_import.elapsed_time_per_record %><%= csv_import.elapsed_time_per_record.round(3) || "Unknown" %><% end %></td>
-        </tr>
+        <% @csv_imports.each do |csv_import| %>
+          <tr>
+            <% if csv_import&.manifest&.file&.file %>
+            <td><%= link_to csv_import.id, csv_import %></td>
+            <td><%= csv_import.created_at.in_time_zone("America/Los_Angeles").strftime('%e %b %Y')%><br><%=csv_import.created_at.strftime('%l:%M %p') %></td>
+            <td><%= csv_import.user.name  || "Unknown" %></td>
+            <td><%= link_to csv_import.manifest.file.file, csv_import %></td>
+            <td><%= csv_import.record_count || "Unknown" %></td>
+            <td><%= csv_import.status || "Unknown" %></td>
+            <td><% if csv_import.elapsed_time %><%= csv_import.elapsed_time.round(3) || "Unknown" %><% end %></td>
+            <td><% if csv_import.elapsed_time_per_record %><%= csv_import.elapsed_time_per_record.round(3) ||"Unknown" %><% end %></td>
+            <% end %>
+          </tr>
       <% end %>
     </tbody>
   </table>
