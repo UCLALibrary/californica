@@ -10,7 +10,32 @@ class CollectionRecordImporter < Darlingtonia::HyraxRecordImporter
   def create_for(record:)
     info_stream << "event: collection_import_started, batch_id: #{batch_id}, record_title: #{record.respond_to?(:title) ? record.title : record}\n"
 
-    collection = Collection.find_or_create_by_ark(record.ark)
+    begin
+      retries ||= 0
+      collection = Collection.find_or_create_by_ark(record.ark)
+    rescue Ldp::BadRequest => e
+      # build the backwards ark to query Fedora
+      fedora_ark2 = created.ark
+      fedora_ark3 = fedora_ark2.sub("ark:/", "")
+      fedora_ark4 = fedora_ark3.sub("/", "-")
+      fedora_ark5 = fedora_ark4.reverse
+      fedora_ark6a = fedora_ark5.split("-")
+      fedora_ark6 = fedora_ark6a.first
+      fedora_ark7 = fedora_ark6.scan(/\w/)
+      fedora_ark8 = ""
+      ark_cnt = 0
+      fedora_ark7.each do |ark_l|
+        fedora_ark8 += "/" if ark_cnt.modulo(2).zero?
+        fedora_ark8 += ark_l
+        ark_cnt += 1
+      end
+      fedora_ark8 += "/"
+      fedora_ark9 = fedora_ark8 + fedora_ark5
+      fedora_ark10 = fedora_ark9.sub("/zz/", "/")
+      url = "#{ActiveFedora.config.credentials[:url]}#{ActiveFedora.config.credentials[:base_path]}#{fedora_ark10}/fcr:tombstone"
+      ActiveFedora.fedora.connection.delete(url)
+      retry if (retries += 1) < 3
+    end
     collection.attributes = attributes_for(record: record)
     collection.recalculate_size = false
     if collection.save(update_index: false)

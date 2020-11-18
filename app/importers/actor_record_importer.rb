@@ -87,19 +87,43 @@ class ActorRecordImporter < Darlingtonia::HyraxRecordImporter
                                                ::Ability.new(@depositor),
                                                attrs)
     terminator = Hyrax::Actors::Terminator.new
-    middleware = Californica::IngestMiddlewareStack.build_stack.build(terminator)
-
-    if middleware.create(actor_env)
-      info_stream << "event: record_created, row_id: #{@row_id}, record_id: #{created.id}, ark: #{created.ark}\n"
-    else
-      error_messages = []
-      created.errors.each do |attr, msg|
-        error_stream << "event: validation_failed, row_id: #{@row_id}, attribute: #{attr.capitalize}, message: #{msg}, ark: #{attrs[:ark] ? attrs[:ark] : attrs}\n"
-        error_messages << msg
+    begin
+      retries ||= 0
+      middleware = Californica::IngestMiddlewareStack.build_stack.build(terminator)
+      if middleware.create(actor_env)
+        info_stream << "event: record_created, row_id: #{@row_id}, record_id: #{created.id}, ark: #{created.ark}\n"
+      else
+        error_messages = []
+        created.errors.each do |attr, msg|
+          error_stream << "event: validation_failed, row_id: #{@row_id}, attribute: #{attr.capitalize}, message: #{msg}, ark: #{attrs[:ark] ? attrs[:ark] : attrs}\n"
+          error_messages << msg
+        end
+        # Errors raised here should be rescued in the CsvRowImportJob and the
+        # message should be recorded on the CsvRow object for reporting in the UI
+        raise "Validation failed: #{error_messages.join(', ')}"
       end
-      # Errors raised here should be rescued in the CsvRowImportJob and the
-      # message should be recorded on the CsvRow object for reporting in the UI
-      raise "Validation failed: #{error_messages.join(', ')}"
+    rescue Ldp::BadRequest => e
+      # build the backwards ark to query Fedora
+      fedora_ark2 = created.ark
+      fedora_ark3 = fedora_ark2.sub("ark:/", "")
+      fedora_ark4 = fedora_ark3.sub("/", "-")
+      fedora_ark5 = fedora_ark4.reverse
+      fedora_ark6a = fedora_ark5.split("-")
+      fedora_ark6 = fedora_ark6a.first
+      fedora_ark7 = fedora_ark6.scan(/\w/)
+      fedora_ark8 = ""
+      ark_cnt = 0
+      fedora_ark7.each do |ark_l|
+        fedora_ark8 += "/" if ark_cnt.modulo(2).zero?
+        fedora_ark8 += ark_l
+        ark_cnt += 1
+      end
+      fedora_ark8 += "/"
+      fedora_ark9 = fedora_ark8 + fedora_ark5
+      fedora_ark10 = fedora_ark9.sub("/zz/", "/")
+      url = "#{ActiveFedora.config.credentials[:url]}#{ActiveFedora.config.credentials[:base_path]}#{fedora_ark10}/fcr:tombstone"
+      ActiveFedora.fedora.connection.delete(url)
+      retry if (retries += 1) < 3
     end
   end
 end
