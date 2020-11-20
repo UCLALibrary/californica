@@ -60,29 +60,23 @@ class ActorRecordImporter < Darlingtonia::HyraxRecordImporter
   # We assume the object was created as expected if the actor stack returns true.
   def create_for(record:)
     info_stream << "event: record_import_started, row_id: #{@row_id}, ark: #{record.ark}\n"
-
     raise(ArgumentError, 'Title starts "DUPLICATE" – record will not be imported.') if record.mapper.title[0].to_s.start_with?('DUPLICATE')
-
     additional_attrs = {
       uploaded_files: create_upload_files(record),
       depositor: @depositor.user_key
     }
-
     object_type = record.mapper.metadata["Object Type"]
     created = import_type(object_type).new
     created.apply_depositor_metadata(@depositor.user_key)
     attrs = record.attributes.merge(additional_attrs)
-
     attrs = attrs.merge(member_of_collections_attributes: { '0' => { id: collection_id } }) if collection_id
 
     # Ensure nothing is passed in the files field,
     # since this is reserved for Hyrax and is where uploaded_files will be attached
     attrs.delete(:files)
     attrs.delete(:uploaded_files)
-
     based_near = attrs.delete(:based_near)
     attrs = attrs.merge(based_near_attributes: based_near_attributes(based_near)) unless based_near.nil? || based_near.empty?
-
     actor_env = Hyrax::Actors::Environment.new(created,
                                                ::Ability.new(@depositor),
                                                attrs)
@@ -102,27 +96,9 @@ class ActorRecordImporter < Darlingtonia::HyraxRecordImporter
         # message should be recorded on the CsvRow object for reporting in the UI
         raise "Validation failed: #{error_messages.join(', ')}"
       end
-    rescue Ldp::BadRequest => e
-      # build the backwards ark to query Fedora
-      fedora_ark2 = created.ark
-      fedora_ark3 = fedora_ark2.sub("ark:/", "")
-      fedora_ark4 = fedora_ark3.sub("/", "-")
-      fedora_ark5 = fedora_ark4.reverse
-      fedora_ark6a = fedora_ark5.split("-")
-      fedora_ark6 = fedora_ark6a.first
-      fedora_ark7 = fedora_ark6.scan(/\w/)
-      fedora_ark8 = ""
-      ark_cnt = 0
-      fedora_ark7.each do |ark_l|
-        fedora_ark8 += "/" if ark_cnt.modulo(2).zero?
-        fedora_ark8 += ark_l
-        ark_cnt += 1
-      end
-      fedora_ark8 += "/"
-      fedora_ark9 = fedora_ark8 + fedora_ark5
-      fedora_ark10 = fedora_ark9.sub("/zz/", "/")
-      url = "#{ActiveFedora.config.credentials[:url]}#{ActiveFedora.config.credentials[:base_path]}#{fedora_ark10}/fcr:tombstone"
-      ActiveFedora.fedora.connection.delete(url)
+    rescue Ldp::BadRequest
+      ts_uri = "#{ActiveFedora::Base.id_to_uri(Californica::IdGenerator.id_from_ark(created.ark))}/fcr:tombstone"
+      ActiveFedora.fedora.connection.delete(ts_uri)
       retry if (retries += 1) < 3
     end
   end

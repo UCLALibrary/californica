@@ -12,44 +12,6 @@ class CsvRowImportJob < ActiveJob::Base
 
     @metadata = JSON.parse(@row.metadata)
 
-###    unless @metadata["Item ARK"] == ""
-###      # build the backwards ark to query Fedora
-###      fedora_ark2 = @metadata["Item ARK"]
-###      fedora_ark3 = fedora_ark2.sub("ark:/", "")
-###      fedora_ark4 = fedora_ark3.sub("/", "-")
-###      fedora_ark5 = fedora_ark4.reverse
-###      fedora_ark6a = fedora_ark5.split("-")
-###      fedora_ark6 = fedora_ark6a.first
-###      fedora_ark7 = fedora_ark6.scan(/\w/)
-###      fedora_ark8 = ""
-###      ark_cnt = 0
-###      fedora_ark7.each do |ark_l|
-###        fedora_ark8 += "/" if ark_cnt.modulo(2).zero?
-###        fedora_ark8 += ark_l
-###        ark_cnt += 1
-###      end
-###      fedora_ark8 += "/"
-###      fedora_ark9 = fedora_ark8 + fedora_ark5
-###      fedora_ark10 = fedora_ark9.sub("/zz/", "/")
-###
-###      # build Fedora URI and remove tombstone if present
-###      url = "#{ActiveFedora.config.credentials[:url]}#{ActiveFedora.config.credentials[:base_path]}"
-###      fedora_ark11 = url + fedora_ark10
-###      uri = URI(fedora_ark11)
-###      fedora_resp = Net::HTTP.get_response(uri)
-###
-###      if fedora_resp.body["ombstone"]
-###        fedora_ark11 += "/fcr:tombstone"
-###        uri = URI(fedora_ark11)
-###        http = Net::HTTP.new(uri.host, uri.port)
-###        req = Net::HTTP::Delete.new(uri.path)
-###        req.basic_auth ActiveFedora.config.credentials[:user], ActiveFedora.config.credentials[:password]
-###        http.request(req)
-###        tombstone_msg_ary = Array.new(1, "tombstone removed")
-###        @row.error_messages = tombstone_msg_ary
-###      end
-###    end
-
     @row.status = @metadata["Object Type"].include?("Page") ? 'not ingested' : 'in progress'
     @metadata = @metadata.merge(row_id: @row_id)
     @csv_import = CsvImport.find(@row.csv_import_id)
@@ -63,7 +25,6 @@ class CsvRowImportJob < ActiveJob::Base
                         end
 
     selected_importer.import(record: record) unless @metadata["Object Type"].include?("Page")
-    
     @row.status = if ['Page', 'ChildWork'].include?(record.mapper.object_type)
                     if @metadata["Object Type"].include?("Page")
                       "not ingested"
