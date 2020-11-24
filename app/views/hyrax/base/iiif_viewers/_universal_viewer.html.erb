@@ -1,4 +1,15 @@
-<%= PulUvRails::UniversalViewer.script_tag %>
+
 <div class="viewer-wrapper">
-  <div class="uv viewer" data-uri="<%= presenter.iiif_manifest_url %>"></div>
+  <div class="uv viewer">
+  <% iiif_service = Californica::IiifService.new() %>
+  <iframe
+    class='media-viewer-iframe'
+    src= "<%= iiif_service.src(presenter.iiif_manifest_url) %>"
+    width='1042px'
+    height='391px'
+    id='media-viewer-iframe'
+    allowfullscreen
+    frameborder='0'>
+  </iframe>
+  </div>
 </div>
