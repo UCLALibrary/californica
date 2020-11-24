@@ -97,8 +97,9 @@ class ActorRecordImporter < Darlingtonia::HyraxRecordImporter
         raise "Validation failed: #{error_messages.join(', ')}"
       end
     rescue Ldp::BadRequest
-      ts_uri = "#{ActiveFedora::Base.id_to_uri(Californica::IdGenerator.id_from_ark(created.ark))}/fcr:tombstone"
-      ActiveFedora.fedora.connection.delete(ts_uri)
+      # get the id from the ark and the uri from the id then delete the tombstone
+      tombstone_uri = "#{ActiveFedora::Base.id_to_uri(Californica::IdGenerator.id_from_ark(created.ark))}/fcr:tombstone"
+      ActiveFedora.fedora.connection.delete(tombstone_uri)
       retry if (retries += 1) < 3
     end
   end
