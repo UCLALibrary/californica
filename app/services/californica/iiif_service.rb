@@ -1,13 +1,13 @@
 module Californica
     class IiifService
         def src(iiif_manifest_url)
-            if base_url.include?('localhost') || base_url.include?('californica-test')
+            if ENV['RAILS_HOST'] == 'localhost' || ENV['RAILS_HOST'] == 'californica-test'
                 "https://t-w-dl-viewer01.library.ucla.edu/uv.html#?manifest=#{CGI.escape(iiif_manifest_url)}"
-            elsif base_url.include?('californica-dev')
+            elsif ENV['RAILS_HOST'] == 'californica-dev'
                 "https://d-w-dl-viewer01.library.ucla.edu/uv.html#?manifest=#{CGI.escape(iiif_manifest_url)}"
-            elsif base_url.include?('californica-stage')
+            elsif ENV['RAILS_HOST'] == 'californica-stage'
                 "https://s-w-dl-viewer01.library.ucla.edu/uv.html#?manifest=#{CGI.escape(iiif_manifest_url)}"
-            elsif base_url.include?('californica')
+            elsif ENV['RAILS_HOST'] == 'californica'
                 "https://p-w-dl-viewer01.library.ucla.edu/uv.html#?manifest=#{CGI.escape(iiif_manifest_url)}"
             end
         end
