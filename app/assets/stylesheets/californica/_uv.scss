@@ -1,20 +1,9 @@
-.viewer-wrapper {
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-    background: indigo;
-    overflow: hidden;
-  }
-  
-  .h_iframe {
-    position: relative;
-  }
-  
-  .h_iframe iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: yellow;
-  }
+.media-viewer-container {
+  margin: 0 auto;
+  margin-bottom: 3rem;
+  width: 100%;
+}
+
+.media-viewer-iframe {
+  width: 100%;
+}

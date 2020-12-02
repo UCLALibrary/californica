@@ -1,14 +1,12 @@
-<div class="viewer-wrapper">
-  <div class="uv viewer h_iframe">
+<div class='media-viewer-container'>
   <% iiif_service = Californica::IiifService.new() %>
   <iframe
     class='media-viewer-iframe'
     src= "<%= iiif_service.src(presenter.iiif_manifest_url) %>"
+    width='924px'
+    height='668px'
     id='media-viewer-iframe'
-    height= '480px'
-    width= '1080px'
     allowfullscreen
     frameborder='0'>
   </iframe>
-  </div>
 </div>
