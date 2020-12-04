@@ -9,8 +9,15 @@ class CollectionRecordImporter < Darlingtonia::HyraxRecordImporter
 
   def create_for(record:)
     info_stream << "event: collection_import_started, batch_id: #{batch_id}, record_title: #{record.respond_to?(:title) ? record.title : record}\n"
-
-    collection = Collection.find_or_create_by_ark(record.ark)
+    begin
+      retries ||= 0
+      collection = Collection.find_or_create_by_ark(record.ark)
+    rescue Ldp::Gone
+      # get the id from the ark and the uri from the id then delete the tombstone
+      tombstone_uri = "#{ActiveFedora::Base.id_to_uri(Californica::IdGenerator.id_from_ark(record.ark))}/fcr:tombstone"
+      ActiveFedora.fedora.connection.delete(tombstone_uri)
+      retry if (retries += 1) < 3
+    end
     collection.attributes = attributes_for(record: record)
     collection.recalculate_size = false
     if collection.save(update_index: false)
@@ -26,7 +33,6 @@ class CollectionRecordImporter < Darlingtonia::HyraxRecordImporter
 
   def update_for(existing_record:, update_record:)
     info_stream << "event: collection_update_started, batch_id: #{batch_id}, ark: #{update_record.ark}\n"
-
     collection = existing_record
     collection.attributes = attributes_for(record: update_record)
     collection.recalculate_size = false
