@@ -672,7 +672,7 @@ GEM
       rdf (~> 3.1)
     rdf-xsd (3.1.0)
       rdf (~> 3.1)
-    redcarpet (3.5.0)
+    redcarpet (3.5.1)
     redic (1.5.3)
       hiredis
     redis (4.1.3)
