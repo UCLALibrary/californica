@@ -90,15 +90,11 @@ services:
       dockerfile: docker/Dockerfile.solr
     volumes:
       - solr_data:/opt/solr/server/solr/mycores/californica/data
-    environment:
-      - SOLR_URSUS_URL=http://solr:8983/solr/ursus
 
   solr_test:
     build:
       context: .
       dockerfile: docker/Dockerfile.solr
-    environment:
-      - SOLR_URSUS_URL=http://solr_test:8983/solr/ursus
 
   # iiif:
   #   image: uclalibrary/cantaloupe
