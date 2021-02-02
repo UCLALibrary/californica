@@ -16,9 +16,7 @@ class WorkIndexer < Hyrax::WorkIndexer
   def generate_solr_document
     super.tap do |solr_doc|
       solr_doc['combined_subject_ssim'] = combined_subject
-      valid_dates = solr_dates
-      solr_doc['date_dtsim'] = valid_dates if valid_dates
-      solr_doc['date_dtsort'] = solr_doc['date_dtsim'][0] if solr_doc['date_dtsort']
+      add_dates(solr_doc)
       solr_doc['geographic_coordinates_ssim'] = coordinates
       solr_doc['human_readable_iiif_text_direction_ssi'] = human_readable_iiif_text_direction
       solr_doc['human_readable_iiif_viewing_hint_ssi'] = human_readable_iiif_viewing_hint
@@ -33,6 +31,12 @@ class WorkIndexer < Hyrax::WorkIndexer
       solr_doc['ursus_id_ssi'] = Californica::IdGenerator.blacklight_id_from_ark(object.ark)
       solr_doc['year_isim'] = years
     end
+  end
+
+  def add_dates(solr_doc)
+    valid_dates = solr_dates
+    solr_doc['date_dtsim'] = valid_dates if valid_dates
+    solr_doc['date_dtsort'] = solr_doc['date_dtsim'][0] if solr_doc['date_dtsort']
   end
 
   def combined_subject
