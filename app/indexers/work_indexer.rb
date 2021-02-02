@@ -16,7 +16,9 @@ class WorkIndexer < Hyrax::WorkIndexer
   def generate_solr_document
     super.tap do |solr_doc|
       solr_doc['combined_subject_ssim'] = combined_subject
-      solr_doc['date_dtsim'] = solr_dates
+      valid_dates = solr_dates
+      solr_doc['date_dtsim'] = valid_dates if valid_dates
+      solr_doc['date_dtsort'] = solr_doc['date_dtsim'][0] if solr_doc['date_dtsort']
       solr_doc['geographic_coordinates_ssim'] = coordinates
       solr_doc['human_readable_iiif_text_direction_ssi'] = human_readable_iiif_text_direction
       solr_doc['human_readable_iiif_viewing_hint_ssi'] = human_readable_iiif_viewing_hint
@@ -103,22 +105,22 @@ class WorkIndexer < Hyrax::WorkIndexer
 
   def solr_dates
     dates = object.normalized_date.to_a
-    dates = Array.wrap(dates).flat_map do |date|
-      validate_date = date.split('/')
-      validate_date.each do |item|
+    valid_dates = []
+    dates.each do |date|
+      split_dates = date.split('/')
+      split_dates.each do |item|
         item_values = item.split('-')
         if item_values.length == 2
-          Date.strptime(item, "%Y-%m")
+          valid_dates.push Date.strptime(item, "%Y-%m").to_time.utc.iso8601
         elsif item_values.length == 3
-          Date.strptime(item, "%Y-%m-%d")
+          valid_dates.push Date.strptime(item, "%Y-%m-%d").to_time.utc.iso8601
         else
-          Date.strptime(item, "%Y")
+          valid_dates.push Date.strptime(item, "%Y").to_time.utc.iso8601
         end
       end
-      validate_date.reverse.join("/")
-    end.compact.uniq.sort
+    end
     return nil if dates.blank?
-    dates
+    valid_dates
   rescue ArgumentError => e
     # We might want to start reporting metadata errors to Rollbar if we come up with a way to make them searchable and allow them to provide a feedback loop.
     # Rollbar.error(e, "Invalid date string encountered in normalized date field: #{date_string}")

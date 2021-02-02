@@ -200,47 +200,6 @@
   </requestHandler>
 
   <updateRequestProcessorChain name="add_modify_fields" default="${update.autoCreateFields:true}">
-    <processor class="solr.CloneFieldUpdateProcessorFactory">
-      <str name="source">date_dtsim</str>
-      <str name="dest">date_dtsort</str>
-    </processor>
-
-    <processor class="solr.processor.FirstFieldValueUpdateProcessorFactory">
-      <str name="fieldName">date_dtsort</str>
-    </processor>
-
-    <processor class="solr.ParseDateFieldUpdateProcessorFactory">
-      <arr name="format">
-        <str>yyyy-MM-dd'T'HH:mm:ss.SSSZ</str>
-        <str>yyyy-MM-dd'T'HH:mm:ss,SSSZ</str>
-        <str>yyyy-MM-dd'T'HH:mm:ss.SSS</str>
-        <str>yyyy-MM-dd'T'HH:mm:ss,SSS</str>
-        <str>yyyy-MM-dd'T'HH:mm:ssZ</str>
-        <str>yyyy-MM-dd'T'HH:mm:ss</str>
-        <str>yyyy-MM-dd'T'HH:mmZ</str>
-        <str>yyyy-MM-dd'T'HH:mm</str>
-        <str>yyyy-MM-dd HH:mm:ss.SSSZ</str>
-        <str>yyyy-MM-dd HH:mm:ss,SSSZ</str>
-        <str>yyyy-MM-dd HH:mm:ss.SSS</str>
-        <str>yyyy-MM-dd HH:mm:ss,SSS</str>
-        <str>yyyy-MM-dd HH:mm:ssZ</str>
-        <str>yyyy-MM-dd HH:mm:ss</str>
-        <str>yyyy-MM-dd HH:mmZ</str>
-        <str>yyyy-MM-dd HH:mm</str>
-        <str>yyyy-MM-dd</str>
-        <str>yyyy-MM</str>
-        <str>yyyy</str>
-        <str>yyyy/yyyy</str>
-        <str>yyyy-MM/yyyy-MM</str>
-        <str>yyyy-MM-dd/yyyy-MM-dd</str>
-        <str>yyyy/yyyy-mm</str>
-        <str>yyyy-mm/yyyy</str>
-        <str>yyyy/yyyy-mm-dd</str>
-        <str>yyyy-mm-dd/yyyy</str>
-        <str>yyyy-mm/yyyy-mm-dd</str>
-        <str>yyyy-mm-dd/yyyy-mm</str>
-      </arr>
-    </processor>
 
     <processor class="solr.processor.SignatureUpdateProcessorFactory">
       <bool name="enabled">true</bool>

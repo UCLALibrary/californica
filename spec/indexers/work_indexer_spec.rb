@@ -247,7 +247,7 @@ RSpec.describe WorkIndexer do
 
       it 'indexes the year' do
         expect(solr_document['year_isim']).to eq [1940]
-        expect(solr_document['date_dtsim']).to eq ['1940']
+        expect(solr_document['date_dtsim']).to eq ['1940-01-01T00:00:00Z']
       end
     end
 
@@ -276,7 +276,7 @@ RSpec.describe WorkIndexer do
 
       it 'indexes the earliest year' do
         expect(solr_document['sort_year_isi']).to eq 1940
-        expect(solr_document['date_dtsim']).to eq ['1940-10-15']
+        expect(solr_document['date_dtsim']).to eq ['1940-10-15T00:00:00Z']
       end
     end
 
@@ -303,7 +303,7 @@ RSpec.describe WorkIndexer do
 
       it 'indexes the earliest year' do
         expect(solr_document['sort_year_isi']).to eq 1934
-        expect(solr_document['date_dtsim']).to eq ['1937-07/1934-06']
+        expect(solr_document['date_dtsim']).to eq ['1934-06-01T00:00:00Z', '1937-07-01T00:00:00Z']
       end
     end
 
