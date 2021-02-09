@@ -31,6 +31,7 @@ Metrics/ClassLength:
     - app/importers/californica_mapper.rb
     - app/jobs/hyrax/characterize_job.rb
     - app/uploaders/csv_manifest_validator.rb
+    - app/indexers/work_indexer.rb
 
 Metrics/BlockLength:
   Enabled: true

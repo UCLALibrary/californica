@@ -85,21 +85,21 @@ class CsvImportsController < ApplicationController
     def min
       if @csv_rows.count == @csv_import.record_count
         @min_ingest_duration = row_times.minimum(:ingest_duration)
-        @min_ingest_duration.round(2)
+        @min_ingest_duration&.round(2)
       end
     end
 
     def max
       if @csv_rows.count == @csv_import.record_count
         @max_ingest_duration = row_times.maximum(:ingest_duration)
-        @max_ingest_duration.round(2)
+        @max_ingest_duration&.round(2)
       end
     end
 
     def mean
       if @csv_rows.count == @csv_import.record_count
         @mean_ingest_duration = row_times.average(:ingest_duration)
-        @mean_ingest_duration.round(2)
+        @mean_ingest_duration&.round(2)
       end
     end
 
