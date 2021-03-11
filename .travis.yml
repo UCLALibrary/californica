@@ -51,7 +51,7 @@ after_success:
     JOB=job/DeployCalifornica
     API="$JENKINS_API_CALIFORNICA"
 
-    if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_PULL_REQUEST == 'false' ]]; then
+    if [[ $TRAVIS_BRANCH == 'main' && $TRAVIS_PULL_REQUEST == 'false' ]]; then
       BASE_QUERY="buildWithParameters?token=$API&GIT_BRANCH=$TRAVIS_BRANCH&cause=Travis+Build"
       HOST=t-w-californica01.library.ucla.edu
       curl "$BASE_URL/$JOB/$BASE_QUERY&DEPLOY_HOST=$HOST"
