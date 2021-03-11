@@ -123,17 +123,27 @@ RSpec.describe CsvManifestValidator, type: :model do
   context 'when the csv has a missing file' do
     let(:csv_file) { 'spec/fixtures/example-missingimage.csv' }
     let(:path) { File.join(ENV['IMPORT_FILE_PATH'], 'Masters/dlmasters/missing_file.tif') }
+    let(:warning_text) { "Row 2: Rows contain a File Name that does not exist. Incorrect values may be imported." }
 
     it 'has warnings' do
       allow(File).to receive(:exist?).with(path).and_return(false)
       validator.validate
-      expect(validator.warnings).to include("Row 2: Rows contain a File Name that does not exist. Incorrect values may be imported.")
+      expect(validator.warnings).to include(warning_text)
     end
 
     it 'doesn\'t warn about files that aren\'t missing' do
       allow(File).to receive(:exist?).with(path).and_return(true)
       validator.validate
-      expect(validator.warnings).to_not include("Row 2: cannot find '#{path}'")
+      expect(validator.warnings).to_not include(warning_text)
+    end
+  end
+
+  context 'when the csv has improperly formatted dates' do
+    let(:csv_file) { 'spec/fixtures/example-baddates.csv' }
+
+    it 'warns about the bad dates, not about the good' do
+      validator.validate
+      expect(validator.warnings).to contain_exactly("Row 2: Rows contain unparsable values for 'normalized_date'.")
     end
   end
 
