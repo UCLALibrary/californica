@@ -41,7 +41,7 @@ set :assets_prefix, "#{shared_path}/public/assets"
 
 SSHKit.config.command_map[:rake] = 'bundle exec rake'
 
-set :branch, ENV['REVISION'] || ENV['BRANCH'] || ENV['BRANCH_NAME'] || 'master'
+set :branch, ENV['REVISION'] || ENV['BRANCH'] || ENV['BRANCH_NAME'] || 'main'
 
 append :linked_dirs, "log"
 append :linked_dirs, "public/assets"
@@ -92,7 +92,7 @@ after 'deploy:published', 'rails:rake:db:seed'
 # This will fix the translation labels for any collections that are missing them.
 after 'deploy:published', 'californica:fix_collection_type_labels'
 
-# Default branch is :master
+# Default branch is :main
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
 # Default deploy_to directory is /var/www/my_app_name

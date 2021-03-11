@@ -10,7 +10,7 @@ class WorkIndexer < Hyrax::WorkIndexer
   # this behavior
   include Hyrax::IndexesLinkedMetadata
 
-  # See https://github.com/UCLALibrary/californica/blob/master/solr/config/schema.xml#194
+  # See https://github.com/UCLALibrary/californica/blob/main/solr/config/schema.xml#194
   # for extensions that can be used below
 
   def generate_solr_document
