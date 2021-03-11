@@ -30,6 +30,7 @@ env:
 before_install:
   - gem update --system
   - gem install bundler:1.17.3
+  - echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USER" --password-stdin
 before_script:
   - docker-compose --version
   - docker-compose up -d db

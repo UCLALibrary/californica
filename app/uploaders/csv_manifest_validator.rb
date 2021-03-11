@@ -70,6 +70,9 @@ class CsvManifestValidator
     @errors = []
     @warnings = []
     @mapper = CalifornicaMapper.new
+
+    # This is a hack bc WorkIndexer is supposed to be initialized with a Hyrax object, not a Mapper. It works for now bc both support the 'normalized_date' method, which is all we're initially using, but be very careful about using it for anything else.
+    @indexer = WorkIndexer.new(@mapper)
   end
 
   # Errors and warnings for the CSV file.
@@ -187,6 +190,9 @@ private
         full_path = File.join(file_uri_base_path, @mapper.preservation_copy)
         this_row_warnings << "Rows contain a File Name that does not exist. Incorrect values may be imported." unless File.exist?(full_path)
       end
+
+      # Row has improperly formatted date values
+      this_row_warnings << "Rows contain unparsable values for 'normalized_date'." if @mapper.normalized_date.to_a.length != @indexer.solr_dates.to_a.length
 
       this_row_warnings.each do |warning|
         # +1 for 0-based indexing, +1 for skipped headers
