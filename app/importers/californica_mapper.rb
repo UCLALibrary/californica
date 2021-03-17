@@ -173,7 +173,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   end
 
   def access_copy
-    map_field(:access_copy).first || preservation_copy
+    map_field(:access_copy).to_a.first
   end
 
   def ark
@@ -294,12 +294,18 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   end
 
   def preservation_copy
-    path = map_field(:preservation_copy).first.to_s.strip.sub(/^\//, '')
-    return nil if path.empty?
-    if path.start_with?('Masters/')
+    path = map_field(:preservation_copy).first.to_s.strip.sub(/^\/+/, '')
+    if path.empty?
+      nil
+    elsif path.start_with?(/[^\/]+.in.library.ucla.edu\//)
+      # Standard format: must specify netapp volume
       path
+    elsif path.start_with?('Masters/')
+      # Legacy standard format: everything starts with "Masters/"
+      'masters.in.library.ucla.edu/' + path.sub(/^\/?Masters\//, '')
     else
-      'Masters/dlmasters/' + path
+      # paths coming from DLCSExport
+      'masters.in.library.ucla.edu/dlmasters/' + path
     end
   end
 
