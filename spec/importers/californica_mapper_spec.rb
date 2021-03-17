@@ -283,8 +283,8 @@ RSpec.describe CalifornicaMapper do
           'access_copy' => '' }
       end
 
-      it 'uses preservation_copy' do
-        expect(mapper.access_copy).to eq 'Masters/dlmasters/abc/xyz.tif'
+      it 'is nil' do
+        expect(mapper.access_copy).to be_nil
       end
     end
   end
@@ -292,32 +292,6 @@ RSpec.describe CalifornicaMapper do
   describe '#iiif_manifest_url' do
     it "maps to a single-valued field" do
       expect(mapper.iiif_manifest_url).to eq('http://test.url/iiif/manifest')
-    end
-  end
-
-  describe '#preservation_copy' do
-    context 'when the path starts with a \'/\'' do
-      let(:metadata) { { 'File Name' => '/Masters/dlmasters/abc/xyz.tif' } }
-
-      it 'gets removed' do
-        expect(mapper.preservation_copy).to eq 'Masters/dlmasters/abc/xyz.tif'
-      end
-    end
-
-    context 'when the path starts with \'Masters/\'' do
-      let(:metadata) { { 'File Name' => 'Masters/dlmasters/abc/xyz.tif' } }
-
-      it 'imports as is' do
-        expect(mapper.preservation_copy).to eq 'Masters/dlmasters/abc/xyz.tif'
-      end
-    end
-
-    context 'when the path doesn\'t start with \'Masters\'' do
-      let(:metadata) { { 'File Name' => 'abc/xyz.tif' } }
-
-      it 'prepends \'Masters/dlmasters\'' do
-        expect(mapper.preservation_copy).to eq 'Masters/dlmasters/abc/xyz.tif'
-      end
     end
   end
 
@@ -376,27 +350,67 @@ RSpec.describe CalifornicaMapper do
   end
 
   describe '#preservation_copy' do
-    context 'when the path starts with a \'/\'' do
-      let(:metadata) { { 'File Name' => '/Masters/dlmasters/abc/xyz.tif' } }
+    context 'when the path begins with [volume].in.library.ucla.edu/' do
+      let(:metadata) { { 'File Name' => 'masters.in.library.ucla.edu/dlmasters/abc/xyz.tif' } }
 
-      it 'gets removed' do
-        expect(mapper.preservation_copy).to eq 'Masters/dlmasters/abc/xyz.tif'
+      it 'imports it unchanged' do
+        expect(mapper.preservation_copy).to eq 'masters.in.library.ucla.edu/dlmasters/abc/xyz.tif'
+      end
+
+      context 'when the path starts with any number of initial `/` characters' do
+        let(:metadata) { { 'File Name' => '//masters.in.library.ucla.edu/dlmasters/abc/xyz.tif' } }
+
+        it 'ignores them' do
+          expect(mapper.preservation_copy).to eq 'masters.in.library.ucla.edu/dlmasters/abc/xyz.tif'
+        end
+      end
+    end
+
+    context 'when the path is not supplied' do
+      let(:metadata) { {} }
+
+      it 'returns nil' do
+        expect(mapper.preservation_copy).to be_nil
+      end
+    end
+
+    context 'when the path is blank' do
+      let(:metadata) { { 'File Name' => '' } }
+
+      it 'returns nil' do
+        expect(mapper.preservation_copy).to be_nil
       end
     end
 
     context 'when the path starts with \'Masters/\'' do
       let(:metadata) { { 'File Name' => 'Masters/dlmasters/abc/xyz.tif' } }
 
-      it 'imports as is' do
-        expect(mapper.preservation_copy).to eq 'Masters/dlmasters/abc/xyz.tif'
+      it 'is interpreted relative to masters.in.library.ucla.edu/' do
+        expect(mapper.preservation_copy).to eq 'masters.in.library.ucla.edu/dlmasters/abc/xyz.tif'
+      end
+
+      context 'when the path starts with any number of initial `/` characters' do
+        let(:metadata) { { 'File Name' => '/Masters/dlmasters/abc/xyz.tif' } }
+
+        it 'ignores them' do
+          expect(mapper.preservation_copy).to eq 'masters.in.library.ucla.edu/dlmasters/abc/xyz.tif'
+        end
       end
     end
 
-    context 'when the path doesn\'t start with \'Masters\'' do
+    context 'when the path doesn\'t start with \'[volume].in.library.ucla.edu/\' or \'Masters\'' do
       let(:metadata) { { 'File Name' => 'abc/xyz.tif' } }
 
-      it 'prepends \'Masters/dlmasters\'' do
-        expect(mapper.preservation_copy).to eq 'Masters/dlmasters/abc/xyz.tif'
+      it 'is interpreted relative to masters.in.library.ucla.edu/dlmasters/ (DLCSExport CSVs)' do
+        expect(mapper.preservation_copy).to eq 'masters.in.library.ucla.edu/dlmasters/abc/xyz.tif'
+      end
+
+      context 'when the path starts with \'/\'' do
+        let(:metadata) { { 'File Name' => '/abc/xyz.tif' } }
+
+        it 'is interpreted the same way' do
+          expect(mapper.preservation_copy).to eq 'masters.in.library.ucla.edu/dlmasters/abc/xyz.tif'
+        end
       end
     end
   end

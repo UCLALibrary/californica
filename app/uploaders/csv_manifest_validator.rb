@@ -187,8 +187,12 @@ private
 
       # Row has a File Name that doesn't exist
       if @mapper.preservation_copy
-        full_path = File.join(file_uri_base_path, @mapper.preservation_copy)
-        this_row_warnings << "Rows contain a File Name that does not exist. Incorrect values may be imported." unless File.exist?(full_path)
+        if @mapper.preservation_copy.start_with?('masters.in.library.ucla.edu/')
+          full_path = File.join(file_uri_base_path, 'Masters', @mapper.preservation_copy.sub(/^masters.in.library.ucla.edu\//, ''))
+          this_row_warnings << "Rows contain a File Name that does not exist. Incorrect values may be imported." unless File.exist?(full_path)
+        else
+          this_row_warnings << "Unable to check that file exists. Only files in masters.in.library.ucla.edu/ can be checked at this time." unless File.exist?(full_path)
+        end
       end
 
       # Row has improperly formatted date values
