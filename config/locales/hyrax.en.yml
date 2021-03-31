@@ -12,6 +12,7 @@ en:
           language_sim: Language
           publisher_sim: Publisher
           subject_sim: Subject
+          repository_sim: Repository
         index:
           based_near_tesim: Based Near
           contributor_tesim: Contributor
