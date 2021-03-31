@@ -197,7 +197,7 @@ module UclaMetadata
 
     # Find This Item
     property :repository, predicate: ::RDF::Vocab::MODS.locationCopySublocation do |index|
-      index.as :stored_searchable
+      index.as :stored_searchable, :facetable
     end
 
     property :local_identifier, predicate: ::RDF::Vocab::Identifiers.local do |index|
@@ -273,10 +273,6 @@ module UclaMetadata
 
     property :tagline, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3081'), multiple: false do |index|
       index.as :stored_sortable
-    end
-
-    property :repository, predicate: ::RDF::URI.intern('https://bib.schema.org/Collection') do |index|
-      index.as :displayable, :facetable
     end
   end
 end
