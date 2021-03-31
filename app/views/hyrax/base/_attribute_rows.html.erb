@@ -55,7 +55,7 @@
 <%= presenter.attribute_to_html(:provenance, html_dl: true) %>
 <%= presenter.attribute_to_html(:publisher, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:related_url, render_as: :external_link, html_dl: true) %>
-<%= presenter.attribute_to_html(:repository, html_dl: true) %>
+<%= presenter.attribute_to_html(:repository, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:representative_image, html_dl: true) %>
 <%= presenter.attribute_to_html(:resource_type, render_as: :resource_type, html_dl: true) %>
 <%= presenter.attribute_to_html(:rights_country, html_dl: true) %>

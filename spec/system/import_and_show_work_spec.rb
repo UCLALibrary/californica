@@ -123,7 +123,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
 
     # displays expected facets
     facet_headings = page.all(:css, 'h3.facet-field-heading').to_a.map(&:text)
-    expect(facet_headings).to contain_exactly("Subject", "Creator", "Resource Type", "Genre", "Names", "Location", "Normalized Date", "Extent", "Medium", "Dimensions", "Language", "Collection", "Subject geographic", "Subject temporal")
+    expect(facet_headings).to contain_exactly("Subject", "Creator", "Resource Type", "Genre", "Names", "Location", "Normalized Date", "Extent", "Medium", "Dimensions", "Language", "Collection", "Subject geographic", "Subject temporal", "Repository")
 
     # # iiif manifest was cached
     # filename = Rails.root.join('tmp', work.date_modified.to_datetime.strftime('%Y-%m-%d_%H-%M-%S') + work.id)
