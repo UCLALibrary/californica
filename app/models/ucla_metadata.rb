@@ -197,7 +197,7 @@ module UclaMetadata
 
     # Find This Item
     property :repository, predicate: ::RDF::Vocab::MODS.locationCopySublocation do |index|
-      index.as :stored_searchable
+      index.as :stored_searchable, :facetable
     end
 
     property :local_identifier, predicate: ::RDF::Vocab::Identifiers.local do |index|
