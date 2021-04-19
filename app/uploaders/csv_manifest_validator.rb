@@ -143,6 +143,13 @@ private
       this_row_warnings = []
       this_row_errors = []
 
+      # Investigate Error warning: Row 1881, 1882, 1883, 1884, 1885, ...: Rows missing "Parent ARK" cannot be imported.
+      # required_column_numbers_2 = []
+      # REQUIRED_VALUES.each do |header, _object_types|
+      # this_row_warnings << "#{header} is at column number  #{@headers.find_index(header)}"
+      # required_column_numbers_2.push(@headers.find_index(header))
+      # end
+
       # If there's no "Object Type" header, assume everything's a Work
       # so we so we can validate other required fields
       object_type = object_type_column ? row[object_type_column] : 'Work'
@@ -172,7 +179,7 @@ private
                              elsif field_label == 'File Name'
                                'Rows missing "File Name" will import metadata-only.'
                              elsif field_label != 'Title' || field_label != 'Item ARK' || field_label != 'IIIF Manifest URL'
-                               "Rows missing \"#{REQUIRED_VALUES[j][0]}\" cannot be imported."
+                               "Rows missing \"#{REQUIRED_VALUES[j][0]}\" cannot be imported." # Debug details #{REQUIRED_VALUES.map { |header, _object_types| header }} #{required_column_numbers}
                              end
       end
 
@@ -196,7 +203,14 @@ private
       end
 
       # Row has improperly formatted date values
-      this_row_warnings << "Rows contain unparsable values for 'normalized_date'." if @mapper.normalized_date.to_a.length != @indexer.solr_dates.to_a.length
+      unless @mapper.normalized_date.to_a.empty?
+        dates = @mapper.normalized_date.to_a[0].split('/')
+
+        # this_row_warnings << "Normalized date is '#{dates}'"
+        # this_row_warnings << "Indexer date is '#{@indexer.solr_dates}'"
+
+        this_row_warnings << "Rows contain unparsable values for 'normalized_date'." if dates.length != @indexer.solr_dates.to_a.length
+      end
 
       this_row_warnings.each do |warning|
         # +1 for 0-based indexing, +1 for skipped headers
