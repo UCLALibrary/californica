@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191113203150) do
+ActiveRecord::Schema.define(version: 20210423222414) do
 
   create_table "bookmarks", id: :integer, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "user_id", null: false
@@ -70,19 +70,6 @@ ActiveRecord::Schema.define(version: 20191113203150) do
   create_table "csv_collection_reindices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "ark"
     t.string "csv_import_id"
-    t.string "status"
-    t.string "error_messages"
-    t.timestamp "start_time"
-    t.timestamp "end_time"
-    t.float "elapsed_time", limit: 24
-    t.integer "no_of_children"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "csv_import_create_manifests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "ark"
-    t.integer "csv_import_id"
     t.string "status"
     t.string "error_messages"
     t.timestamp "start_time"

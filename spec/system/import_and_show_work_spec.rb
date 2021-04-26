@@ -125,11 +125,6 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     facet_headings = page.all(:css, 'h3.facet-field-heading').to_a.map(&:text)
     expect(facet_headings).to contain_exactly("Subject", "Creator", "Resource Type", "Genre", "Names", "Location", "Normalized Date", "Extent", "Medium", "Dimensions", "Language", "Collection", "Subject geographic", "Subject temporal", "Repository")
 
-    # # iiif manifest was cached
-    # filename = Rails.root.join('tmp', work.date_modified.to_datetime.strftime('%Y-%m-%d_%H-%M-%S') + work.id)
-    # manifest = JSON.parse(File.open(filename).read)
-    # expect(manifest['sequences'][0]['canvases'][0]['images'][0]['resource']['@id']).to eq 'https://cantaloupe.url/iiif/2/Masters%2Fdlmasters%2Fclusc_1_1_00010432a.tif/full/600,/0/default.jpg'
-
     # importing the same object twice
     expect(work.funding_note.first).to eq "Fake Funding Note"
     expect(work.medium.first).to eq "Fake Medium"

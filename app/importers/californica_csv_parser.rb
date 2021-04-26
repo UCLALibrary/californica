@@ -24,9 +24,6 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
     self.info_stream  = info_stream
     @csv_import_id = csv_import_id
     @import_file_path = import_file_path
-    @collections_needing_reindex = Set.new
-    @works_needing_ordering = Set.new
-    @manifests_needing_build = Set.new
 
     self.validators = []
 
@@ -50,14 +47,6 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
     []
   end
 
-  # Creates IIIF Manifests for each Work in a CSV. Does not create documents
-  # for Collection or ChildWork objects.
-  def build_iiif_manifests
-    CsvImportCreateManifest.where(csv_import_id: @csv_import_id, status: ['queued', 'in progress']).each do |create_manifest_object|
-      CreateManifestJob.perform_now(Ark.ensure_prefix(create_manifest_object.ark), create_manifest_object_id: create_manifest_object.id)
-    end
-  end
-
   # Given an array of Work arks that have had ChildWorks added to them during this import,
   # iterate through each and use the PageOrder objects to ensure the ChildWorks are
   # in the right order. In other works, ensure a manuscript's pages are ordered by the
@@ -77,12 +66,9 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
         CsvCollectionReindex.create(csv_import_id: @csv_import_id, ark: parent_ark, status: 'queued')
       end
       CsvImportOrderChild.create(csv_import_id: @csv_import_id, ark: row['Item ARK'], status: 'queued')
-      CsvImportCreateManifest.create(csv_import_id: @csv_import_id, ark: row['Item ARK'], status: 'queued')
     when 'ChildWork', 'Page'
-      CsvImportCreateManifest.create(csv_import_id: @csv_import_id, ark: row['Item ARK'], status: 'queued')
       row['Parent ARK'].split('|~|').each do |parent_ark|
         CsvImportOrderChild.create(csv_import_id: @csv_import_id, ark: parent_ark, status: 'queued')
-        CsvImportCreateManifest.create(csv_import_id: @csv_import_id, ark: parent_ark, status: 'queued')
       end
     else
       raise ArgumentError, "Unknown Object Type #{row['Object Type']}"
