@@ -3,6 +3,7 @@ require 'sidekiq/web'
 require 'sidekiq-status/web'
 
 Rails.application.routes.draw do
+  mount Flipflop::Engine => "/flipflop"
   get 'importer_documentation/guide'
   get 'importer_documentation/csv'
 
