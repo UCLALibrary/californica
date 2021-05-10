@@ -96,11 +96,25 @@ class ActorRecordImporter < Darlingtonia::HyraxRecordImporter
         # message should be recorded on the CsvRow object for reporting in the UI
         raise "Validation failed: #{error_messages.join(', ')}"
       end
-    rescue Ldp::BadRequest
+    rescue Ldp::BadRequest => e
       # get the id from the ark and the uri from the id then delete the tombstone
       tombstone_uri = "#{ActiveFedora::Base.id_to_uri(Californica::IdGenerator.id_from_ark(created.ark))}/fcr:tombstone"
       ActiveFedora.fedora.connection.delete(tombstone_uri)
-      retry if (retries += 1) < 3
+      if (retries += 1) < 3
+        retry
+      else
+        raise e
+      end
+    end
+  rescue ActiveFedora::IllegalOperation => e
+    raise e unless e.message.start_with?('Attempting to recreate existing ldp_source')
+    retries ||= 0
+    fcrepo_id = Californica::IdGenerator.id_from_ark(record.ark)
+    Californica::Deleter.new(id: fcrepo_id).delete
+    if (retries += 1) < 3
+      retry
+    else
+      raise e
     end
   end
 end

@@ -168,13 +168,13 @@ RSpec.describe CalifornicaCsvParser do
     before do
       allow(CsvCollectionReindex).to receive(:create)
       allow(CsvImportOrderChild).to receive(:create)
-      parser.add_finalization_tasks(row)
     end
 
     context 'when the row is a collection' do
       let(:object_type) { 'Collection' }
 
       it 'enqueues a CsvCollectionReindex for the item' do
+        parser.add_finalization_tasks(row)
         expect(CsvCollectionReindex).to have_received(:create).with(csv_import_id: 0, ark: item_ark, status: 'queued')
       end
     end
@@ -183,11 +183,32 @@ RSpec.describe CalifornicaCsvParser do
       let(:object_type) { 'Work' }
 
       it 'enqueues a CsvCollectionReindex for the parent' do
+        parser.add_finalization_tasks(row)
         expect(CsvCollectionReindex).to have_received(:create).with(csv_import_id: 0, ark: parent_ark, status: 'queued')
       end
 
-      it 'enqueues a CsvImportOrderChild for the item' do
-        expect(CsvImportOrderChild).to have_received(:create).with(csv_import_id: 0, ark: item_ark, status: 'queued')
+      context 'when the child_works feature is enabled' do
+        before do
+          test_strategy = Flipflop::FeatureSet.current.test!
+          test_strategy.switch!(:child_works, true)
+        end
+
+        it 'enqueues a CsvImportOrderChild for the item' do
+          parser.add_finalization_tasks(row)
+          expect(CsvImportOrderChild).to have_received(:create).with(csv_import_id: 0, ark: item_ark, status: 'queued')
+        end
+      end
+
+      context 'when the child_works feature is disabled' do
+        before do
+          test_strategy = Flipflop::FeatureSet.current.test!
+          test_strategy.switch!(:child_works, false)
+        end
+
+        it 'doesn\'t enqueue a CsvImportOrderChild for the item' do
+          parser.add_finalization_tasks(row)
+          expect(CsvImportOrderChild).not_to have_received(:create)
+        end
       end
     end
 
@@ -196,17 +217,10 @@ RSpec.describe CalifornicaCsvParser do
       let(:parent_ark) { 'ark:/123/parent1|~|ark:/123/parent2|~|ark:/123/parent3' }
 
       it 'enqueues a CsvCollectionReindex for each parent collection' do
+        parser.add_finalization_tasks(row)
         expect(CsvCollectionReindex).to have_received(:create).with(csv_import_id: 0, ark: 'ark:/123/parent1', status: 'queued')
         expect(CsvCollectionReindex).to have_received(:create).with(csv_import_id: 0, ark: 'ark:/123/parent2', status: 'queued')
         expect(CsvCollectionReindex).to have_received(:create).with(csv_import_id: 0, ark: 'ark:/123/parent3', status: 'queued')
-      end
-    end
-
-    context 'when the row is a ChildWork' do
-      let(:object_type) { 'ChildWork' }
-
-      it 'enqueues a CsvImportOrderChild for the parent' do
-        expect(CsvImportOrderChild).to have_received(:create).with(csv_import_id: 0, ark: parent_ark, status: 'queued')
       end
     end
   end

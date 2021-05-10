@@ -11,6 +11,8 @@ RSpec.describe CalifornicaImporter, :clean, inline_jobs: true do
 
   describe '#finalize_import' do
     before do
+      test_strategy = Flipflop::FeatureSet.current.test!
+      test_strategy.switch!(:child_works, true)
       allow(importer.parser).to receive(:order_child_works)
       allow(importer.parser).to receive(:reindex_collections)
     end

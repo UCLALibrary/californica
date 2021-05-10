@@ -65,10 +65,10 @@ class CalifornicaCsvParser < Darlingtonia::CsvParser
       row['Parent ARK'].to_s.split('|~|').each do |parent_ark|
         CsvCollectionReindex.create(csv_import_id: @csv_import_id, ark: parent_ark, status: 'queued')
       end
-      CsvImportOrderChild.create(csv_import_id: @csv_import_id, ark: row['Item ARK'], status: 'queued')
+      CsvImportOrderChild.create(csv_import_id: @csv_import_id, ark: row['Item ARK'], status: 'queued') if Flipflop.child_works?
     when 'ChildWork', 'Page'
       row['Parent ARK'].split('|~|').each do |parent_ark|
-        CsvImportOrderChild.create(csv_import_id: @csv_import_id, ark: parent_ark, status: 'queued')
+        CsvImportOrderChild.create(csv_import_id: @csv_import_id, ark: parent_ark, status: 'queued') if Flipflop.child_works?
       end
     else
       raise ArgumentError, "Unknown Object Type #{row['Object Type']}"
