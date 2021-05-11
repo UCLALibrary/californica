@@ -71,31 +71,18 @@ RSpec.describe SolrDocument do
   end
 
   describe '#iiif_manifest_url' do
-    context 'when a url is stored and feature enabled' do
+    context 'when a url is stored' do
       let(:fields) do
         { iiif_manifest_url_ssi: 'https://manifest.store.url/abc123/manifest' }
       end
 
       it 'uses that url' do
-        allow(Flipflop).to receive(:use_manifest_store?).and_return(true)
         expect(solr_document.iiif_manifest_url).to eq 'https://manifest.store.url/abc123/manifest'
       end
     end
 
-    context 'when a url is stored but feature is disabled' do
-      let(:fields) do
-        { id: '456xyz',
-          iiif_manifest_url_ssi: 'https://manifest.store.url/abc123/manifest' }
-      end
-
-      it 'builds a local url' do
-        allow(Flipflop).to receive(:use_manifest_store?).and_return(false)
-        expect(solr_document.iiif_manifest_url).to eq '/concern/works/456xyz/manifest'
-      end
-    end
-
-    context 'when nothing is stored' do
-      it 'builds a local url' do
+    context 'when no external manifest URL is stored' do
+      it 'links to the local manifest builder' do
         expect(solr_document.iiif_manifest_url).to eq '/concern/works/456xyz/manifest'
       end
     end
