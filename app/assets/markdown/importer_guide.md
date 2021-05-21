@@ -78,6 +78,7 @@
 - [Tagline](#tagline)
 - [IIIF Text direction](#iiif_text_direction)
 - [Table of Contents](#table-of-contents)
+- [Thumbnail](#thumbnail)
 - [Translator](#translator)
 - [Type.genre](#type.genre)
 - [Type.typeOfResource](#type.typeofresource)
@@ -256,7 +257,7 @@ The URL of a IIIF resource that can be used to view the image. This is populated
 
 ### Illuminator
 
-Also aaccepts: `Name.illuminator`
+Also accepts: `Name.illuminator`
 
 ### Illustrations note
 
@@ -353,6 +354,14 @@ Also accepts: `Description.abstract`
 Also accepts: `Description.tableOfContents`
 
 ### Tagline
+
+### Thumbnail
+
+URL for an image to be used as the thumbnail. Must be the stem of a IIIF Image API resource of the form `{scheme}://{server}{/prefix}/{identifier}`, omitting all other Image API parameters. For example: `https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fz1k667gp`.
+
+For simple images the value will be identical to [`IIIF Access URL`](#iiif-access-url), however for other content types such as multi-image or audiovisual works the two values wil differ.
+
+This is populated by processing the CSV via [bucketeer](https://bucketeer.library.ucla.edu/upload/csv)
 
 ### Translator
 

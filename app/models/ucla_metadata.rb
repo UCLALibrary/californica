@@ -274,6 +274,10 @@ module UclaMetadata
     property :tagline, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3081'), multiple: false do |index|
       index.as :stored_sortable
     end
+
+    property :thumbnail_link, predicate: ::RDF::URI.intern('http://pcdm.org/use#ThumbnailImage'), multiple: false do |index|
+      index.as :stored_sortable
+    end
   end
 end
 

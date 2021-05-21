@@ -122,7 +122,8 @@ RSpec.describe CalifornicaMapper do
       "Printmaker" => "Printmaker-1", # printmaker
       "Name.printmaker" => "Name-printmaker", # printmaker
       "Contents note" => "contents_note-1", # contents_note
-      "Description.contents" => "Description-contents" # contents_note
+      "Description.contents" => "Description-contents", # contents_note
+      "Thumbnail" => "https://fake.url/iiif/ark%3A%2F21198%2Fzz0002nq4w" # thumbnail_link
     }
   end
 
@@ -220,6 +221,7 @@ RSpec.describe CalifornicaMapper do
         :summary,
         :support,
         :toc,
+        :thumbnail_link,
         :translator,
         :iiif_text_direction,
         :title,
@@ -586,6 +588,14 @@ RSpec.describe CalifornicaMapper do
       it 'returns the same value' do
         expect(mapper.local_identifier).to eq ['UCLA-1234e']
       end
+    end
+  end
+
+  describe '#thumbnail_link' do
+    subject { mapper.thumbnail_link }
+
+    it 'maps as a single-valued field' do
+      expect(mapper.thumbnail_link).to eq('https://fake.url/iiif/ark%3A%2F21198%2Fzz0002nq4w')
     end
   end
 
