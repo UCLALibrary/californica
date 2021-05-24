@@ -70,27 +70,22 @@ RSpec.describe CsvManifestValidator, type: :model do
     end
   end
 
-  context 'a CSV that is missing required values' do
+  context 'a CSV that is missing required/recommended values' do
     let(:csv_file) { File.join(fixture_path, 'csv_import', 'csv_files_with_problems', 'missing_values.csv') }
 
-    it 'has warnings' do
-      validator.validate
-      expect(validator.warnings).to contain_exactly(
-        # 'Row 3: Rows missing "Item ARK" cannot be imported.',
-        # 'Row 4: Rows missing "Title" cannot be imported.',
-        'Row 5: Rows missing "Object Type" cannot be imported.',
-        'Row 6: Rows missing "Parent ARK" cannot be imported.',
-        'Row 7: Rows missing "Rights.copyrightStatus" will have the value set to "unknown".',
-        'Row 8: Rows missing "File Name" will import metadata-only.'
-      )
-    end
-
-    it 'has errors' do
+    it 'has warnings and errors' do
       validator.validate
       expect(validator.errors).to contain_exactly(
         'Row 3: Rows missing required value for "Item ARK".  Your spreadsheet must have this value.',
         'Row 4: Rows missing required value for "Title".  Your spreadsheet must have this value.',
         'Row 4, 5, 6, 7, 8: Rows missing required value for "IIIF Manifest URL".  Your spreadsheet must have this value.'
+      )
+      expect(validator.warnings).to contain_exactly(
+        'Row 5: Rows missing "Object Type" cannot be imported.',
+        'Row 6: Rows missing recommended value for "Parent ARK". Please add this value or continue to import without.',
+        'Row 7: Rows missing recommended value for "Rights.copyrightStatus". Please add this value or continue to import without.',
+        'Row 8: Rows missing recommended value for "File Name". Please add this value or continue to import without.',
+        'Row 9: Rows missing recommended value for "Thumbnail". Please add this value or continue to import without.'
       )
     end
   end

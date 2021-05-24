@@ -42,7 +42,8 @@ RSpec.describe Hyrax::ChildWorkForm do
       :ark,
       :rights_statement,
       :access_copy,
-      :preservation_copy
+      :preservation_copy,
+      :thumbnail_link
     ]
   end
 end

@@ -31,21 +31,31 @@ class CollectionIndexer < Hyrax::CollectionWithBasicMetadataIndexer
   end
 
   def thumbnail_url
-    iiif_url_base = Californica::ManifestBuilderService.new(curation_concern: object).iiif_url
+    thumbnail = object.thumbnail_link || thumbnail_from_access_copy
+    if thumbnail.to_s.include?('/iiif/2/')
+      "#{thumbnail}/full/!200,200/0/default.jpg"
+    elsif ['.svg', '.png', '.jpg'].include? File.extname(thumbnail.to_s)
+      thumbnail
+    else
+      return nil
+    end
+  end
+
+  def thumbnail_from_access_copy
+    iiif_resource = Californica::ManifestBuilderService.new(curation_concern: object).iiif_url
 
     children = Array.wrap(object.members).clone
-    until iiif_url_base || children.empty?
+    until iiif_resource || children.empty?
       child = children.shift
-      iiif_url_base = Californica::ManifestBuilderService.new(curation_concern: child).iiif_url
+      iiif_resource = Californica::ManifestBuilderService.new(curation_concern: child).iiif_url
 
       grandchildren = Array.wrap(child.members).clone
-      until iiif_url_base || grandchildren.empty?
+      until iiif_resource || grandchildren.empty?
         grandchild = grandchildren.shift
-        iiif_url_base = Californica::ManifestBuilderService.new(curation_concern: grandchild).iiif_url
+        iiif_resource = Californica::ManifestBuilderService.new(curation_concern: grandchild).iiif_url
       end
     end
 
-    return nil unless iiif_url_base
-    "#{iiif_url_base}/full/!200,200/0/default.jpg"
+    iiif_resource
   end
 end

@@ -39,4 +39,5 @@ public/branding/
 
 .DS_Store
 .vscode/
+.devcontainer/
 

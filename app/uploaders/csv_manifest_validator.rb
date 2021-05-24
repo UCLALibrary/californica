@@ -22,13 +22,14 @@ REQUIRED_HEADERS = [
 ].freeze
 
 REQUIRED_VALUES = [
-  ['Item ARK', ['Collection', 'Work', 'ChildWork', 'Manuscript', 'Page']],
-  ['Title', ['Collection', 'Work', 'Manuscript']],
-  ['IIIF Manifest URL', ['Collection', 'Work']],
+  ['Item ARK', ['Collection', 'Work', 'ChildWork', 'Manuscript', 'Page'], :error],
+  ['Title', ['Collection', 'Work', 'Manuscript'], :error],
+  ['IIIF Manifest URL', ['Collection', 'Work'], :error],
   # ['Object Type', ['Collection', 'Work']],  # hard-coded
-  ['Parent ARK', ['Work', 'ChildWork', 'Manuscript', 'Page']],
-  ['Rights.copyrightStatus', ['Work', 'ChildWork', 'Manuscript', 'Page']],
-  ['File Name', ['Work', 'ChildWork', 'Page']]
+  ['Parent ARK', ['Work', 'ChildWork', 'Manuscript', 'Page'], :warning],
+  ['Rights.copyrightStatus', ['Work', 'ChildWork', 'Manuscript', 'Page'], :warning],
+  ['File Name', ['Work', 'ChildWork', 'Page'], :warning],
+  ['Thumbnail', ['Work', 'ChildWork', 'Manuscript', 'Page'], :warning]
 ].freeze
 
 MAPPED_HEADERS = CalifornicaMapper.californica_terms_map.values.map { |v| Array.wrap(v) }.flatten.freeze
@@ -132,7 +133,7 @@ private
   end
 
   def validate_records
-    required_column_numbers = REQUIRED_VALUES.map { |header, _object_types| @headers.find_index(header) }.compact
+    required_column_numbers = REQUIRED_VALUES.map { |header, _object_types, _message_type| @headers.find_index(header) }.compact
     controlled_column_numbers = CONTROLLED_VOCABULARIES.keys.map { |header| @headers.find_index(header) }.compact
     object_type_column = @headers.find_index('Object Type')
     row_warnings = Hash.new { |hash, key| hash[key] = [] }
@@ -168,19 +169,16 @@ private
 
       # Row missing reqired field values
       required_column_numbers.each_with_index do |column_number, j|
-        field_label, types_that_require = REQUIRED_VALUES[j]
-        next this_row_errors << "Rows missing required value for \"#{REQUIRED_VALUES[j][0]}\".  Your spreadsheet must have this value." if field_label == 'Title' && row[column_number].blank?
-        next this_row_errors << "Rows missing required value for \"#{REQUIRED_VALUES[j][0]}\".  Your spreadsheet must have this value." if field_label == 'Item ARK' && row[column_number].blank?
-        next this_row_errors << "Rows missing required value for \"#{REQUIRED_VALUES[j][0]}\".  Your spreadsheet must have this value." if field_label == 'IIIF Manifest URL' && !object_type.include?("Page") && row[column_number].blank?
-        next unless types_that_require.include?(object_type)
-        next unless row[column_number].blank?
-        this_row_warnings << if field_label == 'Rights.copyrightStatus'
-                               'Rows missing "Rights.copyrightStatus" will have the value set to "unknown".'
-                             elsif field_label == 'File Name'
-                               'Rows missing "File Name" will import metadata-only.'
-                             elsif field_label != 'Title' || field_label != 'Item ARK' || field_label != 'IIIF Manifest URL'
-                               "Rows missing \"#{REQUIRED_VALUES[j][0]}\" cannot be imported." # Debug details #{REQUIRED_VALUES.map { |header, _object_types| header }} #{required_column_numbers}
-                             end
+        field_label, types_that_require, message_type = REQUIRED_VALUES[j]
+        next unless row[column_number].blank? && types_that_require.include?(object_type)
+        case message_type
+        when :error
+          this_row_errors << "Rows missing required value for \"#{REQUIRED_VALUES[j][0]}\".  Your spreadsheet must have this value."
+        when :warning
+          this_row_warnings << "Rows missing recommended value for \"#{REQUIRED_VALUES[j][0]}\". Please add this value or continue to import without."
+        else
+          raise "CsvManifestValidator::REQUIRED_VALUES contains unknown message_type #{message_type} for #{field_label}."
+        end
       end
 
       # Row has invalid value in a controlled-vocabulary field

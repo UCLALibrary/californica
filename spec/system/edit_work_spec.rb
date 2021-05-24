@@ -80,7 +80,8 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       colophon: ['Old Colophon'],
       finding_aid_url: ['Old Finding aid url'],
       rubricator: ['Old rubricator'],
-      license: ['http://creativecommons.org/publicdomain/zero/1.0/']
+      license: ['http://creativecommons.org/publicdomain/zero/1.0/'],
+      thumbnail_link: 'https://fake.url/iiif/ark%3A%2Fabc%2F3456'
       # local_rights_statement: ['Old Rights statement local'] # This invokes License renderer from hyrax gem
     }
   end
@@ -156,6 +157,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Finding aid url').value).to eq 'Old Finding aid url'
       expect(find_field('Rubricator').value).to eq 'Old rubricator'
       expect(find_field('Creator').value).to eq 'Old Creator'
+      expect(find_field('Thumbnail link').value).to eq 'https://fake.url/iiif/ark%3A%2Fabc%2F3456'
       expect(page).to have_select('License', selected: 'Creative Commons CC0 1.0 Universal', multiple: false)
       expect(find_field('Contents note').value).to eq 'Old Contents note'
       # expect(find_field('Local rights statement').value).to eq 'Old Rights statement local'
@@ -164,6 +166,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       fill_in 'Title', with: 'New Title'
       fill_in 'Dimensions', with: 'New Dim'
       fill_in 'Ark', with: 'ark:/not/myark' # This field is read-only and an attempt to change it should not result in a change
+      fill_in 'Thumbnail link', with: 'https://new.url/iiif/ark%3A%2Fabc%2F3456'
       click_on 'Additional fields'
       # Submit the form.  When the page reloads, it should be on the show page.
       click_on 'Save changes'
@@ -176,6 +179,8 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(page).to_not have_content 'Old Dim'
       expect(page).to     have_content 'ark:/abc/3456'
       expect(page).to_not have_content 'ark:/not/myark'
+      expect(page).to     have_content 'https://new.url/iiif/ark%3A%2Fabc%2F3456'
+      expect(page).to_not have_content 'https://fake.url/iiif/ark%3A%2Fabc%2F3456'
     end
   end
 end

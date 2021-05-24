@@ -161,6 +161,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'summary_tesim'
     config.add_show_field 'iiif_text_direction_ssi'
     config.add_show_field 'toc_tesim'
+    config.add_show_field 'thumbnail_link_ssi'
     config.add_show_field 'translator_tesim'
     config.add_show_field 'uniform_title_tesim'
     config.add_show_field 'representative_image_ssi'

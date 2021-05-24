@@ -68,6 +68,7 @@ module Hyrax
       :support,
       :tagline,
       :toc,
+      :thumbnail_link,
       :translator,
       :iiif_text_direction,
       :uniform_title
@@ -81,7 +82,7 @@ module Hyrax
     #
     # @return [Enumerable<Symbol>] symbols representing each primary term
     def primary_terms
-      primary = required_fields + [:access_copy, :preservation_copy]
+      primary = required_fields + [:access_copy, :preservation_copy, :thumbnail_link]
       primary = (primary & terms)
 
       (required_fields - primary).each do |missing|

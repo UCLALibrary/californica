@@ -279,6 +279,14 @@ class SolrDocument
     self[:tagline_ssi]
   end
 
+  def thumbnail_link
+    self[:thumbnail_link_ssi]
+  end
+
+  def thumbnail_url
+    self[:thumbnail_url_ss]
+  end
+
   def translator
     self[:translator_tesim]
   end
