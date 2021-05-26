@@ -58,6 +58,7 @@ class CsvRowImportJob < ActiveJob::Base
                 ingest_duration: end_time - start_time,
                 job_ids_completed: @row.job_ids_completed << job_id)
   rescue => e
+    Rollbar.error(e, csv_import_id: @row.csv_import_id, row_id: @row_id, ark: record.mapper.ark)
     end_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
     @row.update(status: 'error',
                 ingest_record_end_time: Time.current,

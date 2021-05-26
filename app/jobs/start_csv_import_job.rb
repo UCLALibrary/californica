@@ -11,7 +11,8 @@ class StartCsvImportJob < ApplicationJob
     importer.import
 
   rescue => e
-    @error_stream << "StartCsvImportJob failed: #{e.message}\n#{e.backtrace.inspect}"
+    Rollbar.error(e, csv_import: csv_import_id)
+    @error_stream << "#{e.class}: #{e.message}\n#{e.backtrace.inspect}"
   end
 
   def ingest_log_filename
