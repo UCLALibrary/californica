@@ -113,7 +113,7 @@ class ActorRecordImporter < Darlingtonia::HyraxRecordImporter
     retries = (retries || 0) + 1
     Rollbar.warning(e, "Attempting to delete bad FCRepo record.", retries: retries, ark: record.ark)
     fcrepo_id = Californica::IdGenerator.id_from_ark(record.ark)
-    Californica::Deleter.new(id: fcrepo_id).delete
+    Californica::Deleter.new(id: fcrepo_id, logger: info_stream).delete
     if (retries += 1) < 3
       retry
     else

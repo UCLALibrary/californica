@@ -36,7 +36,7 @@ class CsvRowImportJob < ActiveJob::Base
       case record.mapper.object_type
       when 'Work', 'Manuscript'
         @row.update(status: 'deleting child works')
-        Californica::Deleter.new(id: Californica::IdGenerator.id_from_ark(record.mapper.ark)).delete_with_children(of_type: ChildWork)
+        Californica::Deleter.new(id: Californica::IdGenerator.id_from_ark(record.mapper.ark), logger: @row.error_messages).delete_with_children(of_type: ChildWork)
         @row.update(status: 'in progress')
         selected_importer = actor_record_importer
         new_status = 'complete'
@@ -64,7 +64,7 @@ class CsvRowImportJob < ActiveJob::Base
                 ingest_record_end_time: Time.current,
                 ingest_duration: end_time - start_time,
                 job_ids_errored: @row.job_ids_completed << job_id,
-                error_messages: @row.error_messages << "#{e.class}: #{e.message}")
+                error_messages: @row.error_messages << "#{e.class}: #{e.message.split('\n').first}")
   end
 
   def collection_record_importer
