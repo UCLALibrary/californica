@@ -32,10 +32,11 @@ class CollectionIndexer < Hyrax::CollectionWithBasicMetadataIndexer
 
   def thumbnail_url
     thumbnail = object.thumbnail_link || thumbnail_from_access_copy
-    if thumbnail.to_s.include?('/iiif/2/')
-      "#{thumbnail}/full/!200,200/0/default.jpg"
-    elsif ['.svg', '.png', '.jpg'].include? File.extname(thumbnail.to_s)
+    case thumbnail
+    when /\.(svg)|(png)|(jpg)$/
       thumbnail
+    when /\/iiif\/2\/[^\/]+$/
+      "#{thumbnail}/full/!200,200/0/default.jpg"
     else
       return nil
     end
