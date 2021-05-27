@@ -393,6 +393,22 @@ RSpec.describe WorkIndexer do
       it 'adds iiif parameters' do
         expect(solr_document['thumbnail_url_ss']).to eq 'https://fake.url/iiif/2/id/full/!200,200/0/default.jpg'
       end
+
+      context 'when it already includes iiif parameters' do
+        let(:thumbnail_link) { 'https://fake.url/iiif/2/id/full/!200,200/0/default.jpg' }
+
+        it 'does not add them again' do
+          expect(solr_document['thumbnail_url_ss']).to eq 'https://fake.url/iiif/2/id/full/!200,200/0/default.jpg'
+        end
+      end
+
+      context 'when it doesn\'t match the expected format' do
+        let(:thumbnail_link) { 'https://fake.url/iiif/2/id/full/!200,200/' }
+
+        it 'returns nil' do
+          expect(solr_document['thumbnail_url_ss']).to eq nil
+        end
+      end
     end
 
     context 'when thumbnail_link is an image url' do
