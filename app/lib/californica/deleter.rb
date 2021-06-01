@@ -21,7 +21,7 @@ module Californica
     def delete_with_children(of_type: nil)
       # Delete the record _first_, or sever its connection to children
       # so that each child deletion doesnt trigger a save / reindex
-      record.member_ids.each do |child_id|
+      record&.member_ids&.each do |child_id|
         Californica::Deleter.new(id: child_id, logger: logger)
                             .delete_with_children(of_type: of_type)
       end
