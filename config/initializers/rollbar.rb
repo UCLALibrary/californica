@@ -9,6 +9,9 @@ Rollbar.configure do |config|
   # Here we'll disable in 'test':
   config.enabled = false if Rails.env.test?
 
+  config.branch = DEPLOYED_VERSION
+  config.code_version = GIT_SHA
+
   # By default, Rollbar will try to call the `current_user` controller method
   # to fetch the logged-in user object, and then call that object's `id`
   # method to fetch this property. To customize:
