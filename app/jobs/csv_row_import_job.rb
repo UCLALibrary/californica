@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 class CsvRowImportJob < ActiveJob::Base
+  rescue_from Mysql2::Error::ConnectionError do
+    Rollbar.error(e, csv_import: csv_import_id)
+    retry_job wait: 600 # wait 10 minutes for MySQL to come back
+  end
+
   def perform(row_id:)
     start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
     ENV["TZ"]
