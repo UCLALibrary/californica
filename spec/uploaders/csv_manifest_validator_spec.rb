@@ -142,6 +142,15 @@ RSpec.describe CsvManifestValidator, type: :model do
     end
   end
 
+  context 'when the csv has an \'ingest.iiif\' URL' do
+    let(:csv_file) { File.join(fixture_path, 'csv_import', 'csv_files_with_problems', 'example-ingest_dot_iiif_url.csv') }
+
+    it 'gives a warning' do
+      validator.validate
+      expect(validator.warnings).to contain_exactly("Row 2: 'IIIF Manifest URL' points to ingest.iiif.library.ucla.edu.")
+    end
+  end
+
   describe '#valid_headers' do
     it 'Contains all the values from CalifornicaMapper.CALIFORNICA_TERMS_MAP' do
       expect(validator.valid_headers).to contain_exactly(

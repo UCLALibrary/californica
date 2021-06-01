@@ -190,6 +190,11 @@ private
         end
       end
 
+      # Row has an incorrect IIIF url
+      [*CalifornicaMapper.californica_terms_map[:iiif_manifest_url], *CalifornicaMapper.californica_terms_map[:access_copy]].each do |header_term|
+        this_row_warnings << "'#{header_term}' points to ingest.iiif.library.ucla.edu." if row[header_term]&.match?('ingest.iiif.library.ucla.edu')
+      end
+
       # Row has a File Name that doesn't exist
       if @mapper.preservation_copy
         if @mapper.preservation_copy.start_with?('masters.in.library.ucla.edu/')
