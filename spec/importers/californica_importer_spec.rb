@@ -11,9 +11,10 @@ RSpec.describe CalifornicaImporter, :clean, inline_jobs: true do
 
   describe '#finalize_import' do
     before do
+      test_strategy = Flipflop::FeatureSet.current.test!
+      test_strategy.switch!(:child_works, true)
       allow(importer.parser).to receive(:order_child_works)
       allow(importer.parser).to receive(:reindex_collections)
-      allow(importer.parser).to receive(:build_iiif_manifests)
     end
 
     it 'orders child works' do
@@ -25,11 +26,6 @@ RSpec.describe CalifornicaImporter, :clean, inline_jobs: true do
       importer.finalize_import
       expect(importer.parser).to have_received(:reindex_collections)
     end
-
-    # it 'builds IIIF manifests' do
-    #   importer.finalize_import
-    #   expect(importer.parser).to have_received(:build_iiif_manifests)
-    # end
   end
 
   describe '#log_start' do
@@ -190,7 +186,6 @@ RSpec.describe CalifornicaImporter, :clean, inline_jobs: true do
 
       before do
         csv_row
-        allow(CreateManifestJob).to receive(:perform_now)
       end
 
       it 'skips already-imported CsvRows' do
