@@ -88,16 +88,26 @@ class WorkIndexer < Hyrax::WorkIndexer
   end
 
   def thumbnail_url
-    # this record has an image path attached
-    iiif_url_base = Californica::ManifestBuilderService.new(curation_concern: object).iiif_url
-    children = Array.wrap(object.members).clone
-    until iiif_url_base || children.empty?
-      child = children.shift
-      iiif_url_base = Californica::ManifestBuilderService.new(curation_concern: child).iiif_url
+    thumbnail = object.thumbnail_link || thumbnail_from_access_copy
+    case thumbnail
+    when /\.(svg)|(png)|(jpg)$/
+      thumbnail
+    when /\/iiif\/2\/[^\/]+$/
+      "#{thumbnail}/full/!200,200/0/default.jpg"
+    else
+      return nil
     end
+  end
 
-    return nil unless iiif_url_base
-    "#{iiif_url_base}/full/!200,200/0/default.jpg"
+  def thumbnail_from_access_copy
+    # this record has an image path attached
+    iiif_resource = Californica::ManifestBuilderService.new(curation_concern: object).iiif_url
+    children = Array.wrap(object.members).clone
+    until iiif_resource || children.empty?
+      child = children.shift
+      iiif_resource = Californica::ManifestBuilderService.new(curation_concern: child).iiif_url
+    end
+    iiif_resource
   end
 
   # The 'to_a' is needed to force ActiveTriples::Relation to resolve into the String value(s), else you get an error trying to parse the date.

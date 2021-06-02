@@ -55,6 +55,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
              subject_topic: ['subject_topic'],
              summary: ['summary'],
              support: ['support'],
+             thumbnail_link: 'https://fake.url/iiif/ark%3A%2Fabcde%2F1234567',
              title: ['title'],
              translator: ['Old Translator'],
              uniform_title: ['Old Uniform title'])

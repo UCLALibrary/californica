@@ -76,6 +76,7 @@ module Hyrax
         :support,
         :summary,
         :tagline,
+        :thumbnail_link,
         :iiif_text_direction,
         :translator,
         :toc,

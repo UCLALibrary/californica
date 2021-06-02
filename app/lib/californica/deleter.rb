@@ -21,19 +21,16 @@ module Californica
     def delete_with_children(of_type: nil)
       # Delete the record _first_, or sever its connection to children
       # so that each child deletion doesnt trigger a save / reindex
-      record.member_ids.each do |child_id|
-        Californica::Deleter.new(id: child_id)
+      record&.member_ids&.each do |child_id|
+        Californica::Deleter.new(id: child_id, logger: logger)
                             .delete_with_children(of_type: of_type)
       end
       delete if record.is_a?(of_type)
-
-    rescue ActiveFedora::ObjectNotFoundError
-      delete_from_fcrepo
     end
 
     def delete_children(of_type: nil)
       record.members.each do |child|
-        Californica::Deleter.new(record: child)
+        Californica::Deleter.new(record: child, logger: logger)
                             .delete_with_children(of_type: of_type)
       end
     end
@@ -45,19 +42,21 @@ module Californica
         record&.destroy&.eradicate
         Hyrax.config.callback.run(:after_destroy, record.id, User.batch_user)
         logger.info("Deleted #{record_name || id}}")
-      rescue ActiveFedora::ObjectNotFoundError
-        delete_from_fcrepo
       end
 
       def delete_from_fcrepo
         ActiveFedora.fedora.connection.delete(ActiveFedora::Base.id_to_uri(id))
-        logger.info("Forced delete of #{record_name || id} from Fedora")
+        Rollbar.info("Forced delete of #{id} from Fedora")
+        logger.info("Forced delete of #{id} from Fedora")
       rescue Ldp::NotFound
         nil # Everything's good, we just wanted to make sure there wasn't a record in fedora not indexed to solr
       end
 
       def record
         @record ||= ActiveFedora::Base.find(id)
+
+      rescue ActiveFedora::ObjectNotFoundError
+        delete_from_fcrepo
       end
   end
 end

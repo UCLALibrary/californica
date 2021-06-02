@@ -98,6 +98,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "commentator_2" # commentator
     expect(page).to have_content "translator_1" # translator
     expect(page).to have_content "translator_2" # translator
+    expect(page).to have_content "https://fake.url/iiif/ark%3A%2F13030%2Fhb338nb26f" # thumbnail_link
     expect(page).to have_content "subject_geographic_1" # subject_geographic
     expect(page).to have_content "subject_temporal_1" # subject_temporal
     expect(page).to have_content "colophon_text" # colophon

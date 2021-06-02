@@ -136,7 +136,8 @@ RSpec.describe CalifornicaCsvParser do
        'Printmaker',
        'Name.printmaker',
        'Contents note',
-       'Description.contents']
+       'Description.contents',
+       'Thumbnail']
     end
 
     it 'knows the headers for this CSV file' do
