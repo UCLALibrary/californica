@@ -49,9 +49,7 @@ Rollbar.configure do |config|
   # config.use_sucker_punch
 
   # Enable delayed reporting (using Sidekiq)
-  # config.use_sidekiq
-  # You can supply custom Sidekiq options:
-  # config.use_sidekiq 'queue' => 'default'
+  config.use_sidekiq 'queue' => 'default'
 
   # If your application runs behind a proxy server, you can set proxy parameters here.
   # If https_proxy is set in your environment, that will be used. Settings here have precedence.
@@ -71,5 +69,4 @@ Rollbar.configure do |config|
   # setup for Heroku. See:
   # https://devcenter.heroku.com/articles/deploying-to-a-custom-rails-environment
   config.environment = ENV['ROLLBAR_ENV'].presence || Rails.env
-  config.use_sidekiq
 end

@@ -33,7 +33,7 @@ class CalifornicaImporter
     Darlingtonia::Importer.new(parser: parser, record_importer: record_importer, info_stream: @info_stream, error_stream: @error_stream).import
 
     # Reset status of unfinished jobs
-    @csv_import.csv_rows.where.not(status: 'complete').update_all(status: 'queued')
+    @csv_import.csv_rows.where.not(status: 'complete').update_all(status: 'queued', error_messages: [])
 
     @csv_import.csv_rows.where(status: 'queued').each do |csv_row|
       CsvRowImportJob.perform_now(row_id: csv_row.id)
