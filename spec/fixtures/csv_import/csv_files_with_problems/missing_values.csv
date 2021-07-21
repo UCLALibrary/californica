@@ -1,8 +1,9 @@
-Object Type,Title,Item ARK,Parent ARK,Rights.copyrightStatus,File Name,IIIF Manifest URL
-Collection,Apple,ark:/123/abc,,copyrighted,clusc_1_1_00010432a.tif,manifest_url
-Work,Missing Item ARK,,ark:/123/abc,copyrighted,clusc_1_1_00010432a.tif,http://iiif.library.ucla.edu/ark%3A%2F21198%2Fz1sr03rq/manifest
-Work,,ark:/123/def,ark:/123/abc,copyrighted,clusc_1_1_00010432a.tif,
-,Missing Object Type,ark:/123/def,ark:/123/abc,copyrighted,clusc_1_1_00010432a.tif
-Work,Missing Parent ARK,ark:/123/def,,copyrighted,clusc_1_1_00010432a.tif
-Work,Missing Rights.copyrightStatus,ark:/123/def,ark:/123/abc,,clusc_1_1_00010432a.tif
-Work,Missing File Name,ark:/123/def,ark:/123/abc,copyrighted,
+Object Type,Title,Item ARK,Parent ARK,Rights.copyrightStatus,File Name,IIIF Manifest URL,Thumbnail
+Collection,Apple,ark:/123/abc,,copyrighted,clusc_1_1_00010432a.tif,manifest_url,
+Work,Missing Item ARK,,ark:/123/abc,copyrighted,clusc_1_1_00010432a.tif,manifest_url,thumbnail
+Work,,ark:/123/def,ark:/123/abc,copyrighted,clusc_1_1_00010432a.tif,,thumbnail
+,Missing Object Type,ark:/123/def,ark:/123/abc,copyrighted,clusc_1_1_00010432a.tif,,thumbnail
+Work,Missing Parent ARK,ark:/123/def,,copyrighted,clusc_1_1_00010432a.tif,,thumbnail
+Work,Missing Rights.copyrightStatus,ark:/123/def,ark:/123/abc,,clusc_1_1_00010432a.tif,,thumbnail
+Work,Missing File Name,ark:/123/def,ark:/123/abc,copyrighted,,,thumbnail
+Work,Missing Thumbnail,ark:/123/def,ark:/123/abc,copyrighted,clusc_1_1_00010432a.tif,manifest_url,

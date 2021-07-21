@@ -10,13 +10,13 @@ class WorkIndexer < Hyrax::WorkIndexer
   # this behavior
   include Hyrax::IndexesLinkedMetadata
 
-  # See https://github.com/UCLALibrary/californica/blob/master/solr/config/schema.xml#194
+  # See https://github.com/UCLALibrary/californica/blob/main/solr/config/schema.xml#194
   # for extensions that can be used below
 
   def generate_solr_document
     super.tap do |solr_doc|
       solr_doc['combined_subject_ssim'] = combined_subject
-      solr_doc['date_dtsim'] = solr_dates
+      add_dates(solr_doc)
       solr_doc['geographic_coordinates_ssim'] = coordinates
       solr_doc['human_readable_iiif_text_direction_ssi'] = human_readable_iiif_text_direction
       solr_doc['human_readable_iiif_viewing_hint_ssi'] = human_readable_iiif_viewing_hint
@@ -31,6 +31,12 @@ class WorkIndexer < Hyrax::WorkIndexer
       solr_doc['ursus_id_ssi'] = Californica::IdGenerator.blacklight_id_from_ark(object.ark)
       solr_doc['year_isim'] = years
     end
+  end
+
+  def add_dates(solr_doc)
+    valid_dates = solr_dates
+    solr_doc['date_dtsim'] = valid_dates if valid_dates
+    solr_doc['date_dtsort'] = solr_doc['date_dtsim'][0] if solr_doc['date_dtsort']
   end
 
   def combined_subject
@@ -82,16 +88,26 @@ class WorkIndexer < Hyrax::WorkIndexer
   end
 
   def thumbnail_url
-    # this record has an image path attached
-    iiif_url_base = Californica::ManifestBuilderService.new(curation_concern: object).iiif_url
-    children = Array.wrap(object.members).clone
-    until iiif_url_base || children.empty?
-      child = children.shift
-      iiif_url_base = Californica::ManifestBuilderService.new(curation_concern: child).iiif_url
+    thumbnail = object.thumbnail_link || thumbnail_from_access_copy
+    case thumbnail
+    when /\.(svg)|(png)|(jpg)$/
+      thumbnail
+    when /\/iiif\/2\/[^\/]+$/
+      "#{thumbnail}/full/!200,200/0/default.jpg"
+    else
+      return nil
     end
+  end
 
-    return nil unless iiif_url_base
-    "#{iiif_url_base}/full/!200,200/0/default.jpg"
+  def thumbnail_from_access_copy
+    # this record has an image path attached
+    iiif_resource = Californica::ManifestBuilderService.new(curation_concern: object).iiif_url
+    children = Array.wrap(object.members).clone
+    until iiif_resource || children.empty?
+      child = children.shift
+      iiif_resource = Californica::ManifestBuilderService.new(curation_concern: child).iiif_url
+    end
+    iiif_resource
   end
 
   # The 'to_a' is needed to force ActiveTriples::Relation to resolve into the String value(s), else you get an error trying to parse the date.
@@ -103,22 +119,22 @@ class WorkIndexer < Hyrax::WorkIndexer
 
   def solr_dates
     dates = object.normalized_date.to_a
-    dates = Array.wrap(dates).flat_map do |date|
-      validate_date = date.split('/')
-      validate_date.each do |item|
+    valid_dates = []
+    dates.each do |date|
+      split_dates = date.split('/')
+      split_dates.each do |item|
         item_values = item.split('-')
         if item_values.length == 2
-          Date.strptime(item, "%Y-%m")
+          valid_dates.push Date.strptime(item, "%Y-%m").to_time.utc.iso8601
         elsif item_values.length == 3
-          Date.strptime(item, "%Y-%m-%d")
+          valid_dates.push Date.strptime(item, "%Y-%m-%d").to_time.utc.iso8601
         else
-          Date.strptime(item, "%Y")
+          valid_dates.push Date.strptime(item, "%Y").to_time.utc.iso8601
         end
       end
-      validate_date.reverse.join("/")
-    end.compact.uniq.sort
+    end
     return nil if dates.blank?
-    dates
+    valid_dates
   rescue ArgumentError => e
     # We might want to start reporting metadata errors to Rollbar if we come up with a way to make them searchable and allow them to provide a feedback loop.
     # Rollbar.error(e, "Invalid date string encountered in normalized date field: #{date_string}")

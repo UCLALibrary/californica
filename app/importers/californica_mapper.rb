@@ -4,7 +4,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   attr_reader :row_number
 
   CALIFORNICA_TERMS_MAP = {
-    access_copy: ["IIIF Access URL", "access_copy", "Thumbnail"],
+    access_copy: ["IIIF Access URL", "access_copy"],
     alternative_title: ["AltTitle.other",
                         "AltTitle.parallel",
                         "AltTitle.translated",
@@ -96,6 +96,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
                          "Subject place"],
     subject_temporal: "Subject temporal",
     iiif_text_direction: "Text direction",
+    thumbnail_link: ["Thumbnail"],
     translator: ["Translator", "Name.translator"],
     title: "Title",
     toc: ["Table of Contents", "Description.tableOfContents"],
@@ -173,7 +174,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   end
 
   def access_copy
-    map_field(:access_copy).first || preservation_copy
+    map_field(:access_copy).to_a.first
   end
 
   def ark
@@ -294,12 +295,18 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   end
 
   def preservation_copy
-    path = map_field(:preservation_copy).first.to_s.strip.sub(/^\//, '')
-    return nil if path.empty?
-    if path.start_with?('Masters/')
+    path = map_field(:preservation_copy).first.to_s.strip.sub(/^\/+/, '')
+    if path.empty?
+      nil
+    elsif path.start_with?(/[^\/]+.in.library.ucla.edu\//)
+      # Standard format: must specify netapp volume
       path
+    elsif path.start_with?('Masters/')
+      # Legacy standard format: everything starts with "Masters/"
+      'masters.in.library.ucla.edu/' + path.sub(/^\/?Masters\//, '')
     else
-      'Masters/dlmasters/' + path
+      # paths coming from DLCSExport
+      'masters.in.library.ucla.edu/dlmasters/' + path
     end
   end
 
@@ -402,5 +409,9 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     return unless ['ChildWork', 'Page'].include?(metadata["Object Type"])
     record_page_sequence
     [parent_work.id]
+  end
+
+  def thumbnail_link
+    map_field(:thumbnail_link).to_a.first
   end
 end

@@ -31,6 +31,7 @@ Metrics/ClassLength:
     - app/importers/californica_mapper.rb
     - app/jobs/hyrax/characterize_job.rb
     - app/uploaders/csv_manifest_validator.rb
+    - app/indexers/work_indexer.rb
 
 Metrics/BlockLength:
   Enabled: true
@@ -61,6 +62,7 @@ Metrics/CyclomaticComplexity:
     - app/models/concerns/discoverable.rb
     - app/uploaders/csv_manifest_validator.rb
     - app/indexers/year_parser.rb
+    - app/jobs/csv_row_import_job.rb
 
 Metrics/LineLength:
   Exclude:
@@ -110,6 +112,7 @@ Metrics/PerceivedComplexity:
     - app/uploaders/csv_manifest_validator.rb
     - app/controllers/application_controller.rb
     - app/indexers/year_parser.rb
+    - app/jobs/csv_row_import_job.rb
 
 RSpec/AnyInstance:
   Enabled: false

@@ -156,9 +156,10 @@ bundle exec rake californica:ingest:csv
 
 ### Adding works to a collection
 
-You can add a `Parent ARK` column to the CSV file.  For each row of the CSV, add the ARK for the collection that work should belong to.  The importer will find the `Collection` record with the matching ARK.  If the `Collection` record doesn't exist yet, the importer will create a new `Collection` using that ARK.
+You can add a `Parent ARK` column to the CSV file. For each row of the CSV, add the ARK for the collection that work should belong to. The importer will find the `Collection` record with the matching ARK. If the `Collection` record doesn't exist yet, the importer will create a new `Collection` using that ARK.
 
 ## Read-only mode
+
 Californica has a read-only mode, which can be enabled via the `Settings` menu on the admin dashboard, and is useful for making consistent backups or migrating data.
 
 Ideally, a user should log in as an admin, enable read-only mode, and keep the window open so they can then disable it again. If the window accidentally gets closed, and the system is stuck in read-only mode, open a rails console and fix the problem like this:
@@ -186,6 +187,8 @@ Californica is available under the [Apache License Version 2.0](./LICENSE).
 ---
 
 ### flaky tests
-##### `bundle exec rspec spec --seed 43408`  
-+ rspec `./spec/system/import_from_csv_spec.rb:16` # Importing records from a CSV file logged in as an admin user starts the import
-+ rspec `./spec/system/new_collection_spec.rb:21` # Create a new collection logged in as an admin user successfully creates a new collection with an ark based identifier
+
+##### `bundle exec rspec spec --seed 43408`
+
+- rspec `./spec/system/import_from_csv_spec.rb:16` # Importing records from a CSV file logged in as an admin user starts the import
+- rspec `./spec/system/new_collection_spec.rb:21` # Create a new collection logged in as an admin user successfully creates a new collection with an ark based identifier

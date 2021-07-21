@@ -55,15 +55,14 @@
 <%= presenter.attribute_to_html(:provenance, html_dl: true) %>
 <%= presenter.attribute_to_html(:publisher, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:related_url, render_as: :external_link, html_dl: true) %>
-<%= presenter.attribute_to_html(:repository, html_dl: true) %>
+<%= presenter.attribute_to_html(:repository, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:representative_image, html_dl: true) %>
 <%= presenter.attribute_to_html(:resource_type, render_as: :resource_type, html_dl: true) %>
 <%= presenter.attribute_to_html(:rights_country, html_dl: true) %>
 <%= presenter.attribute_to_html(:rights_holder, html_dl: true) %>
 <%= presenter.attribute_to_html(:rights_statement, render_as: :rights_statement, html_dl: true) %>
 <%= presenter.attribute_to_html(:rubricator, html_dl: true) %>
-# This invokes License renderer from hyrax gem
-<%#= presenter.attribute_to_html(:local_rights_statement, render_as: :local_rights_statement, html_dl: true) %>
+<%#= presenter.attribute_to_html(:local_rights_statement, render_as: :local_rights_statement, html_dl: true) # This invokes License renderer from hyrax gem %>
 <%= presenter.attribute_to_html(:scribe, html_dl: true) %>
 <%= presenter.attribute_to_html(:source, html_dl: true) %>
 <%= presenter.attribute_to_html(:subject, render_as: :faceted, html_dl: true) %>
@@ -73,6 +72,7 @@
 <%= presenter.attribute_to_html(:summary, html_dl: true) %>
 <%= presenter.attribute_to_html(:support, html_dl: true) %>
 <%= presenter.attribute_to_html(:tagline, html_dl: true) %>
+<%= presenter.attribute_to_html(:thumbnail_link, html_dl: true) %>
 <%= presenter.attribute_to_html(:translator, html_dl: true) %>
 <%= presenter.attribute_to_html(:toc, html_dl: true) %>
 <%= presenter.attribute_to_html(:uniform_title, html_dl: true) %>

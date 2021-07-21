@@ -78,6 +78,7 @@
 - [Tagline](#tagline)
 - [Text direction](#iiif_text_direction)
 - [Table of Contents](#table-of-contents)
+- [Thumbnail](#thumbnail)
 - [Translator](#translator)
 - [Type.genre](#type.genre)
 - [Type.typeOfResource](#type.typeofresource)
@@ -87,18 +88,23 @@
 
 ### File Name (required)
 
-A _full file path_ to the file in the "Masters" NetApp volume. Currently this must be single-valued. If a `Work` has multiple files associated with it, then each file should be given its own line with the object type `Page` and a `Parent ARK` value that refers to the parent `Work`.
+A _full file path_ to the file, beginning with the NetApp volume in the form `[volume].in.library.ucla.edu`. Currently this must be single-valued. If a `Work` has multiple files associated with it, then each file should be given its own line with the object type `Page` and a `Parent ARK` value that refers to the parent `Work`.
 
-If the File Name starts with "Masters/", it will be used as is. Otherwise, it will be prepended with `Masters/dlmasters/`, in order to match the content of DLCS exports.
+If the File Name does not start with `[volume].in.library.ucla.edu`, it is assumed to refer to `masters.in.library.ucla.edu`. If the first directory is explicitly `Masters/`, then it is interpreted as the volume root. Otherwise, it will be prepended with `masters.in.library.ucla.edu/dlmasters/`, in order to match the content of DLCS exports.
+
+For all formats, any number of leading `/` characters will be ignored.
 
 This field is a string. **This field is required**.
 
 Examples:
 
+- `masters.in.library.ucla.edu/dlmasters/postcards/masters/21198-zz00090nrm-1-master.tif`
 - `Masters/dlmasters/postcards/masters/21198-zz00090ntn-1-master.tif`
+  <br> (Imported as `masters.in.library.ucla.edu/dlmasters/postcards/masters/21198-zz00090ntn-1-master.tif`)
 - `postcards/masters/21198-zz00090nn2-1-master.tif`
-  <br> (Imported as `Masters/dlmasters/postcards/masters/21198-zz00090nn2-1-master.tif`)
-- `Masters/DLTempSecure/ABC/xyz/file_123.tif`
+  <br> (Imported as `masters.in.library.ucla.edu/dlmasters/postcards/masters/21198-zz00090nn2-1-master.tif`)
+- `//othermount.in.library.ucla.edu/ABC/xyz/file_123.tif`
+  <br> (Imported as `othermount.in.library.ucla.edu/ABC/xyz/file_123.tif`)
 
 ### Title (required)
 
@@ -251,7 +257,7 @@ The URL of a IIIF resource that can be used to view the image. This is populated
 
 ### Illuminator
 
-Also aaccepts: `Name.illuminator`
+Also accepts: `Name.illuminator`
 
 ### Illustrations note
 
@@ -348,6 +354,14 @@ Also accepts: `Description.abstract`
 Also accepts: `Description.tableOfContents`
 
 ### Tagline
+
+### Thumbnail
+
+URL for an image to be used as the thumbnail. Must be the stem of a IIIF Image API resource of the form `{scheme}://{server}{/prefix}/{identifier}`, omitting all other Image API parameters. For example: `https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fz1k667gp`.
+
+For simple images the value will be identical to [`IIIF Access URL`](#iiif-access-url), however for other content types such as multi-image or audiovisual works the two values wil differ.
+
+This is populated by processing the CSV via [bucketeer](https://bucketeer.library.ucla.edu/upload/csv)
 
 ### Translator
 

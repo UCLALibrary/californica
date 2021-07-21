@@ -30,7 +30,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(work.member_of_collections).to eq [collection]
 
     # displays expected fields on show work page
-    # these should match the value in the coordinates_example.csv
+    # these should match the value in the spec/fixtures/coordinates_example.csv
 
     work = Work.last
     expect(work.id).to eq "f62bn833bh-03031"
@@ -98,6 +98,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "commentator_2" # commentator
     expect(page).to have_content "translator_1" # translator
     expect(page).to have_content "translator_2" # translator
+    expect(page).to have_content "https://fake.url/iiif/ark%3A%2F13030%2Fhb338nb26f" # thumbnail_link
     expect(page).to have_content "subject_geographic_1" # subject_geographic
     expect(page).to have_content "subject_temporal_1" # subject_temporal
     expect(page).to have_content "colophon_text" # colophon
@@ -123,12 +124,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
 
     # displays expected facets
     facet_headings = page.all(:css, 'h3.facet-field-heading').to_a.map(&:text)
-    expect(facet_headings).to contain_exactly("Subject", "Creator", "Resource Type", "Genre", "Names", "Location", "Normalized Date", "Extent", "Medium", "Dimensions", "Language", "Collection")
-
-    # # iiif manifest was cached
-    # filename = Rails.root.join('tmp', work.date_modified.to_datetime.strftime('%Y-%m-%d_%H-%M-%S') + work.id)
-    # manifest = JSON.parse(File.open(filename).read)
-    # expect(manifest['sequences'][0]['canvases'][0]['images'][0]['resource']['@id']).to eq 'https://cantaloupe.url/iiif/2/Masters%2Fdlmasters%2Fclusc_1_1_00010432a.tif/full/600,/0/default.jpg'
+    expect(facet_headings).to contain_exactly("Subject", "Creator", "Resource Type", "Genre", "Names", "Location", "Normalized Date", "Extent", "Medium", "Dimensions", "Language", "Collection", "Subject geographic", "Subject temporal", "Repository")
 
     # importing the same object twice
     expect(work.funding_note.first).to eq "Fake Funding Note"

@@ -127,11 +127,7 @@ class SolrDocument
   end
 
   def iiif_manifest_url
-    if Flipflop.use_manifest_store? && self[:iiif_manifest_url_ssi]
-      self[:iiif_manifest_url_ssi]
-    else
-      "/concern/works/#{id}/manifest"
-    end
+    self[:iiif_manifest_url_ssi] || "/concern/works/#{id}/manifest"
   end
 
   def iiif_range
@@ -281,6 +277,14 @@ class SolrDocument
 
   def tagline
     self[:tagline_ssi]
+  end
+
+  def thumbnail_link
+    self[:thumbnail_link_ssi]
+  end
+
+  def thumbnail_url
+    self[:thumbnail_url_ss]
   end
 
   def translator

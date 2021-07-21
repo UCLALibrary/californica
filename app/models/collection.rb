@@ -41,6 +41,7 @@ class Collection < ActiveFedora::Base
 
   # @param ark [String] The ARK
   # @return [Collection] The Collection with that ARK
+  # rubocop:disable Metrics/MethodLength
   def self.find_or_create_by_ark(ark)
     collection = find_by_ark(ark)
     return collection if collection
@@ -60,5 +61,16 @@ class Collection < ActiveFedora::Base
     Hyrax::Collections::PermissionsCreateService.create_default(collection: collection, creating_user: User.batch_user, grants: grants)
 
     collection
+  rescue ActiveFedora::IllegalOperation => e
+    raise e unless e.message.start_with?('Attempting to recreate existing ldp_source')
+
+    retries ||= 0
+    fcrepo_id = Californica::IdGenerator.id_from_ark(ark)
+    Californica::Deleter.new(id: fcrepo_id).delete
+    if (retries += 1) < 3
+      retry
+    else
+      raise e
+    end
   end
 end

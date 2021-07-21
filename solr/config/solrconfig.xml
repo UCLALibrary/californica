@@ -62,12 +62,12 @@
     <updateLog>
       <str name="dir">${solr.ulog.dir:}</str>
     </updateLog>
-
+    <!-- this is commented in production
     <autoCommit>
       <maxTime>${solr.autoCommit.maxTime:15000}</maxTime>
       <openSearcher>false</openSearcher>
     </autoCommit>
-
+-->
     <autoSoftCommit>
       <maxTime>${solr.autoSoftCommit.maxTime:-1}</maxTime>
     </autoSoftCommit>
@@ -200,47 +200,6 @@
   </requestHandler>
 
   <updateRequestProcessorChain name="add_modify_fields" default="${update.autoCreateFields:true}">
-    <processor class="solr.CloneFieldUpdateProcessorFactory">
-      <str name="source">date_dtsim</str>
-      <str name="dest">date_dtsort</str>
-    </processor>
-
-    <processor class="solr.processor.FirstFieldValueUpdateProcessorFactory">
-      <str name="fieldName">date_dtsort</str>
-    </processor>
-
-    <processor class="solr.ParseDateFieldUpdateProcessorFactory">
-      <arr name="format">
-        <str>yyyy-MM-dd'T'HH:mm:ss.SSSZ</str>
-        <str>yyyy-MM-dd'T'HH:mm:ss,SSSZ</str>
-        <str>yyyy-MM-dd'T'HH:mm:ss.SSS</str>
-        <str>yyyy-MM-dd'T'HH:mm:ss,SSS</str>
-        <str>yyyy-MM-dd'T'HH:mm:ssZ</str>
-        <str>yyyy-MM-dd'T'HH:mm:ss</str>
-        <str>yyyy-MM-dd'T'HH:mmZ</str>
-        <str>yyyy-MM-dd'T'HH:mm</str>
-        <str>yyyy-MM-dd HH:mm:ss.SSSZ</str>
-        <str>yyyy-MM-dd HH:mm:ss,SSSZ</str>
-        <str>yyyy-MM-dd HH:mm:ss.SSS</str>
-        <str>yyyy-MM-dd HH:mm:ss,SSS</str>
-        <str>yyyy-MM-dd HH:mm:ssZ</str>
-        <str>yyyy-MM-dd HH:mm:ss</str>
-        <str>yyyy-MM-dd HH:mmZ</str>
-        <str>yyyy-MM-dd HH:mm</str>
-        <str>yyyy-MM-dd</str>
-        <str>yyyy-MM</str>
-        <str>yyyy</str>
-        <str>yyyy/yyyy</str>
-        <str>yyyy-MM/yyyy-MM</str>
-        <str>yyyy-MM-dd/yyyy-MM-dd</str>
-        <str>yyyy/yyyy-mm</str>
-        <str>yyyy-mm/yyyy</str>
-        <str>yyyy/yyyy-mm-dd</str>
-        <str>yyyy-mm-dd/yyyy</str>
-        <str>yyyy-mm/yyyy-mm-dd</str>
-        <str>yyyy-mm-dd/yyyy-mm</str>
-      </arr>
-    </processor>
 
     <processor class="solr.processor.SignatureUpdateProcessorFactory">
       <bool name="enabled">true</bool>
@@ -251,13 +210,6 @@
       <str name="defType">lucene</str>
     </processor>
 
-    <processor class="solr.StatelessScriptUpdateProcessorFactory">
-      <str name="script">update-script.js</str>
-      <!--
-        <lst name="params">
-          <str name="config_param">example config parameter</str>
-        </lst>-->
-    </processor>
     <processor class="solr.LogUpdateProcessorFactory" />
     <processor class="solr.RunUpdateProcessorFactory" />
   </updateRequestProcessorChain>
@@ -346,7 +298,7 @@
        </lst>
       -->
   </searchComponent>
-
+  <!--
   <searchComponent name="suggest" class="solr.SuggestComponent">
     <lst name="suggester">
       <str name="name">mySuggester</str>
@@ -358,6 +310,7 @@
     </lst>
   </searchComponent>
 
+
   <requestHandler name="/suggest" class="solr.SearchHandler" startup="lazy">
     <lst name="defaults">
       <str name="suggest">true</str>
@@ -368,7 +321,7 @@
       <str>suggest</str>
     </arr>
   </requestHandler>
-
+-->
   <requestHandler name="/update/extract" class="org.apache.solr.handler.extraction.ExtractingRequestHandler">
     <lst name="defaults">
       <str name="fmap.Last-Modified">last_modified</str>
@@ -384,7 +337,7 @@
   </requestHandler>
 
   <!-- For master replicaiton see https://lucene.apache.org/solr/guide/7_5/index-replication.html -->
-  <requestHandler name="/replication" class="solr.ReplicationHandler">
+  <!--<requestHandler name="/replication" class="solr.ReplicationHandler">
     <lst name="master">
       <str name="replicateAfter">commit</str>
       <str name="backupAfter">commit</str>
@@ -395,5 +348,5 @@
     <lst name="invariants">
       <str name="maxWriteMBPerSec">16</str>
     </lst>
-  </requestHandler>
+  </requestHandler> -->
 </config>

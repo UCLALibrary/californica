@@ -22,13 +22,14 @@ REQUIRED_HEADERS = [
 ].freeze
 
 REQUIRED_VALUES = [
-  ['Item ARK', ['Collection', 'Work', 'ChildWork', 'Manuscript', 'Page']],
-  ['Title', ['Collection', 'Work', 'Manuscript']],
-  ['IIIF Manifest URL', ['Collection', 'Work']],
+  ['Item ARK', ['Collection', 'Work', 'ChildWork', 'Manuscript', 'Page'], :error],
+  ['Title', ['Collection', 'Work', 'Manuscript'], :error],
+  ['IIIF Manifest URL', ['Collection', 'Work'], :error],
   # ['Object Type', ['Collection', 'Work']],  # hard-coded
-  ['Parent ARK', ['Work', 'ChildWork', 'Manuscript', 'Page']],
-  ['Rights.copyrightStatus', ['Work', 'ChildWork', 'Manuscript', 'Page']],
-  ['File Name', ['Work', 'ChildWork', 'Page']]
+  ['Parent ARK', ['Work', 'ChildWork', 'Manuscript', 'Page'], :warning],
+  ['Rights.copyrightStatus', ['Work', 'ChildWork', 'Manuscript', 'Page'], :warning],
+  ['File Name', ['Work', 'ChildWork', 'Page'], :warning],
+  ['Thumbnail', ['Work', 'ChildWork', 'Manuscript', 'Page'], :warning]
 ].freeze
 
 MAPPED_HEADERS = CalifornicaMapper.californica_terms_map.values.map { |v| Array.wrap(v) }.flatten.freeze
@@ -70,6 +71,9 @@ class CsvManifestValidator
     @errors = []
     @warnings = []
     @mapper = CalifornicaMapper.new
+
+    # This is a hack bc WorkIndexer is supposed to be initialized with a Hyrax object, not a Mapper. It works for now bc both support the 'normalized_date' method, which is all we're initially using, but be very careful about using it for anything else.
+    @indexer = WorkIndexer.new(@mapper)
   end
 
   # Errors and warnings for the CSV file.
@@ -129,7 +133,7 @@ private
   end
 
   def validate_records
-    required_column_numbers = REQUIRED_VALUES.map { |header, _object_types| @headers.find_index(header) }.compact
+    required_column_numbers = REQUIRED_VALUES.map { |header, _object_types, _message_type| @headers.find_index(header) }.compact
     controlled_column_numbers = CONTROLLED_VOCABULARIES.keys.map { |header| @headers.find_index(header) }.compact
     object_type_column = @headers.find_index('Object Type')
     row_warnings = Hash.new { |hash, key| hash[key] = [] }
@@ -139,6 +143,13 @@ private
       @mapper.metadata = row
       this_row_warnings = []
       this_row_errors = []
+
+      # Investigate Error warning: Row 1881, 1882, 1883, 1884, 1885, ...: Rows missing "Parent ARK" cannot be imported.
+      # required_column_numbers_2 = []
+      # REQUIRED_VALUES.each do |header, _object_types|
+      # this_row_warnings << "#{header} is at column number  #{@headers.find_index(header)}"
+      # required_column_numbers_2.push(@headers.find_index(header))
+      # end
 
       # If there's no "Object Type" header, assume everything's a Work
       # so we so we can validate other required fields
@@ -158,19 +169,16 @@ private
 
       # Row missing reqired field values
       required_column_numbers.each_with_index do |column_number, j|
-        field_label, types_that_require = REQUIRED_VALUES[j]
-        next this_row_errors << "Rows missing required value for \"#{REQUIRED_VALUES[j][0]}\".  Your spreadsheet must have this value." if field_label == 'Title' && row[column_number].blank?
-        next this_row_errors << "Rows missing required value for \"#{REQUIRED_VALUES[j][0]}\".  Your spreadsheet must have this value." if field_label == 'Item ARK' && row[column_number].blank?
-        next this_row_errors << "Rows missing required value for \"#{REQUIRED_VALUES[j][0]}\".  Your spreadsheet must have this value." if field_label == 'IIIF Manifest URL' && row[column_number].blank?
-        next unless types_that_require.include?(object_type)
-        next unless row[column_number].blank?
-        this_row_warnings << if field_label == 'Rights.copyrightStatus'
-                               'Rows missing "Rights.copyrightStatus" will have the value set to "unknown".'
-                             elsif field_label == 'File Name'
-                               'Rows missing "File Name" will import metadata-only.'
-                             elsif field_label != 'Title' || field_label != 'Item ARK' || field_label != 'IIIF Manifest URL'
-                               "Rows missing \"#{REQUIRED_VALUES[j][0]}\" cannot be imported."
-                             end
+        field_label, types_that_require, message_type = REQUIRED_VALUES[j]
+        next unless row[column_number].blank? && types_that_require.include?(object_type)
+        case message_type
+        when :error
+          this_row_errors << "Rows missing required value for \"#{REQUIRED_VALUES[j][0]}\".  Your spreadsheet must have this value."
+        when :warning
+          this_row_warnings << "Rows missing recommended value for \"#{REQUIRED_VALUES[j][0]}\". Please add this value or continue to import without."
+        else
+          raise "CsvManifestValidator::REQUIRED_VALUES contains unknown message_type #{message_type} for #{field_label}."
+        end
       end
 
       # Row has invalid value in a controlled-vocabulary field
@@ -182,10 +190,29 @@ private
         end
       end
 
+      # Row has an incorrect IIIF url
+      [*CalifornicaMapper.californica_terms_map[:iiif_manifest_url], *CalifornicaMapper.californica_terms_map[:access_copy]].each do |header_term|
+        this_row_warnings << "'#{header_term}' points to ingest.iiif.library.ucla.edu." if row[header_term]&.match?('ingest.iiif.library.ucla.edu')
+      end
+
       # Row has a File Name that doesn't exist
       if @mapper.preservation_copy
-        full_path = File.join(file_uri_base_path, @mapper.preservation_copy)
-        this_row_warnings << "Rows contain a File Name that does not exist. Incorrect values may be imported." unless File.exist?(full_path)
+        if @mapper.preservation_copy.start_with?('masters.in.library.ucla.edu/')
+          full_path = File.join(file_uri_base_path, 'Masters', @mapper.preservation_copy.sub(/^masters.in.library.ucla.edu\//, ''))
+          this_row_warnings << "Rows contain a File Name that does not exist. Incorrect values may be imported." unless File.exist?(full_path)
+        else
+          this_row_warnings << "Unable to check that file exists. Only files in masters.in.library.ucla.edu/ can be checked at this time." unless File.exist?(full_path)
+        end
+      end
+
+      # Row has improperly formatted date values
+      unless @mapper.normalized_date.to_a.empty?
+        dates = @mapper.normalized_date.to_a[0].split('/')
+
+        # this_row_warnings << "Normalized date is '#{dates}'"
+        # this_row_warnings << "Indexer date is '#{@indexer.solr_dates}'"
+
+        this_row_warnings << "Rows contain unparsable values for 'normalized_date'." if dates.length != @indexer.solr_dates.to_a.length
       end
 
       this_row_warnings.each do |warning|

@@ -60,46 +60,64 @@ class ActorRecordImporter < Darlingtonia::HyraxRecordImporter
   # We assume the object was created as expected if the actor stack returns true.
   def create_for(record:)
     info_stream << "event: record_import_started, row_id: #{@row_id}, ark: #{record.ark}\n"
-
     raise(ArgumentError, 'Title starts "DUPLICATE" – record will not be imported.') if record.mapper.title[0].to_s.start_with?('DUPLICATE')
-
     additional_attrs = {
       uploaded_files: create_upload_files(record),
       depositor: @depositor.user_key
     }
-
     object_type = record.mapper.metadata["Object Type"]
     created = import_type(object_type).new
     created.apply_depositor_metadata(@depositor.user_key)
     attrs = record.attributes.merge(additional_attrs)
-
     attrs = attrs.merge(member_of_collections_attributes: { '0' => { id: collection_id } }) if collection_id
 
     # Ensure nothing is passed in the files field,
     # since this is reserved for Hyrax and is where uploaded_files will be attached
     attrs.delete(:files)
     attrs.delete(:uploaded_files)
-
     based_near = attrs.delete(:based_near)
     attrs = attrs.merge(based_near_attributes: based_near_attributes(based_near)) unless based_near.nil? || based_near.empty?
-
     actor_env = Hyrax::Actors::Environment.new(created,
                                                ::Ability.new(@depositor),
                                                attrs)
     terminator = Hyrax::Actors::Terminator.new
-    middleware = Californica::IngestMiddlewareStack.build_stack.build(terminator)
-
-    if middleware.create(actor_env)
-      info_stream << "event: record_created, row_id: #{@row_id}, record_id: #{created.id}, ark: #{created.ark}\n"
-    else
-      error_messages = []
-      created.errors.each do |attr, msg|
-        error_stream << "event: validation_failed, row_id: #{@row_id}, attribute: #{attr.capitalize}, message: #{msg}, ark: #{attrs[:ark] ? attrs[:ark] : attrs}\n"
-        error_messages << msg
+    begin
+      retries ||= 0
+      middleware = Californica::IngestMiddlewareStack.build_stack.build(terminator)
+      if middleware.create(actor_env)
+        info_stream << "event: record_created, row_id: #{@row_id}, record_id: #{created.id}, ark: #{created.ark}\n"
+      else
+        error_messages = []
+        created.errors.each do |attr, msg|
+          error_stream << "event: validation_failed, row_id: #{@row_id}, attribute: #{attr.capitalize}, message: #{msg}, ark: #{attrs[:ark] ? attrs[:ark] : attrs}\n"
+          error_messages << msg
+        end
+        # Errors raised here should be rescued in the CsvRowImportJob and the
+        # message should be recorded on the CsvRow object for reporting in the UI
+        raise "Validation failed: #{error_messages.join(', ')}"
       end
-      # Errors raised here should be rescued in the CsvRowImportJob and the
-      # message should be recorded on the CsvRow object for reporting in the UI
-      raise "Validation failed: #{error_messages.join(', ')}"
+    rescue Ldp::BadRequest => e
+      retries += 1
+      # get the id from the ark and the uri from the id then delete the tombstone
+      tombstone_uri = "#{ActiveFedora::Base.id_to_uri(Californica::IdGenerator.id_from_ark(created.ark))}/fcr:tombstone"
+      result = ActiveFedora.fedora.connection.delete(tombstone_uri)
+      Rollbar.warning(e, "Attempted to delete FCRepo tombstone.", retries: retries, ark: created.ark, tombstone_uri: tombstone_uri, result: result)
+      if (retries += 1) < 3
+        retry
+      else
+        raise e
+      end
+    end
+  rescue ActiveFedora::IllegalOperation => e
+    raise e if e.class == ActiveFedora::IllegalOperation && !e.message.start_with?('Attempting to recreate existing ldp_source') # error class doesn't look specific enough
+    retries = (retries || 0) + 1
+    Rollbar.warning(e, "Attempting to delete bad FCRepo record.", retries: retries, ark: record.ark)
+    fcrepo_id = Californica::IdGenerator.id_from_ark(record.ark)
+    Californica::Deleter.new(id: fcrepo_id, logger: info_stream).delete
+    if (retries += 1) < 3
+      retry
+    else
+      raise e
     end
   end
 end
