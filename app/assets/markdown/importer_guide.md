@@ -76,7 +76,7 @@
 - [Summary](#summary)
 - [Support](#support)
 - [Tagline](#tagline)
-- [IIIF Text direction](#iiif_text_direction)
+- [Text direction](#iiif_text_direction)
 - [Table of Contents](#table-of-contents)
 - [Translator](#translator)
 - [Type.genre](#type.genre)
@@ -341,7 +341,7 @@ Also accepts: `Description.abstract`
 
 ### Support
 
-### IIIF Text direction
+### Text direction
 
 ### Table of Contents
 
