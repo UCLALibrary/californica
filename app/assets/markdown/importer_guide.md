@@ -1,92 +1,89 @@
-# <a href="#required-fields">Required Fields</a>
-
-- [File Name](#file-name)
-- [Title](#title)
-- [Item ARK](#item-ark)
-- [Parent ARK](#parent-ark) (required for `Work` and `Page` objects)
-- [Object Type](#object-type)
-- [Rights.copyrightStatus](#rights.copyrightstatus)
-
-# <a href="#other-allowed-fields">Other Allowed Fields</a>
-
-- [AltIdentifier.local](#altidentifier.local)
-- [AltTitle.other](#alttitle.other)
-- [AltTitle.uniform](#alttitle.uniform)
-- [Author](#author)
-- [Binding note](#binding_note)
-- [Calligrapher](# calligrapher)
-- [Collation](#collation)
-- [Colophon](#colophon)
-- [Commentator](#commentator)
-- [Condition note](#condition_note)
-- [Contents note](#contents_note)
-- [Coverage.geographic](#coverage.geographic)
-- [Date.creation](#date.creation)
-- [Date.normalized](#date.normalized)
-- [Description.caption](#description.caption)
-- [Description.fundingNote](#description.fundingnote)
-- [Description.latitude](#description.latitude)
-- [Description.longitude](#description.longitude)
-- [Description.note](#description.note)
-- [Editor](# editor)
-- [Engraver](# engraver)
-- [Foliation](#foliation)
-- [Featured image](#featured_image)
-- [Finding Aid Url](#finding-aid-url)creator
-- [Format.dimensions](#format.dimensions)
-- [Format.extent](#format.extent)
-- [Format.medium](#format.medium)
-- [viewingHint](#viewingHint)
-- [IIIF Access URL](#iiif-access-url)
-- [IIIF Range](#iiif-range)
-- [Illustrations note](#illustrations-note)
-- [Illustrator](#illustrator)
-- [Item Sequence](#item-sequence)
-- [Language](#language)
-- [License](#license)
-- [Masthead](#masthead_parameters)
-- [Name.architect](#name.architect)
-- [Name.composer](#name.composer)
-- [Name.creator](#name.creator)
-- [Name.illuminator](#name.illuminator)
-- [Name.lyricist](#lyricist)
-- [Name.photographer](#name.photographer)
-- [Name.repository](#name.repository)
-- [Name.scribe](#name.scribe)
-- [Name.subject](#name.subject)
-- [Note](#note)
-- [Opac url](#opac_url)
-- [Page layout](#page-layout)
-- [Printmaker](# printmaker)
-- [Project Name](#project-name)
-- [Place of origin](#place-of-origin)
-- [Provenance](#provenance)
-- [Publisher.publisherName](#publisher.publishername)
-- [Relation.isPartOf](#relation.ispartof)
-- [Representative image](#representative_image)
-- [Rights.countryCreation](#rights.countrycreation)
-- [Rights.rightsHolderContact](#rights.rightsholdercontact)
-- [Rubricator](#rubricator)
-- [Rights.statementLocal](#rights.statementLocal)
-- [Subject](#subject)
-- [Subject.conceptTopic](#subject.concept_topic)
-- [Subject.descriptiveTopic](#subject.descriptive_topic)
-- [Subject geographic](#subject_geographic)
-- [Subject temporal](#subject_temporal)
-- [Summary](#summary)
-- [Support](#support)
-- [Tagline](#tagline)
-- [Text direction](#iiif_text_direction)
-- [Table of Contents](#table-of-contents)
-- [Thumbnail](#thumbnail)
-- [Translator](#translator)
-- [Type.genre](#type.genre)
-- [Type.typeOfResource](#type.typeofresource)
-- [Visibility](#visibility)
+<!-- TOC START min:1 max:4 link:true asterisk:false update:true -->
+  - [Required Fields](#required-fields)
+      - [File Name (required)](#file-name-required)
+      - [Title (required)](#title-required)
+      - [Item ARK (required)](#item-ark-required)
+      - [Parent ARK (required)](#parent-ark-required)
+      - [Object Type (required)](#object-type-required)
+      - [Rights.copyrightStatus (required)](#rightscopyrightstatus-required)
+  - [Other Allowed Fields](#other-allowed-fields)
+      - [AltTitle.other](#alttitleother)
+      - [AltTitle.uniform](#alttitleuniform)
+      - [Author](#author)
+      - [Binding note](#binding-note)
+      - [Calligrapher](#calligrapher)
+      - [Collation](#collation)
+      - [Colophon](#colophon)
+      - [Commentator](#commentator)
+      - [Condition note](#condition-note)
+      - [Contents note](#contents-note)
+      - [Coverage.geographic](#coveragegeographic)
+      - [Creator](#creator)
+      - [Date.created](#datecreated)
+      - [Date.normalized](#datenormalized)
+      - [Description.caption](#descriptioncaption)
+      - [Description.fundingNote](#descriptionfundingnote)
+      - [Description.latitude](#descriptionlatitude)
+      - [Description.longitude](#descriptionlongitude)
+      - [Description.note](#descriptionnote)
+      - [Editor](#editor)
+      - [Engraver](#engraver)
+      - [Featured image (not in use)](#featured-image-not-in-use)
+      - [Finding Aid URL](#finding-aid-url)
+      - [Foliation](#foliation)
+      - [Format.dimensions](#formatdimensions)
+      - [Format.extent](#formatextent)
+      - [Format.medium](#formatmedium)
+      - [Genre](#genre)
+      - [IIIF Access URL (for Festerize only)](#iiif-access-url-for-festerize-only)
+      - [IIIF Range (not in use)](#iiif-range-not-in-use)
+      - [Illuminator](#illuminator)
+      - [Illustrations note](#illustrations-note)
+      - [Illustrator](#illustrator)
+      - [Item Sequence (for Festerize only)](#item-sequence-for-festerize-only)
+      - [Language](#language)
+      - [License](#license)
+      - [Local identifier](#local-identifier)
+      - [Masthead](#masthead)
+      - [Name.architect](#namearchitect)
+      - [Name.composer](#namecomposer)
+      - [Name.lyricist](#namelyricist)
+      - [Name.photographer](#namephotographer)
+      - [Name.scribe](#namescribe)
+      - [Note](#note)
+      - [Opac url](#opac-url)
+      - [Page layout](#page-layout)
+      - [Place of origin](#place-of-origin)
+      - [Printmaker](#printmaker)
+      - [Project Name](#project-name)
+      - [Provenance](#provenance)
+      - [Publisher.publisherName](#publisherpublishername)
+      - [Relation.isPartOf](#relationispartof)
+      - [Repository](#repository)
+      - [Representative image](#representative-image)
+      - [Rights.countryCreation](#rightscountrycreation)
+      - [Rights.rightsHolderContact](#rightsrightsholdercontact)
+      - [Rights.statementLocal](#rightsstatementlocal)
+      - [Rubricator](#rubricator)
+      - [Subject geographic](#subject-geographic)
+      - [Subject name](#subject-name)
+      - [Subject temporal](#subject-temporal)
+      - [Subject topic](#subject-topic)
+      - [Summary](#summary)
+      - [Support](#support)
+      - [Text direction (for Festerize only)](#text-direction-for-festerize-only)
+      - [Table of Contents](#table-of-contents)
+      - [Tagline](#tagline)
+      - [Thumbnail](#thumbnail)
+      - [Translator](#translator)
+      - [Type.typeOfResource](#typetypeofresource)
+      - [viewingHint (for Festerize only)](#viewinghint-for-festerize-only)
+      - [Visibility](#visibility)
+<!-- TOC END -->
 
 ## Required Fields
 
-### File Name (required)
+#### File Name (required)
 
 A _full file path_ to the file, beginning with the NetApp volume in the form `[volume].in.library.ucla.edu`. Currently this must be single-valued. If a `Work` has multiple files associated with it, then each file should be given its own line with the object type `Page` and a `Parent ARK` value that refers to the parent `Work`.
 
@@ -105,8 +102,10 @@ Examples:
   <br> (Imported as `masters.in.library.ucla.edu/dlmasters/postcards/masters/21198-zz00090nn2-1-master.tif`)
 - `//othermount.in.library.ucla.edu/ABC/xyz/file_123.tif`
   <br> (Imported as `othermount.in.library.ucla.edu/ABC/xyz/file_123.tif`)
+- `Masters/othermasters/dl_toganoo/masters/ucla_1240878_v1/ucla_1240878_vol1_001.tif`
+  <br> (Imported as `masters.in.library.ucla.edu/othermasters/dl_toganoo/masters/ucla_1240878_v1/ucla_1240878_vol1_001.tif`)
 
-### Title (required)
+#### Title (required)
 
 A name to aid in identifying a work.
 
@@ -115,11 +114,10 @@ This field is a string. **This field is required**.
 Examples:
 
 - `[Fannie Lou Hamer, Mississippi Freedom Democratic Party delegate, at the Democratic National Convention, Atlantic City, New Jersey, August 1964] / [WKL].` (single value)
-<!-- - `[Fannie Lou Hamer, Mississippi Freedom Democratic Party delegate, at the Democratic National Convention, Atlantic City, New Jersey, August 1964] / [WKL].|~|Fannie Lou Hamer Portrait` (multivalued) -->
 
-If the title begins with 'DUPLICATE' (case sensitive), then no new record will be created. If a record already exists with the same ARK, then that record will be updated as usual. Such records can be found and manually deleted by searching for 'DUPLICATE'.
+If the title begins with 'DUPLICATE' (case sensitive), then no new record will be created. If a record already exists with the same ARK, then that record will be updated as usual. Such records can be found and manually deleted in the CSV by searching for 'DUPLICATE'.
 
-### Item ARK (required)
+#### Item ARK (required)
 
 A persistent unique identifier associated with a work. It takes the form `ark:/shoulder/blade` where `shoulder` is an institutional identifier, and `blade` is a work identifier. Every work and collection in Californica must have an ark value. The ark is not multivalued -- each work can only have one.
 
@@ -129,7 +127,7 @@ Examples:
 
 - `ark:/21198/zz002h2fpt` (single value)
 
-### Parent ARK (required)
+#### Parent ARK (required)
 
 The ARK value of the object's hierarchical parent. For a single-image `Work` object, this will be the ARK of a `Collection` object. For `Page` objects, this will be the ARK of the parent `Work` object.
 
@@ -139,7 +137,7 @@ Examples:
 
 - `ark:/21198/zz002h2fpt` (single value)
 
-### Object Type (required)
+#### Object Type (required)
 
 A controlled vocabulary term referring to the type of repository object that will be created for this CSV row. Current legal values are `Collection`, `Work`, and `Page`. Only one value can be given per CSV row.
 
@@ -152,7 +150,7 @@ Examples:
 - `Work` (single value)
 - `Page` (single value)
 
-### Rights.copyrightStatus (required)
+#### Rights.copyrightStatus (required)
 
 The copyright status of this work. The only currently allowed value is `copyrighted`.
 
@@ -164,220 +162,246 @@ Examples:
 
 ## Other Allowed Fields
 
-### AltIdentifier.local
+#### AltTitle.other
+
+Also accepts: `AltTitle.translated`, `AltTitle.descriptive`, `AltTitle.parallel`, `Alternate Title.descriptive`, `Alternate Title.inscribed`, `AltTitle.descriptive`, `Alternate Title.other`
+
+#### AltTitle.uniform
+
+A uniform title from a controlled vocabulary. Can be multivalued.
+
+#### Author
+
+The author of the work being described. Can be multivalued.
+
+#### Binding note
+
+Also accepts: `Description.binding`
+
+#### Calligrapher
+
+Also accepts `Name.calligrapher`
+
+#### Collation
+
+#### Colophon
+
+Also accepts: `Description.colophon`
+
+#### Commentator
+
+Also accepts: `Name.commentator`
+
+#### Condition note
+
+Also accepts: `Description.condition`
+
+#### Contents note
+
+#### Coverage.geographic
+
+#### Creator
+
+Also accepts: `Name.creator`
+
+#### Date.created
+
+A human-readable date that is displayed to the user.
+
+Also accepts: `Date.creation`
+
+#### Date.normalized
+
+A machine-readable date following the format `yyyy-mm-dd` for single dates, `yyyy-mm-dd/yyyy-mm-dd` for date ranges.
+
+#### Description.caption
+
+A transcription of a caption on a photograph or other type of item.
+
+#### Description.fundingNote
+
+#### Description.latitude
+
+#### Description.longitude
+
+#### Description.note
+
+A general description of the item begin described.
+
+#### Editor
+
+Also accepts: `Name.editor`
+
+#### Engraver
+
+Also accepts: `Name.engraver`
+
+#### Featured image (not in use)
+
+#### Finding Aid URL
+
+Also accepts: `Alt ID.url`
+
+#### Foliation
+
+Also accepts: `Foliation note`
+
+#### Format.dimensions
+
+#### Format.extent
+
+#### Format.medium
+
+#### Genre
+
+Also accepts: `Type.genre`
+
+#### IIIF Access URL (for Festerize only)
+
+The URL of a IIIF resource that can be used to view the image. This is populated by processing the CSV via [bucketeer](https://bucketeer.library.ucla.edu/upload/csv)
+
+#### IIIF Range (not in use)
+
+#### Illuminator
+
+Also accepts: `Name.illuminator`
+
+#### Illustrations note
+
+Also accepts: `Description.illustrations`
+
+#### Illustrator
+
+Also accepts: `Name.illustrator`
+
+#### Item Sequence (for Festerize only)
+
+#### Language
+
+#### License
+
+#### Local identifier
 
 A local identifier. Can be multivalued.
 
-Also accepts: `Alternate Identifier.local`, `AltIdentifier.callNo`, `Alt ID.local`, `Local identifier`
+Also accepts: `Alternate Identifier.local`, `AltIdentifier.callNo`, `Alt ID.local`, `AltIdentifier.local`
 
 Examples:
 
 - `uclamss_686_b6_f24_18` (single value)
 - `uclamss_686_b6_f24_18|~|uclamss_abc1234` (multivalued)
 
-### AltTitle.other
+#### Masthead
 
-Also accepts: `AltTitle.translated`, `AltTitle.descriptive`
+#### Name.architect
 
-### AltTitle.uniform
+#### Name.composer
 
-### Author
+#### Name.lyricist
 
-### Binding note
+#### Name.photographer
 
-Also accepts: `Description.binding`
+Also accepts: `Personal or Corporate Name.photographer`
 
-### Calligrapher
+#### Name.scribe
 
-Also accepts Name.calligrapher
+#### Note
 
-### Collation
-
-### Colophon
-
-Also accepts: `Description.colophon`
-
-### Commentator
-
-Also accepts: `Name.commentator`
-
-### Condition note
-
-Also accepts: `Description.condition`
-
-### Contents note
-
-Also accepts: Description.contents
-
-### Coverage.geographic
-
-### Date.creation
-
-### Date.normalized
-
-### Description.caption
-
-### Description.fundingNote
-
-### Description.latitude
-
-### Description.longitude
-
-### Description.note
-
-### Editor
-
-Also accepts Name.editor
-
-### Engraver
-
-Also accepts Name.engraver
-
-### Featured image
-
-### Finding Aid URL
-
-Also accepts: `Alt ID.url`
-
-### Foliation
-
-Also accepts: `Foliation note`
-
-### Format.dimensions
-
-### Format.extent
-
-### Format.medium
-
-### IIIF Access URL
-
-The URL of a IIIF resource that can be used to view the image. This is populated by processing the CSV via [bucketeer](https://bucketeer.library.ucla.edu/upload/csv)
-
-### IIIF Range
-
-### Illuminator
-
-Also accepts: `Name.illuminator`
-
-### Illustrations note
-
-Also accepts: `Description.illustrations`
-
-### Illustrator
-
-accepts ""Illustrator", "Name.illustrator"
-
-### Item Sequence
-
-### viewingHint
-
-### Language
-
-### License
-
-### Masthead
-
-### Name.architect
-
-### Name.composer
-
-### Name.creator
-
-### Name.lyricist
-
-### Name.photographer
-
-### Repository
-
-Also accepts: `Name.repository`
-
-Also accepts: `Name.repository`
-
-### Name.scribe
-
-### Opac url
+#### Opac url
 
 Also accepts: `Description.opac`
 
-### Page layout
+#### Page layout
 
-### Place of origin
+#### Place of origin
 
-### Printmaker
+Also accepts: `Publisher.placeOfOrigin`
+
+#### Printmaker
 
 Also accepts Name.printmaker
 
-### Project Name
+#### Project Name
 
-### Provenance
+#### Provenance
 
 Also accepts: `Description.history`
 
-### Publisher.publisherName
+#### Publisher.publisherName
 
-### Relation.isPartOf
+#### Relation.isPartOf
 
-### Representative image
+DLCS collection name
 
-### Rights.countryCreation
+#### Repository
 
-### Rights.rightsHolderContact
+Also accepts: `Name.repository`, `repository`, `Personal or Corporate Name.repository`
 
-### Rights.statementLocal
+#### Representative image
 
-### Rubricator
+The base URL of a IIIF image to be used for the collection page masthead.
+
+#### Rights.countryCreation
+
+#### Rights.rightsHolderContact
+
+Also accepts: `Rights.rightsHolderName`, `Personal or Corporate Name.copyrightHolder`
+
+#### Rights.statementLocal
+
+#### Rubricator
 
 Also accepts: `Name.rubricator`
 
-### Subject name
+#### Subject geographic
 
-Also accepts: `Personal or Corporate Name.subject`, `Subject.corporateName`, `Subject.personalName`, `Name.subject`
+Also accepts: `Subject place`
 
-### Subject topic
+#### Subject name
 
-Also accepts: `Subject.conceptTopic` ; `Subject.descriptiveTopic`
+Also accepts: `Name.subject`, `Personal or Corporate Name.subject`, `Subject.corporateName`, `Subject.personalName`
 
-### Subject geographic
+#### Subject temporal
 
-### Subject temporal
+#### Subject topic
 
-### Summary
+Also accepts: `Subject.conceptTopic`, `Subject.descriptiveTopic`
+
+#### Summary
 
 Also accepts: `Description.abstract`
 
-### Support
+#### Support
 
-### Text direction
+#### Text direction (for Festerize only)
 
-### Table of Contents
+#### Table of Contents
 
 Also accepts: `Description.tableOfContents`
 
-### Tagline
+#### Tagline
 
-### Thumbnail
+#### Thumbnail
 
 URL for an image to be used as the thumbnail. Must be the stem of a IIIF Image API resource of the form `{scheme}://{server}{/prefix}/{identifier}`, omitting all other Image API parameters. For example: `https://iiif.library.ucla.edu/iiif/2/ark%3A%2F21198%2Fz1k667gp`.
 
-For simple images the value will be identical to [`IIIF Access URL`](#iiif-access-url), however for other content types such as multi-image or audiovisual works the two values wil differ.
+For simple image objects, the thumbnail is pulled from the [`IIIF Access URL`](#iiif-access-url), however for other content types such as multi-image or audiovisual works, thumbnail values will need to be supplied since there is no IIIF Access URL.
 
-This is populated by processing the CSV via [bucketeer](https://bucketeer.library.ucla.edu/upload/csv)
+[`IIIF Access URL`](#iiif-access-url) is populated by processing the CSV via [bucketeer](https://bucketeer.library.ucla.edu/upload/csv)
 
-### Translator
+#### Translator
 
 Also accepts: `Name.translator`
 
-### Type.genre
+#### Type.typeOfResource
 
-Also accepts: `Genre`
+#### viewingHint (for Festerize only)
 
-### Type.typeOfResource
+#### Visibility
 
-### Visibility
+A single-value field that can be empty, or if a value is present, must use one of the allowed values.
 
-A single-value field that must contain one of the allowed values.
-
-This field is not required. If the value is left blank, it will default to `public` visibility. If you omit the column, this will trigger a more complicated procedure to determine the visibility of DLCS imports (see below).
+If the value is left blank, it will default to `public` visibility. If you omit the column, this will trigger a more complicated procedure to determine the visibility of DLCS imports (see below).
 
 Examples:
 
