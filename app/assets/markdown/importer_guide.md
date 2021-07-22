@@ -6,19 +6,16 @@
       - [Parent ARK (required)](#parent-ark-required)
       - [Object Type (required)](#object-type-required)
       - [Rights.copyrightStatus (required)](#rightscopyrightstatus-required)
-  - [Other Allowed Fields](#other-allowed-fields)
+  - [Other Supported Fields](#other-supported-fields)
       - [AltTitle.other](#alttitleother)
       - [AltTitle.uniform](#alttitleuniform)
       - [Author](#author)
       - [Binding note](#binding-note)
-      - [Calligrapher](#calligrapher)
       - [Collation](#collation)
       - [Colophon](#colophon)
-      - [Commentator](#commentator)
       - [Condition note](#condition-note)
       - [Contents note](#contents-note)
       - [Coverage.geographic](#coveragegeographic)
-      - [Creator](#creator)
       - [Date.created](#datecreated)
       - [Date.normalized](#datenormalized)
       - [Description.caption](#descriptioncaption)
@@ -26,8 +23,6 @@
       - [Description.latitude](#descriptionlatitude)
       - [Description.longitude](#descriptionlongitude)
       - [Description.note](#descriptionnote)
-      - [Editor](#editor)
-      - [Engraver](#engraver)
       - [Featured image (not in use)](#featured-image-not-in-use)
       - [Finding Aid URL](#finding-aid-url)
       - [Foliation](#foliation)
@@ -37,24 +32,31 @@
       - [Genre](#genre)
       - [IIIF Access URL (for Festerize only)](#iiif-access-url-for-festerize-only)
       - [IIIF Range (not in use)](#iiif-range-not-in-use)
-      - [Illuminator](#illuminator)
       - [Illustrations note](#illustrations-note)
-      - [Illustrator](#illustrator)
       - [Item Sequence (for Festerize only)](#item-sequence-for-festerize-only)
       - [Language](#language)
       - [License](#license)
       - [Local identifier](#local-identifier)
       - [Masthead](#masthead)
       - [Name.architect](#namearchitect)
+      - [Name.calligrapher](#namecalligrapher)
+      - [Name.commentator](#namecommentator)
       - [Name.composer](#namecomposer)
+      - [Name.creator](#namecreator)
+      - [Name.editor](#nameeditor)
+      - [Name.engraver](#nameengraver)
+      - [Name.illuminator](#nameilluminator)
+      - [Name.illustrator](#nameillustrator)
       - [Name.lyricist](#namelyricist)
       - [Name.photographer](#namephotographer)
+      - [Name.printmaker](#nameprintmaker)
+      - [Name.rubricator](#namerubricator)
       - [Name.scribe](#namescribe)
+      - [Name.translator](#nametranslator)
       - [Note](#note)
       - [Opac url](#opac-url)
       - [Page layout](#page-layout)
       - [Place of origin](#place-of-origin)
-      - [Printmaker](#printmaker)
       - [Project Name](#project-name)
       - [Provenance](#provenance)
       - [Publisher.publisherName](#publisherpublishername)
@@ -64,7 +66,6 @@
       - [Rights.countryCreation](#rightscountrycreation)
       - [Rights.rightsHolderContact](#rightsrightsholdercontact)
       - [Rights.statementLocal](#rightsstatementlocal)
-      - [Rubricator](#rubricator)
       - [Subject geographic](#subject-geographic)
       - [Subject name](#subject-name)
       - [Subject temporal](#subject-temporal)
@@ -75,7 +76,6 @@
       - [Table of Contents](#table-of-contents)
       - [Tagline](#tagline)
       - [Thumbnail](#thumbnail)
-      - [Translator](#translator)
       - [Type.typeOfResource](#typetypeofresource)
       - [viewingHint (for Festerize only)](#viewinghint-for-festerize-only)
       - [Visibility](#visibility)
@@ -154,13 +154,13 @@ Examples:
 
 The copyright status of this work. The only currently allowed value is `copyrighted`.
 
-This field is a string. **This field is required**.
+This field is a string. **This field is required to be present in the CSV, but a value is not required**.
 
 Examples:
 
 - `copyrighted` (single value)
 
-## Other Allowed Fields
+## Other Supported Fields
 
 #### AltTitle.other
 
@@ -178,19 +178,11 @@ The author of the work being described. Can be multivalued.
 
 Also accepts: `Description.binding`
 
-#### Calligrapher
-
-Also accepts `Name.calligrapher`
-
 #### Collation
 
 #### Colophon
 
 Also accepts: `Description.colophon`
-
-#### Commentator
-
-Also accepts: `Name.commentator`
 
 #### Condition note
 
@@ -199,10 +191,6 @@ Also accepts: `Description.condition`
 #### Contents note
 
 #### Coverage.geographic
-
-#### Creator
-
-Also accepts: `Name.creator`
 
 #### Date.created
 
@@ -227,14 +215,6 @@ A transcription of a caption on a photograph or other type of item.
 #### Description.note
 
 A general description of the item begin described.
-
-#### Editor
-
-Also accepts: `Name.editor`
-
-#### Engraver
-
-Also accepts: `Name.engraver`
 
 #### Featured image (not in use)
 
@@ -262,17 +242,9 @@ The URL of a IIIF resource that can be used to view the image. This is populated
 
 #### IIIF Range (not in use)
 
-#### Illuminator
-
-Also accepts: `Name.illuminator`
-
 #### Illustrations note
 
 Also accepts: `Description.illustrations`
-
-#### Illustrator
-
-Also accepts: `Name.illustrator`
 
 #### Item Sequence (for Festerize only)
 
@@ -295,7 +267,35 @@ Examples:
 
 #### Name.architect
 
+#### Name.calligrapher
+
+Also accepts `Calligrapher`
+
+#### Name.commentator
+
+Also accepts: `Commentator`
+
 #### Name.composer
+
+#### Name.creator
+
+Also accepts: `Creator`
+
+#### Name.editor
+
+Also accepts: `Editor`
+
+#### Name.engraver
+
+Also accepts: `Engraver`
+
+#### Name.illuminator
+
+Also accepts: `Illuminator`
+
+#### Name.illustrator
+
+Also accepts: `Illustrator`
 
 #### Name.lyricist
 
@@ -303,7 +303,19 @@ Examples:
 
 Also accepts: `Personal or Corporate Name.photographer`
 
+#### Name.printmaker
+
+Also accepts: `Printmaker`
+
+#### Name.rubricator
+
+Also accepts: `Rubricator`
+
 #### Name.scribe
+
+#### Name.translator
+
+Also accepts: `Translator`
 
 #### Note
 
@@ -316,10 +328,6 @@ Also accepts: `Description.opac`
 #### Place of origin
 
 Also accepts: `Publisher.placeOfOrigin`
-
-#### Printmaker
-
-Also accepts Name.printmaker
 
 #### Project Name
 
@@ -348,10 +356,6 @@ The base URL of a IIIF image to be used for the collection page masthead.
 Also accepts: `Rights.rightsHolderName`, `Personal or Corporate Name.copyrightHolder`
 
 #### Rights.statementLocal
-
-#### Rubricator
-
-Also accepts: `Name.rubricator`
 
 #### Subject geographic
 
@@ -388,10 +392,6 @@ URL for an image to be used as the thumbnail. Must be the stem of a IIIF Image A
 For simple image objects, the thumbnail is pulled from the [`IIIF Access URL`](#iiif-access-url), however for other content types such as multi-image or audiovisual works, thumbnail values will need to be supplied since there is no IIIF Access URL.
 
 [`IIIF Access URL`](#iiif-access-url) is populated by processing the CSV via [bucketeer](https://bucketeer.library.ucla.edu/upload/csv)
-
-#### Translator
-
-Also accepts: `Name.translator`
 
 #### Type.typeOfResource
 
