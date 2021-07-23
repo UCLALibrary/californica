@@ -85,31 +85,30 @@
 
 #### File Name (required)
 
-A _full file path_ to the file, beginning with the NetApp volume in the form `[volume].in.library.ucla.edu`. Currently this must be single-valued. If a `Work` has multiple files associated with it, then each file should be given its own line with the object type `Page` and a `Parent ARK` value that refers to the parent `Work`.
+A _full file path_ to the file on NetApp, beginning with the NetApp volume in the form `Masters/...`. This must be single-valued. If a `Work` has multiple files associated with it, then each file should be given its own line with the object type `Page` and a `Parent ARK` value that refers to the parent `Work`.
 
-If the File Name does not start with `[volume].in.library.ucla.edu`, it is assumed to refer to `masters.in.library.ucla.edu`. If the first directory is explicitly `Masters/`, then it is interpreted as the volume root. Otherwise, it will be prepended with `masters.in.library.ucla.edu/dlmasters/`, in order to match the content of DLCS exports.
+`Masters/...` is an alias referring to `masters.in.library.ucla.edu/...`, the volume root. Objects exported from DLCS will likely have a file path that begins with the project folder (ex. `postcards/`); In these cases, as long as these project folders are in `Masters/dlmasters/...` the full path is prepended on ingest. All other file paths must begin with `Masters/...`.
 
 For all formats, any number of leading `/` characters will be ignored.
 
-This field is a string. **This field is required**.
+This field is a string. **This field is required** although the values will likely be blank for complex works where the file paths are included only in the `Page` rows.
 
 Examples:
 
-- `masters.in.library.ucla.edu/dlmasters/postcards/masters/21198-zz00090nrm-1-master.tif`
-- `Masters/dlmasters/postcards/masters/21198-zz00090ntn-1-master.tif`
+- `Masters/dlmasters/postcards/masters/21198-zz00090nrm-1-master.tif`
   <br> (Imported as `masters.in.library.ucla.edu/dlmasters/postcards/masters/21198-zz00090ntn-1-master.tif`)
 - `postcards/masters/21198-zz00090nn2-1-master.tif`
   <br> (Imported as `masters.in.library.ucla.edu/dlmasters/postcards/masters/21198-zz00090nn2-1-master.tif`)
-- `//othermount.in.library.ucla.edu/ABC/xyz/file_123.tif`
-  <br> (Imported as `othermount.in.library.ucla.edu/ABC/xyz/file_123.tif`)
 - `Masters/othermasters/dl_toganoo/masters/ucla_1240878_v1/ucla_1240878_vol1_001.tif`
   <br> (Imported as `masters.in.library.ucla.edu/othermasters/dl_toganoo/masters/ucla_1240878_v1/ucla_1240878_vol1_001.tif`)
+- `//othermount.in.library.ucla.edu/ABC/xyz/file_123.tif`
+  <br> (Imported as `othermount.in.library.ucla.edu/ABC/xyz/file_123.tif`)
 
 #### Title (required)
 
 A name to aid in identifying a work.
 
-This field is a string. **This field is required**.
+This field is a string. **This field is required**. This field is single-valued.
 
 Examples:
 
@@ -131,7 +130,7 @@ Examples:
 
 The ARK value of the object's hierarchical parent. For a single-image `Work` object, this will be the ARK of a `Collection` object. For `Page` objects, this will be the ARK of the parent `Work` object.
 
-This field is a string. **This field is required for Work objects**.
+This field is a string. **This field is required for Work and Page objects**. This field can be multi-valued when a work belongs to more than one collection.
 
 Examples:
 
