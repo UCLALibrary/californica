@@ -259,6 +259,8 @@ Required for Page rows of complex objects to generate manifests using Festerize.
 
 #### Language
 
+Language of the resource. Must be the 3-letter ISO 639-2 code. Can be multivalued.
+
 #### License
 
 #### Local identifier
@@ -273,6 +275,8 @@ Examples:
 - `uclamss_686_b6_f24_18|~|uclamss_abc1234` (multivalued)
 
 #### Masthead
+
+The IIIF parameters following a IIIF image base URL. Used for the masthead image on a collections page. See `Representative image` below.
 
 #### Name.architect
 
@@ -340,6 +344,8 @@ Also accepts: `Publisher.placeOfOrigin`
 
 #### Project Name
 
+This field is exported from DLCS and is the DLCS project name.
+
 #### Provenance
 
 Also accepts: `Description.history`
@@ -356,7 +362,7 @@ Also accepts: `Name.repository`, `repository`, `Personal or Corporate Name.repos
 
 #### Representative image
 
-The base URL of a IIIF image to be used for the collection page masthead.
+The base URL of a IIIF image to be used for the collection page masthead. See `Masthead` above.
 
 #### Rights.countryCreation
 
@@ -382,11 +388,17 @@ Also accepts: `Subject.conceptTopic`, `Subject.descriptiveTopic`
 
 #### Summary
 
+The Summary field can be used for Collections and Works. This field is the primary "about" field displayed on Collection pages.
+
 Also accepts: `Description.abstract`
 
 #### Support
 
+The material or substrate on which content is written.
+
 #### Text direction (for Festerize only)
+
+Used to set the text reading direction in the IIIF manifest for display in viewer. Values include: `left-to-right` (default), `right-to-left`, `top-to-bottom`, `bottom-to-top`.
 
 #### Table of Contents
 
@@ -404,7 +416,11 @@ For simple image objects, the thumbnail is pulled from the [`IIIF Access URL`](#
 
 #### Type.typeOfResource
 
+Controlled term list. Can be multivalued.
+
 #### viewingHint (for Festerize only)
+
+Used to set the viewing behavior of an object in the IIIF manifest for display in viewers. Values include: `paged`, `individuals`, `continuous`.
 
 #### Visibility
 
