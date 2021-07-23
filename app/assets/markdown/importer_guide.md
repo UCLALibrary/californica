@@ -30,10 +30,10 @@
       - [Format.extent](#formatextent)
       - [Format.medium](#formatmedium)
       - [Genre](#genre)
-      - [IIIF Access URL (for Festerize only)](#iiif-access-url-for-festerize-only)
-      - [IIIF Range (not in use)](#iiif-range-not-in-use)
+      - [IIIF Access URL](#iiif-access-url)
+      - [IIIF Range (for future use in Festerize to generate Ranges)](#iiif-range-for-future-use-in-festerize-to-generate-ranges)
       - [Illustrations note](#illustrations-note)
-      - [Item Sequence (for Festerize only)](#item-sequence-for-festerize-only)
+      - [Item Sequence](#item-sequence)
       - [Language](#language)
       - [License](#license)
       - [Local identifier](#local-identifier)
@@ -140,7 +140,7 @@ Examples:
 
 A controlled vocabulary term referring to the type of repository object that will be created for this CSV row. Current legal values are `Collection`, `Work`, and `Page`. Only one value can be given per CSV row.
 
-Currently, `Manuscript` is also accepted as a synonym of `Work`, and `ChildWork` as accepted as a synonym of `Page`, but this functionality may be removed at some point in the future.
+Currently, `Manuscript` is also accepted as a synonym of `Work`, and `ChildWork` as accepted as a synonym of `Page`, but these terms do not work with Festerize and may be removed at some point in the future.
 
 This field is a string. **This field is required**.
 
@@ -163,6 +163,8 @@ Examples:
 
 #### AltTitle.other
 
+A translated, alternative, or other title that is not the primary or uniform title.
+
 Also accepts: `AltTitle.translated`, `AltTitle.descriptive`, `AltTitle.parallel`, `Alternate Title.descriptive`, `Alternate Title.inscribed`, `AltTitle.descriptive`, `Alternate Title.other`
 
 #### AltTitle.uniform
@@ -181,6 +183,8 @@ Also accepts: `Description.binding`
 
 #### Colophon
 
+A transcription or translation of a colophon, or a not on the location of a book or manuscript's colophon.
+
 Also accepts: `Description.colophon`
 
 #### Condition note
@@ -190,6 +194,8 @@ Also accepts: `Description.condition`
 #### Contents note
 
 #### Coverage.geographic
+
+A place that represents the geographic coverage of an item, such as circulation of a newspaper. For place as a subject, see `Subject.geographic`.
 
 #### Date.created
 
@@ -213,7 +219,7 @@ A transcription of a caption on a photograph or other type of item.
 
 #### Description.note
 
-A general description of the item begin described.
+A general description of the item begin described. This field is displayed on the search results page.
 
 #### Featured image (not in use)
 
@@ -235,17 +241,21 @@ Also accepts: `Foliation note`
 
 Also accepts: `Type.genre`
 
-#### IIIF Access URL (for Festerize only)
+#### IIIF Access URL
 
-The URL of a IIIF resource that can be used to view the image. This is populated by processing the CSV via [bucketeer](https://bucketeer.library.ucla.edu/upload/csv)
+The URL of a IIIF resource that can be used to view the image. This is populated by processing the CSV via [bucketeer](https://bucketeer.library.ucla.edu/upload/csv). This URL is used to generate thumbnails for simple objects.
 
-#### IIIF Range (not in use)
+_Note: Complex objects generally do not have IIIF Access URLs in the Work rows, so require the `Thumbnail URL` field to generate thumbnails._
+
+#### IIIF Range (for future use in Festerize to generate Ranges)
 
 #### Illustrations note
 
 Also accepts: `Description.illustrations`
 
-#### Item Sequence (for Festerize only)
+#### Item Sequence
+
+Required for Page rows of complex objects to generate manifests using Festerize. Work rows should not have Item Sequence values.
 
 #### Language
 
