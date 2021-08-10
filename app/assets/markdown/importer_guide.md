@@ -1,89 +1,94 @@
+# <a href="#required-fields">Required Fields</a>
 <!-- TOC START min:1 max:4 link:true asterisk:false update:true -->
-  - [Required Fields](#required-fields)
-      - [File Name (required)](#file-name-required)
-      - [Title (required)](#title-required)
-      - [Item ARK (required)](#item-ark-required)
-      - [Parent ARK (required)](#parent-ark-required)
-      - [Object Type (required)](#object-type-required)
-      - [Rights.copyrightStatus (required)](#rightscopyrightstatus-required)
-  - [Other Supported Fields](#other-supported-fields)
-      - [AltTitle.other](#alttitleother)
-      - [AltTitle.uniform](#alttitleuniform)
-      - [Author](#author)
-      - [Binding note](#binding-note)
-      - [Collation](#collation)
-      - [Colophon](#colophon)
-      - [Condition note](#condition-note)
-      - [Contents note](#contents-note)
-      - [Coverage.geographic](#coveragegeographic)
-      - [Date.created](#datecreated)
-      - [Date.normalized](#datenormalized)
-      - [Description.caption](#descriptioncaption)
-      - [Description.fundingNote](#descriptionfundingnote)
-      - [Description.latitude](#descriptionlatitude)
-      - [Description.longitude](#descriptionlongitude)
-      - [Description.note](#descriptionnote)
-      - [Featured image (not in use)](#featured-image-not-in-use)
-      - [Finding Aid URL](#finding-aid-url)
-      - [Foliation](#foliation)
-      - [Format.dimensions](#formatdimensions)
-      - [Format.extent](#formatextent)
-      - [Format.medium](#formatmedium)
-      - [Genre](#genre)
-      - [IIIF Access URL](#iiif-access-url)
-      - [IIIF Range (for future use in Festerize to generate Ranges)](#iiif-range-for-future-use-in-festerize-to-generate-ranges)
-      - [Illustrations note](#illustrations-note)
-      - [Item Sequence](#item-sequence)
-      - [Language](#language)
-      - [License](#license)
-      - [Local identifier](#local-identifier)
-      - [Masthead](#masthead)
-      - [Name.architect](#namearchitect)
-      - [Name.calligrapher](#namecalligrapher)
-      - [Name.commentator](#namecommentator)
-      - [Name.composer](#namecomposer)
-      - [Name.creator](#namecreator)
-      - [Name.editor](#nameeditor)
-      - [Name.engraver](#nameengraver)
-      - [Name.illuminator](#nameilluminator)
-      - [Name.illustrator](#nameillustrator)
-      - [Name.lyricist](#namelyricist)
-      - [Name.photographer](#namephotographer)
-      - [Name.printmaker](#nameprintmaker)
-      - [Name.rubricator](#namerubricator)
-      - [Name.scribe](#namescribe)
-      - [Name.translator](#nametranslator)
-      - [Note](#note)
-      - [Opac url](#opac-url)
-      - [Page layout](#page-layout)
-      - [Place of origin](#place-of-origin)
-      - [Project Name](#project-name)
-      - [Provenance](#provenance)
-      - [Publisher.publisherName](#publisherpublishername)
-      - [Relation.isPartOf](#relationispartof)
-      - [Repository](#repository)
-      - [Representative image](#representative-image)
-      - [Rights.countryCreation](#rightscountrycreation)
-      - [Rights.rightsHolderContact](#rightsrightsholdercontact)
-      - [Rights.statementLocal](#rightsstatementlocal)
-      - [Subject geographic](#subject-geographic)
-      - [Subject name](#subject-name)
-      - [Subject temporal](#subject-temporal)
-      - [Subject topic](#subject-topic)
-      - [Summary](#summary)
-      - [Support](#support)
-      - [Text direction (for Festerize only)](#text-direction-for-festerize-only)
-      - [Table of Contents](#table-of-contents)
-      - [Tagline](#tagline)
-      - [Thumbnail](#thumbnail)
-      - [Type.typeOfResource](#typetypeofresource)
-      - [viewingHint (for Festerize only)](#viewinghint-for-festerize-only)
-      - [Visibility](#visibility)
+
+- [Required Fields](#required-fields)
+    - [File Name (required)](#file-name-required)
+    - [Title (required)](#title-required)
+    - [Item ARK (required)](#item-ark-required)
+    - [Parent ARK (required)](#parent-ark-required)
+    - [Object Type (required)](#object-type-required)
+    - [Rights.copyrightStatus (required)](#rightscopyrightstatus-required)
+
+# <a href="#other-allowed-fields">Other Supported Fields</a>
+
+- [Other Supported Fields](#other-supported-fields)
+    - [AltTitle.other](#alttitleother)
+    - [AltTitle.uniform](#alttitleuniform)
+    - [Author](#author)
+    - [Binding note](#binding-note)
+    - [Collation](#collation)
+    - [Colophon](#colophon)
+    - [Condition note](#condition-note)
+    - [Contents note](#contents-note)
+    - [Coverage.geographic](#coveragegeographic)
+    - [Date.created](#datecreated)
+    - [Date.normalized](#datenormalized)
+    - [Description.caption](#descriptioncaption)
+    - [Description.fundingNote](#descriptionfundingnote)
+    - [Description.latitude](#descriptionlatitude)
+    - [Description.longitude](#descriptionlongitude)
+    - [Description.note](#descriptionnote)
+    - [Featured image (not in use)](#featured-image-not-in-use)
+    - [Finding Aid URL](#finding-aid-url)
+    - [Foliation](#foliation)
+    - [Format.dimensions](#formatdimensions)
+    - [Format.extent](#formatextent)
+    - [Format.medium](#formatmedium)
+    - [Genre](#genre)
+    - [IIIF Access URL](#iiif-access-url)
+    - [IIIF Range (for future use in Festerize to generate Ranges)](#iiif-range-for-future-use-in-festerize-to-generate-ranges)
+    - [Illustrations note](#illustrations-note)
+    - [Item Sequence](#item-sequence)
+    - [Language](#language)
+    - [License](#license)
+    - [Local identifier](#local-identifier)
+    - [Masthead](#masthead)
+    - [Name.architect](#namearchitect)
+    - [Name.calligrapher](#namecalligrapher)
+    - [Name.commentator](#namecommentator)
+    - [Name.composer](#namecomposer)
+    - [Name.creator](#namecreator)
+    - [Name.editor](#nameeditor)
+    - [Name.engraver](#nameengraver)
+    - [Name.illuminator](#nameilluminator)
+    - [Name.illustrator](#nameillustrator)
+    - [Name.lyricist](#namelyricist)
+    - [Name.photographer](#namephotographer)
+    - [Name.printmaker](#nameprintmaker)
+    - [Name.rubricator](#namerubricator)
+    - [Name.scribe](#namescribe)
+    - [Name.translator](#nametranslator)
+    - [Note](#note)
+    - [Opac url](#opac-url)
+    - [Page layout](#page-layout)
+    - [Place of origin](#place-of-origin)
+    - [Project Name](#project-name)
+    - [Provenance](#provenance)
+    - [Publisher.publisherName](#publisherpublishername)
+    - [Relation.isPartOf](#relationispartof)
+    - [Repository](#repository)
+    - [Representative image](#representative-image)
+    - [Rights.countryCreation](#rightscountrycreation)
+    - [Rights.rightsHolderContact](#rightsrightsholdercontact)
+    - [Rights.statementLocal](#rightsstatementlocal)
+    - [Subject geographic](#subject-geographic)
+    - [Subject name](#subject-name)
+    - [Subject temporal](#subject-temporal)
+    - [Subject topic](#subject-topic)
+    - [Summary](#summary)
+    - [Support](#support)
+    - [Text direction (for Festerize only)](#text-direction-for-festerize-only)
+    - [Table of Contents](#table-of-contents)
+    - [Tagline](#tagline)
+    - [Thumbnail](#thumbnail)
+    - [Type.typeOfResource](#typetypeofresource)
+    - [viewingHint (for Festerize only)](#viewinghint-for-festerize-only)
+    - [Visibility](#visibility)
 <!-- TOC END -->
 
 ## Required Fields
 
-#### File Name (required)
+### File Name (required)
 
 A _full file path_ to the file on NetApp, beginning with the NetApp volume in the form `Masters/...`. This must be single-valued. If a `Work` has multiple files associated with it, then each file should be given its own line with the object type `Page` and a `Parent ARK` value that refers to the parent `Work`.
 
@@ -104,7 +109,7 @@ Examples:
 - `//othermount.in.library.ucla.edu/ABC/xyz/file_123.tif`
   <br> (Imported as `othermount.in.library.ucla.edu/ABC/xyz/file_123.tif`)
 
-#### Title (required)
+### Title (required)
 
 A name to aid in identifying a work.
 
@@ -116,7 +121,7 @@ Examples:
 
 If the title begins with 'DUPLICATE' (case sensitive), then no new record will be created. If a record already exists with the same ARK, then that record will be updated as usual. Such records can be found and manually deleted in the CSV by searching for 'DUPLICATE'.
 
-#### Item ARK (required)
+### Item ARK (required)
 
 A persistent unique identifier associated with a work. It takes the form `ark:/shoulder/blade` where `shoulder` is an institutional identifier, and `blade` is a work identifier. Every work and collection in Californica must have an ark value. The ark is not multivalued -- each work can only have one.
 
@@ -126,7 +131,7 @@ Examples:
 
 - `ark:/21198/zz002h2fpt` (single value)
 
-#### Parent ARK (required)
+### Parent ARK (required)
 
 The ARK value of the object's hierarchical parent. For a single-image `Work` object, this will be the ARK of a `Collection` object. For `Page` objects, this will be the ARK of the parent `Work` object.
 
@@ -136,7 +141,7 @@ Examples:
 
 - `ark:/21198/zz002h2fpt` (single value)
 
-#### Object Type (required)
+### Object Type (required)
 
 A controlled vocabulary term referring to the type of repository object that will be created for this CSV row. Current legal values are `Collection`, `Work`, and `Page`. Only one value can be given per CSV row.
 
@@ -149,7 +154,7 @@ Examples:
 - `Work` (single value)
 - `Page` (single value)
 
-#### Rights.copyrightStatus (required)
+### Rights.copyrightStatus (required)
 
 The copyright status of this work. The only currently allowed value is `copyrighted`.
 
