@@ -19,6 +19,7 @@
     - [Collation](#collation)
     - [Colophon](#colophon)
     - [Condition note](#condition-note)
+    - [Content disclaimer](#contentdisclaimer)
     - [Contents note](#contents-note)
     - [Coverage.geographic](#coveragegeographic)
     - [Date.created](#datecreated)
@@ -44,17 +45,24 @@
     - [Local identifier](#local-identifier)
     - [Masthead](#masthead)
     - [Name.architect](#namearchitect)
+    - [Name.artist](#nameartist)
     - [Name.calligrapher](#namecalligrapher)
+    - [Name.cartographer](#namecartographer)
     - [Name.commentator](#namecommentator)
     - [Name.composer](#namecomposer)
     - [Name.creator](#namecreator)
+    - [Name.director](#namedirector)
     - [Name.editor](#nameeditor)
     - [Name.engraver](#nameengraver)
     - [Name.illuminator](#nameilluminator)
     - [Name.illustrator](#nameillustrator)
+    - [Name.interviewee](#nameinterviewee) 
+    - [Name.interviewer](#nameinterviewer) 
     - [Name.lyricist](#namelyricist)
     - [Name.photographer](#namephotographer)
     - [Name.printmaker](#nameprintmaker)
+    - [Name.producer](#nameproducer)
+    - [Name.recipient](#namerecipient)
     - [Name.rubricator](#namerubricator)
     - [Name.scribe](#namescribe)
     - [Name.translator](#nametranslator)
@@ -164,6 +172,7 @@ Examples:
 
 - `copyrighted` (single value)
 
+<!----------------------------->
 ## Other Supported Fields
 
 #### AltTitle.other
@@ -195,6 +204,8 @@ Also accepts: `Description.colophon`
 #### Condition note
 
 Also accepts: `Description.condition`
+
+#### Content disclaimer
 
 #### Contents note
 
@@ -285,9 +296,17 @@ The IIIF parameters following a IIIF image base URL. Used for the masthead image
 
 #### Name.architect
 
+#### Name.artist
+
+Also accepts: `Artist
+
 #### Name.calligrapher
 
 Also accepts `Calligrapher`
+
+#### Name.cartographer
+
+Also accepts: `Cartographer`
 
 #### Name.commentator
 
@@ -298,6 +317,10 @@ Also accepts: `Commentator`
 #### Name.creator
 
 Also accepts: `Creator`
+
+#### Name.director 
+
+Also accepts: `Director`
 
 #### Name.editor
 
@@ -315,6 +338,14 @@ Also accepts: `Illuminator`
 
 Also accepts: `Illustrator`
 
+#### Name.Interviewee
+
+Also accepts: `Interviewee`
+
+#### Name.Interviewer
+
+Also accepts: `Interviewee`
+
 #### Name.lyricist
 
 #### Name.photographer
@@ -324,6 +355,14 @@ Also accepts: `Personal or Corporate Name.photographer`
 #### Name.printmaker
 
 Also accepts: `Printmaker`
+
+#### Name.producer
+
+Also accepts: `Producer`
+
+#### Name.recipient
+
+Also accepts: `Recipient`
 
 #### Name.rubricator
 
