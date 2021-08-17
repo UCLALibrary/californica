@@ -97,8 +97,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     scribe: "Name.scribe",
     services_contact: "Rights.servicesContact",
     subject: "Subject",
-    subject_geographic: ["Subject geographic",
-      "Subject place"],
+    subject_geographic: ["Subject geographic", "Subject place"],
     subject_temporal: "Subject temporal",
     subject_topic: ["Subject topic", "Subject.conceptTopic", "Subject.descriptiveTopic"],
     summary: ["Summary", "Description.abstract"], # Removed Description.contents - Map this CSV colum name to "Contents note" https://jira.library.ucla.edu/browse/CAL-781

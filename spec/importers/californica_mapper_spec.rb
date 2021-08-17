@@ -130,13 +130,13 @@ RSpec.describe CalifornicaMapper do
       "Interviewee" => "Interviewer-1", # interviewer
       "Name.interviewee" => "Interviewer-2", # interviewer
       "Cartographer" => "Cartographer-1", # cartographer
-      "Name.cartographer" => "Cartographer-2", # cartographer 
+      "Name.cartographer" => "Cartographer-2", # cartographer
       "Artist" => "Artist-1", # artist
-      "Name.artist" => "Artist-2", # artist 
-      "Recipient" => "Recipient-1", # recipient 
-      "Name.recipient" => "Recipient-2", # recipient 
-      "Director" => "Director-1", # director 
-      "Name.director" => "Director-2", # director 
+      "Name.artist" => "Artist-2", # artist
+      "Recipient" => "Recipient-1", # recipient
+      "Name.recipient" => "Recipient-2", # recipient
+      "Director" => "Director-1", # director
+      "Name.director" => "Director-2", # director
       "Producer" => "Producer-1", # producer
       "Name.producer" => "Producer-2", # producer
     }
