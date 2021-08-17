@@ -124,7 +124,7 @@ RSpec.describe CalifornicaMapper do
       "Contents note" => "contents_note-1", # contents_note
       "Description.contents" => "Description-contents", # contents_note
       "Thumbnail" => "https://fake.url/iiif/ark%3A%2F21198%2Fzz0002nq4w", # thumbnail_link
-      "Content disclaimer" => "Disclaimer: We are not responsible for anything", # content_disclaimer
+      "Content disclaimer" => "Disclaimer: Warning", # content_disclaimer
       "Interviewer" => "Interviewee-1", # interviewee
       "Name.interviewer" => "Interviewee-2", # interviewee
       "Interviewee" => "Interviewer-1", # interviewer
