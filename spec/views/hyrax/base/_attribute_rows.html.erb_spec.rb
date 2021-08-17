@@ -11,55 +11,64 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   let(:presenter)     { Hyrax::WorkPresenter.new(solr_document, ability) }
   let(:solr_document) { SolrDocument.new(work.to_solr) }
   let(:work)          do
-    Work.new(ark: 'ark:/abcde/1234567',
-             author: ['author'],
-             binding_note: 'binding_note',
-             calligrapher: ['calligrapher'],
-             caption: ['caption'],
-             colophon: ['Old Colophon'],
-             commentator: ['Old Commentator'],
-             condition_note: 'condition_note',
-             contents_note: ['Old Contents note'],
-             creator: ['Old name creator'],
-             description: ['description'],
-             dimensions: ['dimensions'],
-             editor: ['editor'],
-             engraver: ['engraver'],
-             extent: ['extent'],
-             finding_aid_url: ['Old Finding aid url'],
-             funding_note: ['funding_note'],
-             genre: ['genre'],
-             iiif_text_direction: 'iiif_text_direction',
-             iiif_viewing_hint: 'iiif_viewing_hint',
-             illustrator: ['illustrator'],
-             latitude: ['latitude'],
-             license: ['Creative Commons CC0 1.0 Universal'],
-             location: ['location'],
-             local_identifier: ['local'],
-             longitude: ['longitude'],
-             medium: ['medium'],
-             named_subject: ['named_subject'],
-             normalized_date: ['normalized_date'],
-             note: ['note'],
-             opac_url: 'opac_url',
-             page_layout: ['page_layout'],
-             place_of_origin: ['place_of_origin'],
-             printmaker: ['Old printmaker'],
-             repository: ['repostiory'],
-             resource_type: ['resource_type'],
-             rights_country: ['rights_country'],
-             rights_holder: ['rights_holder'],
-             rubricator: ['Old rubricator'],
-             subject_geographic: ['Old Subject geographic'],
-             subject_temporal: ['Old Subject temporal'],
-             subject_topic: ['subject_topic'],
-             summary: ['summary'],
-             support: ['support'],
-             thumbnail_link: 'https://fake.url/iiif/ark%3A%2Fabcde%2F1234567',
-             title: ['title'],
-             translator: ['Old Translator'],
-             uniform_title: ['Old Uniform title'])
-    # local_rights_statement: ['local_statement'])
+    Work.new(
+                ark: 'ark:/abcde/1234567',
+                author: ['author'],
+                binding_note: 'binding_note',
+                calligrapher: ['calligrapher'],
+                caption: ['caption'],
+                colophon: ['Old Colophon'],
+                commentator: ['Old Commentator'],
+                condition_note: 'condition_note',
+                contents_note: ['Old Contents note'],
+                creator: ['Old name creator'],
+                description: ['description'],
+                dimensions: ['dimensions'],
+                editor: ['editor'],
+                engraver: ['engraver'],
+                extent: ['extent'],
+                finding_aid_url: ['Old Finding aid url'],
+                funding_note: ['funding_note'],
+                genre: ['genre'],
+                iiif_text_direction: 'iiif_text_direction',
+                iiif_viewing_hint: 'iiif_viewing_hint',
+                illustrator: ['illustrator'],
+                latitude: ['latitude'],
+                license: ['Creative Commons CC0 1.0 Universal'],
+                location: ['location'],
+                local_identifier: ['local'],
+                longitude: ['longitude'],
+                medium: ['medium'],
+                named_subject: ['named_subject'],
+                normalized_date: ['normalized_date'],
+                note: ['note'],
+                opac_url: 'opac_url',
+                page_layout: ['page_layout'],
+                place_of_origin: ['place_of_origin'],
+                printmaker: ['Old printmaker'],
+                repository: ['repostiory'],
+                resource_type: ['resource_type'],
+                rights_country: ['rights_country'],
+                rights_holder: ['rights_holder'],
+                rubricator: ['Old rubricator'],
+                subject_geographic: ['Old Subject geographic'],
+                subject_temporal: ['Old Subject temporal'],
+                subject_topic: ['subject_topic'],
+                summary: ['summary'],
+                support: ['support'],
+                thumbnail_link: 'https://fake.url/iiif/ark%3A%2Fabcde%2F1234567',
+                title: ['title'],
+                translator: ['Old Translator'],
+                uniform_title: ['Old Uniform title'],
+                interviewer: ['Old Interviewer'],
+                interviewee: ['Old Interviewee'],
+                cartographer: ['Old Cartographer'],
+                artist: ['Old Artist'],
+                recipient: ['Old Recipient'],
+                director: ['Old Director'],
+                producer: ['Old Producer'],
+                # local_rights_statement: ['local_statement']
+            )
   end
 
   before do
@@ -201,6 +210,31 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   it 'has uniform_title' do
     expect(page).to match(/uniform_title/)
   end
+  it 'has artist' do
+    expect(page).to match(/artist/)
+  end
+  it 'has cartographer' do
+    expect(page).to match(/cartographer/)
+  end
+  it 'has content_disclaimer' do
+    expect(page).to match(/content_disclaimer/)
+  end
+  it 'has interviewee' do
+    expect(page).to match(/interviewee/)
+  end
+  it 'has interviewer' do
+    expect(page).to match(/interviewer/)
+  end
+  it 'has director' do
+    expect(page).to match(/director/)
+  end
+  it 'has producer' do
+    expect(page).to match(/producer/)
+  end
+  it 'has recipient' do
+    expect(page).to match(/recipient/)
+  end
+
   # This invokes License renderer from hyrax gem
   # it 'has local_rights_statement' do
   # expect(page).to match(/local_rights_statement/)

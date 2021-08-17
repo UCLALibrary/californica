@@ -288,7 +288,22 @@ RSpec.describe CsvManifestValidator, type: :model do
         "Type.typeOfResource",
         "viewingHint",
         "Visibility",
-        "License"
+        "License",
+        "Artist",
+        "Name.artist",
+        "Cartographer",
+        "Name.cartographer",
+        "Content disclaimer",
+        "Director",
+        "Name.director",
+        "Interviewer",
+        "Name.interviewer",
+        "Interviewee",
+        "Name.interviewee",
+        "Producer",
+        "Name.producer",
+        "Recipient",
+        "Name.recipient"
       )
     end
   end

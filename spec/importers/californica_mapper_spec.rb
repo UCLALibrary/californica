@@ -123,7 +123,22 @@ RSpec.describe CalifornicaMapper do
       "Name.printmaker" => "Name-printmaker", # printmaker
       "Contents note" => "contents_note-1", # contents_note
       "Description.contents" => "Description-contents", # contents_note
-      "Thumbnail" => "https://fake.url/iiif/ark%3A%2F21198%2Fzz0002nq4w" # thumbnail_link
+      "Thumbnail" => "https://fake.url/iiif/ark%3A%2F21198%2Fzz0002nq4w", # thumbnail_link
+      "Content disclaimer" => "Disclaimer: We are not responsible for anything", # content_disclaimer
+      "Interviewer" => "Interviewee-1", # interviewee
+      "Name.interviewer" => "Interviewee-2", # interviewee
+      "Interviewee" => "Interviewer-1", # interviewer
+      "Name.interviewee" => "Interviewer-2", # interviewer
+      "Cartographer" => "Cartographer-1", # cartographer
+      "Name.cartographer" => "Cartographer-2", # cartographer 
+      "Artist" => "Artist-1", # artist
+      "Name.artist" => "Artist-2", # artist 
+      "Recipient" => "Recipient-1", # recipient 
+      "Name.recipient" => "Recipient-2", # recipient 
+      "Director" => "Director-1", # director 
+      "Name.director" => "Director-2", # director 
+      "Producer" => "Producer-1", # producer
+      "Name.producer" => "Producer-2", # producer
     }
   end
 
@@ -229,7 +244,15 @@ RSpec.describe CalifornicaMapper do
         :visibility,
         :representative_image,
         :featured_image,
-        :tagline
+        :tagline,
+        :artist,
+        :cartographer,
+        :content_disclaimer,
+        :director,
+        :interviewer,
+        :interviewee,
+        :producer,
+        :recipient
       )
     end
   end
