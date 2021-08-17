@@ -118,7 +118,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'cartographer_tesim'
     config.add_show_field 'collation_ssi'
     config.add_show_field 'colophon_tesim'
-    config.add_show_field "content_disclaimer"
+    config.add_show_field "content_disclaimer_tesim"
     config.add_show_field 'composer_tesim'
     config.add_show_field 'commentator_tesim'
     config.add_show_field 'condition_note_ssi'
