@@ -15,6 +15,8 @@ module Californica
       raise ArgumentError, 'Could not parse ARK shoulder and blade' if ark_parts.count < 2
 
       ark_parts.join('-')
+    rescue NoMethodError
+      raise ArgumentError, 'Cannot set id without a valid ark'
     end
   end
 end

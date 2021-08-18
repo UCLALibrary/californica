@@ -96,11 +96,28 @@ class ActorRecordImporter < Darlingtonia::HyraxRecordImporter
         # message should be recorded on the CsvRow object for reporting in the UI
         raise "Validation failed: #{error_messages.join(', ')}"
       end
-    rescue Ldp::BadRequest
+    rescue Ldp::BadRequest => e
+      retries += 1
       # get the id from the ark and the uri from the id then delete the tombstone
       tombstone_uri = "#{ActiveFedora::Base.id_to_uri(Californica::IdGenerator.id_from_ark(created.ark))}/fcr:tombstone"
-      ActiveFedora.fedora.connection.delete(tombstone_uri)
-      retry if (retries += 1) < 3
+      result = ActiveFedora.fedora.connection.delete(tombstone_uri)
+      Rollbar.warning(e, "Attempted to delete FCRepo tombstone.", retries: retries, ark: created.ark, tombstone_uri: tombstone_uri, result: result)
+      if (retries += 1) < 3
+        retry
+      else
+        raise e
+      end
+    end
+  rescue ActiveFedora::IllegalOperation => e
+    raise e if e.class == ActiveFedora::IllegalOperation && !e.message.start_with?('Attempting to recreate existing ldp_source') # error class doesn't look specific enough
+    retries = (retries || 0) + 1
+    Rollbar.warning(e, "Attempting to delete bad FCRepo record.", retries: retries, ark: record.ark)
+    fcrepo_id = Californica::IdGenerator.id_from_ark(record.ark)
+    Californica::Deleter.new(id: fcrepo_id, logger: info_stream).delete
+    if (retries += 1) < 3
+      retry
+    else
+      raise e
     end
   end
 end

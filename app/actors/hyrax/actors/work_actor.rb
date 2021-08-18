@@ -8,7 +8,7 @@ module Hyrax
         # There is no metadata field called row_id, so remove this to prevent problems when saving this object
         env.attributes.delete(:row_id)
         env.attributes.delete(:batch_id)
-        raise "Cannot set id without a valid ark" unless env.attributes["ark"]
+        raise ArgumentError, "Cannot set id without a valid ark" unless env.attributes["ark"]
         ark_based_id = Californica::IdGenerator.id_from_ark(env.attributes["ark"])
         env.curation_concern.id = ark_based_id unless env.curation_concern.id
         super

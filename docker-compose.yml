@@ -87,18 +87,14 @@ services:
       - '127.0.0.1:6379:6379'
 
   solr:
-    build:
-      context: .
-      dockerfile: docker/Dockerfile.solr
+    image: uclalibrary/solr-ursus:2021-03-01
     volumes:
       - solr_data:/opt/solr/server/solr/mycores/californica/data
     ports:
       - '127.0.0.1:8983:8983'
 
   solr_test:
-    build:
-      context: .
-      dockerfile: docker/Dockerfile.solr
+    image: uclalibrary/solr-ursus:2021-03-01
     ports:
       - '127.0.0.1:8985:8983'
 

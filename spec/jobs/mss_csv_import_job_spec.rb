@@ -7,9 +7,15 @@ RSpec.describe StartCsvImportJob, :clean, :inline_jobs do
   let(:manifest) { Rack::Test::UploadedFile.new(Rails.root.join(csv_file), 'text/csv') }
   let(:user) { FactoryBot.create(:admin) }
 
+  before do
+    test_strategy = Flipflop::FeatureSet.current.test!
+    test_strategy.switch!(:child_works, true)
+  end
+
   context 'happy path for mss objects', :clean do
     let(:csv_file) { File.join(fixture_path, 'csv_import', 'multipage_mss', 'mss_sample.csv') }
-    it 'imports expected objects' do
+
+    it 'imports expected objects, including children' do
       described_class.perform_now(csv_import.id)
       expected_objects_in_expected_order
     end

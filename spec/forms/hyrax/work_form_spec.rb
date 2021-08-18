@@ -66,6 +66,7 @@ RSpec.describe Hyrax::WorkForm do
       :summary,
       :support,
       :tagline,
+      :thumbnail_link,
       :toc,
       :translator,
       :iiif_text_direction,
@@ -83,7 +84,8 @@ RSpec.describe Hyrax::WorkForm do
       :ark,
       :rights_statement,
       :access_copy,
-      :preservation_copy
+      :preservation_copy,
+      :thumbnail_link
     ]
   end
 end
