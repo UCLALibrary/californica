@@ -67,7 +67,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       recipient: ['Old Recipient'],
       director: ['Old Director'],
       producer: ['Old Producer'],
-      content_disclaimer: ['Warning']
+      content_disclaimer: ['Old Disclaimer']
     )
   end
 
