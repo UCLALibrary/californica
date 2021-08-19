@@ -83,7 +83,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       license: ['http://creativecommons.org/publicdomain/zero/1.0/'],
       thumbnail_link: 'https://fake.url/iiif/ark%3A%2Fabc%2F3456',
       # local_rights_statement: ['Old Rights statement local'] # This invokes License renderer from hyrax gem
-      content_disclaimer: ['Old Content Disclaimer'],
+      content_disclaimer: ['Old Disclaimer'],
       interviewer: ['Old Interviewer'],
       interviewee: ['Old Interviewee'],
       cartographer: ['Old Cartographer'],

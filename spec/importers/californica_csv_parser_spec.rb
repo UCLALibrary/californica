@@ -137,7 +137,22 @@ RSpec.describe CalifornicaCsvParser do
        'Name.printmaker',
        'Contents note',
        'Description.contents',
-       'Thumbnail']
+       'Thumbnail',
+       'Artist',
+       'Name.artist',
+       'Cartographer',
+       'Name.cartographer',
+       'Content disclaimer',
+       'Director',
+       'Name.director',
+       'Interviewer',
+       'Name.interviewer',
+       'Interviewee',
+       'Name.interviewee',
+       'Producer',
+       'Name.producer',
+       'Recipient',
+       'Name.recipient']
     end
 
     it 'knows the headers for this CSV file' do
