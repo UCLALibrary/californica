@@ -118,7 +118,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'cartographer_tesim'
     config.add_show_field 'collation_ssi'
     config.add_show_field 'colophon_tesim'
-    config.add_show_field "content_disclaimer_tesim"
+    config.add_show_field "content_disclaimer_ssm"
     config.add_show_field 'composer_tesim'
     config.add_show_field 'commentator_tesim'
     config.add_show_field 'condition_note_ssi'
@@ -291,14 +291,6 @@ class CatalogController < ApplicationController
 
     config.add_search_field('composer') do |field|
       solr_name = solr_name('composer', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('content_disclaimer') do |field|
-      solr_name = solr_name('content_disclaimer', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
