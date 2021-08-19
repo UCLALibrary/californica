@@ -87,7 +87,7 @@ class SolrDocument
   end
 
   def content_disclaimer
-    self[:content_disclaimer_tesim]
+    self[:content_disclaimer_ssm]
   end
 
   def contents_note

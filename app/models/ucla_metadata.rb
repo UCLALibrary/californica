@@ -8,7 +8,7 @@ module UclaMetadata
     end
 
     property :content_disclaimer, predicate: ::RDF::URI.intern('http://bibfra.me/view/library/marc/intendedAudience') do |index|
-      index.as :stored_sortable
+      index.as :displayable
     end
 
     # Item Overview
