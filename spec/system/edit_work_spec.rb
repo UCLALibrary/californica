@@ -170,7 +170,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Contents note').value).to eq 'Old Contents note'
       expect(find_field("Artist").value).to eq 'Old Artist'
       expect(find_field("Cartographer").value).to eq 'Old Cartographer'
-      expect(find_field("Disclaimer").value).to eq 'Old Disclaimer'
+      expect(find_field("Content disclaimer").value).to eq 'Old Disclaimer'
       expect(find_field("Interviewee").value).to eq 'Old Interviewee'
       expect(find_field("Interviewer").value).to eq 'Old Interviewee'
       expect(find_field("Director").value).to eq 'Old Director'
