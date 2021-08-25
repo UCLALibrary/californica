@@ -131,7 +131,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'finding_aid_url_ssm'
     config.add_show_field 'foliation_ssi', label: 'Foliation note'
     config.add_show_field 'masthead_parameters_ssi'
-    config.add_show_field 'funding_note_tesim'
+    config.add_show_field 'funding_note_ssm'
     config.add_show_field 'genre_tesim'
     config.add_show_field 'iiif_manifest_url_ssi'
     config.add_show_field 'iiif_range_ssi'

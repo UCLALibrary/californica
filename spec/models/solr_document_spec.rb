@@ -10,7 +10,7 @@ RSpec.describe SolrDocument do
       caption_tesim: [''],
       dimensions_tesim: [''],
       extent_tesim: [''],
-      funding_note_tesim: [''],
+      funding_note_ssm: [''],
       genre_tesim: [''],
       latitude_tesim: [''],
       longitude_tesim: [''],

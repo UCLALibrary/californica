@@ -131,7 +131,7 @@ class SolrDocument
   end
 
   def funding_note
-    self[:funding_note_tesim]
+    self[:funding_note_ssm]
   end
 
   def finding_aid_url
