@@ -81,8 +81,16 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       finding_aid_url: ['Old Finding aid url'],
       rubricator: ['Old rubricator'],
       license: ['http://creativecommons.org/publicdomain/zero/1.0/'],
-      thumbnail_link: 'https://fake.url/iiif/ark%3A%2Fabc%2F3456'
+      thumbnail_link: 'https://fake.url/iiif/ark%3A%2Fabc%2F3456',
       # local_rights_statement: ['Old Rights statement local'] # This invokes License renderer from hyrax gem
+      content_disclaimer: ['Old Disclaimer'],
+      interviewer: ['Old Interviewer'],
+      interviewee: ['Old Interviewee'],
+      cartographer: ['Old Cartographer'],
+      artist: ['Old Artist'],
+      recipient: ['Old Recipient'],
+      director: ['Old Director'],
+      producer: ['Old Producer']
     }
   end
 
@@ -160,6 +168,15 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Thumbnail link').value).to eq 'https://fake.url/iiif/ark%3A%2Fabc%2F3456'
       expect(page).to have_select('License', selected: 'Creative Commons CC0 1.0 Universal', multiple: false)
       expect(find_field('Contents note').value).to eq 'Old Contents note'
+      expect(find_field("Artist").value).to eq 'Old Artist'
+      expect(find_field("Cartographer").value).to eq 'Old Cartographer'
+      expect(find_field("Content disclaimer").value).to eq 'Old Disclaimer'
+      expect(find_field("Interviewee").value).to eq 'Old Interviewee'
+      expect(find_field("Interviewer").value).to eq 'Old Interviewer'
+      expect(find_field("Director").value).to eq 'Old Director'
+      expect(find_field("Producer").value).to eq 'Old Producer'
+      expect(find_field("Recipient").value).to eq 'Old Recipient'
+
       # expect(find_field('Local rights statement').value).to eq 'Old Rights statement local'
 
       # Edit some fields in the form

@@ -80,8 +80,16 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       editor: ['Old Editor'],
       note: ['Old Note'],
       printmaker: ['Old Printmaker'],
-      contents_note: ['Old Contents note']
+      contents_note: ['Old Contents note'],
       # local_rights_statement: ['Old Rights statement local'] # This invokes License renderer from hyrax gem
+      content_disclaimer: ['Old Disclaimer'],
+      interviewer: ['Old Interviewer'],
+      interviewee: ['Old Interviewee'],
+      cartographer: ['Old Cartographer'],
+      artist: ['Old Artist'],
+      recipient: ['Old Recipient'],
+      director: ['Old Director'],
+      producer: ['Old Producer']
     }
   end
 
@@ -168,6 +176,14 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Editor').value).to eq 'Old Editor'
       expect(find_field('Note').value).to eq 'Old Note'
       expect(find_field('Printmaker').value).to eq 'Old Printmaker'
+      expect(find_field("Artist").value).to eq 'Old Artist'
+      expect(find_field("Cartographer").value).to eq 'Old Cartographer'
+      expect(find_field("Content disclaimer").value).to eq 'Old Disclaimer'
+      expect(find_field("Interviewee").value).to eq 'Old Interviewee'
+      expect(find_field("Interviewer").value).to eq 'Old Interviewer'
+      expect(find_field("Director").value).to eq 'Old Director'
+      expect(find_field("Producer").value).to eq 'Old Producer'
+      expect(find_field("Recipient").value).to eq 'Old Recipient'
 
       # expect(find_field('Local rights statement').value).to eq 'Old Rights statement local'
       #

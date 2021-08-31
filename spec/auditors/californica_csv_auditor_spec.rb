@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe CalifornicaCsvAuditor, :clean do
+RSpec.xdescribe CalifornicaCsvAuditor, :clean do
   subject(:auditor) { described_class.new(file: file, error_stream: []) }
   let(:file)        { File.open(csv_path) }
   let(:csv_path)    { 'spec/fixtures/example.csv' }
