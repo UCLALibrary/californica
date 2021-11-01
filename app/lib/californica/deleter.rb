@@ -33,10 +33,11 @@ module Californica
     private
 
       def destroy_and_eradicate
+        start_time = Time.current
         record&.destroy&.eradicate
         Hyrax.config.callback.run(:after_destroy, record.id, User.batch_user)
-        log("Deleted record")
-      rescue Ldp::HttpError, Faraday::TimeoutError => e
+        log("Deleted #{record.class} #{record.id} in #{ActiveSupport::Duration.build(Time.current - start_time)}")
+      rescue Ldp::HttpError, Faraday::TimeoutError, Faraday::ConnectionFailed => e
         log("#{e.class}: #{e.message}")
         retries ||= 0
         retry if (retries += 1) <= 3
