@@ -27,7 +27,7 @@ gem 'loofah', '>= 2.2.3'
 gem 'mysql2', '~> 0.5'
 gem 'pkg-config', '~> 1.1'
 # Use Puma as the app server
-gem 'puma', '~> 4.3'
+gem 'puma', '~> 5.5'
 gem 'rack', '>= 2.0.6'
 gem 'rails', '~> 5.1.6'
 gem 'redcarpet'
@@ -38,7 +38,7 @@ gem 'rollbar'
 gem 'rsolr', '>= 1.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
-gem 'sidekiq', '~> 5.1.3'
+gem 'sidekiq', '~> 5.2'
 gem 'sidekiq-failures'
 gem 'sidekiq-status'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
