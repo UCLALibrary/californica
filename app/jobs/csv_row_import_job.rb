@@ -41,7 +41,7 @@ class CsvRowImportJob < ActiveJob::Base
       case record.mapper.object_type
       when 'Work', 'Manuscript'
         @row.update(status: 'deleting child works')
-        Californica::Deleter.new(id: Californica::IdGenerator.id_from_ark(record.mapper.ark), logger: @row.error_messages).delete_with_children(of_type: ChildWork)
+        Californica::Deleter.new(id: Californica::IdGenerator.id_from_ark(record.mapper.ark), logger: @row.error_messages).delete_children(of_type: ChildWork)
         selected_importer = actor_record_importer
         new_status = 'complete'
       when 'Collection'
