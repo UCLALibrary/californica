@@ -83,3 +83,7 @@ group :development, :test do
   gem 'webmock'
   gem 'xray-rails'
 end
+
+group :test do
+  gem 'rspec-retry' # Unlike rspec, this doesn't need to be included in development group
+end
