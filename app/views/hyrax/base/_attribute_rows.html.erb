@@ -1,16 +1,19 @@
 <%= presenter.attribute_to_html(:access_copy, html_dl: true) %>
 <%= presenter.attribute_to_html(:alternative_title, html_dl: true) %>
 <%= presenter.attribute_to_html(:architect, html_dl: true) %>
+<%= presenter.attribute_to_html(:artist, html_dl: true) %>
 <%= presenter.attribute_to_html(:ark, html_dl: true) %>
 <%= presenter.attribute_to_html(:author, html_dl: true) %>
 <%= presenter.attribute_to_html(:binding_note, html_dl: true) %>
 <%= presenter.attribute_to_html(:based_near_label, html_dl: true) %>
 <%= presenter.attribute_to_html(:calligrapher, html_dl: true) %>
 <%= presenter.attribute_to_html(:caption, html_dl: true) %>
+<%= presenter.attribute_to_html(:cartographer, html_dl: true) %>
 <%= presenter.attribute_to_html(:collation, html_dl: true) %>
 <%= presenter.attribute_to_html(:colophon, html_dl: true) %>
 <%= presenter.attribute_to_html(:commentator, html_dl: true) %>
 <%= presenter.attribute_to_html(:condition_note, html_dl: true) %>
+<%= presenter.attribute_to_html(:content_disclaimer, html_dl: true) %>
 <%= presenter.attribute_to_html(:contents_note, html_dl: true) %>
 <%= presenter.attribute_to_html(:composer, html_dl: true) %>
 <%= presenter.attribute_to_html(:contributor, render_as: :faceted, html_dl: true) %>
@@ -18,6 +21,7 @@
 <%= presenter.attribute_to_html(:date_created, render_as: :linked, search_field: 'date_created_tesim', html_dl: true) %>
 <%= presenter.attribute_to_html(:date_modified, label: t('hyrax.base.show.last_modified'), html_dl: true) %>
 <%= presenter.attribute_to_html(:dimensions, html_dl: true) %>
+<%= presenter.attribute_to_html(:director, html_dl: true) %>
 <%= presenter.attribute_to_html(:dlcs_collection_name, render_as: :faceted, html_dl: true, label: "DLCS Collection Name") %>
 <%= presenter.attribute_to_html(:editor, html_dl: true) %>
 <%= presenter.attribute_to_html(:engraver, html_dl: true) %>
@@ -36,6 +40,8 @@
 <%= presenter.attribute_to_html(:illuminator, html_dl: true) %>
 <%= presenter.attribute_to_html(:illustrations_note, html_dl: true) %>
 <%= presenter.attribute_to_html(:illustrator, html_dl: true) %>
+<%= presenter.attribute_to_html(:interviewee, html_dl: true) %>
+<%= presenter.attribute_to_html(:interviewer, html_dl: true) %>
 <%= presenter.attribute_to_html(:keyword, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:language, render_as: :language, html_dl: true) %>
 <%= presenter.attribute_to_html(:local_identifier, html_dl: true) %>
@@ -52,8 +58,10 @@
 <%= presenter.attribute_to_html(:place_of_origin, html_dl: true) %>
 <%= presenter.attribute_to_html(:preservation_copy, html_dl: true) %>
 <%= presenter.attribute_to_html(:printmaker, html_dl: true) %>
+<%= presenter.attribute_to_html(:producer, html_dl: true) %>
 <%= presenter.attribute_to_html(:provenance, html_dl: true) %>
 <%= presenter.attribute_to_html(:publisher, render_as: :faceted, html_dl: true) %>
+<%= presenter.attribute_to_html(:recipient, html_dl: true) %>
 <%= presenter.attribute_to_html(:related_url, render_as: :external_link, html_dl: true) %>
 <%= presenter.attribute_to_html(:repository, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:representative_image, html_dl: true) %>

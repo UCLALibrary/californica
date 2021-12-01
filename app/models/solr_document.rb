@@ -46,6 +46,10 @@ class SolrDocument
     self[:architect_tesim]
   end
 
+  def artist
+    self[:artist_tesim]
+  end
+
   def binding_note
     self[:binding_note_ssi]
   end
@@ -56,6 +60,10 @@ class SolrDocument
 
   def caption
     self[:caption_tesim]
+  end
+
+  def cartographer
+    self[:cartographer_tesim]
   end
 
   def collation
@@ -78,6 +86,10 @@ class SolrDocument
     self[:condition_note_ssi]
   end
 
+  def content_disclaimer
+    self[:content_disclaimer_ssm]
+  end
+
   def contents_note
     self[:contents_note_tesim]
   end
@@ -88,6 +100,10 @@ class SolrDocument
 
   def dimensions
     self[:dimensions_tesim]
+  end
+
+  def director
+    self[:director_tesim]
   end
 
   def dlcs_collection_name
@@ -154,6 +170,14 @@ class SolrDocument
     self[:illustrator_tesim]
   end
 
+  def interviewee
+    self[:interviewee_tesim]
+  end
+
+  def interviewer
+    self[:interviewer_tesim]
+  end
+
   def latitude
     self[Solrizer.solr_name('latitude')]
   end
@@ -218,8 +242,16 @@ class SolrDocument
     self['preservation_copy_ssi']
   end
 
+  def producer
+    self[:producer_tesim]
+  end
+
   def provenance
     self[:provenance_tesim]
+  end
+
+  def recipient
+    self[:recipient_tesim]
   end
 
   def repository

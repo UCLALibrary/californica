@@ -7,6 +7,10 @@ module UclaMetadata
       index.as :stored_sortable
     end
 
+    property :content_disclaimer, predicate: ::RDF::URI.intern('http://bibfra.me/view/library/marc/intendedAudience') do |index|
+      index.as :displayable
+    end
+
     # Item Overview
     property :alternative_title, predicate: ::RDF::Vocab::DC.alternative, multiple: true do |index|
       index.as :stored_searchable
@@ -90,6 +94,34 @@ module UclaMetadata
 
     property :publisher, predicate: ::RDF::URI.intern('http://purl.org/dc/elements/1.1/publisher') do |index|
       index.as :stored_searchable
+    end
+
+    property :artist, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/art') do |index|
+      index.as :stored_searchable, :facetable
+    end
+
+    property :cartographer, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/ctg') do |index|
+      index.as :stored_searchable, :facetable
+    end
+
+    property :director, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/drt') do |index|
+      index.as :stored_searchable, :facetable
+    end
+
+    property :interviewee, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/ive') do |index|
+      index.as :stored_searchable, :facetable
+    end
+
+    property :interviewer, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/ivr') do |index|
+      index.as :stored_searchable, :facetable
+    end
+
+    property :producer, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/pro') do |index|
+      index.as :stored_searchable, :facetable
+    end
+
+    property :recipient, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/rcp') do |index|
+      index.as :stored_searchable, :facetable
     end
 
     # Notes

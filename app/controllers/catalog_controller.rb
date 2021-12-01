@@ -110,17 +110,21 @@ class CatalogController < ApplicationController
 
     config.add_show_field 'alternative_title_tesim'
     config.add_show_field 'architect_tesim'
+    config.add_show_field 'artist_tesim'
     config.add_show_field 'author_tesim'
     config.add_show_field 'binding_note_ssi'
     config.add_show_field 'calligrapher_tesim'
     config.add_show_field 'caption_tesim'
+    config.add_show_field 'cartographer_tesim'
     config.add_show_field 'collation_ssi'
     config.add_show_field 'colophon_tesim'
+    config.add_show_field 'content_disclaimer_ssm', label: 'Disclaimer'
     config.add_show_field 'composer_tesim'
     config.add_show_field 'commentator_tesim'
     config.add_show_field 'condition_note_ssi'
     config.add_show_field 'contents_note_tesim'
     config.add_show_field 'dimensions_tesim'
+    config.add_show_field 'director_tesim'
     config.add_show_field 'editor_tesim'
     config.add_show_field 'engraver_tesim'
     config.add_show_field 'extent_tesim'
@@ -135,6 +139,8 @@ class CatalogController < ApplicationController
     config.add_show_field 'illuminator_tesim'
     config.add_show_field 'illustrations_note_tesim'
     config.add_show_field 'illustrator_tesim'
+    config.add_show_field 'interviewee_tesim'
+    config.add_show_field 'interviewer_tesim'
     config.add_show_field 'location_tesim'
     config.add_show_field 'local_identifier_ssm'
     config.add_show_field 'lyricist_tesim'
@@ -148,7 +154,9 @@ class CatalogController < ApplicationController
     config.add_show_field 'place_of_origin_tesim'
     config.add_show_field 'preservation_copy_ssi'
     config.add_show_field 'printmaker_tesim'
+    config.add_show_field 'producer_tesim'
     config.add_show_field 'provenance_tesim'
+    config.add_show_field 'recipient_tesim'
     config.add_show_field 'repository_tesim'
     config.add_show_field 'rights_country_tesim'
     config.add_show_field 'rights_holder_tesim'
@@ -231,8 +239,26 @@ class CatalogController < ApplicationController
       }
     end
 
+    config.add_search_field('artist') do |field|
+      field.label = 'Location'
+      solr_name = solr_name('artist', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
     config.add_search_field('binding_note') do |field|
       solr_name = solr_name('binding_note', :stored_sortable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('cartographer') do |field|
+      field.label = 'Location'
+      solr_name = solr_name('cartographer', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
@@ -312,6 +338,15 @@ class CatalogController < ApplicationController
       }
     end
 
+    config.add_search_field('director') do |field|
+      field.label = 'Location'
+      solr_name = solr_name('director', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
     config.add_search_field('foliation') do |field|
       solr_name = solr_name('foliation', :stored_searchable)
       field.solr_local_parameters = {
@@ -322,6 +357,24 @@ class CatalogController < ApplicationController
 
     config.add_search_field('illuminator') do |field|
       solr_name = solr_name('illuminator', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('nterviewee') do |field|
+      field.label = 'Location'
+      solr_name = solr_name('nterviewee', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('nterviewer') do |field|
+      field.label = 'Location'
+      solr_name = solr_name('nterviewer', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
@@ -344,8 +397,26 @@ class CatalogController < ApplicationController
       }
     end
 
+    config.add_search_field('producer') do |field|
+      field.label = 'Location'
+      solr_name = solr_name('producer', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
     config.add_search_field('publisher') do |field|
       solr_name = solr_name('publisher', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('recipient') do |field|
+      field.label = 'Location'
+      solr_name = solr_name('recipient', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
