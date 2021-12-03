@@ -43,8 +43,12 @@ class Collection < ActiveFedora::Base
   # @return [Collection] The Collection with that ARK
   # rubocop:disable Metrics/MethodLength
   def self.find_or_create_by_ark(ark)
-    collection = find_by_ark(ark)
-    return collection if collection
+    begin
+      collection = find_by_ark(ark)
+      return collection if collection
+    rescue ActiveFedora::ObjectNotFoundError
+      pass
+    end
 
     collection = Collection.create(
       id: Californica::IdGenerator.id_from_ark(ark),
