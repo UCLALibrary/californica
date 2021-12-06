@@ -27,8 +27,7 @@ class Work < ActiveFedora::Base
     begin
       work = find_by_ark(ark)
       return work if work
-    rescue ActiveFedora::ObjectNotFoundError
-      pass
+    rescue ActiveFedora::ObjectNotFoundErrors('No Preview').should('not.exist') \/\/
     end
 
     work = Work.create(
