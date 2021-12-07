@@ -27,7 +27,8 @@ class Work < ActiveFedora::Base
     begin
       work = find_by_ark(ark)
       return work if work
-    rescue ActiveFedora::ObjectNotFoundError
+    rescue ActiveFedora::ObjectNotFoundError => e
+      Rails.logger.error e.message
     end
 
     work = Work.create(

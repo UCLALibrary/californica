@@ -46,7 +46,8 @@ class Collection < ActiveFedora::Base
     begin
       collection = find_by_ark(ark)
       return collection if collection
-    rescue ActiveFedora::ObjectNotFoundError
+    rescue ActiveFedora::ObjectNotFoundError => e
+      Rails.logger.error e.message
     end
 
     collection = Collection.create(
