@@ -68,7 +68,7 @@ class CsvRowImportJob < ActiveJob::Base
                 ingest_record_end_time: Time.current,
                 ingest_duration: end_time - start_time,
                 job_ids_errored: @row.job_ids_completed << job_id,
-                error_messages: @row.error_messages << "#{e.class}: #{e.message.split('\n').first}")
+                error_messages: @row.error_messages << "#{e.class}: #{e.message}")
   end
 
   def collection_record_importer
