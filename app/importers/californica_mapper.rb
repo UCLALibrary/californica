@@ -185,7 +185,9 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   end
 
   def ark
-    Ark.ensure_prefix(map_field(:ark).to_a.first.strip)
+    item_ark = Ark.ensure_prefix(map_field(:ark).to_a.first)
+    return if item_ark.blank?
+    item_ark.strip
   end
 
   # Only single value field need to be defined
