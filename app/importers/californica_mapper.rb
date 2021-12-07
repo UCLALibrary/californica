@@ -185,7 +185,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   end
 
   def ark
-    Ark.ensure_prefix(map_field(:ark).to_a.first)
+    Ark.ensure_prefix(map_field(:ark).to_a.first.strip)
   end
 
   # Only single value field need to be defined
@@ -376,7 +376,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     collection = []
 
     arks_array.each_with_index do |current_ark, index|
-      ark_string = Ark.ensure_prefix(current_ark)
+      ark_string = Ark.ensure_prefix(current_ark.strip)
       collection[index] = Collection.find_or_create_by_ark(ark_string)
 
       unless collection[index].recalculate_size == false
