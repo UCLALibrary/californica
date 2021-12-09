@@ -24,8 +24,12 @@ class Work < ActiveFedora::Base
   # @param ark [String] The ARK
   # @return [Work] The Work with that ARK
   def self.find_or_create_by_ark(ark)
-    work = find_by_ark(ark)
-    return work if work
+    begin
+      work = find_by_ark(ark)
+      return work if work
+    rescue ActiveFedora::ObjectNotFoundError => e
+      Rails.logger.error e.message
+    end
 
     work = Work.create(
       id: Californica::IdGenerator.id_from_ark(ark),
