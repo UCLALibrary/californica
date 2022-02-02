@@ -38,8 +38,8 @@ After that, you can run `docker-compose` to bring up the development environment
 The first time you create the environment, you'll also need to provision the databases. From within the `californica` directory, run:
 
     docker-compose run web bash
-    bundle exec rake db:setup
-    bundle exec rake hyrax:default_admin_set:create
+    bundle exec rails db:setup
+    bundle exec rails hyrax:default_admin_set:create
 
 If this succeeds without error, you've successfully created your Californica environment.
 
