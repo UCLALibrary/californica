@@ -1,0 +1,21 @@
+name: Post-merge chores
+
+on:
+    push:
+        branches: 
+            - main
+
+jobs:
+    autoupdate:
+        name: Update outstanding PRs
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v1
+        - name: update all prs
+          uses: maxkomarychev/pr-updater-action@92cb6e15dc3c4b9b148b65eef32836bb428587b9  # v1.0.1
+          with:
+            token: ${{ secrets.GITHUB_TOKEN }}
+        - name: Jenkins webhook
+          uses: enflo/curl-action@fabe347922c7a9e88bafa15c4b7d6326ea802695
+          with:
+            curl: 'https://${{ secrets.JENKINS_USER }}@${{ secrets.JENKINS_HOST }}/job/DeployCalifornica/buildWithParameters?GIT_BRANCH=main&cause=GitHub+Action+Post+Merge+Build&DEPLOY_HOST=t-w-californica01.library.ucla.edu&token=${{ secrets.JENKINS_API_CALIFORNICA_TOKEN }}'
