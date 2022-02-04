@@ -1,12 +1,12 @@
-name: Builds every day at 2:30pm
+name: daily
 
 on:
    schedule:
       - cron:  '30 14 * * *'
 
 jobs:
-    jenkins-build:
-        name: Deploys main branch to test every day at 2:30pm
+    deploy:
+        name: Deploy to test
         runs-on: ubuntu-latest
         steps:
         - name: Jenkins webhook
