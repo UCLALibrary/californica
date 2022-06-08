@@ -2,7 +2,7 @@
 
 namespace :californica do
   task delete_work: [:environment] do
-    Californica::Deleter.new(ENV.fetch('DELETE_WORK_ID')).delete_with_children
+    Californica::Deleter.new(id: ENV.fetch('DELETE_WORK_ID')).delete_with_children
     puts('Done!')
   end
 

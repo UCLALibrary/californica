@@ -263,6 +263,19 @@ RSpec.describe WorkIndexer do
         expect(solr_document['date_dtsim']).to eq nil
       end
     end
+
+    context 'when normalized_date field includes negative (BCE) values' do
+      let(:attributes) do
+        {
+          ark: 'ark:/123/456',
+          normalized_date: ['-0023/0003']
+        }
+      end
+
+      it 'only indexes from year 0' do
+        expect(solr_document['year_isim']).to contain_exactly(0, 1, 2, 3)
+      end
+    end
   end
 
   describe 'sort_year' do

@@ -112,7 +112,7 @@ class WorkIndexer < Hyrax::WorkIndexer
 
   # The 'to_a' is needed to force ActiveTriples::Relation to resolve into the String value(s), else you get an error trying to parse the date.
   def years
-    integer_years = YearParser.integer_years(object.normalized_date.to_a)
+    integer_years = YearParser.integer_years(object.normalized_date.to_a).select { |year| year >= 0 }
     return nil if integer_years.blank?
     integer_years
   end
