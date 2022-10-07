@@ -67,7 +67,8 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       recipient: ['Old Recipient'],
       director: ['Old Director'],
       producer: ['Old Producer'],
-      content_disclaimer: ['Old Disclaimer']
+      content_disclaimer: ['Old Disclaimer'],
+      program: ['Old Program']
     )
   end
 
@@ -234,7 +235,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   it 'has recipient' do
     expect(page).to match(/recipient/)
   end
-
+  it 'has program' do
+    expect(page).to match(/program/)
+  end
   # This invokes License renderer from hyrax gem
   # it 'has local_rights_statement' do
   # expect(page).to match(/local_rights_statement/)

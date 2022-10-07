@@ -80,6 +80,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     preservation_copy: "File Name",
     printmaker: ["Printmaker", "Name.printmaker"],
     producer: ["Producer", "Name.producer"],
+    program: ["Program"],
     provenance: ["Provenance", "Description.history"],
     publisher: "Publisher.publisherName",
     recipient: ["Recipient", "Name.recipient"],
