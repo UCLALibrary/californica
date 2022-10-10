@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-name: Post-merge chores
-=======
 name: On merge
->>>>>>> ca6cf6b3610f7fc5d6d100f10a38623e6275d6b3
 
 on:
     push:
@@ -10,13 +6,8 @@ on:
             - main
 
 jobs:
-<<<<<<< HEAD
-    autoupdate:
-        name: Update outstanding PRs
-=======
     update-pull-requests:
         name: Update pull requests
->>>>>>> ca6cf6b3610f7fc5d6d100f10a38623e6275d6b3
         runs-on: ubuntu-latest
         steps:
         - uses: actions/checkout@v1
@@ -24,14 +15,11 @@ jobs:
           uses: maxkomarychev/pr-updater-action@92cb6e15dc3c4b9b148b65eef32836bb428587b9  # v1.0.1
           with:
             token: ${{ secrets.GITHUB_TOKEN }}
-<<<<<<< HEAD
-=======
     
     deploy:
         name: Deploy to test
         runs-on: ubuntu-latest
         steps:
->>>>>>> ca6cf6b3610f7fc5d6d100f10a38623e6275d6b3
         - name: Jenkins webhook
           uses: enflo/curl-action@fabe347922c7a9e88bafa15c4b7d6326ea802695
           with:
