@@ -155,6 +155,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'preservation_copy_ssi'
     config.add_show_field 'printmaker_tesim'
     config.add_show_field 'producer_tesim'
+    config.add_show_field 'program_tesim'
     config.add_show_field 'provenance_tesim'
     config.add_show_field 'recipient_tesim'
     config.add_show_field 'repository_tesim'
@@ -363,18 +364,18 @@ class CatalogController < ApplicationController
       }
     end
 
-    config.add_search_field('nterviewee') do |field|
+    config.add_search_field('interviewee') do |field|
       field.label = 'Location'
-      solr_name = solr_name('nterviewee', :stored_searchable)
+      solr_name = solr_name('interviewee', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
       }
     end
 
-    config.add_search_field('nterviewer') do |field|
+    config.add_search_field('interviewer') do |field|
       field.label = 'Location'
-      solr_name = solr_name('nterviewer', :stored_searchable)
+      solr_name = solr_name('interviewer', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
@@ -400,6 +401,14 @@ class CatalogController < ApplicationController
     config.add_search_field('producer') do |field|
       field.label = 'Location'
       solr_name = solr_name('producer', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('program') do |field|
+      solr_name = solr_name('program', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name

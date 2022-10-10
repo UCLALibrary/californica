@@ -43,6 +43,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       photographer: ['Old Photographer'],
       place_of_origin: ['Old Place of origin'],
       printmaker: ['Old Printmaker'],
+      program: ['Old Program'],
       provenance: ['Old Provenance'],
       publisher: ['Old Pub'],
       repository: ['Old Repository'],
