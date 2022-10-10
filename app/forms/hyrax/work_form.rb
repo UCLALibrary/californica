@@ -60,6 +60,7 @@ module Hyrax
       :preservation_copy,
       :printmaker,
       :producer,
+      :program,
       :provenance,
       :recipient,
       :repository,

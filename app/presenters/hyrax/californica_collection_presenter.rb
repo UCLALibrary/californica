@@ -63,6 +63,7 @@ module Hyrax
         :place_of_origin,
         :printmaker,
         :provenance,
+        :program,
         :producer,
         :publisher,
         :recipient,

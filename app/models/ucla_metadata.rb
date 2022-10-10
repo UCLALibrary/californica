@@ -244,6 +244,10 @@ module UclaMetadata
       index.as :stored_sortable
     end
 
+    property :program, predicate: ::RDF::URI.intern('https://bib.schema.org/programName') do |index|
+      index.as :stored_searchable, :facetable
+    end
+
     # Access Condition
     property :services_contact, predicate: ::RDF::Vocab::EBUCore.hasRightsContact do |index|
       index.as :displayable

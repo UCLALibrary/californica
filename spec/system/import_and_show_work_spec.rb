@@ -120,6 +120,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "Interviewer-1" # interviewer
     expect(page).to have_content "Director-1" # director
     expect(page).to have_content "Producer-1" # producer
+    expect(page).to have_content "Program-1" # program
     expect(page).to have_content "Recipient-1" # recipient
     # expect(page).to have_content "local_statement" # local_rights_statement # This invokes License renderer from hyrax gem
 
