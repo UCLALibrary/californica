@@ -52,6 +52,7 @@ RSpec.describe Hyrax::WorkForm do
       :place_of_origin,
       :preservation_copy,
       :printmaker,
+      :program,
       :provenance,
       :repository,
       :representative_image,
