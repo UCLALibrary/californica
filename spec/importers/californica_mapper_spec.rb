@@ -139,6 +139,7 @@ RSpec.describe CalifornicaMapper do
       "Name.director" => "Director-2", # director
       "Producer" => "Producer-1", # producer
       "Name.producer" => "Producer-2", # producer
+      "Program" => "Program-1", # program
     }
   end
 
@@ -220,6 +221,7 @@ RSpec.describe CalifornicaMapper do
         :place_of_origin,
         :printmaker,
         :publisher,
+        :program,
         :provenance,
         :repository,
         :resource_type,

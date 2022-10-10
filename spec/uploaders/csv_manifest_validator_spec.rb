@@ -249,6 +249,7 @@ RSpec.describe CsvManifestValidator, type: :model do
         "Place of origin",
         "Printmaker",
         "Project Name",
+        "Program",
         "Provenance",
         "Publisher.placeOfOrigin",
         "Publisher.publisherName",
