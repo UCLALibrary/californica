@@ -191,7 +191,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     item_ark.strip
   end
 
-  # Only single value field need to be defined
+  # Only single value fields need to be defined
   def binding_note
     map_field(:binding_note).to_a.first
   end

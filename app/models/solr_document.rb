@@ -234,6 +234,10 @@ class SolrDocument
     self[:place_of_origin_tesim]
   end
 
+  def program
+    self[:program_tesim]
+  end
+
   def printmaker
     self[:printmaker_tesim]
   end
