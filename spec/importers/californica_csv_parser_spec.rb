@@ -152,7 +152,8 @@ RSpec.describe CalifornicaCsvParser do
        'Producer',
        'Name.producer',
        'Recipient',
-       'Name.recipient']
+       'Name.recipient',
+       'Program']
     end
 
     it 'knows the headers for this CSV file' do
