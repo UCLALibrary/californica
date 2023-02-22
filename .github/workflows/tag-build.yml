@@ -10,9 +10,13 @@ jobs:
     name: Deploys new release to stage
     runs-on: ubuntu-latest
     steps:
-     - name: Branch name
-        run: echo running on branch ${GITHUB_REF##*/}
+     steps:
+     - name: Tag name
+       id: extract_tag
+       run: | 
+         VERSION_TAG=${GITHUB_REF##*/}
+         echo ::set-output name=versionTag::${VERSION_TAG}
       - name: Jenkins webhook
         uses: enflo/curl-action@fabe347922c7a9e88bafa15c4b7d6326ea802695
         with:
-          curl: 'https://${{ secrets.JENKINS_USER }}@${{ secrets.JENKINS_HOST }}/job/DeployCalifornica/buildWithParameters?GIT_BRANCH=${GITHUB_REF##*/}&cause=GitHub+Action+Build+with+tag&DEPLOY_HOST=s-w-californicaweb01.library.ucla.edu&token=${{ secrets.JENKINS_API_CALIFORNICA_TOKEN }}'
+          curl: 'https://${{ secrets.JENKINS_USER }}@${{ secrets.JENKINS_HOST }}/job/DeployCalifornica/buildWithParameters?GIT_BRANCH=${{ steps.extract_tag.outputs.versionTag }}&cause=GitHub+Action+Build+with+tag&DEPLOY_HOST=s-w-californicaweb01.library.ucla.edu&token=${{ secrets.JENKINS_API_CALIFORNICA_TOKEN }}'
