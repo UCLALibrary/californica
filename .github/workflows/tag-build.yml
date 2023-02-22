@@ -7,7 +7,7 @@ on:
 jobs:
 
   jenkins-build:
-  name: Deploys new release to stage
+    name: Deploys new release to stage
     runs-on: ubuntu-latest
     steps:
      - name: Branch name
