@@ -315,6 +315,10 @@ module UclaMetadata
       index.as :stored_sortable
     end
 
+    property :series, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/Series') do |index|
+      index.as :stored_searchable, :facetable
+    end
+  
     property :tagline, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3081'), multiple: false do |index|
       index.as :stored_sortable
     end

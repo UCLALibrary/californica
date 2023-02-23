@@ -165,6 +165,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'rights_holder_tesim'
     config.add_show_field 'rubricator_tesim'
     config.add_show_field 'scribe_tesim'
+    config.add_show_field 'series_tesim'
     config.add_show_field 'subject_geographic_tesim'
     config.add_show_field 'subject_temporal_tesim'
     config.add_show_field 'subject_cultural_object_tesim'

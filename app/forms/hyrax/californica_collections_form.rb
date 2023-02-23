@@ -162,6 +162,7 @@ module Hyrax
         :rights_country,
         :rights_holder,
         :rubricator,
+        :series,
         :services_contact,
         # :local_rights_statement, # This invokes License renderer from hyrax gem
         :scribe,

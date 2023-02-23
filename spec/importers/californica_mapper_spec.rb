@@ -142,6 +142,7 @@ RSpec.describe CalifornicaMapper do
       "Program" => "Program-1", # program
       "Subject.culturalObject" => "subject-culturalObject-1", # subject_cultural_object
       "Subject.domainTopic" => "subject-domain-topic-1", # subject_cultural_object
+      "Series" => "Series-1", # series
     }
   end
 
@@ -233,6 +234,7 @@ RSpec.describe CalifornicaMapper do
         :rubricator,
         # :local_rights_statement,
         :scribe,
+        :series,
         :services_contact,
         :subject,
         :subject_geographic,
