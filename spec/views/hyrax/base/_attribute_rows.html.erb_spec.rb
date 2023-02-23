@@ -195,13 +195,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   end
   it 'has subject_geographic' do
     expect(page).to match(/subject_geographic/)
-  endrspec ./spec/system/edit_collection_spec.rb:112 # Edit an existing collection logged in as an admin user successfully edits the work
-  rspec ./spec/importers/actor_record_importer_spec.rb:24 # ActorRecordImporter#import creates a work for record
-  rspec ./spec/importers/actor_record_importer_spec.rb:30 # ActorRecordImporter#import writes to the info_stream before and after create
-  rspec ./spec/importers/actor_record_importer_spec.rb:57 # ActorRecordImporter#import if the record title starts with "DUPLICATE" raises an error
-  rspec ./spec/importers/actor_record_importer_spec.rb:44 # ActorRecordImporter#import with an invalid input record raises an error
-  rspec ./spec/jobs/start_csv_import_job_spec.rb:12 # StartCsvImportJob happy path imports expected objects
-  rspec ./spec/jobs/csv_row_import_job_spec.rb:24 # CsvRowImportJob happy path can set a status
+  end
   it 'has subject_temporal' do
     expect(page).to match(/subject_temporal/)
   end

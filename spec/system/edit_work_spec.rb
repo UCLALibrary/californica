@@ -94,7 +94,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       recipient: ['Old Recipient'],
       director: ['Old Director'],
       producer: ['Old Producer'],
-      series: ['Series'],
+      series: ['Old Series']
     }
   end
 
