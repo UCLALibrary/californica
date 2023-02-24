@@ -73,6 +73,7 @@ module Hyrax
       :scribe,
       :subject_geographic,
       :subject_temporal,
+      :subject_cultural_object,
       :subject_topic,
       :summary,
       :support,
