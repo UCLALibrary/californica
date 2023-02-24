@@ -429,6 +429,8 @@ Also accepts: `Name.subject`, `Personal or Corporate Name.subject`, `Subject.cor
 
 #### Subject temporal
 
+#### Subject culturalObject
+
 #### Subject topic
 
 Also accepts: `Subject.conceptTopic`, `Subject.descriptiveTopic`

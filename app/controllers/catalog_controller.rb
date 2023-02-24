@@ -51,6 +51,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('subject', :facetable), limit: 5
     config.add_facet_field solr_name('subject_geographic', :facetable), label: 'Subject geographic', limit: 5
     config.add_facet_field solr_name('subject_temporal', :facetable), label: 'Subject temporal', limit: 5
+    config.add_facet_field solr_name('subject_cultural_object', :facetable), label: 'Subject cultural object', limit: 5
     config.add_facet_field solr_name('human_readable_language', :facetable), label: 'Language', limit: 5
     config.add_facet_field solr_name('file_format', :facetable), limit: 5
     config.add_facet_field solr_name('member_of_collections', :symbol), limit: 5, label: 'Collection'
@@ -165,6 +166,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'scribe_tesim'
     config.add_show_field 'subject_geographic_tesim'
     config.add_show_field 'subject_temporal_tesim'
+    config.add_show_field 'subject_cultural_object_tesim'
     config.add_show_field 'subject_topic_tesim'
     config.add_show_field 'support_tesim'
     config.add_show_field 'summary_tesim'
@@ -232,7 +234,6 @@ class CatalogController < ApplicationController
     end
 
     config.add_search_field('based_near') do |field|
-      field.label = 'Location'
       solr_name = solr_name('based_near_label', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
@@ -241,7 +242,6 @@ class CatalogController < ApplicationController
     end
 
     config.add_search_field('artist') do |field|
-      field.label = 'Location'
       solr_name = solr_name('artist', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
@@ -258,7 +258,6 @@ class CatalogController < ApplicationController
     end
 
     config.add_search_field('cartographer') do |field|
-      field.label = 'Location'
       solr_name = solr_name('cartographer', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
@@ -340,7 +339,6 @@ class CatalogController < ApplicationController
     end
 
     config.add_search_field('director') do |field|
-      field.label = 'Location'
       solr_name = solr_name('director', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
@@ -365,7 +363,6 @@ class CatalogController < ApplicationController
     end
 
     config.add_search_field('interviewee') do |field|
-      field.label = 'Location'
       solr_name = solr_name('interviewee', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
@@ -374,7 +371,6 @@ class CatalogController < ApplicationController
     end
 
     config.add_search_field('interviewer') do |field|
-      field.label = 'Location'
       solr_name = solr_name('interviewer', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
@@ -399,7 +395,6 @@ class CatalogController < ApplicationController
     end
 
     config.add_search_field('producer') do |field|
-      field.label = 'Location'
       solr_name = solr_name('producer', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
@@ -424,7 +419,6 @@ class CatalogController < ApplicationController
     end
 
     config.add_search_field('recipient') do |field|
-      field.label = 'Location'
       solr_name = solr_name('recipient', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
@@ -458,6 +452,14 @@ class CatalogController < ApplicationController
 
     config.add_search_field('subject_temporal') do |field|
       solr_name = solr_name('subject_temporal', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('subject_cultural_object') do |field|
+      solr_name = solr_name('subject_cultural_object', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
