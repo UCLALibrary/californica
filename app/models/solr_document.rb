@@ -299,6 +299,10 @@ class SolrDocument
     self[:subject_temporal_tesim]
   end
 
+  def subject_cultural_object
+    self[:subject_cultural_object_tesim]
+  end
+
   def subject_topic
     self[:subject_topic_tesim]
   end

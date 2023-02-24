@@ -69,6 +69,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       commentator: ['Old Commentator'],
       subject_geographic: ['Old Subject geographic'],
       subject_temporal: ['Old Subject temporal'],
+      subject_cultural_object: ['Old Subject cultural object'],
       translator: ['Old Translator'],
       colophon: ['Old Colophon'],
       finding_aid_url: ['Old Finding aid url'],
@@ -165,6 +166,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Tagline').value).to eq 'Old Tagline'
       expect(find_field('Commentator').value).to eq 'Old Commentator'
       expect(find_field('Subject temporal').value).to eq 'Old Subject temporal'
+      expect(find_field('Subject cultural object').value).to eq 'Old Subject cultural object'
       expect(find_field('Subject geographic').value).to eq 'Old Subject geographic'
       expect(find_field('Translator').value).to eq 'Old Translator'
       expect(find_field('Colophon').value).to eq 'Old Colophon'
