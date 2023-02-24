@@ -92,7 +92,8 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       recipient: ['Old Recipient'],
       director: ['Old Director'],
       producer: ['Old Producer'],
-      program: ['Old Program']
+      program: ['Old Program'],
+      series: ['Old Series']
     }
   end
 
