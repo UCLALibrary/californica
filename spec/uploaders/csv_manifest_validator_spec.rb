@@ -268,7 +268,7 @@ RSpec.describe CsvManifestValidator, type: :model do
         "Scribe",
         "Subject geographic",
         "Subject.culturalObject",
-        "Subject.culturalObject",# this for subject topic
+        "Subject.culturalObject", # this for subject topic
         "Subject name",
         "Subject place",
         "Subject temporal",
