@@ -52,6 +52,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('subject_geographic', :facetable), label: 'Subject geographic', limit: 5
     config.add_facet_field solr_name('subject_temporal', :facetable), label: 'Subject temporal', limit: 5
     config.add_facet_field solr_name('subject_cultural_object', :facetable), label: 'Subject cultural object', limit: 5
+    config.add_facet_field solr_name('subject_domain_topic', :facetable), label: 'Subject domain topic', limit: 5
     config.add_facet_field solr_name('human_readable_language', :facetable), label: 'Language', limit: 5
     config.add_facet_field solr_name('file_format', :facetable), limit: 5
     config.add_facet_field solr_name('member_of_collections', :symbol), limit: 5, label: 'Collection'

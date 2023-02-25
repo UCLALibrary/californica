@@ -83,6 +83,8 @@
     - [Subject geographic](#subject-geographic)
     - [Subject name](#subject-name)
     - [Subject temporal](#subject-temporal)
+    - [Subject culturalObject](#subject-culturalobject)
+    - [Subject domainTopic](#subject-domaintopic)
     - [Subject topic](#subject-topic)
     - [Summary](#summary)
     - [Support](#support)
@@ -430,6 +432,8 @@ Also accepts: `Name.subject`, `Personal or Corporate Name.subject`, `Subject.cor
 #### Subject temporal
 
 #### Subject culturalObject
+
+#### Subject domainTopic
 
 #### Subject topic
 
