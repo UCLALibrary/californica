@@ -223,6 +223,11 @@ module UclaMetadata
       index.as :stored_searchable, :facetable
     end
 
+    property :series, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/Series
+      ') do |index|
+      index.as :stored_searchable, :facetable
+    end
+
     property :location, predicate: ::RDF::Vocab::DC.coverage do |index|
       index.as :stored_searchable, :facetable
     end
@@ -313,10 +318,6 @@ module UclaMetadata
 
     property :representative_image, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3079'), multiple: false do |index|
       index.as :stored_sortable
-    end
-
-    property :series, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/Series') do |index|
-      index.as :stored_searchable, :facetable
     end
 
     property :tagline, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3081'), multiple: false do |index|
