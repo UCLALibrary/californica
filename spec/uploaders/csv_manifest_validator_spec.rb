@@ -266,7 +266,6 @@ RSpec.describe CsvManifestValidator, type: :model do
         "Rights.statementLocal",
         "Rubricator",
         "Scribe",
-        "Series",
         "Subject geographic",
         "Subject.culturalObject",
         "Subject.culturalObject", # this for subject topic
@@ -309,7 +308,8 @@ RSpec.describe CsvManifestValidator, type: :model do
         "Producer",
         "Name.producer",
         "Recipient",
-        "Name.recipient"
+        "Name.recipient",
+        "Series"
       )
     end
   end

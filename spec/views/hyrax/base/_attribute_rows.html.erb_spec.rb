@@ -51,7 +51,6 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       rights_country: ['rights_country'],
       rights_holder: ['rights_holder'],
       rubricator: ['Old rubricator'],
-      series: ['Old Series'],
       subject_geographic: ['Old Subject geographic'],
       subject_temporal: ['Old Subject temporal'],
       subject_cultural_object: ['Old Subject cultural object'],
@@ -71,7 +70,8 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       director: ['Old Director'],
       producer: ['Old Producer'],
       content_disclaimer: ['Old Disclaimer'],
-      program: ['Old Program']
+      program: ['Old Program'],
+      series: ['Old Series']
     )
   end
 
@@ -190,9 +190,6 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   it 'has rubricator' do
     expect(page).to match(/rubricator/)
   end
-  it 'has series' do
-    expect(page).to match(/series/)
-  end
   it 'has subject_geographic' do
     expect(page).to match(/subject_geographic/)
   end
@@ -249,6 +246,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   end
   it 'has program' do
     expect(page).to match(/program/)
+  end
+  it 'has series' do
+    expect(page).to match(/series/)
   end
   # This invokes License renderer from hyrax gem
   # it 'has local_rights_statement' do

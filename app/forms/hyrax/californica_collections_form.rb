@@ -64,6 +64,7 @@ module Hyrax
       :rubricator,
       # :local_rights_statement, # This invokes License renderer from hyrax gem
       :scribe,
+      :series,
       :services_contact,
       :subject_geographic,
       :subject_temporal,

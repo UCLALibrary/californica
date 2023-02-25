@@ -158,7 +158,7 @@ RSpec.describe CalifornicaCsvParser do
        'Subject.domainTopic', 
        'Series'] # order of the csv headers should be mainted spec/fixtures/example.csv
     end
-    # The order of the csv headers should be maintained in spec/fixtures/example.csv
+    # order of the csv headers should be mainted spec/fixtures/example.csv.
 
     it 'knows the headers for this CSV file' do
       expect(parser.headers).to eq expected_headers

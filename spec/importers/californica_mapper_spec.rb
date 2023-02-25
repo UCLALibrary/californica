@@ -141,7 +141,10 @@ RSpec.describe CalifornicaMapper do
       "Name.producer" => "Producer-2", # producer
       "Program" => "Program-1", # program
       "Subject.culturalObject" => "subject-culturalObject-1", # subject_cultural_object
+<<<<<<< HEAD
       "Subject.domainTopic" => "subject-domain-topic-1", # subject_cultural_object
+=======
+>>>>>>> feat: update files
       "Series" => "Series-1", # series
     }
   end
