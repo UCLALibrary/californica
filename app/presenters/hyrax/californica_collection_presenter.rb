@@ -76,6 +76,7 @@ module Hyrax
         :resource_type,
         :rubricator,
         :scribe,
+        :series,
         :services_contact,
         :size,
         :subject,
