@@ -223,8 +223,7 @@ module UclaMetadata
       index.as :stored_searchable, :facetable
     end
 
-    property :series, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/Series
-      ') do |index|
+    property :series, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/Series') do |index|
       index.as :stored_searchable, :facetable
     end
 
