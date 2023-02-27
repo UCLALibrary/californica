@@ -219,6 +219,10 @@ module UclaMetadata
       index.as :stored_searchable, :facetable
     end
 
+    property :subject_domain_topic, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/Topic') do |index|
+      index.as :stored_searchable, :facetable
+    end
+
     property :location, predicate: ::RDF::Vocab::DC.coverage do |index|
       index.as :stored_searchable, :facetable
     end
