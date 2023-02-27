@@ -96,6 +96,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     rubricator: ["Rubricator", "Name.rubricator"],
     # local_rights_statement: "Rights.statementLocal", # This invokes License renderer from hyrax gem
     scribe: "Name.scribe",
+    series: "Series",
     services_contact: "Rights.servicesContact",
     subject: "Subject",
     subject_geographic: ["Subject geographic", "Subject place"],

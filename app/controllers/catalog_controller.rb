@@ -65,6 +65,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('extent', :facetable), label: 'Extent', limit: 5
     config.add_facet_field solr_name('genre', :facetable), label: 'Genre', limit: 5
     config.add_facet_field solr_name('location', :facetable), label: 'Location', limit: 5
+    config.add_facet_field solr_name('series', :facetable), label: 'Series', limit: 5
 
     # The generic_type isn't displayed on the facet list
     # It's used to give a label to the filter that comes from the user profile
@@ -180,6 +181,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'representative_image_ssi'
     config.add_show_field 'featured_image_ssi'
     config.add_show_field 'tagline_ssi'
+    config.add_show_field 'series_tesim'
     # config.add_show_field 'local_rights_statement_ssim' # This invokes License renderer from hyrax gem
 
     # "fielded" search configuration. Used by pulldown among other places.
@@ -606,6 +608,14 @@ class CatalogController < ApplicationController
 
     config.add_search_field('repository') do |field|
       solr_name = solr_name('repository', :stored_sortable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('series') do |field|
+      solr_name = solr_name('series', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
