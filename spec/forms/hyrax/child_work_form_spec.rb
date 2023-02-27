@@ -29,6 +29,7 @@ RSpec.describe Hyrax::ChildWorkForm do
       :rights_holder,
       :subject_temporal,
       :subject_cultural_object,
+      :subject_domain_topic,
       :translator
     )
   end

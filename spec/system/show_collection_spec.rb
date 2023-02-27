@@ -75,6 +75,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       subject_geographic: ['Old Subject geographic'],
       subject_temporal: ['Old Subject temporal'],
       subject_cultural_object: ['Old Subject cultural object'],
+      subject_domain_topic: ['Old Subject domain topic'],
       translator: ['Old Translator'],
       colophon: ['Old Colophon'],
       finding_aid_url: ['Old Finding aid url'],
