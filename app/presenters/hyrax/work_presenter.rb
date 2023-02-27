@@ -72,6 +72,7 @@ module Hyrax
       :subject_geographic,
       :subject_temporal,
       :subject_cultural_object,
+      :subject_domain_topic,
       :summary,
       :support,
       :tagline,
