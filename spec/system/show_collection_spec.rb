@@ -59,7 +59,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       iiif_text_direction: 'Old IIIF Text direction',
       title: ['Old Title'],
       toc: ['Old Table of contents'],
-      uniform_title: ['Old Uniform title'],
+      uniform_title: ['Old Uniform title'],
       collation: 'Old Collation',
       composer: ['Old Composer'],
       foliation: 'Old Foliation note',
