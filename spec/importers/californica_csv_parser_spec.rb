@@ -154,7 +154,8 @@ RSpec.describe CalifornicaCsvParser do
        'Recipient',
        'Name.recipient',
        'Program',
-       'Subject.culturalObject'] # order of the csv headers should be mainted spec/fixtures/example.csv.
+       'Subject.culturalObject',
+       'Subject.domainTopic'] # order of the csv headers should be mainted spec/fixtures/example.csv.
     end
 
     it 'knows the headers for this CSV file' do

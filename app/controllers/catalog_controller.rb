@@ -52,6 +52,7 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('subject_geographic', :facetable), label: 'Subject geographic', limit: 5
     config.add_facet_field solr_name('subject_temporal', :facetable), label: 'Subject temporal', limit: 5
     config.add_facet_field solr_name('subject_cultural_object', :facetable), label: 'Subject cultural object', limit: 5
+    config.add_facet_field solr_name('subject_domain_topic', :facetable), label: 'Subject domain topic', limit: 5
     config.add_facet_field solr_name('human_readable_language', :facetable), label: 'Language', limit: 5
     config.add_facet_field solr_name('file_format', :facetable), limit: 5
     config.add_facet_field solr_name('member_of_collections', :symbol), limit: 5, label: 'Collection'
@@ -167,6 +168,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'subject_geographic_tesim'
     config.add_show_field 'subject_temporal_tesim'
     config.add_show_field 'subject_cultural_object_tesim'
+    config.add_show_field 'subject_domain_topic_tesim'
     config.add_show_field 'subject_topic_tesim'
     config.add_show_field 'support_tesim'
     config.add_show_field 'summary_tesim'
@@ -460,6 +462,14 @@ class CatalogController < ApplicationController
 
     config.add_search_field('subject_cultural_object') do |field|
       solr_name = solr_name('subject_cultural_object', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('subject_domain_topic') do |field|
+      solr_name = solr_name('subject_domain_topic', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
