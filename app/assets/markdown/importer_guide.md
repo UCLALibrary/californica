@@ -80,6 +80,7 @@
     - [Rights.countryCreation](#rightscountrycreation)
     - [Rights.rightsHolderContact](#rightsrightsholdercontact)
     - [Rights.statementLocal](#rightsstatementlocal)
+    - [Series](#series)
     - [Subject geographic](#subject-geographic)
     - [Subject name](#subject-name)
     - [Subject temporal](#subject-temporal)
@@ -420,6 +421,8 @@ The base URL of a IIIF image to be used for the collection page masthead. See `M
 Also accepts: `Rights.rightsHolderName`, `Personal or Corporate Name.copyrightHolder`
 
 #### Rights.statementLocal
+
+#### Series
 
 #### Subject geographic
 

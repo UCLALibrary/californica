@@ -287,6 +287,10 @@ class SolrDocument
     self[:scribe_tesim]
   end
 
+  def series
+    self[:series_tesim]
+  end
+
   def services_contact
     self[:services_contact_ssm]
   end
