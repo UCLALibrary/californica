@@ -141,6 +141,7 @@ RSpec.describe CalifornicaMapper do
       "Name.producer" => "Producer-2", # producer
       "Program" => "Program-1", # program
       "Subject.culturalObject" => "subject-culturalObject-1", # subject_cultural_object
+      "Subject.domainTopic" => "subject-domain-topic-1", # subject_cultural_object
     }
   end
 
@@ -237,6 +238,7 @@ RSpec.describe CalifornicaMapper do
         :subject_geographic,
         :subject_temporal,
         :subject_cultural_object,
+        :subject_domain_topic,
         :summary,
         :support,
         :toc,
