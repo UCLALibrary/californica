@@ -102,6 +102,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "subject_geographic_1" # subject_geographic
     expect(page).to have_content "subject_temporal_1" # subject_temporal
     expect(page).to have_content "subject-culturalObject-1" # subject_cultural_object
+    expect(page).to have_content "subject-domain-topic-1" # subject_domain_topic
     expect(page).to have_content "colophon_text" # colophon
     expect(page).to have_content "colophon_text_2" # colophon
     expect(page).to have_content "finding_aid_url_1" # finding_aid_url
@@ -133,7 +134,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
 
     # displays expected facets
     facet_headings = page.all(:css, 'h3.facet-field-heading').to_a.map(&:text)
-    expect(facet_headings).to contain_exactly("Subject", "Creator", "Resource Type", "Genre", "Names", "Location", "Normalized Date", "Extent", "Medium", "Dimensions", "Language", "Collection", "Subject geographic", "Subject temporal", "Repository", "Subject cultural object")
+    expect(facet_headings).to contain_exactly("Subject", "Creator", "Resource Type", "Genre", "Names", "Location", "Normalized Date", "Extent", "Medium", "Dimensions", "Language", "Collection", "Subject geographic", "Subject temporal", "Repository", "Subject cultural object", "Subject domain topic")
 
     # importing the same object twice
     expect(work.funding_note.first).to eq "Fake Funding Note"
