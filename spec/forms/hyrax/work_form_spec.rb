@@ -61,6 +61,7 @@ RSpec.describe Hyrax::WorkForm do
       :rubricator,
       # :local_rights_statement, # This invokes License renderer from hyrax gem
       :scribe,
+      :series,
       :subject_topic,
       :subject_geographic,
       :subject_temporal,
