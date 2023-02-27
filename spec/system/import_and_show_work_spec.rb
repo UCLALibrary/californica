@@ -99,7 +99,6 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "translator_1" # translator
     expect(page).to have_content "translator_2" # translator
     expect(page).to have_content "https://fake.url/iiif/ark%3A%2F13030%2Fhb338nb26f" # thumbnail_link
-    expect(page).to have_content "Series-1" # subject_geographic
     expect(page).to have_content "subject_geographic_1" # subject_geographic
     expect(page).to have_content "subject_temporal_1" # subject_temporal
     expect(page).to have_content "subject-culturalObject-1" # subject_cultural_object
@@ -125,10 +124,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "Producer-1" # producer
     expect(page).to have_content "Program-1" # program
     expect(page).to have_content "Recipient-1" # recipient
-<<<<<<< HEAD
-=======
     expect(page).to have_content "Series-1" # series
->>>>>>> feat: update files
     # expect(page).to have_content "local_statement" # local_rights_statement # This invokes License renderer from hyrax gem
 
     # displays expected fields on search results page
