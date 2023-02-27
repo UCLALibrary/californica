@@ -27,6 +27,7 @@ RSpec.describe Hyrax::ChildWorkForm do
       :repository,
       :rights_country,
       :rights_holder,
+      :series,
       :subject_temporal,
       :subject_cultural_object,
       :subject_domain_topic,
