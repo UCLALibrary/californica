@@ -124,6 +124,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "Producer-1" # producer
     expect(page).to have_content "Program-1" # program
     expect(page).to have_content "Recipient-1" # recipient
+    expect(page).to have_content "Series-1" # series
     # expect(page).to have_content "local_statement" # local_rights_statement # This invokes License renderer from hyrax gem
 
     # displays expected fields on search results page
@@ -134,7 +135,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
 
     # displays expected facets
     facet_headings = page.all(:css, 'h3.facet-field-heading').to_a.map(&:text)
-    expect(facet_headings).to contain_exactly("Subject", "Creator", "Resource Type", "Genre", "Names", "Location", "Normalized Date", "Extent", "Medium", "Dimensions", "Language", "Collection", "Subject geographic", "Subject temporal", "Repository", "Subject cultural object", "Subject domain topic")
+    expect(facet_headings).to contain_exactly("Subject", "Creator", "Resource Type", "Genre", "Names", "Location", "Normalized Date", "Extent", "Medium", "Dimensions", "Language", "Collection", "Subject geographic", "Subject temporal", "Repository", "Subject cultural object", "Subject domain topic", "Series")
 
     # importing the same object twice
     expect(work.funding_note.first).to eq "Fake Funding Note"
