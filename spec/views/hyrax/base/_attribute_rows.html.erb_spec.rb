@@ -54,6 +54,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       subject_geographic: ['Old Subject geographic'],
       subject_temporal: ['Old Subject temporal'],
       subject_cultural_object: ['Old Subject cultural object'],
+      subject_domain_topic: ['Old Subject domain topic'],
       subject_topic: ['subject_topic'],
       summary: ['summary'],
       support: ['support'],
@@ -196,6 +197,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   end
   it 'has subject_cultural_object' do
     expect(page).to match(/subject_cultural_object/)
+  end
+  it 'has subject_domain_topic' do
+    expect(page).to match(/subject_domain_topic/)
   end
   it 'has subject_topic' do
     expect(page).to match(/subject_topic/)
