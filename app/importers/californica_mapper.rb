@@ -100,8 +100,9 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     subject: "Subject",
     subject_geographic: ["Subject geographic", "Subject place"],
     subject_cultural_object: "Subject.culturalObject",
+    subject_domain_topic: "Subject.domainTopic",
     subject_temporal: "Subject temporal",
-    subject_topic: ["Subject topic", "Subject.conceptTopic", "Subject.descriptiveTopic", "Subject.culturalObject"],
+    subject_topic: ["Subject topic", "Subject.conceptTopic", "Subject.descriptiveTopic", "Subject.culturalObject", "Subject.domainTopic"],
     summary: ["Summary", "Description.abstract"], # Removed Description.contents - Map this CSV colum name to "Contents note" https://jira.library.ucla.edu/browse/CAL-781
     support: "Support",
     tagline: ["Tagline"],
