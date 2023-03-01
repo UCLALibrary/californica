@@ -309,7 +309,15 @@ RSpec.describe CsvManifestValidator, type: :model do
         "Name.producer",
         "Recipient",
         "Name.recipient",
-        "Series"
+        "Series",
+        "Host",
+        "Name.host",
+        "Musician",
+        "Name.musician",
+        "Printer",
+        "Name.printer",
+        "Researcher",
+        "Name.researcher"
       )
     end
   end
