@@ -124,6 +124,22 @@ module UclaMetadata
       index.as :stored_searchable, :facetable
     end
 
+    property :host, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/hst') do |index|
+      index.as :stored_searchable, :facetable
+    end
+
+    property :musician, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/mus') do |index|
+      index.as :stored_searchable, :facetable
+    end
+
+    property :printer, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/prt') do |index|
+      index.as :stored_searchable, :facetable
+    end
+
+    property :researcher, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/res') do |index|
+      index.as :stored_searchable, :facetable
+    end
+
     # Notes
     property :summary, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/Summary') do |index|
       index.as :stored_searchable
