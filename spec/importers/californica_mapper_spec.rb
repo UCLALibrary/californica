@@ -142,7 +142,15 @@ RSpec.describe CalifornicaMapper do
       "Program" => "Program-1", # program
       "Subject.culturalObject" => "subject-culturalObject-1", # subject cultural object
       "Subject.domainTopic" => "subject-domain-topic-1", # subject domain topic
-      "Series" => "Series-1" # series
+      "Series" => "Series-1", # series
+      "Host" => "Host-1", # host
+      "Name.host" => "Host-2", # host
+      "Musician" => "Musician-1", # musician
+      "Name.musician" => "Musician-2", # musician
+      "Printer" => "Printer-1", # printer
+      "Name.printer" => "Printer-2", # printer
+      "Researcher" => "Researcher-1", # researcher
+      "Name.researcher" => "Researcher-2", # researcher
     }
   end
 
@@ -260,7 +268,11 @@ RSpec.describe CalifornicaMapper do
         :interviewer,
         :interviewee,
         :producer,
-        :recipient
+        :recipient,
+        :host,
+        :musician,
+        :printer,
+        :researcher
       )
     end
   end
