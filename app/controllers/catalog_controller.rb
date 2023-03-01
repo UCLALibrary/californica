@@ -647,7 +647,7 @@ class CatalogController < ApplicationController
     end
 
     config.add_search_field('researcher') do |field|
-      solr_name = solr_name('researcher', :stored_sortable)
+      solr_name = solr_name('researcher', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
