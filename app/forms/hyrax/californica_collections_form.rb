@@ -128,7 +128,7 @@ module Hyrax
         :foliation,
         :funding_note,
         :genre,
-        :hosr,
+        :host,
         :identifier,
         :iiif_manifest_url,
         :iiif_range,
