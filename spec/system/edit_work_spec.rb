@@ -193,7 +193,6 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field("Printer").value).to eq 'Old Printer'
       expect(find_field("Researcher").value).to eq 'Old Researcher'
 
-
       # expect(find_field('Local rights statement').value).to eq 'Old Rights statement local'
 
       # Edit some fields in the form
