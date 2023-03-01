@@ -66,6 +66,10 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('genre', :facetable), label: 'Genre', limit: 5
     config.add_facet_field solr_name('location', :facetable), label: 'Location', limit: 5
     config.add_facet_field solr_name('series', :facetable), label: 'Series', limit: 5
+    config.add_facet_field solr_name('host', :facetable), label: 'Host', limit: 5
+    config.add_facet_field solr_name('musician', :facetable), label: 'Musician', limit: 5
+    config.add_facet_field solr_name('printer', :facetable), label: 'Printer', limit: 5
+    config.add_facet_field solr_name('researcher', :facetable), label: 'Researcher', limit: 5
 
     # The generic_type isn't displayed on the facet list
     # It's used to give a label to the filter that comes from the user profile
@@ -136,6 +140,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'masthead_parameters_ssi'
     config.add_show_field 'funding_note_tesim'
     config.add_show_field 'genre_tesim'
+    config.add_show_field 'host_tesim'
     config.add_show_field 'iiif_manifest_url_ssi'
     config.add_show_field 'iiif_range_ssi'
     config.add_show_field 'iiif_viewing_hint_ssi'
@@ -148,6 +153,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'local_identifier_ssm'
     config.add_show_field 'lyricist_tesim'
     config.add_show_field 'medium_tesim'
+    config.add_show_field 'musician_tesim'
     config.add_show_field 'named_subject_tesim'
     config.add_show_field 'normalized_date_tesim'
     config.add_show_field 'note_tesim'
@@ -156,12 +162,14 @@ class CatalogController < ApplicationController
     config.add_show_field 'photographer_tesim'
     config.add_show_field 'place_of_origin_tesim'
     config.add_show_field 'preservation_copy_ssi'
+    config.add_show_field 'printer_tesim'
     config.add_show_field 'printmaker_tesim'
     config.add_show_field 'producer_tesim'
     config.add_show_field 'program_tesim'
     config.add_show_field 'provenance_tesim'
     config.add_show_field 'recipient_tesim'
     config.add_show_field 'repository_tesim'
+    config.add_show_field 'researcher_tesim'
     config.add_show_field 'rights_country_tesim'
     config.add_show_field 'rights_holder_tesim'
     config.add_show_field 'rubricator_tesim'
@@ -502,6 +510,14 @@ class CatalogController < ApplicationController
       }
     end
 
+    config.add_search_field('host') do |field|
+      solr_name = solr_name('host', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
     config.add_search_field('identifier') do |field|
       solr_name = solr_name('id', :stored_searchable)
       field.solr_local_parameters = {
@@ -566,6 +582,22 @@ class CatalogController < ApplicationController
       }
     end
 
+    config.add_search_field('musician') do |field|
+      solr_name = solr_name('musician', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('printer') do |field|
+      solr_name = solr_name('printer', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
     config.add_search_field('subject_topic') do |field|
       solr_name = solr_name('subject_topic', :stored_searchable)
       field.solr_local_parameters = {
@@ -607,7 +639,15 @@ class CatalogController < ApplicationController
     end
 
     config.add_search_field('repository') do |field|
-      solr_name = solr_name('repository', :stored_sortable)
+      solr_name = solr_name('repository', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('researcher') do |field|
+      solr_name = solr_name('researcher', :stored_sortable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
