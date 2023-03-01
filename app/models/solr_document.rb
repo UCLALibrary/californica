@@ -278,7 +278,6 @@ class SolrDocument
     self[:representative_image_ssi]
   end
 
-
   def researcher
     self[:researcher_tesim]
   end
