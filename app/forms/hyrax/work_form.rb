@@ -23,7 +23,7 @@ module Hyrax
       :content_disclaimer,
       :contents_note,
       :contributor,
-      :creator,
+      # :creator,
       :dimensions,
       :director,
       :editor,
