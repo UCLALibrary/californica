@@ -317,6 +317,15 @@ RSpec.describe CsvManifestValidator, type: :model do
         "Printer",
         "Name.printer",
         "Researcher",
+        "Name.researcher",
+        # adds these twice because they are also part of named_subject
+        "Host",
+        "Name.host",
+        "Musician",
+        "Name.musician",
+        "Printer",
+        "Name.printer",
+        "Researcher",
         "Name.researcher"
       )
     end
