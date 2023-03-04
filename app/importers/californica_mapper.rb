@@ -100,6 +100,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     representative_image: ["Representative image"],
     researcher: ["Researcher", "Name.researcher"],
     resource_type: "Type.typeOfResource",
+    resp_statement: "Statement of Responsibility",
     rights_country: "Rights.countryCreation",
     rights_holder: ["Personal or Corporate Name.copyrightHolder",
                     "Rights.rightsHolderContact",
