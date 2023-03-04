@@ -93,7 +93,11 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       director: ['Old Director'],
       producer: ['Old Producer'],
       program: ['Old Program'],
-      series: ['Old Series']
+      series: ['Old Series'],
+      host: ['Old Host'],
+      musician: ['Old Musician'],
+      printer: ['Old Printer'],
+      researcher: ['Old Researcher']
     }
   end
 
@@ -192,6 +196,10 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field("Program").value).to eq 'Old Program'
       expect(find_field("Recipient").value).to eq 'Old Recipient'
       expect(find_field("Series").value).to eq 'Old Series'
+      expect(find_field("Host").value).to eq 'Old Host'
+      expect(find_field("Musician").value).to eq 'Old Musician'
+      expect(find_field("Printer").value).to eq 'Old Printer'
+      expect(find_field("Researcher").value).to eq 'Old Researcher'
 
       # expect(find_field('Local rights statement').value).to eq 'Old Rights statement local'
       #
