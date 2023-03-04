@@ -74,6 +74,7 @@ module Hyrax
         :representative_image,
         :repository,
         :researcher,
+        :resp_statement,
         :rights_country,
         :rights_holder,
         # :local_rights_statement, # This invokes License renderer from hyrax gem
