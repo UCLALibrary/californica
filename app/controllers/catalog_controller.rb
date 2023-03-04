@@ -170,6 +170,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'recipient_tesim'
     config.add_show_field 'repository_tesim'
     config.add_show_field 'researcher_tesim'
+    config.add_show_field 'resp_statement_tesim'
     config.add_show_field 'rights_country_tesim'
     config.add_show_field 'rights_holder_tesim'
     config.add_show_field 'rubricator_tesim'
@@ -432,6 +433,14 @@ class CatalogController < ApplicationController
 
     config.add_search_field('recipient') do |field|
       solr_name = solr_name('recipient', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('	resp_statement') do |field|
+      solr_name = solr_name('	resp_statement', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
