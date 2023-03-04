@@ -156,7 +156,15 @@ RSpec.describe CalifornicaCsvParser do
        'Program',
        'Subject.culturalObject',
        'Subject.domainTopic',
-       'Series']
+       'Series',
+       'Host',
+       'Name.host',
+       'Musician',
+       'Name.musician',
+       'Printer',
+       'Name.printer',
+       'Researcher',
+       'Name.researcher']
     end
     # order of the csv headers should be mainted spec/fixtures/example.csv.
 
