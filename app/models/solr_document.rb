@@ -282,6 +282,10 @@ class SolrDocument
     self[:researcher_tesim]
   end
 
+  def resp_statement
+    self[:resp_statement_tesim]
+  end
+
   def rights_country
     self[:rights_country_tesim]
   end
