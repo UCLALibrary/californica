@@ -165,6 +165,10 @@ module UclaMetadata
       index.as :stored_searchable
     end
 
+    property :resp_statement, predicate: ::RDF::URI.intern('https://id.loc.gov/ontologies/bibframe.html#p_responsibilityStatement') do |index|
+      index.as :stored_searchable
+    end
+
     property :toc, predicate: ::RDF::URI.intern('http://purl.org/dc/terms/tableOfContents') do |index|
       index.as :stored_searchable
     end
@@ -333,10 +337,6 @@ module UclaMetadata
 
     property :representative_image, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3079'), multiple: false do |index|
       index.as :stored_sortable
-    end
-
-    property :resp_statement, predicate: ::RDF::URI.intern('https://id.loc.gov/ontologies/bibframe.html#p_responsibilityStatement'), multiple: false do |index|
-      index.as :stored_searchable
     end
 
     property :tagline, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3081'), multiple: false do |index|

@@ -169,6 +169,7 @@ module Hyrax
         :representative_image,
         :researcher,
         :resource_type,
+        :resp_statement,
         :rights_country,
         :rights_holder,
         :rubricator,
