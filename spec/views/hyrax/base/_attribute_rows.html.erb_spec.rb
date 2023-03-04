@@ -48,6 +48,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       printmaker: ['Old printmaker'],
       repository: ['repostiory'],
       resource_type: ['resource_type'],
+      resp_statement: ['Statement of Responsibility'],
       rights_country: ['rights_country'],
       rights_holder: ['rights_holder'],
       rubricator: ['Old rubricator'],
@@ -184,6 +185,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   end
   it 'has resource type' do
     expect(page).to match(/resource_type/)
+  end
+  it 'has resp_statement' do
+    expect(page).to match(/resp_statement/)
   end
   it 'has rights_country' do
     expect(page).to match(/rights_country/)

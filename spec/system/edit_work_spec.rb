@@ -79,6 +79,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       representative_image: 'Old Representative image',
       researcher: ['Old Researcher'],
       resource_type: ['http://id.loc.gov/vocabulary/resourceTypes/img'], # "image"
+      resp_statement: ['Old Statement of Responsibility'],
       rights_country: ['Old Rights Country'],
       rights_holder: ['Old Rights Holder'],
       rights_statement: ['http://vocabs.library.ucla.edu/rights/copyrighted'], # "copyrighted"
@@ -173,6 +174,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Publisher').value).to eq 'Old Pub'
       expect(find_field('Repository').value).to eq 'Old Repository'
       expect(find_field('Resource type').value).to eq ['http://id.loc.gov/vocabulary/resourceTypes/img']
+      expect(find_field('Statement of Responsibility').value).to eq 'Old Statement of Responsibility'
       expect(find_field('Rights (country of creation)').value).to eq 'Old Rights Country'
       expect(find_field('Rights Holder').value).to eq 'Old Rights Holder'
       expect(find_field('Subject').value).to eq 'Old Subj'

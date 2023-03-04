@@ -29,6 +29,7 @@ RSpec.describe Hyrax::ChildWorkForm do
       :printer,
       :repository,
       :researcher,
+      :resp_statement,
       :rights_country,
       :rights_holder,
       :series,

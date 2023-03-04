@@ -95,7 +95,8 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       host: ['Old Host'],
       musician: ['Old Musician'],
       printer: ['Old Printer'],
-      researcher: ['Old Researcher']
+      researcher: ['Old Researcher'],
+      resp_statement: ['Old Statement of Responsibility']
     }
   end
 

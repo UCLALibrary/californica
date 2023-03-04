@@ -151,6 +151,7 @@ RSpec.describe CalifornicaMapper do
       "Name.printer" => "Printer-2", # printer
       "Researcher" => "Researcher-1", # researcher
       "Name.researcher" => "Researcher-2", # researcher
+      "Statement of Responsibility" => "Statement of Responsibility-1" # resp_statement
     }
   end
 
@@ -236,6 +237,7 @@ RSpec.describe CalifornicaMapper do
         :provenance,
         :repository,
         :resource_type,
+        :resp_statement,
         :rights_country,
         :rights_holder,
         :rights_statement,

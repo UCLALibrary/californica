@@ -266,6 +266,7 @@ RSpec.describe CsvManifestValidator, type: :model do
         "Rights.statementLocal",
         "Rubricator",
         "Scribe",
+        "Statement of Responsibility",
         "Subject geographic",
         "Subject.culturalObject",
         "Subject.culturalObject", # this for subject topic
