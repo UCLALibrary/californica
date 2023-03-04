@@ -36,6 +36,7 @@
     - [Format.extent](#formatextent)
     - [Format.medium](#formatmedium)
     - [Genre](#genre)
+    - [Host](#host)
     - [IIIF Access URL](#iiif-access-url)
     - [IIIF Range (for future use in Festerize to generate Ranges)](#iiif-range-for-future-use-in-festerize-to-generate-ranges)
     - [Illustrations note](#illustrations-note)
@@ -44,6 +45,7 @@
     - [License](#license)
     - [Local identifier](#local-identifier)
     - [Masthead](#masthead)
+    - [Musician](#musician)
     - [Name.architect](#namearchitect)
     - [Name.artist](#nameartist)
     - [Name.calligrapher](#namecalligrapher)
@@ -59,10 +61,13 @@
     - [Name.interviewee](#nameinterviewee) 
     - [Name.interviewer](#nameinterviewer) 
     - [Name.lyricist](#namelyricist)
+    - [Name.musician](#namemusician)
     - [Name.photographer](#namephotographer)
+    - [Name.printer](#nameprinter)
     - [Name.printmaker](#nameprintmaker)
     - [Name.producer](#nameproducer)
     - [Name.recipient](#namerecipient)
+    - [Name.researcher](#nameresearcher)
     - [Name.rubricator](#namerubricator)
     - [Name.scribe](#namescribe)
     - [Name.translator](#nametranslator)
@@ -70,6 +75,7 @@
     - [Opac url](#opac-url)
     - [Page layout](#page-layout)
     - [Place of origin](#place-of-origin)
+    - [Printer](#printer)
     - [Program](#program)
     - [Project Name](#project-name)
     - [Provenance](#provenance)
@@ -77,6 +83,7 @@
     - [Relation.isPartOf](#relationispartof)
     - [Repository](#repository)
     - [Representative image](#representative-image)
+    - [Researcher](#researcher)
     - [Rights.countryCreation](#rightscountrycreation)
     - [Rights.rightsHolderContact](#rightsrightsholdercontact)
     - [Rights.statementLocal](#rightsstatementlocal)
@@ -261,6 +268,10 @@ Also accepts: `Foliation note`
 
 Also accepts: `Type.genre`
 
+#### Host
+
+Also accepts `Name.host`
+
 #### IIIF Access URL
 
 The URL of a IIIF resource that can be used to view the image. This is populated by processing the CSV via [bucketeer](https://bucketeer.library.ucla.edu/upload/csv). This URL is used to generate thumbnails for simple objects.
@@ -298,11 +309,15 @@ Examples:
 
 The IIIF parameters following a IIIF image base URL. Used for the masthead image on a collections page. See `Representative image` below.
 
+#### Musician
+
+Also accepts: `Name.musician`
+
 #### Name.architect
 
 #### Name.artist
 
-Also accepts: `Artist
+Also accepts: `Artist`
 
 #### Name.calligrapher
 
@@ -390,6 +405,10 @@ Also accepts: `Description.opac`
 
 Also accepts: `Publisher.placeOfOrigin`
 
+#### Printer
+
+Also accepts: `Name.printer`
+
 #### Program
 
 #### Project Name
@@ -413,6 +432,10 @@ Also accepts: `Name.repository`, `repository`, `Personal or Corporate Name.repos
 #### Representative image
 
 The base URL of a IIIF image to be used for the collection page masthead. See `Masthead` above.
+
+#### Researcher
+
+Also accepts: `Name.researcher`
 
 #### Rights.countryCreation
 

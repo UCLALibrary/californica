@@ -32,6 +32,7 @@
 <%= presenter.attribute_to_html(:funding_note, html_dl: true) %>
 <%= presenter.attribute_to_html(:genre, html_dl: true) %>
 <%= presenter.attribute_to_html(:geographic_coordinates, html_dl: true) %>
+<%= presenter.attribute_to_html(:host, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:identifier, render_as: :linked, search_field: 'identifier_tesim', html_dl: true) %>
 <%= presenter.attribute_to_html(:iiif_manifest_url, html_dl: true) %>
 <%= presenter.attribute_to_html(:iiif_range, html_dl: true) %>
@@ -49,6 +50,7 @@
 <%= presenter.attribute_to_html(:lyricist, html_dl: true) %>
 <%= presenter.attribute_to_html(:masthead_parameters, html_dl: true) %>
 <%= presenter.attribute_to_html(:medium, html_dl: true) %>
+<%= presenter.attribute_to_html(:musician, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:named_subject, html_dl: true) %>
 <%= presenter.attribute_to_html(:normalized_date, html_dl: true) %>
 <%= presenter.attribute_to_html(:note, html_dl: true) %>
@@ -57,6 +59,7 @@
 <%= presenter.attribute_to_html(:photographer, html_dl: true) %>
 <%= presenter.attribute_to_html(:place_of_origin, html_dl: true) %>
 <%= presenter.attribute_to_html(:preservation_copy, html_dl: true) %>
+<%= presenter.attribute_to_html(:printer, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:printmaker, html_dl: true) %>
 <%= presenter.attribute_to_html(:producer, html_dl: true) %>
 <%= presenter.attribute_to_html(:program, html_dl: true) %>
@@ -66,6 +69,7 @@
 <%= presenter.attribute_to_html(:related_url, render_as: :external_link, html_dl: true) %>
 <%= presenter.attribute_to_html(:repository, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:representative_image, html_dl: true) %>
+<%= presenter.attribute_to_html(:researcher, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:resource_type, render_as: :resource_type, html_dl: true) %>
 <%= presenter.attribute_to_html(:rights_country, html_dl: true) %>
 <%= presenter.attribute_to_html(:rights_holder, html_dl: true) %>
