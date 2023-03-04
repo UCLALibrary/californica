@@ -91,7 +91,11 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       recipient: ['Old Recipient'],
       director: ['Old Director'],
       producer: ['Old Producer'],
-      series: ['Old Series']
+      series: ['Old Series'],
+      host: ['Old Host'],
+      musician: ['Old Musician'],
+      printer: ['Old Printer'],
+      researcher: ['Old Researcher']
     }
   end
 

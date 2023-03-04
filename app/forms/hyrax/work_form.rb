@@ -1,6 +1,5 @@
 # frozen_string_literal: true
-# Generated via
-#  `rails generate hyrax:work Work`
+# Generated via `rails generate hyrax:work Work`
 module Hyrax
   # Generated form for Work
   class WorkForm < Hyrax::Forms::WorkForm
@@ -23,6 +22,8 @@ module Hyrax
       :condition_note,
       :content_disclaimer,
       :contents_note,
+      :contributor,
+      # :creator,
       :dimensions,
       :director,
       :editor,
@@ -33,6 +34,7 @@ module Hyrax
       :foliation,
       :funding_note,
       :genre,
+      :host,
       :iiif_manifest_url,
       :iiif_range,
       :iiif_text_direction,
@@ -50,6 +52,7 @@ module Hyrax
       :lyricist,
       :masthead_parameters,
       :medium,
+      :musician,
       :named_subject,
       :normalized_date,
       :note,
@@ -58,6 +61,7 @@ module Hyrax
       :photographer,
       :place_of_origin,
       :preservation_copy,
+      :printer,
       :printmaker,
       :producer,
       :program,
@@ -65,6 +69,7 @@ module Hyrax
       :recipient,
       :repository,
       :representative_image,
+      :researcher,
       :resource_type,
       :rights_country,
       :rights_holder,
@@ -80,18 +85,15 @@ module Hyrax
       :summary,
       :support,
       :tagline,
-      :toc,
       :thumbnail_link,
+      :toc,
       :translator,
       :uniform_title
     ]
     self.terms -= [:based_near]
-
     self.required_fields = [:title, :ark, :rights_statement]
 
-    ##
-    # Fields that are automatically drawn on the page above the fold
-    #
+    # Fields that are automatically drawn on the page above the fol
     # @return [Enumerable<Symbol>] symbols representing each primary term
     def primary_terms
       primary = required_fields + [:access_copy, :preservation_copy, :thumbnail_link]
