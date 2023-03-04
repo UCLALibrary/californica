@@ -88,6 +88,7 @@
     - [Rights.rightsHolderContact](#rightsrightsholdercontact)
     - [Rights.statementLocal](#rightsstatementlocal)
     - [Series](#series)
+    - [Statement of Responsibility](#resp_statement)
     - [Subject geographic](#subject-geographic)
     - [Subject name](#subject-name)
     - [Subject temporal](#subject-temporal)
@@ -446,6 +447,8 @@ Also accepts: `Rights.rightsHolderName`, `Personal or Corporate Name.copyrightHo
 #### Rights.statementLocal
 
 #### Series
+
+#### 	Statement of Responsibility
 
 #### Subject geographic
 
