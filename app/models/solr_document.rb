@@ -142,6 +142,10 @@ class SolrDocument
     self[:genre_tesim]
   end
 
+  def host
+    self[:host_tesim]
+  end
+
   def iiif_manifest_url
     self[:iiif_manifest_url_ssi] || "/concern/works/#{id}/manifest"
   end
@@ -206,6 +210,10 @@ class SolrDocument
     self[:medium_tesim]
   end
 
+  def musician
+    self[:musician_tesim]
+  end
+
   def named_subject
     self[:named_subject_tesim]
   end
@@ -232,6 +240,10 @@ class SolrDocument
 
   def place_of_origin
     self[:place_of_origin_tesim]
+  end
+
+  def printer
+    self[:printer_tesim]
   end
 
   def program
@@ -264,6 +276,10 @@ class SolrDocument
 
   def representative_image
     self[:representative_image_ssi]
+  end
+
+  def researcher
+    self[:researcher_tesim]
   end
 
   def rights_country

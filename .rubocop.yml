@@ -24,6 +24,7 @@ Metrics/AbcSize:
 Metrics/ClassLength:
   Enabled: true
   Exclude:
+    - app/forms/hyrax/work_form.rb
     - app/models/solr_document.rb
     - app/controllers/catalog_controller.rb
     - app/controllers/catalog_controller.rb
