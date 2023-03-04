@@ -71,7 +71,11 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       producer: ['Old Producer'],
       content_disclaimer: ['Old Disclaimer'],
       program: ['Old Program'],
-      series: ['Old Series']
+      series: ['Old Series'],
+      host: ['Old Host'],
+      musician: ['Old Musician'],
+      printer: ['Old Printer'],
+      researcher: ['Old Researcher']
     )
   end
 
@@ -249,6 +253,18 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   end
   it 'has series' do
     expect(page).to match(/series/)
+  end
+  it 'has host' do
+    expect(page).to match(/host/)
+  end
+  it 'has musician' do
+    expect(page).to match(/musician/)
+  end
+  it 'has printer' do
+    expect(page).to match(/printer/)
+  end
+  it 'has researcher' do
+    expect(page).to match(/researcher/)
   end
   # This invokes License renderer from hyrax gem
   # it 'has local_rights_statement' do
