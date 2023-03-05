@@ -153,6 +153,11 @@ module UclaMetadata
       index.as :stored_searchable
     end
 
+    # References
+    property :citation_source, predicate: ::RDF::URI.intern('http://bibfra.me/vocab/marc/citationSource') do |index|
+      index.as :stored_searchable
+    end
+
     property :contents_note, predicate: ::RDF::URI.intern('http://bibfra.me/vocab/marc/contentsNote') do |index|
       index.as :stored_searchable
     end

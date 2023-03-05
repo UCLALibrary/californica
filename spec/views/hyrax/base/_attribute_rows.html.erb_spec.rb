@@ -17,6 +17,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       binding_note: 'binding_note',
       calligrapher: ['calligrapher'],
       caption: ['caption'],
+      citation_source: ['Old References'],
       colophon: ['Old Colophon'],
       commentator: ['Old Commentator'],
       condition_note: 'condition_note',
@@ -95,6 +96,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   end
   it 'has caption' do
     expect(page).to match(/caption/)
+  end
+  it 'has citation_source' do
+    expect(page).to match(/references/)
   end
   it 'has colophon' do
     expect(page).to match(/colophon/)

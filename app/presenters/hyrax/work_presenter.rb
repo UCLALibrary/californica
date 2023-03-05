@@ -14,6 +14,7 @@ module Hyrax
       :calligrapher,
       :caption,
       :cartographer,
+      :citation_source,
       :collation,
       :colophon,
       :commentator,

@@ -66,6 +66,10 @@ class SolrDocument
     self[:cartographer_tesim]
   end
 
+  def citation_source
+    self[:citation_source_tesim]
+  end
+
   def collation
     self[:collation_ssi]
   end

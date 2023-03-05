@@ -151,7 +151,8 @@ RSpec.describe CalifornicaMapper do
       "Name.printer" => "Printer-2", # printer
       "Researcher" => "Researcher-1", # researcher
       "Name.researcher" => "Researcher-2", # researcher
-      "Statement of Responsibility" => "Statement of Responsibility-1" # resp_statement
+      "Statement of Responsibility" => "Statement of Responsibility-1", # resp_statement
+      "References" => "References-1" # citation_source
     }
   end
 
@@ -192,6 +193,7 @@ RSpec.describe CalifornicaMapper do
         :binding_note,
         :calligrapher,
         :caption,
+        :citation_source,
         :collation,
         :colophon,
         :commentator,

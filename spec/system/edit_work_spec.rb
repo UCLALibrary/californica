@@ -18,6 +18,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       calligrapher: ['Old Calligrapher'],
       caption: ['Old Caption'],
       cartographer: ['Old Cartographer'],
+      citation_source: ['References'],
       collation: 'Old Collation',
       colophon: ['Old Colophon'],
       composer: ['Old Composer'],
@@ -183,6 +184,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Opac url').value).to eq 'https://www.library.ucla.edu'
       expect(first(:css, '#work_description').value).to eq 'Old Desc'
       expect(find_field("Recipient").value).to eq 'Old Recipient'
+      expect(find_field('References').value).to eq 'Old References'
       expect(find_field('Representative image').value).to eq 'Old Representative image'
       expect(find_field("Researcher").value).to eq 'Old Researcher'
       expect(find_field('Rubricator').value).to eq 'Old rubricator'

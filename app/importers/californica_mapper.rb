@@ -21,6 +21,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     calligrapher: ["Calligrapher", "Name.calligrapher"],
     caption: "Description.caption",
     cartographer: ["Cartographer", "Name.cartographer"],
+    citation_source: ["References"],
     collation: "Collation",
     colophon: ["Colophon", "Description.colophon"],
     commentator: ["Commentator", "Name.commentator"],

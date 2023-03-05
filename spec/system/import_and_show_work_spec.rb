@@ -130,6 +130,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "Printer-1" # printer
     expect(page).to have_content "Researcher-1" # researcher
     expect(page).to have_content "Statement of Responsibility-1" # resp_statement
+    expect(page).to have_content "References-1" # citation_source
     # expect(page).to have_content "local_statement" # local_rights_statement # This invokes License renderer from hyrax gem
 
     # displays expected fields on search results page

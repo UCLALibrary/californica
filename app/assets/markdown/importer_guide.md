@@ -80,6 +80,7 @@
     - [Project Name](#project-name)
     - [Provenance](#provenance)
     - [Publisher.publisherName](#publisherpublishername)
+    - [References](# citation_source)
     - [Relation.isPartOf](#relationispartof)
     - [Repository](#repository)
     - [Representative image](#representative-image)
@@ -421,6 +422,8 @@ This field is exported from DLCS and is the DLCS project name.
 Also accepts: `Description.history`
 
 #### Publisher.publisherName
+
+#### References
 
 #### Relation.isPartOf
 

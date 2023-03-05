@@ -165,7 +165,8 @@ RSpec.describe CalifornicaCsvParser do
        'Name.printer',
        'Researcher',
        'Name.researcher',
-       'Statement of Responsibility']
+       'Statement of Responsibility',
+       'References']
     end
     # order of the csv headers should be mainted spec/fixtures/example.csv.
 

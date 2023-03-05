@@ -123,6 +123,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'calligrapher_tesim'
     config.add_show_field 'caption_tesim'
     config.add_show_field 'cartographer_tesim'
+    config.add_show_field 'citation_source_tesim' # References
     config.add_show_field 'collation_ssi'
     config.add_show_field 'colophon_tesim'
     config.add_show_field 'content_disclaimer_ssm', label: 'Disclaimer'
@@ -272,6 +273,15 @@ class CatalogController < ApplicationController
 
     config.add_search_field('cartographer') do |field|
       solr_name = solr_name('cartographer', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    # References
+    config.add_search_field('citation_source') do |field|
+      solr_name = solr_name('citation_source', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name

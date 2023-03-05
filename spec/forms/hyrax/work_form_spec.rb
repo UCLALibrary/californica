@@ -17,6 +17,7 @@ RSpec.describe Hyrax::WorkForm do
       :calligrapher,
       :caption,
       :cartographer,
+      :citation_source,
       :collation,
       :colophon,
       :composer,

@@ -11,6 +11,7 @@ RSpec.describe Hyrax::ChildWorkForm do
       :access_copy,
       :architect,
       :caption,
+      :citation_source,
       :commentator,
       :dimensions,
       :extent,
