@@ -9,7 +9,6 @@
 <%= presenter.attribute_to_html(:calligrapher, html_dl: true) %>
 <%= presenter.attribute_to_html(:caption, html_dl: true) %>
 <%= presenter.attribute_to_html(:cartographer, html_dl: true) %>
-<%= presenter.attribute_to_html(:rcitation_source, html_dl: true) %>
 <%= presenter.attribute_to_html(:collation, html_dl: true) %>
 <%= presenter.attribute_to_html(:colophon, html_dl: true) %>
 <%= presenter.attribute_to_html(:commentator, html_dl: true) %>
@@ -67,12 +66,12 @@
 <%= presenter.attribute_to_html(:provenance, html_dl: true) %>
 <%= presenter.attribute_to_html(:publisher, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:recipient, html_dl: true) %>
+<%= presenter.attribute_to_html(:citation_source, html_dl: true, label: "References") %>
 <%= presenter.attribute_to_html(:related_url, render_as: :external_link, html_dl: true) %>
 <%= presenter.attribute_to_html(:repository, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:representative_image, html_dl: true) %>
 <%= presenter.attribute_to_html(:researcher, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:resource_type, render_as: :resource_type, html_dl: true) %>
-<%= presenter.attribute_to_html(:resp_statement, html_dl: true) %>
 <%= presenter.attribute_to_html(:rights_country, html_dl: true) %>
 <%= presenter.attribute_to_html(:rights_holder, html_dl: true) %>
 <%= presenter.attribute_to_html(:rights_statement, render_as: :rights_statement, html_dl: true) %>
@@ -81,6 +80,7 @@
 <%= presenter.attribute_to_html(:scribe, html_dl: true) %>
 <%= presenter.attribute_to_html(:series, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:source, html_dl: true) %>
+<%= presenter.attribute_to_html(:resp_statement, html_dl: true, label: "Statement of Responsibility") %>
 <%= presenter.attribute_to_html(:subject, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:subject_geographic, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:subject_temporal, render_as: :faceted, html_dl: true) %>
