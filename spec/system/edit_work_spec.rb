@@ -175,7 +175,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Publisher').value).to eq 'Old Pub'
       expect(find_field('Repository').value).to eq 'Old Repository'
       expect(find_field('Resource type').value).to eq ['http://id.loc.gov/vocabulary/resourceTypes/img']
-      expect(find_field('Statement of Responsibility').value).to eq 'Old Statement of Responsibility'
+
       expect(find_field('Rights (country of creation)').value).to eq 'Old Rights Country'
       expect(find_field('Rights Holder').value).to eq 'Old Rights Holder'
       expect(find_field('Subject').value).to eq 'Old Subj'
@@ -190,6 +190,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Rubricator').value).to eq 'Old rubricator'
       expect(find_field('Scribe').value).to eq 'Old Scribe'
       expect(find_field('Series').value).to eq 'Old Series'
+      expect(find_field('Statement of Responsibility').value).to eq 'Old Statement of Responsibility'
       expect(find_field('Subject geographic').value).to eq 'Old Subject geographic'
       expect(find_field('Subject temporal').value).to eq 'Old Subject temporal'
       expect(find_field('Subject cultural object').value).to eq 'Old Subject cultural object'
