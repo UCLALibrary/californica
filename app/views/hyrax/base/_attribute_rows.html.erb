@@ -29,6 +29,7 @@
 <%= presenter.attribute_to_html(:featured_image, html_dl: true) %>
 <%= presenter.attribute_to_html(:finding_aid_url, html_dl: true) %>
 <%= presenter.attribute_to_html(:foliation, html_dl: true, label: "Foliation note") %>
+<%= presenter.attribute_to_html(:format_book, html_dl: true, label: 'Format') %>
 <%= presenter.attribute_to_html(:funding_note, html_dl: true) %>
 <%= presenter.attribute_to_html(:genre, html_dl: true) %>
 <%= presenter.attribute_to_html(:geographic_coordinates, html_dl: true) %>
@@ -54,6 +55,7 @@
 <%= presenter.attribute_to_html(:named_subject, html_dl: true) %>
 <%= presenter.attribute_to_html(:normalized_date, html_dl: true) %>
 <%= presenter.attribute_to_html(:note, html_dl: true) %>
+<%= presenter.attribute_to_html(:note_admin, html_dl: true, label: 'AdminNote') %>
 <%= presenter.attribute_to_html(:opac_url, html_dl: true) %>
 <%= presenter.attribute_to_html(:page_layout, html_dl: true) %>
 <%= presenter.attribute_to_html(:photographer, html_dl: true) %>

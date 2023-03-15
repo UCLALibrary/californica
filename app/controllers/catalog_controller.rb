@@ -138,6 +138,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'extent_tesim'
     config.add_show_field 'finding_aid_url_ssm'
     config.add_show_field 'foliation_ssi', label: 'Foliation note'
+    config.add_show_field 'format_book_tesim', label: 'Format'
     config.add_show_field 'masthead_parameters_ssi'
     config.add_show_field 'funding_note_tesim'
     config.add_show_field 'genre_tesim'
@@ -157,6 +158,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'musician_tesim'
     config.add_show_field 'named_subject_tesim'
     config.add_show_field 'normalized_date_tesim'
+    config.add_show_field 'note_admin_tesim', label: 'AdminNote'
     config.add_show_field 'note_tesim'
     config.add_show_field 'opac_url_ssi'
     config.add_show_field 'page_layout_ssim'
@@ -377,6 +379,14 @@ class CatalogController < ApplicationController
       }
     end
 
+    config.add_search_field('format_book') do |field|
+      solr_name = solr_name('format_book', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
     config.add_search_field('illuminator') do |field|
       solr_name = solr_name('illuminator', :stored_searchable)
       field.solr_local_parameters = {
@@ -403,6 +413,14 @@ class CatalogController < ApplicationController
 
     config.add_search_field('lyricist') do |field|
       solr_name = solr_name('lyricist', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('note_admin') do |field|
+      solr_name = solr_name('note_admin', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name

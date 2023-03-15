@@ -134,6 +134,10 @@ class SolrDocument
     self[:foliation_ssi]
   end
 
+  def format_book
+    self[:format_book_tesim]
+  end
+
   def funding_note
     self[:funding_note_tesim]
   end
@@ -228,6 +232,10 @@ class SolrDocument
 
   def note
     self[:note_tesim]
+  end
+
+  def note_admin
+    self[:note_admin_tesim]
   end
 
   def opac_url
