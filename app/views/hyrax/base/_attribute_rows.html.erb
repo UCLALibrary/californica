@@ -1,4 +1,5 @@
 <%= presenter.attribute_to_html(:access_copy, html_dl: true) %>
+<%= presenter.attribute_to_html(:note_admin, html_dl: true, label: 'AdminNote') %>
 <%= presenter.attribute_to_html(:alternative_title, html_dl: true) %>
 <%= presenter.attribute_to_html(:architect, html_dl: true) %>
 <%= presenter.attribute_to_html(:artist, html_dl: true) %>
@@ -55,7 +56,6 @@
 <%= presenter.attribute_to_html(:named_subject, html_dl: true) %>
 <%= presenter.attribute_to_html(:normalized_date, html_dl: true) %>
 <%= presenter.attribute_to_html(:note, html_dl: true) %>
-<%= presenter.attribute_to_html(:note_admin, html_dl: true, label: 'AdminNote') %>
 <%= presenter.attribute_to_html(:opac_url, html_dl: true) %>
 <%= presenter.attribute_to_html(:page_layout, html_dl: true) %>
 <%= presenter.attribute_to_html(:photographer, html_dl: true) %>
