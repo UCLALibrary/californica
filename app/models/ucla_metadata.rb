@@ -153,7 +153,7 @@ module UclaMetadata
       index.as :stored_searchable
     end
 
-    property :note_admin, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/adminMetadata' do |index|
+    property :note_admin, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/adminMetadata') do |index|
       index.as :stored_searchable
     end
 
@@ -223,7 +223,7 @@ module UclaMetadata
       index.as :stored_searchable
     end
 
-    property :format_book, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/bookFormat' do |index|
+    property :format_book, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/bookFormat') do |index|
       index.as :stored_searchable
     end
 

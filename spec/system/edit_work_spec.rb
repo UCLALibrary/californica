@@ -147,6 +147,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Featured image').value).to eq 'Old Featured image'
       expect(find_field('Finding aid url').value).to eq 'Old Finding aid url'
       expect(find_field('Foliation').value).to eq 'Old Foliation note'
+      expect(find_field('Format book').value).to eq 'Old Format'
       expect(find_field('Funding Note').value).to eq 'Old Fund Note'
       expect(find_field('Genre').value).to eq 'Old Genre'
       expect(find_field("Host").value).to eq 'Old Host'
@@ -167,6 +168,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field("Musician").value).to eq 'Old Musician'
       expect(find_field('Name (Subject)').value).to eq 'Old Name/Subj'
       expect(find_field('Normalized Date').value).to eq '1900/1901'
+      expect(find_field('Note admin').value).to eq 'Old AdminNote'
       expect(find_field('Page layout').value).to eq 'Old Page layout'
       expect(find_field('Photographer').value).to eq 'Old Photographer'
       expect(find_field('Place of origin').value).to eq 'Old Place of origin'
@@ -202,8 +204,6 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(page).to have_select('License', selected: 'Creative Commons CC0 1.0 Universal', multiple: false)
       expect(find_field('Translator').value).to eq 'Old Translator'
       expect(find_field('Uniform title').value).to eq 'Old Uniform title'
-      expect(find_field('Note admin').value).to eq 'AdminNote'
-      expect(find_field('Format book').value).to eq 'Old Format'
 
       # Edit some fields in the form
       fill_in 'Title', with: 'New Title'

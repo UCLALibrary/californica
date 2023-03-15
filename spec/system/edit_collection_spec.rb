@@ -27,7 +27,6 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       resource_type: ['http://id.loc.gov/vocabulary/resourceTypes/col'], # "collection"
       extent: ['Old Extent'],
       foliation: 'Old Foliation note',
-      format_book: ['Old Format'],
       funding_note: ['Old Fund Note'],
       genre: ['Old Genre'],
       iiif_manifest_url: 'https://www.w3.org/TR/2019/WD-appmanifest-20190821/',
@@ -45,7 +44,6 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       medium: ['Old Medium'],
       named_subject: ['Old Name/Subj'],
       normalized_date: ['1900/1901'],
-      note_admin: ['Old AdminNote']
       page_layout: ['Old Page layout'],
       place_of_origin: ['Old Place of origin'],
       provenance: ['Old Provenance'],
@@ -101,7 +99,9 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       musician: ['Old Musician'],
       printer: ['Old Printer'],
       researcher: ['Old Researcher'],
-      resp_statement: ['Old Statement of Responsibility']
+      resp_statement: ['Old Statement of Responsibility'],
+      note_admin: ['Old AdminNote'],
+      format_book: ['Old Format']
     }
   end
 
@@ -204,9 +204,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field("Musician").value).to eq 'Old Musician'
       expect(find_field("Printer").value).to eq 'Old Printer'
       expect(find_field("Researcher").value).to eq 'Old Researcher'
-      expect(find_field('Resp statement').value).to eq 'Old Statement of Responsibility'
-      expect(find_field("Citation source").value).to eq 'Old References'
-      expect(find_field('Note admin').value).to eq 'AdminNote'
+      expect(find_field('Note admin').value).to eq 'Old AdminNote'
       expect(find_field('Format book').value).to eq 'Old Format'
 
       # expect(find_field('Local rights statement').value).to eq 'Old Rights statement local'

@@ -154,7 +154,7 @@ RSpec.describe CalifornicaMapper do
       "Statement of Responsibility" => "Statement of Responsibility-1", # resp_statement
       "References" => "References-1", # citation_source
       "AdminNote" => "AdminNote-1", # note_admin
-      "Description.adminnote" => "Description.adminnote-1",  # note_admin
+      "Description.adminnote" => "Description.adminnote-1", # note_admin
       "Note.admin" => "Note.admin-1", # note_admin
       "Format" => "Format-1" # format_book
     }
