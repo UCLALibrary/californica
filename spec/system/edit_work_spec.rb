@@ -38,6 +38,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       featured_image: 'Old Featured image',
       finding_aid_url: ['Old Finding aid url'],
       foliation: 'Old Foliation note',
+      format_book: ['Old Format'],
       funding_note: ['Old Fund Note'],
       genre: ['Old Genre'],
       host: ['Old Host'],
@@ -64,6 +65,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       named_subject: ['Old Name/Subj'],
       normalized_date: ['1900/1901'],
       note: ['Old Note'],
+      note_admin: ['Old AdminNote'],
       opac_url: 'https://www.library.ucla.edu',
       page_layout: ['Old Page layout'],
       photographer: ['Old Photographer'],
@@ -200,6 +202,8 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(page).to have_select('License', selected: 'Creative Commons CC0 1.0 Universal', multiple: false)
       expect(find_field('Translator').value).to eq 'Old Translator'
       expect(find_field('Uniform title').value).to eq 'Old Uniform title'
+      expect(find_field('Note admin').value).to eq 'AdminNote'
+      expect(find_field('Format book').value).to eq 'Old Format'
 
       # Edit some fields in the form
       fill_in 'Title', with: 'New Title'

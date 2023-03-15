@@ -223,8 +223,7 @@ module UclaMetadata
       index.as :stored_searchable
     end
 
-    property :format_book, predicate: ::RDF::URI.intern('hhttp://id.loc.gov/ontologies/bibframe/bookFormat
-      ' do |index|
+    property :format_book, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/bookFormat' do |index|
       index.as :stored_searchable
     end
 

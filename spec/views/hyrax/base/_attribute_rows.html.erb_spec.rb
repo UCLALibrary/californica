@@ -29,6 +29,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       engraver: ['engraver'],
       extent: ['extent'],
       finding_aid_url: ['Old Finding aid url'],
+      format_book: ['Old Format'],
       funding_note: ['funding_note'],
       genre: ['genre'],
       iiif_text_direction: 'iiif_text_direction',
@@ -43,6 +44,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       named_subject: ['named_subject'],
       normalized_date: ['normalized_date'],
       note: ['note'],
+      note_admin: ['Old AdminNote'],
       opac_url: 'opac_url',
       page_layout: ['page_layout'],
       place_of_origin: ['place_of_origin'],
@@ -130,6 +132,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   it 'has finding_aid_url' do
     expect(page).to match(/finding_aid_url/)
   end
+  it 'has format_book' do
+    expect(page).to match(/format_book/)
+  end
   it 'has funding_note' do
     expect(page).to match(/funding_note/)
   end
@@ -171,6 +176,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   end
   it 'has note' do
     expect(page).to match(/note/)
+  end
+  it 'has note_admin' do
+    expect(page).to match(/note_admin/)
   end
   it 'has opac_url' do
     expect(page).to match(/opac_url/)
