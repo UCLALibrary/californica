@@ -155,7 +155,7 @@ module UclaMetadata
 
     # References
     property :citation_source, predicate: ::RDF::URI.intern('http://bibfra.me/vocab/marc/citationSource') do |index|
-      index.as :stored_searchable
+      index.as :stored_searchable, label: 'References'
     end
 
     property :contents_note, predicate: ::RDF::URI.intern('http://bibfra.me/vocab/marc/contentsNote') do |index|
@@ -170,8 +170,9 @@ module UclaMetadata
       index.as :stored_searchable
     end
 
+    # Statement of Responsibility
     property :resp_statement, predicate: ::RDF::URI.intern('https://id.loc.gov/ontologies/bibframe.html#p_responsibilityStatement') do |index|
-      index.as :stored_searchable
+      index.as :stored_searchable, label: 'Statement of Responsibility'
     end
 
     property :toc, predicate: ::RDF::URI.intern('http://purl.org/dc/terms/tableOfContents') do |index|

@@ -202,8 +202,8 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field("Musician").value).to eq 'Old Musician'
       expect(find_field("Printer").value).to eq 'Old Printer'
       expect(find_field("Researcher").value).to eq 'Old Researcher'
-      expect(find_field('Statement of Responsibility').value).to eq 'Old Statement of Responsibility'
-      expect(find_field("References").value).to eq 'Old References'
+      expect(find_field('Resp statement').value).to eq 'Old Statement of Responsibility'
+      expect(find_field("Citation source").value).to eq 'Old References'
 
       # expect(find_field('Local rights statement').value).to eq 'Old Rights statement local'
       #

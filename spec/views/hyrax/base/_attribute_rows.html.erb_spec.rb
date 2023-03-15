@@ -98,7 +98,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
     expect(page).to match(/caption/)
   end
   it 'has citation_source' do
-    expect(page).to match(/references/)
+    expect(page).to match(/citation_source/)
   end
   it 'has colophon' do
     expect(page).to match(/colophon/)

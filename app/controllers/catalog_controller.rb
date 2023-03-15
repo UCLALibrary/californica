@@ -123,7 +123,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'calligrapher_tesim'
     config.add_show_field 'caption_tesim'
     config.add_show_field 'cartographer_tesim'
-    config.add_show_field 'citation_source_tesim' # References
+    config.add_show_field 'citation_source_tesim', label: 'References'
     config.add_show_field 'collation_ssi'
     config.add_show_field 'colophon_tesim'
     config.add_show_field 'content_disclaimer_ssm', label: 'Disclaimer'
@@ -171,7 +171,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'recipient_tesim'
     config.add_show_field 'repository_tesim'
     config.add_show_field 'researcher_tesim'
-    config.add_show_field 'resp_statement_tesim'
+    config.add_show_field 'resp_statement_tesim', label: 'Statement of Responsibility'
     config.add_show_field 'rights_country_tesim'
     config.add_show_field 'rights_holder_tesim'
     config.add_show_field 'rubricator_tesim'
