@@ -16,6 +16,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       ark: 'ark:/abc/1234',
       author: ['Old Author'],
       caption: ['Old Cap'],
+      citation_source: ['Old References'],
       collation: 'Old Collation',
       composer: ['Old Composer'],
       rights_statement: ['http://vocabs.library.ucla.edu/rights/copyrighted'], # "copyrighted"
@@ -97,7 +98,10 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       host: ['Old Host'],
       musician: ['Old Musician'],
       printer: ['Old Printer'],
-      researcher: ['Old Researcher']
+      researcher: ['Old Researcher'],
+      resp_statement: ['Old Statement of Responsibility'],
+      note_admin: ['Old AdminNote'],
+      format_book: ['Old Format']
     }
   end
 
@@ -200,6 +204,10 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field("Musician").value).to eq 'Old Musician'
       expect(find_field("Printer").value).to eq 'Old Printer'
       expect(find_field("Researcher").value).to eq 'Old Researcher'
+      expect(find_field('Citation source').value).to eq 'Old References'
+      expect(find_field('Resp statement').value).to eq 'Old Statement of Responsibility'
+      expect(find_field('Note admin').value).to eq 'Old AdminNote'
+      expect(find_field('Format book').value).to eq 'Old Format'
 
       # expect(find_field('Local rights statement').value).to eq 'Old Rights statement local'
       #

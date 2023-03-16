@@ -14,6 +14,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       author: ['Old Author'],
       binding_note: 'Old Binding note',
       calligrapher: ['Old Calligrapher'],
+      citation_source: ['Old References'],
       contents_note: ['Old Contents note'],
       date_created: ['Old Creation Date'],
       description: ['Old Desc'],
@@ -22,6 +23,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       engraver: ['Old Engraver'],
       extent: ['Old Extent'],
       caption: ['Old Cap'],
+      format_book: ['Old Format'],
       funding_note: ['Old Fund Note'],
       genre: ['Old Genre'],
       iiif_manifest_url: 'Old Iiif manifest url',
@@ -38,6 +40,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       named_subject: ['Old Name/Subj'],
       normalized_date: ['1900/1901'],
       note: ['Old Note'],
+      note_admin: ['Old AdminNote'],
       opac_url: 'https://www.library.ucla.edu',
       page_layout: ['Old Page layout'],
       photographer: ['Old Photographer'],
@@ -95,7 +98,8 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       host: ['Old Host'],
       musician: ['Old Musician'],
       printer: ['Old Printer'],
-      researcher: ['Old Researcher']
+      researcher: ['Old Researcher'],
+      resp_statement: ['Old Statement of Responsibility']
     }
   end
 

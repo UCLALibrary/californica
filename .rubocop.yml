@@ -33,6 +33,7 @@ Metrics/ClassLength:
     - app/jobs/hyrax/characterize_job.rb
     - app/uploaders/csv_manifest_validator.rb
     - app/indexers/work_indexer.rb
+    - app/presenters/hyrax/californica_collection_presenter.rb
 
 Metrics/BlockLength:
   Enabled: true
