@@ -66,6 +66,10 @@ class SolrDocument
     self[:cartographer_tesim]
   end
 
+  def citation_source
+    self[:citation_source_tesim]
+  end
+
   def collation
     self[:collation_ssi]
   end
@@ -128,6 +132,10 @@ class SolrDocument
 
   def foliation
     self[:foliation_ssi]
+  end
+
+  def format_book
+    self[:format_book_tesim]
   end
 
   def funding_note
@@ -226,6 +234,10 @@ class SolrDocument
     self[:note_tesim]
   end
 
+  def note_admin
+    self[:note_admin_tesim]
+  end
+
   def opac_url
     self[:opac_url_ssi]
   end
@@ -280,6 +292,10 @@ class SolrDocument
 
   def researcher
     self[:researcher_tesim]
+  end
+
+  def resp_statement
+    self[:resp_statement_tesim]
   end
 
   def rights_country
