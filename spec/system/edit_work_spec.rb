@@ -18,6 +18,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       calligrapher: ['Old Calligrapher'],
       caption: ['Old Caption'],
       cartographer: ['Old Cartographer'],
+      citation_source: ['Old References'],
       collation: 'Old Collation',
       colophon: ['Old Colophon'],
       composer: ['Old Composer'],
@@ -37,6 +38,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       featured_image: 'Old Featured image',
       finding_aid_url: ['Old Finding aid url'],
       foliation: 'Old Foliation note',
+      format_book: ['Old Format'],
       funding_note: ['Old Fund Note'],
       genre: ['Old Genre'],
       host: ['Old Host'],
@@ -63,6 +65,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       named_subject: ['Old Name/Subj'],
       normalized_date: ['1900/1901'],
       note: ['Old Note'],
+      note_admin: ['Old AdminNote'],
       opac_url: 'https://www.library.ucla.edu',
       page_layout: ['Old Page layout'],
       photographer: ['Old Photographer'],
@@ -79,6 +82,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       representative_image: 'Old Representative image',
       researcher: ['Old Researcher'],
       resource_type: ['http://id.loc.gov/vocabulary/resourceTypes/img'], # "image"
+      resp_statement: ['Old Statement of Responsibility'],
       rights_country: ['Old Rights Country'],
       rights_holder: ['Old Rights Holder'],
       rights_statement: ['http://vocabs.library.ucla.edu/rights/copyrighted'], # "copyrighted"
@@ -143,6 +147,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Featured image').value).to eq 'Old Featured image'
       expect(find_field('Finding aid url').value).to eq 'Old Finding aid url'
       expect(find_field('Foliation').value).to eq 'Old Foliation note'
+      expect(find_field('Format book').value).to eq 'Old Format'
       expect(find_field('Funding Note').value).to eq 'Old Fund Note'
       expect(find_field('Genre').value).to eq 'Old Genre'
       expect(find_field("Host").value).to eq 'Old Host'
@@ -163,6 +168,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field("Musician").value).to eq 'Old Musician'
       expect(find_field('Name (Subject)').value).to eq 'Old Name/Subj'
       expect(find_field('Normalized Date').value).to eq '1900/1901'
+      expect(find_field('Note admin').value).to eq 'Old AdminNote'
       expect(find_field('Page layout').value).to eq 'Old Page layout'
       expect(find_field('Photographer').value).to eq 'Old Photographer'
       expect(find_field('Place of origin').value).to eq 'Old Place of origin'
@@ -173,6 +179,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Publisher').value).to eq 'Old Pub'
       expect(find_field('Repository').value).to eq 'Old Repository'
       expect(find_field('Resource type').value).to eq ['http://id.loc.gov/vocabulary/resourceTypes/img']
+
       expect(find_field('Rights (country of creation)').value).to eq 'Old Rights Country'
       expect(find_field('Rights Holder').value).to eq 'Old Rights Holder'
       expect(find_field('Subject').value).to eq 'Old Subj'
@@ -181,11 +188,13 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Opac url').value).to eq 'https://www.library.ucla.edu'
       expect(first(:css, '#work_description').value).to eq 'Old Desc'
       expect(find_field("Recipient").value).to eq 'Old Recipient'
+      expect(find_field('Citation source').value).to eq 'Old References'
       expect(find_field('Representative image').value).to eq 'Old Representative image'
       expect(find_field("Researcher").value).to eq 'Old Researcher'
       expect(find_field('Rubricator').value).to eq 'Old rubricator'
       expect(find_field('Scribe').value).to eq 'Old Scribe'
       expect(find_field('Series').value).to eq 'Old Series'
+      expect(find_field('Resp statement').value).to eq 'Old Statement of Responsibility'
       expect(find_field('Subject geographic').value).to eq 'Old Subject geographic'
       expect(find_field('Subject temporal').value).to eq 'Old Subject temporal'
       expect(find_field('Subject cultural object').value).to eq 'Old Subject cultural object'

@@ -17,6 +17,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       binding_note: 'binding_note',
       calligrapher: ['calligrapher'],
       caption: ['caption'],
+      citation_source: ['Old References'],
       colophon: ['Old Colophon'],
       commentator: ['Old Commentator'],
       condition_note: 'condition_note',
@@ -28,6 +29,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       engraver: ['engraver'],
       extent: ['extent'],
       finding_aid_url: ['Old Finding aid url'],
+      format_book: ['Old Format'],
       funding_note: ['funding_note'],
       genre: ['genre'],
       iiif_text_direction: 'iiif_text_direction',
@@ -42,12 +44,14 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       named_subject: ['named_subject'],
       normalized_date: ['normalized_date'],
       note: ['note'],
+      note_admin: ['Old AdminNote'],
       opac_url: 'opac_url',
       page_layout: ['page_layout'],
       place_of_origin: ['place_of_origin'],
       printmaker: ['Old printmaker'],
       repository: ['repostiory'],
       resource_type: ['resource_type'],
+      resp_statement: ['Statement of Responsibility'],
       rights_country: ['rights_country'],
       rights_holder: ['rights_holder'],
       rubricator: ['Old rubricator'],
@@ -95,6 +99,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   it 'has caption' do
     expect(page).to match(/caption/)
   end
+  it 'has citation_source' do
+    expect(page).to match(/citation_source/)
+  end
   it 'has colophon' do
     expect(page).to match(/colophon/)
   end
@@ -124,6 +131,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   end
   it 'has finding_aid_url' do
     expect(page).to match(/finding_aid_url/)
+  end
+  it 'has format_book' do
+    expect(page).to match(/format_book/)
   end
   it 'has funding_note' do
     expect(page).to match(/funding_note/)
@@ -167,6 +177,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   it 'has note' do
     expect(page).to match(/note/)
   end
+  it 'has note_admin' do
+    expect(page).to match(/note_admin/)
+  end
   it 'has opac_url' do
     expect(page).to match(/opac_url/)
   end
@@ -184,6 +197,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   end
   it 'has resource type' do
     expect(page).to match(/resource_type/)
+  end
+  it 'has resp_statement' do
+    expect(page).to match(/resp_statement/)
   end
   it 'has rights_country' do
     expect(page).to match(/rights_country/)
