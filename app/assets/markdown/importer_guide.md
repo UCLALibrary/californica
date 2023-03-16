@@ -12,6 +12,7 @@
 # <a href="#other-allowed-fields">Other Supported Fields</a>
 
 - [Other Supported Fields](#other-supported-fields)
+    - [AdminNote](#note_admin)
     - [AltTitle.other](#alttitleother)
     - [AltTitle.uniform](#alttitleuniform)
     - [Author](#author)
@@ -24,6 +25,7 @@
     - [Coverage.geographic](#coveragegeographic)
     - [Date.created](#datecreated)
     - [Date.normalized](#datenormalized)
+    - [Description.adminnote](#note_admin)
     - [Description.caption](#descriptioncaption)
     - [Description.fundingNote](#descriptionfundingnote)
     - [Description.latitude](#descriptionlatitude)
@@ -32,6 +34,7 @@
     - [Featured image (not in use)](#featured-image-not-in-use)
     - [Finding Aid URL](#finding-aid-url)
     - [Foliation](#foliation)
+    - [Format](#format_book)
     - [Format.dimensions](#formatdimensions)
     - [Format.extent](#formatextent)
     - [Format.medium](#formatmedium)
@@ -72,6 +75,7 @@
     - [Name.scribe](#namescribe)
     - [Name.translator](#nametranslator)
     - [Note](#note)
+    - [Note.admin](#note_admin)
     - [Opac url](#opac-url)
     - [Page layout](#page-layout)
     - [Place of origin](#place-of-origin)
@@ -80,6 +84,7 @@
     - [Project Name](#project-name)
     - [Provenance](#provenance)
     - [Publisher.publisherName](#publisherpublishername)
+    - [References](# citation_source)
     - [Relation.isPartOf](#relationispartof)
     - [Repository](#repository)
     - [Representative image](#representative-image)
@@ -88,6 +93,7 @@
     - [Rights.rightsHolderContact](#rightsrightsholdercontact)
     - [Rights.statementLocal](#rightsstatementlocal)
     - [Series](#series)
+    - [Statement of Responsibility](#resp_statement)
     - [Subject geographic](#subject-geographic)
     - [Subject name](#subject-name)
     - [Subject temporal](#subject-temporal)
@@ -186,6 +192,10 @@ Examples:
 <!----------------------------->
 ## Other Supported Fields
 
+#### AdminNote
+ 
+Also accepts: `Description.adminnote`,`Note.admin`
+
 #### AltTitle.other
 
 A translated, alternative, or other title that is not the primary or uniform title.
@@ -257,6 +267,8 @@ Also accepts: `Alt ID.url`
 #### Foliation
 
 Also accepts: `Foliation note`
+
+#### Format
 
 #### Format.dimensions
 
@@ -421,6 +433,8 @@ Also accepts: `Description.history`
 
 #### Publisher.publisherName
 
+#### References
+
 #### Relation.isPartOf
 
 DLCS collection name
@@ -446,6 +460,8 @@ Also accepts: `Rights.rightsHolderName`, `Personal or Corporate Name.copyrightHo
 #### Rights.statementLocal
 
 #### Series
+
+#### 	Statement of Responsibility
 
 #### Subject geographic
 

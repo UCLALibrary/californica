@@ -1,4 +1,5 @@
 <%= presenter.attribute_to_html(:access_copy, html_dl: true) %>
+<%= presenter.attribute_to_html(:note_admin, html_dl: true, label: 'AdminNote') %>
 <%= presenter.attribute_to_html(:alternative_title, html_dl: true) %>
 <%= presenter.attribute_to_html(:architect, html_dl: true) %>
 <%= presenter.attribute_to_html(:artist, html_dl: true) %>
@@ -29,6 +30,7 @@
 <%= presenter.attribute_to_html(:featured_image, html_dl: true) %>
 <%= presenter.attribute_to_html(:finding_aid_url, html_dl: true) %>
 <%= presenter.attribute_to_html(:foliation, html_dl: true, label: "Foliation note") %>
+<%= presenter.attribute_to_html(:format_book, html_dl: true, label: 'Format') %>
 <%= presenter.attribute_to_html(:funding_note, html_dl: true) %>
 <%= presenter.attribute_to_html(:genre, html_dl: true) %>
 <%= presenter.attribute_to_html(:geographic_coordinates, html_dl: true) %>
@@ -66,6 +68,7 @@
 <%= presenter.attribute_to_html(:provenance, html_dl: true) %>
 <%= presenter.attribute_to_html(:publisher, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:recipient, html_dl: true) %>
+<%= presenter.attribute_to_html(:citation_source, html_dl: true, label: "References") %>
 <%= presenter.attribute_to_html(:related_url, render_as: :external_link, html_dl: true) %>
 <%= presenter.attribute_to_html(:repository, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:representative_image, html_dl: true) %>
@@ -79,6 +82,7 @@
 <%= presenter.attribute_to_html(:scribe, html_dl: true) %>
 <%= presenter.attribute_to_html(:series, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:source, html_dl: true) %>
+<%= presenter.attribute_to_html(:resp_statement, html_dl: true, label: "Statement of Responsibility") %>
 <%= presenter.attribute_to_html(:subject, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:subject_geographic, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:subject_temporal, render_as: :faceted, html_dl: true) %>
