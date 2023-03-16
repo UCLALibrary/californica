@@ -155,6 +155,7 @@ RSpec.describe CsvManifestValidator, type: :model do
     it 'Contains all the values from CalifornicaMapper.CALIFORNICA_TERMS_MAP' do
       expect(validator.valid_headers).to contain_exactly(
         "access_copy",
+        "AdminNote",
         "Alt ID.local",
         "Alt ID.url",
         "Alternate Identifier.local",
@@ -183,6 +184,7 @@ RSpec.describe CsvManifestValidator, type: :model do
         "Date.creation",
         "Date.normalized",
         "Description.abstract",
+        "Description.adminnote",
         "Description.binding",
         "Description.caption",
         "Description.colophon",
@@ -205,6 +207,7 @@ RSpec.describe CsvManifestValidator, type: :model do
         "Finding Aid URL",
         "Foliation note",
         "Foliation",
+        "Format",
         "Format.dimensions",
         "Format.extent",
         "Format.medium",
@@ -238,6 +241,7 @@ RSpec.describe CsvManifestValidator, type: :model do
         "Name.subject",
         "Name.translator",
         "Note",
+        "Note.admin",
         "Object Type",
         "Opac url",
         "Page layout",
@@ -255,6 +259,7 @@ RSpec.describe CsvManifestValidator, type: :model do
         "Publisher.publisherName",
         "Relation.isPartOf",
         "repository",
+        "References",
         "Repository",
         "Representative image",
         "representative_image",
@@ -266,6 +271,7 @@ RSpec.describe CsvManifestValidator, type: :model do
         "Rights.statementLocal",
         "Rubricator",
         "Scribe",
+        "Statement of Responsibility",
         "Subject geographic",
         "Subject.culturalObject",
         "Subject.culturalObject", # this for subject topic

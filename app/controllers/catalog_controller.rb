@@ -123,6 +123,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'calligrapher_tesim'
     config.add_show_field 'caption_tesim'
     config.add_show_field 'cartographer_tesim'
+    config.add_show_field 'citation_source_tesim', label: 'References'
     config.add_show_field 'collation_ssi'
     config.add_show_field 'colophon_tesim'
     config.add_show_field 'content_disclaimer_ssm', label: 'Disclaimer'
@@ -137,6 +138,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'extent_tesim'
     config.add_show_field 'finding_aid_url_ssm'
     config.add_show_field 'foliation_ssi', label: 'Foliation note'
+    config.add_show_field 'format_book_tesim', label: 'Format'
     config.add_show_field 'masthead_parameters_ssi'
     config.add_show_field 'funding_note_tesim'
     config.add_show_field 'genre_tesim'
@@ -156,6 +158,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'musician_tesim'
     config.add_show_field 'named_subject_tesim'
     config.add_show_field 'normalized_date_tesim'
+    config.add_show_field 'note_admin_tesim', label: 'AdminNote'
     config.add_show_field 'note_tesim'
     config.add_show_field 'opac_url_ssi'
     config.add_show_field 'page_layout_ssim'
@@ -170,6 +173,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'recipient_tesim'
     config.add_show_field 'repository_tesim'
     config.add_show_field 'researcher_tesim'
+    config.add_show_field 'resp_statement_tesim', label: 'Statement of Responsibility'
     config.add_show_field 'rights_country_tesim'
     config.add_show_field 'rights_holder_tesim'
     config.add_show_field 'rubricator_tesim'
@@ -277,6 +281,15 @@ class CatalogController < ApplicationController
       }
     end
 
+    # References
+    config.add_search_field('citation_source') do |field|
+      solr_name = solr_name('citation_source', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
     config.add_search_field('collation') do |field|
       solr_name = solr_name('collation', :stored_searchable)
       field.solr_local_parameters = {
@@ -366,6 +379,14 @@ class CatalogController < ApplicationController
       }
     end
 
+    config.add_search_field('format_book') do |field|
+      solr_name = solr_name('format_book', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
     config.add_search_field('illuminator') do |field|
       solr_name = solr_name('illuminator', :stored_searchable)
       field.solr_local_parameters = {
@@ -392,6 +413,14 @@ class CatalogController < ApplicationController
 
     config.add_search_field('lyricist') do |field|
       solr_name = solr_name('lyricist', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('note_admin') do |field|
+      solr_name = solr_name('note_admin', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
@@ -432,6 +461,14 @@ class CatalogController < ApplicationController
 
     config.add_search_field('recipient') do |field|
       solr_name = solr_name('recipient', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('	resp_statement') do |field|
+      solr_name = solr_name('	resp_statement', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name

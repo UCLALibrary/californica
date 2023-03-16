@@ -153,6 +153,15 @@ module UclaMetadata
       index.as :stored_searchable
     end
 
+    property :note_admin, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/adminMetadata') do |index|
+      index.as :stored_searchable
+    end
+
+    # References
+    property :citation_source, predicate: ::RDF::URI.intern('http://bibfra.me/vocab/marc/citationSource') do |index|
+      index.as :stored_searchable
+    end
+
     property :contents_note, predicate: ::RDF::URI.intern('http://bibfra.me/vocab/marc/contentsNote') do |index|
       index.as :stored_searchable
     end
@@ -162,6 +171,10 @@ module UclaMetadata
     end
 
     property :note, predicate: ::RDF::URI.intern('http://bibfra.me/vocab/lite/note') do |index|
+      index.as :stored_searchable
+    end
+
+    property :resp_statement, predicate: ::RDF::URI.intern('https://id.loc.gov/ontologies/bibframe.html#p_responsibilityStatement') do |index|
       index.as :stored_searchable
     end
 
@@ -207,6 +220,10 @@ module UclaMetadata
     end
 
     property :illustrations_note, predicate: ::RDF::URI.intern('http://bibfra.me/vocab/marc/illustrations') do |index|
+      index.as :stored_searchable
+    end
+
+    property :format_book, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/bookFormat') do |index|
       index.as :stored_searchable
     end
 

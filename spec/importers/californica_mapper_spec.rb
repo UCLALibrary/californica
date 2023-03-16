@@ -151,6 +151,12 @@ RSpec.describe CalifornicaMapper do
       "Name.printer" => "Printer-2", # printer
       "Researcher" => "Researcher-1", # researcher
       "Name.researcher" => "Researcher-2", # researcher
+      "Statement of Responsibility" => "Statement of Responsibility-1", # resp_statement
+      "References" => "References-1", # citation_source
+      "AdminNote" => "AdminNote-1", # note_admin
+      "Description.adminnote" => "Description.adminnote-1", # note_admin
+      "Note.admin" => "Note.admin-1", # note_admin
+      "Format" => "Format-1" # format_book
     }
   end
 
@@ -191,6 +197,7 @@ RSpec.describe CalifornicaMapper do
         :binding_note,
         :calligrapher,
         :caption,
+        :citation_source,
         :collation,
         :colophon,
         :commentator,
@@ -207,6 +214,7 @@ RSpec.describe CalifornicaMapper do
         :extent,
         :finding_aid_url,
         :foliation,
+        :format_book,
         :funding_note,
         :genre,
         :iiif_manifest_url,
@@ -225,6 +233,7 @@ RSpec.describe CalifornicaMapper do
         :named_subject,
         :normalized_date,
         :note,
+        :note_admin,
         :opac_url,
         :publisher,
         :photographer,
@@ -236,6 +245,7 @@ RSpec.describe CalifornicaMapper do
         :provenance,
         :repository,
         :resource_type,
+        :resp_statement,
         :rights_country,
         :rights_holder,
         :rights_statement,
