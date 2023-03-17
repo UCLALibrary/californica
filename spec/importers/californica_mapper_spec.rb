@@ -156,7 +156,8 @@ RSpec.describe CalifornicaMapper do
       "AdminNote" => "AdminNote-1", # note_admin
       "Description.adminnote" => "Description.adminnote-1", # note_admin
       "Note.admin" => "Note.admin-1", # note_admin
-      "Format" => "Format-1" # format_book
+      "Format" => "Format-1", # format_book
+      "Related Items" => "Related Items-1" # related_to
     }
   end
 

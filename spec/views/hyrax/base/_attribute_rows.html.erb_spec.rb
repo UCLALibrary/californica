@@ -79,7 +79,8 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       host: ['Old Host'],
       musician: ['Old Musician'],
       printer: ['Old Printer'],
-      researcher: ['Old Researcher']
+      researcher: ['Old Researcher'],
+      related_to: ['Old Related Items']
     )
   end
 
@@ -191,6 +192,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   end
   it 'has printmaker' do
     expect(page).to match(/printmaker/)
+  end
+  it 'has related_to' do
+    expect(page).to match(/related_to/)
   end
   it 'has repo' do
     expect(page).to match(/repository/)

@@ -99,7 +99,8 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       musician: ['Old Musician'],
       printer: ['Old Printer'],
       researcher: ['Old Researcher'],
-      resp_statement: ['Old Statement of Responsibility']
+      resp_statement: ['Old Statement of Responsibility'],
+      related_to: ['Old Related Items']
     }
   end
 

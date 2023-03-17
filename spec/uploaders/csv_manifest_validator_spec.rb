@@ -260,6 +260,7 @@ RSpec.describe CsvManifestValidator, type: :model do
         "Relation.isPartOf",
         "repository",
         "References",
+        "Related Items",
         "Repository",
         "Representative image",
         "representative_image",

@@ -78,6 +78,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       provenance: ['Old Provenance'],
       publisher: ['Old Pub'],
       recipient: ['Old Recipient'],
+      related_to: ['Old Related Items'],
       repository: ['Old Repository'],
       representative_image: 'Old Representative image',
       researcher: ['Old Researcher'],
@@ -177,6 +178,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field("Producer").value).to eq 'Old Producer'
       expect(find_field("Program").value).to eq 'Old Program'
       expect(find_field('Publisher').value).to eq 'Old Pub'
+      expect(find_field('Related to').value).to eq 'Old Related Items'
       expect(find_field('Repository').value).to eq 'Old Repository'
       expect(find_field('Resource type').value).to eq ['http://id.loc.gov/vocabulary/resourceTypes/img']
 
