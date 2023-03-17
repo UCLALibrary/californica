@@ -86,6 +86,7 @@
     - [Publisher.publisherName](#publisherpublishername)
     - [References](# citation_source)
     - [Relation.isPartOf](#relationispartof)
+    - [Related Items](#related_to)
     - [Repository](#repository)
     - [Representative image](#representative-image)
     - [Researcher](#researcher)
@@ -438,6 +439,8 @@ Also accepts: `Description.history`
 #### Relation.isPartOf
 
 DLCS collection name
+
+#### Related Items
 
 #### Repository
 

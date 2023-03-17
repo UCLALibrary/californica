@@ -173,6 +173,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'program_tesim'
     config.add_show_field 'provenance_tesim'
     config.add_show_field 'recipient_tesim'
+    config.add_show_field 'related_to_tesim', label: 'Related Items'
     config.add_show_field 'repository_tesim'
     config.add_show_field 'researcher_tesim'
     config.add_show_field 'resp_statement_tesim', label: 'Statement of Responsibility'
@@ -469,8 +470,16 @@ class CatalogController < ApplicationController
       }
     end
 
-    config.add_search_field('	resp_statement') do |field|
-      solr_name = solr_name('	resp_statement', :stored_searchable)
+    config.add_search_field('related_to') do |field|
+      solr_name = solr_name('related_to', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('resp_statement') do |field|
+      solr_name = solr_name('resp_statement', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
