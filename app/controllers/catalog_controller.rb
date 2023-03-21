@@ -471,7 +471,7 @@ class CatalogController < ApplicationController
     end
 
     config.add_search_field('related_to') do |field|
-      solr_name = solr_name('related_to', :stored_searchable)
+      solr_name = solr_name('related_to')
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
