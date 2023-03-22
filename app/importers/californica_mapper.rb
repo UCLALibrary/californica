@@ -45,6 +45,8 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     funding_note: "Description.fundingNote",
     genre: ["Type.genre", "Genre"],
     host: ["Host", "Name.host"],
+    identifier_global: 'Identifier',
+    identifier_oclc: ['OCLC Number', 'AltIdentifier.oclc', 'Alt ID.oclc', 'Alternate Identifier.oclc'],
     iiif_manifest_url: "IIIF Manifest URL",
     iiif_range: "IIIF Range",
     iiif_text_direction: "Text direction",
@@ -226,6 +228,12 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
   def foliation
     map_field(:foliation).to_a.first
+  end
+
+  def identifier_global
+    map_field(:identifier_global)&.map { |a|
+      'OCLC: ' + a
+    }
   end
 
   def iiif_manifest_url
