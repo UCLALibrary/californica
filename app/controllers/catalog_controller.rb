@@ -15,6 +15,8 @@ class CatalogController < ApplicationController
   end
 
   configure_blacklight do |config|
+    # Blacklight will use POST instead of GET for solr
+    config.http_method = :post
     config.crawler_detector = ->(_req) { true }
     config.view.gallery.partials = %i[index_header index]
     config.view.masonry.partials = [:index]
