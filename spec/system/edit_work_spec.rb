@@ -42,7 +42,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       funding_note: ['Old Fund Note'],
       genre: ['Old Genre'],
       host: ['Old Host'],
-      iiif_manifest_url: 'https://www.w3.org/TR/2019/WD-appmanifest-20190821/',
+      iiif_manifest_url: 'https://test.iiif.library.ucla.edu/collections/ark%3A%2F21198%2Fz11c574k',
       iiif_range: 'Old Iiif range',
       iiif_text_direction: 'http://iiif.io/api/presentation/2#leftToRightDirection', # "left-to-right"
       iiif_viewing_hint: 'Old Iiif viewing hint',
@@ -151,7 +151,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Funding Note').value).to eq 'Old Fund Note'
       expect(find_field('Genre').value).to eq 'Old Genre'
       expect(find_field("Host").value).to eq 'Old Host'
-      expect(find_field('Iiif manifest url').value).to eq 'https://www.w3.org/TR/2019/WD-appmanifest-20190821/'
+      expect(find_field('Iiif manifest url').value).to eq 'https://test.iiif.library.ucla.edu/collections/ark%3A%2F21198%2Fz11c574k'
       expect(page).to have_select('Iiif text direction', selected: 'left-to-right', multiple: false)
       expect(find_field('Illuminator').value).to eq 'Old Illuminator'
       expect(find_field("Interviewee").value).to eq 'Old Interviewee'
@@ -208,7 +208,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       # Edit some fields in the form
       fill_in 'Title', with: 'New Title'
       fill_in 'Dimensions', with: 'New Dim'
-      fill_in 'Ark', with: 'ark:/not/myark' # This field is read-only and an attempt to change it should not result in a change
+      fill_in 'Ark', with: 'ark:/not/myark' # This will raise an exception in a future version of Capybara # This field is read-only and an attempt to change it should not result in a change
       fill_in 'Thumbnail link', with: 'https://new.url/iiif/ark%3A%2Fabc%2F3456'
       click_on 'Additional fields'
       # Submit the form.  When the page reloads, it should be on the show page.
