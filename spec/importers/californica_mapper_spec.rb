@@ -157,7 +157,12 @@ RSpec.describe CalifornicaMapper do
       "Description.adminnote" => "Description.adminnote-1", # note_admin
       "Note.admin" => "Note.admin-1", # note_admin
       "Format" => "Format-1", # format_book
-      "Related Items" => "Related Items-1" # related_to
+      "Related Items" => "Related Items-1", # related_to
+      "Identifier" => "123456", # identifier_global
+      "OCLC Number" => "OCLC: 123456", # identifier_global
+      "AltIdentifier.oclc" => "OCLC: 123456", # identifier_global
+      "Alt ID.oclc" => "OCLC: 123456", # identifier_global
+      "Alternate Identifier.oclc" => "OCLC: 123456" # identifier_global
     }
   end
 
@@ -283,7 +288,8 @@ RSpec.describe CalifornicaMapper do
         :host,
         :musician,
         :printer,
-        :researcher
+        :researcher,
+        :identifier_global
       )
     end
   end

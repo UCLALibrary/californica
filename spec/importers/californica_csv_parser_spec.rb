@@ -171,7 +171,12 @@ RSpec.describe CalifornicaCsvParser do
        'Description.adminnote',
        'Note.admin',
        'Format',
-       'Related Items']
+       'Related Items',
+       'Identifier',
+       'OCLC Number',
+       'AltIdentifier.oclc',
+       'Alt ID.oclc',
+       'Alternate Identifier.oclc']
     end
     # order of the csv headers should be mainted spec/fixtures/example.csv.
 

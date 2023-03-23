@@ -19,6 +19,7 @@ RSpec.describe Hyrax::ChildWorkForm do
       :funding_note,
       :genre,
       :host,
+      :identifier_global,
       :latitude,
       :local_identifier,
       :longitude,

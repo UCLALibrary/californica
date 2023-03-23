@@ -39,6 +39,7 @@ RSpec.describe Hyrax::WorkForm do
       :funding_note,
       :genre,
       :host,
+      :identifier_global,
       :iiif_manifest_url,
       :iiif_range,
       :iiif_text_direction,
