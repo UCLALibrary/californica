@@ -46,7 +46,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     genre: ["Type.genre", "Genre"],
     host: ["Host", "Name.host"],
     identifier_global: 'Identifier',
-    identifier_oclc: ['OCLC Number', 'AltIdentifier.oclc', 'Alt ID.oclc', 'Alternate Identifier.oclc'],
+    identifier_oclc: ['OCLC No.', 'AltIdentifier.oclc', 'Alt ID.oclc', 'Alternate Identifier.oclc'],
     iiif_manifest_url: "IIIF Manifest URL",
     iiif_range: "IIIF Range",
     iiif_text_direction: "Text direction",

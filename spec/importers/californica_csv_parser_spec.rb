@@ -173,7 +173,7 @@ RSpec.describe CalifornicaCsvParser do
        'Format',
        'Related Items',
        'Identifier',
-       'OCLC Number',
+       'OCLC No.',
        'AltIdentifier.oclc',
        'Alt ID.oclc',
        'Alternate Identifier.oclc']
