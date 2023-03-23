@@ -231,9 +231,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   end
 
   def identifier_global
-    map_field(:identifier_global)&.map { |a|
-      'OCLC: ' + a
-    }
+    map_field(:identifier_global)&.map { |a| 'OCLC: ' + a }
   end
 
   def iiif_manifest_url

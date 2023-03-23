@@ -40,6 +40,7 @@
     - [Format.medium](#formatmedium)
     - [Genre](#genre)
     - [Host](#host)
+    - [Identifier](#identifier_global)
     - [IIIF Access URL](#iiif-access-url)
     - [IIIF Range (for future use in Festerize to generate Ranges)](#iiif-range-for-future-use-in-festerize-to-generate-ranges)
     - [Illustrations note](#illustrations-note)
@@ -285,6 +286,9 @@ Also accepts: `Type.genre`
 
 Also accepts `Name.host`
 
+#### Identifier OCLC No.
+
+Also accepts: `OCLC Number`, `AltIdentifier.oclc`, `Alt ID.oclc`, `Alternate Identifier.oclc`
 #### IIIF Access URL
 
 The URL of a IIIF resource that can be used to view the image. This is populated by processing the CSV via [bucketeer](https://bucketeer.library.ucla.edu/upload/csv). This URL is used to generate thumbnails for simple objects.

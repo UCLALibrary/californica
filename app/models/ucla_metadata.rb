@@ -108,6 +108,11 @@ module UclaMetadata
       index.as :stored_searchable, :facetable
     end
 
+    property :identifier_global, predicate:
+    ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/Identifierrequirednomultipleyestypestring') do |index|
+      index.as :displayable
+    end
+
     property :interviewee, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/ive') do |index|
       index.as :stored_searchable, :facetable
     end

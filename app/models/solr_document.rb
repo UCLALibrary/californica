@@ -154,6 +154,10 @@ class SolrDocument
     self[:host_tesim]
   end
 
+  def identifier_global
+    self[:identifier_global]
+  end
+
   def iiif_manifest_url
     self[:iiif_manifest_url_ssi] || "/concern/works/#{id}/manifest"
   end

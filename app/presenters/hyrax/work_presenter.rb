@@ -36,6 +36,7 @@ module Hyrax
       :genre,
       :geographic_coordinates,
       :host,
+      :identifier_global,
       :iiif_manifest_url,
       :iiif_range,
       :illustrations_note,

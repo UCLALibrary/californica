@@ -44,6 +44,7 @@ module Hyrax
         :illustrations_note,
         :illustrator,
         :identifier,
+        :identifier_global,
         :illuminator,
         :interviewer,
         :interviewee,
