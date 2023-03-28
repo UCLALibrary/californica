@@ -260,7 +260,6 @@ RSpec.describe CsvManifestValidator, type: :model do
         "Relation.isPartOf",
         "repository",
         "References",
-        "Related Items",
         "Repository",
         "Representative image",
         "representative_image",
@@ -333,7 +332,14 @@ RSpec.describe CsvManifestValidator, type: :model do
         "Printer",
         "Name.printer",
         "Researcher",
-        "Name.researcher"
+        "Name.researcher",
+        "Related Items",
+        "Identifier",
+        "OCLC No.",
+        "OCLC Number",
+        "AltIdentifier.oclc",
+        "Alt ID.oclc",
+        "Alternate Identifier.oclc"
       )
     end
   end

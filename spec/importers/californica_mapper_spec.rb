@@ -160,6 +160,7 @@ RSpec.describe CalifornicaMapper do
       "Related Items" => "Related Items-1", # related_to
       "Identifier" => "123456", # identifier_global
       "OCLC No." => "OCLC: 123456", # identifier_global
+      "OCLC Number" => "OCLC: 123456", # identifier_global
       "AltIdentifier.oclc" => "OCLC: 123456", # identifier_global
       "Alt ID.oclc" => "OCLC: 123456", # identifier_global
       "Alternate Identifier.oclc" => "OCLC: 123456" # identifier_global

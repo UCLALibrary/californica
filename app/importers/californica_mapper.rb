@@ -45,8 +45,12 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     funding_note: "Description.fundingNote",
     genre: ["Type.genre", "Genre"],
     host: ["Host", "Name.host"],
-    identifier_global: 'Identifier',
-    identifier_oclc: ['OCLC No.', 'AltIdentifier.oclc', 'Alt ID.oclc', 'Alternate Identifier.oclc'],
+    identifier_global: ['Identifier',
+                    'OCLC No.',
+                    'OCLC Number',
+                    'AltIdentifier.oclc',
+                    'Alt ID.oclc',
+                    'Alternate Identifier.oclc'],
     iiif_manifest_url: "IIIF Manifest URL",
     iiif_range: "IIIF Range",
     iiif_text_direction: "Text direction",
@@ -60,10 +64,10 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     latitude: "Description.latitude",
     license: "License",
     local_identifier: ["Alternate Identifier.local",
-                       "AltIdentifier.callNo",
-                       "AltIdentifier.local",
-                       "Alt ID.local",
-                       "Local identifier"],
+                    "AltIdentifier.callNo",
+                    "AltIdentifier.local",
+                    "Alt ID.local",
+                    "Local identifier"],
     location: "Coverage.geographic",
     longitude: "Description.longitude",
     lyricist: "Name.lyricist",
@@ -230,9 +234,17 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     map_field(:foliation).to_a.first
   end
 
-  def identifier_global
-    map_field(:identifier_global)&.map { |a| 'OCLC: ' + a }
-  end
+  #def identifier_global
+    # if :identifier_oclc
+    # append it with OCLC: 
+    #combine it with identifier_global
+    # if :identifier_oclc
+    #   oclc = map_field(:identifier_oclc)&.map { |a| 'OCLC: ' + a }
+    #   map_field(:identifier_global).push(oclc)
+    # else
+    #   map_field(:identifier_global)
+    # end
+  #end
 
   def iiif_manifest_url
     map_field(:iiif_manifest_url).to_a.first

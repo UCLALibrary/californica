@@ -36,7 +36,7 @@
 <%= presenter.attribute_to_html(:geographic_coordinates, html_dl: true) %>
 <%= presenter.attribute_to_html(:host, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:identifier, render_as: :linked, search_field: 'identifier_tesim', html_dl: true) %>
-<%= presenter.attribute_to_html(:identifier_global, html_dl: true) %>
+<%= presenter.attribute_to_html(:identifier_global, html_dl: true, label: 'Identifier Global') %>
 <%= presenter.attribute_to_html(:iiif_manifest_url, html_dl: true) %>
 <%= presenter.attribute_to_html(:iiif_range, html_dl: true) %>
 <%= presenter.attribute_to_html(:iiif_text_direction, render_as: :iiif_text_direction, html_dl: true) %>

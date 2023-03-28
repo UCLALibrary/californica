@@ -155,7 +155,7 @@ class SolrDocument
   end
 
   def identifier_global
-    self[:identifier_global]
+    self[:identifier_global_tesim]
   end
 
   def iiif_manifest_url

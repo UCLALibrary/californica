@@ -108,8 +108,7 @@ module UclaMetadata
       index.as :stored_searchable, :facetable
     end
 
-    property :identifier_global, predicate:
-    ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/Identifierrequirednomultipleyestypestring') do |index|
+    property :identifier_global, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/Identifier') do |index|
       index.as :displayable
     end
 

@@ -286,9 +286,9 @@ Also accepts: `Type.genre`
 
 Also accepts `Name.host`
 
-#### Identifier OCLC No.
+#### Identifier
 
-Also accepts: `OCLC No.`, `AltIdentifier.oclc`, `Alt ID.oclc`, `Alternate Identifier.oclc`
+Also accepts: `OCLC No.`, `OCLC Number`, `AltIdentifier.oclc`, `Alt ID.oclc`, `Alternate Identifier.oclc`
 #### IIIF Access URL
 
 The URL of a IIIF resource that can be used to view the image. This is populated by processing the CSV via [bucketeer](https://bucketeer.library.ucla.edu/upload/csv). This URL is used to generate thumbnails for simple objects.
@@ -315,7 +315,7 @@ Language of the resource. Must be the 3-letter ISO 639-2 code. Can be multivalue
 
 A local identifier. Can be multivalued.
 
-Also accepts: `Alternate Identifier.local`, `AltIdentifier.callNo`, `Alt ID.local`, `AltIdentifier.local`
+Also accepts: `OCLC Number`, `AltIdentifier.oclc`, `Alt ID.oclc`, `Alternate Identifier.oclc`
 
 Examples:
 
