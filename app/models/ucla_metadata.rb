@@ -109,7 +109,7 @@ module UclaMetadata
     end
 
     property :identifier_global, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/Identifier') do |index|
-      index.as :displayable
+      index.as :stored_searchable
     end
 
     property :interviewee, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/ive') do |index|
