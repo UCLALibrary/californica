@@ -145,7 +145,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'funding_note_tesim'
     config.add_show_field 'genre_tesim'
     config.add_show_field 'host_tesim'
-    config.add_show_field 'identifier_global_tesim'
+    config.add_show_field 'identifier_global_tesim', label: 'Identifier'
     config.add_show_field 'iiif_manifest_url_ssi'
     config.add_show_field 'iiif_range_ssi'
     config.add_show_field 'iiif_viewing_hint_ssi'
