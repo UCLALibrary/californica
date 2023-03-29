@@ -153,7 +153,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Funding Note').value).to eq 'Old Fund Note'
       expect(find_field('Genre').value).to eq 'Old Genre'
       expect(find_field("Host").value).to eq 'Old Host'
-      expect(find_field("Identifier").to eq 'Old Identifier'
+      expect(find_field("Identifier").value).to eq 'Old Identifier'
       expect(find_field('Iiif manifest url').value).to eq 'https://test.iiif.library.ucla.edu/collections/ark%3A%2F21198%2Fz11c574k'
       expect(page).to have_select('Iiif text direction', selected: 'left-to-right', multiple: false)
       expect(find_field('Illuminator').value).to eq 'Old Illuminator'
