@@ -96,6 +96,7 @@ class CatalogController < ApplicationController
     # ------------------------------------------------------
     # SHOW PAGE / ITEM PAGE / Individual Work (Universal Viewer Page)
     # solr fields to be displayed in the show (single result) view
+    # ex: http://localhost:3000/concern/works/c7n5pz1z-89112?locale=en
     #   The ordering of the field names is the order of the display
     config.add_show_field 'title_tesim'
     config.add_show_field 'description_tesim'
@@ -385,6 +386,14 @@ class CatalogController < ApplicationController
 
     config.add_search_field('format_book') do |field|
       solr_name = solr_name('format_book', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('identifier_global') do |field|
+      solr_name = solr_name('identifier_global', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
