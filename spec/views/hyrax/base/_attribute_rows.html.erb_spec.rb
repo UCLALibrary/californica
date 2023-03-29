@@ -81,7 +81,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       printer: ['Old Printer'],
       researcher: ['Old Researcher'],
       related_to: ['Old Related Items'],
-      identifier_global: ['12346']
+      identifier_global: ['Old Identifier']
     )
   end
 
