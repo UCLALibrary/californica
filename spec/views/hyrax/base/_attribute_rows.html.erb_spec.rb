@@ -32,7 +32,6 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       format_book: ['Old Format'],
       funding_note: ['funding_note'],
       genre: ['genre'],
-      identifier_global: ['12346'],
       iiif_text_direction: 'iiif_text_direction',
       iiif_viewing_hint: 'iiif_viewing_hint',
       illustrator: ['illustrator'],
@@ -81,7 +80,8 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       musician: ['Old Musician'],
       printer: ['Old Printer'],
       researcher: ['Old Researcher'],
-      related_to: ['Old Related Items']
+      related_to: ['Old Related Items'],
+      identifier_global: ['12346']
     )
   end
 
@@ -194,9 +194,6 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   it 'has printmaker' do
     expect(page).to match(/printmaker/)
   end
-  it 'has related_to' do
-    expect(page).to match(/related_item/)
-  end
   it 'has repo' do
     expect(page).to match(/repository/)
   end
@@ -287,8 +284,11 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   it 'has researcher' do
     expect(page).to match(/researcher/)
   end
-  it 'has identifier global' do
-    expect(page).to match(/identifier/)
+  it 'has related_to' do
+    expect(page).to match(/related_to/)
+  end
+  it 'has identifier_global' do
+    expect(page).to match(/identifier_global/)
   end
   # This invokes License renderer from hyrax gem
   # it 'has local_rights_statement' do
