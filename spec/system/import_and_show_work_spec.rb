@@ -78,7 +78,8 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "left-to-right" # iiif_text_direction
     expect(page).to have_content "Mexican American Catholics" # uniform_title
     expect(page).to have_content "clusc_1_1_00010432a.tif" # preservation_copy
-    expect(page).to have_content "iiif-range" # iiif_range
+    expect(page).to have_content "identifier" # iiif_range
+    expect(page).to have_content "Identifier-1" # identifier
     expect(page).to have_content "illustration-note" # illustrations_note
     expect(page).to have_content "Illustrator-1" # illustrator
     expect(page).to have_content "history-description" # provenance
@@ -134,6 +135,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "AdminNote-1" # note_admin
     expect(page).to have_content "Format-1" # format_book
     expect(page).to have_content "Related Items-1" # related_to
+    expect(page).to have_content "Identifier-1" # identifier_global
     # expect(page).to have_content "local_statement" # local_rights_statement # This invokes License renderer from hyrax gem
 
     # displays expected fields on search results page

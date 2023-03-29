@@ -100,7 +100,8 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       printer: ['Old Printer'],
       researcher: ['Old Researcher'],
       resp_statement: ['Old Statement of Responsibility'],
-      related_to: ['Old Related Items']
+      related_to: ['Old Related Items'],
+      identifier_global: ['Old Identifier']
     }
   end
 

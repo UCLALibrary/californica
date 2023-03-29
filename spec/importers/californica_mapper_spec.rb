@@ -290,6 +290,7 @@ RSpec.describe CalifornicaMapper do
         :musician,
         :printer,
         :researcher,
+        :related_to,
         :identifier_global
       )
     end
