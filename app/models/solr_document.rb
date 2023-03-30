@@ -287,7 +287,7 @@ class SolrDocument
   end
 
   def related_to
-    self[:related_to_tesim]
+    self[:related_to_ssm]
   end
 
   def repository
