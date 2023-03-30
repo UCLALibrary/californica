@@ -103,7 +103,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       note_admin: ['Old AdminNote'],
       format_book: ['Old Format'],
       related_to: ['Old Related Items'],
-      identifier_global: ['Old Identifier']
+      identifier_global: ['Older Identifier']
     }
   end
 
@@ -211,7 +211,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Note admin').value).to eq 'Old AdminNote'
       expect(find_field('Format book').value).to eq 'Old Format'
       expect(find_field('Related to').value).to eq 'Old Related Items'
-      expect(find_field('Identifier').value).to eq 'Old Identifier'
+      expect(find_field('Identifier').value).to eq 'Older Identifier'
 
       # expect(find_field('Local rights statement').value).to eq 'Old Rights statement local'
       #

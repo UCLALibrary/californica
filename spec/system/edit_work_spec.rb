@@ -42,7 +42,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       funding_note: ['Old Fund Note'],
       genre: ['Old Genre'],
       host: ['Old Host'],
-      identifier_global: ['Old Identifier'],
+      identifier_global: ['Older Identifier'],
       iiif_manifest_url: 'https://test.iiif.library.ucla.edu/collections/ark%3A%2F21198%2Fz11c574k',
       iiif_range: 'Old Iiif range',
       iiif_text_direction: 'http://iiif.io/api/presentation/2#leftToRightDirection', # "left-to-right"
@@ -153,7 +153,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Funding Note').value).to eq 'Old Fund Note'
       expect(find_field('Genre').value).to eq 'Old Genre'
       expect(find_field("Host").value).to eq 'Old Host'
-      expect(find_field("Identifier").value).to eq 'Old Identifier'
+      expect(find_field("Identifier").value).to eq 'Older Identifier'
       expect(find_field('Iiif manifest url').value).to eq 'https://test.iiif.library.ucla.edu/collections/ark%3A%2F21198%2Fz11c574k'
       expect(page).to have_select('Iiif text direction', selected: 'left-to-right', multiple: false)
       expect(find_field('Illuminator').value).to eq 'Old Illuminator'
