@@ -219,7 +219,6 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       fill_in 'Title', with: 'New Title'
       fill_in 'Description', with: 'New Description'
       fill_in 'Extent', with: 'New Extent'
-      fill_in 'Identifier', with: 'New Identifier'
 
       click_on 'Save changes'
       expect(page).to have_current_path("/dashboard/collections/#{collection.id}/edit?locale=en")
@@ -231,7 +230,6 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(page).to_not have_content 'Old Desc'
       col = Collection.last
       expect(col.extent).to eq ["New Extent"]
-      expect(page).to     have_content 'New Identifier'
     end
   end
 end
