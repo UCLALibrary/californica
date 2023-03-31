@@ -103,7 +103,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       note_admin: ['Old AdminNote'],
       format_book: ['Old Format'],
       related_to: ['Old Related Items'],
-      identifier_global: ['Older Identifier']
+      identifier_global: ['Old Identifier']
     }
   end
 
@@ -211,7 +211,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Note admin').value).to eq 'Old AdminNote'
       expect(find_field('Format book').value).to eq 'Old Format'
       expect(find_field('Related to').value).to eq 'Old Related Items'
-      expect(find_field('Identifier').value).to eq 'Older Identifier'
+      expect(find_field('Identifier global').value).to eq 'Old Identifier'
 
       # expect(find_field('Local rights statement').value).to eq 'Old Rights statement local'
       #
@@ -219,6 +219,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       fill_in 'Title', with: 'New Title'
       fill_in 'Description', with: 'New Description'
       fill_in 'Extent', with: 'New Extent'
+      fill_in 'Identifier', with: 'New Identifier'
 
       click_on 'Save changes'
       expect(page).to have_current_path("/dashboard/collections/#{collection.id}/edit?locale=en")
@@ -230,6 +231,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(page).to_not have_content 'Old Desc'
       col = Collection.last
       expect(col.extent).to eq ["New Extent"]
+      expect(page).to     have_content 'New Identifier'
     end
   end
 end
