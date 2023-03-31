@@ -450,4 +450,22 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   def thumbnail_link
     map_field(:thumbnail_link).to_a.first
   end
+
+  # def identifier_global
+  #   oclc = []
+  #   v = metadata['OCLC Number']
+  #   w = metadata['OCLC No.']
+  #   x = metadata['AltIdentifier.oclc']
+  #   y = metadata['Alt ID.oclc']
+  #   z = metadata['lternate Identifier.oclc']
+  #   oclc.push(v,w,x,y,z)
+  #   # # map_field(oclc)&.map { |a| 'OCLC: ' + a }
+  #   oclc.map { |a| 'OCLC: ' + a }
+  #   # oclc
+  # end
+
+  def identifier_global
+    # this does work but applies OCLC to all
+    map_field(:identifier_global)&.map { |a| 'OCLC: ' + a }
+  end
 end
