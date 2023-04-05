@@ -30,7 +30,7 @@ RSpec.describe StartCsvImportJob, :clean, :inline_jobs do
   end
 
   def expected_objects_in_expected_order
-    expect(CsvRow.count).to eq 6
+    expect(CsvRow.count).to eq 
     expect(Collection.count).to eq 1
     expect(Work.count).to eq 1
     expect(ChildWork.count).to eq 3
