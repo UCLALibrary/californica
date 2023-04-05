@@ -454,24 +454,18 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   def identifier_global
     # prepend with OCLC: if the header is NOT Identifier
     allglobalids = []
-    if metadata.include? 'Identifier'
-      allglobalids << metadata['Identifier']
-    end
-    if metadata.include? 'OCLC Number'
-      allglobalids << 'OCLC: ' + metadata['OCLC Number']
-    end
-    if metadata.include? 'OCLC No.'
-      allglobalids << 'OCLC: ' + metadata['OCLC No.']
-    end
-    if metadata.include? 'AltIdentifier.oclc'
-      allglobalids << 'OCLC: ' + metadata['AltIdentifier.oclc']
-    end
-    if metadata.include? 'Alt ID.oclc'
-      allglobalids << 'OCLC: ' + metadata['Alt ID.oclc']
-    end
-    if metadata.include? 'Alternate Identifier.oclc'
-      allglobalids << 'OCLC: ' + metadata['Alternate Identifier.oclc']
-    end
+
+    allglobalids << metadata['Identifier'] if metadata.include? 'Identifier'
+
+    allglobalids << 'OCLC: ' + metadata['OCLC Number'] if metadata.include? 'OCLC Number'
+
+    allglobalids << 'OCLC: ' + metadata['OCLC No.'] if metadata.include? 'OCLC No.'
+
+    allglobalids << 'OCLC: ' + metadata['AltIdentifier.oclc'] if metadata.include? 'AltIdentifier.oclc'
+
+    allglobalids << 'OCLC: ' + metadata['Alt ID.oclc'] if metadata.include? 'Alt ID.oclc'
+
+    allglobalids << 'OCLC: ' + metadata['Alternate Identifier.oclc'] if metadata.include? 'Alternate Identifier.oclc'
 
     allglobalids
   end
