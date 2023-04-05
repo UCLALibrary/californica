@@ -20,6 +20,7 @@ Metrics/AbcSize:
     - app/importers/collection_record_importer.rb
     - spec/jobs/mss_csv_import_job_spec.rb
     - app/jobs/csv_row_import_job.rb
+    - app/importers/californica_mapper.rb
 
 Metrics/ClassLength:
   Enabled: true
@@ -65,6 +66,7 @@ Metrics/CyclomaticComplexity:
     - app/uploaders/csv_manifest_validator.rb
     - app/indexers/year_parser.rb
     - app/jobs/csv_row_import_job.rb
+    - app/importers/californica_mapper.rb
 
 Metrics/LineLength:
   Exclude:

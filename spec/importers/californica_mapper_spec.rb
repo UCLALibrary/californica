@@ -661,16 +661,18 @@ RSpec.describe CalifornicaMapper do
           'OCLC Number' => 'UCLA-1234e-OCLCNumber',
           'AltIdentifier.oclc' => 'UCLA-1234e-AltIdentifier',
           'Alt ID.oclc' => 'UCLA-1234e-AltID',
-          'Alternate Identifier.oclc' => 'UCLA-1234e-AlternateIdentifieroclc'}
+          'Alternate Identifier.oclc' => 'UCLA-1234e-AlternateIdentifieroclc' }
       end
 
       it 'returns the value prepended by OCLC if the header is NOT Identifier' do
-        expect(mapper.identifier_global).to match_array ["UCLA-1234e",
-          "OCLC: UCLA-1234e-OCLCNo", 
+        expect(mapper.identifier_global).to match_array [
+          "UCLA-1234e",
+          "OCLC: UCLA-1234e-OCLCNo",
           "OCLC: UCLA-1234e-OCLCNumber",
           "OCLC: UCLA-1234e-AltIdentifier",
           "OCLC: UCLA-1234e-AltID",
-          "OCLC: UCLA-1234e-AlternateIdentifieroclc"]
+          "OCLC: UCLA-1234e-AlternateIdentifieroclc"
+        ]
       end
     end
   end
