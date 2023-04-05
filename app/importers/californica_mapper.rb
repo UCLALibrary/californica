@@ -451,21 +451,28 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     map_field(:thumbnail_link).to_a.first
   end
 
-  # def identifier_global
-  #   oclc = []
-  #   v = metadata['OCLC Number']
-  #   w = metadata['OCLC No.']
-  #   x = metadata['AltIdentifier.oclc']
-  #   y = metadata['Alt ID.oclc']
-  #   z = metadata['lternate Identifier.oclc']
-  #   oclc.push(v,w,x,y,z)
-  #   # # map_field(oclc)&.map { |a| 'OCLC: ' + a }
-  #   oclc.map { |a| 'OCLC: ' + a }
-  #   # oclc
-  # end
-
   def identifier_global
-    # this does work but applies OCLC to all
-    map_field(:identifier_global)&.map { |a| 'OCLC: ' + a }
+    # prepend with OCLC: if the header is NOT Identifier
+    allglobalids = []
+    if metadata.include? 'Identifier'
+      allglobalids << metadata['Identifier']
+    end
+    if metadata.include? 'OCLC Number'
+      allglobalids << 'OCLC: ' + metadata['OCLC Number']
+    end
+    if metadata.include? 'OCLC No.'
+      allglobalids << 'OCLC: ' + metadata['OCLC No.']
+    end
+    if metadata.include? 'AltIdentifier.oclc'
+      allglobalids << 'OCLC: ' + metadata['AltIdentifier.oclc']
+    end
+    if metadata.include? 'Alt ID.oclc'
+      allglobalids << 'OCLC: ' + metadata['Alt ID.oclc']
+    end
+    if metadata.include? 'Alternate Identifier.oclc'
+      allglobalids << 'OCLC: ' + metadata['Alternate Identifier.oclc']
+    end
+
+    allglobalids
   end
 end

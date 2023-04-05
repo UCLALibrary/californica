@@ -159,11 +159,11 @@ RSpec.describe CalifornicaMapper do
       "Format" => "Format-1", # format_book
       "Related Items" => "Related Items-1", # related_to
       "Identifier" => "123456", # identifier_global
-      "OCLC No." => "OCLC: 123456", # identifier_global
-      "OCLC Number" => "OCLC: 123456", # identifier_global
-      "AltIdentifier.oclc" => "OCLC: 123456", # identifier_global
-      "Alt ID.oclc" => "OCLC: 123456", # identifier_global
-      "Alternate Identifier.oclc" => "OCLC: 123456" # identifier_global
+      "OCLC No." => "123456", # identifier_global
+      "OCLC Number" => "123456", # identifier_global
+      "AltIdentifier.oclc" => "123456", # identifier_global
+      "Alt ID.oclc" => "123456", # identifier_global
+      "Alternate Identifier.oclc" => "123456" # identifier_global
     }
   end
 
@@ -649,6 +649,23 @@ RSpec.describe CalifornicaMapper do
 
       it 'returns the same value' do
         expect(mapper.local_identifier).to eq ['UCLA-1234e']
+      end
+    end
+  end
+
+  describe '#identifier_global' do
+    context 'Identifiers of different types are present' do
+      let(:metadata) do
+        { 'Identifier' => 'UCLA-1234e' ,
+          'OCLC No.' => 'UCLA-1234e-OCLCNo',
+          'OCLC Number' => 'UCLA-1234e-OCLCNumber',
+          'AltIdentifier.oclc' => 'UCLA-1234e-AltIdentifier',
+          'Alt ID.oclc' => 'UCLA-1234e-AltID',
+          'Alternate Identifier.oclc' => 'UCLA-1234e-AlternateIdentifieroclc'}
+      end
+
+      it 'returns the value prepended by OCLC if the header is NOT Identifier' do
+        expect(mapper.identifier_global).to match_array ["UCLA-1234e", "OCLC: UCLA-1234e-OCLCNo",  "OCLC: UCLA-1234e-OCLCNumber", "OCLC: UCLA-1234e-AltIdentifier", "OCLC: UCLA-1234e-AltID", "OCLC: UCLA-1234e-AlternateIdentifieroclc"]
       end
     end
   end
