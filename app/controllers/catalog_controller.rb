@@ -173,6 +173,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'program_tesim'
     config.add_show_field 'provenance_tesim'
     config.add_show_field 'recipient_tesim'
+    config.add_show_field 'related_to_ssm', label: 'Related Items'
     config.add_show_field 'repository_tesim'
     config.add_show_field 'researcher_tesim'
     config.add_show_field 'resp_statement_tesim', label: 'Statement of Responsibility'

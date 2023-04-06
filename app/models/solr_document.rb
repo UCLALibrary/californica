@@ -282,6 +282,10 @@ class SolrDocument
     self[:recipient_tesim]
   end
 
+  def related_to
+    self[:related_to_ssm]
+  end
+
   def repository
     self[:repository_tesim]
   end
