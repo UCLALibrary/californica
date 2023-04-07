@@ -5,7 +5,7 @@ include Warden::Test::Helpers
 RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: true, js: true do
   subject(:importer) { CalifornicaImporter.new(csv_import, info_stream: [], error_stream: []) }
   let(:admin_user) { FactoryBot.create(:admin) }
-  let(:collection) { Collection.find_or_create_by_ark('ark:/111/222', iiif_manifest_url: 'https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz13f64qn/manifest') }
+  let(:collection) { Collection.find_or_create_by_ark('ark:/111/222') }
   let(:csv_file)   { File.join(fixture_path, 'coordinates_example.csv') }
   let(:csv_import) { FactoryBot.create(:csv_import, user: user, manifest: manifest) }
   let(:manifest) { Rack::Test::UploadedFile.new(csv_file, 'text/csv') }
@@ -21,7 +21,8 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
 
   it "imports records from a csv" do
     allow(ENV).to receive(:[]).and_call_original
-    allow(ENV).to receive(:[]).with('IIIF_SERVER_URL').and_return('https://cantaloupe.url/iiif/2/')
+    # allow(ENV).to receive(:[]).with('IIIF_SERVER_URL').and_return('https://cantaloupe.url/iiif/2/')
+    allow(ENV).to receive(:[]).with('IIIF_SERVER_URL').and_return('https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz13f64qn/manifest')
 
     # adds works to the specified collection
     expect(collection.ark).to eq 'ark:/111/222'
