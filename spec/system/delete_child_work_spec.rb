@@ -3,8 +3,8 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 RSpec.describe 'Delete a ChildWork', :clean, type: :system, js: true do
-  let(:child_work) { FactoryBot.create(:child_work, ark: 'ark:/abc/1234') }
-  let(:recreated_child_work) { FactoryBot.create(:child_work, ark: 'ark:/abc/1234') }
+  let(:child_work) { FactoryBot.create(:child_work, ark: 'ark:/abc/1234', iiif_manifest_url: 'https://test.iiif.library.ucla.edu/collections/ark%3A%2F21198%2Fz11c574k') }
+  let(:recreated_child_work) { FactoryBot.create(:child_work, ark: 'ark:/abc/1234', iiif_manifest_url: 'https://test.iiif.library.ucla.edu/collections/ark%3A%2F21198%2Fz11c574k') }
 
   let(:admin) { FactoryBot.create(:admin) }
 
