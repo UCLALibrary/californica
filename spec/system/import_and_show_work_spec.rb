@@ -29,14 +29,14 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     importer.import
     work = Work.last
     expect(work.member_of_collections).to eq [collection]
-byebug
+
     # displays expected fields on show work page
     # these should match the value in the spec/fixtures/coordinates_example.csv
 
     work = Work.last
     expect(work.id).to eq "f62bn833bh-03031"
     visit("/concern/works/#{work.id}")
-byebug
+
     expect(page).to have_content "Communion at Plaza Church, Los Angeles, 1942-1952" # title
     expect(page).to have_content "ark:/13030/hb338nb26f" # ark
     expect(page).to have_content "Imhotep" # architect
@@ -70,7 +70,6 @@ byebug
     expect(page).to have_content "Famous Photographer" # photographer
     expect(page).to have_content "Famous Author" # photographer
     expect(page).to have_content "34.05707, -118.239577" # geographic_coordinates, a.k.a. latitude and longitude
-  byebug
     expect(page).to have_content "Los Angeles Daily News Negatives. Department of Special Collections, Charles E. Young Research Library, University of California at Los Angeles." # relation.isPartOf
     expect(page).to have_content "Creative Commons BY Attribution 4.0 International" # License assigned at import time for LADNN collection
     expect(page).to have_content "Place of origin" # place_of_origin
@@ -138,7 +137,7 @@ byebug
     expect(page).to have_content "Format-1" # format_book
     expect(page).to have_content "Related Items-1" # related_to
     # expect(page).to have_content "local_statement" # local_rights_statement # This invokes License renderer from hyrax gem
-byebug
+
     # # displays expected fields on search results page
     # visit("catalog?search_field=all_fields&q=")
     # expect(page).to have_content work.title.first
