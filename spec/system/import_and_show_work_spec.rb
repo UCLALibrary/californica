@@ -7,7 +7,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
   let(:admin_user) { FactoryBot.create(:admin) }
   let(:collection) { Collection.find_or_create_by_ark('ark:/111/222') }
   let(:csv_file)   { File.join(fixture_path, 'coordinates_example.csv') }
-  let(:csv_import) { FactoryBot.create(:csv_import, user: user, manifest: 'https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz13f64qn/manifest') }
+  let(:csv_import) { FactoryBot.create(:csv_import, user: user, manifest: manifest) }
   let(:manifest) { Rack::Test::UploadedFile.new(csv_file, 'text/csv') }
   let(:second_csv_import) { FactoryBot.create(:csv_import, user: user, manifest: second_manifest) }
   let(:second_importer) { CalifornicaImporter.new(second_csv_import, info_stream: [], error_stream: []) }
@@ -22,7 +22,6 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
   it "imports records from a csv" do
     allow(ENV).to receive(:[]).and_call_original
     allow(ENV).to receive(:[]).with('IIIF_SERVER_URL').and_return('https://cantaloupe.url/iiif/2/')
-    # allow(ENV).to receive(:[]).with('IIIF_SERVER_URL').and_return('https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz13f64qn/manifest')
 
     # adds works to the specified collection
     expect(collection.ark).to eq 'ark:/111/222'
@@ -36,7 +35,6 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     work = Work.last
     expect(work.id).to eq "f62bn833bh-03031"
     visit("/concern/works/#{work.id}")
-
     expect(page).to have_content "Communion at Plaza Church, Los Angeles, 1942-1952" # title
     expect(page).to have_content "ark:/13030/hb338nb26f" # ark
     expect(page).to have_content "Imhotep" # architect
@@ -135,43 +133,43 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "References-1" # citation_source
     expect(page).to have_content "AdminNote-1" # note_admin
     expect(page).to have_content "Format-1" # format_book
-    expect(page).to have_content "Related Items-1" # related_to
+    expect(page).to have_content "Related Item-1" # related_to
     # expect(page).to have_content "local_statement" # local_rights_statement # This invokes License renderer from hyrax gem
 
-    # # displays expected fields on search results page
-    # visit("catalog?search_field=all_fields&q=")
-    # expect(page).to have_content work.title.first
-    # expect(page).to have_content work.description.first
-    # expect(page).to have_content work.normalized_date.first
+    # displays expected fields on search results page
+    visit("catalog?search_field=all_fields&q=")
+    expect(page).to have_content work.title.first
+    expect(page).to have_content work.description.first
+    expect(page).to have_content work.normalized_date.first
 
-    # # displays expected facets
-    # facet_headings = page.all(:css, 'h3.facet-field-heading').to_a.map(&:text)
-    # expect(facet_headings).to contain_exactly("Subject", "Creator", "Resource Type", "Genre", "Names", "Location", "Normalized Date", "Extent", "Medium", "Dimensions", "Language", "Collection", "Subject geographic", "Subject temporal", "Repository", "Subject cultural object", "Subject domain topic", "Series", "Host", "Musician", "Printer", "Researcher")
+    # displays expected facets
+    facet_headings = page.all(:css, 'h3.facet-field-heading').to_a.map(&:text)
+    expect(facet_headings).to contain_exactly("Subject", "Creator", "Resource Type", "Genre", "Names", "Location", "Normalized Date", "Extent", "Medium", "Dimensions", "Language", "Collection", "Subject geographic", "Subject temporal", "Repository", "Subject cultural object", "Subject domain topic", "Series", "Host", "Musician", "Printer", "Researcher")
 
-    # # importing the same object twice
-    # expect(work.funding_note.first).to eq "Fake Funding Note"
-    # expect(work.medium.first).to eq "Fake Medium"
-    # second_importer.import
-    # work.reload
-    # expect(work.funding_note.first).to eq "Better Funding Note"
-    # expect(work.medium).to eq []
+    # importing the same object twice
+    expect(work.funding_note.first).to eq "Fake Funding Note"
+    expect(work.medium.first).to eq "Fake Medium"
+    second_importer.import
+    work.reload
+    expect(work.funding_note.first).to eq "Better Funding Note"
+    expect(work.medium).to eq []
   end
 
-  # it "imports records from a csv with license" do
-  #   allow(ENV).to receive(:[]).and_call_original
-  #   allow(ENV).to receive(:[]).with('IIIF_SERVER_URL').and_return('https://cantaloupe.url/iiif/2/')
+  it "imports records from a csv with license" do
+    allow(ENV).to receive(:[]).and_call_original
+    allow(ENV).to receive(:[]).with('IIIF_SERVER_URL').and_return('https://cantaloupe.url/iiif/2/')
 
-  #   # adds works to the specified collection
-  #   expect(collection.ark).to eq 'ark:/111/222'
-  #   third_importer.import
-  #   work = Work.last
-  #   expect(work.member_of_collections).to eq [collection]
+    # adds works to the specified collection
+    expect(collection.ark).to eq 'ark:/111/222'
+    third_importer.import
+    work = Work.last
+    expect(work.member_of_collections).to eq [collection]
 
-  #   # displays expected fields on show work page
-  #   work = Work.last
-  #   expect(work.id).to eq "f62bn833bh-03031"
-  #   visit("/concern/works/#{work.id}")
-  #   expect(page).to have_content "Creative Commons CC0 1.0 Universal" # license
-  #   # expect(page).to have_content "local_statement" # local_rights_statement # This invokes License renderer from hyrax gem
-  # end
+    # displays expected fields on show work page
+    work = Work.last
+    expect(work.id).to eq "f62bn833bh-03031"
+    visit("/concern/works/#{work.id}")
+    expect(page).to have_content "Creative Commons CC0 1.0 Universal" # license
+    # expect(page).to have_content "local_statement" # local_rights_statement # This invokes License renderer from hyrax gem
+  end
 end
