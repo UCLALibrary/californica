@@ -7,7 +7,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
   let(:admin_user) { FactoryBot.create(:admin) }
   let(:collection) { Collection.find_or_create_by_ark('ark:/111/222') }
   let(:csv_file)   { File.join(fixture_path, 'coordinates_example.csv') }
-  let(:csv_import) { FactoryBot.create(:csv_import, user: user, manifest: , iiif_manifest_url: 'https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz13f64qn/manifest') }
+  let(:csv_import) { FactoryBot.create(:csv_import, user: user, manifest: 'https://iiif.library.ucla.edu/ark%3A%2F21198%2Fz13f64qn/manifest') }
   let(:manifest) { Rack::Test::UploadedFile.new(csv_file, 'text/csv') }
   let(:second_csv_import) { FactoryBot.create(:csv_import, user: user, manifest: second_manifest) }
   let(:second_importer) { CalifornicaImporter.new(second_csv_import, info_stream: [], error_stream: []) }
