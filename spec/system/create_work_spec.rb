@@ -42,6 +42,7 @@ RSpec.describe 'Create a Work', :clean, type: :system, js: true do
       click_link "Descriptions" # switch tab
       fill_in('Title', with: 'My Test Work')
       fill_in('Ark', with: 'ark:/abc/123')
+      select('copyrighted', from: 'Copyright Status')
       click_on 'Additional fields'
       fill_in('Iiif manifest url', with: 'https://test.iiif.library.ucla.edu/collections/ark%3A%2F21198%2Fz11c574k')
       select('copyrighted', from: 'Copyright Status')
