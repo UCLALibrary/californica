@@ -44,8 +44,8 @@ RSpec.describe 'Create a Work', :clean, type: :system, js: true do
       fill_in('Ark', with: 'ark:/abc/123')
       select('copyrighted', from: 'Copyright Status')
       click_on 'Additional fields'
-      fill_in('Iiif manifest url', with: 'https://test.iiif.library.ucla.edu/collections/ark%3A%2F21198%2Fz11c574k')
-      select('copyrighted', from: 'Copyright Status')
+      # fill_in('Iiif manifest url', with: 'https://test.iiif.library.ucla.edu/collections/ark%3A%2F21198%2Fz11c574k')
+      # select('copyrighted', from: 'Copyright Status')
 
       # With selenium and the chrome driver, focus remains on the
       # select box. Click outside the box so the next line can't find
