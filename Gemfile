@@ -70,7 +70,8 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'rb-readline' # For byebug
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', (RUBY_VERSION < "2.4" ? "~> 3.15.1" : "~> 3.29.0")
+  gem 'capybara', '~> 2.13'
+  # gem 'capybara', (RUBY_VERSION < "2.4" ? "~> 3.15.1" : "~> 3.29.0")
   gem 'factory_bot_rails'
   gem 'fcrepo_wrapper'
   gem 'ffaker'
