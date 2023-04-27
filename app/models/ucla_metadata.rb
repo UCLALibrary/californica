@@ -348,6 +348,10 @@ module UclaMetadata
       index.as :stored_sortable
     end
 
+    property :related_to, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/relatedTo') do |index|
+      index.as :displayable
+    end
+
     property :representative_image, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3079'), multiple: false do |index|
       index.as :stored_sortable
     end
