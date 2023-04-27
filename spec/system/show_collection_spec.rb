@@ -49,6 +49,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       program: ['Old Program'],
       provenance: ['Old Provenance'],
       publisher: ['Old Pub'],
+      related_to: ['Old Related Items'],
       repository: ['Old Repository'],
       resource_type: ['Image'],
       rights_country: ['Old Rights Country'],
