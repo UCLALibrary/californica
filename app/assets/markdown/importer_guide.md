@@ -84,6 +84,7 @@
     - [Project Name](#project-name)
     - [Provenance](#provenance)
     - [Publisher.publisherName](#publisherpublishername)
+    - [Related Items](#related_to)
     - [References](# citation_source)
     - [Relation.isPartOf](#relationispartof)
     - [Repository](#repository)
@@ -438,6 +439,8 @@ Also accepts: `Description.history`
 #### Relation.isPartOf
 
 DLCS collection name
+
+#### Related Items
 
 #### Repository
 
