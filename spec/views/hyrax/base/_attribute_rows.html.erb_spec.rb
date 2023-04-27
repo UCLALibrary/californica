@@ -49,6 +49,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       page_layout: ['page_layout'],
       place_of_origin: ['place_of_origin'],
       printmaker: ['Old printmaker'],
+      related_to: ['Old Related Items'],
       repository: ['repostiory'],
       resource_type: ['resource_type'],
       resp_statement: ['Statement of Responsibility'],
@@ -281,6 +282,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   end
   it 'has researcher' do
     expect(page).to match(/researcher/)
+  end
+  it 'has related_to' do
+    expect(page).to match(/related_to/)
   end
   # This invokes License renderer from hyrax gem
   # it 'has local_rights_statement' do
