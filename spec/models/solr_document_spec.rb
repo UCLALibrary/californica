@@ -83,7 +83,7 @@ RSpec.describe SolrDocument do
 
     context 'when no external manifest URL is stored' do
       it 'links to the local manifest builder' do
-        expect(solr_document.iiif_manifest_url).to eq '/concern/works/456xyz/manifest'
+        expect(solr_document.iiif_manifest_url).to eq "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fzz00090p17/manifest"
       end
     end
   end
