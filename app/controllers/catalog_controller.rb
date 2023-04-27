@@ -113,7 +113,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'license_tesim'
     config.add_show_field 'resource_type_tesim', label: 'Resource Type'
     config.add_show_field 'format_tesim'
-    config.add_show_field 'identifier_tesim'
+    # config.add_show_field 'identifier_tesim'
     config.add_show_field 'ark_ssi', label: 'ARK'
     config.add_show_field 'access_copy_ssi'
 
@@ -145,6 +145,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'funding_note_tesim'
     config.add_show_field 'genre_tesim'
     config.add_show_field 'host_tesim'
+    config.add_show_field 'identifier_global_tesim', label: 'Identifier'
     config.add_show_field 'iiif_manifest_url_ssi'
     config.add_show_field 'iiif_range_ssi'
     config.add_show_field 'iiif_viewing_hint_ssi'
@@ -384,6 +385,14 @@ class CatalogController < ApplicationController
 
     config.add_search_field('format_book') do |field|
       solr_name = solr_name('format_book', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('identifier_global') do |field|
+      solr_name = solr_name('identifier_global', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
