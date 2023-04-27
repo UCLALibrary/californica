@@ -78,6 +78,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       provenance: ['Old Provenance'],
       publisher: ['Old Pub'],
       recipient: ['Old Recipient'],
+      related_to: ['Old Related Items'],
       repository: ['Old Repository'],
       representative_image: 'Old Representative image',
       researcher: ['Old Researcher'],
@@ -177,9 +178,10 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field("Producer").value).to eq 'Old Producer'
       expect(find_field("Program").value).to eq 'Old Program'
       expect(find_field('Publisher').value).to eq 'Old Pub'
+      expect(find_field("Recipient").value).to eq 'Old Recipient'
+      expect(find_field('Related to').value).to eq 'Old Related Items'
       expect(find_field('Repository').value).to eq 'Old Repository'
       expect(find_field('Resource type').value).to eq ['http://id.loc.gov/vocabulary/resourceTypes/img']
-
       expect(find_field('Rights (country of creation)').value).to eq 'Old Rights Country'
       expect(find_field('Rights Holder').value).to eq 'Old Rights Holder'
       expect(find_field('Subject').value).to eq 'Old Subj'
@@ -187,7 +189,6 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Summary').value).to eq 'Old Summary'
       expect(find_field('Opac url').value).to eq 'https://www.library.ucla.edu'
       expect(first(:css, '#work_description').value).to eq 'Old Desc'
-      expect(find_field("Recipient").value).to eq 'Old Recipient'
       expect(find_field('Citation source').value).to eq 'Old References'
       expect(find_field('Representative image').value).to eq 'Old Representative image'
       expect(find_field("Researcher").value).to eq 'Old Researcher'
