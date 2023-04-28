@@ -69,7 +69,7 @@ services:
       JAVA_OPTIONS: '-Xmx512m'
 
   db:
-    image: mysql:5.6
+    image: uclalibrary/californica-mariadb:10.3
     volumes:
       - ./docker/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
       - ./docker/conf.d:/etc/mysql/conf.d
@@ -87,28 +87,16 @@ services:
       - '127.0.0.1:6379:6379'
 
   solr:
-    image: uclalibrary/solr-ursus:2021-03-01
+    image: uclalibrary/solr-ursus:7.4
     volumes:
       - solr_data:/opt/solr/server/solr/mycores/californica/data
     ports:
       - '127.0.0.1:8983:8983'
 
   solr_test:
-    image: uclalibrary/solr-ursus:2021-03-01
+    image: uclalibrary/solr-ursus:7.4
     ports:
       - '127.0.0.1:8985:8983'
-
-  # iiif:
-  #   image: uclalibrary/cantaloupe
-  #   environment:
-  #     DELEGATE_SCRIPT.ENABLED: "true"
-  #     DELEGATE_SCRIPT.PATHNAME: /docker/delegates.rb
-  #     ENDPOINT.ADMIN.ENABLED: "true"
-  #     ENDPOINT.ADMIN.SECRET: cobweb123
-  #   ports:
-  #     - 8182:8182
-  #   volumes:
-  #     - ./cantaloupe-delegate/lib:/delegate
 
 volumes:
   bundle_dir:
