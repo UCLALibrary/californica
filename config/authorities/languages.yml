@@ -17,12 +17,16 @@ terms:
   term: Afrihili (Artificial language)
 - id: afr
   term: Afrikaans
+- id: ahs
+  term: Ashe
 - id: ain
   term: Ainu
 - id: ajm
   term: Aljamía
 - id: aka
   term: Akan
+- id: akf
+  term: Akpa
 - id: akk
   term: Akkadian
 - id: alb
@@ -35,6 +39,8 @@ terms:
   term: Altai
 - id: amh
   term: Amharic
+- id: anc
+  term: Ngas
 - id: ang
   term: English, Old (ca. 450-1100)
 - id: anp
@@ -103,6 +109,8 @@ terms:
   term: Bengali
 - id: ber
   term: Berber (Other)
+- id: bhb
+  term: Bhili
 - id: bho
   term: Bhojpuri
 - id: bih
@@ -215,6 +223,8 @@ terms:
   term: Dargwa
 - id: day
   term: Dayak
+- id: ddg
+  term: Fataluku
 - id: del
   term: Delaware
 - id: den
@@ -399,8 +409,14 @@ terms:
   term: Icelandic
 - id: ido
   term: Ido
+- id: idu
+  term: Idoma
+- id: ige
+  term: Igede
 - id: iii
   term: Sichuan Yi
+- id: ijn
+  term: Kalabari
 - id: ijo
   term: Ijo
 - id: iku
@@ -429,6 +445,10 @@ terms:
   term: Irish
 - id: iro
   term: Iroquoian (Other)
+- id: ish
+  term: Esan
+- id: iso
+  term: Isoko
 - id: ita
   term: Italian
 - id: jav
@@ -437,6 +457,12 @@ terms:
   term: Lojban (Artificial language)
 - id: jpn
   term: Japanese
+- id: jar
+  term: Jarawa (Nigeria)
+- id: jbu
+  term: Jukun Takum
+- id: jib
+  term: Jibu
 - id: jpr
   term: Judeo-Persian
 - id: jrb
@@ -481,6 +507,8 @@ terms:
   term: Kyrgyz
 - id: kmb
   term: Kimbundu
+- id: koa
+  term: Khassonké
 - id: kok
   term: Konkani
 - id: kom
@@ -661,6 +689,8 @@ terms:
   term: Niger-Kordofanian (Other)
 - id: niu
   term: Niuean
+- id: nkx
+  term: Nkọrọọ
 - id: nno
   term: Norwegian (Nynorsk)
 - id: nob
@@ -677,6 +707,8 @@ terms:
   term: Northern Sotho
 - id: nub
   term: Nubian languages
+- id: nup
+  term: Nupe-Nupe-Tako
 - id: nwc
   term: Newari, Old
 - id: nya
@@ -849,6 +881,8 @@ terms:
   term: Sotho
 - id: spa
   term: Spanish
+- id: srb
+  term: Sora
 - id: srd
   term: Sardinian
 - id: srn
@@ -879,6 +913,8 @@ terms:
   term: Swazi
 - id: syc
   term: Syriac
+- id: sym
+  term: Maya Samo
 - id: syr
   term: Syriac, Modern
 - id: tag
@@ -971,6 +1007,8 @@ terms:
   term: Undetermined
 - id: urd
   term: Urdu
+- id: urh
+  term: Urhobo
 - id: uzb
   term: Uzbek
 - id: vai
@@ -999,6 +1037,8 @@ terms:
   term: Walloon
 - id: wol
   term: Wolof
+- id: wtm
+  term: Mewati
 - id: xal
   term: Oirat
 - id: xho
