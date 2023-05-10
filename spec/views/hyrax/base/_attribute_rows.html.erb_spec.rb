@@ -286,7 +286,6 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   it 'has related_to' do
     expect(page).to match(/related_to/)
   end
-  # This invokes License renderer from hyrax gem
   it 'has local_rights_statement' do
     expect(page).to match(/local_rights_statement/)
   end
