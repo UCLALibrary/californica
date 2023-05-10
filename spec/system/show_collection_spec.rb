@@ -86,7 +86,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       rubricator: ['Old rubricator'],
       creator: ['Old name creator'],
       license: ['Creative Commons CC0 1.0 Universal'],
-      local_rights_statement: ['Old Rights local statement'], # This invokes License renderer from hyrax gem
+      local_rights_statement: ['Old Local Rights Statement'],
       content_disclaimer: ['Old Disclaimer'],
       interviewer: ['Old Interviewer'],
       interviewee: ['Old Interviewee'],
