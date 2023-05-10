@@ -81,7 +81,7 @@ RSpec.describe Hyrax::WorkForm do
       :rights_country,
       :rights_holder,
       :rubricator,
-      # :local_rights_statement, # This invokes License renderer from hyrax gem
+      :local_rights_statement, # This invokes License renderer from hyrax gem
       :scribe,
       :series,
       :subject_cultural_object,

@@ -366,9 +366,9 @@ module UclaMetadata
   end
 end
 
-# property :local_rights_statement, predicate: ::RDF::URI.intern('http://purl.org/dc/terms/rights') do |index|
-# index.as :symbol
-# end # This invokes License renderer from hyrax gem
+property :local_rights_statement, predicate: ::RDF::URI.intern('http://purl.org/dc/terms/rights') do |index|
+  index.as :symbol
+end # This invokes License renderer from hyrax gem
 
 # https://www.rubydoc.info/gems/solrizer/3.4.0/Solrizer/DefaultDescriptors#simple-class_method
 # displayable: https://www.rubydoc.info/gems/solrizer/3.4.0/Solrizer%2FDefaultDescriptors.displayable
