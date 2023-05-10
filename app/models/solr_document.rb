@@ -315,7 +315,7 @@ class SolrDocument
   end
 
   def local_rights_statement
-    self[:local_rights_statement_ssim]
+    self[:local_rights_statement_ssm]
   end
 
   def scribe
