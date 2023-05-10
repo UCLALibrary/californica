@@ -55,7 +55,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       latitude: ['Old Lat'],
       license: ['http://creativecommons.org/publicdomain/zero/1.0/'],
       local_identifier: ['Old Local ID'],
-      local_rights_statement: ['Old Rights statement local'] # This invokes License renderer from hyrax gem
+      local_rights_statement: ['Old Rights statement local'], # This invokes License renderer from hyrax gem
       location: ['Old Loc'],
       longitude: ['Old Long'],
       lyricist: ['Old Lyricist'],
