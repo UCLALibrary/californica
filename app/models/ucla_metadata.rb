@@ -363,12 +363,12 @@ module UclaMetadata
     property :thumbnail_link, predicate: ::RDF::URI.intern('http://pcdm.org/use#ThumbnailImage'), multiple: false do |index|
       index.as :stored_sortable
     end
+
+    property :local_rights_statement, predicate: ::RDF::URI.intern('http://purl.org/dc/terms/rights') do |index|
+      index.as :symbol
+    end # This invokes License renderer from hyrax gem
   end
 end
-
-property :local_rights_statement, predicate: ::RDF::URI.intern('http://purl.org/dc/terms/rights') do |index|
-  index.as :symbol
-end # This invokes License renderer from hyrax gem
 
 # https://www.rubydoc.info/gems/solrizer/3.4.0/Solrizer/DefaultDescriptors#simple-class_method
 # displayable: https://www.rubydoc.info/gems/solrizer/3.4.0/Solrizer%2FDefaultDescriptors.displayable
