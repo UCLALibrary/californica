@@ -365,7 +365,7 @@ module UclaMetadata
     end
 
     property :local_rights_statement, predicate: ::RDF::URI.intern('http://purl.org/dc/terms/rights') do |index|
-      index.as :symbol
+      index.as :displayable
     end # This invokes License renderer from hyrax gem
   end
 end

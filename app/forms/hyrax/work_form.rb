@@ -79,7 +79,7 @@ module Hyrax
       :rights_country,
       :rights_holder,
       :rubricator,
-      :local_rights_statement, # This invokes License renderer from hyrax gem
+      :local_rights_statement,
       :scribe,
       :series,
       :subject_geographic,

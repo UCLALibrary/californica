@@ -80,8 +80,8 @@ module Hyrax
         :researcher,
         :resp_statement,
         :rights_country,
-        :rights_holder,
-        :local_rights_statement, # This invokes License renderer from hyrax gem
+        :rights_holder, # This invokes License renderer from hyrax gem
+        :local_rights_statement, 
         :resource_type,
         :rubricator,
         :scribe,
