@@ -134,7 +134,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "AdminNote-1" # note_admin
     expect(page).to have_content "Format-1" # format_book
     expect(page).to have_content "Related Items-1" # related_to
-    expect(page).to have_content "Local Rights Statement-1" # local_rights_statement
+    expect(page).to have_content "Local rights statement-1" # local_rights_statement
 
     # displays expected fields on search results page
     visit("catalog?search_field=all_fields&q=")

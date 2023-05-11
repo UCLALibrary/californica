@@ -55,7 +55,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       latitude: ['Old Lat'],
       license: ['http://creativecommons.org/publicdomain/zero/1.0/'],
       local_identifier: ['Old Local ID'],
-      local_rights_statement: ['Old Rights statement local'], # This invokes License renderer from hyrax gem
+      local_rights_statement: ['Old Local rights statement'],
       location: ['Old Loc'],
       longitude: ['Old Long'],
       lyricist: ['Old Lyricist'],
@@ -161,7 +161,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Latitude').value).to eq 'Old Lat'
       expect(find_field('Local Identifier').value).to eq 'Old Local ID'
       expect(find_field('Location').value).to eq 'Old Loc'
-      # expect(find_field('Local rights statement').value).to eq 'Old Rights statement local'
+      expect(find_field('Local rights statement').value).to eq 'Old Local rights statement'
       expect(find_field('Longitude').value).to eq 'Old Long'
       expect(find_field('Lyricist').value).to eq 'Old Lyricist'
       expect(find_field('Masthead parameters').value).to eq 'Old Masthead Parameters'
