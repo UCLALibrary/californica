@@ -364,9 +364,9 @@ module UclaMetadata
       index.as :stored_sortable
     end
 
-    property :local_rights_statement, predicate: ::RDF::URI.intern('http://purl.org/dc/terms/rights') do |index|
+    property :local_rights_statement, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/UsePolicy') do |index|
       index.as :displayable
-    end # This invokes License renderer from hyrax gem
+    end
   end
 end
 
