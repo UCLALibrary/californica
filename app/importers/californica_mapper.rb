@@ -62,7 +62,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
                        "AltIdentifier.local",
                        "Alt ID.local",
                        "Local identifier"],
-    local_rights_statement: ["Rights.statementLocal"],
+    local_rights_statement: "Rights.statementLocal",
     location: "Coverage.geographic",
     longitude: "Description.longitude",
     lyricist: "Name.lyricist",
