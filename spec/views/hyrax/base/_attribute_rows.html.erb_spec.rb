@@ -39,6 +39,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       license: ['Creative Commons CC0 1.0 Universal'],
       location: ['location'],
       local_identifier: ['local'],
+      local_rights_statement: "Local rights statement",
       longitude: ['longitude'],
       medium: ['medium'],
       named_subject: ['named_subject'],
