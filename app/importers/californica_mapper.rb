@@ -62,6 +62,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
                        "AltIdentifier.local",
                        "Alt ID.local",
                        "Local identifier"],
+    local_rights_statement: "Rights.statementLocal",
     location: "Coverage.geographic",
     longitude: "Description.longitude",
     lyricist: "Name.lyricist",
@@ -112,7 +113,6 @@ class CalifornicaMapper < Darlingtonia::HashMapper
                     "Rights.rightsHolderName"],
     rights_statement: "Rights.copyrightStatus",
     rubricator: ["Rubricator", "Name.rubricator"],
-    # local_rights_statement: "Rights.statementLocal", # This invokes License renderer from hyrax gem
     scribe: "Name.scribe",
     series: "Series",
     services_contact: "Rights.servicesContact",
