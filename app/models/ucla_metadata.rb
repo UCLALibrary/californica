@@ -11,6 +11,10 @@ module UclaMetadata
       index.as :displayable
     end
 
+    property :oai_set, predicate: ::RDF::URI.intern('http://bibfra.me/vocab/lite/memberOf') do |index|
+      index.as :displayable
+    end
+
     # Item Overview
     property :alternative_title, predicate: ::RDF::Vocab::DC.alternative, multiple: true do |index|
       index.as :stored_searchable
