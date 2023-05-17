@@ -84,7 +84,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       note: ['Old Note'],
       printmaker: ['Old Printmaker'],
       contents_note: ['Old Contents note'],
-      # local_rights_statement: ['Old Rights statement local'] # This invokes License renderer from hyrax gem
+      local_rights_statement: ['Old Local rights statement'],
       content_disclaimer: ['Old Disclaimer'],
       interviewer: ['Old Interviewer'],
       interviewee: ['Old Interviewee'],
@@ -172,6 +172,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Scribe').value).to eq 'Old Scribe'
       expect(find_field('Condition note').value).to eq 'Old Condition note'
       expect(find_field('Contents note').value).to eq 'Old Contents note'
+      expect(find_field('Local rights statement').value).to eq 'Old Local rights statement'
       expect(find_field('Representative image').value).to eq 'Old Representative image'
       expect(find_field('Featured image').value).to eq 'Old Featured image'
       expect(find_field('Tagline').value).to eq 'Old Tagline'
@@ -211,7 +212,6 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Format book').value).to eq 'Old Format'
       expect(find_field('Related to').value).to eq 'Old Related Items'
 
-      # expect(find_field('Local rights statement').value).to eq 'Old Rights statement local'
       #
       # # Edit some fields in the form
       fill_in 'Title', with: 'New Title'
