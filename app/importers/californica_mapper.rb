@@ -85,6 +85,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     note: ["Note"],
     note_admin: ["AdminNote", "Description.adminnote", "Note.admin"],
     opac_url: ["Opac url", "Description.opac"],
+    oai_set: "oai_set",
     page_layout: "Page layout",
     photographer: ["Name.photographer",
                    "Personal or Corporate Name.photographer"],

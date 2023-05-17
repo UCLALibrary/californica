@@ -242,6 +242,10 @@ class SolrDocument
     self[:opac_url_ssi]
   end
 
+  def oai_set
+    self[:oai_set_ssm]
+  end
+
   def page_layout
     self[:page_layout_ssim]
   end
