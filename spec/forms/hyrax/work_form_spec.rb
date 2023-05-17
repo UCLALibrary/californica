@@ -62,6 +62,7 @@ RSpec.describe Hyrax::WorkForm do
       :note,
       :note_admin,
       :opac_url,
+      :oai_set,
       :page_layout,
       :photographer,
       :place_of_origin,
