@@ -244,6 +244,7 @@ RSpec.describe CsvManifestValidator, type: :model do
         "Note.admin",
         "Object Type",
         "Opac url",
+        "oai_set",
         "Page layout",
         "Parent ARK",
         "Personal or Corporate Name.copyrightHolder",
