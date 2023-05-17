@@ -92,7 +92,7 @@
     - [Researcher](#researcher)
     - [Rights.countryCreation](#rightscountrycreation)
     - [Rights.rightsHolderContact](#rightsrightsholdercontact)
-    - [Rights.statementLocal](#rightsstatementlocal)
+    - [Rights.statementLocal](#	local_rights_statement)
     - [Series](#series)
     - [Statement of Responsibility](#resp_statement)
     - [Subject geographic](#subject-geographic)
@@ -461,6 +461,7 @@ Also accepts: `Name.researcher`
 Also accepts: `Rights.rightsHolderName`, `Personal or Corporate Name.copyrightHolder`
 
 #### Rights.statementLocal
+Local rights statement
 
 #### Series
 
