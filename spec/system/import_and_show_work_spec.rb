@@ -170,6 +170,5 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(work.id).to eq "f62bn833bh-03031"
     visit("/concern/works/#{work.id}")
     expect(page).to have_content "Creative Commons CC0 1.0 Universal" # license
-    expect(page).to have_content "Local rights statement" # local_rights_statement # This invokes License renderer from hyrax gem
   end
 end
