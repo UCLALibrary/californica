@@ -242,6 +242,10 @@ class SolrDocument
     self[:opac_url_ssi]
   end
 
+  def oai_set
+    self[:oai_set_ssm]
+  end
+
   def page_layout
     self[:page_layout_ssim]
   end
@@ -314,10 +318,9 @@ class SolrDocument
     self[:rubricator_tesim]
   end
 
-  # This invokes License renderer from hyrax gem
-  # def local_rights_statement
-  # self[:local_rights_statement_ssim]
-  # end
+  def local_rights_statement
+    self[:local_rights_statement_ssm]
+  end
 
   def scribe
     self[:scribe_tesim]

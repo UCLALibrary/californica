@@ -51,6 +51,7 @@ RSpec.describe Hyrax::WorkForm do
       :latitude,
       :license,
       :local_identifier,
+      :local_rights_statement,
       :location,
       :longitude,
       :lyricist,
@@ -62,6 +63,7 @@ RSpec.describe Hyrax::WorkForm do
       :note,
       :note_admin,
       :opac_url,
+      :oai_set,
       :page_layout,
       :photographer,
       :place_of_origin,
@@ -81,7 +83,6 @@ RSpec.describe Hyrax::WorkForm do
       :rights_country,
       :rights_holder,
       :rubricator,
-      # :local_rights_statement, # This invokes License renderer from hyrax gem
       :scribe,
       :series,
       :subject_cultural_object,

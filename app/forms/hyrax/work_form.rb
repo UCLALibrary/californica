@@ -60,6 +60,7 @@ module Hyrax
       :note,
       :note_admin,
       :opac_url,
+      :oai_set,
       :page_layout,
       :photographer,
       :place_of_origin,
@@ -79,7 +80,7 @@ module Hyrax
       :rights_country,
       :rights_holder,
       :rubricator,
-      # :local_rights_statement, # This invokes License renderer from hyrax gem
+      :local_rights_statement,
       :scribe,
       :series,
       :subject_geographic,
