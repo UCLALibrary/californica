@@ -333,7 +333,8 @@ RSpec.describe CsvManifestValidator, type: :model do
         "Printer",
         "Name.printer",
         "Researcher",
-        "Name.researcher"
+        "Name.researcher",
+        "Rights.statementLocal"
       )
     end
   end
