@@ -21,6 +21,7 @@ RSpec.describe Hyrax::ChildWorkForm do
       :host,
       :latitude,
       :local_identifier,
+      :local_rights_statement,
       :longitude,
       :medium,
       :musician,
