@@ -101,9 +101,9 @@ services:
   # iiif:
   #   image: uclalibrary/cantaloupe
   #   environment:
-  #     DELEGATE_SCRIPT.ENABLED: "true"
+  #     DELEGATE_SCRIPT.ENABLED: 'true'
   #     DELEGATE_SCRIPT.PATHNAME: /docker/delegates.rb
-  #     ENDPOINT.ADMIN.ENABLED: "true"
+  #     ENDPOINT.ADMIN.ENABLED: 'true'
   #     ENDPOINT.ADMIN.SECRET: cobweb123
   #   ports:
   #     - 8182:8182
