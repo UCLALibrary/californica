@@ -1,4 +1,4 @@
-version: '3.6'
+version: "3.6"
 
 services:
   web:
@@ -16,7 +16,7 @@ services:
     stdin_open: true
     tty: true
     ports:
-      - '127.0.0.1:3000:3000'
+      - "127.0.0.1:3000:3000"
     volumes:
       - .:/californica
       - ./data:/opt/data
@@ -30,7 +30,7 @@ services:
 
   sidekiq:
     image: uclalibrary/californica:latest
-    command: ['bundle', 'exec', 'sidekiq', '-c', '2']
+    command: ["bundle", "exec", "sidekiq", "-c", "2"]
     depends_on:
       - db
       - fedora
@@ -55,48 +55,60 @@ services:
   fedora:
     image: uclalibrary/fcrepo4:4.7.5
     ports:
-      - '127.0.0.1:8984:8080'
+      - "127.0.0.1:8984:8080"
     volumes:
       - fcrepo_data:/data
     environment:
-      JAVA_OPTIONS: '-Xmx512m'
+      JAVA_OPTIONS: "-Xmx512m"
 
   fedora_test:
     image: uclalibrary/fcrepo4:4.7.5
     ports:
-      - '127.0.0.1:8986:8080'
+      - "127.0.0.1:8986:8080"
     environment:
-      JAVA_OPTIONS: '-Xmx512m'
+      JAVA_OPTIONS: "-Xmx512m"
 
   db:
-    image: uclalibrary/californica-mariadb:10.3
+    image: mysql:5.6
     volumes:
       - ./docker/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
       - ./docker/conf.d:/etc/mysql/conf.d
       - mysql_data:/var/lib/mysql
     ports:
-      - '127.0.0.1:3306:3306'
+      - "127.0.0.1:3306:3306"
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
 
   redis:
     image: redis:4
     volumes:
       - redis_data:/data
     ports:
-      - '127.0.0.1:6379:6379'
+      - "127.0.0.1:6379:6379"
 
   solr:
-    image: uclalibrary/solr-ursus:7.4
+    image: uclalibrary/solr-ursus:2021-03-01
     volumes:
       - solr_data:/opt/solr/server/solr/mycores/californica/data
     ports:
-      - '127.0.0.1:8983:8983'
+      - "127.0.0.1:8983:8983"
 
   solr_test:
-    image: uclalibrary/solr-ursus:7.4
+    image: uclalibrary/solr-ursus:2021-03-01
     ports:
-      - '127.0.0.1:8985:8983'
+      - "127.0.0.1:8985:8983"
+
+  # iiif:
+  #   image: uclalibrary/cantaloupe
+  #   environment:
+  #     DELEGATE_SCRIPT.ENABLED: "true"
+  #     DELEGATE_SCRIPT.PATHNAME: /docker/delegates.rb
+  #     ENDPOINT.ADMIN.ENABLED: "true"
+  #     ENDPOINT.ADMIN.SECRET: cobweb123
+  #   ports:
+  #     - 8182:8182
+  #   volumes:
+  #     - ./cantaloupe-delegate/lib:/delegate
 
 volumes:
   bundle_dir:

@@ -24,27 +24,3 @@ jobs:
           uses: enflo/curl-action@fabe347922c7a9e88bafa15c4b7d6326ea802695
           with:
             curl: 'https://${{ secrets.JENKINS_USER }}@${{ secrets.JENKINS_HOST }}/job/DeployCalifornica/buildWithParameters?GIT_BRANCH=main&cause=GitHub+Action+Post+Merge+Build&DEPLOY_HOST=t-w-californica01.library.ucla.edu&token=${{ secrets.JENKINS_API_CALIFORNICA_TOKEN }}'
-
-    docker-build:
-        runs-on: ubuntu-latest
-        steps:
-          -
-            name: Set up QEMU
-            uses: docker/setup-qemu-action@v2
-          -
-            name: Set up Docker Buildx
-            uses: docker/setup-buildx-action@v2
-          -
-            name: Login to Docker Hub
-            uses: docker/login-action@v2
-            with:
-              username: ${{ secrets.DOCKERHUB_USERNAME }}
-              password: ${{ secrets.DOCKERHUB_PASSWORD }}
-          -
-            name: Build and push
-            uses: docker/build-push-action@v4
-            with:
-              push: true
-              tags: uclalibrary/californica:latest
-              platforms: linux/amd64,linux/arm64
-              build-args: FCREPO_VERSION=4.7.5
