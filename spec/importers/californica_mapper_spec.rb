@@ -95,7 +95,7 @@ RSpec.describe CalifornicaMapper do
       "Representative image" => "Representative image", # Representative image
       "Featured image" => "Featured image", # Featured image
       "Tagline" => "Tagline", # Tagline
-      # "Rights.statementLocal" => "local_rights_statement", # local_rights_statement # This invokes License renderer from hyrax gem
+      "Rights.statementLocal" => "Local rights statement-1", # local_rights_statement
       "Commentator" => "commentator old", # commentator
       "Name.commentator" => "name commentator old", # commentator
       "Subject geographic" => "geographic old", # subject_geogaphic
@@ -251,7 +251,7 @@ RSpec.describe CalifornicaMapper do
         :rights_holder,
         :rights_statement,
         :rubricator,
-        # :local_rights_statement,
+        :local_rights_statement,
         :scribe,
         :series,
         :services_contact,
@@ -307,12 +307,12 @@ RSpec.describe CalifornicaMapper do
     end
   end
 
-  xdescribe '#local_rights_statement' do
+  describe '#local_rights_statement' do
     let(:metadata) do
-      { "Rights.statementLocal" => "This is a local rights statemment" }
+      { "Rights.statementLocal" => "This is a local rights statement" }
     end
     it 'maps from the heading "Rights.statementLocal"' do
-      expect(mapper.map_field(:local_rights_statement)).to eq(['This is a local rights statemment'])
+      expect(mapper.map_field(:local_rights_statement)).to eq(['This is a local rights statement'])
     end
   end
 
