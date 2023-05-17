@@ -197,7 +197,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'featured_image_ssi'
     config.add_show_field 'tagline_ssi'
     config.add_show_field 'series_tesim'
-    # config.add_show_field 'local_rights_statement_ssim' # This invokes License renderer from hyrax gem
+    config.add_show_field 'local_rights_statement_ssm' # This invokes License renderer from hyrax gem
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields

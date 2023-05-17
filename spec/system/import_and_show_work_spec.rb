@@ -134,7 +134,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "AdminNote-1" # note_admin
     expect(page).to have_content "Format-1" # format_book
     expect(page).to have_content "Related Items-1" # related_to
-    # expect(page).to have_content "local_statement" # local_rights_statement # This invokes License renderer from hyrax gem
+    expect(page).to have_content "Local rights statement-1" # local_rights_statement
 
     # displays expected fields on search results page
     visit("catalog?search_field=all_fields&q=")
@@ -170,6 +170,5 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(work.id).to eq "f62bn833bh-03031"
     visit("/concern/works/#{work.id}")
     expect(page).to have_content "Creative Commons CC0 1.0 Universal" # license
-    # expect(page).to have_content "local_statement" # local_rights_statement # This invokes License renderer from hyrax gem
   end
 end
