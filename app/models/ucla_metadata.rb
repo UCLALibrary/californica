@@ -12,7 +12,7 @@ module UclaMetadata
     end
 
     property :oai_set, predicate: ::RDF::URI.intern('http://bibfra.me/vocab/lite/memberOf') do |index|
-      index.as :displayable
+      index.as :symbol
     end
 
     # Item Overview

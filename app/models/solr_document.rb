@@ -243,7 +243,7 @@ class SolrDocument
   end
 
   def oai_set
-    self[:oai_set_ssm]
+    self[:oai_set_ssim]
   end
 
   def page_layout
