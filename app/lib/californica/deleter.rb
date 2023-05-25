@@ -18,16 +18,37 @@ module Californica
       destroy_and_eradicate
     end
 
+    def delete_collection_with_works(of_type: nil)
+      # replace log to puts when running locally
+      log('In delete_collection_with_works start.')
+      delete_works(of_type: of_type)
+      delete if of_type.nil? || record.is_a?(of_type)
+      log('In delete_collection_with_works stop.')
+    end
+
+    def delete_works(of_type: nil)
+      # log('In delete_works start.')
+      work_id_list&.each do |work_id|
+        Californica::Deleter.new(id: work_id, logger: logger)
+                            .delete_with_children(of_type: of_type)
+      end
+      # log('In delete_works end.')
+    end
+
     def delete_with_children(of_type: nil)
+      # log('In delete_with_children start.')
       delete_children(of_type: of_type)
       delete if of_type.nil? || record.is_a?(of_type)
+      # log('In delete_with_children end.')
     end
 
     def delete_children(of_type: nil)
+      # log('In delete_children start.')
       record&.member_ids&.each do |child_id|
         Californica::Deleter.new(id: child_id, logger: logger)
                             .delete_with_children(of_type: of_type)
       end
+      # log('In delete_children end.')
     end
 
     private
@@ -37,6 +58,7 @@ module Californica
         record&.destroy&.eradicate
         Hyrax.config.callback.run(:after_destroy, record.id, User.batch_user)
         log("Deleted #{record.class} #{record.id} in #{ActiveSupport::Duration.build(Time.current - start_time)}")
+        log("deleted item ark is: #{record.ark}")
       rescue Ldp::HttpError, Faraday::TimeoutError, Faraday::ConnectionFailed => e
         log("#{e.class}: #{e.message}")
         retries ||= 0
@@ -68,6 +90,17 @@ module Californica
 
       def record_name
         @record ? "#{record.class} #{record.ark}" : id
+      end
+
+      def solr
+        Blacklight.default_index.connection
+      end
+
+      # Get the list of IDs from the query results:
+      def work_id_list
+        query = { params: { q: "member_of_collection_ids_ssim:#{id} AND has_model_ssim:Work", fl: "id", rows: "100000" } }
+        results = solr.select(query)
+        results['response']['docs'].flat_map(&:values)
       end
   end
 end
