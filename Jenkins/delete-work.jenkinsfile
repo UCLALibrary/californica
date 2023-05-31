@@ -1,0 +1,113 @@
+pipeline {
+  parameters {
+    string(
+      name: 'WORK',
+      defaultValue: '',
+      description: 'Work ID to delete',
+    )
+    choice(
+      name: 'HOST',
+      choices: [
+        'Development',
+        'Testing',
+        'Staging',
+        'Production',
+      ],
+      description: 'Environment to delete from',
+    )
+  }
+  agent any
+
+  stages {
+    stage("Configure environment") {
+      steps {
+        script {
+          now=new Date()
+          today=now.format('yyyy-MM-dd')
+          // Slack
+          slacktoken='6a1c0482-e682-4c3b-af93-509177508b37'
+          slackdomain='uclalibrary'
+          slackchannel='#samvera-builds'
+          slackmessage='Californica Delete Work'
+
+          // SSH
+          sshagenttoken='f4bf2bfc-a34d-4fca-8e6b-b7409cadf198'
+          controller='ansible@p-u-ansible01.library.ucla.edu'
+
+          // Ansible
+          playbook='/etc/ansible/plays/uclalib_execute_rake.yml'
+          common_params='--verbose'
+          extra_vars=''
+
+          if (! params.WORK) {
+            error 'WORK must be defined'
+          }
+          extra_vars="${extra_vars} -e cmdline_env_vars='DELETE_COLLECTION_ID=${WORK}'"
+
+          switch(params.HOST) {
+            case 'Development':
+              limit='--limit=californicadevweb'
+              break;
+            case 'Testing':
+              limit='--limit=californicatestweb'
+              break;
+            case 'Staging':
+              limit='--limit=californicastageweb'
+              break;
+            case 'Production':
+              limit='--limit=californicaprodweb'
+              break;
+          }
+
+          // Assemble playbook parameters
+          params="${limit} ${common_params}"
+
+          // Environment Variables
+          environment="ANSIBLE_STDOUT_CALLBACK=debug"
+        }
+      }
+    }
+    stage("Delete Work") {
+      steps {
+        catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+          sshagent(["${sshagenttoken}"]) {
+            sh "ssh -tt ${controller} '${environment} ansible-playbook ${playbook} ${params}'"
+          }
+        }
+      }
+    }
+  }
+  post {
+    // send build result notifications
+    success {
+      slackSend (
+        channel: "#ansible",
+        color: "good",
+        replyBroadcast: true,
+        message: "${slackmessage} (${HOST}) - #${env.BUILD_NUMBER} ${currentBuild.currentResult} after ${currentBuild.durationString.replace(' and counting', '')} (<${env.RUN_DISPLAY_URL}|open>)",
+        tokenCredentialId: "${slacktoken}",
+        teamDomain: "${slackdomain}"
+      )
+    }
+    aborted {
+      slackSend (
+        channel: "#ansible",
+        color: "danger",
+        replyBroadcast: true,
+        message: "${slackmessage} (${HOST}) - #${env.BUILD_NUMBER} ${currentBuild.currentResult} after ${currentBuild.durationString.replace(' and counting', '')} (<${env.RUN_DISPLAY_URL}|open>)",
+        tokenCredentialId: "${slacktoken}",
+        teamDomain: "${slackdomain}"
+      )
+    }
+    failure {
+      slackSend (
+        channel: "#ansible",
+        color: "danger",
+        replyBroadcast: true,
+        message: "${slackmessage} (${HOST}) - #${env.BUILD_NUMBER} ${currentBuild.currentResult} after ${currentBuild.durationString.replace(' and counting', '')} (<${env.RUN_DISPLAY_URL}|open>)",
+        tokenCredentialId: "${slacktoken}",
+        teamDomain: "${slackdomain}"
+      )
+    }
+  }
+}
