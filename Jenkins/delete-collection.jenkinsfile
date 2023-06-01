@@ -1,9 +1,9 @@
 pipeline {
   parameters {
     string(
-      name: 'WORK',
+      name: 'COLLECTION',
       defaultValue: '',
-      description: 'Work ID to delete',
+      description: 'Collection ID to delete',
     )
     choice(
       name: 'HOST',
@@ -28,7 +28,7 @@ pipeline {
           slacktoken='6a1c0482-e682-4c3b-af93-509177508b37'
           slackdomain='uclalibrary'
           slackchannel='#samvera-builds'
-          slackmessage='Californica Delete Work'
+          slackmessage='Californica Delete Collection'
 
           // SSH
           sshagenttoken='f4bf2bfc-a34d-4fca-8e6b-b7409cadf198'
@@ -36,13 +36,13 @@ pipeline {
 
           // Ansible
           playbook='/etc/ansible/plays/uclalib_execute_rake.yml'
-          common_params='--verbose'
+          common_params='-e "rake_task=\"rake californica:delete_work\"" --verbose'
           extra_vars=''
 
-          if (! params.WORK) {
-            error 'WORK must be defined'
+          if (! params.COLLECTION) {
+            error 'COLLECTION must be defined'
           }
-          extra_vars="${extra_vars} -e cmdline_env_vars='DELETE_COLLECTION_ID=${WORK}'"
+          extra_vars="${extra_vars} -e cmdline_env_vars='DELETE_COLLECTION_ID=${COLLECTION}'"
 
           switch(params.HOST) {
             case 'Development':
@@ -60,7 +60,7 @@ pipeline {
           }
 
           // Assemble playbook parameters
-          params="${limit} ${common_params}"
+          params="${limit} ${extra_vars} ${common_params}"
 
           // Environment Variables
           environment="ANSIBLE_STDOUT_CALLBACK=debug"
