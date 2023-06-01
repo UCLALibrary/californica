@@ -81,7 +81,7 @@ pipeline {
     // send build result notifications
     success {
       slackSend (
-        channel: "#ansible",
+        channel: "${slackchannel}",
         color: "good",
         replyBroadcast: true,
         message: "${slackmessage} (${HOST}) - #${env.BUILD_NUMBER} ${currentBuild.currentResult} after ${currentBuild.durationString.replace(' and counting', '')} (<${env.RUN_DISPLAY_URL}|open>)",
@@ -91,7 +91,7 @@ pipeline {
     }
     aborted {
       slackSend (
-        channel: "#ansible",
+        channel: "${slackchannel}",
         color: "danger",
         replyBroadcast: true,
         message: "${slackmessage} (${HOST}) - #${env.BUILD_NUMBER} ${currentBuild.currentResult} after ${currentBuild.durationString.replace(' and counting', '')} (<${env.RUN_DISPLAY_URL}|open>)",
@@ -101,7 +101,7 @@ pipeline {
     }
     failure {
       slackSend (
-        channel: "#ansible",
+        channel: "${slackchannel}",
         color: "danger",
         replyBroadcast: true,
         message: "${slackmessage} (${HOST}) - #${env.BUILD_NUMBER} ${currentBuild.currentResult} after ${currentBuild.durationString.replace(' and counting', '')} (<${env.RUN_DISPLAY_URL}|open>)",
