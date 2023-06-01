@@ -36,7 +36,7 @@ pipeline {
 
           // Ansible
           playbook='/etc/ansible/plays/uclalib_execute_rake.yml'
-          common_params='-e "rake_task=\"rake californica:delete_work\"" --verbose'
+          common_params='-e "rake_task=\\"rake californica:delete_work\\"" --verbose'
           extra_vars=''
 
           if (! params.COLLECTION) {
