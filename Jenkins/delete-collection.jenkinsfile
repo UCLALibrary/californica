@@ -36,7 +36,7 @@ pipeline {
 
           // Ansible
           playbook='/etc/ansible/plays/uclalib_execute_rake.yml'
-          common_params='-e "rake_task=\\"rake californica:delete_work\\"" --verbose'
+          common_params='-e "rake_task=\\"rake californica:delete_collection\\"" --verbose'
           extra_vars=''
 
           if (! params.COLLECTION) {
@@ -67,7 +67,7 @@ pipeline {
         }
       }
     }
-    stage("Delete Work") {
+    stage("Delete Collection") {
       steps {
         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
           sshagent(["${sshagenttoken}"]) {
