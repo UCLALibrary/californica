@@ -282,7 +282,7 @@ module UclaMetadata
     end
 
     property :local_identifier, predicate: ::RDF::Vocab::Identifiers.local do |index|
-      index.as :stored_searchable
+      index.as :symbol
     end
 
     property :finding_aid_url, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/findingAid') do |index|
