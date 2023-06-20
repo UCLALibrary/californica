@@ -155,7 +155,7 @@ class SolrDocument
   end
 
   def iiif_manifest_url
-    self[:iiif_manifest_url_ssi] || "https://iiif.library.ucla.edu/ark%3A%2F21198%2Fzz00090p17/manifest"
+    self[:iiif_manifest_url_ssi] || ""
   end
 
   def iiif_range
