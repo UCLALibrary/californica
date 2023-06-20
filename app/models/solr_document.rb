@@ -199,7 +199,7 @@ class SolrDocument
   end
 
   def local_identifier
-    self[:local_identifier_ssim]
+    self[:local_identifier_ssm]
   end
 
   def longitude
