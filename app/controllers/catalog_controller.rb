@@ -154,7 +154,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'interviewee_tesim'
     config.add_show_field 'interviewer_tesim'
     config.add_show_field 'location_tesim'
-    config.add_show_field 'local_identifier_ssm'
+    config.add_show_field 'local_identifier_ssim'
     config.add_show_field 'lyricist_tesim'
     config.add_show_field 'medium_tesim'
     config.add_show_field 'musician_tesim'
@@ -217,7 +217,7 @@ class CatalogController < ApplicationController
     # solr request handler? The one set in config[:default_solr_parameters][:qt],
     # since we aren't specifying it otherwise.
     config.add_search_field('all_fields', label: 'All Fields') do |field|
-      search_fields = 'title_tesim subject_tesim named_subject_tesim location_tesim description_tesim caption_tesim identifier_tesim local_identifier_sim ark_ssi normalized_date_tesim architect_tesim photographer_tesim'
+      search_fields = 'title_tesim subject_tesim named_subject_tesim location_tesim description_tesim caption_tesim identifier_tesim local_identifier_ssim ark_ssi normalized_date_tesim architect_tesim photographer_tesim'
 
       field.solr_parameters = {
         qf: search_fields,
