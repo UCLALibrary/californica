@@ -87,14 +87,14 @@ services:
       - '127.0.0.1:6379:6379'
 
   solr:
-    image: uclalibrary/solr-ursus:7.4
+    image: uclalibrary/solr-ursus:8.11.1
     volumes:
-      - solr_data:/opt/solr/server/solr/mycores/californica/data
+      - solr8_data:/opt/solr/server/solr/mycores/californica/data
     ports:
-      - '127.0.0.1:8983:8983'
+      - '127.0.0.1:8989:8983'
 
   solr_test:
-    image: uclalibrary/solr-ursus:7.4
+    image: uclalibrary/solr-ursus:8.11.1
     ports:
       - '127.0.0.1:8985:8983'
 
@@ -106,6 +106,6 @@ volumes:
   fcrepo_data:
   mysql_data:
   redis_data:
-  solr_data:
+  solr8_data:
   tmp:
   uploads:
