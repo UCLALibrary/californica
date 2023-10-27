@@ -66,6 +66,11 @@ class WorkIndexer < Hyrax::WorkIndexer
     end
   end
 
+  # https://github.com/samvera/hyrax/blob/c728f537d1ccca9762a3f01e9f30a55983e8820d/app/indexers/hyrax/work_indexer.rb#L11
+  # def human_readable_related_title
+  #   solr_doc['related_records_ssim'] = object.related_records.map(&:first_title)
+  # end
+
   def human_readable_iiif_text_direction
     terms = Qa::Authorities::Local.subauthority_for('iiif_text_directions').all
     term = terms.find { |entry| entry[:id] == object.iiif_text_direction }

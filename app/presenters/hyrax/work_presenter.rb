@@ -66,6 +66,7 @@ module Hyrax
       :program,
       :provenance,
       :recipient,
+      :related_record,
       :related_to,
       :repository,
       :representative_image,

@@ -286,6 +286,10 @@ class SolrDocument
     self[:recipient_tesim]
   end
 
+  def related_record
+    self[:related_record_tesim]
+  end
+
   def related_to
     self[:related_to_ssm]
   end

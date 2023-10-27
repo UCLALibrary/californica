@@ -171,7 +171,8 @@ RSpec.describe CalifornicaCsvParser do
        'Note.admin',
        'Format',
        'Related Items',
-       'Rights.statementLocal']
+       'Rights.statementLocal',
+       'Related Records']
     end
     # order of the csv headers should be mainted spec/fixtures/example.csv.
 

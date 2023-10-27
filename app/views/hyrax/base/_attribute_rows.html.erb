@@ -68,6 +68,7 @@
 <%= presenter.attribute_to_html(:provenance, html_dl: true) %>
 <%= presenter.attribute_to_html(:publisher, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:recipient, html_dl: true) %>
+<%= presenter.attribute_to_html(:related_record, html_dl: true, label: 'Related Records') %>
 <%= presenter.attribute_to_html(:related_to, html_dl: true, label: 'Related Items') %>
 <%= presenter.attribute_to_html(:citation_source, html_dl: true, label: "References") %>
 <%= presenter.attribute_to_html(:related_url, render_as: :external_link, html_dl: true) %>
