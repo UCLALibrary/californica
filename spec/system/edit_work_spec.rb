@@ -181,7 +181,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Publisher').value).to eq 'Old Pub'
       expect(find_field("Recipient").value).to eq 'Old Recipient'
       expect(find_field('Related to').value).to eq 'Old Related Items'
-      expect(find_field('Related Records').value).to eq 'Old Related Records'
+      expect(find_field('Related record').value).to eq 'Old Related Records'
       expect(find_field('Repository').value).to eq 'Old Repository'
       expect(find_field('Resource type').value).to eq ['http://id.loc.gov/vocabulary/resourceTypes/img']
       expect(find_field('Rights (country of creation)').value).to eq 'Old Rights Country'
