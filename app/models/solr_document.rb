@@ -287,7 +287,7 @@ class SolrDocument
   end
 
   def related_record
-    self[:related_record_tesim]
+    self[:related_record_ssm]
   end
 
   def related_to

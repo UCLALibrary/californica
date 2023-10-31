@@ -78,7 +78,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       provenance: ['Old Provenance'],
       publisher: ['Old Pub'],
       recipient: ['Old Recipient'],
-      related_record: ['RelatedRecords-1'],
+      related_record: ['Old Related Records'],
       related_to: ['Old Related Items'],
       repository: ['Old Repository'],
       representative_image: 'Old Representative image',
