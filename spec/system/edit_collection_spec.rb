@@ -103,7 +103,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       note_admin: ['Old AdminNote'],
       format_book: ['Old Format'],
       related_to: ['Old Related Items'],
-      related_record: ['Old Related Records'],
+      related_record: ['Old Related Records']
     }
   end
 

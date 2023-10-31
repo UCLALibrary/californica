@@ -82,7 +82,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       host: ['Old Host'],
       musician: ['Old Musician'],
       printer: ['Old Printer'],
-      researcher: ['Old Researcher'],
+      researcher: ['Old Researcher']
     )
   end
 

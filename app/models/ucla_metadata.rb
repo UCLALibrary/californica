@@ -352,7 +352,7 @@ module UclaMetadata
       index.as :stored_sortable
     end
 
-      property :related_record, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/accompaniedBy') do |index|
+    property :related_record, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/accompaniedBy') do |index|
       index.as :displayable
     end
 
