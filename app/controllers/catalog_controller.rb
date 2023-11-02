@@ -173,7 +173,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'program_tesim'
     config.add_show_field 'provenance_tesim'
     config.add_show_field 'recipient_tesim'
-    config.add_show_field 'related_record_ssm', label: 'Related Records'
+    config.add_show_field 'human_readable_related_record_title_ssm', label: 'Related Records', helper_method: :iconify_auto_link
     config.add_show_field 'related_to_ssm', label: 'Related Items'
     config.add_show_field 'repository_tesim'
     config.add_show_field 'researcher_tesim'

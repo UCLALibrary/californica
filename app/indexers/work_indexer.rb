@@ -30,7 +30,28 @@ class WorkIndexer < Hyrax::WorkIndexer
       solr_doc['title_alpha_numeric_ssort'] = object.title.first
       solr_doc['ursus_id_ssi'] = Californica::IdGenerator.blacklight_id_from_ark(object.ark)
       solr_doc['year_isim'] = years
+      solr_doc['human_readable_related_record_title_ssm'] = find_related_records_titles_by_ark
     end
+  end
+
+  # https://github.com/samvera/hyrax/blob/c728f537d1ccca9762a3f01e9f30a55983e8820d/app/indexers/hyrax/work_indexer.rb#L11
+  def find_related_records_titles_by_ark
+    if object.related_record
+      ark_titles = []
+      object.related_record.each do |ark_string|
+        # Assuming you want to call find_by_ark on each ark_string
+        result = Work.find_by_ark(ark_string)
+        ursus_url = ::Ursus::Record.url_for_ark(result)
+
+        ark_titles.push("<a href='#{ursus_url}'>#{result.title.first}</a>")
+      end
+      ark_titles
+    end
+  end
+
+  def related_record_title_markup(ursus_url, title)
+    title_markup = '<a href="' + ursus_url + '">' + title + '</a>'
+    title_markup
   end
 
   def add_dates(solr_doc)
@@ -65,11 +86,6 @@ class WorkIndexer < Hyrax::WorkIndexer
       term.blank? ? rt : term[:label]
     end
   end
-
-  # https://github.com/samvera/hyrax/blob/c728f537d1ccca9762a3f01e9f30a55983e8820d/app/indexers/hyrax/work_indexer.rb#L11
-  # def human_readable_related_title
-  #   solr_doc['related_records_ssim'] = object.related_records.map(&:first_title)
-  # end
 
   def human_readable_iiif_text_direction
     terms = Qa::Authorities::Local.subauthority_for('iiif_text_directions').all

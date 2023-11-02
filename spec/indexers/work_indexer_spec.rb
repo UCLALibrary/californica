@@ -67,6 +67,22 @@ RSpec.describe WorkIndexer do
     end
   end
 
+  describe 'test human_readable_related_record_title' do
+    context 'a work with a human_readable_related_record_title' do
+      let(:attributes) do
+        {
+          ark: 'ark:/123/456',
+          title: 'Test Title',
+          related_record: ['ark:/123/456', 'ark:/123/457', 'ark:/123/458']
+        }
+      end
+
+      it 'indexes a human-readable IIIF Text direction' do
+        expect(solr_document['human_readable_readable_related_record_ssm']).to eq 'Test Title'
+      end
+    end
+  end
+
   describe 'IIIF Text direction' do
     context 'a work with a IIIF Text direction' do
       let(:attributes) do

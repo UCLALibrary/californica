@@ -286,7 +286,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
     expect(page).to match(/researcher/)
   end
   it 'has related_record' do
-    expect(page).to match(/related_record/)
+    expect(page).to match(/human_readable_related_record_title/)
   end
   it 'has related_to' do
     expect(page).to match(/related_to/)

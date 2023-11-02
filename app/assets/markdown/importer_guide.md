@@ -84,7 +84,7 @@
     - [Project Name](#project-name)
     - [Provenance](#provenance)
     - [Publisher.publisherName](#publisherpublishername)
-    - [Related Records](#related_record)
+    - [Related Records](#human_readable_related_record_title_ssm)
     - [Related Items](#related_to)
     - [References](# citation_source)
     - [Relation.isPartOf](#relationispartof)
