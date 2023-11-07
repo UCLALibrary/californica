@@ -85,7 +85,7 @@ RSpec.describe CalifornicaImporter, :clean, inline_jobs: true do
 
     it 'imports records' do
       expect { importer.import }
-        .to change { Work.count }.by(1)
+        .to change { Work.count }.by(2)
         .and(change { Collection.count }.by(1))
     end
 
@@ -112,7 +112,7 @@ RSpec.describe CalifornicaImporter, :clean, inline_jobs: true do
         importer.import
 
         expect(Collection.count).to eq 1
-        expect(Work.count).to eq 1
+        expect(Work.count).to eq 2
 
         new_collection = Collection.first
         new_work = Work.first
@@ -132,7 +132,7 @@ RSpec.describe CalifornicaImporter, :clean, inline_jobs: true do
         importer.import
 
         expect(Collection.count).to eq 1
-        expect(Work.count).to eq 1
+        expect(Work.count).to eq 2
 
         existing_collection = Collection.first
         new_work = Work.first
@@ -151,7 +151,7 @@ RSpec.describe CalifornicaImporter, :clean, inline_jobs: true do
         importer.import
 
         expect(Collection.count).to eq 0
-        expect(Work.count).to eq 1
+        expect(Work.count).to eq 2
       end
     end
 

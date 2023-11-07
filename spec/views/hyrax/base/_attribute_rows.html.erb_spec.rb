@@ -95,11 +95,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   before do
     allow(ability).to receive(:admin?) { true }
     allow(Work).to receive(:find_by_ark) do |ark_string|
-      if ark_string.starts_with?("ark:/abcde/")
-        related_work
-      else
-        nil
-      end
+      related_work if ark_string.starts_with?("ark:/abcde/")
     end
   end
 

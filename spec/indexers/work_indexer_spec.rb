@@ -4,6 +4,7 @@ require 'rails_helper'
 RSpec.describe WorkIndexer do
   let(:solr_document) { indexer.generate_solr_document }
   let(:work) { Work.new(attributes) }
+
   let(:indexer) { described_class.new(work) }
 
   describe 'combined_subject' do
@@ -69,16 +70,50 @@ RSpec.describe WorkIndexer do
 
   describe 'test human_readable_related_record_title' do
     context 'a work with a human_readable_related_record_title' do
-      let(:attributes) do
+      let(:related_attributes1) do
         {
-          ark: 'ark:/123/456',
-          title: 'Test Title',
-          related_record: ['ark:/123/456', 'ark:/123/457', 'ark:/123/458']
+          ark: 'ark:/123/459',
+          title: ['title 1 for ark:/123/459']
+        }
+      end
+      let(:related_attributes2) do
+        {
+          ark: 'ark:/123/457',
+          title: ['title 2 for ark:/123/457']
+        }
+      end
+      let(:related_attributes3) do
+        {
+          ark: 'ark:/123/458',
+          title: ['title 3 for ark:/123/458']
         }
       end
 
-      it 'indexes a human-readable IIIF Text direction' do
-        expect(solr_document['human_readable_readable_related_record_ssm']).to eq 'Test Title'
+      let(:attributes) do
+        {
+          ark: 'ark:/123/456',
+          title: ['Test Title'],
+          related_record: ['ark:/123/459', 'ark:/123/457', 'ark:/123/458']
+        }
+      end
+      let(:related_work1) { Work.new(related_attributes1) }
+      let(:related_work2) { Work.new(related_attributes2) }
+      let(:related_work3) { Work.new(related_attributes3) }
+
+      before do
+        allow(Work).to receive(:find_by_ark) do |ark_string|
+          if ark_string == "ark:/123/459"
+            related_work1
+          elsif ark_string == "ark:/123/457"
+            related_work2
+          elsif ark_string == "ark:/123/458"
+            related_work3
+          end
+        end
+      end
+
+      it 'indexes a human-readable related record title text' do
+        expect(solr_document['human_readable_related_record_title_ssm']).to eq ['title 1 for ark:/123/459', 'title 2 for ark:/123/457', 'title 3 for ark:/123/458']
       end
     end
   end
