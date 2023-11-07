@@ -41,9 +41,10 @@ class WorkIndexer < Hyrax::WorkIndexer
       object.related_record.each do |ark_string|
         # Assuming you want to call find_by_ark on each ark_string
         result = Work.find_by_ark(ark_string)
-        ursus_url = ::Ursus::Record.url_for_ark(result)
-
-        ark_titles.push("<a href='#{ursus_url}'>#{result.title.first}</a>")
+        if result
+          ursus_url = ::Ursus::Record.url_for_ark(result)
+          ark_titles.push("<a href='#{ursus_url}'>#{result.title.first}</a>")
+        end
       end
       ark_titles
     end

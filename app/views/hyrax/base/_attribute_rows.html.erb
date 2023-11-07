@@ -69,12 +69,21 @@
 <%= presenter.attribute_to_html(:publisher, render_as: :faceted, html_dl: true) %>
 
 <%= presenter.attribute_to_html(:recipient, html_dl: true) %>
-<% if :human_readable_related_record_title %>
+<% if presenter.human_readable_related_record_title.present? %>
     <div style="font-weight: 700">Related Records</div>
+   
+        <% presenter.human_readable_related_record_title.each do | related_record_title | %>
+            <dd>
+                <dt>
+                    <ul class="tabular">
+                        <li class="attribute attribute-human_readable_related_record_title"><%= raw related_record_title %></li>
+                    </ul>
+                <dt>
+            </dd>
+        <% end %>
+   
 <% end %>
-<% presenter.human_readable_related_record_title.each do | related_record_title | %>
-    <dd><dt><ul class="tabular"><li class="attribute attribute-repository"><%= raw related_record_title %></li></ul><dt></dd>
-<% end %>
+
 
 <%= presenter.attribute_to_html(:related_to, html_dl: true, label: 'Related Items') %>
 <%= presenter.attribute_to_html(:citation_source, html_dl: true, label: "References") %>
