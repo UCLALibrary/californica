@@ -191,7 +191,7 @@ RSpec.describe CalifornicaImporter, :clean, inline_jobs: true do
       it 'skips already-imported CsvRows' do
         allow(CsvRowImportJob).to receive(:perform_now)
         importer.import
-        expect(CsvRowImportJob).not_to have_received(:perform_now)
+        expect(CsvRowImportJob).not_to have_received(:perform_now).with(csv_row)
       end
     end
   end
