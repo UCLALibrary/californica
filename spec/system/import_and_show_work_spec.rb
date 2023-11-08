@@ -23,7 +23,6 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
   it "imports records from a csv" do
     allow(ENV).to receive(:[]).and_call_original
     allow(ENV).to receive(:[]).with('IIIF_SERVER_URL').and_return('https://cantaloupe.url/iiif/2/')
-
     # adds works to the specified collection
     expect(collection.ark).to eq 'ark:/111/222'
     importer.import
@@ -134,7 +133,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "References-1" # citation_source
     expect(page).to have_content "AdminNote-1" # note_admin
     expect(page).to have_content "Format-1" # format_book
-    expect(page).to have_content "<a href='http://localhost:3003/catalog/ark:/123/456'>Work ark:/123/456</a>" # human_related_record_title
+    expect(page).to have_content "Related Records Work ark:/123/456" # human_related_record_title
     expect(page).to have_content "Related Items-1" # related_to
     expect(page).to have_content "Local rights statement-1" # local_rights_statement
 
