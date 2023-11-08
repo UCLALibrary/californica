@@ -25,7 +25,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     allow(ENV).to receive(:[]).with('IIIF_SERVER_URL').and_return('https://cantaloupe.url/iiif/2/')
 
     allow(Work).to receive(:find_by_ark) do |ark_string|
-      related_work if ark_string == "ark:/123/456")
+      related_work if ark_string == "ark:/123/456"
     end
     # adds works to the specified collection
     expect(collection.ark).to eq 'ark:/111/222'
