@@ -113,7 +113,11 @@ RSpec.describe WorkIndexer do
       end
 
       it 'indexes a human-readable related record title text' do
-        expect(solr_document['human_readable_related_record_title_ssm']).to eq ['title 1 for ark:/123/459', 'title 2 for ark:/123/457', 'title 3 for ark:/123/458']
+        expect(solr_document['human_readable_related_record_title_ssm']).to match_array([
+          "<a href='http://localhost:3003/catalog/ark:/123/458'>title 3 for ark:/123/458</a>",
+          "<a href='http://localhost:3003/catalog/ark:/123/457'>title 2 for ark:/123/457</a>",
+          "<a href='http://localhost:3003/catalog/ark:/123/459'>title 1 for ark:/123/459</a>"
+        ])        
       end
     end
   end

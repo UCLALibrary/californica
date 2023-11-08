@@ -6,6 +6,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
   subject(:importer) { CalifornicaImporter.new(csv_import, info_stream: [], error_stream: []) }
   let(:admin_user) { FactoryBot.create(:admin) }
   let(:collection) { Collection.find_or_create_by_ark('ark:/111/222') }
+  let(:related_work) { Work.find_or_create_by_ark('ark:/123/456') }
   let(:csv_file)   { File.join(fixture_path, 'coordinates_example.csv') }
   let(:csv_import) { FactoryBot.create(:csv_import, user: user, manifest: manifest) }
   let(:manifest) { Rack::Test::UploadedFile.new(csv_file, 'text/csv') }
@@ -133,11 +134,11 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "References-1" # citation_source
     expect(page).to have_content "AdminNote-1" # note_admin
     expect(page).to have_content "Format-1" # format_book
-    expect(page).to have_content "RelatedRecords-1" # related_record
+    expect(page).to have_content "<a href='http://localhost:3003/catalog/ark:/123/456'>Work ark:/123/456</a>" # human_related_record_title
     expect(page).to have_content "Related Items-1" # related_to
     expect(page).to have_content "Local rights statement-1" # local_rights_statement
 
-    # displays expected fields on search results page
+    # displays expected sfields on search results page
     visit("catalog?search_field=all_fields&q=")
     expect(page).to have_content work.title.first
     expect(page).to have_content work.description.first

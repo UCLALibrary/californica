@@ -151,7 +151,7 @@ RSpec.describe CalifornicaImporter, :clean, inline_jobs: true do
         importer.import
 
         expect(Collection.count).to eq 0
-        expect(Work.count).to eq 2
+        expect(Work.count).to eq 1
       end
     end
 
