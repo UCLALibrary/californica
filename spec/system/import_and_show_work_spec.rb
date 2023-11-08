@@ -6,7 +6,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
   subject(:importer) { CalifornicaImporter.new(csv_import, info_stream: [], error_stream: []) }
   let(:admin_user) { FactoryBot.create(:admin) }
   let(:collection) { Collection.find_or_create_by_ark('ark:/111/222') }
-  let(:related_work) { Work.find_or_create_by_ark('ark:/123/456') }
+
   let(:csv_file)   { File.join(fixture_path, 'coordinates_example.csv') }
   let(:csv_import) { FactoryBot.create(:csv_import, user: user, manifest: manifest) }
   let(:manifest) { Rack::Test::UploadedFile.new(csv_file, 'text/csv') }
@@ -17,6 +17,14 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
   let(:third_importer) { CalifornicaImporter.new(third_csv_import, info_stream: [], error_stream: []) }
   let(:third_manifest) { Rack::Test::UploadedFile.new(File.join(fixture_path, 'test_example_license.csv'), 'text/csv') }
   let(:user) { FactoryBot.create(:admin) }
+
+  let(:related_attributes) do
+    {
+      ark: 'ark:/123/456',
+      title: ['title 1 for ark:/123/459']
+    }
+  end
+  let(:related_work) { Work.new(related_attributes) }
 
   before { login_as admin_user }
 
