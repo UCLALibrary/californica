@@ -18,23 +18,12 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
   let(:third_manifest) { Rack::Test::UploadedFile.new(File.join(fixture_path, 'test_example_license.csv'), 'text/csv') }
   let(:user) { FactoryBot.create(:admin) }
 
-  let(:related_attributes) do
-    {
-      ark: 'ark:/123/456',
-      title: ['title 1 for ark:/123/459']
-    }
-  end
-  let(:related_work) { Work.new(related_attributes) }
-
   before { login_as admin_user }
 
   it "imports records from a csv" do
     allow(ENV).to receive(:[]).and_call_original
     allow(ENV).to receive(:[]).with('IIIF_SERVER_URL').and_return('https://cantaloupe.url/iiif/2/')
 
-    allow(Work).to receive(:find_by_ark) do |ark_string|
-      related_work if ark_string == "ark:/123/456"
-    end
     # adds works to the specified collection
     expect(collection.ark).to eq 'ark:/111/222'
     importer.import
