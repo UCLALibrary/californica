@@ -31,6 +31,7 @@ RSpec.describe Hyrax::ChildWorkForm do
       :photographer,
       :preservation_copy,
       :printer,
+      :related_record,
       :related_to,
       :repository,
       :researcher,
