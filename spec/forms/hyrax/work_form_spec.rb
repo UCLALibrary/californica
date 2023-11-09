@@ -74,6 +74,7 @@ RSpec.describe Hyrax::WorkForm do
       :program,
       :provenance,
       :recipient,
+      :related_record,
       :related_to,
       :repository,
       :representative_image,

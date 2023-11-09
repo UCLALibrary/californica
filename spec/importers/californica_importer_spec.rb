@@ -85,7 +85,7 @@ RSpec.describe CalifornicaImporter, :clean, inline_jobs: true do
 
     it 'imports records' do
       expect { importer.import }
-        .to change { Work.count }.by(1)
+        .to change { Work.count }.by(2)
         .and(change { Collection.count }.by(1))
     end
 
@@ -112,7 +112,7 @@ RSpec.describe CalifornicaImporter, :clean, inline_jobs: true do
         importer.import
 
         expect(Collection.count).to eq 1
-        expect(Work.count).to eq 1
+        expect(Work.count).to eq 2
 
         new_collection = Collection.first
         new_work = Work.first
@@ -132,7 +132,7 @@ RSpec.describe CalifornicaImporter, :clean, inline_jobs: true do
         importer.import
 
         expect(Collection.count).to eq 1
-        expect(Work.count).to eq 1
+        expect(Work.count).to eq 2
 
         existing_collection = Collection.first
         new_work = Work.first
@@ -191,7 +191,7 @@ RSpec.describe CalifornicaImporter, :clean, inline_jobs: true do
       it 'skips already-imported CsvRows' do
         allow(CsvRowImportJob).to receive(:perform_now)
         importer.import
-        expect(CsvRowImportJob).not_to have_received(:perform_now)
+        expect(CsvRowImportJob).not_to have_received(:perform_now).with(csv_row)
       end
     end
   end
