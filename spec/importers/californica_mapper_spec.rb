@@ -284,7 +284,8 @@ RSpec.describe CalifornicaMapper do
         :musician,
         :printer,
         :researcher,
-        :related_to
+        :related_to,
+        :related_record
       )
     end
   end

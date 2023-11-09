@@ -21,5 +21,10 @@ module Ursus
       return unless ursus_hostname
       "#{protocol}#{ursus_hostname}/catalog/#{record.id}"
     end
+
+    def self.url_for_ark(record)
+      return unless ursus_hostname
+      "#{protocol}#{ursus_hostname}/catalog/#{record.ark}"
+    end
   end
 end
