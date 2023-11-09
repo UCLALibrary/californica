@@ -10,6 +10,12 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   let(:ability)       { instance_double('Hyrax::Ability') }
   let(:presenter)     { Hyrax::WorkPresenter.new(solr_document, ability) }
   let(:solr_document) { SolrDocument.new(work.to_solr) }
+  let(:related_work) do
+    Work.new(
+      ark: 'ark:/abcde/9876543', # Change to a unique ARK for the related work
+      title: ['Related Work Title'] # Set the title for the related work
+    )
+  end
   let(:work) do
     Work.new(
       ark: 'ark:/abcde/1234567',
@@ -50,6 +56,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       page_layout: ['page_layout'],
       place_of_origin: ['place_of_origin'],
       printmaker: ['Old printmaker'],
+      related_record: ['ark:/abcde/9876543'],
       related_to: ['Old Related Items'],
       repository: ['repostiory'],
       resource_type: ['resource_type'],
@@ -87,6 +94,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
 
   before do
     allow(ability).to receive(:admin?) { true }
+    allow(Work).to receive(:find_by_ark) do |ark_string|
+      related_work if ark_string.starts_with?("ark:/abcde/")
+    end
   end
 
   it 'has author' do
@@ -283,6 +293,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   end
   it 'has researcher' do
     expect(page).to match(/researcher/)
+  end
+  it 'has related_record' do
+    expect(page).to match(/human_readable_related_record_title/)
   end
   it 'has related_to' do
     expect(page).to match(/related_to/)

@@ -61,8 +61,8 @@
     - [Name.engraver](#nameengraver)
     - [Name.illuminator](#nameilluminator)
     - [Name.illustrator](#nameillustrator)
-    - [Name.interviewee](#nameinterviewee) 
-    - [Name.interviewer](#nameinterviewer) 
+    - [Name.interviewee](#nameinterviewee)
+    - [Name.interviewer](#nameinterviewer)
     - [Name.lyricist](#namelyricist)
     - [Name.musician](#namemusician)
     - [Name.photographer](#namephotographer)
@@ -84,6 +84,7 @@
     - [Project Name](#project-name)
     - [Provenance](#provenance)
     - [Publisher.publisherName](#publisherpublishername)
+    - [Related Records](#human_readable_related_record_title_ssm)
     - [Related Items](#related_to)
     - [References](# citation_source)
     - [Relation.isPartOf](#relationispartof)
@@ -194,7 +195,7 @@ Examples:
 ## Other Supported Fields
 
 #### AdminNote
- 
+
 Also accepts: `Description.adminnote`,`Note.admin`
 
 #### AltTitle.other
@@ -350,7 +351,7 @@ Also accepts: `Commentator`
 
 Also accepts: `Creator`
 
-#### Name.director 
+#### Name.director
 
 Also accepts: `Director`
 
@@ -441,6 +442,8 @@ Also accepts: `Description.history`
 DLCS collection name
 
 #### Related Items
+
+#### Related Records
 
 #### Repository
 

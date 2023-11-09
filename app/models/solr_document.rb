@@ -154,6 +154,10 @@ class SolrDocument
     self[:host_tesim]
   end
 
+  def human_readable_related_record_title
+    self[:human_readable_related_record_title_ssm]
+  end
+
   def iiif_manifest_url
     self[:iiif_manifest_url_ssi] || ""
   end
@@ -284,6 +288,10 @@ class SolrDocument
 
   def recipient
     self[:recipient_tesim]
+  end
+
+  def related_record
+    self[:related_record_ssm]
   end
 
   def related_to
