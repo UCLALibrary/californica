@@ -102,7 +102,8 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       resp_statement: ['Old Statement of Responsibility'],
       note_admin: ['Old AdminNote'],
       format_book: ['Old Format'],
-      related_to: ['Old Related Items']
+      related_to: ['Old Related Items'],
+      related_record: ['Old Related Records']
     }
   end
 
@@ -211,6 +212,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Note admin').value).to eq 'Old AdminNote'
       expect(find_field('Format book').value).to eq 'Old Format'
       expect(find_field('Related to').value).to eq 'Old Related Items'
+      expect(find_field('Related record').value).to eq 'Old Related Records'
 
       #
       # # Edit some fields in the form
