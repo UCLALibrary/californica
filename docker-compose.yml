@@ -70,6 +70,11 @@ services:
 
   db:
     image: uclalibrary/californica-mariadb:10.3
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
     volumes:
       - ./docker/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
       - ./docker/conf.d:/etc/mysql/conf.d

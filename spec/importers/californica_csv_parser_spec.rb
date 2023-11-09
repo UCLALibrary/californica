@@ -26,18 +26,18 @@ RSpec.describe CalifornicaCsvParser do
     end
 
     it 'imports records' do
-      expect { importer.import }.to change { Work.count }.by 1
+      expect { importer.import }.to change { Work.count }.by 2
     end
 
     it 'skips records if ENV[\'SKIP\'] is set' do
       ENV['SKIP'] = '1'
-      expect { importer.import }.to change { Work.count }.by 0
+      expect { importer.import }.to change { Work.count }.by 1
     end
   end
 
   describe '#records' do
     it 'lists records' do
-      expect(parser.records.count).to eq 1
+      expect(parser.records.count).to eq 2
     end
 
     it 'can build attributes' do
@@ -171,7 +171,8 @@ RSpec.describe CalifornicaCsvParser do
        'Note.admin',
        'Format',
        'Related Items',
-       'Rights.statementLocal']
+       'Rights.statementLocal',
+       'Related Records']
     end
     # order of the csv headers should be mainted spec/fixtures/example.csv.
 
