@@ -1,7 +1,7 @@
 default: &default
   adapter:      <%= ENV['DATABASE_ADAPTER'] || 'mysql2' %>
   pool:         <%= ENV['DATABASE_POOL'] || 5 %>
-  timeout:      5000
+  timeout:      10000
   host:         <%= ENV['DATABASE_HOST'] || 'localhost' %>
   min_messages: <%= ENV['DATABASE_MIN_MESSAGES'] || 'warning' %>
   username:     <%= ENV['DATABASE_USERNAME'] || 'californica' %>

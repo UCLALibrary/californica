@@ -73,6 +73,7 @@ module Hyrax
         :producer,
         :publisher,
         :recipient,
+        :related_record,
         :related_to,
         :related_url,
         :representative_image,
