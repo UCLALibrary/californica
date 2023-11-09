@@ -100,6 +100,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     provenance: ["Provenance", "Description.history"],
     publisher: "Publisher.publisherName",
     recipient: ["Recipient", "Name.recipient"],
+    related_record: ['Related Records'],
     related_to: ["Related Items"],
     repository: ["Repository", "repository", "Name.repository",
                  "Personal or Corporate Name.repository"],
