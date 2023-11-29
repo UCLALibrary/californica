@@ -298,7 +298,7 @@ module UclaMetadata
     end
 
     property :identifier_global, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/Identifier') do |index|
-      index.as :stored_searchable,
+      index.as :stored_searchable
     end
 
     property :opac_url, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/unimarc/terms/ter%23e'), multiple: false do |index|

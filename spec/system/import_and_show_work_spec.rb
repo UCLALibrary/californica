@@ -10,7 +10,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
   let(:csv_file)   { File.join(fixture_path, 'coordinates_example.csv') }
   let(:csv_import) { FactoryBot.create(:csv_import, user: user, manifest: manifest) }
   let(:manifest) { Rack::Test::UploadedFile.new(csv_file, 'text/csv') }
-let(:second_csv_import) { FactoryBot.create(:csv_import, user: user, manifest: second_manifest) }
+  let(:second_csv_import) { FactoryBot.create(:csv_import, user: user, manifest: second_manifest) }
   let(:second_importer) { CalifornicaImporter.new(second_csv_import, info_stream: [], error_stream: []) }
   let(:second_manifest) { Rack::Test::UploadedFile.new(File.join(fixture_path, 'coordinates_example_update.csv'), 'text/csv') }
   let(:third_csv_import) { FactoryBot.create(:csv_import, user: user, manifest: third_manifest) }
