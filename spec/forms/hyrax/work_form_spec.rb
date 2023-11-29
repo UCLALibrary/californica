@@ -97,7 +97,11 @@ RSpec.describe Hyrax::WorkForm do
       :thumbnail_link,
       :toc,
       :translator,
-      :uniform_title
+      :uniform_title,
+      :edition,
+      :electronic_locator,
+      :history,
+      :identifier_global
     )
   end
 

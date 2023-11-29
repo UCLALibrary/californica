@@ -104,7 +104,11 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       thumbnail_link: 'https://fake.url/iiif/ark%3A%2Fabc%2F3456',
       toc: ['Old Table of contents'],
       translator: ['Old Translator'],
-      uniform_title: ['Old Uniform title']
+      uniform_title: ['Old Uniform title'],
+      edition: ['Old Edition'],
+      electronic_locator: ['Old External item record'],
+      history: ['Old History'],
+      identifier_global: ['Old Identifier']
     }
   end
 
@@ -207,6 +211,10 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(page).to have_select('License', selected: 'Creative Commons CC0 1.0 Universal', multiple: false)
       expect(find_field('Translator').value).to eq 'Old Translator'
       expect(find_field('Uniform title').value).to eq 'Old Uniform title'
+      expect(find_field('Edition').value).to eq 'Old Edition'
+      expect(find_field('External item record').value).to eq 'Old External item record'
+      expect(find_field('History').value).to eq 'Old History'
+      expect(find_field('Identifier').value).to eq 'Old Identifier'
 
       # Edit some fields in the form
       fill_in 'Title', with: 'New Title'

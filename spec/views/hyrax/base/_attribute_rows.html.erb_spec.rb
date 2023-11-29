@@ -88,7 +88,11 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       host: ['Old Host'],
       musician: ['Old Musician'],
       printer: ['Old Printer'],
-      researcher: ['Old Researcher']
+      researcher: ['Old Researcher'],
+      edition: ['Old Edition'],
+      electronic_locator: ['Old External item record'],
+      history: ['Old History'],
+      identifier_global: ['Old Identifier']
     )
   end
 
@@ -302,5 +306,17 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   end
   it 'has local_rights_statement' do
     expect(page).to match(/local_rights_statement/)
+  end
+  it 'has edition' do
+    expect(page).to match(/edition/)
+  end
+  it 'has electronic_locator' do
+    expect(page).to match(/electronic_locator/)
+  end
+  it 'history' do
+    expect(page).to match(/history/)
+  end
+  it 'identifier_global' do
+    expect(page).to match(/identifier_global/)
   end
 end
