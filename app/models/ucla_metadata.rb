@@ -297,7 +297,7 @@ module UclaMetadata
       index.as :displayable
     end
 
-    property :identifier_global: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/Identifier') do |index|
+    property :identifier_global, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/Identifier') do |index|
       index.as :stored_searchable,
     end
 
