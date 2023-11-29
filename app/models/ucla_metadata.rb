@@ -32,6 +32,10 @@ module UclaMetadata
       index.as :stored_searchable, :facetable
     end
 
+    property :edition, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/editionStatement') do |index|
+      index.as :stored_searchable
+    end
+
     property :editor, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/edt') do |index|
       index.as :stored_searchable, :facetable
     end
@@ -150,6 +154,10 @@ module UclaMetadata
     end
 
     property :caption, predicate: ::RDF::Vocab::SCHEMA.caption do |index|
+      index.as :stored_searchable
+    end
+
+    property :history, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/historyOfWork') do |index|
       index.as :stored_searchable
     end
 
@@ -289,6 +297,10 @@ module UclaMetadata
       index.as :displayable
     end
 
+    property :identifier_global: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/Identifier') do |index|
+      index.as :stored_searchable,
+    end
+
     property :opac_url, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/unimarc/terms/ter%23e'), multiple: false do |index|
       index.as :stored_sortable
     end
@@ -322,6 +334,10 @@ module UclaMetadata
 
     property :dlcs_collection_name, predicate: ::RDF::URI.intern('https://bib.schema.org/Collection') do |index|
       index.as :displayable, :facetable
+    end
+
+    property :electronic_locator, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/electronicLocator') do |index|
+      index.as :displayable
     end
 
     property :featured_image, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3080'), multiple: false do |index|
