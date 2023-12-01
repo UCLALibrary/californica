@@ -39,7 +39,7 @@ module Californica
       end
     end
 
-     # Modified to ensure all works are deleted before deleting the collection
+    # Modified to ensure all works are deleted before deleting the collection
     def delete_with_children(of_type: nil)
       log('In delete_with_children start.')
       all_children_deleted = delete_children(of_type: of_type)
