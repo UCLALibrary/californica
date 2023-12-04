@@ -21,7 +21,8 @@ module Californica
     # Modified to ensure all works are deleted before deleting the collection
     def delete_collection_with_works(of_type: nil)
       log('In delete_collection_with_works start.')
-      all_works_deleted = delete_works(of_type: of_type)
+      works = work_id_list
+      all_works_deleted = works.empty? || delete_works(of_type: of_type)
       if all_works_deleted && (of_type.nil? || record.is_a?(of_type))
         delete
         true
@@ -33,7 +34,7 @@ module Californica
 
     # Ensures all works are deleted; returns true if successful
     def delete_works(of_type: nil)
-      work_id_list.all? do |work_id|
+      work_id_list.empty? || work_id_list.all? do |work_id|
         Californica::Deleter.new(id: work_id, logger: logger)
                             .delete_with_children(of_type: of_type)
       end
@@ -42,7 +43,8 @@ module Californica
     # Modified to ensure all works are deleted before deleting the collection
     def delete_with_children(of_type: nil)
       log('In delete_with_children start.')
-      all_children_deleted = delete_children(of_type: of_type)
+      children = record&.member_ids
+      all_children_deleted = children.nil? || children.empty? || delete_children(of_type: of_type)
       if all_children_deleted && (of_type.nil? || record.is_a?(of_type))
         delete
         true
@@ -54,7 +56,7 @@ module Californica
 
     # Ensures all child works are deleted; returns true if successful
     def delete_children(of_type: nil)
-      record&.member_ids&.all? do |child_id|
+      record&.member_ids&.empty? || record&.member_ids&.all? do |child_id|
         Californica::Deleter.new(id: child_id, logger: logger)
                             .delete_with_children(of_type: of_type)
       end
