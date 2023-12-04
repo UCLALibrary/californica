@@ -7,7 +7,12 @@ namespace :californica do
   end
 
   task delete_collection: [:environment] do
-    Californica::Deleter.new(id: ENV.fetch('DELETE_COLLECTION_ID')).delete_collection_with_works
+    begin
+      deletion_successful = Californica::Deleter.new(id: ENV.fetch('DELETE_COLLECTION_ID')).delete_collection_with_works
+      puts deletion_successful ? 'Deletion completed successfully!' : 'Deletion skipped for some items.'
+    rescue => e
+      puts "An error occurred: #{e.message}"
+    end
     puts('Done!')
   end
 
