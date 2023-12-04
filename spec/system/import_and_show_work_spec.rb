@@ -110,7 +110,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "rubricator_1" # rubricator
     expect(page).to have_content "name_creator" # creator
     expect(page).to have_content "Calligrapher-1" # calligrapher
-    expect(page).to have_content "Editor-1" # editor
+    expect(page).to have_content "Editor-2" # editor
     expect(page).to have_content "Engraver-1" # engraver
     expect(page).to have_content "Note-1" # note
     expect(page).to have_content "Printmaker-1" # print maker
@@ -136,10 +136,10 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "Related Records Work ark:/123/456" # human_related_record_title
     expect(page).to have_content "Related Items-1" # related_to
     expect(page).to have_content "Local rights statement-1" # local_rights_statement
-    expect(page).to have_content 'Old Edition' # edition
-    expect(page).to have_content 'Old External item record' # electronic_locator
-    expect(page).to have_content 'Old History' # history
-    expect(page).to have_content 'Old Identifier' # identifier_global
+    expect(page).to have_content 'Edition-1' # edition
+    expect(page).to have_content 'External item record-1' # electronic_locator
+    expect(page).to have_content 'History-1' # history
+    expect(page).to have_content 'Identifier-1' # identifier_global
 
     # displays expected sfields on search results page
     visit("catalog?search_field=all_fields&q=")
