@@ -123,7 +123,7 @@ class SolrDocument
   end
 
   def electronic_locator
-    self[:electronic_locator_ssim]
+    self[:electronic_locator_ssi]
   end
 
   def engraver
