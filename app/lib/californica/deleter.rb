@@ -22,6 +22,7 @@ module Californica
     def delete_collection_with_works(of_type: nil)
       log('In delete_collection_with_works start.')
       works = work_id_list
+      log("Number of works in collection #{id}: #{works.count}") # Log the number of works
       all_works_deleted = works.empty? || delete_works(of_type: of_type)
       if all_works_deleted && (of_type.nil? || record.is_a?(of_type))
         delete
@@ -44,6 +45,7 @@ module Californica
     def delete_with_children(of_type: nil)
       log('In delete_with_children start.')
       children = record&.member_ids
+      log("Number of child works for work #{id}: #{children&.count || 0}") # Log the number of child works
       all_children_deleted = children.nil? || children.empty? || delete_children(of_type: of_type)
       if all_children_deleted && (of_type.nil? || record.is_a?(of_type))
         delete
