@@ -44,10 +44,7 @@ module Californica
     # Modified to ensure all works are deleted before deleting the collection
     def delete_with_children(of_type: nil)
       log('In delete_with_children start.')
-      children = record&.member_ids
-      log("Number of child works for work #{id}: #{children&.count || 0}") # Log the number of child works
-      all_children_deleted = children.nil? || children.empty? || delete_children(of_type: of_type)
-      if all_children_deleted && (of_type.nil? || record.is_a?(of_type))
+      if can_delete_with_children?(of_type)
         delete
         true
       else
@@ -65,6 +62,19 @@ module Californica
     end
 
     private
+
+      def can_delete_with_children?(of_type)
+        children_deleted_or_none?(of_type) && deletion_type_matches?(of_type)
+      end
+
+      def children_deleted_or_none?(of_type)
+        children = record&.member_ids
+        children.nil? || children.empty? || delete_children(of_type: of_type)
+      end
+
+      def deletion_type_matches?(of_type)
+        of_type.nil? || record.is_a?(of_type)
+      end
 
       def destroy_and_eradicate
         start_time = Time.current
