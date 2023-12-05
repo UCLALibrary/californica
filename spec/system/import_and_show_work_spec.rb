@@ -110,7 +110,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "rubricator_1" # rubricator
     expect(page).to have_content "name_creator" # creator
     expect(page).to have_content "Calligrapher-1" # calligrapher
-    expect(page).to have_content "Editor-2" # editor
+    expect(page).to have_content "Editor-1" # editor
     expect(page).to have_content "Engraver-1" # engraver
     expect(page).to have_content "Note-1" # note
     expect(page).to have_content "Printmaker-1" # print maker
@@ -137,6 +137,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "Related Items-1" # related_to
     expect(page).to have_content "Local rights statement-1" # local_rights_statement
     expect(page).to have_content 'Edition-1' # edition
+    expect(page).to have_content 'Edition-2' # edition
     expect(page).to have_content 'External item record-1' # electronic_locator
     expect(page).to have_content 'History-1' # history
     expect(page).to have_content 'Identifier-1' # identifier_global

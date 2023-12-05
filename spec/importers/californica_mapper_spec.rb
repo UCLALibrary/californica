@@ -158,11 +158,11 @@ RSpec.describe CalifornicaMapper do
       "Note.admin" => "Note.admin-1", # note_admin
       "Format" => "Format-1", # format_book
       "Related Items" => "Related Items-1", # related_to
-      'Edition' => 'Edition-1', # edition
-      'External item record' => 'External item record-1', # electronic_locator
-      'View Record' => 'View Record-1', # electronic_locator
-      'History' => 'History-1', # history
-      'Identifier' => 'Identifier-1' # identifier_global
+      "Edition" => "Edition-1", # edition
+      "External item record" => "External item record-1", # electronic_locator
+      "View Record" => "View Record-1", # electronic_locator
+      "History" => "History-1", # history
+      "Identifier" => "Identifier-1" # identifier_global
     }
   end
 
