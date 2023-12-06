@@ -218,7 +218,6 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Related to').value).to eq 'Old Related Items'
       expect(find_field('Related record').value).to eq 'Old Related Records'
       expect(find_field('Edition').value).to eq 'Old Edition'
-      expect(find_field('External item record').value).to eq 'Old External item record'
       expect(find_field('History').value).to eq 'Old History'
       expect(find_field('Identifier').value).to eq 'Old Identifier'
 

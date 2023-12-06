@@ -29,7 +29,6 @@ module Hyrax
       :director,
       :edition,
       :editor,
-      :electronic_locator,
       :engraver,
       :extent,
       :featured_image,

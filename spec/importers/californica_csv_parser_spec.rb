@@ -174,8 +174,6 @@ RSpec.describe CalifornicaCsvParser do
        'Rights.statementLocal',
        'Related Records',
        'Edition',
-       'External item record',
-       'View Record',
        'History',
        'Identifier']
     end

@@ -338,8 +338,6 @@ RSpec.describe CsvManifestValidator, type: :model do
         "Rights.statementLocal",
         "Related Records",
         "Edition",
-        "External item",
-        "View Record",
         "History",
         "Identifier"
       )

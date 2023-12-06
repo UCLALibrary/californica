@@ -159,8 +159,6 @@ RSpec.describe CalifornicaMapper do
       "Format" => "Format-1", # format_book
       "Related Items" => "Related Items-1", # related_to
       "Edition" => "Edition-1", # edition
-      "External item record" => "External item record-1", # electronic_locator
-      "View Record" => "View Record-1", # electronic_locator
       "History" => "History-1", # history
       "Identifier" => "Identifier-1" # identifier_global
     }
@@ -215,6 +213,7 @@ RSpec.describe CalifornicaMapper do
         :description,
         :dimensions,
         :dlcs_collection_name,
+        :edition,
         :editor,
         :engraver,
         :extent,
@@ -223,6 +222,8 @@ RSpec.describe CalifornicaMapper do
         :format_book,
         :funding_note,
         :genre,
+        :history,
+        :identifier_global,
         :iiif_manifest_url,
         :iiif_viewing_hint,
         :illuminator,

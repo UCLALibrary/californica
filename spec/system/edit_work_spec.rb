@@ -106,7 +106,6 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       translator: ['Old Translator'],
       uniform_title: ['Old Uniform title'],
       edition: ['Old Edition'],
-      electronic_locator: ['Old External item record'],
       history: ['Old History'],
       identifier_global: ['Old Identifier']
     }
@@ -212,7 +211,6 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Translator').value).to eq 'Old Translator'
       expect(find_field('Uniform title').value).to eq 'Old Uniform title'
       expect(find_field('Edition').value).to eq 'Old Edition'
-      expect(find_field('External item record').value).to eq 'Old External item record'
       expect(find_field('History').value).to eq 'Old History'
       expect(find_field('Identifier').value).to eq 'Old Identifier'
 

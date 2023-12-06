@@ -37,7 +37,6 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     dlcs_collection_name: "Relation.isPartOf",
     edition: ["Edition"],
     editor: ["Editor", "Name.editor"],
-    electronic_locator: ["External item", "View Record"],
     engraver: ["Engraver", "Name.engraver"],
     extent: "Format.extent",
     featured_image: ["Featured image"],

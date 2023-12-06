@@ -24,7 +24,6 @@ module Hyrax
       :director,
       :edition,
       :editor,
-      :electronic_locator,
       :engraver,
       :featured_image,
       :finding_aid_url,

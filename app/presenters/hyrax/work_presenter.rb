@@ -27,7 +27,6 @@ module Hyrax
       :dlcs_collection_name,
       :edition,
       :editor,
-      :electronic_locator,
       :engraver,
       :extent,
       :featured_image,

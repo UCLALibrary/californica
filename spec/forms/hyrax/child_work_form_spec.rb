@@ -44,7 +44,6 @@ RSpec.describe Hyrax::ChildWorkForm do
       :subject_domain_topic,
       :translator,
       :edition,
-      :electronic_locator,
       :history,
       :identifier_global
     )

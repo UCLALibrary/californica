@@ -336,10 +336,6 @@ module UclaMetadata
       index.as :displayable, :facetable
     end
 
-    property :electronic_locator, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/electronicLocator'), label: 'External item record' do |index|
-      index.as :displayable
-    end
-
     property :featured_image, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/fr/frbr/frbrer/P3080'), multiple: false do |index|
       index.as :stored_sortable
     end
