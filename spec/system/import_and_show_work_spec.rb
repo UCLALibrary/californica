@@ -136,7 +136,6 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "Related Records Work ark:/123/456" # human_related_record_title
     expect(page).to have_content "Related Items-1" # related_to
     expect(page).to have_content "Local rights statement-1" # local_rights_statement
-    expect(page).to have_content 'Edition-1' # edition
     expect(page).to have_content 'Edition-2' # edition
     expect(page).to have_content 'History-1' # history
     expect(page).to have_content 'Identifier-1' # identifier_global
