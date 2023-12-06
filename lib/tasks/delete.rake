@@ -2,7 +2,13 @@
 
 namespace :californica do
   task delete_work: [:environment] do
-    Californica::Deleter.new(id: ENV.fetch('DELETE_WORK_ID')).delete_with_children
+    begin
+      deletion_successful = Californica::Deleter.new(id: ENV.fetch('DELETE_WORK_ID')).delete_with_children
+      puts deletion_successful ? 'Deletion completed successfully!' : 'Deletion skipped for some items.'
+    rescue => e
+      puts "An error occurred: #{e.message}"
+    end
+    
     puts('Done!')
   end
 
