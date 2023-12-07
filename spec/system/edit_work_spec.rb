@@ -32,7 +32,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       description: ['Old Desc'],
       dimensions: ['Old Dim'],
       director: ['Old Director'],
-      edition: ['Edition'],
+      edition: ['Old Edition'],
       editor: ['Old Editor'],
       engraver: ['Old Engraver'],
       extent: ['Old Extent'],
@@ -42,9 +42,9 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       format_book: ['Old Format'],
       funding_note: ['Old Fund Note'],
       genre: ['Old Genre'],
-      history: ['History'],
+      history: ['Old History'],
       host: ['Old Host'],
-      identifier_global: ['Identifier'],
+      identifier_global: ['Old Identifier'],
       iiif_manifest_url: 'https://test.iiif.library.ucla.edu/collections/ark%3A%2F21198%2Fz11c574k',
       iiif_range: 'Old Iiif range',
       iiif_text_direction: 'http://iiif.io/api/presentation/2#leftToRightDirection', # "left-to-right"
@@ -212,9 +212,9 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(page).to have_select('License', selected: 'Creative Commons CC0 1.0 Universal', multiple: false)
       expect(find_field('Translator').value).to eq 'Old Translator'
       expect(find_field('Uniform title').value).to eq 'Old Uniform title'
-      expect(find_field('Edition').value).to eq 'Edition'
-      expect(find_field('History').value).to eq 'History'
-      expect(find_field('Identifier').value).to eq 'Identifier'
+      expect(find_field('Edition').value).to eq 'Old Edition'
+      expect(find_field('History').value).to eq 'Old History'
+      expect(find_field('Identifier global').value).to eq 'Old Identifier'
 
       # Edit some fields in the form
       fill_in 'Title', with: 'New Title'
