@@ -19,6 +19,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       date_created: ['Old Creation Date'],
       description: ['Old Desc'],
       dimensions: ['Old Dim'],
+      edition: ['Old Edition'],
       editor: ['Old Editor'],
       engraver: ['Old Engraver'],
       extent: ['Old Extent'],
@@ -26,6 +27,8 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       format_book: ['Old Format'],
       funding_note: ['Old Fund Note'],
       genre: ['Old Genre'],
+      history: ['Old History'],
+      identifier_global: ['Old Identifier']
       iiif_manifest_url: 'Old Iiif manifest url',
       iiif_range: 'Old Iiif range',
       iiif_viewing_hint: 'Old Iiif viewing hint',
@@ -101,10 +104,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       printer: ['Old Printer'],
       researcher: ['Old Researcher'],
       resp_statement: ['Old Statement of Responsibility'],
-      related_record: ['RelatedRecords-1'],
-      edition: ['Old Edition'],
-      history: ['Old History'],
-      identifier_global: ['Old Identifier']
+      related_record: ['RelatedRecords-1']
     }
   end
 
