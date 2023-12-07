@@ -105,7 +105,6 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       related_to: ['Old Related Items'],
       related_record: ['Old Related Records'],
       edition: ['Old Edition'],
-      electronic_locator: ['Old External item record'],
       history: ['Old History'],
       identifier_global: ['Old Identifier']
     }
@@ -219,7 +218,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Related record').value).to eq 'Old Related Records'
       expect(find_field('Edition').value).to eq 'Old Edition'
       expect(find_field('History').value).to eq 'Old History'
-      expect(find_field('Identifier').value).to eq 'Old Identifier'
+      expect(find_field('Identifier global').value).to eq 'Old Identifier'
 
       #
       # # Edit some fields in the form

@@ -32,6 +32,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       description: ['Old Desc'],
       dimensions: ['Old Dim'],
       director: ['Old Director'],
+      edition: ['Edition'],
       editor: ['Old Editor'],
       engraver: ['Old Engraver'],
       extent: ['Old Extent'],
@@ -41,7 +42,9 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       format_book: ['Old Format'],
       funding_note: ['Old Fund Note'],
       genre: ['Old Genre'],
+      history: ['History'],
       host: ['Old Host'],
+      identifier_global: ['Identifier'],
       iiif_manifest_url: 'https://test.iiif.library.ucla.edu/collections/ark%3A%2F21198%2Fz11c574k',
       iiif_range: 'Old Iiif range',
       iiif_text_direction: 'http://iiif.io/api/presentation/2#leftToRightDirection', # "left-to-right"
@@ -105,9 +108,6 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       toc: ['Old Table of contents'],
       translator: ['Old Translator'],
       uniform_title: ['Old Uniform title'],
-      edition: ['Old Edition'],
-      history: ['Old History'],
-      identifier_global: ['Old Identifier']
     }
   end
 
@@ -127,6 +127,8 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(page.all(:css, 'div.select.work_rights_statement').first.has_content?('copyrighted')).to eq true
 
       click_on 'Additional fields'
+      # byebug
+
       expect(find_field('Access copy').value).to eq 'dlmasters/ethiopian/masters/abc123.tif'
       expect(find_field('Alternative title').value).to eq 'Alternative title'
       expect(find_field('Architect').value).to eq 'Old Architect'
@@ -210,9 +212,9 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(page).to have_select('License', selected: 'Creative Commons CC0 1.0 Universal', multiple: false)
       expect(find_field('Translator').value).to eq 'Old Translator'
       expect(find_field('Uniform title').value).to eq 'Old Uniform title'
-      expect(find_field('Edition').value).to eq 'Old Edition'
-      expect(find_field('History').value).to eq 'Old History'
-      expect(find_field('Identifier').value).to eq 'Old Identifier'
+      expect(find_field('Edition').value).to eq 'Edition'
+      expect(find_field('History').value).to eq 'History'
+      expect(find_field('Identifier').value).to eq 'Identifier'
 
       # Edit some fields in the form
       fill_in 'Title', with: 'New Title'
