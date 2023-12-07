@@ -144,7 +144,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Funding Note').value).to eq 'Old Fund Note'
       expect(find_field('Genre').value).to eq 'Old Genre'
       expect(find_field('History').value).to eq 'Old History'
-      expect(find_field('Identifier global').value).to eq 'Old Identifier'
+      expect(find_field('Identifier').value).to eq 'Old Identifier'
       expect(find_field('Iiif manifest url').value).to eq 'https://test.iiif.library.ucla.edu/collections/ark%3A%2F21198%2Fz11c574k'
       expect(find_field('Iiif range').value).to eq 'Old IIIF Range'
       expect(find_field('Illustrations note').value).to eq 'Old Illustrations note'

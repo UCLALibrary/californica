@@ -14,11 +14,14 @@ RSpec.describe Hyrax::ChildWorkForm do
       :citation_source,
       :commentator,
       :dimensions,
+      :edition,
       :extent,
       :format_book,
       :funding_note,
       :genre,
+      :history,
       :host,
+      :identifier_global,
       :latitude,
       :local_identifier,
       :local_rights_statement,
@@ -42,10 +45,7 @@ RSpec.describe Hyrax::ChildWorkForm do
       :subject_temporal,
       :subject_cultural_object,
       :subject_domain_topic,
-      :translator,
-      :edition,
-      :history,
-      :identifier_global
+      :translator
     )
   end
 
