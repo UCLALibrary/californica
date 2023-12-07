@@ -107,7 +107,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       thumbnail_link: 'https://fake.url/iiif/ark%3A%2Fabc%2F3456',
       toc: ['Old Table of contents'],
       translator: ['Old Translator'],
-      uniform_title: ['Old Uniform title'],
+      uniform_title: ['Old Uniform title']
     }
   end
 
