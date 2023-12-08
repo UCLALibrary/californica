@@ -260,6 +260,12 @@ A transcription of a caption on a photograph or other type of item.
 
 A general description of the item begin described. This field is displayed on the search results page.
 
+#### Edition
+
+#### External item record
+
+Also accepts: View Record
+
 #### Featured image (not in use)
 
 #### Finding Aid URL
@@ -282,9 +288,13 @@ Also accepts: `Foliation note`
 
 Also accepts: `Type.genre`
 
+#### History
+
 #### Host
 
 Also accepts `Name.host`
+
+#### Identifier
 
 #### IIIF Access URL
 
