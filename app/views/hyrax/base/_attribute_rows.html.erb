@@ -24,6 +24,7 @@
 <%= presenter.attribute_to_html(:dimensions, html_dl: true) %>
 <%= presenter.attribute_to_html(:director, html_dl: true) %>
 <%= presenter.attribute_to_html(:dlcs_collection_name, render_as: :faceted, html_dl: true, label: "DLCS Collection Name") %>
+<%= presenter.attribute_to_html(:edition, html_dl: true) %>
 <%= presenter.attribute_to_html(:editor, html_dl: true) %>
 <%= presenter.attribute_to_html(:engraver, html_dl: true) %>
 <%= presenter.attribute_to_html(:extent, html_dl: true) %>
@@ -34,7 +35,9 @@
 <%= presenter.attribute_to_html(:funding_note, html_dl: true) %>
 <%= presenter.attribute_to_html(:genre, html_dl: true) %>
 <%= presenter.attribute_to_html(:geographic_coordinates, html_dl: true) %>
+<%= presenter.attribute_to_html(:history, html_dl: true) %>
 <%= presenter.attribute_to_html(:host, render_as: :faceted, html_dl: true) %>
+<%= presenter.attribute_to_html(:identifier_global, html_dl: true) %>
 <%= presenter.attribute_to_html(:identifier, render_as: :linked, search_field: 'identifier_tesim', html_dl: true) %>
 <%= presenter.attribute_to_html(:iiif_manifest_url, html_dl: true) %>
 <%= presenter.attribute_to_html(:iiif_range, html_dl: true) %>
@@ -71,7 +74,7 @@
 <%= presenter.attribute_to_html(:recipient, html_dl: true) %>
 <% if presenter.human_readable_related_record_title.present? %>
     <div style="font-weight: 700">Related Records</div>
-   
+
         <% presenter.human_readable_related_record_title.each do | related_record_title | %>
             <dd>
                 <dt>
@@ -81,7 +84,7 @@
                 <dt>
             </dd>
         <% end %>
-   
+
 <% end %>
 
 
