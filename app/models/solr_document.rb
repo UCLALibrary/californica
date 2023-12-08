@@ -114,6 +114,10 @@ class SolrDocument
     self[:dlcs_collection_name_ssm]
   end
 
+  def edition
+    self[:edition_ssm]
+  end
+
   def editor
     self[:editor_tesim]
   end
@@ -150,12 +154,20 @@ class SolrDocument
     self[:genre_tesim]
   end
 
+  def history
+    self[:history_tesim]
+  end
+
   def host
     self[:host_tesim]
   end
 
   def human_readable_related_record_title
     self[:human_readable_related_record_title_ssm]
+  end
+
+  def identifier_global
+    self[:identifier_global_ssim]
   end
 
   def iiif_manifest_url
