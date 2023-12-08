@@ -37,6 +37,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     dlcs_collection_name: "Relation.isPartOf",
     edition: ["Edition"],
     editor: ["Editor", "Name.editor"],
+    electronic_locator: ["External item record", "View Record"],
     engraver: ["Engraver", "Name.engraver"],
     extent: "Format.extent",
     featured_image: ["Featured image"],
@@ -254,6 +255,10 @@ class CalifornicaMapper < Darlingtonia::HashMapper
   end
 
   def tagline
+    map_field(:tagline).to_a.first
+  end
+
+  def electronic_locator
     map_field(:tagline).to_a.first
   end
 

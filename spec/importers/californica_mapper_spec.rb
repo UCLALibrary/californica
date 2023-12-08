@@ -160,7 +160,8 @@ RSpec.describe CalifornicaMapper do
       "Related Items" => "Related Items-1", # related_to
       "Edition" => "Edition-001", # edition
       "History" => "History-1", # history
-      "Identifier" => "Identifier-1" # identifier_global
+      "Identifier" => "Identifier-1", # identifier_global
+      "External item record" => "External item record-1" # "electronic_locator"
     }
   end
 

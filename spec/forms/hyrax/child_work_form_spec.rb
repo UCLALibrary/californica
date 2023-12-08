@@ -15,6 +15,7 @@ RSpec.describe Hyrax::ChildWorkForm do
       :commentator,
       :dimensions,
       :edition,
+      :electronic_locator,
       :extent,
       :format_book,
       :funding_note,

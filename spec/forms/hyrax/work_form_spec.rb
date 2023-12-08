@@ -31,6 +31,7 @@ RSpec.describe Hyrax::WorkForm do
       :director,
       :edition,
       :editor,
+      :electronic_locator,
       :engraver,
       :extent,
       :featured_image,

@@ -21,6 +21,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       dimensions: ['Old Dim'],
       edition: ['Old Edition'],
       editor: ['Old Editor'],
+      electronic_locator: ['Old External item record'],
       engraver: ['Old Engraver'],
       extent: ['Old Extent'],
       caption: ['Old Cap'],
