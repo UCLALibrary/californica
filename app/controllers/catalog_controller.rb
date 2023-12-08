@@ -137,6 +137,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'director_tesim'
     config.add_show_field 'edition_ssm', label: 'Edition'
     config.add_show_field 'editor_tesim'
+    config.add_show_field 'engraver_tesim'
     config.add_show_field 'extent_tesim'
     config.add_show_field 'finding_aid_url_ssm'
     config.add_show_field 'foliation_ssi', label: 'Foliation note'
