@@ -135,7 +135,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'contents_note_tesim'
     config.add_show_field 'dimensions_tesim'
     config.add_show_field 'director_tesim'
-    config.add_show_field 'edition_tesim', label: 'Edition'
+    config.add_show_field 'edition_ssm', label: 'Edition'
     config.add_show_field 'editor_tesim'
     config.add_show_field 'extent_tesim'
     config.add_show_field 'finding_aid_url_ssm'

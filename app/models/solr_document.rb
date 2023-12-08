@@ -115,7 +115,7 @@ class SolrDocument
   end
 
   def edition
-    self[:edition_tesim]
+    self[:edition_ssm]
   end
 
   def editor
