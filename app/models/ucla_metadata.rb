@@ -33,7 +33,7 @@ module UclaMetadata
     end
 
     property :edition, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/editionStatement') do |index|
-      index.as :stored_searchable
+      index.as :displayable
     end
 
     property :editor, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/edt') do |index|
