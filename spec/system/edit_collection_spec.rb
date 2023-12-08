@@ -24,11 +24,14 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       date_created: ['Old Creation Date'],
       description: ['Old Desc'],
       dimensions: ['Old Dim'],
+      edition: ['Old Edition'],
       resource_type: ['http://id.loc.gov/vocabulary/resourceTypes/col'], # "collection"
       extent: ['Old Extent'],
       foliation: 'Old Foliation note',
       funding_note: ['Old Fund Note'],
       genre: ['Old Genre'],
+      history: ['Old History'],
+      identifier: ['Old Identifier'],
       iiif_manifest_url: 'https://test.iiif.library.ucla.edu/collections/ark%3A%2F21198%2Fz11c574k',
       iiif_viewing_hint: 'Old Iiif viewing hint',
       iiif_range: 'Old IIIF Range',
@@ -137,8 +140,11 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Extent').value).to eq 'Old Extent'
       expect(find_field('Caption').value).to eq 'Old Cap'
       expect(find_field('Dimensions').value).to eq 'Old Dim'
+      expect(find_field('Edition').value).to eq 'Old Edition'
       expect(find_field('Funding Note').value).to eq 'Old Fund Note'
       expect(find_field('Genre').value).to eq 'Old Genre'
+      expect(find_field('History').value).to eq 'Old History'
+      expect(find_field('Identifier').value).to eq 'Old Identifier'
       expect(find_field('Iiif manifest url').value).to eq 'https://test.iiif.library.ucla.edu/collections/ark%3A%2F21198%2Fz11c574k'
       expect(find_field('Iiif range').value).to eq 'Old IIIF Range'
       expect(find_field('Illustrations note').value).to eq 'Old Illustrations note'
