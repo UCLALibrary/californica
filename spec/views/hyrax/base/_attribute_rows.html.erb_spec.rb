@@ -19,28 +19,38 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   let(:work) do
     Work.new(
       ark: 'ark:/abcde/1234567',
+      artist: ['Artist'],
       author: ['author'],
       binding_note: 'binding_note',
       calligrapher: ['calligrapher'],
       caption: ['caption'],
-      citation_source: ['Old References'],
-      colophon: ['Old Colophon'],
-      commentator: ['Old Commentator'],
+      cartographer: ['Cartographer'],
+      citation_source: ['References'],
+      colophon: ['Colophon'],
+      commentator: ['Commentator'],
       condition_note: 'condition_note',
-      contents_note: ['Old Contents note'],
-      creator: ['Old name creator'],
+      content_disclaimer: ['Disclaimer'],
+      contents_note: ['Contents note'],
+      creator: ['name creator'],
       description: ['description'],
       dimensions: ['dimensions'],
-      editor: ['editor'],
+      director: ['Director'],
+      edition: ['Edition'],
+      editor: ['Editor'],
       engraver: ['engraver'],
       extent: ['extent'],
-      finding_aid_url: ['Old Finding aid url'],
-      format_book: ['Old Format'],
+      finding_aid_url: ['Finding aid url'],
+      format_book: ['Format'],
       funding_note: ['funding_note'],
       genre: ['genre'],
+      history: ['History'],
+      host: ['Host'],
+      identifier_global: ['Identifier'],
       iiif_text_direction: 'iiif_text_direction',
       iiif_viewing_hint: 'iiif_viewing_hint',
       illustrator: ['illustrator'],
+      interviewee: ['Interviewee'],
+      interviewer: ['Interviewer'],
       latitude: ['latitude'],
       license: ['Creative Commons CC0 1.0 Universal'],
       location: ['location'],
@@ -48,47 +58,40 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       local_rights_statement: ["Local rights statement"],
       longitude: ['longitude'],
       medium: ['medium'],
+      musician: ['Musician'],
       named_subject: ['named_subject'],
       normalized_date: ['normalized_date'],
       note: ['note'],
-      note_admin: ['Old AdminNote'],
+      note_admin: ['AdminNote'],
       opac_url: 'opac_url',
       page_layout: ['page_layout'],
       place_of_origin: ['place_of_origin'],
-      printmaker: ['Old printmaker'],
+      printer: ['Printer'],
+      printmaker: ['printmaker'],
+      producer: ['Producer'],
+      program: ['Program'],
+      recipient: ['Recipient'],
       related_record: ['ark:/abcde/9876543'],
-      related_to: ['Old Related Items'],
+      related_to: ['Related Items'],
       repository: ['repostiory'],
+      researcher: ['Researcher'],
       resource_type: ['resource_type'],
       resp_statement: ['Statement of Responsibility'],
       rights_country: ['rights_country'],
       rights_holder: ['rights_holder'],
-      rubricator: ['Old rubricator'],
-      subject_geographic: ['Old Subject geographic'],
-      subject_temporal: ['Old Subject temporal'],
-      subject_cultural_object: ['Old Subject cultural object'],
-      subject_domain_topic: ['Old Subject domain topic'],
+      rubricator: ['rubricator'],
+      series: ['Series'],
+      subject_cultural_object: ['Subject cultural object'],
+      subject_domain_topic: ['Subject domain topic'],
+      subject_geographic: ['Subject geographic'],
+      subject_temporal: ['Subject temporal'],
       subject_topic: ['subject_topic'],
       summary: ['summary'],
       support: ['support'],
       thumbnail_link: 'https://fake.url/iiif/ark%3A%2Fabcde%2F1234567',
       title: ['title'],
-      translator: ['Old Translator'],
-      uniform_title: ['Old Uniform title'],
-      interviewer: ['Old Interviewer'],
-      interviewee: ['Old Interviewee'],
-      cartographer: ['Old Cartographer'],
-      artist: ['Old Artist'],
-      recipient: ['Old Recipient'],
-      director: ['Old Director'],
-      producer: ['Old Producer'],
-      content_disclaimer: ['Old Disclaimer'],
-      program: ['Old Program'],
-      series: ['Old Series'],
-      host: ['Old Host'],
-      musician: ['Old Musician'],
-      printer: ['Old Printer'],
-      researcher: ['Old Researcher']
+      translator: ['Translator'],
+      uniform_title: ['Uniform title']
     )
   end
 
@@ -99,6 +102,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
     end
   end
 
+  it 'has artist' do
+    expect(page).to match(/artist/)
+  end
   it 'has author' do
     expect(page).to match(/author/)
   end
@@ -110,6 +116,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   end
   it 'has caption' do
     expect(page).to match(/caption/)
+  end
+  it 'has cartographer' do
+    expect(page).to match(/cartographer/)
   end
   it 'has citation_source' do
     expect(page).to match(/citation_source/)
@@ -123,6 +132,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   it 'has condition_note' do
     expect(page).to match(/condition_note/)
   end
+  it 'has content_disclaimer' do
+    expect(page).to match(/content_disclaimer/)
+  end
   it 'has contents_note' do
     expect(page).to match(/contents_note/)
   end
@@ -131,6 +143,12 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   end
   it 'has dimesions' do
     expect(page).to match(/dimensions/)
+  end
+  it 'has director' do
+    expect(page).to match(/director/)
+  end
+  it 'has edition' do
+    expect(page).to match(/edition/)
   end
   it 'has editor' do
     expect(page).to match(/editor/)
@@ -153,6 +171,21 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   it 'has genre' do
     expect(page).to match(/genre/)
   end
+  it 'has history' do
+    expect(page).to match(/history/)
+  end
+  it 'has host' do
+    expect(page).to match(/host/)
+  end
+  it 'has identifier_global' do
+    expect(page).to match(/identifier_global/)
+  end
+  it 'has interviewee' do
+    expect(page).to match(/interviewee/)
+  end
+  it 'has interviewer' do
+    expect(page).to match(/interviewer/)
+  end
   it 'has iiif_text_direction' do
     expect(page).to match(/iiif_text_direction/)
   end
@@ -174,11 +207,17 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   it 'has local identifier' do
     expect(page).to match(/local/)
   end
+  it 'has local_rights_statement' do
+    expect(page).to match(/local_rights_statement/)
+  end
   it 'has longitude' do
     expect(page).to match(/longitude/)
   end
   it 'has medium' do
     expect(page).to match(/medium/)
+  end
+  it 'has musician' do
+    expect(page).to match(/musician/)
   end
   it 'has named_subject' do
     expect(page).to match(/named_subject/)
@@ -201,8 +240,29 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   it 'has place_of_origin' do
     expect(page).to match(/place_of_origin/)
   end
+  it 'has printer' do
+    expect(page).to match(/printer/)
+  end
   it 'has printmaker' do
     expect(page).to match(/printmaker/)
+  end
+  it 'has producer' do
+    expect(page).to match(/producer/)
+  end
+  it 'has program' do
+    expect(page).to match(/program/)
+  end
+  it 'has recipient' do
+    expect(page).to match(/recipient/)
+  end
+  it 'has researcher' do
+    expect(page).to match(/researcher/)
+  end
+  it 'has related_record' do
+    expect(page).to match(/human_readable_related_record_title/)
+  end
+  it 'has related_to' do
+    expect(page).to match(/related_to/)
   end
   it 'has repo' do
     expect(page).to match(/repository/)
@@ -221,6 +281,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   end
   it 'has rubricator' do
     expect(page).to match(/rubricator/)
+  end
+  it 'has series' do
+    expect(page).to match(/series/)
   end
   it 'has subject_geographic' do
     expect(page).to match(/subject_geographic/)
@@ -251,56 +314,5 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   end
   it 'has uniform_title' do
     expect(page).to match(/uniform_title/)
-  end
-  it 'has artist' do
-    expect(page).to match(/artist/)
-  end
-  it 'has cartographer' do
-    expect(page).to match(/cartographer/)
-  end
-  it 'has content_disclaimer' do
-    expect(page).to match(/content_disclaimer/)
-  end
-  it 'has interviewee' do
-    expect(page).to match(/interviewee/)
-  end
-  it 'has interviewer' do
-    expect(page).to match(/interviewer/)
-  end
-  it 'has director' do
-    expect(page).to match(/director/)
-  end
-  it 'has producer' do
-    expect(page).to match(/producer/)
-  end
-  it 'has recipient' do
-    expect(page).to match(/recipient/)
-  end
-  it 'has program' do
-    expect(page).to match(/program/)
-  end
-  it 'has series' do
-    expect(page).to match(/series/)
-  end
-  it 'has host' do
-    expect(page).to match(/host/)
-  end
-  it 'has musician' do
-    expect(page).to match(/musician/)
-  end
-  it 'has printer' do
-    expect(page).to match(/printer/)
-  end
-  it 'has researcher' do
-    expect(page).to match(/researcher/)
-  end
-  it 'has related_record' do
-    expect(page).to match(/human_readable_related_record_title/)
-  end
-  it 'has related_to' do
-    expect(page).to match(/related_to/)
-  end
-  it 'has local_rights_statement' do
-    expect(page).to match(/local_rights_statement/)
   end
 end
