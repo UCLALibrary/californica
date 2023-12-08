@@ -24,6 +24,7 @@ RSpec.configure do |config|
     # ...rather than:
     #     # => "be bigger than 2"
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
+    expectations.max_formatted_output_length = 2000
 
     # show retry status in spec process
     config.verbose_retry = true
