@@ -32,6 +32,10 @@ module UclaMetadata
       index.as :stored_searchable, :facetable
     end
 
+    property :edition, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/editionStatement') do |index|
+      index.as :displayable
+    end
+
     property :editor, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/edt') do |index|
       index.as :stored_searchable, :facetable
     end
@@ -150,6 +154,10 @@ module UclaMetadata
     end
 
     property :caption, predicate: ::RDF::Vocab::SCHEMA.caption do |index|
+      index.as :stored_searchable
+    end
+
+    property :history, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/historyOfWork') do |index|
       index.as :stored_searchable
     end
 
@@ -287,6 +295,10 @@ module UclaMetadata
 
     property :finding_aid_url, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/findingAid') do |index|
       index.as :displayable
+    end
+
+    property :identifier_global, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/Identifier') do |index|
+      index.as :symbol
     end
 
     property :opac_url, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/unimarc/terms/ter%23e'), multiple: false do |index|
