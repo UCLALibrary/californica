@@ -83,6 +83,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       creator: ['Old name creator'],
       license: ['http://creativecommons.org/publicdomain/zero/1.0/'],
       calligrapher: ['Old Calligrapher'],
+      electronic_locator: ['Old External item record'],
       engraver: ['Old Engraver'],
       editor: ['Old Editor'],
       note: ['Old Note'],
@@ -198,7 +199,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Calligrapher').value).to eq 'Old Calligrapher'
       expect(find_field('Engraver').value).to eq 'Old Engraver'
       expect(find_field('Editor').value).to eq 'Old Editor'
-      expect(find_field('External item record').value)to eq 'Old External item record'
+      expect(find_field('External item record').value).to eq 'External item record'
       expect(find_field('Note').value).to eq 'Old Note'
       expect(find_field('Printmaker').value).to eq 'Old Printmaker'
       expect(find_field("Artist").value).to eq 'Old Artist'

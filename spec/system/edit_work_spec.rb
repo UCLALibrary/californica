@@ -150,7 +150,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Dimensions').value).to eq 'Old Dim'
       expect(find_field("Director").value).to eq 'Old Director'
       expect(find_field('Editor').value).to eq 'Old Editor'
-      expect(find_field('External item record').value)to eq 'Old External item record'
+      expect(find_field('External item record').value).to eq 'Old External item record'
       expect(find_field('Engraver').value).to eq 'Old Engraver'
       expect(find_field('Extent').value).to eq 'Old Extent'
       expect(find_field('Featured image').value).to eq 'Old Featured image'
