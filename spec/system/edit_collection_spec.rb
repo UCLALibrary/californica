@@ -83,7 +83,6 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       creator: ['Old name creator'],
       license: ['http://creativecommons.org/publicdomain/zero/1.0/'],
       calligrapher: ['Old Calligrapher'],
-      electronic_locator: ['Old External item record'],
       engraver: ['Old Engraver'],
       editor: ['Old Editor'],
       note: ['Old Note'],
