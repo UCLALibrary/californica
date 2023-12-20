@@ -119,7 +119,7 @@ class SolrDocument
   end
 
   def editor
-    self[:editor_tesim_tesim]
+    self[:editor_tesim]
   end
 
   def electronic_locator
