@@ -34,7 +34,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       director: ['Old Director'],
       edition: ['Old Edition'],
       editor: ['Old Editor'],
-      electronic_locator: ['Old External item record'],
+      electronic_locator: 'Old External item record',
       engraver: ['Old Engraver'],
       extent: ['Old Extent'],
       featured_image: 'Old Featured image',

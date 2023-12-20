@@ -216,6 +216,7 @@ RSpec.describe CalifornicaMapper do
         :dlcs_collection_name,
         :edition,
         :editor,
+        :electronic_locator,
         :engraver,
         :extent,
         :finding_aid_url,

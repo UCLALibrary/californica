@@ -37,7 +37,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       director: ['Director'],
       edition: ['Edition'],
       editor: ['Editor'],
-      electronic_locator: ['Old External item record'],
+      electronic_locator: 'Old External item record',
       engraver: ['engraver'],
       extent: ['extent'],
       finding_aid_url: ['Finding aid url'],

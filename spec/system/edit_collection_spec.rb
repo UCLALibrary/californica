@@ -25,7 +25,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       description: ['Old Desc'],
       dimensions: ['Old Dim'],
       edition: ['Old Edition'],
-      electronic_locator: ['Old External item record'], # "electronic_locator"
+      electronic_locator: 'Old External item record', # "electronic_locator"
       resource_type: ['http://id.loc.gov/vocabulary/resourceTypes/col'], # "collection"
       extent: ['Old Extent'],
       foliation: 'Old Foliation note',
