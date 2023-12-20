@@ -40,7 +40,7 @@ module UclaMetadata
       index.as :stored_searchable, :facetable
     end
 
-    property :electronic_locator, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/electronicLocator') do |index|
+    property :electronic_locator, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/electronicLocator'), multiple: false do |index|
       index.as :displayable
     end
 

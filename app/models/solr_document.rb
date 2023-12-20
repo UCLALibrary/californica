@@ -119,11 +119,11 @@ class SolrDocument
   end
 
   def editor
-    self[:editor_tesim]
+    self[:editor_tesim_tesim]
   end
 
   def electronic_locator
-    self[:electronic_locator]
+    self[:electronic_locator_ssi]
   end
 
   def engraver
