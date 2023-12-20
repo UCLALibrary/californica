@@ -259,7 +259,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     [parent_work.id]
   end
 
-# ---------------------------------------------------------
+  # ---------------------------------------------------------
 
   # Replace marc codes with double dashes with no surrounding spaces
   def architect
