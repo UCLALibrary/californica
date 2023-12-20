@@ -9,3 +9,5 @@ simple_form:
       rights_country: 'Rights (country of creation)'
       rights_holder: 'Rights Holder'
       services_contact: 'Rights services contact'
+      electronic_locator: 'External item record'
+      identifier_global: "Identifier"

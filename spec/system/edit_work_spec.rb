@@ -216,7 +216,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Uniform title').value).to eq 'Old Uniform title'
       expect(find_field('Edition').value).to eq 'Old Edition'
       expect(find_field('History').value).to eq 'Old History'
-      expect(find_field('Identifier global').value).to eq 'Old Identifier'
+      expect(find_field('Identifier').value).to eq 'Old Identifier'
 
       # Edit some fields in the form
       fill_in 'Title', with: 'New Title'

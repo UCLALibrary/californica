@@ -19,3 +19,6 @@ en:
           normalized_date_sim: 'Normalized Date'
           rights_country: 'Rights (country of creation)'
           services_contact: 'Rights services contact'
+          resp_statement: 'Statement of Responsibility'
+          electronic_locator: 'External item record'
+          identifier_global: "Identifier"
