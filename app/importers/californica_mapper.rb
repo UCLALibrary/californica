@@ -207,16 +207,192 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     }.freeze
   end
 
+  def access_copy
+    map_field(:access_copy).to_a.first
+  end
+
+  def ark
+    item_ark = Ark.ensure_prefix(map_field(:ark).to_a.first)
+    return if item_ark.blank?
+    item_ark.strip
+  end
+
+  # Only single value fields need to be defined
+  def binding_note
+    map_field(:binding_note).to_a.first
+  end
+
+  def collation
+    map_field(:collation).to_a.first
+  end
+
+  def condition_note
+    map_field(:condition_note).to_a.first
+  end
+
+  def foliation
+    map_field(:foliation).to_a.first
+  end
+
+  def iiif_manifest_url
+    map_field(:iiif_manifest_url).to_a.first
+  end
+
+  def opac_url
+    map_field(:opac_url).to_a.first
+  end
+
+  def masthead_parameters
+    map_field(:masthead_parameters).to_a.first
+  end
+
+  def representative_image
+    map_field(:representative_image).to_a.first
+  end
+
+  def featured_image
+    map_field(:featured_image).to_a.first
+  end
+
+  def tagline
+    map_field(:tagline).to_a.first
+  end
+
+  # Replace marc codes with double dashes with no surrounding spaces
+  def architect
+    map_field(:architect)&.map { |a| a.gsub(/ \$[a-z] /, ' ') }
+  end
+
+  # To avoid having to normalize data before import,
+  # if the collection is LADNN, hard-code the extent. (Story #111)
+  def extent
+    if ladnn?
+      ['1 photograph']
+    else
+      map_field(:extent)
+    end
+  end
+
+  # License is applied at import time, and only for specific collections
+  def license
+    if ladnn?
+      ["https://creativecommons.org/licenses/by/4.0/"]
+    else
+      # If it's populated, DLCS uses MARC IDs, not labels, so we don't need to map like w/ resource_type
+      map_field(:license)
+    end
+  end
+
+  # Replace marc codes with double dashes with no surrounding spaces
+  def photographer
+    map_field(:photographer)&.map { |a| a.gsub(/ \$[a-z] /, ' ') }
+  end
+
+  # Hard-code repository for LADNN collection. Story #121
+  def repository
+    if ladnn?
+      ['University of California, Los Angeles. Library. Department of Special Collections']
+    else
+      # Replace marc codes with double dashes and no surrounding spaces
+      map_field(:repository)&.map { |a| a.gsub(/ \$[a-z] /, ' ') }
+    end
+  end
+
+  # Normalize subject topic to remove MaRC codes (e.g., $z separators)
+  # Replace subject marc codes with double dashes with no surrounding spaces
+  def subject_topic
+    map_field(:subject_topic)&.map { |a| a.gsub(/ \$[a-z] /, '--') }
+  end
+
+  # Normalize subject to remove MaRC codes (e.g., $z separators)
+  # Replace subject marc codes with double dashes with no surrounding spaces
+  def subject
+    map_field(:subject)&.map { |a| a.gsub(/ \$[a-z] /, '--') }
+  end
+
+  # Normalize named subject to remove MaRC codes (e.g., $d separators)
+  # Replace named subject marc codes and their surrounding spaces with a single space
+  def named_subject
+    map_field(:named_subject)&.map { |a| a.gsub(/ \$[a-z] /, ' ') }
+  end
+
+  # Hard-code language for LADNN collection. Story #48
+  def language
+    if ladnn?
+      ['zxx'] # MARC code for 'No linguistic content'
+    else
+      # If it's populated, DLCS uses MARC IDs, not labels, so we don't need to map like w/ resource_type
+      map_field(:language)
+    end
+  end
+
+  def ladnn?
+    metadata['Project Name'] == 'Los Angeles Daily News Negatives'
+  end
+
+  def preservation_copy
+    path = map_field(:preservation_copy).first.to_s.strip.sub(/^\/+/, '')
+    if path.empty?
+      nil
+    elsif path.start_with?(/[^\/]+.in.library.ucla.edu\//)
+      # Standard format: must specify netapp volume
+      path
+    elsif path.start_with?('Masters/')
+      # Legacy standard format: everything starts with "Masters/"
+      'masters.in.library.ucla.edu/' + path.sub(/^\/?Masters\//, '')
+    else
+      # paths coming from DLCSExport
+      'masters.in.library.ucla.edu/dlmasters/' + path
+    end
+  end
+
+  def resource_type
+    map_field(:resource_type).to_a.map do |label|
+      term = Qa::Authorities::Local.subauthority_for('resource_types').all.find { |h| h[:label] == label }
+      term.blank? ? nil : term[:id]
+    end.compact
+  end
+
+  def iiif_text_direction
+    label = map_field(:iiif_text_direction).first
+    term = Qa::Authorities::Local.subauthority_for('iiif_text_directions').all.find { |h| h[:label] == label }
+    term.blank? ? nil : term[:id]
+  end
+
+  def iiif_viewing_hint
+    label = map_field(:iiif_viewing_hint).first
+    term = Qa::Authorities::Local.subauthority_for('iiif_viewing_hints').all.find { |h| h[:label] == label }
+    term.blank? ? nil : term[:id]
+  end
+
+  def iiif_range
+    map_field(:iiif_range).to_a.first
+  end
+
+  # The CSV file contains the label, so we'll find the
+  # corresponding ID to store on the work record.
+  # If the term isn't found in
+  # config/authorities/rights_statements.yml
+  # just return the value from the CSV file.  If it is
+  # not a valid value, it will eventually be rejected
+  # by the RightsStatementValidator.
+  def rights_statement
+    authority = Qa::Authorities::Local.subauthority_for('rights_statements')
+    rights_statement = map_field(:rights_statement).to_a.map do |label|
+      label = { 'pd' => 'public domain' }[label] || label # these values need to be mapped
+      term = authority.all.find { |h| h[:label] == label }
+      term.blank? ? label : term[:id]
+    end
+    rights_statement << authority.all.find { |h| h[:label] == 'unknown' }[:id] if rights_statement.empty?
+    rights_statement
+  end
+
   def map_field(name)
     return unless CALIFORNICA_TERMS_MAP.keys.include?(name)
 
     Array.wrap(CALIFORNICA_TERMS_MAP[name]).map do |source_field|
       metadata[source_field]&.split(DELIMITER)
     end.flatten.compact
-  end
-
-  def access_copy
-    map_field(:access_copy).to_a.first
   end
 
   # Determine what Collection this object should be part of.
@@ -246,11 +422,23 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     collection_return
   end
 
+  def sequence
+    metadata['Item Sequence']
+  end
+
+  def parent_ark
+    Ark.ensure_prefix(metadata['Parent ARK'])
+  end
+
   # Record the page sequence in the database so it's quick to access and sort.
   # At the end of an import for a multi-page work, we'll use these to order the ChildWorks.
   def record_page_sequence
     PageOrder.find_by(child: ark)&.destroy
     PageOrder.create(parent: parent_ark, child: ark, sequence: sequence)
+  end
+
+  def parent_work
+    Work.find_or_create_by_ark(parent_ark)
   end
 
   def in_works_ids
@@ -259,201 +447,11 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     [parent_work.id]
   end
 
-  # ---------------------------------------------------------
-
-  # Replace marc codes with double dashes with no surrounding spaces
-  def architect
-    map_field(:architect)&.map { |a| a.gsub(/ \$[a-z] /, ' ') }
-  end
-
-  def ark
-    item_ark = Ark.ensure_prefix(map_field(:ark).to_a.first)
-    return if item_ark.blank?
-    item_ark.strip
-  end
-
-  # Only single value fields need to be defined
-  def binding_note
-    map_field(:binding_note).to_a.first
-  end
-
-  def collation
-    map_field(:collation).to_a.first
-  end
-
-  def condition_note
-    map_field(:condition_note).to_a.first
+  def thumbnail_link
+    map_field(:thumbnail_link).to_a.first
   end
 
   def electronic_locator
     map_field(:electronic_locator).to_a.first
-  end
-
-  # To avoid having to normalize data before import,
-  # if the collection is LADNN, hard-code the extent. (Story #111)
-  def extent
-    if ladnn?
-      ['1 photograph']
-    else
-      map_field(:extent)
-    end
-  end
-
-  def featured_image
-    map_field(:featured_image).to_a.first
-  end
-
-  def foliation
-    map_field(:foliation).to_a.first
-  end
-
-  def iiif_manifest_url
-    map_field(:iiif_manifest_url).to_a.first
-  end
-
-  def iiif_range
-    map_field(:iiif_range).to_a.first
-  end
-
-  def iiif_text_direction
-    label = map_field(:iiif_text_direction).first
-    term = Qa::Authorities::Local.subauthority_for('iiif_text_directions').all.find { |h| h[:label] == label }
-    term.blank? ? nil : term[:id]
-  end
-
-  def iiif_viewing_hint
-    label = map_field(:iiif_viewing_hint).first
-    term = Qa::Authorities::Local.subauthority_for('iiif_viewing_hints').all.find { |h| h[:label] == label }
-    term.blank? ? nil : term[:id]
-  end
-
-  def ladnn?
-    metadata['Project Name'] == 'Los Angeles Daily News Negatives'
-  end
-
-  # Hard-code language for LADNN collection. Story #48
-  def language
-    if ladnn?
-      ['zxx'] # MARC code for 'No linguistic content'
-    else
-      # If it's populated, DLCS uses MARC IDs, not labels, so we don't need to map like w/ resource_type
-      map_field(:language)
-    end
-  end
-
-  # License is applied at import time, and only for specific collections
-  def license
-    if ladnn?
-      ["https://creativecommons.org/licenses/by/4.0/"]
-    else
-      # If it's populated, DLCS uses MARC IDs, not labels, so we don't need to map like w/ resource_type
-      map_field(:license)
-    end
-  end
-
-  def masthead_parameters
-    map_field(:masthead_parameters).to_a.first
-  end
-
-  def named_subject
-    map_field(:named_subject)&.map { |a| a.gsub(/ \$[a-z] /, ' ') }
-  end
-
-  def opac_url
-    map_field(:opac_url).to_a.first
-  end
-
-  def parent_ark
-    Ark.ensure_prefix(metadata['Parent ARK'])
-  end
-
-  def parent_work
-    Work.find_or_create_by_ark(parent_ark)
-  end
-
-  # Replace marc codes with double dashes with no surrounding spaces
-  def photographer
-    map_field(:photographer)&.map { |a| a.gsub(/ \$[a-z] /, ' ') }
-  end
-
-  def preservation_copy
-    path = map_field(:preservation_copy).first.to_s.strip.sub(/^\/+/, '')
-    if path.empty?
-      nil
-    elsif path.start_with?(/[^\/]+.in.library.ucla.edu\//)
-      # Standard format: must specify netapp volume
-      path
-    elsif path.start_with?('Masters/')
-      # Legacy standard format: everything starts with "Masters/"
-      'masters.in.library.ucla.edu/' + path.sub(/^\/?Masters\//, '')
-    else
-      # paths coming from DLCSExport
-      'masters.in.library.ucla.edu/dlmasters/' + path
-    end
-  end
-
-  def representative_image
-    map_field(:representative_image).to_a.first
-  end
-
-  # Hard-code repository for LADNN collection. Story #121
-  def repository
-    if ladnn?
-      ['University of California, Los Angeles. Library. Department of Special Collections']
-    else
-      # Replace marc codes with double dashes and no surrounding spaces
-      map_field(:repository)&.map { |a| a.gsub(/ \$[a-z] /, ' ') }
-    end
-  end
-
-  def resource_type
-    map_field(:resource_type).to_a.map do |label|
-      term = Qa::Authorities::Local.subauthority_for('resource_types').all.find { |h| h[:label] == label }
-      term.blank? ? nil : term[:id]
-    end.compact
-  end
-
-  # The CSV file contains the label, so we'll find the
-  # corresponding ID to store on the work record.
-  # If the term isn't found in
-  # config/authorities/rights_statements.yml
-  # just return the value from the CSV file.  If it is
-  # not a valid value, it will eventually be rejected
-  # by the RightsStatementValidator.
-  def rights_statement
-    authority = Qa::Authorities::Local.subauthority_for('rights_statements')
-    rights_statement = map_field(:rights_statement).to_a.map do |label|
-      label = { 'pd' => 'public domain' }[label] || label # these values need to be mapped
-      term = authority.all.find { |h| h[:label] == label }
-      term.blank? ? label : term[:id]
-    end
-    rights_statement << authority.all.find { |h| h[:label] == 'unknown' }[:id] if rights_statement.empty?
-    rights_statement
-  end
-
-  def sequence
-    metadata['Item Sequence']
-  end
-
-  # Normalize subject to remove MaRC codes (e.g., $z separators)
-  # Replace subject marc codes with double dashes with no surrounding spaces
-  def subject
-    map_field(:subject)&.map { |a| a.gsub(/ \$[a-z] /, '--') }
-  end
-
-  # Normalize subject topic to remove MaRC codes (e.g., $z separators)
-  # Replace subject marc codes with double dashes with no surrounding spaces
-  def subject_topic
-    map_field(:subject_topic)&.map { |a| a.gsub(/ \$[a-z] /, '--') }
-  end
-
-  # Normalize named subject to remove MaRC codes (e.g., $d separators)
-  # Replace named subject marc codes and their surrounding spaces with a single space
-  def tagline
-    map_field(:tagline).to_a.first
-  end
-
-  def thumbnail_link
-    map_field(:thumbnail_link).to_a.first
   end
 end
