@@ -25,14 +25,14 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       description: ['Old Desc'],
       dimensions: ['Old Dim'],
       edition: ['Old Edition'],
-      electronic_locator: 'Old External item record', # "electronic_locator"
+      electronic_locator: ['Old External item record'], # "electronic_locator"
       resource_type: ['http://id.loc.gov/vocabulary/resourceTypes/col'], # "collection"
       extent: ['Old Extent'],
       foliation: 'Old Foliation note',
       funding_note: ['Old Fund Note'],
       genre: ['Old Genre'],
       history: ['Old History'],
-      identifier: ['Old Identifier'],
+      identifier_global: ['Old Identifier'],
       iiif_manifest_url: 'https://test.iiif.library.ucla.edu/collections/ark%3A%2F21198%2Fz11c574k',
       iiif_viewing_hint: 'Old Iiif viewing hint',
       iiif_range: 'Old IIIF Range',
