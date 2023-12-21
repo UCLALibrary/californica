@@ -22,7 +22,7 @@ en:
           date_uploaded_dtsi: Date Uploaded
           description_tesim: Description
           file_format_tesim: File Format
-          identifier_tesim: Identifier
+          identifier_global: Identifier
           keyword_tesim: Keyword
           language_tesim: Language
           license_tesim: License
@@ -39,7 +39,7 @@ en:
           date_uploaded_dtsi: Date Uploaded
           description_tesim: Description
           file_format_tesim: File Format
-          identifier_tesim: Identifier
+          identifier_global: Identifier
           keyword_tesim: Keyword
           language_tesim: Language
           license_tesim: License
