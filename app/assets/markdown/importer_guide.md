@@ -40,6 +40,7 @@
     - [Format.medium](#formatmedium)
     - [Genre](#genre)
     - [Host](#host)
+    - [Identifier](#identifier_global)
     - [IIIF Access URL](#iiif-access-url)
     - [IIIF Range (for future use in Festerize to generate Ranges)](#iiif-range-for-future-use-in-festerize-to-generate-ranges)
     - [Illustrations note](#illustrations-note)

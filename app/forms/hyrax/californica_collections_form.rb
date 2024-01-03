@@ -144,7 +144,6 @@ module Hyrax
         :genre,
         :history,
         :host,
-        :identifier,
         :identifier_global,
         :iiif_manifest_url,
         :iiif_range,

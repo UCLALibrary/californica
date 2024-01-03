@@ -44,6 +44,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       genre: ['Old Genre'],
       history: ['Old History'],
       host: ['Old Host'],
+      identifier_global: ['Old Identifier'],
       iiif_manifest_url: 'https://test.iiif.library.ucla.edu/collections/ark%3A%2F21198%2Fz11c574k',
       iiif_range: 'Old Iiif range',
       iiif_text_direction: 'http://iiif.io/api/presentation/2#leftToRightDirection', # "left-to-right"
@@ -157,6 +158,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Funding Note').value).to eq 'Old Fund Note'
       expect(find_field('Genre').value).to eq 'Old Genre'
       expect(find_field("Host").value).to eq 'Old Host'
+      expect(find_field('Identifier').value).to eq 'Old Identifier'
       expect(find_field('Iiif manifest url').value).to eq 'https://test.iiif.library.ucla.edu/collections/ark%3A%2F21198%2Fz11c574k'
       expect(page).to have_select('Iiif text direction', selected: 'left-to-right', multiple: false)
       expect(find_field('Illuminator').value).to eq 'Old Illuminator'
@@ -213,7 +215,6 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Uniform title').value).to eq 'Old Uniform title'
       expect(find_field('Edition').value).to eq 'Old Edition'
       expect(find_field('History').value).to eq 'Old History'
-      expect(find_field('Identifier').value).to eq 'Old Identifier'
 
       # Edit some fields in the form
       fill_in 'Title', with: 'New Title'

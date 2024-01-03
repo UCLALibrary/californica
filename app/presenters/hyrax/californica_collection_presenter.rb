@@ -46,7 +46,6 @@ module Hyrax
         :iiif_viewing_hint,
         :illustrations_note,
         :illustrator,
-        :identifier,
         :illuminator,
         :interviewer,
         :interviewee,
