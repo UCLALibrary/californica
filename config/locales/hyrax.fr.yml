@@ -21,7 +21,7 @@ fr:
           date_uploaded_dtsi: Date de téléchargement
           description_tesim: La description
           file_format_tesim: Format de fichier
-          identifier_tesim: Identificateur
+          identifier_global_ssim: Identificateur
           keyword_tesim: Mot-clé
           language_tesim: La langue
           license_tesim: Licence
@@ -37,7 +37,7 @@ fr:
           date_uploaded_dtsi: Date de téléchargement
           description_tesim: La description
           file_format_tesim: Format de fichier
-          identifier_tesim: Identificateur
+          identifier_global_ssim: Identificateur
           keyword_tesim: Mot-clé
           language_tesim: La langue
           license_tesim: Licence

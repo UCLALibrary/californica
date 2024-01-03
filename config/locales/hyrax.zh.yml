@@ -21,7 +21,7 @@ zh:
           date_uploaded_dtsi: 日期上传
           description_tesim: 描述
           file_format_tesim: 文件格式
-          identifier_tesim: 识别码
+          identifier_global_ssim: 识别码
           keyword_tesim: 关键词
           language_tesim: 语言
           license_tesim: 执照
@@ -37,7 +37,7 @@ zh:
           date_uploaded_dtsi: 日期上传
           description_tesim: 描述
           file_format_tesim: 文件格式
-          identifier_tesim: 识别码
+          identifier_global_ssim: 识别码
           keyword_tesim: 关键词
           language_tesim: 语言
           license_tesim: 执照

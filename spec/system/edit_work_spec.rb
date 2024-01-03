@@ -44,7 +44,6 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       genre: ['Old Genre'],
       history: ['Old History'],
       host: ['Old Host'],
-      identifier_global: ['Old Identifier'],
       iiif_manifest_url: 'https://test.iiif.library.ucla.edu/collections/ark%3A%2F21198%2Fz11c574k',
       iiif_range: 'Old Iiif range',
       iiif_text_direction: 'http://iiif.io/api/presentation/2#leftToRightDirection', # "left-to-right"

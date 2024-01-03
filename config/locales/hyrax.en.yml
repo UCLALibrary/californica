@@ -22,7 +22,7 @@ en:
           date_uploaded_dtsi: Date Uploaded
           description_tesim: Description
           file_format_tesim: File Format
-          identifier_tesim: Identifier
+          identifier_global_ssim: Identifier
           keyword_tesim: Keyword
           language_tesim: Language
           license_tesim: License
@@ -38,7 +38,7 @@ en:
           date_uploaded_dtsi: Date Uploaded
           description_tesim: Description
           file_format_tesim: File Format
-          identifier_tesim: Identifier
+          identifier_global_ssim: Identifier
           keyword_tesim: Keyword
           language_tesim: Language
           license_tesim: License
@@ -64,6 +64,7 @@ en:
         rights_holder: 'Rights Holder'
         rights_statement: 'Copyright Status'
         services_contact: 'Rights services contact'
+        identifier_global: "Identifier"
   hyrax:
     account_name: My Institution Account Id
     dashboard:
