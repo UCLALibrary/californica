@@ -113,7 +113,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'license_tesim'
     config.add_show_field 'resource_type_tesim', label: 'Resource Type'
     config.add_show_field 'format_tesim'
-    config.add_show_field 'identifier_ssim'
+    config.add_show_field 'identifier_ssim', label: 'Identifier'
     config.add_show_field 'ark_ssi', label: 'ARK'
     config.add_show_field 'access_copy_ssi'
 
