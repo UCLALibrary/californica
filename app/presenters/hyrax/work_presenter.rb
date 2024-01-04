@@ -38,7 +38,6 @@ module Hyrax
       :geographic_coordinates,
       :history,
       :host,
-      :identifier_global,
       :iiif_manifest_url,
       :iiif_range,
       :illustrations_note,

@@ -21,7 +21,7 @@ RSpec.describe Hyrax::ChildWorkForm do
       :genre,
       :history,
       :host,
-      :identifier_global,
+      :identifier,
       :latitude,
       :local_identifier,
       :local_rights_statement,

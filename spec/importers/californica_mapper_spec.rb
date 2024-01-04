@@ -160,7 +160,7 @@ RSpec.describe CalifornicaMapper do
       "Related Items" => "Related Items-1", # related_to
       "Edition" => "Edition-001", # edition
       "History" => "History-1", # history
-      "Identifier" => "Identifier-1" # identifier_global
+      "Identifier" => "Identifier-1" # identifier
     }
   end
 
@@ -223,7 +223,6 @@ RSpec.describe CalifornicaMapper do
         :funding_note,
         :genre,
         :history,
-        :identifier_global,
         :iiif_manifest_url,
         :iiif_viewing_hint,
         :illuminator,

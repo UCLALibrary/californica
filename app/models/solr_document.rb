@@ -166,10 +166,6 @@ class SolrDocument
     self[:human_readable_related_record_title_ssm]
   end
 
-  def identifier_global
-    self[:identifier_global_ssim]
-  end
-
   def iiif_manifest_url
     self[:iiif_manifest_url_ssi] || ""
   end

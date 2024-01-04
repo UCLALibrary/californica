@@ -45,7 +45,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       genre: ['genre'],
       history: ['History'],
       host: ['Host'],
-      identifier_global: ['Identifier'],
+      identifier: ['Identifier'],
       iiif_text_direction: 'iiif_text_direction',
       iiif_viewing_hint: 'iiif_viewing_hint',
       illustrator: ['illustrator'],
@@ -177,8 +177,8 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   it 'has host' do
     expect(page).to match(/host/)
   end
-  it 'has identifier_global' do
-    expect(page).to match(/identifier_global/)
+  it 'has identifierl' do
+    expect(page).to match(/identifier/)
   end
   it 'has interviewee' do
     expect(page).to match(/interviewee/)

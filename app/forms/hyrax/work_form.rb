@@ -39,7 +39,6 @@ module Hyrax
       :genre,
       :history,
       :host,
-      :identifier_global,
       :iiif_manifest_url,
       :iiif_range,
       :iiif_text_direction,

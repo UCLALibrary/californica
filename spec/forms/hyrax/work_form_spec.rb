@@ -41,7 +41,7 @@ RSpec.describe Hyrax::WorkForm do
       :genre,
       :history,
       :host,
-      :identifier_global,
+      :identifier,
       :iiif_manifest_url,
       :iiif_range,
       :iiif_text_direction,

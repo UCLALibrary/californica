@@ -21,7 +21,7 @@ es:
           date_uploaded_dtsi: Fecha de Subida
           description_tesim: Descripción
           file_format_tesim: Formato de Archivo
-          identifier_tesim: Identificador
+          identifier_ssim: Identificador
           keyword_tesim: Palabra clave
           language_tesim: Idioma
           license_tesim: Licencia
@@ -37,7 +37,7 @@ es:
           date_uploaded_dtsi: Fecha de Subida
           description_tesim: Descripción
           file_format_tesim: Formato de Archivo
-          identifier_tesim: Identificador
+          identifier_ssim: Identificador
           keyword_tesim: Palabra clave
           language_tesim: Idioma
           license_tesim: Licencia

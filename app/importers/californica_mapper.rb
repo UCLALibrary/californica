@@ -47,7 +47,6 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     genre: ["Type.genre", "Genre"],
     history: ["History"],
     host: ["Host", "Name.host"],
-    identifier_global: ["Identifier"],
     iiif_manifest_url: "IIIF Manifest URL",
     iiif_range: "IIIF Range",
     iiif_text_direction: "Text direction",

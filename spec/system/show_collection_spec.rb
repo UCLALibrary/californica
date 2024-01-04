@@ -28,7 +28,7 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       funding_note: ['Old Fund Note'],
       genre: ['Old Genre'],
       history: ['Old History'],
-      identifier_global: ['Old Identifier'],
+      identifier: ['Old Identifier'],
       iiif_manifest_url: 'Old Iiif manifest url',
       iiif_range: 'Old Iiif range',
       iiif_viewing_hint: 'Old Iiif viewing hint',
