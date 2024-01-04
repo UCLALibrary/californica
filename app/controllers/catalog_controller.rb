@@ -113,7 +113,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'license_tesim'
     config.add_show_field 'resource_type_tesim', label: 'Resource Type'
     config.add_show_field 'format_tesim'
-    config.add_show_field 'identifier_ssim', label: 'Identifier'
+    config.add_show_field 'identifier_tesim', label: 'Identifier'
     config.add_show_field 'ark_ssi', label: 'ARK'
     config.add_show_field 'access_copy_ssi'
 
@@ -220,7 +220,7 @@ class CatalogController < ApplicationController
     # solr request handler? The one set in config[:default_solr_parameters][:qt],
     # since we aren't specifying it otherwise.
     config.add_search_field('all_fields', label: 'All Fields') do |field|
-      search_fields = 'title_tesim subject_tesim named_subject_tesim location_tesim description_tesim caption_tesim identifier_ssim local_identifier_ssim ark_ssi normalized_date_tesim architect_tesim photographer_tesim'
+      search_fields = 'title_tesim subject_tesim named_subject_tesim location_tesim description_tesim caption_tesim identifier_tesim local_identifier_ssim ark_ssi normalized_date_tesim architect_tesim photographer_tesim'
 
       field.solr_parameters = {
         qf: search_fields,
