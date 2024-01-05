@@ -37,6 +37,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       director: ['Director'],
       edition: ['Edition'],
       editor: ['Editor'],
+      electronic_locator: 'External item record',
       engraver: ['engraver'],
       extent: ['extent'],
       finding_aid_url: ['Finding aid url'],
@@ -152,6 +153,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   end
   it 'has editor' do
     expect(page).to match(/editor/)
+  end
+  it 'has electronic_locator' do
+    expect(page).to match(/external_item_record/)
   end
   it 'has engraver' do
     expect(page).to match(/engraver/)

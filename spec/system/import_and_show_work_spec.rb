@@ -56,6 +56,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "uclamss_1387_b112_40911-1" # local_identifier
     expect(page).to have_content "[between 1942-1947]" # date_created
     expect(page).to have_content "Editor-1"
+    expect(page).to have_content "http://test.url/external/item/record" # electronic_locator
     expect(page).to have_content "Engraver-1"
     expect(page).to have_content "1 photograph" # extent
     expect(page).to have_content "Fake Medium" # medium
