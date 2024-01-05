@@ -10,8 +10,7 @@ module UclaMetadata
   end
 
   included do
-
-  # Use the custom Solrizer descriptor for electronic_locator
+    # Use the custom Solrizer descriptor for electronic_locator
     property :electronic_locator, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/electronicLocator'), multiple: false do |index|
       index.as CustomSolrizerDescriptor.single_valued_stored
     end

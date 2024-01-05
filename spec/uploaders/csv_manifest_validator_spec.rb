@@ -212,6 +212,7 @@ RSpec.describe CsvManifestValidator, type: :model do
         "Format.extent",
         "Format.medium",
         "Genre",
+        "Identifier",
         "IIIF Access URL",
         "IIIF Manifest URL",
         "IIIF Range",

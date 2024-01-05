@@ -154,7 +154,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   it 'has editor' do
     expect(page).to match(/editor/)
   end
-  it 'has electronic_locator' do
+  it 'has external_item_record' do
     expect(page).to match(/external_item_record/)
   end
   it 'has engraver' do
