@@ -140,6 +140,11 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content 'Edition-2' # edition
     expect(page).to have_content 'History-2' # history
 
+    expect(page).to have_content 'Archive'
+    expect(page).to have_content 'Archival Collection Number',
+    expect(page).to have_content 'Box',
+    expect(page).to have_content 'Folder'
+
     # displays expected sfields on search results page
     visit("catalog?search_field=all_fields&q=")
     expect(page).to have_content work.title.first
