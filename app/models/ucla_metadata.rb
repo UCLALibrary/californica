@@ -404,11 +404,11 @@ module UclaMetadata
       index.as CustomSolrizerDescriptor.single_valued_stored
     end
 
-    property :box, predicate: ::RDF::URI.intern('https://bibfra.me/view/archive/archive/Box/'), multiple: false do |index|
+    property :box, predicate: ::RDF::URI.intern('https://bibfra.me/view/archive/archive/Box'), multiple: false do |index|
       index.as CustomSolrizerDescriptor.single_valued_stored
     end
 
-    property :folder, predicate: ::RDF::URI.intern('https://bibfra.me/view/archive/archive/Folder/'), multiple: false do |index|
+    property :folder, predicate: ::RDF::URI.intern('https://bibfra.me/view/archive/archive/Folder'), multiple: false do |index|
       index.as CustomSolrizerDescriptor.single_valued_stored
     end
   end
