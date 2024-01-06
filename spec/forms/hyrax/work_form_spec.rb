@@ -101,7 +101,11 @@ RSpec.describe Hyrax::WorkForm do
       :thumbnail_link,
       :toc,
       :translator,
-      :uniform_title
+      :uniform_title,
+      :archive,
+      :archive_no,
+      :box,
+      :folder
     )
   end
 
