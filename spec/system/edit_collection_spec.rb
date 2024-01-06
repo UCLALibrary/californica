@@ -108,10 +108,10 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       format_book: ['Old Format'],
       related_to: ['Old Related Items'],
       related_record: ['Old Related Records'],
-      archive: 'Archive',
-      archive_no: 'Archival Collection Number',
-      box: 'Box',
-      folder: 'Folder'
+      archive: 'Old Archive',
+      archive_no: 'Old Archival Collection Number',
+      box: 'Old Box',
+      folder: 'Old Folder'
     }
   end
 
