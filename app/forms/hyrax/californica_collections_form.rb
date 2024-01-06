@@ -92,7 +92,11 @@ module Hyrax
       :summary,
       :toc,
       :translator,
-      :uniform_title]
+      :uniform_title,
+      :archive,
+      :archive_no,
+      :box,
+      :folder]
 
     self.required_fields = [:title, :ark]
 
@@ -209,6 +213,10 @@ module Hyrax
         :toc,
         :translator,
         :uniform_title,
+        :archive,
+        :archive_no,
+        :box,
+        :folder
       ]
     end
   end

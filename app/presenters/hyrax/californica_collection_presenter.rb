@@ -106,7 +106,11 @@ module Hyrax
         :translator,
         :toc,
         :total_items,
-        :uniform_title
+        :uniform_title,
+        :archive,
+        :archive_no,
+        :box,
+        :folder
       ]
     end
   end

@@ -202,6 +202,10 @@ class CatalogController < ApplicationController
     config.add_show_field 'tagline_ssi'
     config.add_show_field 'series_tesim'
     config.add_show_field 'local_rights_statement_ssm' # This invokes License renderer from hyrax gem
+    config.add_show_field 'archive_tesi'
+    config.add_show_field 'archive_no_tesi'
+    config.add_show_field 'box_isi'
+    config.add_show_field 'folder_isi'
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
@@ -705,6 +709,38 @@ class CatalogController < ApplicationController
         pf: solr_name
       }
     end
+
+    # config.add_search_field('archive') do |field|
+    #   solr_name = solr_name('archive', :single_valued_stored)
+    #   field.solr_local_parameters = {
+    #     qf: solr_name,
+    #     pf: solr_name
+    #   }
+    # end
+
+    # config.add_search_field('archive_no') do |field|
+    #   solr_name = solr_name('archive_no', :single_valued_stored)
+    #   field.solr_local_parameters = {
+    #     qf: solr_name,
+    #     pf: solr_name
+    #   }
+    # end
+
+    # config.add_search_field('box') do |field|
+    #   solr_name = solr_name('box', :single_valued_stored)
+    #   field.solr_local_parameters = {
+    #     qf: solr_name,
+    #     pf: solr_name
+    #   }
+    # end
+
+    # config.add_search_field('folder') do |field|
+    #   solr_name = solr_name('folder', :single_valued_stored)
+    #   field.solr_local_parameters = {
+    #     qf: solr_name,
+    #     pf: solr_name
+    #   }
+    # end
 
     # "sort results by" select (pulldown)
     # label in pulldown is followed by the name of the SOLR field to sort by and

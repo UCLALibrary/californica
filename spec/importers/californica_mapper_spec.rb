@@ -293,7 +293,11 @@ RSpec.describe CalifornicaMapper do
         :printer,
         :researcher,
         :related_to,
-        :related_record
+        :related_record,
+        :archive,
+        :archive_no,
+        :box,
+        :folder
       )
     end
   end

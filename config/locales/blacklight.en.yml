@@ -14,6 +14,7 @@ en:
           rights_country: 'Rights (country of creation)'
           services_contact: 'Rights services contact'
           electronic_locator: 'External item record'
+          archive_no: 'Archival Collection Number'
         show:
           named_subject: 'Names'
           repository_sim: 'Repository'
@@ -21,3 +22,4 @@ en:
           rights_country: 'Rights (country of creation)'
           services_contact: 'Rights services contact'
           electronic_locator: 'External item record'
+          archive_no: 'Archival Collection Number'

@@ -341,7 +341,11 @@ RSpec.describe CsvManifestValidator, type: :model do
         "Edition",
         "History",
         "External item record",
-        "View Record"
+        "View Record",
+        "Archive",
+        "Archival Collection Number",
+        "Box",
+        "Folder"
       )
     end
   end

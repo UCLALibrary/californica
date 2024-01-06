@@ -30,6 +30,7 @@ en:
           rights_statement_tesim: Rights Statement
           subject_tesim: Subject
           electronic_locator: External item record
+          archive_no: Archival Collection Number
         show:
           based_near_tesim: Based Near
           contributor_tesim: Contributor
@@ -49,6 +50,7 @@ en:
           subject: Subjects
           title_tesim: Title
           electronic_locator: External item record
+          archive_no: Archival Collection Number
   simple_form:
     hints:
       defaults:

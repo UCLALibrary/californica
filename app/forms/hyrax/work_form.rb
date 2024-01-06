@@ -98,7 +98,11 @@ module Hyrax
       :thumbnail_link,
       :toc,
       :translator,
-      :uniform_title
+      :uniform_title,
+      :archive,
+      :archive_no,
+      :box,
+      :folder
     ]
     self.terms -= [:based_near]
     self.required_fields = [:title, :ark, :rights_statement]

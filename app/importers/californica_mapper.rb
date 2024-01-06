@@ -134,7 +134,11 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     title: "Title",
     toc: ["Table of Contents", "Description.tableOfContents"],
     translator: ["Translator", "Name.translator"],
-    uniform_title: "AltTitle.uniform"
+    uniform_title: "AltTitle.uniform",
+    archive: "Archive",
+    archive_no: "Archival Collection Number",
+    box: "Box",
+    folder: "Folder"
   }.freeze
 
   DELIMITER = '|~|'
@@ -453,5 +457,21 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
   def electronic_locator
     map_field(:electronic_locator).to_a.first
+  end
+
+  def archive
+    map_field(:archive).to_a.first
+  end
+
+  def archive_no
+    map_field(:archive_no).to_a.first
+  end
+
+  def box
+    map_field(:box).to_a.first
+  end
+
+  def folder
+    map_field(:folder).to_a.first
   end
 end

@@ -395,6 +395,22 @@ module UclaMetadata
     property :local_rights_statement, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/UsePolicy') do |index|
       index.as :displayable
     end
+
+    property :archive, predicate: ::RDF::URI.intern('https://bibfra.me/view/archive/lite/Archive'), multiple: false do |index|
+      index.as CustomSolrizerDescriptor.single_valued_stored
+    end
+
+    property :archive_no, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/AccessionNumber'), multiple: false do |index|
+      index.as CustomSolrizerDescriptor.single_valued_stored
+    end
+
+    property :box, predicate: ::RDF::URI.intern('https://bibfra.me/view/archive/archive/Box/'), multiple: false do |index|
+      index.as CustomSolrizerDescriptor.single_valued_stored
+    end
+
+    property :folder, predicate: ::RDF::URI.intern('https://bibfra.me/view/archive/archive/Folder/'), multiple: false do |index|
+      index.as CustomSolrizerDescriptor.single_valued_stored
+    end
   end
 end
 

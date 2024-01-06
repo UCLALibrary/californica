@@ -96,6 +96,10 @@ module Hyrax
       :toc,
       :iiif_text_direction,
       :uniform_title,
+      :archive,
+      :archive_no,
+      :box,
+      :folder,
       to: :solr_document
     )
   end
