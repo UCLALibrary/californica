@@ -234,13 +234,13 @@ class CatalogController < ApplicationController
     # of Solr search fields.
     # creator, title, description, publisher, date_created,
     # subject, language, resource_type, format, identifier, based_near,
-    config.add_search_field('contributor') do |field|
-      # solr_parameters hash are sent to Solr as ordinary url query params.
+    # solr_parameters hash are sent to Solr as ordinary url query params.
+    # :solr_local_parameters will be sent using Solr LocalParams
+    # syntax, as eg {! qf=$title_qf }. This is neccesary to use
+    # Solr parameter de-referencing like $title_qf.
+    # See: http://wiki.apache.org/solr/LocalParams
 
-      # :solr_local_parameters will be sent using Solr LocalParams
-      # syntax, as eg {! qf=$title_qf }. This is neccesary to use
-      # Solr parameter de-referencing like $title_qf.
-      # See: http://wiki.apache.org/solr/LocalParams
+    config.add_search_field('contributor') do |field|
       solr_name = solr_name('contributor', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
