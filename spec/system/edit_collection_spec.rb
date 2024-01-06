@@ -225,9 +225,9 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Format book').value).to eq 'Old Format'
       expect(find_field('Related to').value).to eq 'Old Related Items'
       expect(find_field('Related record').value).to eq 'Old Related Records'
-      expect(find_field('Archive').value).to eq 'Old Archive',
-      expect(find_field('Archival Collection Number').value).to eq 'Old Archival Collection Number',
-      expect(find_field('Box').value).to eq 'Old Box',
+      expect(find_field('Archive').value).to eq 'Old Archive'
+      expect(find_field('Archival Collection Number').value).to eq 'Old Archival Collection Number'
+      expect(find_field('Box').value).to eq 'Old Box'
       expect(find_field('Folder').value).to eq 'Old Folder'
 
       # Edit some fields in the form
