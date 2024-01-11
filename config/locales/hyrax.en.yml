@@ -65,6 +65,7 @@ en:
         rights_holder: 'Rights Holder'
         rights_statement: 'Copyright Status'
         services_contact: 'Rights services contact'
+        electronic_locator: External item record
   hyrax:
     account_name: My Institution Account Id
     dashboard:
