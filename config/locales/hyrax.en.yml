@@ -29,7 +29,6 @@ en:
           publisher_tesim: Publisher
           rights_statement_tesim: Rights Statement
           subject_tesim: Subject
-          electronic_locator: External item record
         show:
           based_near_tesim: Based Near
           contributor_tesim: Contributor
@@ -66,7 +65,6 @@ en:
         rights_holder: 'Rights Holder'
         rights_statement: 'Copyright Status'
         services_contact: 'Rights services contact'
-        electronic_locator: External item record
   hyrax:
     account_name: My Institution Account Id
     dashboard:
