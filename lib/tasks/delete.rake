@@ -8,7 +8,7 @@ namespace :californica do
     rescue => e
       puts "An error occurred: #{e.message}"
     end
-    
+
     puts('Done!')
   end
 
