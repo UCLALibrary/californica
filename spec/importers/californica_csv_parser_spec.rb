@@ -175,7 +175,9 @@ RSpec.describe CalifornicaCsvParser do
        'Related Records',
        'Edition',
        'History',
-       'Identifier']
+       'Identifier',
+       'External item record',
+       'View Record']
     end
     # order of the csv headers should be mainted spec/fixtures/example.csv.
 
