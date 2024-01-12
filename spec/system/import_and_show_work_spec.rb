@@ -56,6 +56,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "uclamss_1387_b112_40911-1" # local_identifier
     expect(page).to have_content "[between 1942-1947]" # date_created
     expect(page).to have_content "Editor-1"
+    expect(page).to have_content "http://test.url/external/item/record" # electronic_locator
     expect(page).to have_content "Engraver-1"
     expect(page).to have_content "1 photograph" # extent
     expect(page).to have_content "Fake Medium" # medium
@@ -78,6 +79,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "left-to-right" # iiif_text_direction
     expect(page).to have_content "Mexican American Catholics" # uniform_title
     expect(page).to have_content "clusc_1_1_00010432a.tif" # preservation_copy
+    expect(page).to have_content "identifier" # identifier
     expect(page).to have_content "iiif-range" # iiif_range
     expect(page).to have_content "illustration-note" # illustrations_note
     expect(page).to have_content "Illustrator-1" # illustrator
@@ -138,7 +140,6 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "Local rights statement-1" # local_rights_statement
     expect(page).to have_content 'Edition-2' # edition
     expect(page).to have_content 'History-2' # history
-    expect(page).to have_content 'Identifier-2' # identifier_global
 
     # displays expected sfields on search results page
     visit("catalog?search_field=all_fields&q=")

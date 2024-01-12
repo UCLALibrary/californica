@@ -113,7 +113,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'license_tesim'
     config.add_show_field 'resource_type_tesim', label: 'Resource Type'
     config.add_show_field 'format_tesim'
-    config.add_show_field 'identifier_tesim'
+    config.add_show_field 'identifier_tesim', label: 'Identifier'
     config.add_show_field 'ark_ssi', label: 'ARK'
     config.add_show_field 'access_copy_ssi'
 
@@ -137,6 +137,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'director_tesim'
     config.add_show_field 'edition_ssm', label: 'Edition'
     config.add_show_field 'editor_tesim'
+    config.add_show_field 'electronic_locator_ss', label: 'External item record'
     config.add_show_field 'engraver_tesim'
     config.add_show_field 'extent_tesim'
     config.add_show_field 'finding_aid_url_ssm'
@@ -146,7 +147,6 @@ class CatalogController < ApplicationController
     config.add_show_field 'genre_tesim'
     config.add_show_field 'history_tesim', label: 'History'
     config.add_show_field 'host_tesim'
-    config.add_show_field 'identifier_global_ssim', label: 'Identifier'
     config.add_show_field 'iiif_manifest_url_ssi'
     config.add_show_field 'iiif_range_ssi'
     config.add_show_field 'iiif_viewing_hint_ssi'
@@ -234,13 +234,13 @@ class CatalogController < ApplicationController
     # of Solr search fields.
     # creator, title, description, publisher, date_created,
     # subject, language, resource_type, format, identifier, based_near,
-    config.add_search_field('contributor') do |field|
-      # solr_parameters hash are sent to Solr as ordinary url query params.
+    # solr_parameters hash are sent to Solr as ordinary url query params.
+    # :solr_local_parameters will be sent using Solr LocalParams
+    # syntax, as eg {! qf=$title_qf }. This is neccesary to use
+    # Solr parameter de-referencing like $title_qf.
+    # See: http://wiki.apache.org/solr/LocalParams
 
-      # :solr_local_parameters will be sent using Solr LocalParams
-      # syntax, as eg {! qf=$title_qf }. This is neccesary to use
-      # Solr parameter de-referencing like $title_qf.
-      # See: http://wiki.apache.org/solr/LocalParams
+    config.add_search_field('contributor') do |field|
       solr_name = solr_name('contributor', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
