@@ -2,7 +2,19 @@
 module UclaMetadata
   extend ActiveSupport::Concern
 
+  # Custom module to extend Solrizer
+  module CustomSolrizerDescriptor
+    def self.single_valued_stored
+      @single_valued_stored ||= Solrizer::Descriptor.new(:string, :stored)
+    end
+  end
+
   included do
+    # Use the custom Solrizer descriptor for electronic_locator
+    property :electronic_locator, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/electronicLocator'), multiple: false do |index|
+      index.as CustomSolrizerDescriptor.single_valued_stored
+    end
+
     property :ark, predicate: ::RDF::Vocab::DC11.identifier, multiple: false do |index|
       index.as :stored_sortable
     end
@@ -295,10 +307,6 @@ module UclaMetadata
 
     property :finding_aid_url, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/findingAid') do |index|
       index.as :displayable
-    end
-
-    property :identifier_global, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/Identifier') do |index|
-      index.as :symbol
     end
 
     property :opac_url, predicate: ::RDF::URI.intern('http://iflastandards.info/ns/unimarc/terms/ter%23e'), multiple: false do |index|
