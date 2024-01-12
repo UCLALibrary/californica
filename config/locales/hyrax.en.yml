@@ -47,6 +47,7 @@ en:
           subject_tesim: Subject
           subject: Subjects
           title_tesim: Title
+          electronic_locator: External item record
   simple_form:
     hints:
       defaults:
@@ -64,6 +65,7 @@ en:
         rights_holder: 'Rights Holder'
         rights_statement: 'Copyright Status'
         services_contact: 'Rights services contact'
+        electronic_locator: External item record
   hyrax:
     account_name: My Institution Account Id
     dashboard:

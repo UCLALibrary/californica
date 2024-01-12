@@ -122,6 +122,10 @@ class SolrDocument
     self[:editor_tesim]
   end
 
+  def electronic_locator
+    self[:electronic_locator_ss]
+  end
+
   def engraver
     self[:engraver_tesim]
   end
@@ -164,10 +168,6 @@ class SolrDocument
 
   def human_readable_related_record_title
     self[:human_readable_related_record_title_ssm]
-  end
-
-  def identifier_global
-    self[:identifier_global_ssim]
   end
 
   def iiif_manifest_url
