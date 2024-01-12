@@ -14,4 +14,4 @@ jobs:
     - name: Jenkins webhook
       uses: enflo/curl-action@fabe347922c7a9e88bafa15c4b7d6326ea802695
       with:
-        curl: 'https://${{ secrets.JENKINS_USER }}@${{ secrets.JENKINS_HOST }}/job/DeployCalifornica/buildWithParameters?GIT_BRANCH=${{ github.ref_name }}&cause=GitHub+Action+Build+with+tag&DEPLOY_HOST=s-w-californicaweb01.library.ucla.edu&token=${{ secrets.JENKINS_API_CALIFORNICA_TOKEN }}'
+        curl: 'https://${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_AUTH_TOKEN }}@${{ secrets.JENKINS_HOST }}/job/DeployCalifornica/buildWithParameters?GIT_BRANCH=${{ github.ref_name }}&cause=GitHub+Action+Build+with+tag&DEPLOY_HOST=s-w-californicaweb01.library.ucla.edu'
