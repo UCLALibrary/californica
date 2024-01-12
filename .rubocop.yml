@@ -34,6 +34,7 @@ Metrics/ClassLength:
     - app/uploaders/csv_manifest_validator.rb
     - app/indexers/work_indexer.rb
     - app/presenters/hyrax/californica_collection_presenter.rb
+    - app/lib/californica/deleter.rb
 
 Metrics/BlockLength:
   Enabled: true
