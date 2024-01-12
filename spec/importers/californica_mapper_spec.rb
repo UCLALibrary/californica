@@ -160,7 +160,9 @@ RSpec.describe CalifornicaMapper do
       "Related Items" => "Related Items-1", # related_to
       "Edition" => "Edition-001", # edition
       "History" => "History-1", # history
-      "Identifier" => "Identifier-1" # identifier_global
+      "Identifier" => "Identifier-1", # identifier
+      "External item record" => "http://test.url/external/item/record", # electronic_locator
+      "View Record" => "http://test.url/view/record" # electronic_locator
     }
   end
 
@@ -215,6 +217,7 @@ RSpec.describe CalifornicaMapper do
         :dlcs_collection_name,
         :edition,
         :editor,
+        :electronic_locator,
         :engraver,
         :extent,
         :finding_aid_url,
@@ -223,7 +226,6 @@ RSpec.describe CalifornicaMapper do
         :funding_note,
         :genre,
         :history,
-        :identifier_global,
         :iiif_manifest_url,
         :iiif_viewing_hint,
         :illuminator,

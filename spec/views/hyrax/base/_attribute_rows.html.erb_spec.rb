@@ -37,6 +37,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       director: ['Director'],
       edition: ['Edition'],
       editor: ['Editor'],
+      electronic_locator: "External_item_record",
       engraver: ['engraver'],
       extent: ['extent'],
       finding_aid_url: ['Finding aid url'],
@@ -45,7 +46,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       genre: ['genre'],
       history: ['History'],
       host: ['Host'],
-      identifier_global: ['Identifier'],
+      identifier: ['Identifier'],
       iiif_text_direction: 'iiif_text_direction',
       iiif_viewing_hint: 'iiif_viewing_hint',
       illustrator: ['illustrator'],
@@ -153,6 +154,9 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   it 'has editor' do
     expect(page).to match(/editor/)
   end
+  it 'has electronic locator' do
+    expect(page).to match(/electronic_locator/)
+  end
   it 'has engraver' do
     expect(page).to match(/engraver/)
   end
@@ -177,8 +181,8 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   it 'has host' do
     expect(page).to match(/host/)
   end
-  it 'has identifier_global' do
-    expect(page).to match(/identifier_global/)
+  it 'has identifier' do
+    expect(page).to match(/identifier/)
   end
   it 'has interviewee' do
     expect(page).to match(/interviewee/)
