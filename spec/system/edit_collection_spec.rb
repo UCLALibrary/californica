@@ -25,6 +25,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       description: ['Old Desc'],
       dimensions: ['Old Dim'],
       edition: ['Old Edition'],
+      electronic_locator: 'Old External item record',
       resource_type: ['http://id.loc.gov/vocabulary/resourceTypes/col'], # "collection"
       extent: ['Old Extent'],
       foliation: 'Old Foliation note',
@@ -141,6 +142,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Caption').value).to eq 'Old Cap'
       expect(find_field('Dimensions').value).to eq 'Old Dim'
       expect(find_field('Edition').value).to eq 'Old Edition'
+      expect(find_field('External item record').value).to eq 'Old External item record'
       expect(find_field('Funding Note').value).to eq 'Old Fund Note'
       expect(find_field('Genre').value).to eq 'Old Genre'
       expect(find_field('History').value).to eq 'Old History'
