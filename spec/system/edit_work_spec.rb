@@ -34,6 +34,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       director: ['Old Director'],
       edition: ['Old Edition'],
       editor: ['Old Editor'],
+      electronic_locator: 'http://test.url/external/item/record',
       engraver: ['Old Engraver'],
       extent: ['Old Extent'],
       featured_image: 'Old Featured image',
@@ -44,7 +45,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       genre: ['Old Genre'],
       history: ['Old History'],
       host: ['Old Host'],
-      identifier_global: ['Old Identifier'],
+      identifier: ['Old Identifier'],
       iiif_manifest_url: 'https://test.iiif.library.ucla.edu/collections/ark%3A%2F21198%2Fz11c574k',
       iiif_range: 'Old Iiif range',
       iiif_text_direction: 'http://iiif.io/api/presentation/2#leftToRightDirection', # "left-to-right"
@@ -149,6 +150,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Dimensions').value).to eq 'Old Dim'
       expect(find_field("Director").value).to eq 'Old Director'
       expect(find_field('Editor').value).to eq 'Old Editor'
+      expect(find_field('External item record').value).to eq 'http://test.url/external/item/record'
       expect(find_field('Engraver').value).to eq 'Old Engraver'
       expect(find_field('Extent').value).to eq 'Old Extent'
       expect(find_field('Featured image').value).to eq 'Old Featured image'
@@ -214,7 +216,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Uniform title').value).to eq 'Old Uniform title'
       expect(find_field('Edition').value).to eq 'Old Edition'
       expect(find_field('History').value).to eq 'Old History'
-      expect(find_field('Identifier global').value).to eq 'Old Identifier'
+      expect(find_field('Identifier').value).to eq 'Old Identifier'
 
       # Edit some fields in the form
       fill_in 'Title', with: 'New Title'

@@ -37,6 +37,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     dlcs_collection_name: "Relation.isPartOf",
     edition: ["Edition"],
     editor: ["Editor", "Name.editor"],
+    electronic_locator: ["External item record", "View Record"],
     engraver: ["Engraver", "Name.engraver"],
     extent: "Format.extent",
     featured_image: ["Featured image"],
@@ -47,7 +48,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     genre: ["Type.genre", "Genre"],
     history: ["History"],
     host: ["Host", "Name.host"],
-    identifier_global: ["Identifier"],
+    identifier: ["Identifier"],
     iiif_manifest_url: "IIIF Manifest URL",
     iiif_range: "IIIF Range",
     iiif_text_direction: "Text direction",
@@ -448,5 +449,9 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
   def thumbnail_link
     map_field(:thumbnail_link).to_a.first
+  end
+
+  def electronic_locator
+    map_field(:electronic_locator).to_a.first
   end
 end
