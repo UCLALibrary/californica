@@ -79,6 +79,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "left-to-right" # iiif_text_direction
     expect(page).to have_content "Mexican American Catholics" # uniform_title
     expect(page).to have_content "clusc_1_1_00010432a.tif" # preservation_copy
+    expect(page).to have_content "identifier" # identifier
     expect(page).to have_content "iiif-range" # iiif_range
     expect(page).to have_content "illustration-note" # illustrations_note
     expect(page).to have_content "Illustrator-1" # illustrator
@@ -139,7 +140,6 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "Local rights statement-1" # local_rights_statement
     expect(page).to have_content 'Edition-2' # edition
     expect(page).to have_content 'History-2' # history
-
     expect(page).to have_content 'Archive' # archive
     expect(page).to have_content 'Archival Collection Number' # archive_no
     expect(page).to have_content 'Box' # box
