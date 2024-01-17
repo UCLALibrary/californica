@@ -106,10 +106,10 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       researcher: ['Old Researcher'],
       resp_statement: ['Old Statement of Responsibility'],
       related_record: ['RelatedRecords-1'],
-      archive: 'Archive',
-      archive_no: 'Archival Collection Number',
-      box: 'Box',
-      folder: 'Folder'
+      archival_collection_title: 'Archive',
+      archival_collection_number: 'Archival Collection Number',
+      archival_collection_box: 'Box',
+      archival_collection_folder: 'Folder'
     }
   end
 

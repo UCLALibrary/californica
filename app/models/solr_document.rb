@@ -406,20 +406,20 @@ class SolrDocument
     self[Solrizer.solr_name('uniform_title')]
   end
 
-  def archive
-    self[:archive_tesi]
+  def archival_collection_title
+    self[:archival_collection_title_ssi]
   end
 
-  def archive_no
-    self[:archive_no_tesi]
+  def archival_collection_number
+    self[:archival_collection_number_ssi]
   end
 
-  def box
-    self[:box_isi]
+  def archival_collection_box
+    self[:archival_collection_box_ssi]
   end
 
-  def folder
-    self[:folder_isi]
+  def archival_collection_folder
+    self[:archival_collection_folder_ssi]
   end
 
   # Override this method from hyrax gem to allow

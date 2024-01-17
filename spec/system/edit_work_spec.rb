@@ -109,10 +109,10 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       toc: ['Old Table of contents'],
       translator: ['Old Translator'],
       uniform_title: ['Old Uniform title'],
-      archive: 'Old Archive',
-      archive_no: 'Old Archival Collection Number',
-      box: 'Old Box',
-      folder: 'Old Folder'
+      archival_collection_title: 'Old Archive',
+      archival_collection_number: 'Old Archival Collection Number',
+      archival_collection_box: 'Old Box',
+      archival_collection_folder: 'Old Folder'
     }
   end
 
@@ -221,10 +221,10 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Edition').value).to eq 'Old Edition'
       expect(find_field('History').value).to eq 'Old History'
       expect(find_field('Identifier').value).to eq 'Old Identifier'
-      expect(find_field('Archive').value).to eq 'Old Archive'
+      expect(find_field('Archival Collection Title').value).to eq 'Old Archive'
       expect(find_field('Archival Collection Number').value).to eq 'Old Archival Collection Number'
-      expect(find_field('Box').value).to eq 'Old Box'
-      expect(find_field('Folder').value).to eq 'Old Folder'
+      expect(find_field('Archival Collection Box').value).to eq 'Old Box'
+      expect(find_field('Archival Collection Folder').value).to eq 'Old Folder'
 
       # Edit some fields in the form
       fill_in 'Title', with: 'New Title'

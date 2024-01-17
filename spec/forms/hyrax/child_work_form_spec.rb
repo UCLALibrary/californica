@@ -10,6 +10,10 @@ RSpec.describe Hyrax::ChildWorkForm do
     expect(form.terms).to include(
       :access_copy,
       :architect,
+      :archival_collection_title,
+      :archival_collection_number,
+      :archival_collection_box,
+      :archival_collection_folder,
       :caption,
       :citation_source,
       :commentator,
@@ -46,11 +50,7 @@ RSpec.describe Hyrax::ChildWorkForm do
       :subject_temporal,
       :subject_cultural_object,
       :subject_domain_topic,
-      :translator,
-      :archive,
-      :archive_no,
-      :box,
-      :folder
+      :translator
     )
   end
 

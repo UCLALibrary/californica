@@ -8,6 +8,10 @@ module Hyrax
       :access_copy,
       :alternative_title,
       :architect,
+      :archival_collection_title,
+      :archival_collection_number,
+      :archival_collection_box,
+      :archival_collection_folder,
       :ark,
       :artist,
       :author,
@@ -98,11 +102,7 @@ module Hyrax
       :thumbnail_link,
       :toc,
       :translator,
-      :uniform_title,
-      :archive,
-      :archive_no,
-      :box,
-      :folder
+      :uniform_title
     ]
     self.terms -= [:based_near]
     self.required_fields = [:title, :ark, :rights_statement]

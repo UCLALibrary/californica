@@ -93,10 +93,10 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       title: ['title'],
       translator: ['Translator'],
       uniform_title: ['Uniform title'],
-      archive: 'Archive',
-      archive_no: 'Archival Collection Number',
-      box: 'Box',
-      folder: 'Folder'
+      archival_collection_title: 'Archive',
+      archival_collection_number: 'Archival Collection Number',
+      archival_collection_box: 'Box',
+      archival_collection_folder: 'Folder'
     )
   end
 
@@ -324,16 +324,16 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
     expect(page).to match(/uniform_title/)
   end
 
-  it 'has archive' do
-    expect(page).to match(/archive/)
+  it 'has archival_collection_title' do
+    expect(page).to match(/archival_collection_title/)
   end
-  it 'has archive_no' do
-    expect(page).to match(/archive_no/)
+  it 'has archival_collection_number' do
+    expect(page).to match(/archival_collection_number/)
   end
-  it 'has box' do
-    expect(page).to match(/box/)
+  it 'has archival_collection_box' do
+    expect(page).to match(/archival_collection_box/)
   end
-  it 'has folder' do
-    expect(page).to match(/folder/)
+  it 'has archival_collection_folder' do
+    expect(page).to match(/archival_collection_folder/)
   end
 end

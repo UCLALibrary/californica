@@ -8,6 +8,10 @@ module Hyrax
       :artist,
       :extent,
       :architect,
+      :archival_collection_title,
+      :archival_collection_number,
+      :archival_collection_box,
+      :archival_collection_folder,
       :binding_note,
       :calligrapher,
       :caption,
@@ -92,11 +96,7 @@ module Hyrax
       :summary,
       :toc,
       :translator,
-      :uniform_title,
-      :archive,
-      :archive_no,
-      :box,
-      :folder]
+      :uniform_title]
 
     self.required_fields = [:title, :ark]
 
@@ -118,6 +118,10 @@ module Hyrax
     def secondary_terms
       [
         :architect,
+        :archival_collection_title,
+        :archival_collection_number,
+        :archival_collection_box,
+        :archival_collection_folder,
         :artist,
         :binding_note,
         :based_near,
@@ -212,11 +216,7 @@ module Hyrax
         :thumbnail_link,
         :toc,
         :translator,
-        :uniform_title,
-        :archive,
-        :archive_no,
-        :box,
-        :folder
+        :uniform_title
       ]
     end
   end

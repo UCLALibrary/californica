@@ -396,20 +396,20 @@ module UclaMetadata
       index.as :displayable
     end
 
-    property :archive, predicate: ::RDF::URI.intern('https://bibfra.me/view/archive/lite/Archive'), multiple: false do |index|
-      index.as CustomSolrizerDescriptor.single_valued_stored
+    property :archival_collection_title, predicate: ::RDF::URI.intern('https://bibfra.me/view/archive/lite/Archive'), multiple: false do |index|
+      index.as :stored_sortable
     end
 
-    property :archive_no, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/AccessionNumber'), multiple: false do |index|
-      index.as CustomSolrizerDescriptor.single_valued_stored
+    property :archival_collection_number, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/AccessionNumber'), multiple: false do |index|
+      index.as :stored_sortable
     end
 
-    property :box, predicate: ::RDF::URI.intern('https://bibfra.me/view/archive/archive/Box'), multiple: false do |index|
-      index.as CustomSolrizerDescriptor.single_valued_stored
+    property :archival_collection_box, predicate: ::RDF::URI.intern('https://bibfra.me/view/archive/archive/Box'), multiple: false do |index|
+      index.as :stored_sortable
     end
 
-    property :folder, predicate: ::RDF::URI.intern('https://bibfra.me/view/archive/archive/Folder'), multiple: false do |index|
-      index.as CustomSolrizerDescriptor.single_valued_stored
+    property :archival_collection_folder, predicate: ::RDF::URI.intern('https://bibfra.me/view/archive/archive/Folder'), multiple: false do |index|
+      index.as :stored_sortable
     end
   end
 end

@@ -199,6 +199,10 @@ RSpec.describe CalifornicaMapper do
       expect(mapper.fields).to include(
         :alternative_title,
         :architect,
+        :archival_collection_title,
+        :archival_collection_number,
+        :archival_collection_box,
+        :archival_collection_folder,
         :ark,
         :binding_note,
         :calligrapher,
@@ -293,11 +297,7 @@ RSpec.describe CalifornicaMapper do
         :printer,
         :researcher,
         :related_to,
-        :related_record,
-        :archive,
-        :archive_no,
-        :box,
-        :folder
+        :related_record
       )
     end
   end

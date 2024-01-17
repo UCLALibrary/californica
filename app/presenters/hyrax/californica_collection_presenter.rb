@@ -7,6 +7,10 @@ module Hyrax
       [
         :alternative_title,
         :architect,
+        :archival_collection_title,
+        :archival_collection_number,
+        :archival_collection_box,
+        :archival_collection_folder,
         :ark,
         :artist,
         :author,
@@ -106,11 +110,7 @@ module Hyrax
         :translator,
         :toc,
         :total_items,
-        :uniform_title,
-        :archive,
-        :archive_no,
-        :box,
-        :folder
+        :uniform_title
       ]
     end
   end

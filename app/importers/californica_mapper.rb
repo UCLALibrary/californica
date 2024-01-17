@@ -14,6 +14,10 @@ class CalifornicaMapper < Darlingtonia::HashMapper
                         "AltTitle.descriptive",
                         "Alternate Title.other"],
     architect: "Name.architect",
+    archival_collection_title: "Archive",
+    archival_collection_number: "Archival Collection Number",
+    archival_collection_box: "Box",
+    archival_collection_folder: "Folder",
     artist: ["Artist", "Name.artist"],
     ark: "Item ARK",
     author: "Author",
@@ -134,11 +138,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     title: "Title",
     toc: ["Table of Contents", "Description.tableOfContents"],
     translator: ["Translator", "Name.translator"],
-    uniform_title: "AltTitle.uniform",
-    archive: "Archive",
-    archive_no: "Archival Collection Number",
-    box: "Box",
-    folder: "Folder"
+    uniform_title: "AltTitle.uniform"
   }.freeze
 
   DELIMITER = '|~|'
@@ -457,21 +457,5 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
   def electronic_locator
     map_field(:electronic_locator).to_a.first
-  end
-
-  def archive
-    map_field(:archive).to_a.first
-  end
-
-  def archive_no
-    map_field(:archive_no).to_a.first
-  end
-
-  def box
-    map_field(:box).to_a.first
-  end
-
-  def folder
-    map_field(:folder).to_a.first
   end
 end
