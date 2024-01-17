@@ -416,7 +416,17 @@ end
 
 # https://www.rubydoc.info/gems/solrizer/3.4.0/Solrizer/DefaultDescriptors#simple-class_method
 # displayable: https://www.rubydoc.info/gems/solrizer/3.4.0/Solrizer%2FDefaultDescriptors.displayable
+# Produces _ssm suffix
+
 # stored_searchable https://www.rubydoc.info/gems/solrizer/3.4.0/Solrizer%2FDefaultDescriptors.stored_searchable
+# The suffix produced depends on the type parameter – produces suffixes:
+# _tesim - for strings or text fields
+# _dtsim - for dates
+# _isim - for integers
+
 # stored_sortable https://www.rubydoc.info/gems/solrizer/3.4.0/Solrizer%2FDefaultDescriptors.stored_sortable
+# Fields that are both stored and sortable Produces _ssi suffix if field_type is string Produces _dtsi suffix if field_type is date
+
 # :facetable - combined with adding field-name_sim to the config.add_show_field in app/controllers/catalog_controler.rb
+# Produces _sim suffix
 # in Ursus this creates a link on the item/show page of Ursus that links to a search for all fields of this name
