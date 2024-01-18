@@ -342,7 +342,7 @@ RSpec.describe CsvManifestValidator, type: :model do
         "History",
         "External item record",
         "View Record",
-        "Archive",
+        "Archival Collection Title",
         "Archival Collection Number",
         "Box",
         "Folder"

@@ -93,7 +93,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       title: ['title'],
       translator: ['Translator'],
       uniform_title: ['Uniform title'],
-      archival_collection_title: 'Archive',
+      archival_collection_title: 'Archival Collection Title',
       archival_collection_number: 'Archival Collection Number',
       archival_collection_box: 'Box',
       archival_collection_folder: 'Folder'

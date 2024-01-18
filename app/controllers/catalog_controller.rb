@@ -710,38 +710,6 @@ class CatalogController < ApplicationController
       }
     end
 
-    # config.add_search_field('archive') do |field|
-    #   solr_name = solr_name('archive', :single_valued_stored)
-    #   field.solr_local_parameters = {
-    #     qf: solr_name,
-    #     pf: solr_name
-    #   }
-    # end
-
-    # config.add_search_field('archive_no') do |field|
-    #   solr_name = solr_name('archive_no', :single_valued_stored)
-    #   field.solr_local_parameters = {
-    #     qf: solr_name,
-    #     pf: solr_name
-    #   }
-    # end
-
-    # config.add_search_field('box') do |field|
-    #   solr_name = solr_name('box', :single_valued_stored)
-    #   field.solr_local_parameters = {
-    #     qf: solr_name,
-    #     pf: solr_name
-    #   }
-    # end
-
-    # config.add_search_field('folder') do |field|
-    #   solr_name = solr_name('folder', :single_valued_stored)
-    #   field.solr_local_parameters = {
-    #     qf: solr_name,
-    #     pf: solr_name
-    #   }
-    # end
-
     # "sort results by" select (pulldown)
     # label in pulldown is followed by the name of the SOLR field to sort by and
     # whether the sort is ascending or descending (it must be asc or desc

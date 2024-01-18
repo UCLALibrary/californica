@@ -111,8 +111,8 @@
     - [Type.typeOfResource](#typetypeofresource)
     - [viewingHint (for Festerize only)](#viewinghint-for-festerize-only)
     - [Visibility](#visibility)
-    - [Archive](#archive)
-    - [Archival Collection Number](#archive_no)
+    - [Archival Collection Title](#archival-collection-title)
+    - [Archival Collection Number](#archive-collection-number)
     - [Box](#box)
     - [Folder](#folder)
 <!-- TOC END -->
@@ -557,7 +557,7 @@ If there is no column with the header "Visibility", then the importer will look 
 
 "Item Status" is _only_ used if "Visiblity" is completely omitted from the csv. If the column is included but left blank, then a default of `public` will be applied to a row regardless of any "Item Status" value.
 
-#### Archive
+#### Archival Collection Title
 
 #### Archival Collection Number
 

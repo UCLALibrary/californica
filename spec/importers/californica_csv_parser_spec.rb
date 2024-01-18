@@ -178,7 +178,7 @@ RSpec.describe CalifornicaCsvParser do
        'Identifier',
        'External item record',
        'View Record',
-       'Archive',
+       'Archival Collection Title',
        'Archival Collection Number',
        'Box',
        'Folder']

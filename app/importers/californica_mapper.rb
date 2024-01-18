@@ -14,7 +14,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
                         "AltTitle.descriptive",
                         "Alternate Title.other"],
     architect: "Name.architect",
-    archival_collection_title: "Archive",
+    archival_collection_title: "Archival Collection Title",
     archival_collection_number: "Archival Collection Number",
     archival_collection_box: "Box",
     archival_collection_folder: "Folder",
