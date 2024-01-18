@@ -92,7 +92,11 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       thumbnail_link: 'https://fake.url/iiif/ark%3A%2Fabcde%2F1234567',
       title: ['title'],
       translator: ['Translator'],
-      uniform_title: ['Uniform title']
+      uniform_title: ['Uniform title'],
+      archival_collection_title: 'Archival_collection_title',
+      archival_collection_number: 'Archival_collection_number',
+      archival_collection_box: 'Box',
+      archival_collection_folder: 'Folder'
     )
   end
 
@@ -318,5 +322,18 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
   end
   it 'has uniform_title' do
     expect(page).to match(/uniform_title/)
+  end
+
+  it 'has archival_collection_title' do
+    expect(page).to match(/archival_collection_title/)
+  end
+  it 'has archival_collection_number' do
+    expect(page).to match(/archival_collection_number/)
+  end
+  it 'has archival_collection_box' do
+    expect(page).to match(/archival_collection_box/)
+  end
+  it 'has archival_collection_folder' do
+    expect(page).to match(/archival_collection_folder/)
   end
 end
