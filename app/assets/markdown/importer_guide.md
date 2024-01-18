@@ -111,6 +111,10 @@
     - [Type.typeOfResource](#typetypeofresource)
     - [viewingHint (for Festerize only)](#viewinghint-for-festerize-only)
     - [Visibility](#visibility)
+    - [Archival Collection Title](#archival-collection-title)
+    - [Archival Collection Number](#archive-collection-number)
+    - [Box](#box)
+    - [Folder](#folder)
 <!-- TOC END -->
 
 ## Required Fields
@@ -552,3 +556,11 @@ If there is no column with the header "Visibility", then the importer will look 
 "Completed with minimal metadata", or (by default) if the column cannot be found or is blank for a row.
 
 "Item Status" is _only_ used if "Visiblity" is completely omitted from the csv. If the column is included but left blank, then a default of `public` will be applied to a row regardless of any "Item Status" value.
+
+#### Archival Collection Title
+
+#### Archival Collection Number
+
+#### Box
+
+#### Folder

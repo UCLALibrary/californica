@@ -406,6 +406,22 @@ class SolrDocument
     self[Solrizer.solr_name('uniform_title')]
   end
 
+  def archival_collection_title
+    self[:archival_collection_title_ssi]
+  end
+
+  def archival_collection_number
+    self[:archival_collection_number_ssi]
+  end
+
+  def archival_collection_box
+    self[:archival_collection_box_ssi]
+  end
+
+  def archival_collection_folder
+    self[:archival_collection_folder_ssi]
+  end
+
   # Override this method from hyrax gem to allow
   # Californica to use "sinai" visibility.
   # app/models/concerns/hyrax/solr_document_behavior.rb
