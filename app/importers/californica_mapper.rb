@@ -14,6 +14,10 @@ class CalifornicaMapper < Darlingtonia::HashMapper
                         "AltTitle.descriptive",
                         "Alternate Title.other"],
     architect: "Name.architect",
+    archival_collection_title: "Archival Collection Title",
+    archival_collection_number: "Archival Collection Number",
+    archival_collection_box: "Box",
+    archival_collection_folder: "Folder",
     artist: ["Artist", "Name.artist"],
     ark: "Item ARK",
     author: "Author",
@@ -209,6 +213,22 @@ class CalifornicaMapper < Darlingtonia::HashMapper
 
   def access_copy
     map_field(:access_copy).to_a.first
+  end
+
+  def archival_collection_title
+    map_field(:archival_collection_title).to_a.first
+  end
+
+  def archival_collection_number
+    map_field(:archival_collection_number).to_a.first
+  end
+
+  def archival_collection_box
+    map_field(:archival_collection_box).to_a.first
+  end
+
+  def archival_collection_folder
+    map_field(:archival_collection_folder).to_a.first
   end
 
   def ark
