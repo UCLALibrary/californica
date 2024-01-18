@@ -395,12 +395,41 @@ module UclaMetadata
     property :local_rights_statement, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/UsePolicy') do |index|
       index.as :displayable
     end
+
+    property :archival_collection_title, predicate: ::RDF::URI.intern('https://bibfra.me/view/archive/lite/Archive'), multiple: false do |index|
+      index.as :stored_sortable
+    end
+
+    property :archival_collection_number, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/AccessionNumber'), multiple: false do |index|
+      index.as :stored_sortable
+    end
+
+    property :archival_collection_box, predicate: ::RDF::URI.intern('https://bibfra.me/view/archive/archive/Box'), multiple: false do |index|
+      index.as :stored_sortable
+    end
+
+    property :archival_collection_folder, predicate: ::RDF::URI.intern('https://bibfra.me/view/archive/archive/Folder'), multiple: false do |index|
+      index.as :stored_sortable
+    end
   end
 end
 
 # https://www.rubydoc.info/gems/solrizer/3.4.0/Solrizer/DefaultDescriptors#simple-class_method
 # displayable: https://www.rubydoc.info/gems/solrizer/3.4.0/Solrizer%2FDefaultDescriptors.displayable
+# Produces _ssm suffix
+
 # stored_searchable https://www.rubydoc.info/gems/solrizer/3.4.0/Solrizer%2FDefaultDescriptors.stored_searchable
+# The suffix produced depends on the type parameter
+# produces suffixes:
+# _tesim - for strings or text fields
+# _dtsim - for dates
+# _isim - for integers
+
 # stored_sortable https://www.rubydoc.info/gems/solrizer/3.4.0/Solrizer%2FDefaultDescriptors.stored_sortable
+# Fields that are both stored and sortable
+# Produces _ssi suffix if field_type is string
+# Produces _dtsi suffix if field_type is date
+
 # :facetable - combined with adding field-name_sim to the config.add_show_field in app/controllers/catalog_controler.rb
+# Produces _sim suffix
 # in Ursus this creates a link on the item/show page of Ursus that links to a search for all fields of this name
