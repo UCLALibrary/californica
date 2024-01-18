@@ -419,7 +419,8 @@ end
 # Produces _ssm suffix
 
 # stored_searchable https://www.rubydoc.info/gems/solrizer/3.4.0/Solrizer%2FDefaultDescriptors.stored_searchable
-# The suffix produced depends on the type parameter – produces suffixes:
+# The suffix produced depends on the type parameter
+# produces suffixes:
 # _tesim - for strings or text fields
 # _dtsim - for dates
 # _isim - for integers

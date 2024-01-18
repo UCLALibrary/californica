@@ -140,8 +140,8 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "Local rights statement-1" # local_rights_statement
     expect(page).to have_content 'Edition-2' # edition
     expect(page).to have_content 'History-2' # history
-    expect(page).to have_content 'Archival Collection Title' # archival_collection_title
-    expect(page).to have_content 'Archival Collection Number' # archival_collection_number
+    expect(page).to have_content 'Archival collection title-1' # archival_collection_title
+    expect(page).to have_content 'Archival collection number-1' # archival_collection_number
     expect(page).to have_content 'Box' # box
     expect(page).to have_content 'Folder' # folder
 
