@@ -425,7 +425,9 @@ end
 # _isim - for integers
 
 # stored_sortable https://www.rubydoc.info/gems/solrizer/3.4.0/Solrizer%2FDefaultDescriptors.stored_sortable
-# Fields that are both stored and sortable Produces _ssi suffix if field_type is string Produces _dtsi suffix if field_type is date
+# Fields that are both stored and sortable
+# Produces _ssi suffix if field_type is string
+# Produces _dtsi suffix if field_type is date
 
 # :facetable - combined with adding field-name_sim to the config.add_show_field in app/controllers/catalog_controler.rb
 # Produces _sim suffix
