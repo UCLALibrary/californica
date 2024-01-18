@@ -105,7 +105,11 @@ RSpec.describe 'Show a collection', :clean, type: :system, js: true do
       printer: ['Old Printer'],
       researcher: ['Old Researcher'],
       resp_statement: ['Old Statement of Responsibility'],
-      related_record: ['RelatedRecords-1']
+      related_record: ['RelatedRecords-1'],
+      archival_collection_title: 'Archival Collection Title',
+      archival_collection_number: 'Archival Collection Number',
+      archival_collection_box: 'Box',
+      archival_collection_folder: 'Folder'
     }
   end
 
