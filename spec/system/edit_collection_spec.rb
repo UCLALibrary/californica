@@ -107,7 +107,11 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       note_admin: ['Old AdminNote'],
       format_book: ['Old Format'],
       related_to: ['Old Related Items'],
-      related_record: ['Old Related Records']
+      related_record: ['Old Related Records'],
+      archival_collection_title: 'Old Archival Collection Title',
+      archival_collection_number: 'Old Archival Collection Number',
+      archival_collection_box: 'Old Box',
+      archival_collection_folder: 'Old Folder'
     }
   end
 
@@ -221,9 +225,12 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Format book').value).to eq 'Old Format'
       expect(find_field('Related to').value).to eq 'Old Related Items'
       expect(find_field('Related record').value).to eq 'Old Related Records'
+      expect(find_field('Archival collection title').value).to eq 'Old Archival Collection Title'
+      expect(find_field('Archival collection number').value).to eq 'Old Archival Collection Number'
+      expect(find_field('Archival collection box').value).to eq 'Old Box'
+      expect(find_field('Archival collection folder').value).to eq 'Old Folder'
 
-      #
-      # # Edit some fields in the form
+      # Edit some fields in the form
       fill_in 'Title', with: 'New Title'
       fill_in 'Description', with: 'New Description'
       fill_in 'Extent', with: 'New Extent'

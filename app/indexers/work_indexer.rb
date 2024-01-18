@@ -31,6 +31,7 @@ class WorkIndexer < Hyrax::WorkIndexer
       solr_doc['ursus_id_ssi'] = Californica::IdGenerator.blacklight_id_from_ark(object.ark)
       solr_doc['year_isim'] = years
       solr_doc['human_readable_related_record_title_ssm'] = find_related_records_titles_by_ark
+      solr_doc['archival_collection_tesi'] = archival_collection
     end
   end
 
@@ -162,5 +163,11 @@ class WorkIndexer < Hyrax::WorkIndexer
     # Rollbar.error(e, "Invalid date string encountered in normalized date field: #{date_string}")
     Rails.logger.error "event: metadata_error : Invalid date string encountered in normalized date field: #{dates}: #{e}"
     nil
+  end
+
+  def archival_collection
+    if object.archival_collection_title && object.archival_collection_number && object.archival_collection_box && object.archival_collection_folder
+      "#{object.archival_collection_title} (#{object.archival_collection_number}), #{object.archival_collection_box}, #{object.archival_collection_folder}"
+    end
   end
 end
