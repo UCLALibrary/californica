@@ -215,6 +215,22 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     map_field(:access_copy).to_a.first
   end
 
+  def archival_collection_title
+    map_field(:archival_collection_title).to_a.first
+  end
+
+  def archival_collection_number
+    map_field(:archival_collection_number).to_a.first
+  end
+
+  def archival_collection_box
+    map_field(:archival_collection_box).to_a.first
+  end
+
+  def archival_collection_folder
+    map_field(:archival_collection_folder).to_a.first
+  end
+
   def ark
     item_ark = Ark.ensure_prefix(map_field(:ark).to_a.first)
     return if item_ark.blank?
