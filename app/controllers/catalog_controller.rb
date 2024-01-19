@@ -244,6 +244,44 @@ class CatalogController < ApplicationController
     # Solr parameter de-referencing like $title_qf.
     # See: http://wiki.apache.org/solr/LocalParams
 
+    config.add_show_field 'a
+    config.add_show_field '_ssi'
+    config.add_show_field 'a_ssi'
+    config.add_show_field '_ssi'
+
+    config.add_search_field('archival_collection_title') do |field|
+      solr_name = solr_name('archival_collection_title', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('archival_collection_number') do |field|
+      solr_name = solr_name('archival_collection_number', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('archival_collection_box') do |field|
+      solr_name = solr_name('archival_collection_box', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('archival_collection_folder') do |field|
+      solr_name = solr_name('archival_collection_folder', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+
     config.add_search_field('contributor') do |field|
       solr_name = solr_name('contributor', :stored_searchable)
       field.solr_local_parameters = {
