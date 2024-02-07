@@ -7,6 +7,7 @@ module Hyrax
       :access_copy,
       :alternative_title,
       :architect,
+      :archival_collection,
       :archival_collection_title,
       :archival_collection_number,
       :archival_collection_box,

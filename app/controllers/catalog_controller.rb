@@ -202,6 +202,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'tagline_ssi'
     config.add_show_field 'series_tesim'
     config.add_show_field 'local_rights_statement_ssm' # This invokes License renderer from hyrax gem
+    config.add_show_field 'archival_collection_tesi'
     config.add_show_field 'archival_collection_title_ssi'
     config.add_show_field 'archival_collection_number_ssi'
     config.add_show_field 'archival_collection_box_ssi'
