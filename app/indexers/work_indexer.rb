@@ -168,17 +168,17 @@ class WorkIndexer < Hyrax::WorkIndexer
   def archival_collection
     parts = []
     parts << object.archival_collection_title if object.archival_collection_title
-    
+
     # For the archival_collection_number, box, and folder, we check their presence
     # and format them according to their position.
     collection_details = []
     collection_details << object.archival_collection_number if object.archival_collection_number
     collection_details << object.archival_collection_box if object.archival_collection_box
     collection_details << object.archival_collection_folder if object.archival_collection_folder
-    
+
     # Join the collection details with commas, and then append to parts with the necessary format.
     parts << "(#{collection_details.join(', ')})" unless collection_details.empty?
-    
+
     # Finally, join the parts. If there was a title and additional details,
     # this will insert a space between them. Otherwise, it just returns whatever part is present.
     parts.join(' ')
