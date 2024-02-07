@@ -166,7 +166,7 @@ class WorkIndexer < Hyrax::WorkIndexer
   end
 
   def archival_collection
-    if object.archival_collection_title && object.archival_collection_number && object.archival_collection_box && object.archival_collection_folder
+    if object.archival_collection_title || object.archival_collection_number || object.archival_collection_box || object.archival_collection_folder
       "#{object.archival_collection_title} (#{object.archival_collection_number}), #{object.archival_collection_box}, #{object.archival_collection_folder}"
     end
   end
