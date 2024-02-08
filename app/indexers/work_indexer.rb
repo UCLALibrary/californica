@@ -166,8 +166,24 @@ class WorkIndexer < Hyrax::WorkIndexer
   end
 
   def archival_collection
-    if object.archival_collection_title && object.archival_collection_number && object.archival_collection_box && object.archival_collection_folder
-      "#{object.archival_collection_title} (#{object.archival_collection_number}), #{object.archival_collection_box}, #{object.archival_collection_folder}"
+    # Return nil if none of the attributes exist.
+    return nil unless object.archival_collection_title.present? || object.archival_collection_number.present? || object.archival_collection_box.present? || object.archival_collection_folder.present?
+
+    parts = []
+    # Start with the title, if it exists.
+    parts << object.archival_collection_title if object.archival_collection_title.present?
+
+    # Add the number in parentheses directly following the title, if it exists.
+    if object.archival_collection_number.present?
+      title_with_number = parts.last ? "#{parts.pop} (#{object.archival_collection_number})" : "(#{object.archival_collection_number})"
+      parts << title_with_number
     end
+
+    # Add the box and folder information, prefixed appropriately, if they exist.
+    parts << "#{object.archival_collection_box}" if object.archival_collection_box.present?
+    parts << "#{object.archival_collection_folder}" if object.archival_collection_folder.present?
+
+    # Join the parts with a comma a space, where appropriate.
+    parts.join(', ')
   end
 end
