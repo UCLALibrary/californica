@@ -182,7 +182,7 @@ class WorkIndexer < Hyrax::WorkIndexer
     # Add the box and folder information, prefixed appropriately, if they exist.
     parts << "#{object.archival_collection_box}" if object.archival_collection_box.present?
     parts << "#{object.archival_collection_folder}" if object.archival_collection_folder.present?
-  
+
     # Join the parts with a comma a space, where appropriate.
     parts.join(', ')
   end
