@@ -20,6 +20,7 @@ Metrics/AbcSize:
     - app/importers/collection_record_importer.rb
     - spec/jobs/mss_csv_import_job_spec.rb
     - app/jobs/csv_row_import_job.rb
+    - app/indexers/work_indexer.rb
 
 Metrics/ClassLength:
   Enabled: true
@@ -66,6 +67,7 @@ Metrics/CyclomaticComplexity:
     - app/uploaders/csv_manifest_validator.rb
     - app/indexers/year_parser.rb
     - app/jobs/csv_row_import_job.rb
+    - app/indexers/work_indexer.rb
 
 Metrics/LineLength:
   Exclude:
@@ -116,6 +118,7 @@ Metrics/PerceivedComplexity:
     - app/controllers/application_controller.rb
     - app/indexers/year_parser.rb
     - app/jobs/csv_row_import_job.rb
+    - app/indexers/work_indexer.rb
 
 RSpec/AnyInstance:
   Enabled: false
@@ -164,6 +167,10 @@ Style/BlockDelimiters:
 Style/IfUnlessModifier:
   Exclude:
     - 'app/importers/csv_validator.rb'
+
+Style/UnneededInterpolation:
+  Exclude:
+    - 'app/indexers/work_indexer.rb'
 
 Layout/MultilineBlockLayout:
   Exclude:

@@ -185,5 +185,5 @@ class WorkIndexer < Hyrax::WorkIndexer
   
     # Join the parts with a comma a space, where appropriate.
     parts.join(', ')
-  end  
+  end
 end
