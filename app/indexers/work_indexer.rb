@@ -166,21 +166,24 @@ class WorkIndexer < Hyrax::WorkIndexer
   end
 
   def archival_collection
+    # Return nil if none of the attributes exist.
+    return nil unless object.archival_collection_title.present? || object.archival_collection_number.present? || object.archival_collection_box.present? || object.archival_collection_folder.present?
+
     parts = []
-    parts << object.archival_collection_title if object.archival_collection_title
+    # Start with the title, if it exists.
+    parts << object.archival_collection_title if object.archival_collection_title.present?
 
-    # For the archival_collection_number, box, and folder, we check their presence
-    # and format them according to their position.
-    collection_details = []
-    collection_details << object.archival_collection_number if object.archival_collection_number
-    collection_details << object.archival_collection_box if object.archival_collection_box
-    collection_details << object.archival_collection_folder if object.archival_collection_folder
+    # Add the number in parentheses directly following the title, if it exists.
+    if object.archival_collection_number.present?
+      title_with_number = parts.last ? "#{parts.pop} (#{object.archival_collection_number})" : "(#{object.archival_collection_number})"
+      parts << title_with_number
+    end
 
-    # Join the collection details with commas, and then append to parts with the necessary format.
-    parts << "(#{collection_details.join(', ')})" unless collection_details.empty?
-
-    # Finally, join the parts. If there was a title and additional details,
-    # this will insert a space between them. Otherwise, it just returns whatever part is present.
-    parts.join(' ')
-  end
+    # Add the box and folder information, prefixed appropriately, if they exist.
+    parts << "#{object.archival_collection_box}" if object.archival_collection_box.present?
+    parts << "#{object.archival_collection_folder}" if object.archival_collection_folder.present?
+  
+    # Join the parts with a comma a space, where appropriate.
+    parts.join(', ')
+  end  
 end

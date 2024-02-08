@@ -571,6 +571,35 @@ RSpec.describe WorkIndexer do
       end
     end
 
+    context 'when just archival collection title & number attributes are provided' do
+      let(:attributes) do
+        {
+          ark: 'ark:/123/456',
+          archival_collection_title: "Sample collection",
+          archival_collection_number: "Collection 123"
+        }
+      end
+
+      it 'combines them' do
+        expect(indexer.archival_collection).to eq "Sample collection (Collection 123)"
+      end
+    end
+
+    context 'when just archival collection title, box & folder attributes are provided' do
+      let(:attributes) do
+        {
+          ark: 'ark:/123/456',
+          archival_collection_title: "Sample collection",
+          archival_collection_box: "Box 9",
+          archival_collection_folder: "Folder 21"
+        }
+      end
+
+      it 'combines them' do
+        expect(indexer.archival_collection).to eq "Sample collection, Box 9, Folder 21"
+      end
+    end
+
     context 'when archival collection attributes are absent' do
       let(:attributes) do
         {
