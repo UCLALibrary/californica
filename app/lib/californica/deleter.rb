@@ -82,12 +82,13 @@ module Californica
         Hyrax.config.callback.run(:after_destroy, record.id, User.batch_user)
         log("Deleted #{record.class} #{record.id} in #{ActiveSupport::Duration.build(Time.current - start_time)}")
         log("deleted item ark is: #{record.ark}")
-      rescue Ldp::HttpError, Faraday::TimeoutError, Faraday::ConnectionFailed => e
+      rescue Ldp::HttpError, Faraday::TimeoutError, Faraday::ConnectionFailed, RSolr::Error::Http => e
         log("#{e.class}: #{e.message}")
         retries ||= 0
         if (retries += 1) > 3
           return false # Explicitly return false after retries are exhausted
         else
+          sleep(10**(retries - 1))
           retry
         end
       end
