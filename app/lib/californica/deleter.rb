@@ -15,6 +15,7 @@ module Californica
     end
 
     def delete
+      log("Californica::Deleter.delete: deleting #{@id}")
       destroy_and_eradicate
     end
 
@@ -36,8 +37,9 @@ module Californica
     # Ensures all works are deleted; returns true if successful
     def delete_works(of_type: nil)
       work_id_list.empty? || work_id_list.all? do |work_id|
+        log("Californica::Deleter.delete_works: deleting work #{work_id}")
         Californica::Deleter.new(id: work_id, logger: logger)
-                            .delete_with_children(of_type: of_type)
+                            .delete(of_type: of_type)
       end
     end
 
@@ -77,6 +79,7 @@ module Californica
       end
 
       def destroy_and_eradicate
+        log("Californica::Deleter.destroy_and_eradicate: #{@id}")
         start_time = Time.current
         record&.destroy&.eradicate
         Hyrax.config.callback.run(:after_destroy, record.id, User.batch_user)
@@ -97,6 +100,7 @@ module Californica
         ActiveFedora.fedora.connection.delete(ActiveFedora::Base.id_to_uri(id))
         log("Forced delete of record from Fedora")
       rescue Ldp::NotFound
+        log("Record not found in Fedora")
         nil # Everything's good, we just wanted to make sure there wasn't a record in fedora not indexed to solr
       end
 
@@ -112,7 +116,8 @@ module Californica
       def record
         @record ||= ActiveFedora::Base.find(id)
 
-      rescue ActiveFedora::ObjectNotFoundError
+      rescue ActiveFedora::ObjectNotFoundError => e
+        log(e, status: :error)
         delete_from_fcrepo
       end
 
