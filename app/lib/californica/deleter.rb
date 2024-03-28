@@ -26,6 +26,7 @@ module Californica
       all_works_deleted = works.empty? || delete_works(of_type: of_type)
       if all_works_deleted && (of_type.nil? || record.is_a?(of_type))
         delete
+        log("#{__method__.to_s}: Deleted collection #{id} with all works.")
         true
       else
         log('Deletion skipped for some works.')
@@ -35,10 +36,21 @@ module Californica
 
     # Ensures all works are deleted; returns true if successful
     def delete_works(of_type: nil)
+      log("#{__method__.to_s}")
+      total_success = true
+      
       work_id_list.empty? || work_id_list.all? do |work_id|
-        Californica::Deleter.new(id: work_id, logger: logger)
-                            .delete_with_children(of_type: of_type)
+        begin
+          log("#{__method__.to_s}: Deleting work #{work_id}")
+          Californica::Deleter.new(id: work_id, logger: logger)
+                              .delete_with_children(of_type: of_type)
+        rescue StandardError => e
+          total_success = false
+          log("#{__method__.to_s}: Error deleting work #{work_id}: #{e.message}")
+        end
       end
+
+      total_success
     end
 
     # Modified to ensure all works are deleted before deleting the collection
