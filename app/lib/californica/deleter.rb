@@ -35,10 +35,19 @@ module Californica
 
     # Ensures all works are deleted; returns true if successful
     def delete_works(of_type: nil)
+      total_success = true
+
       work_id_list.empty? || work_id_list.all? do |work_id|
-        Californica::Deleter.new(id: work_id, logger: logger)
-                            .delete_with_children(of_type: of_type)
+        begin
+          Californica::Deleter.new(id: work_id, logger: logger)
+                              .delete_with_children(of_type: of_type)
+        rescue StandardError => e
+          total_success = false
+          log("Error deleting work #{work_id}: #{e.message}", status: :error)
+        end
       end
+
+      total_success
     end
 
     # Modified to ensure all works are deleted before deleting the collection
