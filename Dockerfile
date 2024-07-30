@@ -1,7 +1,18 @@
 FROM ruby:2.5
 
 # Install system dependencies
-RUN apt-get update -qq && apt-get install -y default-libmysqlclient-dev build-essential libpq-dev nodejs yarn imagemagick libreoffice ffmpeg unzip chromium-driver
+RUN apt-get update -qq && apt-get install -y \
+    default-libmysqlclient-dev \
+    build-essential \
+    libpq-dev \
+    nodejs \
+    yarn \
+    imagemagick \
+    libreoffice \
+    ffmpeg \
+    unzip \
+    chromium-driver \
+    zip
 
 # Set up user
 # RUN groupadd -r --gid 3000 docker && \

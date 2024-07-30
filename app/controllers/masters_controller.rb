@@ -10,7 +10,18 @@ class MastersController < ApplicationController
     if File.file?(path)
       send_file path
     elsif File.directory?(path)
-      raise ActionController::RoutingError, 'Directory listing not supported'
+      begin
+        zipname = "#{File.basename(path)}.zip"
+        archive = Rails.root.to_s + "/tmp/" + zipname
+
+        if system("cd #{path}/.. && zip -r #{archive} #{File.basename(path)}")
+          send_file archive
+        else
+          raise ActionController::RoutingError, 'Failed to create zip file'
+        end
+      ensure
+        `rm "#{archive}"` # remove the archive file, if it exists.
+      end
     else
       raise ActionController::RoutingError, 'Not Found ' + ENV['MASTERS_DIR']
     end
