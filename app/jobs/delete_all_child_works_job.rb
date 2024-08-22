@@ -8,9 +8,7 @@ class DeleteAllChildWorksJob < ActiveJob::Base
       record = ChildWork.first
       ark = record.ark
       Californica::Deleter.new(record: record).delete
-      Rollbar.info("Deleted ChildWork", ark: ark, duration: ActiveSupport::Duration.build(Time.current - start_time), remaining: ChildWork.count)
     end
 
-    Rollbar.info("No ChildWorks Remaining", remaining: ChildWork.count)
   end
 end

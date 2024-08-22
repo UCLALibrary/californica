@@ -159,8 +159,6 @@ class WorkIndexer < Hyrax::WorkIndexer
     return nil if dates.blank?
     valid_dates
   rescue ArgumentError => e
-    # We might want to start reporting metadata errors to Rollbar if we come up with a way to make them searchable and allow them to provide a feedback loop.
-    # Rollbar.error(e, "Invalid date string encountered in normalized date field: #{date_string}")
     Rails.logger.error "event: metadata_error : Invalid date string encountered in normalized date field: #{dates}: #{e}"
     nil
   end

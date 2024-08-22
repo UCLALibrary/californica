@@ -60,8 +60,6 @@ class YearParser
   # which really shouldn't be in the normalized date field, but we shouldn't
   # crash if we encounter it.
   rescue ArgumentError => e
-    # We might want to start reporting metadata errors to Rollbar if we come up with a way to make them searchable and allow them to provide a feedback loop.
-    # Rollbar.error(e, "Invalid date string encountered in normalized date field: #{date_string}")
     Rails.logger.error "event: metadata_error : Invalid date string encountered in normalized date field: #{date_string}: #{e}"
     nil
   end
