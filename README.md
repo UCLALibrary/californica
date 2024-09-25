@@ -145,12 +145,12 @@ CSV_FILE=/opt/data/ladnn/dlcs-dlcs_ladnn-2018-12-12.csv IMPORT_FILE_PATH=/opt/da
 ```
 
 In our server environments, csv files are copied to `/opt/data/` and the entire `Masters` volume is
-mounted at `'/opt/data/Masters'/`. To set the IMPORT_FILE_PATH variable, you will need to find the
+mounted at `/opt/data/Masters/`. To set the IMPORT_FILE_PATH variable, you will need to find the
 directory within `Masters` that contains the collections image files. For example:
 
 ```
 CSV_FILE=/opt/data/ladnn/dlcs-dlcs_ladnn-2018-12-12.csv \
-IMPORT_FILE_PATH='/opt/data/Masters'/dlmasters/ladailynews/image/ \
+IMPORT_FILE_PATH=/opt/data/Masters/dlmasters/ladailynews/image/ \
 bundle exec rake californica:ingest:csv
 ```
 
