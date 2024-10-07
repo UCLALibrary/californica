@@ -20,7 +20,6 @@ services:
     volumes:
       - .:/californica
       - ./data:/opt/data
-      - bundle_dir:/usr/local/bundle
       - californica_tmp:/californica/tmp
       - derivatives:/opt/derivatives
       - californica_log:/californica/log
@@ -44,7 +43,6 @@ services:
     volumes:
       - .:/californica
       - ./data:/opt/data
-      - bundle_dir:/usr/local/bundle
       - californica_log:/californica/log
       - californica_tmp:/californica/tmp
       - derivatives:/opt/derivatives
