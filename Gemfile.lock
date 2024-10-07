@@ -607,8 +607,6 @@ GEM
       rdf
     racc (1.6.0)
     rack (2.2.3)
-    rack-protection (2.1.0)
-      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.1.7)
@@ -702,7 +700,7 @@ GEM
     redcarpet (3.5.1)
     redic (1.5.3)
       hiredis
-    redis (4.1.4)
+    redis (4.6.0)
     redis-namespace (1.8.1)
       redis (>= 3.0.4)
     redlock (1.2.2)
@@ -789,11 +787,10 @@ GEM
       rdf-xsd (~> 3.1)
       sparql (~> 3.1)
       sxp (~> 1.1)
-    sidekiq (5.2.9)
-      connection_pool (~> 2.2, >= 2.2.2)
+    sidekiq (6.4.0)
+      connection_pool (>= 2.2.2)
       rack (~> 2.0)
-      rack-protection (>= 1.5.0)
-      redis (>= 3.3.5, < 4.2)
+      redis (>= 4.2.0)
     sidekiq-failures (1.0.1)
       sidekiq (>= 4.0.0)
     sidekiq-status (2.1.0)
@@ -957,7 +954,7 @@ DEPENDENCIES
   rubocop-rspec
   sass-rails (~> 5.0)
   selenium-webdriver
-  sidekiq (~> 5.2)
+  sidekiq (~> 6.4)
   sidekiq-failures
   sidekiq-status
   simplecov (~> 0.16.1)
