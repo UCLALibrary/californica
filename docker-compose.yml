@@ -2,7 +2,9 @@ version: '3.6'
 
 services:
   web:
-    image: uclalibrary/californica:latest
+    # image: uclalibrary/californica:latest
+    build:
+      .
     depends_on:
       - db
       - fedora
@@ -20,6 +22,7 @@ services:
     volumes:
       - .:/californica
       - ./data:/opt/data
+      - bundle_dir:/usr/local/bundle
       - californica_tmp:/californica/tmp
       - derivatives:/opt/derivatives
       - californica_log:/californica/log
@@ -28,7 +31,9 @@ services:
     working_dir: /californica
 
   sidekiq:
-    image: uclalibrary/californica:latest
+    # image: uclalibrary/californica:latest
+    build:
+      .
     command: ['bundle', 'exec', 'sidekiq', '-c', '2']
     depends_on:
       - db
@@ -43,6 +48,7 @@ services:
     volumes:
       - .:/californica
       - ./data:/opt/data
+      - bundle_dir:/usr/local/bundle
       - californica_log:/californica/log
       - californica_tmp:/californica/tmp
       - derivatives:/opt/derivatives
