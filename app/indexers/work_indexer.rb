@@ -59,7 +59,15 @@ class WorkIndexer < Hyrax::WorkIndexer
   def add_dates(solr_doc)
     valid_dates = solr_dates
     solr_doc['date_dtsim'] = valid_dates if valid_dates
-    solr_doc['date_dtsort'] = solr_doc['date_dtsim'][0] if solr_doc['date_dtsim']
+
+    return unless solr_doc['date_dtsim']
+
+    solr_doc['date_dtsort'] = solr_doc['date_dtsim'][0]
+    solr_doc['date_desc_dtsi'] = if solr_doc['date_dtsim'].length > 1
+                                   solr_doc['date_dtsim'][1]
+                                 else
+                                   solr_doc['date_dtsim'][0]
+                                 end
   end
 
   def combined_subject

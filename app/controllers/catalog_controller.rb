@@ -718,7 +718,7 @@ class CatalogController < ApplicationController
     config.add_sort_field "score desc, #{uploaded_field} desc", label: 'relevance'
     config.add_sort_field 'title_alpha_numeric_ssort asc', label: "Title \u25BC"
     config.add_sort_field 'title_alpha_numeric_ssort desc', label: "Title \u25B2"
-    config.add_sort_field 'date_dtsort desc', label: "Date created \u25BC"
+    config.add_sort_field 'date_desc_dtsi desc', label: "Date created \u25BC"
     config.add_sort_field 'date_dtsort asc', label: "Date created \u25B2"
     config.add_sort_field "#{uploaded_field} desc", label: "date uploaded \u25BC"
     config.add_sort_field "#{uploaded_field} asc", label: "date uploaded \u25B2"
