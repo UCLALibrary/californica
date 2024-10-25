@@ -1,4 +1,4 @@
-FROM ruby:2.5
+FROM ruby:2.7
 
 # Install system dependencies
 RUN apt-get update -qq && apt-get install -y default-libmysqlclient-dev build-essential libpq-dev nodejs yarn imagemagick libreoffice ffmpeg unzip chromium-driver
