@@ -144,6 +144,11 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content 'Archival Collection Number-2' # archival_collection_number
     expect(page).to have_content 'Box' # box
     expect(page).to have_content 'Folder' # folder
+    expect(page).to have_content 'Arranger' # arranger
+    expect(page).to have_content 'Collector' # collector
+    expect(page).to have_content 'Inscription' # inscription
+    expect(page).to have_content 'Librettist' # librettist
+    expect(page).to have_content 'Script' # script
 
     # displays expected sfields on search results page
     visit("catalog?search_field=all_fields&q=")

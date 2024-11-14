@@ -72,6 +72,9 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('musician', :facetable), label: 'Musician', limit: 5
     config.add_facet_field solr_name('printer', :facetable), label: 'Printer', limit: 5
     config.add_facet_field solr_name('researcher', :facetable), label: 'Researcher', limit: 5
+    config.add_facet_field solr_name('arranger', :facetable), label: 'Arranger', limit: 5
+    config.add_facet_field solr_name('collector', :facetable), label: 'Collector', limit: 5
+    config.add_facet_field solr_name('librettist', :facetable), label: 'Librettist', limit: 5
 
     # The generic_type isn't displayed on the facet list
     # It's used to give a label to the filter that comes from the user profile
@@ -206,6 +209,11 @@ class CatalogController < ApplicationController
     config.add_show_field 'archival_collection_number_ssi'
     config.add_show_field 'archival_collection_box_ssi'
     config.add_show_field 'archival_collection_folder_ssi'
+    config.add_show_field 'arranger_tesim'
+    config.add_show_field 'collector_tesim'
+    config.add_show_field 'inscription_tesim'
+    config.add_show_field 'librettist_tesim'
+    config.add_show_field 'script_tesim'
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
@@ -704,6 +712,46 @@ class CatalogController < ApplicationController
 
     config.add_search_field('series') do |field|
       solr_name = solr_name('series', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('arranger') do |field|
+      solr_name = solr_name('arranger', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('collector') do |field|
+      solr_name = solr_name('collector', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('inscription') do |field|
+      solr_name = solr_name('inscription', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('librettist') do |field|
+      solr_name = solr_name('librettist', :stored_searchable)
+      field.solr_local_parameters = {
+        qf: solr_name,
+        pf: solr_name
+      }
+    end
+
+    config.add_search_field('script') do |field|
+      solr_name = solr_name('script', :stored_searchable)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
