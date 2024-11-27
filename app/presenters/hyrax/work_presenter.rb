@@ -2,6 +2,7 @@
 # Generated via
 #  `rails generate hyrax:work Work`
 module Hyrax
+  # rubocop:disable Metrics/ClassLength
   class WorkPresenter < Hyrax::WorkShowPresenter
     delegate(
       :access_copy,

@@ -115,7 +115,7 @@ module Hyrax
         :toc,
         :total_items,
         :translator,
-        :uniform_title,
+        :uniform_title
       ]
     end
   end

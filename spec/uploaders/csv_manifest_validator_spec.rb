@@ -353,7 +353,7 @@ RSpec.describe CsvManifestValidator, type: :model do
         "Inscription",
         "Librettist",
         "Name.librettist",
-        "Script",
+        "Script"
       )
     end
   end

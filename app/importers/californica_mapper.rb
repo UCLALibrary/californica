@@ -143,7 +143,7 @@ class CalifornicaMapper < Darlingtonia::HashMapper
     title: "Title",
     toc: ["Table of Contents", "Description.tableOfContents"],
     translator: ["Translator", "Name.translator"],
-    uniform_title: "AltTitle.uniform",
+    uniform_title: "AltTitle.uniform"
   }.freeze
 
   DELIMITER = '|~|'

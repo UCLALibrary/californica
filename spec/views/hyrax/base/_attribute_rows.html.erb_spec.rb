@@ -101,7 +101,7 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       collector: ['Collector'],
       inscription: ['Inscription'],
       librettist: ['Librettist'],
-      script: ['Script'],
+      script: ['Script']
     )
   end
 

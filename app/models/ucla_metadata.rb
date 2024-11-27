@@ -339,11 +339,11 @@ module UclaMetadata
     end
 
     property :arranger, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/arr') do |index|
-      index.as :stored_searchable
+      index.as :stored_searchable, :facetable
     end
 
     property :collector, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/col') do |index|
-      index.as :stored_searchable
+      index.as :stored_searchable, :facetable
     end
 
     property :inscription, predicate: ::RDF::URI.intern('http://www.cidoc-crm.org/cidoc-crm/E34_Inscription') do |index|
@@ -351,7 +351,7 @@ module UclaMetadata
     end
 
     property :librettist, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/lbt') do |index|
-      index.as :stored_searchable
+      index.as :stored_searchable, :facetable
     end
 
     property :script, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/Script') do |index|

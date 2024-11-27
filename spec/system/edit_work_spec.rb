@@ -117,7 +117,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       title: ['Old Title'],
       toc: ['Old Table of contents'],
       translator: ['Old Translator'],
-      uniform_title: ['Old Uniform title'],
+      uniform_title: ['Old Uniform title']
     }
   end
 

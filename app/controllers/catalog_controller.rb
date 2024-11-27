@@ -308,7 +308,7 @@ class CatalogController < ApplicationController
       'support',
       'title',
       'translator',
-      'uniform_title',
+      'uniform_title'
     ].each do |field_name|
       config.add_search_field(field_name) do |field|
         solr_name = solr_name(field_name, :stored_searchable)
@@ -331,9 +331,9 @@ class CatalogController < ApplicationController
     {
       'date_created' => 'created',
       'based_near' => 'based_near_label',
-      'identifier' => 'id',
+      'identifier' => 'id'
     }.each do |field_name, field_solr_name|
-        config.add_search_field(field_name) do |field|
+      config.add_search_field(field_name) do |field|
         solr_name = solr_name(field_solr_name, :stored_searchable)
         field.solr_local_parameters = {
           qf: solr_name,

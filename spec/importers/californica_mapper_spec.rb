@@ -310,7 +310,7 @@ RSpec.describe CalifornicaMapper do
         :toc,
         :translator,
         :uniform_title,
-        :visibility,
+        :visibility
       )
     end
   end
