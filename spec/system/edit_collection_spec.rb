@@ -52,7 +52,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       history: ['Old History'],
       host: ['Old Host'],
       identifier: ['Old Identifier'],
-      iiif_manifest_url: 'https://test.iiif.library.ucla.edu/collections/ark%3A%2F21198%2Fz11c574k',
+      iiif_manifest_url: 'https://iiif.library.ucla.edu/collections/ark%3A%2F21198%2Fz11c574k',
       iiif_range: 'Old IIIF Range',
       iiif_text_direction: 'http://iiif.io/api/presentation/2#leftToRightDirection', # "left-to-right"
       iiif_viewing_hint: 'Old Iiif viewing hint',
@@ -156,7 +156,7 @@ RSpec.describe 'Edit an existing collection', :clean, type: :system, js: true do
       expect(find_field('Genre').value).to eq 'Old Genre'
       expect(find_field('History').value).to eq 'Old History'
       expect(find_field('Identifier').value).to eq 'Old Identifier'
-      expect(find_field('Iiif manifest url').value).to eq 'https://test.iiif.library.ucla.edu/collections/ark%3A%2F21198%2Fz11c574k'
+      expect(find_field('Iiif manifest url').value).to eq 'https://iiif.library.ucla.edu/collections/ark%3A%2F21198%2Fz11c574k'
       expect(find_field('Iiif range').value).to eq 'Old IIIF Range'
       expect(find_field('Illustrations note').value).to eq 'Old Illustrations note'
       expect(find_field('Latitude').value).to eq 'Old Lat'
