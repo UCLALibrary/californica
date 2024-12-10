@@ -68,7 +68,7 @@
 <%= presenter.attribute_to_html(:page_layout, html_dl: true) %>
 <%= presenter.attribute_to_html(:photographer, html_dl: true) %>
 <%= presenter.attribute_to_html(:place_of_origin, html_dl: true) %>
-<%= presenter.attribute_to_html(:preservation_copy, html_dl: true) %>
+<%= presenter.attribute_to_html(:preservation_copy, render_as: :masters, html_dl: true) %>
 <%= presenter.attribute_to_html(:printer, render_as: :faceted, html_dl: true) %>
 <%= presenter.attribute_to_html(:printmaker, html_dl: true) %>
 <%= presenter.attribute_to_html(:producer, html_dl: true) %>
