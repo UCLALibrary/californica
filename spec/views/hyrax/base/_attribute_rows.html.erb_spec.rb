@@ -96,7 +96,12 @@ RSpec.describe 'hyrax/base/attributes.html.erb', type: :view do
       archival_collection_title: 'Archival_collection_title',
       archival_collection_number: 'Archival_collection_number',
       archival_collection_box: 'Box',
-      archival_collection_folder: 'Folder'
+      archival_collection_folder: 'Folder',
+      arranger: ['Arranger'],
+      collector: ['Collector'],
+      inscription: ['Inscription'],
+      librettist: ['Librettist'],
+      script: ['Script']
     )
   end
 
