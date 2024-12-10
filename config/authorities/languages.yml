@@ -47,6 +47,8 @@ terms:
   term: English, Old (ca. 450-1100)
 - id: ann
   term: Obolo
+- id: ano
+  term: Andoque
 - id: anp
   term: Angika
 - id: apa
@@ -113,6 +115,8 @@ terms:
   term: Bengali
 - id: ber
   term: Berber (Other)
+- id: bfw
+  term: Bondo
 - id: bhb
   term: Bhili
 - id: bho
@@ -125,10 +129,16 @@ terms:
   term: Edo
 - id: bis
   term: Bislama
+- id: bjn
+  term: Banjar
 - id: bla
   term: Siksika
+- id: bns
+  term: Bundeli
 - id: bnt
   term: Bantu (Other)
+- id: boa
+  term: Bora-Miraña [Bora]
 - id: bos
   term: Bosnian
 - id: bra
@@ -219,6 +229,8 @@ terms:
   term: Creoles and Pidgins (Other)
 - id: csb
   term: Kashubian
+- id: ctu
+  term: Ch’ol (Chol)
 - id: cus
   term: Cushitic (Other)
 - id: cze
@@ -319,6 +331,8 @@ terms:
   term: East Frisian
 - id: fry
   term: Frisian
+- id: fuc
+  term: Pulaar
 - id: ful
   term: Fula
 - id: fur
@@ -337,6 +351,10 @@ terms:
   term: Gayo
 - id: gba
   term: Gbaya
+- id: gbj
+  term: Bodo Gadaba
+- id: gbr
+  term: Gbagyi / Gwari
 - id: gem
   term: Germanic (Other)
 - id: geo
@@ -389,6 +407,8 @@ terms:
   term: Hausa
 - id: haw
   term: Hawaiian
+- id: hbb
+  term: Huba
 - id: hch
   term: Wixárika (Huichol)
 - id: heb
@@ -407,16 +427,22 @@ terms:
   term: Hmong
 - id: hmo
   term: Hiri Motu
+- id: hnd
+  term: Hindko (Southern)
 - id: hne
   term: Chhattisgarhi
 - id: hrv
   term: Croatian
 - id: hsb
   term: Upper Sorbian
+- id: hto
+  term: Murui, Mɨnɨka dialect [Minica Huitoto]
 - id: hun
   term: Hungarian
 - id: hup
   term: Hupa
+- id: huu
+  term: Murui, Bue dialect [Murui Huitoto]
 - id: iba
   term: Iban
 - id: ibo
@@ -471,18 +497,18 @@ terms:
   term: Italian
 - id: its
   term: Isekiri
+- id: jar
+  term: Jarawa (Nigeria)
 - id: jav
   term: Javanese
 - id: jbo
   term: Lojban (Artificial language)
-- id: jpn
-  term: Japanese
-- id: jar
-  term: Jarawa (Nigeria)
 - id: jbu
   term: Jukun Takum
 - id: jib
   term: Jibu
+- id: jpn
+  term: Japanese
 - id: jpr
   term: Judeo-Persian
 - id: jrb
@@ -499,6 +525,8 @@ terms:
   term: Kamba
 - id: kan
   term: Kannada
+- id: kao
+  term: Kassonke
 - id: kar
   term: Karen languages
 - id: kas
@@ -511,6 +539,10 @@ terms:
   term: Kazakh
 - id: kbd
   term: Kabardian
+- id: kfe
+  term: Kota
+- id: kff
+  term: Koya
 - id: kha
   term: Khasi
 - id: khi
@@ -631,12 +663,12 @@ terms:
   term: Maasai
 - id: max
   term: Manx
+- id: may
+  term: Malay
 - id: maza1293
   term: Mazahua
 - id: maza1295
   term: Mazateco
-- id: may
-  term: Malay
 - id: mdf
   term: Moksha
 - id: mdr
@@ -649,6 +681,8 @@ terms:
   term: Micmac
 - id: min
   term: Minangkabau
+- id: mira1254
+  term: Miraña
 - id: mis
   term: Miscellaneous languages
 - id: mixe1286
@@ -751,6 +785,10 @@ terms:
   term: Nyoro
 - id: nzi
   term: Nzima
+- id: nzm
+  term: Zeme Naga
+- id: oca
+  term: Ocaina
 - id: oci
   term: Occitan (post-1500)
 - id: oji
@@ -783,6 +821,8 @@ terms:
   term: Papiamento
 - id: pau
   term: Palauan
+- id: pcl
+  term: Pardhi
 - id: peo
   term: Old Persian (ca. 600-400 B.C.)
 - id: per
@@ -849,6 +889,8 @@ terms:
   term: Santali
 - id: scc
   term: Serbian
+- id: sck
+  term: Sadri
 - id: scn
   term: Sicilian Italian
 - id: sco
@@ -875,6 +917,8 @@ terms:
   term: Siouan (Other)
 - id: sit
   term: Sino-Tibetan (Other)
+- id: skr
+  term: Saraiki
 - id: sla
   term: Slavic (Other)
 - id: slo
@@ -963,6 +1007,12 @@ terms:
   term: Tatar
 - id: tat
   term: Tatar
+- id: tca
+  term: Magütá [Ticuna]
+- id: tcx
+  term: Toda
+- id: tcy
+  term: Tulu
 - id: tel
   term: Telugu
 - id: tem
@@ -1035,6 +1085,8 @@ terms:
   term: Tuvinian
 - id: tzo
   term: Tsotsil (Tzotzil)
+- id: tzh
+  term: Tseltal (Tzeltal)
 - id: udm
   term: Udmurt
 - id: uga
@@ -1047,6 +1099,8 @@ terms:
   term: Umbundu
 - id: und
   term: Undetermined
+- id: unr
+  term: Mundari
 - id: urd
   term: Urdu
 - id: urh
