@@ -338,6 +338,26 @@ module UclaMetadata
       index.as :stored_sortable
     end
 
+    property :arranger, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/arr') do |index|
+      index.as :stored_searchable, :facetable
+    end
+
+    property :collector, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/col') do |index|
+      index.as :stored_searchable, :facetable
+    end
+
+    property :inscription, predicate: ::RDF::URI.intern('http://www.cidoc-crm.org/cidoc-crm/E34_Inscription') do |index|
+      index.as :stored_searchable
+    end
+
+    property :librettist, predicate: ::RDF::URI.intern('http://id.loc.gov/vocabulary/relators/lbt') do |index|
+      index.as :stored_searchable, :facetable
+    end
+
+    property :script, predicate: ::RDF::URI.intern('http://id.loc.gov/ontologies/bibframe/Script') do |index|
+      index.as :stored_searchable
+    end
+
     # ---------------
 
     property :dlcs_collection_name, predicate: ::RDF::URI.intern('https://bib.schema.org/Collection') do |index|
