@@ -42,6 +42,10 @@ class SolrDocument
     self[:ark_ssi]
   end
 
+  def arranger
+    self[:arranger_tesim]
+  end
+
   def architect
     self[:architect_tesim]
   end
@@ -72,6 +76,10 @@ class SolrDocument
 
   def collation
     self[:collation_ssi]
+  end
+
+  def collector
+    self[:collector_tesim]
   end
 
   def colophon
@@ -206,8 +214,16 @@ class SolrDocument
     self[:interviewer_tesim]
   end
 
+  def inscription
+    self[:inscription_tesim]
+  end
+
   def latitude
     self[Solrizer.solr_name('latitude')]
+  end
+
+  def librettist
+    self[:librettist_tesim]
   end
 
   def location
@@ -344,6 +360,10 @@ class SolrDocument
 
   def scribe
     self[:scribe_tesim]
+  end
+
+  def script
+    self[:script_tesim]
   end
 
   def series
