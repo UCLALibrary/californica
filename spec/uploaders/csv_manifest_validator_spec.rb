@@ -345,7 +345,15 @@ RSpec.describe CsvManifestValidator, type: :model do
         "Archival Collection Title",
         "Archival Collection Number",
         "Box",
-        "Folder"
+        "Folder",
+        "Arranger",
+        "Name.arranger",
+        "Collector",
+        "Name.collector",
+        "Inscription",
+        "Librettist",
+        "Name.librettist",
+        "Script"
       )
     end
   end
