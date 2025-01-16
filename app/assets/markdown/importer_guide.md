@@ -15,9 +15,14 @@
     - [AdminNote](#note_admin)
     - [AltTitle.other](#alttitleother)
     - [AltTitle.uniform](#alttitleuniform)
+    - [Archival Collection Number](#archive-collection-number)
+    - [Archival Collection Title](#archival-collection-title)
+    - [Arranger](#arranger)
     - [Author](#author)
     - [Binding note](#binding-note)
+    - [Box](#box)
     - [Collation](#collation)
+    - [Collector](#collector)
     - [Colophon](#colophon)
     - [Condition note](#condition-note)
     - [Content disclaimer](#contentdisclaimer)
@@ -33,26 +38,31 @@
     - [Description.note](#descriptionnote)
     - [Featured image (not in use)](#featured-image-not-in-use)
     - [Finding Aid URL](#finding-aid-url)
+    - [Folder](#folder)
     - [Foliation](#foliation)
-    - [Format](#format_book)
     - [Format.dimensions](#formatdimensions)
     - [Format.extent](#formatextent)
     - [Format.medium](#formatmedium)
+    - [Format](#format_book)
     - [Genre](#genre)
     - [Host](#host)
     - [IIIF Access URL](#iiif-access-url)
     - [IIIF Range (for future use in Festerize to generate Ranges)](#iiif-range-for-future-use-in-festerize-to-generate-ranges)
     - [Illustrations note](#illustrations-note)
+    - [Inscription](#inscription)
     - [Item Sequence](#item-sequence)
     - [Language](#language)
+    - [Librettist](#librettist)
     - [License](#license)
     - [Local identifier](#local-identifier)
     - [Masthead](#masthead)
     - [Musician](#musician)
     - [Name.architect](#namearchitect)
+    - [Name.arranger](#arranger)
     - [Name.artist](#nameartist)
     - [Name.calligrapher](#namecalligrapher)
     - [Name.cartographer](#namecartographer)
+    - [Name.collector](#collector)
     - [Name.commentator](#namecommentator)
     - [Name.composer](#namecomposer)
     - [Name.creator](#namecreator)
@@ -63,6 +73,7 @@
     - [Name.illustrator](#nameillustrator)
     - [Name.interviewee](#nameinterviewee)
     - [Name.interviewer](#nameinterviewer)
+    - [Name.librettist](#librettist)
     - [Name.lyricist](#namelyricist)
     - [Name.musician](#namemusician)
     - [Name.photographer](#namephotographer)
@@ -74,8 +85,8 @@
     - [Name.rubricator](#namerubricator)
     - [Name.scribe](#namescribe)
     - [Name.translator](#nametranslator)
-    - [Note](#note)
     - [Note.admin](#note_admin)
+    - [Note](#note)
     - [Opac url](#opac-url)
     - [Page layout](#page-layout)
     - [Place of origin](#place-of-origin)
@@ -84,37 +95,34 @@
     - [Project Name](#project-name)
     - [Provenance](#provenance)
     - [Publisher.publisherName](#publisherpublishername)
-    - [Related Records](#human_readable_related_record_title_ssm)
-    - [Related Items](#related_to)
     - [References](# citation_source)
+    - [Related Items](#related_to)
+    - [Related Records](#human_readable_related_record_title_ssm)
     - [Relation.isPartOf](#relationispartof)
     - [Repository](#repository)
     - [Representative image](#representative-image)
     - [Researcher](#researcher)
     - [Rights.countryCreation](#rightscountrycreation)
     - [Rights.rightsHolderContact](#rightsrightsholdercontact)
-    - [Rights.statementLocal](#	local_rights_statement)
+    - [Rights.statementLocal](# local_rights_statement)
+    - [Script](#script)
     - [Series](#series)
     - [Statement of Responsibility](#resp_statement)
+    - [Subject culturalObject](#subject-culturalobject)
+    - [Subject domainTopic](#subject-domaintopic)
     - [Subject geographic](#subject-geographic)
     - [Subject name](#subject-name)
     - [Subject temporal](#subject-temporal)
-    - [Subject culturalObject](#subject-culturalobject)
-    - [Subject domainTopic](#subject-domaintopic)
     - [Subject topic](#subject-topic)
     - [Summary](#summary)
     - [Support](#support)
-    - [Text direction (for Festerize only)](#text-direction-for-festerize-only)
     - [Table of Contents](#table-of-contents)
     - [Tagline](#tagline)
+    - [Text direction (for Festerize only)](#text-direction-for-festerize-only)
     - [Thumbnail](#thumbnail)
     - [Type.typeOfResource](#typetypeofresource)
     - [viewingHint (for Festerize only)](#viewinghint-for-festerize-only)
     - [Visibility](#visibility)
-    - [Archival Collection Title](#archival-collection-title)
-    - [Archival Collection Number](#archive-collection-number)
-    - [Box](#box)
-    - [Folder](#folder)
 <!-- TOC END -->
 
 ## Required Fields
@@ -212,6 +220,8 @@ Also accepts: `AltTitle.translated`, `AltTitle.descriptive`, `AltTitle.parallel`
 
 A uniform title from a controlled vocabulary. Can be multivalued.
 
+#### Arranger
+
 #### Author
 
 The author of the work being described. Can be multivalued.
@@ -221,6 +231,8 @@ The author of the work being described. Can be multivalued.
 Also accepts: `Description.binding`
 
 #### Collation
+
+#### Collector
 
 #### Colophon
 
@@ -312,6 +324,8 @@ _Note: Complex objects generally do not have IIIF Access URLs in the Work rows, 
 
 Also accepts: `Description.illustrations`
 
+#### Inscription
+
 #### Item Sequence
 
 Required for Page rows of complex objects to generate manifests using Festerize. Work rows should not have Item Sequence values.
@@ -319,6 +333,8 @@ Required for Page rows of complex objects to generate manifests using Festerize.
 #### Language
 
 Language of the resource. Must be the 3-letter ISO 639-2 code. Can be multivalued.
+
+#### Librettist
 
 #### License
 
@@ -479,6 +495,8 @@ Also accepts: `Rights.rightsHolderName`, `Personal or Corporate Name.copyrightHo
 
 #### Rights.statementLocal
 Local rights statement
+
+#### Script
 
 #### Series
 

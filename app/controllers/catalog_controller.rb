@@ -72,6 +72,9 @@ class CatalogController < ApplicationController
     config.add_facet_field solr_name('musician', :facetable), label: 'Musician', limit: 5
     config.add_facet_field solr_name('printer', :facetable), label: 'Printer', limit: 5
     config.add_facet_field solr_name('researcher', :facetable), label: 'Researcher', limit: 5
+    config.add_facet_field solr_name('arranger', :facetable), label: 'Arranger', limit: 5
+    config.add_facet_field solr_name('collector', :facetable), label: 'Collector', limit: 5
+    config.add_facet_field solr_name('librettist', :facetable), label: 'Librettist', limit: 5
 
     # The generic_type isn't displayed on the facet list
     # It's used to give a label to the filter that comes from the user profile
@@ -206,6 +209,11 @@ class CatalogController < ApplicationController
     config.add_show_field 'archival_collection_number_ssi'
     config.add_show_field 'archival_collection_box_ssi'
     config.add_show_field 'archival_collection_folder_ssi'
+    config.add_show_field 'arranger_tesim'
+    config.add_show_field 'collector_tesim'
+    config.add_show_field 'inscription_tesim'
+    config.add_show_field 'librettist_tesim'
+    config.add_show_field 'script_tesim'
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
@@ -244,125 +252,71 @@ class CatalogController < ApplicationController
     # Solr parameter de-referencing like $title_qf.
     # See: http://wiki.apache.org/solr/LocalParams
 
-    config.add_search_field('contributor') do |field|
-      solr_name = solr_name('contributor', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('author') do |field|
-      solr_name = solr_name('author', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('based_near') do |field|
-      solr_name = solr_name('based_near_label', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('artist') do |field|
-      solr_name = solr_name('artist', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('binding_note') do |field|
-      solr_name = solr_name('binding_note', :stored_sortable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('cartographer') do |field|
-      solr_name = solr_name('cartographer', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    # References
-    config.add_search_field('citation_source') do |field|
-      solr_name = solr_name('citation_source', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('collation') do |field|
-      solr_name = solr_name('collation', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('colophon') do |field|
-      solr_name = solr_name('colophon', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('commentator') do |field|
-      solr_name = solr_name('commentator', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('composer') do |field|
-      solr_name = solr_name('composer', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('creator') do |field|
-      solr_name = solr_name('creator', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('title') do |field|
-      solr_name = solr_name('title', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('date_created') do |field|
-      solr_name = solr_name('created', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('depositor') do |field|
-      solr_name = solr_name('depositor', :symbol)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
+    [
+      'arranger',
+      'artist',
+      'author',
+      'cartographer',
+      'citation_source',
+      'collation',
+      'collector',
+      'colophon',
+      'commentator',
+      'composer',
+      'contributor',
+      'created',
+      'creator',
+      'director',
+      'foliation',
+      'format',
+      'format_book',
+      'host',
+      'iiif_viewing_hint',
+      'illuminator',
+      'illustrator',
+      'inscription',
+      'interviewee',
+      'interviewer',
+      'keyword',
+      'language',
+      'librettist',
+      'license',
+      'lyricist',
+      'musician',
+      'note_admin',
+      'printer',
+      'producer',
+      'program',
+      'publisher',
+      'recipient',
+      'repository',
+      'researcher',
+      'resource_type',
+      'resp_statement',
+      'rights_statement',
+      'rubricator',
+      'scribe',
+      'script',
+      'series',
+      'subject',
+      'subject_cultural_object',
+      'subject_domain_topic',
+      'subject_geographic',
+      'subject_temporal',
+      'subject_topic',
+      'summary',
+      'support',
+      'title',
+      'translator',
+      'uniform_title'
+    ].each do |field_name|
+      config.add_search_field(field_name) do |field|
+        solr_name = solr_name(field_name, :stored_searchable)
+        field.solr_local_parameters = {
+          qf: solr_name,
+          pf: solr_name
+        }
+      end
     end
 
     config.add_search_field('description') do |field|
@@ -374,336 +328,36 @@ class CatalogController < ApplicationController
       }
     end
 
-    config.add_search_field('director') do |field|
-      solr_name = solr_name('director', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
+    {
+      'date_created' => 'created',
+      'based_near' => 'based_near_label',
+      'identifier' => 'id'
+    }.each do |field_name, field_solr_name|
+      config.add_search_field(field_name) do |field|
+        solr_name = solr_name(field_solr_name, :stored_searchable)
+        field.solr_local_parameters = {
+          qf: solr_name,
+          pf: solr_name
+        }
+      end
     end
 
-    config.add_search_field('foliation') do |field|
-      solr_name = solr_name('foliation', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
+    [
+      'binding_note',
+      'opac_url',
+      'iiif_manifest_url'
+    ].each do |field_name|
+      config.add_search_field(field_name) do |field|
+        solr_name = solr_name(field_name, :stored_sortable)
+        field.solr_local_parameters = {
+          qf: solr_name,
+          pf: solr_name
+        }
+      end
     end
 
-    config.add_search_field('format_book') do |field|
-      solr_name = solr_name('format_book', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('illuminator') do |field|
-      solr_name = solr_name('illuminator', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('interviewee') do |field|
-      solr_name = solr_name('interviewee', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('interviewer') do |field|
-      solr_name = solr_name('interviewer', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('lyricist') do |field|
-      solr_name = solr_name('lyricist', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('note_admin') do |field|
-      solr_name = solr_name('note_admin', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('opac_url') do |field|
-      solr_name = solr_name('opac_url', :stored_sortable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('producer') do |field|
-      solr_name = solr_name('producer', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('program') do |field|
-      solr_name = solr_name('program', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('publisher') do |field|
-      solr_name = solr_name('publisher', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('recipient') do |field|
-      solr_name = solr_name('recipient', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('	resp_statement') do |field|
-      solr_name = solr_name('	resp_statement', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('scribe') do |field|
-      solr_name = solr_name('scribe', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('subject') do |field|
-      solr_name = solr_name('subject', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('subject_geographic') do |field|
-      solr_name = solr_name('subject_geographic', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('subject_temporal') do |field|
-      solr_name = solr_name('subject_temporal', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('subject_cultural_object') do |field|
-      solr_name = solr_name('subject_cultural_object', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('subject_domain_topic') do |field|
-      solr_name = solr_name('subject_domain_topic', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('language') do |field|
-      solr_name = solr_name('language', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('resource_type') do |field|
-      solr_name = solr_name('resource_type', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('format') do |field|
-      solr_name = solr_name('format', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('host') do |field|
-      solr_name = solr_name('host', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('identifier') do |field|
-      solr_name = solr_name('id', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('iiif_manifest_url') do |field|
-      solr_name = solr_name('iiif_manifest_url', :stored_sortable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('iiif_viewing_hint') do |field|
-      solr_name = solr_name('iiif_viewing_hint', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('illustrator') do |field|
-      solr_name = solr_name('illustrator', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('keyword') do |field|
-      solr_name = solr_name('keyword', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('rights_statement') do |field|
-      solr_name = solr_name('rights_statement', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('rubricator') do |field|
-      solr_name = solr_name('rubricator', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('license') do |field|
-      solr_name = solr_name('license', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('musician') do |field|
-      solr_name = solr_name('musician', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('printer') do |field|
-      solr_name = solr_name('printer', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('subject_topic') do |field|
-      solr_name = solr_name('subject_topic', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('summary') do |field|
-      solr_name = solr_name('summary', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('support') do |field|
-      solr_name = solr_name('support', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('uniform_title') do |field|
-      solr_name = solr_name('uniform_title', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('translator') do |field|
-      solr_name = solr_name('translator', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('repository') do |field|
-      solr_name = solr_name('repository', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('researcher') do |field|
-      solr_name = solr_name('researcher', :stored_searchable)
-      field.solr_local_parameters = {
-        qf: solr_name,
-        pf: solr_name
-      }
-    end
-
-    config.add_search_field('series') do |field|
-      solr_name = solr_name('series', :stored_searchable)
+    config.add_search_field('depositor') do |field|
+      solr_name = solr_name('depositor', :symbol)
       field.solr_local_parameters = {
         qf: solr_name,
         pf: solr_name
