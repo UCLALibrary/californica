@@ -11,7 +11,12 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       access_copy: 'dlmasters/ethiopian/masters/abc123.tif',
       alternative_title: ['Alternative title'],
       architect: ['Old Architect'],
+      archival_collection_box: 'Old Box',
+      archival_collection_folder: 'Old Folder',
+      archival_collection_number: 'Old Archival Collection Number',
+      archival_collection_title: 'Old Archival Collection Title',
       ark: 'ark:/abc/3456',
+      arranger: ['Old Arranger'],
       artist: ['Old Artist'],
       author: ['Old Author'],
       binding_note: 'Old Binding note',
@@ -20,9 +25,10 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       cartographer: ['Old Cartographer'],
       citation_source: ['Old References'],
       collation: 'Old Collation',
+      collector: ['Old Collector'],
       colophon: ['Old Colophon'],
-      composer: ['Old Composer'],
       commentator: ['Old Commentator'],
+      composer: ['Old Composer'],
       condition_note: 'Old Condition note',
       content_disclaimer: ['Old Disclaimer'],
       contents_note: ['Old Contents note'],
@@ -53,10 +59,12 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       illuminator: ['Old Illuminator'],
       illustrations_note: ['Old Illustrations note'],
       illustrator: ['Old Illustrator'],
-      interviewer: ['Old Interviewer'],
+      inscription: ['Old Inscription'],
       interviewee: ['Old Interviewee'],
+      interviewer: ['Old Interviewer'],
       language: ['ang'],
       latitude: ['Old Lat'],
+      librettist: ['Old Librettist'],
       license: ['http://creativecommons.org/publicdomain/zero/1.0/'],
       local_identifier: ['Old Local ID'],
       local_rights_statement: ['Old Local rights statement'],
@@ -94,6 +102,7 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       rights_statement: ['http://vocabs.library.ucla.edu/rights/copyrighted'], # "copyrighted"
       rubricator: ['Old rubricator'],
       scribe: ['Old Scribe'],
+      script: ['Old Script'],
       series: ['Old Series'],
       subject: ['Old Subj'],
       subject_cultural_object: ['Old Subject cultural object'],
@@ -104,15 +113,11 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       summary: ['Old Summary'],
       support: ['Old Support'],
       tagline: 'Old Tagline',
-      title: ['Old Title'],
       thumbnail_link: 'https://fake.url/iiif/ark%3A%2Fabc%2F3456',
+      title: ['Old Title'],
       toc: ['Old Table of contents'],
       translator: ['Old Translator'],
-      uniform_title: ['Old Uniform title'],
-      archival_collection_title: 'Old Archival Collection Title',
-      archival_collection_number: 'Old Archival Collection Number',
-      archival_collection_box: 'Old Box',
-      archival_collection_folder: 'Old Folder'
+      uniform_title: ['Old Uniform title']
     }
   end
 
@@ -225,6 +230,11 @@ RSpec.describe 'Edit an existing work', :clean, type: :system, js: true do
       expect(find_field('Archival collection number').value).to eq 'Old Archival Collection Number'
       expect(find_field('Archival collection box').value).to eq 'Old Box'
       expect(find_field('Archival collection folder').value).to eq 'Old Folder'
+      expect(find_field('Arranger').value).to eq 'Old Arranger'
+      expect(find_field('Collector').value).to eq 'Old Collector'
+      expect(find_field('Inscription').value).to eq 'Old Inscription'
+      expect(find_field('Librettist').value).to eq 'Old Librettist'
+      expect(find_field('Script').value).to eq 'Old Script'
 
       # Edit some fields in the form
       fill_in 'Title', with: 'New Title'
