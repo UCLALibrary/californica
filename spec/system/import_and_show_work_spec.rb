@@ -144,6 +144,11 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content 'Archival Collection Number-2' # archival_collection_number
     expect(page).to have_content 'Box' # box
     expect(page).to have_content 'Folder' # folder
+    expect(page).to have_content 'Arranger' # arranger
+    expect(page).to have_content 'Collector' # collector
+    expect(page).to have_content 'Inscription' # inscription
+    expect(page).to have_content 'Librettist' # librettist
+    expect(page).to have_content 'Script' # script
 
     # displays expected sfields on search results page
     visit("catalog?search_field=all_fields&q=")
@@ -153,7 +158,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
 
     # displays expected facets
     facet_headings = page.all(:css, 'h3.facet-field-heading').to_a.map(&:text)
-    expect(facet_headings).to contain_exactly("Subject", "Creator", "Resource Type", "Genre", "Names", "Location", "Normalized Date", "Extent", "Medium", "Dimensions", "Language", "Collection", "Subject geographic", "Subject temporal", "Repository", "Subject cultural object", "Subject domain topic", "Series", "Host", "Musician", "Printer", "Researcher")
+    expect(facet_headings).to contain_exactly("Subject", "Creator", "Resource Type", "Genre", "Names", "Location", "Normalized Date", "Extent", "Medium", "Dimensions", "Language", "Collection", "Subject geographic", "Subject temporal", "Repository", "Subject cultural object", "Subject domain topic", "Series", "Host", "Musician", "Printer", "Researcher", "Arranger", "Collector", "Librettist")
 
     # importing the same object twice
     expect(work.funding_note.first).to eq "Fake Funding Note"
