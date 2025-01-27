@@ -69,11 +69,11 @@ class WorkIndexer < Hyrax::WorkIndexer
 
   def combined_names
     %w[
-       architect arranger artist author calligrapher cartographer collector commentator composer
-       creator director editor engraver host illuminator illustrator interviewee interviewer librettist
-       lyricist musician photographer printer printmaker producer recipient researcher rubricator scribe translator
+      architect arranger artist author calligrapher cartographer collector commentator composer
+      creator director editor engraver host illuminator illustrator interviewee interviewer librettist
+      lyricist musician photographer printer printmaker producer recipient researcher rubricator scribe translator
     ].sum do |field_name|
-        object.send(field_name).to_a
+      object.send(field_name).to_a
     end
   end
 
