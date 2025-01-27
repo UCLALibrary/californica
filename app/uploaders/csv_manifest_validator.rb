@@ -56,7 +56,7 @@ OPTIONAL_HEADERS = MAPPED_HEADERS + OTHER_OPTIONAL_HEADERS - REQUIRED_HEADERS
 CONTROLLED_VOCABULARIES = {
   'Language' => Qa::Authorities::Local.subauthority_for('languages').all.map { |x| x['id'] },
   'License' => Qa::Authorities::Local.subauthority_for('licenses').all.map { |x| x['id'] },
-  'Rights.copyrightStatus' => Qa::Authorities::Local.subauthority_for('rights_statements').all.map { |x| x['label'] },
+  'Rights.copyrightStatus' => Qa::Authorities::Local.subauthority_for('rights_statements').all.map { |x| x['label'] } + ['pd'],
   'Type.typeOfResource' => Qa::Authorities::Local.subauthority_for('resource_types').all.map { |x| x['label'] },
   'IIIF Text direction' => Qa::Authorities::Local.subauthority_for('iiif_text_directions').all.map { |x| x['label'] }
 }.freeze
