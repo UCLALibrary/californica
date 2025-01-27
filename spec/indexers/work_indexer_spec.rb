@@ -7,19 +7,25 @@ RSpec.describe WorkIndexer do
 
   let(:indexer) { described_class.new(work) }
 
-  describe 'combined_subject' do
+  describe 'combined_subject and combined_names' do
     let(:attributes) do
       {
         ark: 'ark:/123/456',
         subject: ['Subject 1', 'Subject 2'],
         named_subject: ['Named Subject'],
         subject_topic: ['Subject Topic'],
-        subject_geographic: ['Subject Geographic']
+        subject_geographic: ['Subject Geographic'],
+        architect: ['John Smith'],
+        artist: ['Jane Doe']
       }
     end
 
     it 'combines the relevant subject fields' do
       expect(solr_document['combined_subject_ssim']).to contain_exactly('Subject 1', 'Subject 2', 'Named Subject', 'Subject Topic', 'Subject Geographic')
+    end
+
+    it 'combines the relevant names fields' do
+      expect(solr_document['combined_names_ssim']).to contain_exactly('John Smith', 'Jane Doe')
     end
 
     context 'When subject fields are missing' do

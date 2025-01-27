@@ -16,6 +16,7 @@ class WorkIndexer < Hyrax::WorkIndexer
   def generate_solr_document
     super.tap do |solr_doc|
       solr_doc['combined_subject_ssim'] = combined_subject
+      solr_doc['combined_names_ssim'] = combined_names
       add_dates(solr_doc)
       solr_doc['geographic_coordinates_ssim'] = coordinates
       solr_doc['human_readable_iiif_text_direction_ssi'] = human_readable_iiif_text_direction
@@ -64,6 +65,16 @@ class WorkIndexer < Hyrax::WorkIndexer
 
   def combined_subject
     object.named_subject.to_a + object.subject.to_a + object.subject_topic.to_a + object.subject_geographic.to_a + object.subject_temporal.to_a
+  end
+
+  def combined_names
+    %w[
+      architect arranger artist author calligrapher cartographer collector commentator composer
+      creator director editor engraver host illuminator illustrator interviewee interviewer librettist
+      lyricist musician photographer printer printmaker producer recipient researcher rubricator scribe translator
+    ].sum do |field_name|
+      object.send(field_name).to_a
+    end
   end
 
   def coordinates
