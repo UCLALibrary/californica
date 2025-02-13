@@ -214,6 +214,7 @@ class CatalogController < ApplicationController
     config.add_show_field 'inscription_tesim'
     config.add_show_field 'librettist_tesim'
     config.add_show_field 'script_tesim'
+    config.add_show_field 'services_contact'
 
     # "fielded" search configuration. Used by pulldown among other places.
     # For supported keys in hash, see rdoc for Blacklight::SearchFields
