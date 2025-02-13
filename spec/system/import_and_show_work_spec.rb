@@ -51,7 +51,7 @@ RSpec.describe 'Import and Display a Work', :clean, type: :system, inline_jobs: 
     expect(page).to have_content "University of California, Los Angeles. Library. Department of Special Collections" # repository
     expect(page).to have_content "Los Angeles Daily News" # publisher
     expect(page).to have_content "US" # rights_country
-    expect(page).to have_content "UCLA Charles E. Young Research Library Department of Special Collections, A1713 Young Research Library, Box 951575, Los Angeles, CA 90095-1575. E-mail: spec-coll@library.ucla.edu. Phone: (310)825-4988" # rights_holder
+    expect(page).to have_content "UCLA Charles E. Young Research Library Department of Special Collections, A1713 Young Research Library, Box 951575, Los Angeles, CA 90095-1575. E-mail: spec-coll@library.ucla.edu. Phone: (310)825-4988" # services_contact
     expect(page).to have_content "1942/1952" # normalized_date
     expect(page).to have_content "uclamss_1387_b112_40911-1" # local_identifier
     expect(page).to have_content "[between 1942-1947]" # date_created
