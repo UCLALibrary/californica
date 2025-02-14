@@ -94,6 +94,7 @@ module Hyrax
       :scribe,
       :script,
       :series,
+      :services_contact,
       :subject_cultural_object,
       :subject_domain_topic,
       :subject_geographic,
