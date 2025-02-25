@@ -489,11 +489,16 @@ Also accepts: `Name.researcher`
 
 #### Rights.countryCreation
 
-#### Rights.rightsHolderContact
+#### Rights.rightsHolderName
 
-Also accepts: `Rights.rightsHolderName`, `Personal or Corporate Name.copyrightHolder`
+Also accepts: `Personal or Corporate Name.copyrightHolder`
+
+#### Rights.servicesContact
+
+Also accepts: Rights.rightsHolderContact
 
 #### Rights.statementLocal
+
 Local rights statement
 
 #### Script
