@@ -2,7 +2,7 @@ version: '3.6'
 
 services:
   web:
-    image: uclalibrary/californica:latest
+    build: .
     depends_on:
       - db
       - fedora
