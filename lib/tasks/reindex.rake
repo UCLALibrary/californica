@@ -6,6 +6,11 @@
 # that already exist.  So, for example, it can't be
 # used to repopulate the solr records after a clean.
 desc 'Re-index solr records for californica works & collections'
-task reindex: :environment do
-  ReindexEverythingFromSolrJob.perform_later cutoff_datetime: Time.zone.now.to_s
+task :reindex, [:arg1] => :environment do |t, args|
+  cutoff_timestamp = args[:arg1] || (Time.zone.now.to_s)
+  if Time.zone.parse(cutoff_timestamp)
+    ReindexEverythingFromSolrJob.perform_later cutoff_datetime: cutoff_timestamp
+  else
+    raise ArgumentError, "Time.zone.parse() can't parse '#{cutoff_timestamp}'."
+  end
 end

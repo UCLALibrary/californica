@@ -49,7 +49,6 @@ class ReindexEverythingFromSolrJob < ApplicationJob
       else
         record.member_of_collections.each { |collection| collection.recalculate_size = false }
         record.update_index
-        record.member_of_collections.each { |collection| collection.recalculate_size = true }
       end
     rescue => e
       @error_stream << "Failed to reindex #{id}: #{e.message}\n#{e.backtrace.inspect}"
