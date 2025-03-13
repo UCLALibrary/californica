@@ -8,6 +8,8 @@ class CollectionIndexer < Hyrax::CollectionWithBasicMetadataIndexer
       solr_doc['thumbnail_url_ss'] = thumbnail_url
       solr_doc['title_alpha_numeric_ssort'] = object.title.first
       solr_doc['ursus_id_ssi'] = Californica::IdGenerator.blacklight_id_from_ark(object.ark)
+      solr_doc['reindex_timestamp_dtsi'] = Time.zone.now
+      solr_doc['record_origin_ssi'] = 'californica'
     end
   end
 
