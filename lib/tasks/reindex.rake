@@ -7,5 +7,5 @@
 # used to repopulate the solr records after a clean.
 desc 'Re-index solr records for californica works & collections'
 task reindex: :environment do
-  ReindexEverythingFromSolrJob.perform_later
+  ReindexEverythingFromSolrJob.perform_later cutoff_datetime: Time.zone.now.to_s
 end

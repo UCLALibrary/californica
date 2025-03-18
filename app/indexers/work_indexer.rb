@@ -13,6 +13,7 @@ class WorkIndexer < Hyrax::WorkIndexer
   # See https://github.com/UCLALibrary/californica/blob/main/solr/config/schema.xml#194
   # for extensions that can be used below
 
+  # rubocop:disable Metrics/MethodLength
   def generate_solr_document
     super.tap do |solr_doc|
       solr_doc['combined_subject_ssim'] = combined_subject
@@ -33,6 +34,8 @@ class WorkIndexer < Hyrax::WorkIndexer
       solr_doc['year_isim'] = years
       solr_doc['human_readable_related_record_title_ssm'] = find_related_records_titles_by_ark
       solr_doc['archival_collection_tesi'] = archival_collection
+      solr_doc['reindex_timestamp_dtsi'] = Time.zone.now
+      solr_doc['record_origin_ssi'] = 'californica'
     end
   end
 
