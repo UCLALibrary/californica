@@ -7,6 +7,11 @@ RSpec.describe WorkIndexer do
 
   let(:indexer) { described_class.new(work) }
 
+  before(:all) do
+    ENV["TZ"] = nil
+    Time.zone = nil
+  end
+
   describe 'combined_subject and combined_names' do
     let(:attributes) do
       {
