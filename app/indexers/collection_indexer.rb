@@ -28,7 +28,9 @@ class CollectionIndexer < Hyrax::CollectionWithBasicMetadataIndexer
       "member_of_collection_ids_ssim" => [], "collection_ids_ssim" => [],
       "generic_type_sim" => ["Collection"],
       "bytes_lts" => 0,
-      "visibility_ssi" => "restricted"
+      "visibility_ssi" => "restricted",
+      "reindex_timestamp_dtsi" => Time.zone.now,
+      "record_origin_ssi" => "californica"
     }
   end
 
