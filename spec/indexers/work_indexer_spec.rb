@@ -7,6 +7,11 @@ RSpec.describe WorkIndexer do
 
   let(:indexer) { described_class.new(work) }
 
+  before(:all) do
+    ENV["TZ"] = nil
+    Time.zone = nil
+  end
+
   describe 'combined_subject and combined_names' do
     let(:attributes) do
       {
@@ -309,6 +314,7 @@ RSpec.describe WorkIndexer do
       it 'indexes the year' do
         expect(solr_document['year_isim']).to eq [1940]
         expect(solr_document['date_dtsim']).to eq [Date.strptime('1940', "%Y").to_time.utc.iso8601]
+        expect(solr_document['date_dtsort']).to eq '1940-01-01T00:00:00Z'
       end
     end
 
@@ -351,6 +357,7 @@ RSpec.describe WorkIndexer do
       it 'indexes the earliest year' do
         expect(solr_document['sort_year_isi']).to eq 1940
         expect(solr_document['date_dtsim']).to eq [Date.strptime('1940-10-15', "%Y-%m-%d").to_time.utc.iso8601]
+        expect(solr_document['date_dtsort']).to eq '1940-10-15T00:00:00Z'
       end
     end
 
@@ -378,6 +385,7 @@ RSpec.describe WorkIndexer do
       it 'indexes the earliest year' do
         expect(solr_document['sort_year_isi']).to eq 1934
         expect(solr_document['date_dtsim']).to eq [Date.strptime('1934-06', "%Y-%m").to_time.utc.iso8601, Date.strptime('1937-07', "%Y-%m").to_time.utc.iso8601]
+        expect(solr_document['date_dtsort']).to eq '1934-06-01T00:00:00Z'
       end
     end
 

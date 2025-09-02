@@ -6,10 +6,10 @@ class ReindexEverythingFromSolrJob < ApplicationJob
 
   queue_as Hyrax.config.ingest_queue_name
 
-  def expiration
-    @expiration ||= 60 * 60 * 24 * 365 # 1 year
-  end
-
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/MethodLength
+  # rubocop:disable Metrics/PerceivedComplexity
   def perform(cutoff_datetime: Time.zone.now.to_s)
     start_time = Time.zone.now.localtime
     cutoff_datetime = Time.zone.parse(cutoff_datetime)
@@ -21,7 +21,21 @@ class ReindexEverythingFromSolrJob < ApplicationJob
       total @total_n_items
 
       next_batch_ids(cutoff_datetime, 10).each_with_index do |id, i|
-        at @total_n_items - @n_remaining + i, "#{@total_n_items - @n_remaining + i} / #{@total_n_items}"
+        @initial_n_remaining ||= @n_remaining
+
+        msg = "#{@total_n_items - @n_remaining + i} / #{@total_n_items}"
+        actual_n_remaining = @n_remaining - i
+        if actual_n_remaining < @initial_n_remaining
+          rate = (Time.zone.now.localtime - start_time) / (@initial_n_remaining - actual_n_remaining)
+          seconds_remaining = (@n_remaining - i) * rate
+          msg += " (#{rate.round(1)}s per item,  "
+          msg += (seconds_remaining / 60 / 60 / 24).floor.to_s + "d " if seconds_remaining > 60 * 60 * 24
+          msg += (seconds_remaining / 60 / 60 % 24).floor.to_s + "h " if seconds_remaining > 60 * 60
+          msg += (seconds_remaining / 60 % 60).floor.to_s + "m " if seconds_remaining > 60
+          msg += (seconds_remaining % 60).round.to_s + "s " if seconds_remaining
+          msg += "remaining)"
+        end
+        at @total_n_items - @n_remaining + i, msg
         reindex_item(id)
       end
 
@@ -49,7 +63,6 @@ class ReindexEverythingFromSolrJob < ApplicationJob
       else
         record.member_of_collections.each { |collection| collection.recalculate_size = false }
         record.update_index
-        record.member_of_collections.each { |collection| collection.recalculate_size = true }
       end
     rescue => e
       @error_stream << "Failed to reindex #{id}: #{e.message}\n#{e.backtrace.inspect}"
