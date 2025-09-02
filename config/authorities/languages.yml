@@ -133,6 +133,8 @@ terms:
   term: Banjar
 - id: bla
   term: Siksika
+- id: bmr
+  term: Muinane
 - id: bns
   term: Bundeli
 - id: bnt
@@ -669,6 +671,8 @@ terms:
   term: Mazahua
 - id: maza1295
   term: Mazateco
+- id: mbf
+  term: Baba Malay
 - id: mdf
   term: Moksha
 - id: mdr
@@ -761,6 +765,8 @@ terms:
   term: Norwegian (Bokmål)
 - id: nog
   term: Nogai
+- id: noj
+  term: Nonuya
 - id: non
   term: Old Norse
 - id: nor
