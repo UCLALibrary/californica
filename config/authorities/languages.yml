@@ -157,6 +157,8 @@ terms:
   term: Bulgarian
 - id: bur
   term: Burmese
+- id: bxr
+  term: Russia Buriat
 - id: byn
   term: Bilin
 - id: cad
@@ -207,6 +209,8 @@ terms:
   term: Cheyenne
 - id: cin
   term: Cinta
+- id: ckt
+  term: Chukot (Chukchi)
 - id: cmc
   term: Chamic languages
 - id: cnr
@@ -257,6 +261,10 @@ terms:
   term: Dinka
 - id: div
   term: Divehi
+- id: dlg
+  term: Dolgan
+- id: dng
+  term: Dungan
 - id: doi
   term: Dogri
 - id: dra
@@ -295,8 +303,14 @@ terms:
   term: Esperanto
 - id: est
   term: Estonian
+- id: esx
+  term: Eskaleut languages
 - id: eth
   term: Ethiopic
+- id: eve
+  term: Even
+- id: evn
+  term: Evenki
 - id: ewe
   term: Ewe
 - id: ewo
@@ -369,6 +383,8 @@ terms:
   term: Gilbertese
 - id: gla
   term: Scottish Gaelic
+- id: gld
+  term: Nanai
 - id: gle
   term: Irish
 - id: glg
@@ -497,6 +513,8 @@ terms:
   term: Isoko
 - id: ita
   term: Italian
+- id: itl
+  term: Itelmen
 - id: its
   term: Isekiri
 - id: jar
@@ -541,6 +559,8 @@ terms:
   term: Kazakh
 - id: kbd
   term: Kabardian
+- id: kca
+  term: Khanty
 - id: kfe
   term: Kota
 - id: kff
@@ -577,6 +597,8 @@ terms:
   term: Kosraean
 - id: kpe
   term: Kpelle
+- id: kpy
+  term: Koryak
 - id: krc
   term: Karachay-Balkar
 - id: krl
@@ -707,6 +729,8 @@ terms:
   term: Manipuri
 - id: mno
   term: Manobo languages
+- id: mns
+  term: Mansi
 - id: moh
   term: Mohawk
 - id: mol
@@ -755,8 +779,12 @@ terms:
   term: Nias
 - id: nic
   term: Niger-Kordofanian (Other)
+- id: nio
+  term: Nganasan
 - id: niu
   term: Niuean
+- id: niv
+  term: Gilyak (Nivkh)
 - id: nkx
   term: Nkọrọọ
 - id: nno
@@ -987,6 +1015,8 @@ terms:
   term: Susu
 - id: sux
   term: Sumerian
+- id: sty
+  term: Siberian Tatar
 - id: swa
   term: Swahili
 - id: swe
@@ -1155,6 +1185,8 @@ terms:
   term: Yoruba
 - id: ypk
   term: Yupik languages
+- id: yrk
+  term: Nenets
 - id: zap
   term: Zapotec
 - id: zbl
