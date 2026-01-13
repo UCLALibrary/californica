@@ -10,7 +10,14 @@ Rails.application.config.to_prepare do
     lease: "label-warning",
     open: "label-success",
     restricted: "label-danger",
-    sinai: "label-info"
+    sinai: "label-info",
+
+    private: 'label-danger',
+    discovery: 'label-warning',
+    authenticated: 'label-danger',
+    registered: 'label-danger',
+    ucla: 'label-danger',
+    public: 'label-success'
   }.freeze
 end
 
