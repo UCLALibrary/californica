@@ -14,7 +14,7 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@b818bea8cf015031920150a891dbdd4105cc7e47
       with:
-        ruby-version: '2.5'
+        ruby-version: '2.6.3'
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - name: rubocop
       run: bundle exec rubocop
