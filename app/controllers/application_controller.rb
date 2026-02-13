@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   # If read_only is enabled, redirect any requests that would allow
   # changes to the system. This is to enable easier migrations.
   def check_read_only
-    return unless Flipflop.read_only?
+    # return unless Flipflop.read_only?
 
     # Exempt the FlipFlop controller itself from read_only mode, so it can be turned off
     return if self.class.to_s == Hyrax::Admin::StrategiesController.to_s
@@ -34,7 +34,7 @@ class ApplicationController < ActionController::Base
 
     redirect_back(
       fallback_location: root_path,
-      alert: "This system is in read-only mode for maintenance. No submissions or edits can be made at this time."
+      alert: "This system is deprecated and in permanent read-only mode."
     )
   end
 
